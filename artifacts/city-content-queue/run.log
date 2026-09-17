@@ -512,3 +512,31 @@ Traceback (most recent call last):
 RuntimeError: Cannot patch cleanup and faq preservation
 permalink_sql_patched=0
 {"ready_batches": 3, "package_dir": "/home/runner/work/navar/navar/artifacts/city-content-queue/packages"}
+queue_exit_code=1
+post_run=19/20
+layflat_reset_count=0
+Traceback (most recent call last):
+  File "/home/runner/work/navar/navar/automation/run_agnes_city_queue_image_qa.py", line 19, in <module>
+    runpy.run_path(str(HERE / 'run_agnes_city_queue_fast.py'), run_name='__main__')
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/runner/work/navar/navar/automation/run_agnes_city_queue_fast.py", line 28, in <module>
+    runpy.run_path(str(HERE / 'run_agnes_city_queue_resilient.py'), run_name='__main__')
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/runner/work/navar/navar/automation/run_agnes_city_queue_resilient.py", line 20, in <module>
+    runpy.run_path(str(HERE/'run_agnes_city_queue_seo.py'),run_name='__main__')
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/runner/work/navar/navar/automation/run_agnes_city_queue_seo.py", line 31, in <module>
+    run_source=replace_once(run_source,"        if not faq_policy.has_faq_at_end(body):errors.append('three details FAQ items required at end')\n        if not errors:\n            obj['city_research']=research\n            obj['topic']=item.get('topic')\n            obj['topic_focus']=topic_focus\n            return obj\n","        obj=text_cleanup_policy.apply(obj,item); body=obj.get('html','')\n        if '[[[IMAGE_1]]]' in body: errors.append('IMAGE_1 marker leaked into body')\n        if not faq_policy.has_faq_at_end(body):errors.append('three details FAQ items required at end')\n        if not errors:\n            obj['city_research']=research\n            obj['topic']=item.get('topic')\n            obj['topic_focus']=topic_focus\n            return obj\n",'cleanup and faq preservation')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/navar/navar/automation/run_agnes_city_queue_seo.py", line 8, in replace_once
+    if source.count(old)!=1:raise RuntimeError('Cannot patch '+label)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Cannot patch cleanup and faq preservation
+permalink_sql_patched=0
+{"ready_batches": 3, "package_dir": "/home/runner/work/navar/navar/artifacts/city-content-queue/packages"}
