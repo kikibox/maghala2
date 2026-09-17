@@ -1,0 +1,88 @@
+name: Rewrite city posts with Agnes
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "audit = گزارش، rewrite = تولید SQL"
+        required: true
+        type: choice
+        options: [audit, rewrite]
+        default: audit
+      dump_path:
+        description: "مسیر SQL یا SQL.GZ"
+        required: true
+        default: "database/incoming/navaraby_wp569.sql.gz"
+      post_types:
+        description: "post typeهای شهری با کاما؛ خالی = تشخیص خودکار"
+        required: false
+        default: ""
+      max_posts:
+        description: "۰ = همه؛ برای تست ۳"
+        required: true
+        default: "0"
+  push:
+    branches: [main]
+    paths:
+      - "database/incoming/*.sql"
+      - "database/incoming/*.sql.gz"
+      - "automation/city-rewrite-trigger.txt"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: navar-city-post-rewrite
+  cancel-in-progress: false
+
+env:
+  DUMP_PATH: ${{ github.event_name == 'workflow_dispatch' && inputs.dump_path || 'database/incoming/navaraby_wp569.sql.gz' }}
+  RUN_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.mode || (github.event.head_commit.message == 'run: rewrite three city post samples' && 'rewrite' || 'audit') }}
+  POST_TYPES: ${{ github.event_name == 'workflow_dispatch' && inputs.post_types || '' }}
+  MAX_POSTS: ${{ github.event_name == 'workflow_dispatch' && inputs.max_posts || (github.event.head_commit.message == 'run: rewrite three city post samples' && '3' || '0') }}
+  AGNES_API_BASE: https://apihub.agnes-ai.com/v1
+  AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+  AGNES_MODEL: agnes-2.5-flash
+
+jobs:
+  process:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Validate pipeline and dump
+        run: |
+          python -m py_compile automation/rewrite_city_posts.py
+          test -f "$DUMP_PATH" || { echo "::error::Dump not found: $DUMP_PATH"; exit 1; }
+      - name: Audit city posts
+        run: |
+          python automation/rewrite_city_posts.py audit --dump "$DUMP_PATH" --post-types "$POST_TYPES" --out artifacts/city-posts
+      - name: Verify Agnes configuration
+        if: env.RUN_MODE == 'rewrite'
+        run: test -n "$AGNES_API_KEY" || { echo "::error::AGNES_API_KEY is missing"; exit 1; }
+      - name: Rewrite and generate migrations
+        if: env.RUN_MODE == 'rewrite'
+        run: |
+          python automation/rewrite_city_posts.py rewrite --dump "$DUMP_PATH" --post-types "$POST_TYPES" --max-posts "$MAX_POSTS" --out artifacts/city-posts
+      - name: Publish three-post sample results
+        if: env.RUN_MODE == 'rewrite' && env.MAX_POSTS == '3'
+        run: |
+          mkdir -p artifacts/city-posts-sample
+          cp artifacts/city-posts/inventory.csv artifacts/city-posts/audit.json artifacts/city-posts/rewrite.sql artifacts/city-posts/rollback.sql artifacts/city-posts/rewrite-report.json artifacts/city-posts-sample/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f artifacts/city-posts-sample
+          git commit -m "Publish three rewritten city post samples"
+          git pull --rebase origin main
+          git push origin main
+      - name: Upload review package
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: city-posts-${{ env.RUN_MODE }}-${{ github.run_number }}
+          path: artifacts/city-posts/
+          if-no-files-found: warn
+          retention-days: 7

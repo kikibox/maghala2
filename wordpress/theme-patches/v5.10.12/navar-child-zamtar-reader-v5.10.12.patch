@@ -1,0 +1,49 @@
+--- functions.php (v5.10.11)
++++ functions.php (v5.10.12)
+@@
+-define( 'NAVAR_CHILD_VERSION', '5.10.11' );
++define( 'NAVAR_CHILD_VERSION', '5.10.12' );
+@@
++/** Resolve the exact Persian/Arabic/Tajik equivalent of a translated article. */
++function navar_article_translation_url( $post_id, $lang ) {
++    $post_id = absint($post_id);
++    $lang = in_array($lang, array('fa','iraq','tj'), true) ? $lang : 'fa';
++    $post = $post_id ? get_post($post_id) : false;
++    if ( ! $post || 'post' !== $post->post_type ) return '';
++    $current_language = (string) get_post_meta($post_id, '_navar_translation_language', true);
++    $source_id = absint(get_post_meta($post_id, '_navar_translation_source_id', true));
++    if ( ! $source_id ) $source_id = $post_id;
++    if ( 'fa' === $lang ) return get_post_status($source_id) === 'publish' ? get_permalink($source_id) : '';
++    $wanted = 'iraq' === $lang ? 'ar-IQ' : 'tg-TJ';
++    if ( $current_language === $wanted ) return get_permalink($post_id);
++    $matches = get_posts(array(
++        'post_type'=>'post','post_status'=>'publish','posts_per_page'=>1,'fields'=>'ids',
++        'no_found_rows'=>true,'ignore_sticky_posts'=>true,'suppress_filters'=>false,
++        'meta_query'=>array('relation'=>'AND',
++            array('key'=>'_navar_translation_source_id','value'=>(string)$source_id,'compare'=>'='),
++            array('key'=>'_navar_translation_language','value'=>$wanted,'compare'=>'='),
++        ),
++    ));
++    return ! empty($matches) ? get_permalink(absint($matches[0])) : '';
++}
+@@ navar_language_url_for_current_request
++    if ( is_singular('post') ) {
++        $article_url = navar_article_translation_url(get_queried_object_id(), $lang);
++        if ( $article_url ) return $article_url;
++    }
+@@ navar_language_post_query_args
+-function navar_language_post_query_args() { /* category-slug filtering */ }
++function navar_language_post_query_args() {
++    $lang = navar_lang();
++    if ( 'iraq' === $lang ) return array('meta_query'=>array(array('key'=>'_navar_translation_language','value'=>'ar-IQ','compare'=>'=')));
++    if ( 'tj' === $lang ) return array('meta_query'=>array(array('key'=>'_navar_translation_language','value'=>'tg-TJ','compare'=>'=')));
++    return array('meta_query'=>array('relation'=>'OR',
++        array('key'=>'_navar_translation_language','compare'=>'NOT EXISTS'),
++        array('key'=>'_navar_translation_language','value'=>array('ar-IQ','tg-TJ'),'compare'=>'NOT IN'),
++    ));
++}
+--- style.css
++++ style.css
+@@
+-Version: 5.10.11
++Version: 5.10.12

@@ -1,0 +1,50 @@
+name: Build featured images queue
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["featured-images/build_next.py", "featured-images/build_next_safe.py", ".github/workflows/featured-images.yml"]
+permissions:
+  contents: write
+concurrency:
+  group: navar-featured-images
+  cancel-in-progress: false
+jobs:
+  build-all-remaining:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install --disable-pip-version-check pillow
+      - name: Process every remaining source sequentially
+        shell: bash
+        run: |
+          while true; do
+            remaining=$(python -c "import json, pathlib; p=pathlib.Path('state/featured-images-progress.json'); print(json.load(open(p))['remaining_sources'] if p.exists() else 153)")
+            if [ "$remaining" -eq 0 ]; then break; fi
+            echo "Processing next source; $remaining sources remain."
+            python featured-images/build_next_safe.py
+          done
+          sed -i 's#pedisaimon-source/navar-abyari#kirobesaban/navar-abyari#g' docs/featured-images-status.md
+      - name: Commit completed images and progress
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add featured-images/outputs state/featured-images-progress.json docs/featured-images-status.md
+          git commit -m "Complete all 306 featured images"
+          git pull --rebase origin main
+          git push origin main
+      - name: Build and validate final SQL package
+        run: python featured-images/build_final.py
+      - name: Commit final deliverables
+        shell: bash
+        run: |
+          git add artifacts/navar-multilingual-featured-report.json
+          git add -f artifacts/navar-multilingual-with-featured-images.sql.gz artifacts/navar-multilingual-featured-package.zip
+          git commit -m "Publish final SQL and featured image package"
+          git pull --rebase origin main
+          git push origin main

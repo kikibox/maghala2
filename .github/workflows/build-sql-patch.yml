@@ -1,0 +1,49 @@
+name: Build corrected translation SQL patch
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["sqlbuild/**", "wordpress/**", ".github/workflows/build-sql-patch.yml"]
+permissions:
+  contents: write
+concurrency:
+  group: navar-sql-build
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Generate and validate corrected SQL
+        shell: bash
+        run: |
+          python -c "import json; s=json.load(open('state/progress.json')); assert s['completed_units']==s['total_units'] and s['remaining_units']==0, s"
+          python -m py_compile sqlbuild/build_patch.py
+          python sqlbuild/build_patch.py
+          python - <<'PY'
+          import gzip,json
+          from pathlib import Path
+          r=json.loads(Path('artifacts/generated-translations-report.json').read_text())
+          assert r['automated_translation_units']==304,r
+          sql=gzip.open('artifacts/generated-translations.sql.gz','rt',encoding='utf-8').read()
+          assert sql.count("'_navar_translation_source_id'")==304
+          assert sql.count("'_navar_translation_language'")==304
+          assert 'id=\\\"toc_container\\\"' not in sql
+          assert 'id=\\\"simple-translate\\\"' not in sql
+          print(r['cleanup'])
+          PY
+          php -l wordpress/navar-language-switcher-fix.php
+      - name: Commit corrected artifacts
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f artifacts/generated-translations.sql.gz artifacts/fix-imported-translations.sql.gz
+          git add artifacts/generated-translations-report.json
+          git commit -m "Publish corrected translation SQL artifacts"
+          git pull --rebase origin main
+          git push origin main

@@ -1,0 +1,49 @@
+name: Build three real Iranian city-post samples
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["automation/city-sample-v2-trigger.txt"]
+permissions:
+  contents: write
+concurrency:
+  group: navar-city-samples-v2
+  cancel-in-progress: true
+jobs:
+  samples:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      AGNES_API_BASE: https://apihub.agnes-ai.com/v1
+      AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+      AGNES_MODEL: agnes-2.5-flash
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Generate samples with diagnostics
+        shell: bash
+        run: |
+          mkdir -p artifacts/city-posts-sample
+          rm -f artifacts/city-posts-sample/run.log artifacts/city-posts-sample/status.json
+          set +e
+          python -m py_compile automation/rewrite_city_samples.py automation/rewrite_city_samples_v2.py > artifacts/city-posts-sample/run.log 2>&1 && python automation/rewrite_city_samples_v2.py >> artifacts/city-posts-sample/run.log 2>&1
+          code=$?
+          if [ "$code" -eq 0 ]; then result=success; else result=failed; fi
+          printf '{"result":"%s","exit_code":%s,"run_id":"%s","model":"%s"}\n' "$result" "$code" "${{ github.run_id }}" "$AGNES_MODEL" > artifacts/city-posts-sample/status.json
+          exit 0
+      - name: Publish sample files and status
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f artifacts/city-posts-sample
+          git commit -m "Publish three real Iranian city post samples"
+          git pull --rebase origin main
+          git push origin main
+      - uses: actions/upload-artifact@v4
+        with:
+          name: three-real-iranian-city-post-samples-${{ github.run_number }}
+          path: artifacts/city-posts-sample/
+          retention-days: 14
