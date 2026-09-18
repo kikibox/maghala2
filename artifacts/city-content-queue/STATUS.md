@@ -2,7 +2,7 @@
 
 > این صفحه پس از پردازش هر پست به‌روزرسانی می‌شود. برای دیدن مقدار تازه، صفحه را Refresh کنید.
 
-- آخرین بروزرسانی: `2026-09-18T16:09:15+00:00`
+- آخرین بروزرسانی: `2026-09-18T16:18:45+00:00`
 - وضعیت صف: **ready**
 - پیشرفت: **21 از 1894 (1.11٪)**
 - تکمیل‌شده: **21**
@@ -43,7 +43,7 @@
 
 ## خطاهای اخیر
 
-- **آوه** — `layflat`: `Agnes Image HTTP 504: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/","title":"Error 504: Gateway time-out","status":504,"detail":"The origin web server did not respond to Cloudflare within the allowed time. This typically means `
+- **آوه** — `layflat`: `Editorial review failed: three details FAQ items required at end; layflat article still focuses on drip tape`
 
 ## فایل‌های خروجی
 
