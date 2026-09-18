@@ -7,7 +7,7 @@ on:
     paths: ["automation/ftp-test-trigger.txt"]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   test:
@@ -27,8 +27,30 @@ jobs:
         uses: actions/setup-python@v5
         with: {python-version: "3.12"}
       - name: Test FTPS connection and ZIP upload
+        id: ftps
+        continue-on-error: true
         shell: bash
         run: |
           set -euo pipefail
           test -n "$FTP_PASSWORD" || { echo "ERROR: FTP_PASSWORD secret is missing"; exit 1; }
           python automation/upload_city_batches_ftps.py --test
+      - name: Record FTPS test result
+        if: always()
+        shell: bash
+        run: |
+          set -u
+          mkdir -p artifacts
+          if [ "${{ steps.ftps.outcome }}" = "success" ]; then
+            RESULT=passed
+          else
+            RESULT=failed
+          fi
+          cat > artifacts/ftps-test-status.json <<EOF
+          {"status":"$RESULT","tested_at":"$(date -u +%Y-%m-%dT%H:%M:%SZ)","host":"$FTP_HOST","port":$FTP_PORT,"remote_dir":"$FTP_REMOTE_DIR","uploaded_file":"first ZIP batch","password_recorded":false}
+          EOF
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add artifacts/ftps-test-status.json
+          git commit -m "Record FTPS upload test result"
+          git push origin main
+          if [ "$RESULT" != "passed" ]; then exit 1; fi
