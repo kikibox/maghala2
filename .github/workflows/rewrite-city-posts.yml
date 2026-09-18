@@ -37,9 +37,9 @@ concurrency:
 
 env:
   DUMP_PATH: ${{ github.event_name == 'workflow_dispatch' && inputs.dump_path || 'database/incoming/navaraby_wp569.sql.gz' }}
-  RUN_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.mode || (github.event.head_commit.message == 'run: rewrite three city post samples' && 'rewrite' || 'audit') }}
+  RUN_MODE: "${{ github.event_name == 'workflow_dispatch' && inputs.mode || (github.event.head_commit.message == 'run: rewrite three city post samples' && 'rewrite' || 'audit') }}"
   POST_TYPES: ${{ github.event_name == 'workflow_dispatch' && inputs.post_types || '' }}
-  MAX_POSTS: ${{ github.event_name == 'workflow_dispatch' && inputs.max_posts || (github.event.head_commit.message == 'run: rewrite three city post samples' && '3' || '0') }}
+  MAX_POSTS: "${{ github.event_name == 'workflow_dispatch' && inputs.max_posts || (github.event.head_commit.message == 'run: rewrite three city post samples' && '3' || '0') }}"
   AGNES_API_BASE: https://apihub.agnes-ai.com/v1
   AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
   AGNES_MODEL: agnes-2.5-flash
