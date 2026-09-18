@@ -1,15 +1,10 @@
 #!/usr/bin/env python3
-"""Fast, practical image QA for city-content images.
-
-Policy v9: do not block the production queue for subjective/over-strict visual
-review. Keep a lightweight gate for hard failures only, and review fewer images.
-"""
+"""Fast image QA with hard rejection for product identity and physics failures."""
 import base64,json,os,re,urllib.request
 MAX_IMAGE_ATTEMPTS=max(1,int(os.getenv('IMAGE_QA_ATTEMPTS','1')))
 MIN_IMAGE_SCORE=int(os.getenv('IMAGE_QA_MIN_SCORE','70'))
 FAST_MODE=os.getenv('IMAGE_QA_FAST_MODE','1')!='0'
-REVIEW_KINDS={int(x) for x in os.getenv('IMAGE_QA_REVIEW_KINDS','1,3').split(',') if x.strip().isdigit()}
-HARD_REJECT_TERMS=('white cylinder','retail package','carton','fake label','logo','watermark','text on product')
+REVIEW_KINDS={int(x) for x in os.getenv('IMAGE_QA_REVIEW_KINDS','1,2,3,4,5').split(',') if x.strip().isdigit()}
 
 def _extract_json(text):
  text=(text or '').strip();text=re.sub(r'^```(?:json)?\s*|\s*```$','',text,flags=re.I|re.S).strip()
@@ -32,22 +27,20 @@ def _vision_review(base,path,item,kind):
   return {'pass':True,'score':90,'reasons':['fast mode: trusted prompt for non-key image'],'correction_prompt':''}
  encoded=base64.b64encode(path.read_bytes()).decode('ascii')
  if topic=='layflat':
-  criteria='Main subject should be black collapsible layflat hose or installed layflat irrigation mainline in a farm. Connections should be plausible when visible.'
-  reject='Reject only hard product mismatches: drip-tape roll as the main product, retail packaging/carton, fake labels/logos/text, missing farm/product entirely, or impossible/floating hose.'
+  criteria='The image must show exactly one black woven yarn-reinforced collapsible layflat hose matching the approved reference. The hose must be fully visible, physically continuous, correctly scaled and resting naturally on the ground. No other product or object may touch or cross it.'
+  reject='Hard reject any second hose, round pipe, drip tape, cable, fitting, valve, filter, coupler, box, package, tool, hand, person, fake label, impossible intersection, object passing through the coil, floating/merged product, or distorted dimensions/markings.'
  else:
-  criteria='Main subject should be drip tape / drip irrigation field image for tape20 posts.'
-  reject='Reject only hard mismatches: white cylinder/package/carton as product, fake labels/logos/text, no irrigation product/field, or completely wrong object such as cable/garden hose as the main product.'
- prompt=f'''Fast practical QA. City {item.get('city','')}, topic {topic}, image role {kind}. {criteria}
+  criteria='The image must show one thin flat black drip-tape roll in a real farm context, naturally placed on soil and not confused with a round pipe or layflat hose.'
+  reject='Hard reject any second irrigation product, pipe through the roll, white cylinder, carton, fake label, impossible geometry, upright wheel-like roll, or distorted product dimensions.'
+ prompt=f'''Fast practical QA for city {item.get('city','')}, topic {topic}, image role {kind}. {criteria}
 {reject}
-Do not reject for minor soil texture, minor connection imperfection, central product placement, composition preference, or lack of perfect crop specificity. This is production advertising content and speed matters.
-Return only JSON: {{"pass":true|false,"score":0-100,"reasons":["..."],"correction_prompt":"short regeneration instruction"}}. Pass at score {MIN_IMAGE_SCORE} or higher.'''
+Do not reject only for ordinary soil texture or distant crop rows. Return only JSON: {{"pass":true|false,"score":0-100,"reasons":["..."],"correction_prompt":"short regeneration instruction"}}. Pass at score {MIN_IMAGE_SCORE} or higher.'''
  payload={'model':base.AGNES_MODEL,'messages':[{'role':'user','content':[{'type':'text','text':prompt},{'type':'image_url','image_url':{'url':'data:image/jpeg;base64,'+encoded}}]}],'temperature':0,'response_format':{'type':'json_object'}}
- req=urllib.request.Request(base.AGNES_BASE+'/chat/completions',data=json.dumps(payload).encode(),headers={'Authorization':'Bearer '+base.AGNES_KEY,'Content-Type':'application/json'})
+ req=urllib.request.Request(base.AGNES_BASE+'/chat/completions',data=json.dumps(payload).encode(),headers={'Authorization':f'Bearer {base.AGNES_KEY}','Content-Type':'application/json'})
  with urllib.request.urlopen(req,timeout=60) as response:raw=json.loads(response.read())
  content=raw['choices'][0]['message']['content']
  if isinstance(content,list):content=''.join(str(x.get('text','')) for x in content if isinstance(x,dict))
- verdict=_extract_json(content)
- verdict['pass']=bool(verdict.get('pass')) and int(verdict.get('score',0))>=MIN_IMAGE_SCORE
+ verdict=_extract_json(content);verdict['pass']=bool(verdict.get('pass')) and int(verdict.get('score',0))>=MIN_IMAGE_SCORE
  return verdict
 
 def install(base,backend,raw_generator):
@@ -60,7 +53,6 @@ def install(base,backend,raw_generator):
     name,digest=raw_generator(item,kind);path=base.IMAGES/name
     try:verdict=_vision_review(base,path,item,kind)
     except Exception as exc:
-     # Review service failures should not stop the queue in fast mode.
      verdict={'pass':True,'score':80,'reasons':['visual review unavailable; accepted in fast mode: '+type(exc).__name__],'correction_prompt':''}
     verdict['attempt']=attempt;history.append(verdict)
     print(f"image_quality_review_fast source_id={item['source_id']} topic={item.get('topic')} kind={kind} attempt={attempt} pass={verdict['pass']} score={verdict.get('score',0)} reasons={verdict.get('reasons',[])}",flush=True)
