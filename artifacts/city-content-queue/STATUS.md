@@ -2,7 +2,7 @@
 
 > این صفحه پس از پردازش هر پست به‌روزرسانی می‌شود. برای دیدن مقدار تازه، صفحه را Refresh کنید.
 
-- آخرین بروزرسانی: `2026-09-18T07:43:02+00:00`
+- آخرین بروزرسانی: `2026-09-18T07:58:38+00:00`
 - وضعیت صف: **ready**
 - پیشرفت: **0 از 1894 (0.00٪)**
 - تکمیل‌شده: **0**
@@ -24,7 +24,7 @@
 
 ## خطاهای اخیر
 
-- **داودآباد** — `tape20`: `Editorial review failed: three details FAQ items required at end; IMAGE_2 marker invalid; IMAGE_3 marker invalid; IMAGE_4 marker invalid; IMAGE_5 marker invalid`
+- **داودآباد** — `tape20`: `Editorial review failed: IMAGE_2 marker invalid; IMAGE_3 marker invalid; IMAGE_4 marker invalid; IMAGE_5 marker invalid`
 
 ## فایل‌های خروجی
 
