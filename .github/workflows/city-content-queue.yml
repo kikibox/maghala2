@@ -22,6 +22,7 @@ jobs:
     timeout-minutes: 180
     env:
       PYTHONUNBUFFERED: "1"
+      GIT_TERMINAL_PROMPT: "0"
       AGNES_API_BASE: https://apihub.agnes-ai.com/v1
       AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
       AGNES_MODEL: agnes-3.0-flash
@@ -32,6 +33,7 @@ jobs:
       BATCH_SIZE: "1"
       QUEUE_RUNS: "20"
       POST_DELAY_SECONDS: "10"
+      POST_TIMEOUT_SECONDS: "900"
       MAX_ATTEMPTS: "2"
       IMAGE_QA_ATTEMPTS: "1"
       IMAGE_QA_MIN_SCORE: "70"
@@ -48,7 +50,7 @@ jobs:
         run: |
           mkdir -p artifacts/city-content-queue
           : > artifacts/city-content-queue/run.log
-          echo "event=${{ github.event_name }} sha=${{ github.sha }} text=$AGNES_MODEL image=$AGNES_IMAGE_MODEL policy=$CURRENT_IMAGE_POLICY runs=$QUEUE_RUNS delay=$POST_DELAY_SECONDS max_attempts=$MAX_ATTEMPTS image_qa_attempts=$IMAGE_QA_ATTEMPTS image_qa_min=$IMAGE_QA_MIN_SCORE fast=$IMAGE_QA_FAST_MODE review_kinds=$IMAGE_QA_REVIEW_KINDS" | tee -a artifacts/city-content-queue/run.log
+          echo "event=${{ github.event_name }} sha=${{ github.sha }} text=$AGNES_MODEL image=$AGNES_IMAGE_MODEL policy=$CURRENT_IMAGE_POLICY runs=$QUEUE_RUNS delay=$POST_DELAY_SECONDS timeout=$POST_TIMEOUT_SECONDS max_attempts=$MAX_ATTEMPTS image_qa_attempts=$IMAGE_QA_ATTEMPTS image_qa_min=$IMAGE_QA_MIN_SCORE fast=$IMAGE_QA_FAST_MODE review_kinds=$IMAGE_QA_REVIEW_KINDS" | tee -a artifacts/city-content-queue/run.log
           test -n "$AGNES_API_KEY" || { echo "ERROR: AGNES_API_KEY missing" | tee -a artifacts/city-content-queue/run.log; exit 1; }
           sed -i "s/ALLOWED_LATIN={'FAQ'}/ALLOWED_LATIN={'FAQ','AFP'}/" automation/reviewed_publish_city_queue.py
           sed -i "s/if x not in ALLOWED_LATIN/if x.upper() not in ALLOWED_LATIN/" automation/reviewed_publish_city_queue.py
@@ -66,11 +68,11 @@ jobs:
           if [ "${{ github.event_name }}" = "push" ]; then MODE="$(sed -n 's/^mode=//p' automation/city-content-trigger.txt | tail -1)"; fi
           echo "mode=$MODE" | tee -a artifacts/city-content-queue/run.log
           if [ "$MODE" = "agnes-models-test" ]; then
-            python automation/test_agnes_models.py 2>&1 | tee -a artifacts/city-content-queue/run.log
+            timeout --foreground "${POST_TIMEOUT_SECONDS}s" python automation/test_agnes_models.py 2>&1 | tee -a artifacts/city-content-queue/run.log
           elif [ "$MODE" = "reset" ]; then
-            python automation/city_content_queue.py --force-init --init-only 2>&1 | tee -a artifacts/city-content-queue/run.log
+            timeout --foreground "${POST_TIMEOUT_SECONDS}s" python automation/city_content_queue.py --force-init --init-only 2>&1 | tee -a artifacts/city-content-queue/run.log
           elif [ "$MODE" = "initialize" ]; then
-            python automation/city_content_queue.py --init-only 2>&1 | tee -a artifacts/city-content-queue/run.log
+            timeout --foreground "${POST_TIMEOUT_SECONDS}s" python automation/city_content_queue.py --init-only 2>&1 | tee -a artifacts/city-content-queue/run.log
           else
             python automation/migrate_legacy_image_artifacts.py 2>&1 | tee -a artifacts/city-content-queue/run.log
             python automation/import_permalink_fix.py 2>&1 | tee -a artifacts/city-content-queue/run.log
@@ -83,9 +85,18 @@ jobs:
               git push origin main
             fi
             for RUN_INDEX in $(seq 1 "$QUEUE_RUNS"); do
-              echo "post_run=$RUN_INDEX/$QUEUE_RUNS" | tee -a artifacts/city-content-queue/run.log
-              python automation/run_agnes_city_queue_image_qa.py 2>&1 | tee -a artifacts/city-content-queue/run.log
+              STARTED_AT="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+              echo "post_run=$RUN_INDEX/$QUEUE_RUNS started_at=$STARTED_AT" | tee -a artifacts/city-content-queue/run.log
+              git add -f artifacts/city-content-queue/run.log
+              if ! git diff --cached --quiet; then
+                git commit -m "Start live Agnes queue run ($RUN_INDEX/$QUEUE_RUNS)"
+                git pull --rebase origin main
+                git push origin main
+              fi
+              timeout --foreground "${POST_TIMEOUT_SECONDS}s" python automation/run_agnes_city_queue_image_qa.py 2>&1 | tee -a artifacts/city-content-queue/run.log
               CODE=${PIPESTATUS[0]}
+              FINISHED_AT="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+              echo "post_run=$RUN_INDEX/$QUEUE_RUNS finished_at=$FINISHED_AT exit_code=$CODE" | tee -a artifacts/city-content-queue/run.log
               python automation/import_permalink_fix.py 2>&1 | tee -a artifacts/city-content-queue/run.log
               python automation/package_city_content_batches.py 2>&1 | tee -a artifacts/city-content-queue/run.log
               python automation/render_city_queue_status.py
