@@ -43,8 +43,9 @@ jobs:
       FTP_HOST: ftp.navar-abyari.ir
       FTP_PORT: "21"
       FTP_USER: zzz@navar-abyari.ir
-      FTP_REMOTE_DIR: wp-content/uploads/2026/09
+      FTP_REMOTE_DIR: public_html/wp-content/uploads/2026/09
       FTP_TLS: "true"
+      FTP_TLS_VERIFY: "false"
       FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
@@ -99,14 +100,14 @@ jobs:
               echo "post_run=$RUN_INDEX/$QUEUE_RUNS started_at=$STARTED_AT" | tee -a artifacts/city-content-queue/run.log
               git add -f artifacts/city-content-queue/run.log
               if ! git diff --cached --quiet; then
-                git commit -m "Start live Agnes queue run ($RUN_INDEX/$QUEUE_RUNS)"
+                git commit -m "Start live Agnes queue run ($RUN_INDEX/20)"
                 git pull --rebase origin main
                 git push origin main
               fi
               timeout --foreground "${POST_TIMEOUT_SECONDS}s" python automation/run_agnes_city_queue_image_qa.py 2>&1 | tee -a artifacts/city-content-queue/run.log
               CODE=${PIPESTATUS[0]}
               FINISHED_AT="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-              echo "post_run=$RUN_INDEX/$QUEUE_RUNS finished_at=$FINISHED_AT exit_code=$CODE" | tee -a artifacts/city-content-queue/run.log
+              echo "post_run=$RUN_INDEX/20 finished_at=$FINISHED_AT exit_code=$CODE" | tee -a artifacts/city-content-queue/run.log
               python automation/import_permalink_fix.py 2>&1 | tee -a artifacts/city-content-queue/run.log
               python automation/package_city_content_batches.py 2>&1 | tee -a artifacts/city-content-queue/run.log
               python automation/upload_city_batches_ftps.py --all 2>&1 | tee -a artifacts/city-content-queue/run.log
