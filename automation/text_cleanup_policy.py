@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Cleanup generated HTML before SQL export."""
 import re
-IMAGE_MARKER_RE=re.compile(r'\[\[\[IMAGE_[1-5]\]\]\]')
+IMAGE_1_MARKER='[[[IMAGE_1]]]'
 LONG_TITLE_PREFIXES=(
     'راهنمای جامع انتخاب و خرید ',
     'راهنمای تخصصی انتخاب و خرید ',
@@ -24,9 +24,9 @@ def clean_title(title, item):
 
 def cleanup_html(html):
     html=html or ''
-    # IMAGE_1 is featured only; remove any leaked marker from visible post body.
-    html=html.replace('[[[IMAGE_1]]]','')
-    html=IMAGE_MARKER_RE.sub('', html)
+    # IMAGE_1 is featured only; preserve IMAGE_2..IMAGE_5 inline markers
+    # because the image pipeline replaces those markers after editorial review.
+    html=html.replace(IMAGE_1_MARKER,'')
     html=re.sub(r'<p>\s*</p>','',html)
     return html.strip()
 
