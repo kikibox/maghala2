@@ -2,7 +2,7 @@
 
 > این صفحه پس از پردازش هر پست به‌روزرسانی می‌شود. برای دیدن مقدار تازه، صفحه را Refresh کنید.
 
-- آخرین بروزرسانی: `2026-09-18T16:18:45+00:00`
+- آخرین بروزرسانی: `2026-09-18T16:25:09+00:00`
 - وضعیت صف: **ready**
 - پیشرفت: **21 از 1894 (1.11٪)**
 - تکمیل‌شده: **21**
@@ -43,7 +43,7 @@
 
 ## خطاهای اخیر
 
-- **آوه** — `layflat`: `Editorial review failed: three details FAQ items required at end; layflat article still focuses on drip tape`
+- **آوه** — `layflat`: `Editorial review failed: 20cm product focus missing; three details FAQ items required at end; word count below minimum; missing meta_description; missing focus_keyword; missing excerpt`
 
 ## فایل‌های خروجی
 
