@@ -31,8 +31,6 @@ def connect() -> FTP_TLS:
     if verify_tls:
         context = ssl.create_default_context()
     else:
-        # TLS encryption remains enabled, but certificate chain and hostname
-        # verification are intentionally disabled for this hosting endpoint.
         context = ssl.create_default_context()
         context.check_hostname = False
         context.verify_mode = ssl.CERT_NONE
@@ -40,11 +38,20 @@ def connect() -> FTP_TLS:
 
     ftp = FTP_TLS(context=context, timeout=90)
     ftp.connect(host, port)
-    ftp.auth()          # explicit FTPS negotiation on port 21
-    ftp.prot_p()        # encrypt the data channel as well
+    ftp.auth()
+    ftp.prot_p()
     ftp.login(user=user, passwd=password)
     ftp.voidcmd("TYPE I")
-    ftp.cwd(remote_dir)
+    try:
+        ftp.cwd(remote_dir)
+    except Exception as exc:
+        print(f"Cannot enter FTP_REMOTE_DIR={remote_dir}: {exc}", file=sys.stderr)
+        try:
+            print(f"FTP starting directory: {ftp.pwd()}")
+            print(f"FTP starting-directory entries: {ftp.nlst()}")
+        except Exception as listing_exc:
+            print(f"Could not list FTP starting directory: {listing_exc}", file=sys.stderr)
+        raise
     print(f"Connected with explicit FTPS: {host}:{port}")
     print(f"Remote directory: {remote_dir}")
     return ftp
