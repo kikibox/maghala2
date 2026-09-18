@@ -2,7 +2,7 @@
 
 > این صفحه پس از پردازش هر پست به‌روزرسانی می‌شود. برای دیدن مقدار تازه، صفحه را Refresh کنید.
 
-- آخرین بروزرسانی: `2026-09-18T21:18:03+00:00`
+- آخرین بروزرسانی: `2026-09-18T21:22:11+00:00`
 - وضعیت صف: **ready**
 - پیشرفت: **41 از 1894 (2.16٪)**
 - تکمیل‌شده: **41**
@@ -43,7 +43,7 @@
 
 ## خطاهای اخیر
 
-- **نیمور** — `layflat`: `Editorial review failed: PVC claim for irrigation tape; layflat article still focuses on drip tape`
+- **نیمور** — `layflat`: `Editorial review failed: 20cm product focus missing; three details FAQ items required at end; word count below minimum; missing meta_description; missing focus_keyword; missing excerpt`
 
 ## فایل‌های خروجی
 
