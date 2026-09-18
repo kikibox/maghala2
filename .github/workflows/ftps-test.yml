@@ -31,23 +31,38 @@ jobs:
         continue-on-error: true
         shell: bash
         run: |
-          set -euo pipefail
-          test -n "$FTP_PASSWORD" || { echo "ERROR: FTP_PASSWORD secret is missing"; exit 1; }
-          python automation/upload_city_batches_ftps.py --test
+          set +e
+          test -n "$FTP_PASSWORD"
+          if [ "$?" != "0" ]; then
+            echo "ERROR: FTP_PASSWORD secret is missing" | tee artifacts-ftps-test.log
+            exit 1
+          fi
+          python automation/upload_city_batches_ftps.py --test 2>&1 | tee artifacts-ftps-test.log
+          exit "${PIPESTATUS[0]}"
       - name: Record FTPS test result
         if: always()
         shell: bash
         run: |
           set -u
-          mkdir -p artifacts
-          if [ "${{ steps.ftps.outcome }}" = "success" ]; then
-            RESULT=passed
-          else
-            RESULT=failed
-          fi
-          cat > artifacts/ftps-test-status.json <<EOF
-          {"status":"$RESULT","tested_at":"$(date -u +%Y-%m-%dT%H:%M:%SZ)","host":"$FTP_HOST","port":$FTP_PORT,"remote_dir":"$FTP_REMOTE_DIR","uploaded_file":"first ZIP batch","password_recorded":false}
-          EOF
+          if [ "${{ steps.ftps.outcome }}" = "success" ]; then RESULT=passed; else RESULT=failed; fi
+          python - "$RESULT" <<'PY'
+          import json, pathlib, sys
+          from datetime import datetime, timezone
+          result=sys.argv[1]
+          log=pathlib.Path('artifacts-ftps-test.log')
+          error=log.read_text(encoding='utf-8',errors='replace')[-3000:] if log.exists() else ''
+          payload={
+              'status': result,
+              'tested_at': datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace('+00:00','Z'),
+              'host': 'ftp.navar-abyari.ir',
+              'port': 21,
+              'remote_dir': 'wp-content/uploads/2026/09',
+              'uploaded_file': 'first ZIP batch',
+              'password_recorded': False,
+          }
+          if result != 'passed': payload['error_tail']=error
+          pathlib.Path('artifacts/ftps-test-status.json').write_text(json.dumps(payload,ensure_ascii=False)+'\n',encoding='utf-8')
+          PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add artifacts/ftps-test-status.json
