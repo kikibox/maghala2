@@ -62,15 +62,14 @@ jobs:
             echo "POST_TYPES=${{ inputs.post_types }}" >> "$GITHUB_ENV"
             echo "MAX_POSTS=${{ inputs.max_posts }}" >> "$GITHUB_ENV"
           else
-            echo "DUMP_PATH=database/incoming/navaraby_wp569.sql.gz" >> "$GITHUB_ENV"
-            echo "POST_TYPES=" >> "$GITHUB_ENV"
-            if [ "${{ github.event.head_commit.message }}" = "run: rewrite three city post samples" ]; then
-              echo "RUN_MODE=rewrite" >> "$GITHUB_ENV"
-              echo "MAX_POSTS=3" >> "$GITHUB_ENV"
-            else
-              echo "RUN_MODE=audit" >> "$GITHUB_ENV"
-              echo "MAX_POSTS=0" >> "$GITHUB_ENV"
-            fi
+            TRIGGER_MODE="$(sed -n 's/^mode=//p' automation/city-rewrite-trigger.txt | tail -1)"
+            TRIGGER_MAX_POSTS="$(sed -n 's/^max_posts=//p' automation/city-rewrite-trigger.txt | tail -1)"
+            TRIGGER_POST_TYPES="$(sed -n 's/^post_types=//p' automation/city-rewrite-trigger.txt | tail -1)"
+            TRIGGER_DUMP_PATH="$(sed -n 's/^dump_path=//p' automation/city-rewrite-trigger.txt | tail -1)"
+            echo "DUMP_PATH=${TRIGGER_DUMP_PATH:-database/incoming/navaraby_wp569.sql.gz}" >> "$GITHUB_ENV"
+            echo "RUN_MODE=${TRIGGER_MODE:-audit}" >> "$GITHUB_ENV"
+            echo "POST_TYPES=$TRIGGER_POST_TYPES" >> "$GITHUB_ENV"
+            echo "MAX_POSTS=${TRIGGER_MAX_POSTS:-0}" >> "$GITHUB_ENV"
           fi
       - name: Validate pipeline and dump
         run: |
