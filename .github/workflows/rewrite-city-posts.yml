@@ -36,10 +36,10 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  DUMP_PATH: ${{ github.event_name == 'workflow_dispatch' && inputs.dump_path || 'database/incoming/navaraby_wp569.sql.gz' }}
-  RUN_MODE: "${{ github.event_name == 'workflow_dispatch' && inputs.mode || (github.event.head_commit.message == 'run: rewrite three city post samples' && 'rewrite' || 'audit') }}"
-  POST_TYPES: ${{ github.event_name == 'workflow_dispatch' && inputs.post_types || '' }}
-  MAX_POSTS: "${{ github.event_name == 'workflow_dispatch' && inputs.max_posts || (github.event.head_commit.message == 'run: rewrite three city post samples' && '3' || '0') }}"
+  DUMP_PATH: database/incoming/navaraby_wp569.sql.gz
+  RUN_MODE: audit
+  POST_TYPES: ""
+  MAX_POSTS: "0"
   AGNES_API_BASE: https://apihub.agnes-ai.com/v1
   AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
   AGNES_MODEL: agnes-2.5-flash
@@ -53,6 +53,25 @@ jobs:
         with: {fetch-depth: 0}
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
+      - name: Resolve workflow inputs
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "DUMP_PATH=${{ inputs.dump_path }}" >> "$GITHUB_ENV"
+            echo "RUN_MODE=${{ inputs.mode }}" >> "$GITHUB_ENV"
+            echo "POST_TYPES=${{ inputs.post_types }}" >> "$GITHUB_ENV"
+            echo "MAX_POSTS=${{ inputs.max_posts }}" >> "$GITHUB_ENV"
+          else
+            echo "DUMP_PATH=database/incoming/navaraby_wp569.sql.gz" >> "$GITHUB_ENV"
+            echo "POST_TYPES=" >> "$GITHUB_ENV"
+            if [ "${{ github.event.head_commit.message }}" = "run: rewrite three city post samples" ]; then
+              echo "RUN_MODE=rewrite" >> "$GITHUB_ENV"
+              echo "MAX_POSTS=3" >> "$GITHUB_ENV"
+            else
+              echo "RUN_MODE=audit" >> "$GITHUB_ENV"
+              echo "MAX_POSTS=0" >> "$GITHUB_ENV"
+            fi
+          fi
       - name: Validate pipeline and dump
         run: |
           python -m py_compile automation/rewrite_city_posts.py
