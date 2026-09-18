@@ -2,7 +2,7 @@
 
 > این صفحه پس از پردازش هر پست به‌روزرسانی می‌شود. برای دیدن مقدار تازه، صفحه را Refresh کنید.
 
-- آخرین بروزرسانی: `2026-09-18T09:42:28+00:00`
+- آخرین بروزرسانی: `2026-09-18T09:52:27+00:00`
 - وضعیت صف: **ready**
 - پیشرفت: **7 از 1894 (0.37٪)**
 - تکمیل‌شده: **7**
@@ -31,7 +31,7 @@
 
 ## خطاهای اخیر
 
-- **جاورسیان** — `layflat`: `Editorial review failed: layflat article still focuses on drip tape`
+- **جاورسیان** — `layflat`: `Editorial review failed: three details FAQ items required at end; layflat article still focuses on drip tape; word count below minimum`
 
 ## فایل‌های خروجی
 
