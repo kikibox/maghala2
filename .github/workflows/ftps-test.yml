@@ -1,0 +1,34 @@
+name: Test explicit FTPS batch upload
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["automation/ftp-test-trigger.txt"]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      FTP_HOST: ftp.navar-abyari.ir
+      FTP_PORT: "21"
+      FTP_USER: zzz@navar-abyari.ir
+      FTP_REMOTE_DIR: wp-content/uploads/2026/09
+      FTP_TLS: "true"
+      FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 1}
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Test FTPS connection and ZIP upload
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$FTP_PASSWORD" || { echo "ERROR: FTP_PASSWORD secret is missing"; exit 1; }
+          python automation/upload_city_batches_ftps.py --test
