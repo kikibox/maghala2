@@ -38,8 +38,8 @@ jobs:
       IMAGE_QA_ATTEMPTS: "1"
       IMAGE_QA_MIN_SCORE: "70"
       IMAGE_QA_FAST_MODE: "1"
-      IMAGE_QA_REVIEW_KINDS: "1,3"
-      CURRENT_IMAGE_POLICY: fast-hard-reject-only-v9
+      IMAGE_QA_REVIEW_KINDS: "1,2,3,4,5"
+      CURRENT_IMAGE_POLICY: single-product-physics-v12
       FTP_HOST: ftp.navar-abyari.ir
       FTP_PORT: "21"
       FTP_USER: zzz@navar-abyari.ir
@@ -61,7 +61,7 @@ jobs:
           test -n "$AGNES_API_KEY" || { echo "ERROR: AGNES_API_KEY missing" | tee -a artifacts/city-content-queue/run.log; exit 1; }
           sed -i "s/ALLOWED_LATIN={'FAQ'}/ALLOWED_LATIN={'FAQ','AFP'}/" automation/reviewed_publish_city_queue.py
           sed -i "s/if x not in ALLOWED_LATIN/if x.upper() not in ALLOWED_LATIN/" automation/reviewed_publish_city_queue.py
-          python -m py_compile automation/city_content_queue.py automation/city_content_queue_cloudflare.py automation/reviewed_publish_city_queue.py automation/run_agnes_city_queue.py automation/run_agnes_city_queue_seo.py automation/run_agnes_city_queue_resilient.py automation/run_agnes_city_queue_fast.py automation/run_agnes_city_queue_image_qa.py automation/agnes_json_client.py automation/research_grounding_review.py automation/city_research.py automation/image_prompt_policy.py automation/image_quality_gate.py automation/migrate_legacy_image_artifacts.py automation/import_permalink_fix.py automation/render_city_queue_status.py automation/package_city_content_batches.py automation/upload_city_batches_ftps.py automation/faq_policy.py automation/test_agnes_models.py 2>&1 | tee -a artifacts/city-content-queue/run.log
+          python -m py_compile automation/city_content_queue.py automation/city_content_queue_cloudflare.py automation/reviewed_publish_city_queue.py automation/run_agnes_city_queue.py automation/run_agnes_city_queue_seo.py automation/run_agnes_city_queue_resilient.py automation/run_agnes_city_queue_fast.py automation/run_agnes_city_queue_image_qa.py automation/agnes_json_client.py automation/research_grounding_review.py automation/city_research.py automation/image_prompt_policy.py automation/image_quality_gate.py automation/migrate_legacy_image_artifacts.py automation/reset_recent_image_outputs.py automation/import_permalink_fix.py automation/render_city_queue_status.py automation/package_city_content_batches.py automation/upload_city_batches_ftps.py automation/faq_policy.py automation/test_agnes_models.py 2>&1 | tee -a artifacts/city-content-queue/run.log
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Install image tooling
@@ -83,6 +83,7 @@ jobs:
           else
             UPLOAD_FAILED=0
             python automation/migrate_legacy_image_artifacts.py 2>&1 | tee -a artifacts/city-content-queue/run.log
+            python automation/reset_recent_image_outputs.py 2>&1 | tee -a artifacts/city-content-queue/run.log
             python automation/import_permalink_fix.py 2>&1 | tee -a artifacts/city-content-queue/run.log
             python automation/package_city_content_batches.py 2>&1 | tee -a artifacts/city-content-queue/run.log
             python automation/upload_city_batches_ftps.py --all 2>&1 | tee -a artifacts/city-content-queue/run.log
