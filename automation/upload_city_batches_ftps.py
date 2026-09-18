@@ -26,8 +26,18 @@ def connect() -> FTP_TLS:
     password = env("FTP_PASSWORD", required=True)
     port = int(env("FTP_PORT", "21"))
     remote_dir = env("FTP_REMOTE_DIR", required=True)
+    verify_tls = env("FTP_TLS_VERIFY", "false").lower() in {"1", "true", "yes"}
 
-    context = ssl.create_default_context()
+    if verify_tls:
+        context = ssl.create_default_context()
+    else:
+        # TLS encryption remains enabled, but certificate chain and hostname
+        # verification are intentionally disabled for this hosting endpoint.
+        context = ssl.create_default_context()
+        context.check_hostname = False
+        context.verify_mode = ssl.CERT_NONE
+        print("WARNING: FTPS certificate verification is disabled")
+
     ftp = FTP_TLS(context=context, timeout=90)
     ftp.connect(host, port)
     ftp.auth()          # explicit FTPS negotiation on port 21
@@ -73,6 +83,7 @@ def upload(test_only: bool) -> int:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--test", action="store_true", help="upload only the first ZIP")
+    parser.add_argument("--all", action="store_true", help="upload all ZIP batches")
     args = parser.parse_args()
     try:
         return upload(test_only=args.test)
