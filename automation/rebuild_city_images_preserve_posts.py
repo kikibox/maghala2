@@ -144,13 +144,9 @@ def main() -> int:
             failures.append({"source_id": sid, "error": str(exc)[:1200]})
             print(f"image_rebuild_failed source_id={sid} error={exc}", flush=True)
             break
-    queue["updated_at"] = now()
-    if rebuilt:
-        by_id = {str(x.get("source_id")): x for x in queue.get("items", [])}
-        for sid in rebuilt:
-            if sid in by_id:
-                by_id[sid]["image_rebuild_policy"] = POLICY
-    base.QUEUE.write_text(json.dumps(queue, ensure_ascii=False, indent=2), encoding="utf-8")
+    # Do not rewrite queue.json here: the live content worker may be updating
+    # pending items at the same time. The item JSON and image filenames are
+    # sufficient for a safe image-only rebuild.
     summary = {
         "policy": POLICY,
         "completed": not failures and len(rebuilt) + len(skipped) == len(completed),
