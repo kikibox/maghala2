@@ -94,6 +94,20 @@ def generate(item: dict, kind: int) -> tuple[bytes, str]:
     return final, hashlib.sha256(final).hexdigest()
 
 
+def generate_with_retry(item: dict, kind: int) -> tuple[bytes, str]:
+    last = None
+    for attempt in range(1, 5):
+        try:
+            return generate(item, kind)
+        except Exception as exc:
+            last = exc
+            if attempt >= 4:
+                raise
+            print(f"image_retry source_id={item.get('source_id')} kind={kind} attempt={attempt} error={exc}", flush=True)
+            time.sleep(5 * attempt)
+    raise last  # pragma: no cover
+
+
 def main() -> int:
     if MARKER.exists():
         try:
@@ -126,7 +140,7 @@ def main() -> int:
                 (OUT / "images" / Path(name).name).unlink(missing_ok=True)
             hashes = []
             for kind, name in enumerate(names, 1):
-                blob, digest = generate({**item, **data}, kind)
+                blob, digest = generate_with_retry({**item, **data}, kind)
                 (OUT / "images" / Path(name).name).write_bytes(blob)
                 hashes.append(digest)
                 time.sleep(2)
