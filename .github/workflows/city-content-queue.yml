@@ -10,7 +10,7 @@ on:
     - cron: "17 */4 * * *"
   push:
     branches: [main]
-    paths: ["automation/city-content-trigger.txt"]
+    paths: ["automation/city-content-trigger.txt", "automation/rebuild_city_images_preserve_posts.py"]
 permissions:
   contents: write
 concurrency:
@@ -19,7 +19,7 @@ concurrency:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 240
     env:
       PYTHONUNBUFFERED: "1"
       GIT_TERMINAL_PROMPT: "0"
@@ -39,14 +39,7 @@ jobs:
       IMAGE_QA_MIN_SCORE: "70"
       IMAGE_QA_FAST_MODE: "1"
       IMAGE_QA_REVIEW_KINDS: "1,2,3,4,5"
-      CURRENT_IMAGE_POLICY: single-product-physics-v12
-      FTP_HOST: ftp.navar-abyari.ir
-      FTP_PORT: "21"
-      FTP_USER: zzz@navar-abyari.ir
-      FTP_REMOTE_DIR: /
-      FTP_TLS: "true"
-      FTP_TLS_VERIFY: "false"
-      FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+      CURRENT_IMAGE_POLICY: preserve-posts-rebuild-images-v15
     steps:
       - uses: actions/checkout@v4
         with: {fetch-depth: 0}
@@ -57,11 +50,11 @@ jobs:
         run: |
           mkdir -p artifacts/city-content-queue
           : > artifacts/city-content-queue/run.log
-          echo "event=${{ github.event_name }} sha=${{ github.sha }} text=$AGNES_MODEL image=$AGNES_IMAGE_MODEL policy=$CURRENT_IMAGE_POLICY runs=$QUEUE_RUNS delay=$POST_DELAY_SECONDS timeout=$POST_TIMEOUT_SECONDS max_attempts=$MAX_ATTEMPTS image_qa_attempts=$IMAGE_QA_ATTEMPTS image_qa_min=$IMAGE_QA_MIN_SCORE fast=$IMAGE_QA_FAST_MODE review_kinds=$IMAGE_QA_REVIEW_KINDS" | tee -a artifacts/city-content-queue/run.log
+          echo "event=${{ github.event_name }} sha=${{ github.sha }} text=$AGNES_MODEL image=$AGNES_IMAGE_MODEL policy=$CURRENT_IMAGE_POLICY runs=$QUEUE_RUNS delay=$POST_DELAY_SECONDS timeout=$POST_TIMEOUT_SECONDS max_attempts=$MAX_ATTEMPTS image_qa_attempts=$IMAGE_QA_ATTEMPTS image_qa_min=$IMAGE_QA_MIN_SCORE fast=$IMAGE_QA_FAST_MODE review_kinds=$IMAGE_QA_REVIEW_KINDS ftp_upload=disabled" | tee -a artifacts/city-content-queue/run.log
           test -n "$AGNES_API_KEY" || { echo "ERROR: AGNES_API_KEY missing" | tee -a artifacts/city-content-queue/run.log; exit 1; }
           sed -i "s/ALLOWED_LATIN={'FAQ'}/ALLOWED_LATIN={'FAQ','AFP'}/" automation/reviewed_publish_city_queue.py
           sed -i "s/if x not in ALLOWED_LATIN/if x.upper() not in ALLOWED_LATIN/" automation/reviewed_publish_city_queue.py
-          python -m py_compile automation/city_content_queue.py automation/city_content_queue_cloudflare.py automation/reviewed_publish_city_queue.py automation/run_agnes_city_queue.py automation/run_agnes_city_queue_seo.py automation/run_agnes_city_queue_resilient.py automation/run_agnes_city_queue_fast.py automation/run_agnes_city_queue_image_qa.py automation/agnes_json_client.py automation/research_grounding_review.py automation/city_research.py automation/image_prompt_policy.py automation/image_quality_gate.py automation/migrate_legacy_image_artifacts.py automation/reset_recent_image_outputs.py automation/import_permalink_fix.py automation/render_city_queue_status.py automation/package_city_content_batches.py automation/upload_city_batches_ftps.py automation/faq_policy.py automation/test_agnes_models.py 2>&1 | tee -a artifacts/city-content-queue/run.log
+          python -m py_compile automation/city_content_queue.py automation/city_content_queue_cloudflare.py automation/reviewed_publish_city_queue.py automation/run_agnes_city_queue.py automation/run_agnes_city_queue_seo.py automation/run_agnes_city_queue_resilient.py automation/run_agnes_city_queue_fast.py automation/agnes_json_client.py automation/research_grounding_review.py automation/city_research.py automation/image_prompt_policy.py automation/image_quality_gate.py automation/migrate_legacy_image_artifacts.py automation/reset_recent_image_outputs.py automation/import_permalink_fix.py automation/render_city_queue_status.py automation/package_city_content_batches.py automation/rebuild_city_images_preserve_posts.py automation/faq_policy.py automation/test_agnes_models.py 2>&1 | tee -a artifacts/city-content-queue/run.log
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Install image tooling
@@ -81,18 +74,18 @@ jobs:
           elif [ "$MODE" = "initialize" ]; then
             timeout --foreground "${POST_TIMEOUT_SECONDS}s" python automation/city_content_queue.py --init-only 2>&1 | tee -a artifacts/city-content-queue/run.log
           else
-            UPLOAD_FAILED=0
-            python automation/migrate_legacy_image_artifacts.py 2>&1 | tee -a artifacts/city-content-queue/run.log
-            python automation/reset_recent_image_outputs.py 2>&1 | tee -a artifacts/city-content-queue/run.log
+            python automation/rebuild_city_images_preserve_posts.py 2>&1 | tee -a artifacts/city-content-queue/run.log
+            REBUILD_CODE=${PIPESTATUS[0]}
+            if [ "$REBUILD_CODE" != "0" ]; then
+              echo "image_rebuild_exit_code=$REBUILD_CODE" | tee -a artifacts/city-content-queue/run.log
+              exit "$REBUILD_CODE"
+            fi
             python automation/import_permalink_fix.py 2>&1 | tee -a artifacts/city-content-queue/run.log
             python automation/package_city_content_batches.py 2>&1 | tee -a artifacts/city-content-queue/run.log
-            python automation/upload_city_batches_ftps.py --all 2>&1 | tee -a artifacts/city-content-queue/run.log
-            FTP_CODE=${PIPESTATUS[0]}
-            if [ "$FTP_CODE" != "0" ]; then UPLOAD_FAILED=1; echo "ftps_upload_exit_code=$FTP_CODE" | tee -a artifacts/city-content-queue/run.log; fi
             python automation/render_city_queue_status.py
             git add -f artifacts/city-content-queue
             if ! git diff --cached --quiet; then
-              git commit -m "Reset legacy city images for current policy"
+              git commit -m "Rebuild existing city images without FTP upload"
               git pull --rebase origin main
               git push origin main
             fi
@@ -105,15 +98,12 @@ jobs:
                 git pull --rebase origin main
                 git push origin main
               fi
-              timeout --foreground "${POST_TIMEOUT_SECONDS}s" python automation/run_agnes_city_queue_image_qa.py 2>&1 | tee -a artifacts/city-content-queue/run.log
+              timeout --foreground "${POST_TIMEOUT_SECONDS}s" python automation/run_agnes_city_queue_fast.py 2>&1 | tee -a artifacts/city-content-queue/run.log
               CODE=${PIPESTATUS[0]}
               FINISHED_AT="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
               echo "post_run=$RUN_INDEX/20 finished_at=$FINISHED_AT exit_code=$CODE" | tee -a artifacts/city-content-queue/run.log
               python automation/import_permalink_fix.py 2>&1 | tee -a artifacts/city-content-queue/run.log
               python automation/package_city_content_batches.py 2>&1 | tee -a artifacts/city-content-queue/run.log
-              python automation/upload_city_batches_ftps.py --all 2>&1 | tee -a artifacts/city-content-queue/run.log
-              FTP_CODE=${PIPESTATUS[0]}
-              if [ "$FTP_CODE" != "0" ]; then UPLOAD_FAILED=1; echo "ftps_upload_exit_code=$FTP_CODE" | tee -a artifacts/city-content-queue/run.log; fi
               python automation/render_city_queue_status.py
               git add -f artifacts/city-content-queue
               if ! git diff --cached --quiet; then
@@ -124,7 +114,6 @@ jobs:
               if [ "$CODE" != "0" ]; then echo "queue_exit_code=$CODE" | tee -a artifacts/city-content-queue/run.log; fi
               if [ "$RUN_INDEX" -lt "$QUEUE_RUNS" ]; then sleep "$POST_DELAY_SECONDS"; fi
             done
-            if [ "$UPLOAD_FAILED" != "0" ]; then exit 1; fi
           fi
           exit 0
       - name: Commit final diagnostics
