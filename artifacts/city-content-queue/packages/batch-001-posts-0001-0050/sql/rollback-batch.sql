@@ -1,0 +1,201 @@
+-- Rollback SQL for this 50-post package
+
+-- rollback: 1000001002536-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='داودآباد-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='داودآباد-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='داودآباد-مرکزی-navar-tip-20cm' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='داودآباد-مرکزی-navar-tip-20cm' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1000001002074-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='ساروق-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='ساروق-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='ساروق-مرکزی-navar-tip-20cm' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='ساروق-مرکزی-navar-tip-20cm' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1000001001600-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='کارچان-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='کارچان-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='کارچان-مرکزی-navar-tip-20cm' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='کارچان-مرکزی-navar-tip-20cm' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 10000012002073-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='جاورسیان-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='جاورسیان-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='جاورسیان-مرکزی-navar-tip-20cm' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='جاورسیان-مرکزی-navar-tip-20cm' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1000005001107-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='نراق-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='نراق-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='نراق-مرکزی-navar-tip-20cm' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='نراق-مرکزی-navar-tip-20cm' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 10000010002017-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='خشکرود-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='خشکرود-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='خشکرود-مرکزی-navar-tip-20cm' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='خشکرود-مرکزی-navar-tip-20cm' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 10000010002378-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='رازقان-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='رازقان-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='رازقان-مرکزی-navar-tip-20cm' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='رازقان-مرکزی-navar-tip-20cm' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 10000010001108-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='زاویه-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='زاویه-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='زاویه-مرکزی-navar-tip-20cm' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='زاویه-مرکزی-navar-tip-20cm' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 10000010001109-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='مامونیه-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='مامونیه-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='مامونیه-مرکزی-navar-tip-20cm' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='مامونیه-مرکزی-navar-tip-20cm' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 10000010002228-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='پرندک-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='پرندک-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='پرندک-مرکزی-navar-tip-20cm' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='پرندک-مرکزی-navar-tip-20cm' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1000006002827-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='آوه-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='آوه-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='آوه-مرکزی-navar-tip-20cm' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='آوه-مرکزی-navar-tip-20cm' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1000006002137-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='نوبران-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='نوبران-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='نوبران-مرکزی-navar-tip-20cm' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='نوبران-مرکزی-navar-tip-20cm' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1000007001112-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='آستانه-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='آستانه-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='آستانه-مرکزی-navar-tip-20cm' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='آستانه-مرکزی-navar-tip-20cm' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1000007002582-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='توره-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='توره-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='توره-مرکزی-navar-tip-20cm' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='توره-مرکزی-navar-tip-20cm' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1000007002774-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='شهباز-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='شهباز-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='شهباز-مرکزی-navar-tip-20cm' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='شهباز-مرکزی-navar-tip-20cm' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1000007002032-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='مهاجران-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='مهاجران-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='مهاجران-مرکزی-navar-tip-20cm' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='مهاجران-مرکزی-navar-tip-20cm' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1000001002536-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='داودآباد-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='داودآباد-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='داودآباد-مرکزی-looleh-nakhi-tashoo' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='داودآباد-مرکزی-looleh-nakhi-tashoo' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1000001002074-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='ساروق-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='ساروق-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='ساروق-مرکزی-looleh-nakhi-tashoo' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='ساروق-مرکزی-looleh-nakhi-tashoo' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1000001001600-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='کارچان-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='کارچان-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='کارچان-مرکزی-looleh-nakhi-tashoo' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='کارچان-مرکزی-looleh-nakhi-tashoo' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 10000012002073-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='جاورسیان-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='جاورسیان-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='جاورسیان-مرکزی-looleh-nakhi-tashoo' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='جاورسیان-مرکزی-looleh-nakhi-tashoo' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1000005001107-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='نراق-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='نراق-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='نراق-مرکزی-looleh-nakhi-tashoo' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='نراق-مرکزی-looleh-nakhi-tashoo' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 10000010002017-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='خشکرود-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='خشکرود-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='خشکرود-مرکزی-looleh-nakhi-tashoo' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='خشکرود-مرکزی-looleh-nakhi-tashoo' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 10000010002378-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='رازقان-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='رازقان-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='رازقان-مرکزی-looleh-nakhi-tashoo' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='رازقان-مرکزی-looleh-nakhi-tashoo' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 10000010001108-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='زاویه-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='زاویه-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='زاویه-مرکزی-looleh-nakhi-tashoo' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='زاویه-مرکزی-looleh-nakhi-tashoo' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 10000010001109-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='مامونیه-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='مامونیه-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='مامونیه-مرکزی-looleh-nakhi-tashoo' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='مامونیه-مرکزی-looleh-nakhi-tashoo' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 10000010002228-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='پرندک-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='پرندک-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='پرندک-مرکزی-looleh-nakhi-tashoo' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='پرندک-مرکزی-looleh-nakhi-tashoo' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1000006002827-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='آوه-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='آوه-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='آوه-مرکزی-looleh-nakhi-tashoo' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='آوه-مرکزی-looleh-nakhi-tashoo' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1000006002137-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='نوبران-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='نوبران-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='نوبران-مرکزی-looleh-nakhi-tashoo' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='نوبران-مرکزی-looleh-nakhi-tashoo' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1000007001112-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='آستانه-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='آستانه-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='آستانه-مرکزی-looleh-nakhi-tashoo' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='آستانه-مرکزی-looleh-nakhi-tashoo' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1000007002582-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='توره-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='توره-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='توره-مرکزی-looleh-nakhi-tashoo' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='توره-مرکزی-looleh-nakhi-tashoo' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1000007002774-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='شهباز-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='شهباز-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='شهباز-مرکزی-looleh-nakhi-tashoo' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='شهباز-مرکزی-looleh-nakhi-tashoo' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1000007002032-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='مهاجران-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='مهاجران-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='مهاجران-مرکزی-looleh-nakhi-tashoo' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='مهاجران-مرکزی-looleh-nakhi-tashoo' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1000007002380-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='هندودر-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='هندودر-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='هندودر-مرکزی-navar-tip-20cm' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='هندودر-مرکزی-navar-tip-20cm' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1000007002380-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='هندودر-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='هندودر-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='هندودر-مرکزی-looleh-nakhi-tashoo' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='هندودر-مرکزی-looleh-nakhi-tashoo' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 10000013002941-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='تلخاب-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='تلخاب-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='تلخاب-مرکزی-navar-tip-20cm' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='تلخاب-مرکزی-navar-tip-20cm' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 10000013002941-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='تلخاب-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='تلخاب-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='تلخاب-مرکزی-looleh-nakhi-tashoo' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='تلخاب-مرکزی-looleh-nakhi-tashoo' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 10000013002773-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='خنجین-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='خنجین-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='خنجین-مرکزی-navar-tip-20cm' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='خنجین-مرکزی-navar-tip-20cm' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 10000013002773-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='خنجین-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='خنجین-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='خنجین-مرکزی-looleh-nakhi-tashoo' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='خنجین-مرکزی-looleh-nakhi-tashoo' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 10000013002136-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='فرمهین-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='فرمهین-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='فرمهین-مرکزی-navar-tip-20cm' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='فرمهین-مرکزی-navar-tip-20cm' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 10000013002136-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='فرمهین-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='فرمهین-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='فرمهین-مرکزی-looleh-nakhi-tashoo' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='فرمهین-مرکزی-looleh-nakhi-tashoo' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1000009001116-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='نیمور-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='نیمور-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='نیمور-مرکزی-navar-tip-20cm' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='نیمور-مرکزی-navar-tip-20cm' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1000009001116-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='نیمور-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='نیمور-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='نیمور-مرکزی-looleh-nakhi-tashoo' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='نیمور-مرکزی-looleh-nakhi-tashoo' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 10000011002379-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='میلاجرد-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='میلاجرد-مرکزی-navar-tip-20cm' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='میلاجرد-مرکزی-navar-tip-20cm' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='میلاجرد-مرکزی-navar-tip-20cm' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 10000011002379-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='میلاجرد-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='میلاجرد-مرکزی-looleh-nakhi-tashoo' AND post_type='arak' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='میلاجرد-مرکزی-looleh-nakhi-tashoo' AND p.post_type='arak'; DELETE FROM `ha_posts` WHERE post_name='میلاجرد-مرکزی-looleh-nakhi-tashoo' AND post_type='arak'; COMMIT;
+
+
+-- rollback: 1010001001117-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='آستارا-گیلان-navar-tip-20cm' AND post_type='gilan' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='آستارا-گیلان-navar-tip-20cm' AND post_type='gilan' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='آستارا-گیلان-navar-tip-20cm' AND p.post_type='gilan'; DELETE FROM `ha_posts` WHERE post_name='آستارا-گیلان-navar-tip-20cm' AND post_type='gilan'; COMMIT;
+
+
+-- rollback: 1010001001117-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='آستارا-گیلان-looleh-nakhi-tashoo' AND post_type='gilan' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='آستارا-گیلان-looleh-nakhi-tashoo' AND post_type='gilan' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='آستارا-گیلان-looleh-nakhi-tashoo' AND p.post_type='gilan'; DELETE FROM `ha_posts` WHERE post_name='آستارا-گیلان-looleh-nakhi-tashoo' AND post_type='gilan'; COMMIT;
+
+
+-- rollback: 1010001002583-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='لوندویل-گیلان-navar-tip-20cm' AND post_type='gilan' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='لوندویل-گیلان-navar-tip-20cm' AND post_type='gilan' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='لوندویل-گیلان-navar-tip-20cm' AND p.post_type='gilan'; DELETE FROM `ha_posts` WHERE post_name='لوندویل-گیلان-navar-tip-20cm' AND post_type='gilan'; COMMIT;
+
+
+-- rollback: 1010001002583-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='لوندویل-گیلان-looleh-nakhi-tashoo' AND post_type='gilan' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='لوندویل-گیلان-looleh-nakhi-tashoo' AND post_type='gilan' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='لوندویل-گیلان-looleh-nakhi-tashoo' AND p.post_type='gilan'; DELETE FROM `ha_posts` WHERE post_name='لوندویل-گیلان-looleh-nakhi-tashoo' AND post_type='gilan'; COMMIT;
+
+
+-- rollback: 1010002001118-tape20
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='کیاشهر-گیلان-navar-tip-20cm' AND post_type='gilan' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='کیاشهر-گیلان-navar-tip-20cm' AND post_type='gilan' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='کیاشهر-گیلان-navar-tip-20cm' AND p.post_type='gilan'; DELETE FROM `ha_posts` WHERE post_name='کیاشهر-گیلان-navar-tip-20cm' AND post_type='gilan'; COMMIT;
+
+
+-- rollback: 1010002001118-layflat
+START TRANSACTION; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='کیاشهر-گیلان-looleh-nakhi-tashoo' AND post_type='gilan' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `ha_posts` WHERE post_parent=(SELECT ID FROM `ha_posts` WHERE post_name='کیاشهر-گیلان-looleh-nakhi-tashoo' AND post_type='gilan' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `ha_postmeta` pm JOIN `ha_posts` p ON p.ID=pm.post_id WHERE p.post_name='کیاشهر-گیلان-looleh-nakhi-tashoo' AND p.post_type='gilan'; DELETE FROM `ha_posts` WHERE post_name='کیاشهر-گیلان-looleh-nakhi-tashoo' AND post_type='gilan'; COMMIT;
+
