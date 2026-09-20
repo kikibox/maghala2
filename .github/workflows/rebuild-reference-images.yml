@@ -1,6 +1,9 @@
 name: Rebuild exact product reference images
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["automation/reference-image-rebuild-trigger.txt"]
   issue_comment:
     types: [created]
 permissions:
@@ -10,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   rebuild:
-    if: github.event_name == 'workflow_dispatch' || (github.event.issue.pull_request == null && contains(github.event.comment.body, 'reference-conditioned-product-images-v16'))
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push' || (github.event.issue.pull_request == null && contains(github.event.comment.body, 'reference-conditioned-product-images-v16'))
     runs-on: ubuntu-latest
     timeout-minutes: 240
     env:
