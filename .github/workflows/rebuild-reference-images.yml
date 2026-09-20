@@ -1,0 +1,42 @@
+name: Rebuild exact product reference images
+on:
+  workflow_dispatch:
+  issue_comment:
+    types: [created]
+permissions:
+  contents: write
+concurrency:
+  group: navar-reference-image-rebuild
+  cancel-in-progress: true
+jobs:
+  rebuild:
+    if: github.event_name == 'workflow_dispatch' || (github.event.issue.pull_request == null && contains(github.event.comment.body, 'reference-conditioned-product-images-v16'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    env:
+      PYTHONUNBUFFERED: "1"
+      AGNES_API_BASE: https://apihub.agnes-ai.com/v1
+      AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+      AGNES_IMAGE_MODEL: agnes-image-2.0-flash
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: python -m pip install --disable-pip-version-check pillow
+      - name: Verify reference rebuild inputs
+        run: |
+          test -n "$AGNES_API_KEY"
+          python -m py_compile automation/rebuild_city_images_preserve_posts.py automation/image_prompt_policy.py automation/city_content_queue.py automation/city_content_queue_cloudflare.py
+      - name: Rebuild existing product images from exact references
+        run: python automation/rebuild_city_images_preserve_posts.py | tee reference-image-rebuild.log
+      - name: Commit rebuilt images only
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f artifacts/city-content-queue/images artifacts/city-content-queue/items artifacts/city-content-queue/image-rebuild-reference-product-v16.json reference-image-rebuild.log
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Rebuild city images from exact product references"
+          git pull --rebase origin main
+          git push origin main
