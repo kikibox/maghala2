@@ -6,6 +6,8 @@ on:
         description: process, agnes-models-test, initialize, or reset
         required: false
         default: process
+  issue_comment:
+    types: [created]
   schedule:
     - cron: "17 */4 * * *"
   push:
@@ -66,6 +68,10 @@ jobs:
           set +e
           MODE="${{ github.event.inputs.mode || 'process' }}"
           if [ "${{ github.event_name }}" = "push" ]; then MODE="$(sed -n 's/^mode=//p' automation/city-content-trigger.txt | tail -1)"; fi
+          if [ "${{ github.event_name }}" = "issue_comment" ]; then
+            if [ -n "${{ github.event.issue.pull_request.url }}" ]; then exit 0; fi
+            MODE="process"
+          fi
           echo "mode=$MODE" | tee -a artifacts/city-content-queue/run.log
           if [ "$MODE" = "agnes-models-test" ]; then
             timeout --foreground "${POST_TIMEOUT_SECONDS}s" python automation/test_agnes_models.py 2>&1 | tee -a artifacts/city-content-queue/run.log
