@@ -8,11 +8,14 @@ layflat package geometry.
 """
 from __future__ import annotations
 
+import base64
 import datetime as dt
 import hashlib
 import io
 import json
 import time
+import os
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -21,13 +24,16 @@ from PIL import Image, ImageDraw, ImageFilter
 import city_content_queue as base
 import city_content_queue_cloudflare as backend
 
-POLICY = "reference-locked-product-images-v17"
+POLICY = "reference-locked-varied-scenes-v18"
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "artifacts" / "city-content-queue"
-MARKER = OUT / "image-rebuild-reference-locked-v17.json"
+MARKER = OUT / "image-rebuild-reference-varied-v18.json"
 TAPE_REFERENCE = "https://navar-abyari.ir/wp-content/uploads/%D9%86%D9%88%D8%A7%D8%B1-%D8%A2%D8%A8%DB%8C%D8%A7%D8%B1%DB%8C-1.webp"
 LAYFLAT_REFERENCE = "https://navar-abyari.ir/wp-content/uploads/%D9%84%D9%88%D9%84%D9%87-%D9%86%D8%AE%DB%8C-2-%D8%A7%DB%8C%D9%86%DA%86-1.webp"
 CACHE = ROOT / ".reference-cache"
+MODEL = os.getenv("AGNES_IMAGE_MODEL", "agnes-image-2.0-flash")
+API = os.getenv("AGNES_API_BASE", "https://apihub.agnes-ai.com/v1").rstrip("/")
+KEY = os.getenv("AGNES_API_KEY", "").strip()
 
 
 def now() -> str:
@@ -71,7 +77,7 @@ def cut_out_white_background(image: Image.Image) -> Image.Image:
     return image.crop(bbox) if bbox else image
 
 
-def background(kind: int, topic: str) -> Image.Image:
+def fallback_background(kind: int, topic: str) -> Image.Image:
     width, height = 1200, 675
     palettes = [
         ((242, 246, 242), (210, 221, 207)),
@@ -102,22 +108,92 @@ def background(kind: int, topic: str) -> Image.Image:
     return image.filter(ImageFilter.GaussianBlur(1.2)).convert("RGBA")
 
 
+def background_prompt(item: dict, kind: int) -> str:
+    scenes = {
+        1: "a wide empty agricultural field with receding crop rows and soft natural daylight",
+        2: "a close clean soil texture beside young crop plants, with generous empty foreground space",
+        3: "a clean neutral agricultural work surface with soft daylight and no equipment in view",
+        4: "a perspective view down straight crop rows with an empty foreground and natural farm light",
+        5: "a tidy agricultural storage or field-edge setting with clean empty space and realistic materials",
+    }
+    return (
+        f"Create only a photorealistic empty background plate for an agriculture product photograph in "
+        f"{item.get('city', '')}, {item.get('province', '')}, Iran. Scene: {scenes[kind]}. "
+        "There must be no product, no hose, no drip tape, no pipe, no roll, no irrigation equipment, "
+        "no tools, no people, no hands, no text, no logo, no watermark and no signs. Keep the main center or "
+        "the requested side visually uncluttered for a product to be composited later. 16:9 composition."
+    )
+
+
+def model_background(item: dict, kind: int) -> Image.Image:
+    if not KEY:
+        raise RuntimeError("AGNES_API_KEY is missing")
+    payload = {
+        "model": MODEL,
+        "prompt": background_prompt(item, kind),
+        "size": "1024x768",
+        "return_base64": True,
+        "extra_body": {"response_format": "b64_json"},
+    }
+    req = urllib.request.Request(
+        API + "/images/generations",
+        data=json.dumps(payload).encode("utf-8"), method="POST",
+        headers={"Authorization": "Bearer " + KEY, "Content-Type": "application/json", "Accept": "application/json"},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=600) as response:
+            data = json.loads(response.read())
+    except urllib.error.HTTPError as exc:
+        raise RuntimeError(f"Agnes background HTTP {exc.code}") from exc
+    row = (data.get("data") or [{}])[0]
+    if row.get("b64_json"):
+        blob = base64.b64decode(row["b64_json"])
+    elif row.get("url"):
+        with urllib.request.urlopen(row["url"], timeout=300) as response:
+            blob = response.read()
+    else:
+        raise RuntimeError("Agnes background response has no image")
+    image = Image.open(io.BytesIO(blob)).convert("RGB")
+    target = 16 / 9
+    width, height = image.size
+    if width / height > target:
+        new_width = int(height * target); left = (width - new_width) // 2
+        image = image.crop((left, 0, left + new_width, height))
+    else:
+        new_height = int(width / target); top = (height - new_height) // 2
+        image = image.crop((0, top, width, top + new_height))
+    return image.resize((1200, 675), Image.Resampling.LANCZOS).filter(ImageFilter.GaussianBlur(0.8)).convert("RGBA")
+
+
+def varied_background(item: dict, kind: int, topic: str) -> Image.Image:
+    for attempt in range(1, 4):
+        try:
+            return model_background(item, kind)
+        except Exception as exc:
+            if attempt == 3:
+                print(f"background_fallback kind={kind} error={exc}", flush=True)
+            else:
+                time.sleep(3 * attempt)
+    return fallback_background(kind, topic)
+
 def make_product_image(item: dict, kind: int) -> tuple[bytes, str]:
     topic = item.get("topic") or "tape20"
     foreground = cut_out_white_background(download_reference(reference_url(item)))
-    canvas = background(kind, topic)
+    canvas = varied_background(item, kind, topic)
     width, height = canvas.size
-    target_width = int(width * (0.70 if topic == "layflat" else 0.68 + (kind % 2) * 0.04))
+    placements = {1: (0.50, 0.58, 0.74), 2: (0.67, 0.66, 0.60), 3: (0.36, 0.61, 0.58), 4: (0.73, 0.66, 0.56), 5: (0.50, 0.68, 0.66)}
+    pos_x, pos_y, scale_factor = placements.get(kind, placements[1])
+    target_width = int(width * scale_factor)
     scale = min(target_width / foreground.width, (height * 0.62) / foreground.height)
     foreground = foreground.resize((max(1, int(foreground.width * scale)), max(1, int(foreground.height * scale))), Image.Resampling.LANCZOS)
     shadow = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
     shadow_draw = ImageDraw.Draw(shadow)
-    cx = width // 2 + ((kind % 3) - 1) * 18
-    cy = int(height * 0.69)
+    cx = int(width * pos_x)
+    cy = int(height * (pos_y + 0.10))
     shadow_draw.ellipse((cx - foreground.width // 2, cy - 28, cx + foreground.width // 2, cy + 35), fill=(0, 0, 0, 70))
     canvas = Image.alpha_composite(canvas, shadow.filter(ImageFilter.GaussianBlur(22)))
-    x = (width - foreground.width) // 2 + ((kind % 3) - 1) * 18
-    y = int(height * 0.38) - foreground.height // 2 + ((kind % 2) * 10)
+    x = int(width * pos_x) - foreground.width // 2
+    y = int(height * pos_y) - foreground.height // 2
     canvas.alpha_composite(foreground, (x, y))
     output = io.BytesIO()
     canvas.convert("RGB").save(output, "JPEG", quality=95, optimize=True)
