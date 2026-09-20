@@ -45,6 +45,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: {fetch-depth: 0}
+      - name: Freeze rejected image standard
+        shell: bash
+        run: |
+          echo "Image generation is paused: the current product-image standard was rejected; no rebuild or new post image is allowed."
+          exit 1
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
       - name: Prepare diagnostics
