@@ -17,14 +17,16 @@ from PIL import Image
 
 import city_content_queue as base
 import city_content_queue_cloudflare as backend
+import image_prompt_policy
 
-POLICY = "preserve-posts-rebuild-images-v15"
+POLICY = "reference-conditioned-product-images-v16"
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "artifacts" / "city-content-queue"
-MARKER = OUT / "image-rebuild-preserve-posts-v15.json"
+MARKER = OUT / "image-rebuild-reference-product-v16.json"
 MODEL = os.getenv("AGNES_IMAGE_MODEL", "agnes-image-2.0-flash")
 API = os.getenv("AGNES_API_BASE", "https://apihub.agnes-ai.com/v1").rstrip("/")
 KEY = os.getenv("AGNES_API_KEY", "").strip()
+image_prompt_policy.install(backend)
 
 
 def now() -> str:
@@ -32,34 +34,7 @@ def now() -> str:
 
 
 def prompt(item: dict, kind: int) -> str:
-    topic = item.get("topic") or "tape20"
-    city = item.get("city", "")
-    county = item.get("county", "")
-    province = item.get("province", "")
-    scenes = {
-        1: "wide editorial hero composition",
-        2: "close technical product detail",
-        3: "realistic filtration and pressure-control context",
-        4: "careful installation context along straight crop rows",
-        5: "inspection and maintenance context",
-    }
-    if topic == "layflat":
-        product = (
-            "Show exactly one fully packaged black woven yarn-reinforced collapsible layflat hose roll, "
-            "based on the approved packaged reference. Keep it intact and unwrapped. Never show drip tape, "
-            "a second hose, round pipe, fitting, valve, filter, coupler, box, tool, hand or person."
-        )
-    else:
-        product = (
-            "Show exactly one black flat drip-irrigation tape roll in a natural position on soil. Never show "
-            "layflat hose, yarn hose, round pipe, fittings, valves, filters, packaging or another product."
-        )
-    return (
-        f"Photorealistic agriculture product image for a Persian article about {item.get('topic_focus', 'irrigation products')} "
-        f"in {city}, {county} county, {province} province, Iran. {product} {scenes[kind]}. "
-        "Use plausible natural agricultural texture and light, no famous landmarks, no unverifiable local claims, "
-        "no generated text, no logo, no watermark, realistic physical geometry, 16:9 composition."
-    )
+    return image_prompt_policy.image_prompt(item, kind)
 
 
 def generate(item: dict, kind: int) -> tuple[bytes, str]:
@@ -70,7 +45,10 @@ def generate(item: dict, kind: int) -> tuple[bytes, str]:
         "prompt": prompt(item, kind),
         "size": "1024x768",
         "return_base64": True,
-        "extra_body": {"response_format": "b64_json"},
+        "extra_body": {
+            "response_format": "b64_json",
+            "image": image_prompt_policy.reference_images(kind, item),
+        },
     }
     req = urllib.request.Request(
         API + "/images/generations",
