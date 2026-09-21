@@ -142,7 +142,12 @@ def main() -> int:
             for kind in range(1, 6):
                 generated_name, digest = generate_raw(enriched, kind)
                 generated.append(generated_name); hashes.append(digest); time.sleep(1)
-            for old in names: (base.IMAGES / old).unlink(missing_ok=True)
+            # Keep the existing filenames because post HTML and SQL already reference them.
+            for generated_name, old_name in zip(generated, names):
+                source = base.IMAGES / generated_name
+                target = base.IMAGES / old_name
+                target.unlink(missing_ok=True)
+                source.replace(target)
             stamp = now(); data["image_sha256"] = hashes; data["image_rebuild_policy"] = POLICY
             data["image_rebuilt_at"] = stamp; data["image_generation_mode"] = "reference-conditioned-full-scene"
             data["product_family"] = family; path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
