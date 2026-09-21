@@ -3,6 +3,7 @@
 
 No cut-out/composite is used. The image model receives the approved product
 reference and must render the complete product photograph in a real field scene.
+Policy note: this file intentionally preserves existing post image filenames.
 """
 from __future__ import annotations
 import base64, datetime as dt, hashlib, io, json, os, time, urllib.error, urllib.request
