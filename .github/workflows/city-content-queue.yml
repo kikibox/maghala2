@@ -6,6 +6,9 @@ on:
         description: process, agnes-models-test, initialize, or reset
         required: false
         default: process
+  push:
+    branches: [main]
+    paths: ["automation/one-time-v19-start.txt"]
 permissions:
   contents: write
 concurrency:
@@ -26,7 +29,7 @@ jobs:
       MIN_WORDS: "1050"
       MIN_INTERNAL_LINKS: "4"
       BATCH_SIZE: "1"
-      QUEUE_RUNS: "20"
+      QUEUE_RUNS: "5"
       POST_DELAY_SECONDS: "10"
       POST_TIMEOUT_SECONDS: "900"
       MAX_ATTEMPTS: "2"
@@ -93,14 +96,14 @@ jobs:
               echo "post_run=$RUN_INDEX/$QUEUE_RUNS started_at=$STARTED_AT" | tee -a artifacts/city-content-queue/run.log
               git add -f artifacts/city-content-queue/run.log
               if ! git diff --cached --quiet; then
-                git commit -m "Start live Agnes queue run ($RUN_INDEX/20)"
+                git commit -m "Start live Agnes queue run ($RUN_INDEX/$QUEUE_RUNS)"
                 git pull --rebase origin main
                 git push origin main
               fi
               timeout --foreground "${POST_TIMEOUT_SECONDS}s" python automation/run_agnes_city_queue_fast.py 2>&1 | tee -a artifacts/city-content-queue/run.log
               CODE=${PIPESTATUS[0]}
               FINISHED_AT="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-              echo "post_run=$RUN_INDEX/20 finished_at=$FINISHED_AT exit_code=$CODE" | tee -a artifacts/city-content-queue/run.log
+              echo "post_run=$RUN_INDEX/$QUEUE_RUNS finished_at=$FINISHED_AT exit_code=$CODE" | tee -a artifacts/city-content-queue/run.log
               python automation/import_permalink_fix.py 2>&1 | tee -a artifacts/city-content-queue/run.log
               python automation/package_city_content_batches.py 2>&1 | tee -a artifacts/city-content-queue/run.log
               python automation/render_city_queue_status.py
