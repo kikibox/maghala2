@@ -41,15 +41,10 @@ jobs:
       IMAGE_QA_MIN_SCORE: "70"
       IMAGE_QA_FAST_MODE: "1"
       IMAGE_QA_REVIEW_KINDS: "1,2,3,4,5"
-      CURRENT_IMAGE_POLICY: reference-conditioned-product-images-v16
+      CURRENT_IMAGE_POLICY: reference-conditioned-full-scene-v19
     steps:
       - uses: actions/checkout@v4
         with: {fetch-depth: 0}
-      - name: Freeze rejected image standard
-        shell: bash
-        run: |
-          echo "Image generation is paused: the current product-image standard was rejected; no rebuild or new post image is allowed."
-          exit 1
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
       - name: Prepare diagnostics

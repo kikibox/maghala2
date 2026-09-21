@@ -4,6 +4,8 @@ import base64,hashlib,io,json,os,urllib.error,urllib.request
 from PIL import Image
 import city_content_queue as base
 import city_content_queue_cloudflare as backend
+import image_prompt_policy
+image_prompt_policy.install(backend)
 
 MODEL=os.getenv('AGNES_IMAGE_MODEL','agnes-image-2.0-flash')
 KEY=os.getenv('AGNES_API_KEY','').strip();API=os.getenv('AGNES_API_BASE','https://apihub.agnes-ai.com/v1').rstrip('/')
@@ -59,7 +61,7 @@ def agnes_draft(item,links):
 
 def agnes_generate_image(item,kind):
     if not KEY:raise RuntimeError('AGNES_API_KEY is missing')
-    payload={'model':MODEL,'prompt':backend.image_prompt(item,kind),'size':'1024x768','return_base64':True,'extra_body':{'response_format':'b64_json'}}
+    payload={'model':MODEL,'prompt':backend.image_prompt(item,kind),'size':'1024x768','return_base64':True,'extra_body':{'response_format':'b64_json','image':image_prompt_policy.reference_images(kind,item)}}
     req=urllib.request.Request(API+'/images/generations',data=json.dumps(payload).encode(),method='POST',headers={'Authorization':'Bearer '+KEY,'Content-Type':'application/json','Accept':'application/json','User-Agent':'navar-city-content-queue/3.0'})
     try:
         with urllib.request.urlopen(req,timeout=600) as response:data=json.loads(response.read())
