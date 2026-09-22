@@ -4,12 +4,12 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: process, agnes-models-test, initialize, or reset
+        description: process, initialize, reset, or agnes-models-test
         required: false
         default: process
 
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/7 * * * *"
 
 permissions:
   contents: write
@@ -26,28 +26,15 @@ jobs:
     env:
       PYTHONUNBUFFERED: "1"
       GIT_TERMINAL_PROMPT: "0"
-
       AGNES_API_BASE: https://apihub.agnes-ai.com/v1
       AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
-
       AGNES_MODEL: agnes-3.0-flash
       AGNES_IMAGE_MODEL: agnes-image-2.0-flash
       IMAGE_MODEL: agnes-image-2.0-flash
-
-      MIN_WORDS: "1050"
-      MIN_INTERNAL_LINKS: "4"
-
       BATCH_SIZE: "1"
       QUEUE_RUNS: "5"
       POST_DELAY_SECONDS: "10"
       POST_TIMEOUT_SECONDS: "900"
-      MAX_ATTEMPTS: "2"
-
-      IMAGE_QA_ATTEMPTS: "1"
-      IMAGE_QA_MIN_SCORE: "70"
-      IMAGE_QA_FAST_MODE: "1"
-      IMAGE_QA_REVIEW_KINDS: "1,2,3,4,5"
-
       CURRENT_IMAGE_POLICY: reference-conditioned-full-scene-v19
 
     steps:
@@ -64,9 +51,67 @@ jobs:
       - name: Prepare diagnostics
         shell: bash
         run: |
+          set -e
           mkdir -p artifacts/city-content-queue
           : > artifacts/city-content-queue/run.log
 
-          echo "event=${{ github.event_name }} sha=${{ github.sha }} text=$AGNES_MODEL image=$AGNES_IMAGE_MODEL policy=$CURRENT_IMAGE_POLICY runs=$QUEUE_RUNS delay=$POST_DELAY_SECONDS timeout=$POST_TIMEOUT_SECONDS max_attempts=$MAX_ATTEMPTS image_qa_attempts=$IMAGE_QA_ATTEMPTS image_qa_min=$IMAGE_QA_MIN_SCORE fast=$IMAGE_QA_FAST_MODE review_kinds=$IMAGE_QA_REVIEW_KINDS ftp_upload=disabled" | tee -a artifacts/city-content-queue/run.log
+          {
+            echo "event=${{ github.event_name }}"
+            echo "policy=$CURRENT_IMAGE_POLICY"
+            echo "queue_runs=$QUEUE_RUNS"
+            echo "ftp_upload=disabled"
+          } | tee -a artifacts/city-content-queue/run.log
 
-          test -n "$AG
+          test -n "${AGNES_API_KEY:-}" || {
+            echo "ERROR: AGNES_API_KEY missing" | tee -a artifacts/city-content-queue/run.log
+            exit 1
+          }
+
+          python -m py_compile \
+            automation/run_agnes_city_queue_fast.py \
+            automation/rebuild_city_images_preserve_posts.py \
+            automation/import_permalink_fix.py \
+            automation/package_city_content_batches.py \
+            automation/render_city_queue_status.py
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Install image tooling
+        run: |
+          python -m pip install --disable-pip-version-check pillow
+
+      - name: Run queue sequentially
+        shell: bash
+        run: |
+          set +e
+
+          MODE="${{ github.event.inputs.mode || 'process' }}"
+          echo "mode=$MODE" | tee -a artifacts/city-content-queue/run.log
+
+          if [ "$MODE" = "initialize" ]; then
+            python automation/city_content_queue.py --init-only
+
+          elif [ "$MODE" = "reset" ]; then
+            python automation/city_content_queue.py --force-init --init-only
+
+          elif [ "$MODE" = "agnes-models-test" ]; then
+            python automation/test_agnes_models.py
+
+          else
+            python automation/rebuild_city_images_preserve_posts.py \
+              2>&1 | tee -a artifacts/city-content-queue/run.log
+
+            python automation/import_permalink_fix.py \
+              2>&1 | tee -a artifacts/city-content-queue/run.log
+
+            python automation/package_city_content_batches.py \
+              2>&1 | tee -a artifacts/city-content-queue/run.log
+
+            python automation/render_city_queue_status.py
+
+            git add -f artifacts/city-content-queue
+
+            if ! git diff --cached --quiet; then
+              git commit -m "Prepare city content queue"
+              git reset
