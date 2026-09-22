@@ -6,6 +6,9 @@ on:
         description: process, agnes-models-test, initialize, or reset
         required: false
         default: process
+  push:
+    branches: [main]
+    paths: ["automation/one-time-latest-run.txt"]
 permissions:
   contents: write
 concurrency:
@@ -86,7 +89,7 @@ jobs:
             if ! git diff --cached --quiet; then
               git commit -m "Rebuild existing city images without FTP upload"
               git reset --hard HEAD
-              git pull --rebase --autostash origin main
+          git pull --rebase --autostash origin main
               git push origin main
             fi
             for RUN_INDEX in $(seq 1 "$QUEUE_RUNS"); do
@@ -96,7 +99,7 @@ jobs:
               if ! git diff --cached --quiet; then
                 git commit -m "Start live Agnes queue run ($RUN_INDEX/$QUEUE_RUNS)"
                 git reset --hard HEAD
-              git pull --rebase --autostash origin main
+                git pull --rebase --autostash origin main
                 git push origin main
               fi
               timeout --foreground "${POST_TIMEOUT_SECONDS}s" python automation/run_agnes_city_queue_fast.py 2>&1 | tee -a artifacts/city-content-queue/run.log
@@ -110,7 +113,7 @@ jobs:
               if ! git diff --cached --quiet; then
                 git commit -m "Update live Agnes queue status ($RUN_INDEX/$QUEUE_RUNS)"
                 git reset --hard HEAD
-              git pull --rebase --autostash origin main
+                git pull --rebase --autostash origin main
                 git push origin main
               fi
               if [ "$CODE" != "0" ]; then echo "queue_exit_code=$CODE" | tee -a artifacts/city-content-queue/run.log; fi
@@ -130,7 +133,7 @@ jobs:
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Update Agnes reviewed city-content artifacts"
           git reset --hard HEAD
-              git pull --rebase --autostash origin main
+          git pull --rebase --autostash origin main
           git push origin main
       - uses: actions/upload-artifact@v4
         if: always()
