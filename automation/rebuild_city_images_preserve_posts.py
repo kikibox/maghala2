@@ -3,7 +3,6 @@
 
 No cut-out/composite is used. The image model receives the approved product
 reference and must render the complete product photograph in a real field scene.
-Policy note: this file intentionally preserves existing post image filenames.
 """
 from __future__ import annotations
 import base64, datetime as dt, hashlib, io, json, os, time, urllib.error, urllib.request
@@ -21,6 +20,7 @@ MODEL = os.getenv("AGNES_IMAGE_MODEL", "agnes-image-2.0-flash")
 API = os.getenv("AGNES_API_BASE", "https://apihub.agnes-ai.com/v1").rstrip("/")
 KEY = os.getenv("AGNES_API_KEY", "").strip()
 image_prompt_policy.install(backend)
+IMAGE_RETRIES = max(3, int(os.getenv("IMAGE_RETRIES", "4")))
 
 
 def now() -> str:
@@ -62,7 +62,7 @@ def full_scene_prompt(item: dict, kind: int) -> str:
     )
 
 
-def generate_raw(item: dict, kind: int) -> tuple[str, str]:
+def _generate_once(item: dict, kind: int) -> tuple[str, str]:
     if not KEY:
         raise RuntimeError("AGNES_API_KEY is missing")
     refs = image_prompt_policy.reference_images(kind, item)
@@ -108,58 +108,132 @@ def generate_raw(item: dict, kind: int) -> tuple[str, str]:
     return name, hashlib.sha256(blob).hexdigest()
 
 
+def generate_raw(item: dict, kind: int) -> tuple[str, str]:
+    last = None
+    for attempt in range(1, IMAGE_RETRIES + 1):
+        try:
+            return _generate_once(item, kind)
+        except Exception as exc:
+            last = exc
+            print(f"image_attempt_failed source_id={item.get('source_id')} kind={kind} attempt={attempt}/{IMAGE_RETRIES} error={exc}", flush=True)
+            if attempt < IMAGE_RETRIES:
+                time.sleep(min(60, 5 * (2 ** (attempt - 1))))
+    raise RuntimeError(f"Agnes image failed after {IMAGE_RETRIES} attempts: {last}") from last
+
+
 def main() -> int:
+    old = {}
     if MARKER.exists():
         try:
             old = json.loads(MARKER.read_text(encoding="utf-8"))
             if old.get("policy") == POLICY and old.get("completed") is True:
-                print(f"image_rebuild=already_completed policy={POLICY}", flush=True); return 0
-        except Exception: pass
-    if not base.QUEUE.exists(): raise RuntimeError("Queue file is missing; refusing image cleanup")
+                print(f"image_rebuild=already_completed policy={POLICY}", flush=True)
+                return 0
+        except Exception:
+            old = {}
+    if not base.QUEUE.exists():
+        raise RuntimeError("Queue file is missing; refusing image cleanup")
     queue = json.loads(base.QUEUE.read_text(encoding="utf-8"))
     completed = [x for x in queue.get("items", []) if x.get("status") == "completed"]
-    referenced: set[str] = set(); records = {}
+    referenced: set[str] = set()
+    records = {}
     for item in completed:
-        sid = str(item.get("source_id")); path = OUT / "items" / f"{sid}.json"
-        if not path.exists(): continue
-        data = json.loads(path.read_text(encoding="utf-8")); names = [Path(x).name for x in (data.get("images") or item.get("images") or [])]
-        referenced.update(names); records[sid] = (path, data, names)
+        sid = str(item.get("source_id"))
+        path = OUT / "items" / f"{sid}.json"
+        if not path.exists():
+            continue
+        data = json.loads(path.read_text(encoding="utf-8"))
+        names = [Path(x).name for x in (data.get("images") or item.get("images") or [])]
+        referenced.update(names)
+        records[sid] = (path, data, names)
     deleted = []
     base.IMAGES.mkdir(parents=True, exist_ok=True)
     for path in base.IMAGES.iterdir():
         if path.is_file() and path.name not in referenced:
-            path.unlink(missing_ok=True); deleted.append(path.name)
-    rebuilt, skipped, failures = [], [], []
+            path.unlink(missing_ok=True)
+            deleted.append(path.name)
+
+    rebuilt = list(dict.fromkeys(str(x) for x in old.get("rebuilt_posts", [])))
+    rebuilt_set = set(rebuilt)
+    skipped = []
+    failures = list(old.get("failures", [])) if old.get("policy") == POLICY else []
+
+    def save_progress(final: bool = False) -> None:
+        summary = {
+            "policy": POLICY,
+            "completed": final and not failures and len(rebuilt_set) + len(skipped) >= len(completed),
+            "completed_at": now() if final and not failures else None,
+            "completed_posts": len(rebuilt_set),
+            "total_completed_candidates": len(completed),
+            "rebuilt_posts": sorted(rebuilt_set),
+            "deleted_unrelated_images": deleted,
+            "skipped_posts": skipped,
+            "failures": failures,
+            "last_progress_at": now(),
+        }
+        MARKER.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    save_progress(False)
     for item in completed:
-        sid = str(item.get("source_id")); record = records.get(sid)
+        sid = str(item.get("source_id"))
+        record = records.get(sid)
         if not record:
-            skipped.append({"source_id": sid, "reason": "item JSON missing"}); continue
+            if sid not in {str(x.get("source_id")) for x in skipped}:
+                skipped.append({"source_id": sid, "reason": "item JSON missing"})
+            continue
         path, data, names = record
         if len(names) != 5:
-            skipped.append({"source_id": sid, "reason": f"expected 5 images, found {len(names)}"}); continue
-        enriched = {**item, **data}; family = image_prompt_policy.product_family(enriched)
+            skipped.append({"source_id": sid, "reason": f"expected 5 images, found {len(names)}"})
+            continue
+        enriched = {**item, **data}
+        family = image_prompt_policy.product_family(enriched)
+        already_v19 = data.get("image_rebuild_policy") == POLICY and data.get("image_generation_mode") == "reference-conditioned-full-scene"
+        if sid in rebuilt_set or already_v19:
+            rebuilt_set.add(sid)
+            continue
+        generated = []
         try:
-            generated = []; hashes = []
+            hashes = []
             for kind in range(1, 6):
                 generated_name, digest = generate_raw(enriched, kind)
-                generated.append(generated_name); hashes.append(digest); time.sleep(1)
+                generated.append(generated_name)
+                hashes.append(digest)
+                time.sleep(1)
             # Keep the existing filenames because post HTML and SQL already reference them.
             for generated_name, old_name in zip(generated, names):
                 source = base.IMAGES / generated_name
                 target = base.IMAGES / old_name
                 target.unlink(missing_ok=True)
                 source.replace(target)
-            stamp = now(); data["image_sha256"] = hashes; data["image_rebuild_policy"] = POLICY
-            data["image_rebuilt_at"] = stamp; data["image_generation_mode"] = "reference-conditioned-full-scene"
-            data["product_family"] = family; path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
-            rebuilt.append(sid); print(f"image_rebuilt source_id={sid} family={family}", flush=True)
+            stamp = now()
+            data["image_sha256"] = hashes
+            data["image_rebuild_policy"] = POLICY
+            data["image_rebuilt_at"] = stamp
+            data["image_generation_mode"] = "reference-conditioned-full-scene"
+            data["product_family"] = family
+            path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+            rebuilt_set.add(sid)
+            failures = [x for x in failures if str(x.get("source_id")) != sid]
+            print(f"image_rebuilt source_id={sid} family={family}", flush=True)
+            save_progress(False)
         except Exception as exc:
-            failures.append({"source_id": sid, "family": family, "error": str(exc)[:1200]})
-            print(f"image_rebuild_failed source_id={sid} family={family} error={exc}", flush=True); break
-    summary = {"policy": POLICY, "completed": not failures and len(rebuilt)+len(skipped)==len(completed), "completed_at": now() if not failures else None, "completed_posts": len(rebuilt), "deleted_unrelated_images": deleted, "skipped_posts": skipped, "failures": failures}
-    MARKER.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
-    if failures: raise RuntimeError(f"Full-scene rebuild stopped after {len(rebuilt)} posts: {failures[0]['error']}")
-    print(f"image_rebuild_completed posts={len(rebuilt)} deleted_unrelated={len(deleted)} policy={POLICY}", flush=True)
+            for generated_name in generated:
+                (base.IMAGES / generated_name).unlink(missing_ok=True)
+            failures = [x for x in failures if str(x.get("source_id")) != sid]
+            failures.append({"source_id": sid, "family": family, "error": str(exc)[:1200], "last_attempt_at": now()})
+            print(f"image_rebuild_failed source_id={sid} family={family} error={exc}", flush=True)
+            save_progress(False)
+            continue
+
+    rebuilt = sorted(rebuilt_set)
+    save_progress(True)
+    if failures:
+        print(f"image_rebuild_partial posts={len(rebuilt)} failures={len(failures)} deleted_unrelated={len(deleted)} policy={POLICY}", flush=True)
+    else:
+        print(f"image_rebuild_completed posts={len(rebuilt)} deleted_unrelated={len(deleted)} policy={POLICY}", flush=True)
+    # Partial failures are recorded in the marker and retried on the next controlled run;
+    # do not block the city-post queue because one transient image request failed.
     return 0
 
-if __name__ == "__main__": raise SystemExit(main())
+if __name__ == "__main__":
+    raise SystemExit(main())
