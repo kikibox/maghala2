@@ -36,9 +36,10 @@ b="    prompt=f'''برای شهر {item['city']} در شهرستان {item['coun
 run_source=replace_once(run_source,a,b,'v8 drafting prompt')
 run_source=replace_once(run_source,"        if not faq_policy.has_faq_at_end(body):errors.append('three details FAQ items required at end')\n        if not errors:\n            obj['city_research']=research\n            obj['topic']=item.get('topic')\n            obj['topic_focus']=topic_focus\n            return obj\n","        obj=text_cleanup_policy.apply(obj,item); body=obj.get('html','')\n        if '[[[IMAGE_1]]]' in body: errors.append('IMAGE_1 marker leaked into body')\n        if not faq_policy.has_faq_at_end(body):errors.append('three details FAQ items required at end')\n        if not errors:\n            obj['city_research']=research\n            obj['topic']=item.get('topic')\n            obj['topic_focus']=topic_focus\n            return obj\n",'cleanup and faq preservation')
 a="    refs=image_prompt_policy.reference_images(kind,item)\n    payload={'model':MODEL,'prompt':backend.image_prompt(item,kind),'size':'1024x768','return_base64':True,'extra_body':{'response_format':'b64_json','image':refs}}"
-# keep if already patched from prior version
-if a not in run_source:
-    run_source=replace_once(run_source,"    payload={'model':MODEL,'prompt':backend.image_prompt(item,kind),'size':'1024x768','return_base64':True,'extra_body':{'response_format':'b64_json'}}",a,'topic-specific image references')
+# Keep an already-patched runner unchanged; only patch the legacy payload when it exists.
+legacy_payload="    payload={'model':MODEL,'prompt':backend.image_prompt(item,kind),'size':'1024x768','return_base64':True,'extra_body':{'response_format':'b64_json'}}"
+if a not in run_source and legacy_payload in run_source:
+    run_source=replace_once(run_source,legacy_payload,a,'topic-specific image references')
 run_source=replace_once(run_source,'''    name=f"{item['source_id']}-{kind}.jpg";(base.IMAGES/name).write_bytes(blob);return name,hashlib.sha256(blob).hexdigest()''','''    name=seo_image_name(item,kind);(base.IMAGES/name).write_bytes(blob);return name,hashlib.sha256(blob).hexdigest()''','SEO filenames')
 run_source=replace_once(run_source,'backend.generate_image=agnes_generate_image\n','backend.seo_image_name=seo_image_name\nbackend.generate_image=agnes_generate_image\n','SEO helper exposure')
 original=review_path.read_text(encoding='utf-8')
