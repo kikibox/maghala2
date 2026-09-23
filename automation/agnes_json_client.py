@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Reliable Agnes JSON client with extraction and bounded retries."""
-import json,re,time
+import json,os,re,time
 FENCE_RE=re.compile(r"```(?:json)?\s*(.*?)\s*```",re.I|re.S)
 def _decode(candidate):
  value=json.loads(candidate)
@@ -28,7 +28,8 @@ def call(base,prompt,attempts=4):
   retry_note='' if attempt==1 else '\nپاسخ قبلی خالی یا نامعتبر بود. فقط یک شیء JSON معتبر و بدون توضیح یا Markdown برگردان.'
   payload={'model':base.AGNES_MODEL,'messages':[{'role':'system','content':'شما نویسنده و بازبین ارشد فارسی در حوزه آبیاری کشاورزی هستید. فقط یک شیء JSON معتبر برگردانید.'},{'role':'user','content':prompt+retry_note}],'temperature':0.55 if attempt>1 else 0.66,'max_tokens':20000}
   try:
-   data=base.fetch_json(base.AGNES_BASE+'/chat/completions',{'Authorization':'Bearer '+base.AGNES_KEY,'Content-Type':'application/json','User-Agent':'navar-city-content-queue-v7'},payload)
+   request_timeout=max(30,int(os.getenv('AGNES_REQUEST_TIMEOUT','120')))
+   data=base.fetch_json(base.AGNES_BASE+'/chat/completions',{'Authorization':'Bearer '+base.AGNES_KEY,'Content-Type':'application/json','User-Agent':'navar-city-content-queue-v7'},payload,timeout=request_timeout)
    raw=data.get('choices',[{}])[0].get('message',{}).get('content','')
    return parse_object(raw)
   except Exception as exc:
