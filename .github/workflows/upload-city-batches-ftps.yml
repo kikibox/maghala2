@@ -50,13 +50,20 @@ jobs:
         shell: bash
         run: test -n "$FTP_PASSWORD"
 
-      - name: Compress all city images before packaging
+      - name: Ensure WebP quality 60 compression before packaging
+        shell: bash
         run: |
+          set -euo pipefail
+          REPORT=artifacts/city-content-queue/image-compression-report.json
+          if [ -f "$REPORT" ] && grep -q '"quality": 60' "$REPORT"; then
+            echo "Compression already confirmed at WebP quality 60."
+            exit 0
+          fi
           python automation/compress_city_images.py \
             --apply \
             --quality 60 \
             --compare-quality 78 \
-            --report artifacts/city-content-queue/image-compression-report.json
+            --report "$REPORT"
 
       - name: Rebuild 50-item packages
         run: python automation/package_city_content_batches.py

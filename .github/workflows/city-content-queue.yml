@@ -74,6 +74,23 @@ jobs:
         run: |
           python -m pip install --disable-pip-version-check pillow
 
+      - name: Apply one-time WebP quality 60 migration
+        shell: bash
+        run: |
+          set -euo pipefail
+          REPORT=artifacts/city-content-queue/image-compression-report.json
+          if [ -f "$REPORT" ] && grep -q '"quality": 60' "$REPORT"; then
+            echo "Existing image compression report confirms WebP quality 60; migration already complete."
+            exit 0
+          fi
+          python automation/compress_city_images.py \
+            --apply \
+            --quality 60 \
+            --compare-quality 78 \
+            --report "$REPORT"
+          python automation/package_city_content_batches.py
+          python automation/render_city_queue_status.py
+
       - name: Run next queue item
         shell: bash
         run: |
