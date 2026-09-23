@@ -17,12 +17,15 @@ HERE = Path(__file__).resolve().parent
 os.environ['MAX_ATTEMPTS'] = '9999'
 base.MAX_ATTEMPTS = 9999
 
-# Before each run, move failed items back to pending while preserving last_error
-# for diagnosis.
-try:
-    import keep_failed_in_queue
-    keep_failed_in_queue.reset_failed_for_retry(base.QUEUE)
-except Exception as exc:
-    print(f'keep_failed_in_queue_warning={type(exc).__name__}: {exc}', flush=True)
+# Failed items must not block the queue. Retry them only during an explicit
+# repair run with RETRY_FAILED=1; normal scheduled runs continue to the next
+# pending item and preserve failures for diagnosis.
+if os.getenv('RETRY_FAILED', '0') == '1':
+    try:
+        import keep_failed_in_queue
+        reset_count = keep_failed_in_queue.reset_failed_for_retry(base.QUEUE)
+        print(f'retry_failed_reset={reset_count}', flush=True)
+    except Exception as exc:
+        print(f'keep_failed_in_queue_warning={type(exc).__name__}: {exc}', flush=True)
 
 runpy.run_path(str(HERE / 'run_agnes_city_queue_resilient.py'), run_name='__main__')

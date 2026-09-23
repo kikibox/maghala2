@@ -82,7 +82,9 @@ def sql_for(item,obj,image_names):
  q+=['INSERT INTO `ha_postmeta` (`post_id`,`meta_key`,`meta_value`) VALUES (@post_id,\'_thumbnail_id\',@media_1);','COMMIT;'];rollback=f"START TRANSACTION; DELETE pm FROM `{META}` pm JOIN `{TABLE}` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `{TABLE}` WHERE post_name='{esc(slug)}' AND post_type='{esc(pt)}' LIMIT 1) AND p.post_type='attachment'; DELETE FROM `{TABLE}` WHERE post_parent=(SELECT ID FROM `{TABLE}` WHERE post_name='{esc(slug)}' AND post_type='{esc(pt)}' LIMIT 1) AND post_type='attachment'; DELETE pm FROM `{META}` pm JOIN `{TABLE}` p ON p.ID=pm.post_id WHERE p.post_name='{esc(slug)}' AND p.post_type='{esc(pt)}'; DELETE FROM `{TABLE}` WHERE post_name='{esc(slug)}' AND post_type='{esc(pt)}'; COMMIT;\n";return '\n'.join(q)+'\n',rollback,body
 def process(q):
  if any(x['status']=='blocked_image_model' for x in q['items']):write_status(q,'blocked_image_model');raise RuntimeError(q.get('image_model_error','Image model is blocked'))
- batch=[x for x in q['items'] if x['status'] in {'pending','failed'} and x['attempts']<MAX_ATTEMPTS][:BATCH]
+ # Process only pending items during normal scheduled runs. Failed items are
+ # preserved for diagnosis and explicit repair runs instead of blocking the queue.
+ batch=[x for x in q['items'] if x['status']=='pending' and x['attempts']<MAX_ATTEMPTS][:BATCH]
  if not batch:write_status(q,'complete');return
  for item in batch:
   item.update(status='processing',attempts=item['attempts']+1,started_at=now());QUEUE.write_text(json.dumps(q,ensure_ascii=False,indent=2),encoding='utf-8')
