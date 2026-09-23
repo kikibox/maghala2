@@ -1,0 +1,82 @@
+name: Compress and upload new city batches via FTPS
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_run:
+    workflows: ["Generate missing city posts and images"]
+    types: [completed]
+  push:
+    branches: [main]
+    paths:
+      - "automation/ftps-upload-trigger.txt"
+
+permissions:
+  contents: write
+
+env:
+  FTP_HOST: ftp.navar-abyari.ir
+  FTP_PORT: "21"
+  FTP_USER: zzz@navar-abyari.ir
+  FTP_REMOTE_DIR: /
+  FTP_TLS_VERIFY: "false"
+  FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+
+concurrency:
+  group: navar-city-content-queue
+  cancel-in-progress: false
+
+jobs:
+  upload:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install image tooling
+        run: python -m pip install --disable-pip-version-check pillow
+
+      - name: Verify FTPS secret exists
+        shell: bash
+        run: test -n "$FTP_PASSWORD"
+
+      - name: Compress all city images before packaging
+        run: |
+          python automation/compress_city_images.py \
+            --apply \
+            --quality 60 \
+            --compare-quality 78 \
+            --report artifacts/city-content-queue/image-compression-report.json
+
+      - name: Rebuild 50-item packages
+        run: python automation/package_city_content_batches.py
+
+      - name: Render queue status
+        run: python automation/render_city_queue_status.py
+
+      - name: Upload new or changed batches
+        run: python automation/upload_new_city_batches_ftps.py
+
+      - name: Commit compression report and upload state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f artifacts/city-content-queue
+          if git diff --cached --quiet; then
+            echo "No repository changes to commit."
+            exit 0
+          fi
+          git commit -m "Compress images and record FTPS batch uploads"
+          git push origin HEAD:main
