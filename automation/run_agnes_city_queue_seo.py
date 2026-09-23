@@ -43,7 +43,7 @@ legacy_payload="    payload={'model':MODEL,'prompt':backend.image_prompt(item,ki
 if a not in run_source and legacy_payload in run_source:
     run_source=replace_once(run_source,legacy_payload,a,'topic-specific image references')
 run_source=replace_once(run_source,'''    name=f"{item['source_id']}-{kind}.jpg";(base.IMAGES/name).write_bytes(blob);return name,hashlib.sha256(blob).hexdigest()''','''    image=Image.open(BytesIO(blob)).convert('RGB')
-    encoded=BytesIO();image.save(encoded,format='WEBP',quality=88,method=6)
+    encoded=BytesIO();image.save(encoded,format='WEBP',quality=60,method=6)
     blob=encoded.getvalue()
     name=seo_image_name(item,kind);(base.IMAGES/name).write_bytes(blob);return name,hashlib.sha256(blob).hexdigest()''','SEO WebP filenames')
 run_source=replace_once(run_source,'backend.generate_image=agnes_generate_image\n','backend.seo_image_name=seo_image_name\nbackend.generate_image=agnes_generate_image\n','SEO helper exposure')
