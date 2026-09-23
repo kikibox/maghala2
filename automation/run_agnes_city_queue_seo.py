@@ -14,7 +14,9 @@ def replace_once(source,old,new,label):
     if count!=1:raise RuntimeError('Cannot patch '+label)
     return source.replace(old,new,1)
 run_source=run_path.read_text(encoding='utf-8')
-run_source=replace_once(run_source,'RAW_AGNES=base.agnes\n','''import image_prompt_policy
+run_source=replace_once(run_source,'RAW_AGNES=base.agnes\n','''from io import BytesIO
+from PIL import Image
+import image_prompt_policy
 import city_research
 import faq_policy
 import text_cleanup_policy
@@ -27,7 +29,7 @@ def seo_image_name(item,kind):
  raw=f"{topic_slug}-{item['slug']}-{IMAGE_ROLE_SLUGS[kind]}".replace('ي','ی').replace('ك','ک').replace('‌','-')
  safe=''.join(ch if(ch.isalnum()or ch=='-')else'-'for ch in raw)
  while '--' in safe:safe=safe.replace('--','-')
- return safe.strip('-')+'.jpg'
+ return safe.strip('-')+'.webp'
 ''','v8 helpers')
 a="def agnes_draft(item,links):\n    approved=links[:12];link_lines='\\n'.join(f\"- {x['title']} | {x['url']}\" for x in approved)\n"
 run_source=replace_once(run_source,a,a+"    research=city_research.research_city(item,RAW_AGNES,base.OUT)\n    research_context=city_research.prompt_context(research)\n    topic_focus=item.get('topic_focus','انتخاب و خرید نوار آبیاری ۲۰ سانتی‌متر')\n    topic_forbidden=item.get('topic_forbidden','')\n    faq_instruction=faq_policy.instruction()\n",'city research')
@@ -40,7 +42,10 @@ a="    refs=image_prompt_policy.reference_images(kind,item)\n    payload={'model
 legacy_payload="    payload={'model':MODEL,'prompt':backend.image_prompt(item,kind),'size':'1024x768','return_base64':True,'extra_body':{'response_format':'b64_json'}}"
 if a not in run_source and legacy_payload in run_source:
     run_source=replace_once(run_source,legacy_payload,a,'topic-specific image references')
-run_source=replace_once(run_source,'''    name=f"{item['source_id']}-{kind}.jpg";(base.IMAGES/name).write_bytes(blob);return name,hashlib.sha256(blob).hexdigest()''','''    name=seo_image_name(item,kind);(base.IMAGES/name).write_bytes(blob);return name,hashlib.sha256(blob).hexdigest()''','SEO filenames')
+run_source=replace_once(run_source,'''    name=f"{item['source_id']}-{kind}.jpg";(base.IMAGES/name).write_bytes(blob);return name,hashlib.sha256(blob).hexdigest()''','''    image=Image.open(BytesIO(blob)).convert('RGB')
+    encoded=BytesIO();image.save(encoded,format='WEBP',quality=88,method=6)
+    blob=encoded.getvalue()
+    name=seo_image_name(item,kind);(base.IMAGES/name).write_bytes(blob);return name,hashlib.sha256(blob).hexdigest()''','SEO WebP filenames')
 run_source=replace_once(run_source,'backend.generate_image=agnes_generate_image\n','backend.seo_image_name=seo_image_name\nbackend.generate_image=agnes_generate_image\n','SEO helper exposure')
 original=review_path.read_text(encoding='utf-8')
 review=replace_once(original,'import hashlib,json,os,re,time\n','import hashlib,json,os,re,time,urllib.parse\nimport image_prompt_policy\nimport research_grounding_review\nimport faq_policy\nimport text_cleanup_policy\n','review imports')
