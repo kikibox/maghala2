@@ -129,11 +129,3 @@ jobs:
             exit "$QUEUE_CODE"
           fi
           exit 0
-
-      - name: Upload queue artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: city-content-queue-${{ github.run_number }}
-          path: artifacts/city-content-queue/
-          retention-days: 14
