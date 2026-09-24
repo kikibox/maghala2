@@ -96,11 +96,13 @@ jobs:
           git commit -m "Publish three rewritten city post samples"
           git pull --rebase origin main
           git push origin main
-      - name: Upload review package
+      - name: Commit review package to git
         if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: city-posts-${{ env.RUN_MODE }}-${{ github.run_number }}
-          path: artifacts/city-posts/
-          if-no-files-found: warn
-          retention-days: 7
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f artifacts/city-posts
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Publish city post rewrite review package"
+          git pull --rebase origin main
+          git push origin main
