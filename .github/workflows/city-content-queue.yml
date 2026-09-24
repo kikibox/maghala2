@@ -112,6 +112,10 @@ jobs:
           git add -A artifacts/city-content-queue
 
           if git diff --cached --quiet; then
+            if [ "$QUEUE_CODE" -ne 0 ]; then
+              echo "Queue generation failed with exit code $QUEUE_CODE" >&2
+              exit "$QUEUE_CODE"
+            fi
             exit 0
           fi
 
@@ -120,6 +124,10 @@ jobs:
           git pull --rebase --autostash origin main
           git push origin main
 
+          if [ "$QUEUE_CODE" -ne 0 ]; then
+            echo "Queue generation failed with exit code $QUEUE_CODE" >&2
+            exit "$QUEUE_CODE"
+          fi
           exit 0
 
       - name: Upload queue artifacts
