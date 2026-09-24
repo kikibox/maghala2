@@ -2,7 +2,7 @@
 
 > این صفحه پس از پردازش هر پست به‌روزرسانی می‌شود. برای دیدن مقدار تازه، صفحه را Refresh کنید.
 
-- آخرین بروزرسانی: `2026-09-24T12:39:33+00:00`
+- آخرین بروزرسانی: `2026-09-24T12:53:45+00:00`
 - وضعیت صف: **ready**
 - پیشرفت: **140 از 1894 (7.39٪)**
 - تکمیل‌شده: **140**
@@ -45,7 +45,7 @@
 
 ## خطاهای اخیر
 
-- **امیرکلا** — `layflat`: `Editorial review failed: three details FAQ items required at end`
+- **امیرکلا** — `layflat`: `Agnes Image HTTP 500: {"error":{"message":"Failed to reach upstream, please retry later (request id: 20260924125326554431460z2smvDGb)","type":"do_request_failed","param":"","code":"do_request_failed"}}`
 
 ## فایل‌های خروجی
 
