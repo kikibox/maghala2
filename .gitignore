@@ -1,4 +1,5 @@
 # Database dumps and archives may contain credentials or private data
+# (kept broad to stay safe against accidental credential dumps).
 *.sql
 *.sql.gz
 *.sql.zip
@@ -11,3 +12,14 @@ __pycache__/
 # Upload-ready city-content batch archives are committed so the separate
 # FTPS workflow can read them from git. They must not be ignored.
 !artifacts/city-content-queue/packages/batch-*.zip
+
+# Per-post generated SQL + rollback sources are the content payload that
+# feeds each batch package. Without these tracked, a fresh runner checkout
+# lacks the source .sql for older posts and packages build with empty SQL.
+# They are draft WordPress content, not credential dumps.
+!artifacts/city-content-queue/sql/*.sql
+!artifacts/city-content-queue/rollback/*.sql
+
+# The aggregate publish/rollback files are also committed artifacts.
+!artifacts/city-content-queue/create-all-completed.sql
+!artifacts/city-content-queue/rollback-all-completed.sql
