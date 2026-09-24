@@ -1,16 +1,10 @@
-name: Compress and upload new city batches via FTPS
+name: Upload new city batches via FTPS
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "*/15 * * * *"
   workflow_run:
     workflows: ["Generate missing city posts and images"]
     types: [completed]
-  push:
-    branches: [main]
-    paths:
-      - "automation/ftps-upload-trigger.txt"
 
 permissions:
   contents: write
@@ -24,14 +18,14 @@ env:
   FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
 
 concurrency:
-  group: navar-city-content-queue
+  group: navar-city-ftps-upload
   cancel-in-progress: false
 
 jobs:
   upload:
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 30
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -43,47 +37,44 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install image tooling
-        run: python -m pip install --disable-pip-version-check pillow
+      - name: Verify compressed image policy
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = Path("artifacts/city-content-queue/image-compression-report.json")
+          if not report.exists():
+              raise SystemExit("image compression report is missing")
+          data = json.loads(report.read_text(encoding="utf-8"))
+          if data.get("quality") != 60 or data.get("mode") != "apply":
+              raise SystemExit("images are not confirmed as WebP quality 60")
+          image_dir = Path("artifacts/city-content-queue/images")
+          bad = [p.name for p in image_dir.iterdir() if p.is_file() and p.suffix.lower() in {".jpg", ".jpeg", ".png"}]
+          if bad:
+              raise SystemExit(f"uncompressed image files remain: {bad[:5]}")
+          print(f"verified {data.get('image_count', 0)} compressed images at WebP quality 60")
+          PY
 
       - name: Verify FTPS secret exists
         shell: bash
         run: test -n "$FTP_PASSWORD"
 
-      - name: Ensure WebP quality 60 compression before packaging
-        shell: bash
-        run: |
-          set -euo pipefail
-          REPORT=artifacts/city-content-queue/image-compression-report.json
-          if [ -f "$REPORT" ] && grep -q '"quality": 60' "$REPORT"; then
-            echo "Compression already confirmed at WebP quality 60."
-            exit 0
-          fi
-          python automation/compress_city_images.py \
-            --apply \
-            --quality 60 \
-            --compare-quality 78 \
-            --report "$REPORT"
-
-      - name: Rebuild 50-item packages
-        run: python automation/package_city_content_batches.py
-
-      - name: Render queue status
-        run: python automation/render_city_queue_status.py
-
-      - name: Upload new or changed batches
+      - name: Upload only new or changed batches
         run: python automation/upload_new_city_batches_ftps.py
 
-      - name: Commit compression report and upload state
+      - name: Commit upload state when changed
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f artifacts/city-content-queue
+          git add -f artifacts/city-content-queue/ftps-upload-state.json
           if git diff --cached --quiet; then
-            echo "No repository changes to commit."
+            echo "No new or changed batches were uploaded."
             exit 0
           fi
-          git commit -m "Compress images and record FTPS batch uploads"
-          git push origin HEAD:main
+          git commit -m "Record automatic FTPS batch uploads"
+          git pull --rebase --autostash origin main
+          git push origin main

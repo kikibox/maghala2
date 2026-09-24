@@ -31,32 +31,38 @@ def load_state() -> dict:
         return {"files": {}}
 
 
+def now() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
 def main() -> int:
     packages = sorted(PACKAGES.glob("*.zip"))
     state = load_state()
     tracked = state.setdefault("files", {})
     if not packages:
         print("No ZIP batches are currently available; nothing to upload.")
-        STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
-        STATE_PATH.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         return 0
 
-    prepared = []
+    pending = []
+    skipped = 0
     for path in packages:
         digest = sha256(path)
-        prepared.append((path, digest, path.stat().st_size))
+        size = path.stat().st_size
+        previous = tracked.get(path.name, {})
+        if previous.get("sha256") == digest and int(previous.get("size", -1)) == size:
+            print(f"Already uploaded; skipped: {path.name}")
+            skipped += 1
+        else:
+            pending.append((path, digest, size))
+
+    if not pending:
+        print(json.dumps({"uploaded": 0, "skipped": skipped, "checked": len(packages)}, ensure_ascii=False))
+        return 0
 
     ftp = connect()
     uploaded = 0
-    skipped = 0
     try:
-        for path, digest, size in prepared:
-            previous = tracked.get(path.name, {})
-            if previous.get("sha256") == digest and int(previous.get("size", -1)) == size:
-                print(f"Already uploaded; skipped: {path.name}")
-                skipped += 1
-                continue
-
+        for path, digest, size in pending:
             with path.open("rb") as stream:
                 ftp.storbinary(f"STOR {path.name}", stream, blocksize=1024 * 1024)
             remote_size = ftp.size(path.name)
@@ -64,11 +70,7 @@ def main() -> int:
                 raise RuntimeError(
                     f"Size verification failed for {path.name}: local={size}, remote={remote_size}"
                 )
-            tracked[path.name] = {
-                "sha256": digest,
-                "size": size,
-                "uploaded_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
-            }
+            tracked[path.name] = {"sha256": digest, "size": size, "uploaded_at": now()}
             print(f"Uploaded and verified: {path.name} ({size} bytes)")
             uploaded += 1
     finally:
@@ -80,8 +82,8 @@ def main() -> int:
     state["last_run"] = {
         "uploaded": uploaded,
         "skipped": skipped,
-        "checked": len(prepared),
-        "completed_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+        "checked": len(packages),
+        "completed_at": now(),
     }
     STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
     STATE_PATH.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
