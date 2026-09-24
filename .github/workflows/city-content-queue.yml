@@ -167,6 +167,10 @@ jobs:
           python automation/package_city_content_batches.py || true
           python automation/render_city_queue_status.py || true
 
+          # Batch archives are upload-ready ZIPs that MUST be committed so the
+          # separate FTPS workflow can read them from git. The repo .gitignore
+          # ignores *.zip, so add the batch packages explicitly.
+          git add -f artifacts/city-content-queue/packages/batch-*.zip
           git add -A artifacts/city-content-queue
 
           if git diff --cached --quiet; then
