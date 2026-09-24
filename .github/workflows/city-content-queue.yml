@@ -169,8 +169,15 @@ jobs:
 
           # Batch archives are upload-ready ZIPs that MUST be committed so the
           # separate FTPS workflow can read them from git. The repo .gitignore
-          # ignores *.zip, so add the batch packages explicitly.
+          # ignores *.zip, so add the batch packages explicitly. The per-post
+          # source SQL/rollback and aggregate publish files are also ignored by
+          # *.sql, so force-add them so future checkouts carry the payload that
+          # feeds each package (otherwise packages build with empty SQL).
           git add -f artifacts/city-content-queue/packages/batch-*.zip
+          git add -f artifacts/city-content-queue/sql/*.sql
+          git add -f artifacts/city-content-queue/rollback/*.sql
+          git add -f artifacts/city-content-queue/create-all-completed.sql
+          git add -f artifacts/city-content-queue/rollback-all-completed.sql
           git add -A artifacts/city-content-queue
 
           if git diff --cached --quiet; then
