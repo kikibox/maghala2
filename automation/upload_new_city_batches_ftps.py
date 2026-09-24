@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Upload only new or changed city ZIP batches over explicit FTPS."""
+"""Upload only new or changed, manifest-listed city ZIP batches over explicit FTPS."""
 from __future__ import annotations
 
 import hashlib
@@ -31,16 +31,36 @@ def load_state() -> dict:
         return {"files": {}}
 
 
+def manifest_packages() -> list[Path]:
+    manifest_path = PACKAGES / "manifest.json"
+    if not manifest_path.exists():
+        return []
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise RuntimeError(f"Invalid package manifest: {exc}") from exc
+    paths = []
+    for package in manifest.get("packages", []):
+        name = package.get("zip") if isinstance(package, dict) else None
+        if not name or Path(str(name)).name != str(name) or not str(name).endswith(".zip"):
+            raise RuntimeError(f"Invalid package name in manifest: {name!r}")
+        path = PACKAGES / str(name)
+        if not path.is_file():
+            raise RuntimeError(f"Package listed in manifest is missing: {path}")
+        paths.append(path)
+    return paths
+
+
 def now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
 
 def main() -> int:
-    packages = sorted(PACKAGES.glob("*.zip"))
+    packages = sorted(manifest_packages())
     state = load_state()
     tracked = state.setdefault("files", {})
     if not packages:
-        print("No ZIP batches are currently available; nothing to upload.")
+        print("No manifest-listed ZIP batches are currently available; nothing to upload.")
         return 0
 
     pending = []
