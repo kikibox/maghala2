@@ -2,13 +2,13 @@
 
 > این صفحه پس از پردازش هر پست به‌روزرسانی می‌شود. برای دیدن مقدار تازه، صفحه را Refresh کنید.
 
-- آخرین بروزرسانی: `2026-09-25T05:58:28+00:00`
+- آخرین بروزرسانی: `2026-09-25T06:10:06+00:00`
 - وضعیت صف: **ready**
 - پیشرفت: **196 از 1894 (10.35٪)**
 - تکمیل‌شده: **196**
 - در حال پردازش: **1**
-- در انتظار: **1697**
-- ناموفق: **0**
+- در انتظار: **1696**
+- ناموفق: **1**
 - مسدودشده توسط مدل تصویر: **0**
 - مدل متن و بازبینی: `agnes-3.0-flash`
 - مدل تصویر: `agnes-image-2.0-flash`
@@ -46,7 +46,7 @@
 
 ## خطاهای اخیر
 
-- خطای فعالی ثبت نشده است.
+- **ایزدشهر** — `layflat`: `Agnes Image HTTP 504: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/","title":"Error 504: Gateway time-out","status":504,"detail":"The origin web server did not respond to Cloudflare within the allowed time. This typically means `
 
 ## فایل‌های خروجی
 
