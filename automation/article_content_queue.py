@@ -32,7 +32,7 @@ TABLE = "ha_posts"; META = "ha_postmeta"
 # Agnes config (same as city queue)
 AGNES_BASE = os.getenv("AGNES_API_BASE", "https://apihub.agnes-ai.com/v1").rstrip("/")
 AGNES_KEY = os.getenv("AGNES_API_KEY", "").strip()
-AGNES_MODEL = os.getenv("AGNES_MODEL", "agnes-2.5-flash")
+AGNES_MODEL = os.getenv("AGNES_MODEL", "agnes-3.0-flash")
 
 # Image config (same as city queue — agnes-image-2.0-flash)
 IMAGE_TOKEN = (os.getenv("GITHUB_MODELS_TOKEN") or os.getenv("GITHUB_TOKEN") or "").strip()

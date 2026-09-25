@@ -6,6 +6,10 @@ on:
     # Every 5 minutes — one useful article per run
     - cron: '*/5 * * * *'
 
+permissions:
+  contents: write
+  actions: write
+
 concurrency:
   group: article-content-queue
   cancel-in-progress: false
@@ -13,7 +17,7 @@ concurrency:
 env:
   AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
   AGNES_API_BASE: ${{ vars.AGNES_API_BASE }}
-  AGNES_MODEL: ${{ vars.AGNES_MODEL || 'agnes-2.5-flash' }}
+  AGNES_MODEL: ${{ vars.AGNES_MODEL || 'agnes-3.0-flash' }}
   GITHUB_MODELS_TOKEN: ${{ secrets.GITHUB_MODELS_TOKEN }}
   IMAGE_MODEL: ${{ vars.IMAGE_MODEL || 'agnes-image-2.0-flash' }}
   # One article per run (every 5 minutes)
@@ -41,6 +45,19 @@ jobs:
       - name: Build article queue
         run: |
           python automation/article_content_queue.py
+
+      - name: Commit queue state back to git
+        # Ensures the live STATUS.md / queue.json on GitHub reflect the run,
+        # not just the private artifact.
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add artifacts/article-content-queue/STATUS.md \
+                  artifacts/article-content-queue/queue.json \
+                  artifacts/article-content-queue/status.json 2>/dev/null
+          git diff --cached --quiet || \
+            git commit -m "Update article queue state [skip ci]"
+          git push origin main
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
