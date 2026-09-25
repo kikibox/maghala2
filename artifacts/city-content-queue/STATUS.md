@@ -2,7 +2,7 @@
 
 > این صفحه پس از پردازش هر پست به‌روزرسانی می‌شود. برای دیدن مقدار تازه، صفحه را Refresh کنید.
 
-- آخرین بروزرسانی: `2026-09-25T04:11:17+00:00`
+- آخرین بروزرسانی: `2026-09-25T04:27:22+00:00`
 - وضعیت صف: **ready**
 - پیشرفت: **190 از 1894 (10.03٪)**
 - تکمیل‌شده: **190**
@@ -46,7 +46,7 @@
 
 ## خطاهای اخیر
 
-- **سرخرود** — `layflat`: `Editorial review failed: layflat article still focuses on drip tape`
+- **سرخرود** — `layflat`: `Editorial review failed: CJK characters; layflat article still focuses on drip tape`
 
 ## فایل‌های خروجی
 
