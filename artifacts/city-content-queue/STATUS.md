@@ -2,7 +2,7 @@
 
 > این صفحه پس از پردازش هر پست به‌روزرسانی می‌شود. برای دیدن مقدار تازه، صفحه را Refresh کنید.
 
-- آخرین بروزرسانی: `2026-09-25T07:54:31+00:00`
+- آخرین بروزرسانی: `2026-09-25T08:02:29+00:00`
 - وضعیت صف: **ready**
 - پیشرفت: **198 از 1894 (10.45٪)**
 - تکمیل‌شده: **198**
@@ -46,7 +46,7 @@
 
 ## خطاهای اخیر
 
-- **بلده** — `layflat`: `Editorial review failed: three details FAQ items required at end`
+- **بلده** — `layflat`: `Editorial review failed: 20cm product focus missing; three details FAQ items required at end`
 
 ## فایل‌های خروجی
 
