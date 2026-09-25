@@ -199,6 +199,34 @@ def write_status(q, result):
         "completed": c["completed"], "failed": c["failed"],
         "image_model": IMAGE_MODEL, "batch_size": BATCH
     }, ensure_ascii=False, indent=2), encoding="utf-8")
+    # Live human-readable STATUS.md (mirrors the city queue format)
+    STATUS_MD = OUT / "STATUS.md"
+    total = len(q["items"])
+    done = c["completed"]
+    pct = (done / total * 100) if total else 0
+    lines = [
+        "# وضعیت زنده صف تولید مقالات مفید",
+        "",
+        "> این صفحه پس از پردازش هر مقاله به‌روزرسانی می‌شود. برای دیدن مقدار تازه، صفحه را Refresh کنید.",
+        "",
+        f"- آخرین بروزرسانی: `{now()}`",
+        f"- وضعیت صف: **{result}**",
+        f"- پیشرفت: **{done} از {total} ({pct:.2f}٪)**",
+        f"- تکمیل‌شده: **{done}**",
+        f"- در حال پردازش: **{c['processing']}**",
+        f"- در انتظار: **{c['pending']}**",
+        f"- ناموفق: **{c['failed']}**",
+        f"- مدل متن: `{AGNES_MODEL}`",
+        f"- مدل تصویر: `{IMAGE_MODEL}`",
+        f"- دستهٔ مقالات: **مقاله‌ها** (term {CATEGORY_TERM_ID})",
+        "",
+        "## دسته‌بندی عمودی",
+        "",
+    ]
+    by_v = Counter(x.get("vertical", "?") for x in q["items"] if x["status"] == "completed")
+    for v in sorted(by_v):
+        lines.append(f"- {v}: {by_v[v]}")
+    STATUS_MD.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def initialize(force=False):
