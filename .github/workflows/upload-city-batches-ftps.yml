@@ -37,6 +37,33 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Skip unless a new or changed batch exists
+        # Fast gate: if every batch ZIP already matches the recorded upload state,
+        # there is nothing new to push to FTPS, so bail out before the expensive
+        # image-policy check + FTPS connect. This stops the workflow from running
+        # 500x on every single post commit — it now only does real work when a
+        # new 50-post batch is actually packaged.
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, hashlib, sys
+          from pathlib import Path
+          STATE = Path("artifacts/city-content-queue/ftps-upload-state.json")
+          PKGS  = Path("artifacts/city-content-queue/packages")
+          state = json.loads(STATE.read_text(encoding="utf-8")) if STATE.exists() else {"files": {}}
+          tracked = state.get("files", {})
+          changed = []
+          for z in sorted(PKGS.glob("*.zip")) if PKGS.exists() else []:
+              digest = hashlib.sha256(z.read_bytes()).hexdigest()
+              prev = tracked.get(z.name, {})
+              if prev.get("sha256") != digest:
+                  changed.append(z.name)
+          if not changed:
+              print("No new or changed batches since last FTPS upload; skipping this run.")
+              sys.exit(0)
+          print(f"New/changed batches to upload: {changed}")
+          PY
       - name: Verify compressed image policy
         shell: bash
         run: |
