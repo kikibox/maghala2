@@ -2,7 +2,7 @@
 
 > این صفحه پس از پردازش هر پست به‌روزرسانی می‌شود. برای دیدن مقدار تازه، صفحه را Refresh کنید.
 
-- آخرین بروزرسانی: `2026-09-25T06:51:07+00:00`
+- آخرین بروزرسانی: `2026-09-25T07:07:30+00:00`
 - وضعیت صف: **ready**
 - پیشرفت: **196 از 1894 (10.35٪)**
 - تکمیل‌شده: **196**
@@ -46,7 +46,7 @@
 
 ## خطاهای اخیر
 
-- **ایزدشهر** — `layflat`: `Editorial review failed: three details FAQ items required at end`
+- **ایزدشهر** — `layflat`: `Editorial review failed: layflat article still focuses on drip tape`
 
 ## فایل‌های خروجی
 
