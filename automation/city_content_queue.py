@@ -276,8 +276,10 @@ def make_content(item,links):
 
 
 
- approved=links[:]
-
+ # Keep only real content types (drop WooCommerce/ACF/menu/cache junk that
+ # pollutes the related-content pool with non-content slugs).
+ CONTENT_TYPES={'post','page','product','faq'}
+ approved=[x for x in links if (x.get('post_type') in CONTENT_TYPES or (x.get('post_type') not in {'acf-field','acf-field-group','nav_menu_item','oembed_cache','rank_math_schema','wp_global_styles','elementor_library','custom_css','gp_elements','wpcf7_contact_form','customize_changeset','gp_font'}))]
  if len(approved)>12:
 
   random.Random(str(item.get('source_id',''))).shuffle(approved)
@@ -352,11 +354,27 @@ def generate_image(item,kind):
 
 
 
+def _urlnorm(u):
+    """Normalize a URL for pool membership: lowercase the percent-escapes so
+    %d8%a7 and %D8%A7 (or a literal UTF-8 char) all compare equal. Only the
+    path/query are touched; scheme+netloc stay as-is."""
+    import urllib.parse as _up
+    try:
+        p = _up.urlparse(u)
+        q = _up.quote(_up.unquote(p.path), safe="/")
+        qs = _up.quote(_up.unquote(p.query), safe="=&") if p.query else ""
+        return ("%s://%s%s" % ((p.scheme or "https"), p.netloc, q)) + (("?" + qs) if qs else "")
+    except Exception:
+        return u
+
 def sanitize_links(html_text, allowed_urls):
-    """Keep only <a> anchors whose href is in allowed_urls; drop other internal
-    links so the model cannot use URLs outside the related-content pool."""
+    """Keep only <a> anchors whose normalized href maps to the approved pool;
+    strip any other internal navar-abyari.ir link so the model cannot use a
+    URL outside the related-content pool. Matching is percent-encoding
+    normalized (case-insensitive %XX) so model-emitted and pool variants of
+    the same URL compare equal."""
     import re as _re
-    allowed_set = set(allowed_urls)
+    allowed_norm = {_urlnorm(u) for u in allowed_urls}
 
     def _keep(match):
         tag = match.group(0)
@@ -364,7 +382,7 @@ def sanitize_links(html_text, allowed_urls):
         if not m:
             return tag
         href = m.group(1)
-        if href in allowed_set or 'navar-abyari.ir' not in href:
+        if _urlnorm(href) in allowed_norm or 'navar-abyari.ir' not in href:
             return tag
         # Internal link not in the approved pool -> strip tag but keep text
         return _re.sub(r'</?a\b[^>]*>', '', tag)
