@@ -58,15 +58,16 @@ def words(text):return len(WORD_RE.findall(re.sub(r'<[^>]+>',' ',text or '')))
 def internal_links(text):return {u for u in HREF_RE.findall(text or '') if 'navar-abyari.ir' in u}
 
 def sitemap_index():
- """Fetch post-sitemap1.xml + post-sitemap2.xml, resolve titles via WP REST API,
- and return a list of {title,url,post_type} link entries. Cached in
- link-index-sitemap.json so the ~500 title-lookups only happen once."""
+ """Return resolved sitemap posts (post-sitemap1.xml + post-sitemap2.xml), using a
+ git-tracked cache (link-index-sitemap.json) when present so the ~180 REST title
+ lookups only happen once per fresh cache. Falls back to a slug label if the
+ REST API is unreachable."""
  import urllib.request as _ur, json as _json, re as _re, urllib.parse as _up
  cache = OUT / 'link-index-sitemap.json'
  if cache.exists():
      try:
          c = _json.loads(cache.read_text(encoding='utf-8'))
-         if c.get('count', 0) > 100:
+         if c.get('count', 0) > 0:
              return c['links']
      except Exception:
          pass
@@ -88,7 +89,7 @@ def sitemap_index():
          slug = _up.unquote(path)
          req = _ur.Request(f'{SITE}/wp-json/wp/v2/posts?slug={_up.quote(slug)}&per_page=1',
                            headers={'User-Agent': 'navar-fix'})
-         with _ur.urlopen(req, timeout=20) as r:
+         with _ur.urlopen(req, timeout=15) as r:
              rows = _json.loads(r.read().decode('utf-8','replace'))
              if rows:
                  t = rows[0].get('title')
