@@ -1,0 +1,52 @@
+name: article-content-queue
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Every 3 hours (offset minute so it doesn't align with other schedules)
+    - cron: '7 */3 * * *'
+
+concurrency:
+  group: article-content-queue
+  cancel-in-progress: false
+
+env:
+  AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+  AGNES_API_BASE: ${{ vars.AGNES_API_BASE }}
+  AGNES_MODEL: ${{ vars.AGNES_MODEL || 'agnes-2.5-flash' }}
+  GITHUB_MODELS_TOKEN: ${{ secrets.GITHUB_MODELS_TOKEN }}
+  IMAGE_MODEL: ${{ vars.IMAGE_MODEL || 'agnes-image-2.0-flash' }}
+  BATCH_SIZE: ${{ vars.ARTICLE_BATCH_SIZE || '2' }}
+
+jobs:
+  build-queue:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Regenerate topics matrix
+        run: |
+          python automation/topic_matrix.py
+
+      - name: Build article queue
+        run: |
+          python automation/article_content_queue.py
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: article-content-queue
+          path: |
+            artifacts/article-content-queue/
+            data/article-catalog.json
+          retention-days: 30
