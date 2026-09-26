@@ -7,19 +7,18 @@ from PIL import Image,ImageDraw,ImageFont
 ROOT=Path(__file__).resolve().parents[1];ASSETS=Path(__file__).with_name('assets');OUT=ROOT/'artifacts'/'product-rerender-test'
 API=os.getenv('IMAGE_ENDPOINT') or os.getenv('AGNES_API_BASE','https://apihub.agnes-ai.com/v1').rstrip('/')+'/images/generations';KEY=(os.getenv('IMAGE_API_KEY') or os.getenv('AGNES_API_KEY','')).strip();MODEL=os.getenv('IMAGE_MODEL') or os.getenv('AGNES_IMAGE_MODEL','agnes-image-2.5-flash');PHONE='AFP | 09134922013'
 VARIANTS=[
- ('01-near','Keep the product only modestly smaller than the previous version: approximately 30 to 34 percent of frame width. Its top stays below the worker upper thigh; it is not waist-high.'),
- ('02-balanced','Reduce the same product one gradual step: approximately 25 to 28 percent of frame width. Its top stays around knee height and a worker stands at least one metre behind it.'),
- ('03-compact','Reduce the same product one more gradual step: approximately 20 to 23 percent of frame width. Its top stays clearly below knee height and it sits about two metres from the camera.'),
+ ('03-compact','Use the selected compact scale: the complete pair together occupies approximately 20 to 23 percent of frame width. Both coils stay clearly below knee height and sit about two metres from the camera.'),
 ]
-def ref():return 'data:image/webp;base64,'+(ASSETS/'afp-tape.webp.b64').read_text().strip()
-def prompt(scale):return '''Create one photorealistic 16:9 agricultural editorial photograph in a real Iranian row-crop field. Keep the field activity and crop rows dominant, with one adult worker nearby for human scale. Reconstruct the attached AFP drip-tape carton roll as a true three-dimensional object integrated into soil, lighting and perspective. Preserve its exact cylindrical geometry, center hole, white-and-blue carton, AFP mark and Drip Irrigation Tape wording. Do not paste a flat cutout. Use a natural three-quarter view, contact shadow, reflected soil light and slight soil interaction. '''+scale+''' Keep the product off-center on the lower third. Do not add any second package, roll, jar, container, advertisement or invented product. No person touches, leans on or carries the roll. The three benchmark variants must differ only in product scale and camera distance, not product identity.'''
+def refs():return ['data:image/webp;base64,'+(ASSETS/'afp-layflat.webp.b64').read_text().strip(),'data:image/jpeg;base64,'+(ASSETS/'afp-layflat-bare.jpg.b64').read_text().strip()]
+def prompt(scale):return '''Create one photorealistic 16:9 agricultural editorial photograph in a real Iranian field beside a practical water-transfer line. Keep the field activity and irrigation context dominant, with one adult worker nearby for human scale. Reconstruct exactly two attached-reference objects as true three-dimensional objects integrated into soil, lighting and perspective: first the packaged AFP layflat coil with its folded printed cardboard and crossing straps; second the bare black woven layflat coil with concentric layers and loose hose end. Keep both rolls separate, flat, horizontal and parallel to the soil; never stand either upright like a wheel. Preserve AFP and layflat markings on the packaged object and add no writing to the bare roll. Do not paste flat cutouts. Use natural three-quarter views, contact shadows, reflected soil light and slight soil interaction. '''+scale+''' Keep the pair off-center on the lower third. Do not add any third package, roll, jar, container, advertisement or invented product. No person touches, leans on or carries either coil.'''
+
 def watermark(im):
  c=im.convert('RGBA');o=Image.new('RGBA',c.size,(0,0,0,0));d=ImageDraw.Draw(o)
  try:f=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',27)
  except OSError:f=ImageFont.load_default()
  b=d.textbbox((0,0),PHONE,font=f);w,h=b[2]-b[0],b[3]-b[1];m,px,py=18,16,10;x=c.width-w-m-2*px;y=c.height-h-m-2*py;d.rounded_rectangle((x,y,c.width-m,c.height-m),radius=8,fill=(0,0,0,178));d.text((x+px,y+py-b[1]),PHONE,font=f,fill='white');return Image.alpha_composite(c,o).convert('RGB')
 def call(name,scale):
- payload={'model':MODEL,'prompt':prompt(scale),'size':'1024x768','return_base64':True,'extra_body':{'response_format':'b64_json','image':[ref()]}}
+ payload={'model':MODEL,'prompt':prompt(scale),'size':'1024x768','return_base64':True,'extra_body':{'response_format':'b64_json','image':refs()}}
  last=None
  for attempt in range(1,4):
   try:
@@ -33,24 +32,17 @@ def call(name,scale):
    im=Image.open(io.BytesIO(blob)).convert('RGB');w,h=im.size;target=16/9
    if w/h>target:nw=int(h*target);x=(w-nw)//2;im=im.crop((x,0,x+nw,h))
    else:nh=int(w/target);y=(h-nh)//2;im=im.crop((0,y,w,y+nh))
-   im=watermark(im.resize((1200,675),Image.Resampling.LANCZOS));buf=io.BytesIO();im.save(buf,'WEBP',quality=72,method=6);raw=buf.getvalue();path=OUT/f'tape-scale-{name}.webp';path.write_bytes(raw);return im,{'variant':name,'file':path.name,'sha256':hashlib.sha256(raw).hexdigest(),'bytes':len(raw),'scale_instruction':scale}
+   im=watermark(im.resize((1200,675),Image.Resampling.LANCZOS));buf=io.BytesIO();im.save(buf,'WEBP',quality=72,method=6);raw=buf.getvalue();path=OUT/f'layflat-scale-{name}.webp';path.write_bytes(raw);return im,{'variant':name,'file':path.name,'sha256':hashlib.sha256(raw).hexdigest(),'bytes':len(raw),'scale_instruction':scale}
   except Exception as exc:
    last=exc
    if attempt<3:time.sleep(30*attempt)
  raise RuntimeError(f'{name} failed: {last}')
 def contact_sheet(rows):
- thumbs=[]
- for name,im in rows:
-  t=im.resize((400,225),Image.Resampling.LANCZOS);thumbs.append((name,t))
- sheet=Image.new('RGB',(1200,265),'white');d=ImageDraw.Draw(sheet)
- try:f=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',20)
- except OSError:f=ImageFont.load_default()
- for i,(name,t) in enumerate(thumbs):sheet.paste(t,(i*400,40));d.text((i*400+12,10),name,font=f,fill='black')
- sheet.save(OUT/'tape-scale-benchmark.webp','WEBP',quality=78,method=6)
+ return None
 def main():
  if not KEY:raise RuntimeError('IMAGE_API_KEY/AGNES_API_KEY is missing')
  OUT.mkdir(parents=True,exist_ok=True);records=[];images=[]
  for name,scale in VARIANTS:
   im,row=call(name,scale);images.append((name,im));records.append(row)
- contact_sheet(images);(OUT/'scale-benchmark-manifest.json').write_text(json.dumps(records,ensure_ascii=False,indent=2));print(json.dumps(records,ensure_ascii=False,indent=2));return 0
+ contact_sheet(images);(OUT/'layflat-compact-manifest.json').write_text(json.dumps(records,ensure_ascii=False,indent=2));print(json.dumps(records,ensure_ascii=False,indent=2));return 0
 if __name__=='__main__':raise SystemExit(main())
