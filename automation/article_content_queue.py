@@ -192,43 +192,184 @@ def rest_index():
 
 
 def write_status(q, result):
-    c = Counter(x["status"] for x in q["items"])
-    STATUS.write_text(json.dumps({
-        "result": result, "updated_at": now(), "total": len(q["items"]),
-        "pending": c["pending"], "processing": c["processing"],
-        "completed": c["completed"], "failed": c["failed"],
-        "blocked_image_model": c["blocked_image_model"],
-        "image_model": IMAGE_MODEL, "batch_size": BATCH
-    }, ensure_ascii=False, indent=2), encoding="utf-8")
-    # Live human-readable STATUS.md (mirrors the city queue format)
-    STATUS_MD = OUT / "STATUS.md"
-    total = len(q["items"])
+    items = q.get("items", [])
+    c = Counter(x.get("status", "unknown") for x in items)
+    total = len(items)
     done = c["completed"]
     pct = (done / total * 100) if total else 0
+    completed = sorted(
+        (x for x in items if x.get("status") == "completed"),
+        key=lambda x: x.get("completed_at", ""), reverse=True,
+    )
+    failed = sorted(
+        (x for x in items if x.get("status") in {"failed", "blocked_image_model"}),
+        key=lambda x: x.get("failed_at", ""), reverse=True,
+    )
+    processing = [x for x in items if x.get("status") == "processing"]
+    eligible = select_batch(q)
+    next_item = eligible[0] if eligible else None
+    by_vertical = {}
+    for item in items:
+        vertical = item.get("vertical", "unknown")
+        row = by_vertical.setdefault(vertical, Counter())
+        row["total"] += 1
+        row[item.get("status", "unknown")] += 1
+    completed_words = [int(x.get("word_count", 0)) for x in completed if x.get("word_count")]
+    average_words = round(sum(completed_words) / len(completed_words)) if completed_words else 0
+    output_counts = {
+        "item_json": len(list(ITEMS.glob("*.json"))) if ITEMS.exists() else 0,
+        "images": len(list((OUT / "images").glob("*"))) if (OUT / "images").exists() else 0,
+        "sql": len(list(SQL.glob("*.sql"))) if SQL.exists() else 0,
+        "rollback": len(list(ROLLBACK.glob("*.sql"))) if ROLLBACK.exists() else 0,
+    }
+    updated = now()
+    status_payload = {
+        "result": result,
+        "updated_at": updated,
+        "total": total,
+        "pending": c["pending"],
+        "processing": c["processing"],
+        "completed": done,
+        "failed": c["failed"],
+        "blocked_image_model": c["blocked_image_model"],
+        "progress_percent": round(pct, 2),
+        "average_completed_words": average_words,
+        "text_model": AGNES_MODEL,
+        "image_model": IMAGE_MODEL,
+        "batch_size": BATCH,
+        "category_id": CATEGORY_TAXONOMY_ID,
+        "link_index_size": len(q.get("link_index", [])),
+        "next_item": ({k: next_item.get(k) for k in ("id", "title", "vertical", "attempts")} if next_item else None),
+        "by_vertical": {name: dict(counts) for name, counts in sorted(by_vertical.items())},
+        "outputs": output_counts,
+    }
+    STATUS.write_text(json.dumps(status_payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    status_labels = {
+        "initialized": "آماده شروع",
+        "processing": "در حال پردازش",
+        "ready": "آماده اجرای بعدی",
+        "attention_required": "نیازمند بررسی",
+        "complete": "تکمیل‌شده",
+        "blocked_image_model": "مسدود به‌دلیل مدل تصویر",
+    }
+    bar_width = 20
+    filled = min(bar_width, int(pct * bar_width / 100))
+    progress_bar = "█" * filled + "░" * (bar_width - filled)
     lines = [
         "# وضعیت زنده صف تولید مقالات مفید",
         "",
-        "> این صفحه پس از پردازش هر مقاله به‌روزرسانی می‌شود. برای دیدن مقدار تازه، صفحه را Refresh کنید.",
+        "> داشبورد خودکار تولید، کنترل کیفیت، ساخت تصویر و انتشار مستقیم در وردپرس. پس از هر اجرا به‌روزرسانی می‌شود.",
         "",
-        f"- آخرین بروزرسانی: `{now()}`",
-        f"- وضعیت صف: **{result}**",
+        "## نمای کلی",
+        "",
+        f"- آخرین بروزرسانی: `{updated}`",
+        f"- وضعیت صف: **{status_labels.get(result, result)}** (`{result}`)",
         f"- پیشرفت: **{done} از {total} ({pct:.2f}٪)**",
+        f"- نمودار پیشرفت: `{progress_bar}`",
         f"- تکمیل‌شده: **{done}**",
         f"- در حال پردازش: **{c['processing']}**",
         f"- در انتظار: **{c['pending']}**",
         f"- ناموفق: **{c['failed']}**",
-        f"- مسدود به‌دلیل مدل تصویر: **{c['blocked_image_model']}**",
+        f"- مسدود مدل تصویر: **{c['blocked_image_model']}**",
+        f"- میانگین طول مقالات تکمیل‌شده: **{average_words or '—'} کلمه**",
+        "",
+        "## تنظیمات تولید و انتشار",
+        "",
         f"- مدل متن: `{AGNES_MODEL}`",
         f"- مدل تصویر: `{IMAGE_MODEL}`",
-        f"- دستهٔ مقالات: **مقاله‌ها** (term_taxonomy {CATEGORY_TAXONOMY_ID})",
+        f"- تعداد تصاویر هر مقاله: **{q.get('images_per_post', 3)}**",
+        f"- حداقل کلمات: **{q.get('rules', {}).get('minimum_words', MIN_WORDS)}**",
+        f"- لینک داخلی مجاز: **{q.get('rules', {}).get('minimum_internal_links', MIN_LINKS)} تا ۷**",
+        f"- اندازه هر اجرا: **{BATCH} مقاله**",
+        f"- حداکثر تلاش هر مقاله: **{MAX_ATTEMPTS}**",
+        f"- دسته وردپرس: **مقاله‌ها** (`{CATEGORY_TAXONOMY_ID}`)",
+        f"- لینک‌های داخلی شناخته‌شده: **{len(q.get('link_index', []))}**",
+        f"- وضعیت انتشار: **publish مستقیم از WordPress REST API**",
         "",
-        "## دسته‌بندی عمودی",
+        "## وضعیت بر اساس گروه موضوعی",
+        "",
+        "| گروه | کل | تکمیل | در انتظار | در حال پردازش | ناموفق | پیشرفت |",
+        "|---|---:|---:|---:|---:|---:|---:|",
+    ]
+    for vertical, counts in sorted(by_vertical.items()):
+        v_total = counts["total"]
+        v_done = counts["completed"]
+        v_pct = v_done * 100 / v_total if v_total else 0
+        lines.append(
+            f"| `{vertical}` | {v_total} | {v_done} | {counts['pending']} | {counts['processing']} | "
+            f"{counts['failed'] + counts['blocked_image_model']} | {v_pct:.2f}٪ |"
+        )
+    if not by_vertical:
+        lines.append("| — | 0 | 0 | 0 | 0 | 0 | 0٪ |")
+
+    lines += ["", "## در حال پردازش", ""]
+    if processing:
+        for item in processing:
+            lines.append(
+                f"- **{item.get('title', '—')}** — `{item.get('id', '—')}` — مرحله: "
+                f"`{item.get('failed_stage', 'generation')}` — شروع: `{item.get('started_at', '—')}`"
+            )
+    else:
+        lines.append("- اکنون مقاله‌ای در حالت پردازش ثبت نشده است.")
+
+    lines += ["", "## مقاله بعدی صف", ""]
+    if next_item:
+        lines += [
+            f"- عنوان: **{next_item.get('title', '—')}**",
+            f"- شناسه: `{next_item.get('id', '—')}`",
+            f"- گروه: `{next_item.get('vertical', '—')}`",
+            f"- تعداد تلاش قبلی: **{next_item.get('attempts', 0)}**",
+        ]
+    else:
+        lines.append("- مورد واجد شرایطی برای اجرای بعدی وجود ندارد.")
+
+    lines += ["", "## آخرین مقالات تکمیل‌شده", ""]
+    if completed:
+        for item in completed[:20]:
+            title = item.get("title", "—")
+            link = item.get("wordpress_url")
+            title_md = f"[{title}]({link})" if link else f"**{title}**"
+            lines.append(
+                f"- {title_md} — `{item.get('id', '—')}` — `{item.get('vertical', '—')}` — "
+                f"{item.get('word_count', '—')} کلمه — WordPress ID: `{item.get('wordpress_post_id', '—')}` — "
+                f"`{item.get('completed_at', '—')}`"
+            )
+    else:
+        lines.append("- هنوز مقاله‌ای با موفقیت منتشر نشده است.")
+
+    lines += ["", "## خطاهای اخیر", ""]
+    if failed:
+        for item in failed[:10]:
+            lines.append(
+                f"- **{item.get('title', '—')}** — `{item.get('id', '—')}` — مرحله: "
+                f"`{item.get('failed_stage', 'unknown')}` — تلاش: **{item.get('attempts', 0)}/{MAX_ATTEMPTS}** — "
+                f"`{str(item.get('last_error', 'نامشخص'))[:500]}`"
+            )
+    else:
+        lines.append("- خطای فعالی در صف ثبت نشده است.")
+
+    lines += [
+        "",
+        "## خروجی‌های تولیدشده",
+        "",
+        f"- فایل JSON مقاله‌ها: **{output_counts['item_json']}**",
+        f"- تصاویر تولیدشده: **{output_counts['images']}**",
+        f"- فایل‌های SQL: **{output_counts['sql']}**",
+        f"- فایل‌های Rollback: **{output_counts['rollback']}**",
+        "",
+        "## فایل‌های مدیریتی",
+        "",
+        "- [وضعیت ماشینی](./status.json)",
+        "- [صف کامل](./queue.json)",
+        "- [موضوعات تولید](./topics.json)",
+        "- [SQL تجمیعی انتشار](./create-all-completed.sql)",
+        "- [SQL تجمیعی بازگشت](./rollback-all-completed.sql)",
+        "- [پوشه تصاویر](./images/)",
+        "- [پوشه خروجی مقاله‌ها](./items/)",
         "",
     ]
-    by_v = Counter(x.get("vertical", "?") for x in q["items"] if x["status"] == "completed")
-    for v in sorted(by_v):
-        lines.append(f"- {v}: {by_v[v]}")
-    STATUS_MD.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    (OUT / "STATUS.md").write_text("\n".join(lines), encoding="utf-8")
 
 
 def initialize(force=False):
