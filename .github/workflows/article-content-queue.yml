@@ -16,10 +16,10 @@ concurrency:
 
 env:
   AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
-  AGNES_API_BASE: ${{ vars.AGNES_API_BASE }}
-  AGNES_MODEL: ${{ vars.AGNES_MODEL || 'agnes-3.0-flash' }}
+  AGNES_API_BASE: https://apihub.agnes-ai.com/v1
+  AGNES_MODEL: agnes-3.0-flash
   GITHUB_MODELS_TOKEN: ${{ secrets.GITHUB_MODELS_TOKEN }}
-  IMAGE_MODEL: ${{ vars.IMAGE_MODEL || 'agnes-image-2.0-flash' }}
+  IMAGE_MODEL: agnes-image-2.0-flash
   # One article per run (every 5 minutes)
   BATCH_SIZE: '1'
 
@@ -48,16 +48,21 @@ jobs:
 
       - name: Commit queue state back to git
         # Ensures the live STATUS.md / queue.json on GitHub reflect the run,
-        # not just the private artifact.
+        # not just the private artifact. Pull first to avoid conflicts with
+        # the city queue workflow that commits to the same branch.
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add artifacts/article-content-queue/STATUS.md \
                   artifacts/article-content-queue/queue.json \
-                  artifacts/article-content-queue/status.json 2>/dev/null
-          git diff --cached --quiet || \
+                  artifacts/article-content-queue/status.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No queue state to commit"
+          else
             git commit -m "Update article queue state [skip ci]"
-          git push origin main
+            git pull --rebase origin main
+            git push origin main
+          fi
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
