@@ -749,6 +749,27 @@ def generate_image(item, kind):
     history = []
     reviews_dir = OUT / "image-reviews"
     reviews_dir.mkdir(parents=True, exist_ok=True)
+    review_id = str(item.get("id") or item.get("source_id") or "unknown")
+    review_path = reviews_dir / f"{review_id}-{kind}.json"
+    image_path = OUT / "images" / seo_image_name(item, kind)
+    try:
+        prior = json.loads(review_path.read_text(encoding="utf-8"))
+        if (
+            prior.get("policy") == image_quality_gate.REVIEW_POLICY
+            and prior.get("approved")
+            and image_path.exists()
+            and image_path.stat().st_size > 10000
+        ):
+            blob = image_path.read_bytes()
+            return {
+                "name": image_path.name,
+                "sha256": hashlib.sha256(blob).hexdigest(),
+                "mime": "image/webp",
+                "width": 1200,
+                "height": 675,
+            }
+    except (OSError, json.JSONDecodeError):
+        pass
     feedback = ""
     for attempt in range(1, image_quality_gate.MAX_IMAGE_ATTEMPTS + 1):
         candidate_item = dict(item)
@@ -769,13 +790,13 @@ def generate_image(item, kind):
             }
         verdict["attempt"] = attempt
         history.append(verdict)
-        review_id = str(item.get("id") or item.get("source_id") or "unknown")
-        (reviews_dir / f"{review_id}-{kind}.json").write_text(
+        review_path.write_text(
             json.dumps(
                 {
                     "id": review_id,
                     "kind": kind,
                     "family": image_prompt_policy.product_family(item),
+                    "policy": image_quality_gate.REVIEW_POLICY,
                     "approved": bool(verdict.get("pass")),
                     "attempts": history,
                     "approved_image": result["name"] if verdict.get("pass") else None,
