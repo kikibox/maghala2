@@ -222,6 +222,13 @@ def write_status(q, result):
         "sql": len(list(SQL.glob("*.sql"))) if SQL.exists() else 0,
         "rollback": len(list(ROLLBACK.glob("*.sql"))) if ROLLBACK.exists() else 0,
     }
+    package_manifest = OUT / "packages" / "manifest.json"
+    package_data = {"batch_size": 50, "ready_batches": 0, "packages": []}
+    if package_manifest.exists():
+        try:
+            package_data.update(json.loads(package_manifest.read_text(encoding="utf-8")))
+        except Exception:
+            pass
     updated = now()
     status_payload = {
         "result": result,
@@ -242,6 +249,7 @@ def write_status(q, result):
         "next_item": ({k: next_item.get(k) for k in ("id", "title", "vertical", "attempts")} if next_item else None),
         "by_vertical": {name: dict(counts) for name, counts in sorted(by_vertical.items())},
         "outputs": output_counts,
+        "packages": package_data,
     }
     STATUS.write_text(json.dumps(status_payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
@@ -285,7 +293,7 @@ def write_status(q, result):
         f"- حداکثر تلاش هر مقاله: **{MAX_ATTEMPTS}**",
         f"- دسته وردپرس: **مقاله‌ها** (`{CATEGORY_TAXONOMY_ID}`)",
         f"- لینک‌های داخلی شناخته‌شده: **{len(q.get('link_index', []))}**",
-        f"- وضعیت انتشار: **publish مستقیم از WordPress REST API**",
+        f"- روش تحویل: **بسته ZIP شامل SQL، Rollback، تصاویر و JSON — هر ۵۰ مقاله**",
         "",
         "## وضعیت بر اساس گروه موضوعی",
         "",
@@ -328,11 +336,9 @@ def write_status(q, result):
     if completed:
         for item in completed[:20]:
             title = item.get("title", "—")
-            link = item.get("wordpress_url")
-            title_md = f"[{title}]({link})" if link else f"**{title}**"
             lines.append(
-                f"- {title_md} — `{item.get('id', '—')}` — `{item.get('vertical', '—')}` — "
-                f"{item.get('word_count', '—')} کلمه — WordPress ID: `{item.get('wordpress_post_id', '—')}` — "
+                f"- **{title}** — `{item.get('id', '—')}` — `{item.get('vertical', '—')}` — "
+                f"{item.get('word_count', '—')} کلمه — تحویل: `SQL package` — "
                 f"`{item.get('completed_at', '—')}`"
             )
     else:
@@ -348,6 +354,19 @@ def write_status(q, result):
             )
     else:
         lines.append("- خطای فعالی در صف ثبت نشده است.")
+
+    lines += ["", "## بسته‌های ۵۰تایی آماده", ""]
+    packages = package_data.get("packages", [])
+    if packages:
+        for package in packages[-10:]:
+            zip_name = package.get("zip", "—")
+            lines.append(
+                f"- [{zip_name}](./packages/{zip_name}) — {package.get('post_count', 0)} مقاله — "
+                f"{package.get('zip_bytes', 0)} بایت — SHA256: `{package.get('zip_sha256', '—')}`"
+            )
+    else:
+        remainder = done % int(package_data.get("batch_size", 50) or 50)
+        lines.append(f"- هنوز بسته کاملی آماده نشده است؛ پیشرفت بسته جاری: **{remainder}/50 مقاله**.")
 
     lines += [
         "",
@@ -733,9 +752,6 @@ def process(q):
         write_status(q, "attention_required" if exhausted else "complete")
         return
 
-    from wordpress_publish_article import verify_publish_target
-    verify_publish_target(CATEGORY_TAXONOMY_ID)
-
     batch_errors = []
     for item in batch:
         item.update(status="processing", attempts=item["attempts"]+1, started_at=now())
@@ -748,30 +764,27 @@ def process(q):
             for kind in range(1, 4):
                 images.append(generate_image(item, kind))
                 time.sleep(2)
-            # Publish media and the article through WordPress REST. Completion
-            # is recorded only after WordPress confirms status=publish.
-            stage = "wordpress_publish"
-            from wordpress_publish_article import publish_article
-            published = publish_article(item, obj, images)
+            # Produce reversible SQL and local image assets. Publishing is
+            # intentionally manual in 50-post packages; no WordPress REST
+            # credentials are required by the generator.
             stage = "sql"
             insert, rollback, body = sql_for(item, obj, images)
             (SQL / f"{item['id']}.sql").write_text(insert, encoding="utf-8")
             (ROLLBACK / f"{item['id']}.sql").write_text(rollback, encoding="utf-8")
-            (ITEMS / f"{item['id']}.json").write_text(
-                json.dumps({**item, **obj, "html": published["html"], "images": images,
-                            "wordpress": published},
-                          ensure_ascii=False, indent=2),
-                encoding="utf-8"
-            )
+            completed_at = now()
             item.update(
                 status="completed",
-                completed_at=now(),
+                completed_at=completed_at,
                 word_count=words(body),
                 images=[x["name"] for x in images],
                 image_sha256=[x["sha256"] for x in images],
-                wordpress_post_id=published["post_id"],
-                wordpress_url=published.get("link"),
+                delivery="sql_package",
                 last_error="",
+            )
+            (ITEMS / f"{item['id']}.json").write_text(
+                json.dumps({**item, **obj, "html": body, "images": images},
+                          ensure_ascii=False, indent=2),
+                encoding="utf-8"
             )
         except Exception as e:
             msg = str(e)[:900]

@@ -22,9 +22,6 @@ env:
   AGNES_API_BASE: ${{ vars.AGNES_API_BASE || 'https://apihub.agnes-ai.com/v1' }}
   AGNES_MODEL: ${{ vars.AGNES_MODEL || 'agnes-3.0-flash' }}
   IMAGE_MODEL: ${{ vars.IMAGE_MODEL || 'agnes-image-2.5-flash' }}
-  WP_SITE_URL: https://navar-abyari.ir
-  WP_USERNAME: ${{ secrets.WP_USERNAME }}
-  WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
   BATCH_SIZE: '1'
 
 jobs:
@@ -50,25 +47,18 @@ jobs:
         run: |
           set -euo pipefail
           test -n "$AGNES_API_KEY" || { echo '::error::AGNES_API_KEY is missing'; exit 1; }
-          test -n "$WP_USERNAME" || { echo '::error::WP_USERNAME is missing'; exit 1; }
-          test -n "$WP_APP_PASSWORD" || { echo '::error::WP_APP_PASSWORD is missing'; exit 1; }
 
       - name: Validate Python and run tests
         shell: bash
         run: |
           set -euo pipefail
-          python -m py_compile automation/article_content_queue.py
+          python -m py_compile automation/article_content_queue.py automation/package_article_content_batches.py
           python -m unittest discover -s tests -p 'test_*.py'
-
-      - name: Validate WordPress publish target
-        env:
-          PYTHONPATH: automation
-        run: python -c "from wordpress_publish_article import verify_publish_target; verify_publish_target(35)"
 
       - name: Regenerate deterministic topics
         run: python automation/topic_matrix.py
 
-      - name: Generate and publish next article through WordPress REST
+      - name: Generate next article, images, and reversible SQL
         id: queue
         shell: bash
         run: |
@@ -77,6 +67,12 @@ jobs:
           rc=$?
           echo "exit_code=$rc" >> "$GITHUB_OUTPUT"
           exit 0
+
+      - name: Build completed 50-article packages
+        if: always()
+        env:
+          PACKAGE_BATCH_SIZE: '50'
+        run: python automation/package_article_content_batches.py
 
       - name: Persist queue state
         if: always()
@@ -95,6 +91,11 @@ jobs:
           git reset --hard origin/main
           mkdir -p artifacts/article-content-queue
           cp -a "$state_dir/." artifacts/article-content-queue/
+          git add -f artifacts/article-content-queue/images/* 2>/dev/null || true
+          git add -f artifacts/article-content-queue/items/*.json 2>/dev/null || true
+          git add -f artifacts/article-content-queue/sql/*.sql 2>/dev/null || true
+          git add -f artifacts/article-content-queue/rollback/*.sql 2>/dev/null || true
+          git add -f artifacts/article-content-queue/packages/*.zip 2>/dev/null || true
           git add -A artifacts/article-content-queue
           if ! git diff --cached --quiet; then
             git commit -m 'Update article queue state [skip ci]'
