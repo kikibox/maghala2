@@ -1,0 +1,96 @@
+import os
+import sys
+import base64
+import io
+import tempfile
+import unittest
+from pathlib import Path
+from unittest.mock import patch
+
+from PIL import Image
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "automation"))
+
+import article_content_queue as queue
+
+
+class ArticleQueueTests(unittest.TestCase):
+    def test_api_base_has_safe_fallback(self):
+        self.assertTrue(queue.AGNES_BASE.startswith("https://"))
+        self.assertNotEqual(queue.AGNES_BASE, "")
+
+    def test_non_allowlisted_links_are_removed(self):
+        allowed = "https://navar-abyari.ir/ok/"
+        body = (
+            f'<p><a href="{allowed}">مجاز</a> '
+            '<a href="https://example.com/bad">غیرمجاز</a></p>'
+        )
+        cleaned = queue.sanitize_links(body, {allowed})
+        self.assertIn(f'href="{allowed}"', cleaned)
+        self.assertNotIn("example.com", cleaned)
+        self.assertIn("غیرمجاز", cleaned)
+
+    def test_failed_items_are_retried_first(self):
+        old_batch, old_attempts = queue.BATCH, queue.MAX_ATTEMPTS
+        queue.BATCH, queue.MAX_ATTEMPTS = 1, 4
+        try:
+            q = {"items": [
+                {"id": "new", "status": "pending", "attempts": 0},
+                {"id": "retry", "status": "failed", "attempts": 1, "failed_at": "2026-01-01"},
+            ]}
+            self.assertEqual(queue.select_batch(q)[0]["id"], "retry")
+        finally:
+            queue.BATCH, queue.MAX_ATTEMPTS = old_batch, old_attempts
+
+    def test_image_response_is_normalized_to_real_16_by_9_jpeg(self):
+        source = io.BytesIO()
+        Image.effect_noise((1024, 768), 64).convert("RGB").save(source, "PNG")
+        response = {"data": [{"b64_json": base64.b64encode(source.getvalue()).decode()}]}
+        old_out, old_token = queue.OUT, queue.IMAGE_TOKEN
+        with tempfile.TemporaryDirectory() as tmp:
+            queue.OUT = Path(tmp)
+            queue.IMAGE_TOKEN = "test"
+            try:
+                with patch.object(queue, "fetch_json", return_value=response):
+                    record = queue.generate_image(
+                        {"id": "crop-001", "focus": "crop", "vertical": "crop"}, 1
+                    )
+                output = Path(tmp) / "images" / record["name"]
+                self.assertEqual(record["mime"], "image/jpeg")
+                self.assertTrue(record["name"].endswith(".jpg"))
+                self.assertEqual((record["width"], record["height"]), (1200, 675))
+                with Image.open(output) as image:
+                    self.assertEqual(image.size, (1200, 675))
+                    self.assertEqual(image.format, "JPEG")
+            finally:
+                queue.OUT, queue.IMAGE_TOKEN = old_out, old_token
+
+    def test_sql_is_publish_idempotent_and_rollback_is_marker_scoped(self):
+        item = {
+            "id": "crop-001", "title": "عنوان", "slug": "onvan",
+            "focus": "focus", "vertical": "crop", "post_type": "post",
+        }
+        obj = {
+            "title": "عنوان", "html": "[[[IMAGE_1]]][[[IMAGE_2]]][[[IMAGE_3]]]",
+            "excerpt": "خلاصه", "meta_title": "متا",
+            "meta_description": "شرح", "focus_keyword": "کلید",
+        }
+        images = [
+            {"name": f"crop-001-{i}.png", "mime": "image/png", "width": 1536,
+             "height": 1024, "sha256": "x"}
+            for i in range(1, 4)
+        ]
+        sql, rollback, body = queue.sql_for(item, obj, images)
+        self.assertIn("'publish'", sql)
+        self.assertIn("_navar_queue_item_id", sql)
+        self.assertIn("_navar_queue_image_id", sql)
+        self.assertIn("'image/png'", sql)
+        self.assertIn("_wp_attachment_metadata", sql)
+        self.assertNotIn("WHERE post_name='onvan'", rollback)
+        self.assertIn("_navar_queue_item_id", rollback)
+        self.assertNotIn("[[[IMAGE_", body)
+
+
+if __name__ == "__main__":
+    unittest.main()

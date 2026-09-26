@@ -2,9 +2,7 @@ name: Build three real Iranian city-post samples
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths: ["automation/city-sample-v2-trigger.txt"]
+
 permissions:
   contents: write
 concurrency:
@@ -12,6 +10,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   samples:
+    if: ${{ false }} # City-post system intentionally disabled
     runs-on: ubuntu-latest
     timeout-minutes: 90
     env:

@@ -1,6 +1,7 @@
 name: Rebuild exact product reference images
 on:
   workflow_dispatch:
+
 permissions:
   contents: write
 concurrency:
@@ -8,6 +9,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   rebuild:
+    if: ${{ false }} # City-post system intentionally disabled
     runs-on: ubuntu-latest
     timeout-minutes: 240
     env:

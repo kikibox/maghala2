@@ -2,13 +2,6 @@ name: Upload new city batches via FTPS
 
 on:
   workflow_dispatch:
-  # Fire only when the generate workflow commits a NEW 50-post batch (it writes
-  # .new-batch-signal). This replaces the old workflow_run trigger that fired on
-  # every single-post commit - the cause of 500+ no-op FTPS runs.
-  push:
-    branches: [main]
-    paths:
-      - "artifacts/city-content-queue/.new-batch-signal"
 
 permissions:
   contents: write
@@ -27,6 +20,7 @@ concurrency:
 
 jobs:
   upload:
+    if: ${{ false }} # City-post system intentionally disabled
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:

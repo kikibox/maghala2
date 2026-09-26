@@ -1,9 +1,7 @@
 name: City image quality comparison
 on:
-  push:
-    branches: [main]
-    paths: ["automation/city-image-test-trigger.txt"]
   workflow_dispatch:
+
 permissions:
   contents: write
 concurrency:
@@ -11,6 +9,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   test-images:
+    if: ${{ false }} # City-post system intentionally disabled
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:

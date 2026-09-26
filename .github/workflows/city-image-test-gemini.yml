@@ -1,9 +1,7 @@
 name: Gemini city image quality test
 on:
-  push:
-    branches: [main]
-    paths: ["automation/city-image-test-gemini-trigger.txt"]
   workflow_dispatch:
+
 permissions:
   contents: write
 concurrency:
@@ -11,6 +9,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   test-image:
+    if: ${{ false }} # City-post system intentionally disabled
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:

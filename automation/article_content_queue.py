@@ -15,9 +15,10 @@ Shared infrastructure (reused, not modified):
 Output: artifacts/article-content-queue/
   queue.json, items/, sql/, rollback/, create-all-completed.sql
 """
-import json, os, re, time, hashlib, urllib.request, urllib.error, html, datetime as dt
+import json, os, re, time, hashlib, struct, urllib.request, urllib.error, html, datetime as dt
 from collections import Counter
 from pathlib import Path
+from agnes_json_client import call as agnes_json_call
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "artifacts" / "article-content-queue"
@@ -30,22 +31,31 @@ SITE = "https://navar-abyari.ir"
 TABLE = "ha_posts"; META = "ha_postmeta"
 
 # Agnes config (same as city queue)
-AGNES_BASE = os.getenv("AGNES_API_BASE", "https://apihub.agnes-ai.com/v1").rstrip("/")
+AGNES_BASE = (os.getenv("AGNES_API_BASE") or "https://apihub.agnes-ai.com/v1").rstrip("/")
 AGNES_KEY = os.getenv("AGNES_API_KEY", "").strip()
-AGNES_MODEL = os.getenv("AGNES_MODEL", "agnes-3.0-flash")
+AGNES_MODEL = os.getenv("AGNES_MODEL") or "agnes-3.0-flash"
 
-# Image config (same as city queue — agnes-image-2.0-flash)
-IMAGE_TOKEN = (os.getenv("GITHUB_MODELS_TOKEN") or os.getenv("GITHUB_TOKEN") or "").strip()
-IMAGE_MODEL = os.getenv("IMAGE_MODEL", "agnes-image-2.0-flash")
-IMAGE_ENDPOINT = os.getenv("IMAGE_ENDPOINT", "https://models.github.ai/inference/images/generations")
+# Image config uses the same Agnes endpoint/key as the working city image
+# implementation. The previous GitHub Models endpoint was incompatible with
+# the Agnes image model name.
+IMAGE_TOKEN = (os.getenv("IMAGE_API_KEY") or AGNES_KEY).strip()
+IMAGE_MODEL = os.getenv("IMAGE_MODEL") or "agnes-image-2.0-flash"
+IMAGE_ENDPOINT = os.getenv("IMAGE_ENDPOINT") or f"{AGNES_BASE}/images/generations"
+UPLOAD_SUBDIR = (os.getenv("ARTICLE_IMAGE_UPLOAD_SUBDIR") or "2026/09/navar-article-generated").strip("/")
+PUBLIC_UPLOAD_BASE = f"{SITE}/wp-content/uploads/{UPLOAD_SUBDIR}"
 
 BATCH = max(1, int(os.getenv("BATCH_SIZE", "2")))
 MIN_WORDS = int(os.getenv("MIN_WORDS", "1050"))
 MIN_LINKS = int(os.getenv("MIN_INTERNAL_LINKS", "4"))
 MAX_ATTEMPTS = max(1, int(os.getenv("MAX_ATTEMPTS", "4")))
 
-# Category term for article posts (from live WP dump: term_id=35)
-CATEGORY_TERM_ID = int(os.getenv("ARTICLE_CATEGORY_ID", "35"))
+# SQL needs term_taxonomy_id, not term_id. Keep the old variable as a
+# backwards-compatible fallback for existing repository settings.
+CATEGORY_TAXONOMY_ID = int(
+    os.getenv("ARTICLE_CATEGORY_TAXONOMY_ID")
+    or os.getenv("ARTICLE_CATEGORY_ID")
+    or "35"
+)
 
 WORD_RE = re.compile(r"[\u0600-\u06ff\u200c]+|[A-Za-z]+")
 HREF_RE = re.compile(r'<a\b[^>]*href=["\']([^"\']+)', re.I)
@@ -82,7 +92,13 @@ def words(text):
 
 
 def internal_links(text):
-    return {u for u in HREF_RE.findall(text or '') if 'navar-abyari.ir' in u}
+    from urllib.parse import urlparse
+    found = set()
+    for url in HREF_RE.findall(text or ""):
+        host = (urlparse(url).hostname or "").lower()
+        if host == "navar-abyari.ir" or host.endswith(".navar-abyari.ir"):
+            found.add(url)
+    return found
 
 
 def sitemap_index():
@@ -132,21 +148,6 @@ def sitemap_index():
     return links
 
 
-def existing_index(posts):
-    names = set(); links = []
-    for p in posts:
-        if p.get("post_status") not in {"publish","draft","pending","future","private"}:
-            continue
-        title = re.sub(r"^(خرید|قیمت|فروش)\s+","",p.get("post_title") or "")
-        names |= {normalize(title), normalize(p.get("post_name") or "")}
-        slug = (p.get("post_name") or "").strip("/")
-        if slug:
-            pt = p.get("post_type") or "post"
-            links.append({"title": p.get("post_title") or slug,
-                          "url": f"{SITE}/{slug}/" if pt == "post" else f"{SITE}/{pt}/{slug}/",
-                          "post_type": pt})
-
-
 def rest_index():
     """Fully independent: pull existing posts from the live WordPress REST API.
 
@@ -160,7 +161,7 @@ def rest_index():
     per_page = 100
     while True:
         try:
-            url = f"{SITE}/wp-json/wp/v2/posts?per_page={per_page}&page={page}&_fields=id,slug,title,post_type,post_status"
+            url = f"{SITE}/wp-json/wp/v2/posts?per_page={per_page}&page={page}&_fields=id,slug,title,type,status"
             req = _ur.Request(url, headers={"User-Agent": "navar-article-queue"})
             with _ur.urlopen(req, timeout=45) as r:
                 rows = _json.loads(r.read().decode("utf-8", "replace"))
@@ -170,7 +171,7 @@ def rest_index():
             break
         for row in rows:
             slug = (row.get("slug") or "").strip("/")
-            status = row.get("post_status") or "publish"
+            status = row.get("status") or "publish"
             if status not in {"publish", "draft", "pending", "future", "private"}:
                 continue
             title = row.get("title")
@@ -178,7 +179,7 @@ def rest_index():
                 title = title.get("raw") or title.get("rendered") or slug
             else:
                 title = title or slug
-            pt = row.get("post_type") or "post"
+            pt = row.get("type") or "post"
             names.add(normalize(title)); names.add(normalize(slug))
             links.append({"title": title,
                          "url": f"{SITE}/{slug}/" if pt == "post" else f"{SITE}/{pt}/{slug}/",
@@ -188,7 +189,6 @@ def rest_index():
             break
         page += 1
     return names, links
-    return names, links
 
 
 def write_status(q, result):
@@ -197,6 +197,7 @@ def write_status(q, result):
         "result": result, "updated_at": now(), "total": len(q["items"]),
         "pending": c["pending"], "processing": c["processing"],
         "completed": c["completed"], "failed": c["failed"],
+        "blocked_image_model": c["blocked_image_model"],
         "image_model": IMAGE_MODEL, "batch_size": BATCH
     }, ensure_ascii=False, indent=2), encoding="utf-8")
     # Live human-readable STATUS.md (mirrors the city queue format)
@@ -216,9 +217,10 @@ def write_status(q, result):
         f"- در حال پردازش: **{c['processing']}**",
         f"- در انتظار: **{c['pending']}**",
         f"- ناموفق: **{c['failed']}**",
+        f"- مسدود به‌دلیل مدل تصویر: **{c['blocked_image_model']}**",
         f"- مدل متن: `{AGNES_MODEL}`",
         f"- مدل تصویر: `{IMAGE_MODEL}`",
-        f"- دستهٔ مقالات: **مقاله‌ها** (term {CATEGORY_TERM_ID})",
+        f"- دستهٔ مقالات: **مقاله‌ها** (term_taxonomy {CATEGORY_TAXONOMY_ID})",
         "",
         "## دسته‌بندی عمودی",
         "",
@@ -263,7 +265,7 @@ def initialize(force=False):
             "slug": t["slug"],
             "focus": t["focus"],
             "vertical": t["vertical"],
-            "category_id": CATEGORY_TERM_ID,
+            "category_id": CATEGORY_TAXONOMY_ID,
             "post_type": "post",
             "status": "pending",
             "attempts": 0
@@ -278,8 +280,8 @@ def initialize(force=False):
         "text_model": AGNES_MODEL,
         "image_model": IMAGE_MODEL,
         "images_per_post": 3,
-        "category_id": CATEGORY_TERM_ID,
-        "rules": {"draft_only": True, "minimum_words": MIN_WORDS, "minimum_internal_links": MIN_LINKS},
+        "category_id": CATEGORY_TAXONOMY_ID,
+        "rules": {"draft_only": False, "minimum_words": MIN_WORDS, "minimum_internal_links": MIN_LINKS},
         "items": items,
         "link_index": links
     }
@@ -289,22 +291,9 @@ def initialize(force=False):
 
 
 def agnes(prompt):
-    if not AGNES_KEY:
-        raise RuntimeError("AGNES_API_KEY is missing")
-    data = fetch_json(
-        AGNES_BASE + "/chat/completions",
-        {"Authorization": f"Bearer {AGNES_KEY}", "Content-Type": "application/json",
-         "User-Agent": "navar-article-queue"},
-        {"model": AGNES_MODEL,
-         "messages": [
-            {"role": "system", "content": "شما نویسنده ارشد فارسی در حوزه آبیاری کشاورزی هستید. فقط JSON معتبر برگردانید."},
-            {"role": "user", "content": prompt}
-         ],
-         "temperature": 0.66,
-         "max_tokens": 20000
-    })
-    raw = data["choices"][0]["message"]["content"].strip()
-    return json.loads(re.sub(r"^```(?:json)?\s*|\s*```$", "", raw))
+    # Shared client handles fenced/double-encoded JSON and bounded retries.
+    import sys
+    return agnes_json_call(sys.modules[__name__], prompt, attempts=4)
 
 
 def make_content(item, links):
@@ -327,6 +316,8 @@ def make_content(item, links):
         used = internal_links(body)
         if words(body) >= MIN_WORDS and MIN_LINKS <= len(used) <= 7 and \
            all(body.count(f"[[[IMAGE_{i}]]]") == 1 for i in range(1,4)) and not (used - allowed):
+            # Persist exactly the body that passed the link and content gate.
+            obj["html"] = body
             return obj
         prompt += "\nنسخه قبلی کنترل کیفیت را رد کرد؛ طول، لینک‌ها یا نشانگرهای تصویر را دقیق اصلاح کن."
     raise RuntimeError("Text QA failed after 4 attempts")
@@ -369,23 +360,53 @@ def sanitize_links(html_text, allowed_urls):
         if not m:
             return tag
         href = m.group(1)
-        if _urlnorm(href) in allowed_norm or 'navar-abyari.ir' not in href:
+        if _urlnorm(href) in allowed_norm:
             return tag
+        # Preserve visible text but strip every non-allowlisted destination.
         return _re.sub(r'</?a\b[^>]*>', '', tag)
     return _re.sub(r'<a\b[^>]*>.*?</a>', _keep, html_text, flags=_re.I | _re.S)
 
 
+def image_info(blob):
+    """Return extension, MIME type, width, and height for supported images."""
+    if blob.startswith(b"\x89PNG\r\n\x1a\n") and len(blob) >= 24:
+        width, height = struct.unpack(">II", blob[16:24])
+        return ".png", "image/png", width, height
+    if blob.startswith(b"\xff\xd8"):
+        pos = 2
+        while pos + 9 < len(blob):
+            if blob[pos] != 0xFF:
+                pos += 1
+                continue
+            marker = blob[pos + 1]
+            pos += 2
+            if marker in {0xD8, 0xD9}:
+                continue
+            if pos + 2 > len(blob):
+                break
+            length = int.from_bytes(blob[pos:pos + 2], "big")
+            if marker in {0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7, 0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF}:
+                height = int.from_bytes(blob[pos + 3:pos + 5], "big")
+                width = int.from_bytes(blob[pos + 5:pos + 7], "big")
+                return ".jpg", "image/jpeg", width, height
+            pos += max(length, 2)
+    raise RuntimeError("Generated image format is unsupported or corrupt")
+
+
 def generate_image(item, kind):
     import base64
+    import io
+    from PIL import Image
     if not IMAGE_TOKEN:
-        raise RuntimeError("GITHUB_MODELS_TOKEN/GITHUB_TOKEN is missing")
+        raise RuntimeError("IMAGE_API_KEY/AGNES_API_KEY is missing")
     data = fetch_json(
         IMAGE_ENDPOINT,
         {"Authorization": f"Bearer {IMAGE_TOKEN}", "Content-Type": "application/json",
          "Accept": "application/json", "User-Agent": "navar-article-queue"},
         {"model": IMAGE_MODEL, "prompt": image_prompt(item, kind),
-         "size": "1536x1024", "quality": "medium", "n": 1},
-        300
+         "size": "1024x768", "return_base64": True,
+         "extra_body": {"response_format": "b64_json"}},
+        600
     )
     row = data["data"][0]
     if row.get("b64_json"):
@@ -397,29 +418,72 @@ def generate_image(item, kind):
         raise RuntimeError("Image response has neither b64_json nor url")
     if len(blob) < 10000:
         raise RuntimeError("Generated image is unexpectedly small")
+    # Normalize every provider response to a real 16:9 JPEG so the extension,
+    # MIME type, dimensions, SQL metadata, and public file all agree.
+    image = Image.open(io.BytesIO(blob)).convert("RGB")
+    width, height = image.size
+    target = 16 / 9
+    if width / height > target:
+        new_width = int(height * target)
+        left = (width - new_width) // 2
+        image = image.crop((left, 0, left + new_width, height))
+    else:
+        new_height = int(width / target)
+        top = (height - new_height) // 2
+        image = image.crop((0, top, width, top + new_height))
+    image = image.resize((1200, 675), Image.Resampling.LANCZOS)
+    buffer = io.BytesIO()
+    image.save(buffer, "JPEG", quality=92, optimize=True)
+    blob = buffer.getvalue()
+    suffix, mime, width, height = image_info(blob)
     img_dir = OUT / "images"
     img_dir.mkdir(exist_ok=True)
-    name = f"{item['id']}-{kind}.png"
+    name = f"{item['id']}-{kind}{suffix}"
     (img_dir / name).write_bytes(blob)
-    return name, hashlib.sha256(blob).hexdigest()
+    return {
+        "name": name,
+        "sha256": hashlib.sha256(blob).hexdigest(),
+        "mime": mime,
+        "width": width,
+        "height": height,
+    }
 
 
-def sql_for(item, obj, image_names):
+def _php_attachment_metadata(image):
+    relative = f"{UPLOAD_SUBDIR}/{image['name']}"
+    relative_len = len(relative.encode("utf-8"))
+    return (
+        f'a:3:{{s:5:"width";i:{int(image["width"])};'
+        f's:6:"height";i:{int(image["height"])};'
+        f's:4:"file";s:{relative_len}:"{relative}";}}'
+    )
+
+
+def sql_for(item, obj, images):
     title = obj["title"]; body = obj["html"]; urls = []
-    for i, name in enumerate(image_names, 1):
-        url = f"{SITE}/wp-content/uploads/2026/09/navar-article-generated/{name}"
+    for i, image in enumerate(images, 1):
+        name = image["name"]
+        url = f"{PUBLIC_UPLOAD_BASE}/{name}"
         urls.append(url)
         body = body.replace(
             f"[[[IMAGE_{i}]]]",
             f'<figure class="wp-block-image size-large"><img src="{url}" alt="{item["title"]} - تصویر {i}"/><figcaption>{item["focus"]}</figcaption></figure>'
         )
     pt = item["post_type"]; slug = item["slug"]
+    queue_key = f"article-content-queue:{item['id']}"
     excerpt = obj.get("excerpt","")
     q = [
         "START TRANSACTION;",
-        f"SET @existing_post=(SELECT ID FROM `{TABLE}` WHERE `post_name`='{esc(slug)}' OR (`post_type`='{esc(pt)}' AND `post_title`='{esc(title)}') LIMIT 1);",
-        f"INSERT INTO `{TABLE}` (`post_author`,`post_date`,`post_date_gmt`,`post_content`,`post_title`,`post_excerpt`,`post_status`,`comment_status`,`ping_status`,`post_name`,`post_modified`,`post_modified_gmt`,`post_parent`,`guid`,`menu_order`,`post_type`,`post_mime_type`,`comment_count`) SELECT 1,NOW(),UTC_TIMESTAMP(),'{esc(body)}','{esc(title)}','{esc(excerpt)}','publish','open','open','{esc(slug)}',NOW(),UTC_TIMESTAMP(),0,'',0,'{esc(pt)}','',0 WHERE @existing_post IS NULL;",
-        "SET @post_id=COALESCE(@existing_post,LAST_INSERT_ID());"
+        f"SET @queue_key='{esc(queue_key)}';",
+        f"SET @post_id=(SELECT post_id FROM `{META}` WHERE meta_key='_navar_queue_item_id' AND meta_value=@queue_key LIMIT 1);",
+        f"SET @slug_conflict=(SELECT ID FROM `{TABLE}` WHERE post_name='{esc(slug)}' AND post_type='{esc(pt)}' AND (@post_id IS NULL OR ID<>@post_id) LIMIT 1);",
+        f"INSERT INTO `{TABLE}` (`post_author`,`post_date`,`post_date_gmt`,`post_content`,`post_title`,`post_excerpt`,`post_status`,`comment_status`,`ping_status`,`post_name`,`post_modified`,`post_modified_gmt`,`post_parent`,`guid`,`menu_order`,`post_type`,`post_mime_type`,`comment_count`) SELECT 1,NOW(),UTC_TIMESTAMP(),'{esc(body)}','{esc(title)}','{esc(excerpt)}','publish','open','open','{esc(slug)}',NOW(),UTC_TIMESTAMP(),0,'',0,'{esc(pt)}','',0 WHERE @post_id IS NULL AND @slug_conflict IS NULL;",
+        "SET @post_id=COALESCE(@post_id,IF(@slug_conflict IS NULL,LAST_INSERT_ID(),NULL));",
+        # A conflict deliberately leaves @post_id NULL. Every later write is
+        # guarded, so an unrelated post with the same slug is never modified.
+        f"INSERT INTO `{META}` (`post_id`,`meta_key`,`meta_value`) SELECT @post_id,'_navar_queue_item_id',@queue_key WHERE @post_id IS NOT NULL AND NOT EXISTS (SELECT 1 FROM `{META}` WHERE post_id=@post_id AND meta_key='_navar_queue_item_id');",
+        "SELECT IF(@post_id IS NULL,'SKIPPED: slug conflict','OK') AS navar_queue_result;",
+        f"UPDATE `{TABLE}` SET post_content='{esc(body)}',post_title='{esc(title)}',post_excerpt='{esc(excerpt)}',post_status='publish',post_modified=NOW(),post_modified_gmt=UTC_TIMESTAMP() WHERE ID=@post_id;",
     ]
     for key, val in [
         ("_rank_math_title", obj.get("meta_title","")),
@@ -427,40 +491,65 @@ def sql_for(item, obj, image_names):
         ("rank_math_focus_keyword", obj.get("focus_keyword","")),
         ("_navar_article_vertical", item.get("vertical","")),
     ]:
-        q.append(f"INSERT INTO `{META}` (`post_id`,`meta_key`,`meta_value`) SELECT @post_id,'{esc(key)}','{esc(val)}' WHERE NOT EXISTS (SELECT 1 FROM `{META}` WHERE post_id=@post_id AND meta_key='{esc(key)}');")
+        q.append(f"UPDATE `{META}` SET meta_value='{esc(val)}' WHERE post_id=@post_id AND meta_key='{esc(key)}';")
+        q.append(f"INSERT INTO `{META}` (`post_id`,`meta_key`,`meta_value`) SELECT @post_id,'{esc(key)}','{esc(val)}' WHERE @post_id IS NOT NULL AND NOT EXISTS (SELECT 1 FROM `{META}` WHERE post_id=@post_id AND meta_key='{esc(key)}');")
     # Assign category
     q.append(
         f"INSERT INTO `ha_term_relationships` (`object_id`,`term_taxonomy_id`) "
-        f"SELECT @post_id,{CATEGORY_TERM_ID} WHERE NOT EXISTS "
-        f"(SELECT 1 FROM `ha_term_relationships` WHERE object_id=@post_id AND term_taxonomy_id={CATEGORY_TERM_ID});"
+        f"SELECT @post_id,{CATEGORY_TAXONOMY_ID} WHERE @post_id IS NOT NULL AND NOT EXISTS "
+        f"(SELECT 1 FROM `ha_term_relationships` WHERE object_id=@post_id AND term_taxonomy_id={CATEGORY_TAXONOMY_ID});"
     )
-    for idx, (name, url) in enumerate(zip(image_names, urls), 1):
+    for idx, (image, url) in enumerate(zip(images, urls), 1):
+        name = image["name"]
+        image_key = f"{queue_key}:image:{idx}"
+        attached_file = f"{UPLOAD_SUBDIR}/{name}"
+        metadata = _php_attachment_metadata(image)
         q.append(
+            f"SET @media_{idx}=(SELECT post_id FROM `{META}` WHERE meta_key='_navar_queue_image_id' AND meta_value='{esc(image_key)}' LIMIT 1); "
             f"INSERT INTO `{TABLE}` (`post_author`,`post_date`,`post_date_gmt`,`post_content`,`post_title`,`post_excerpt`,`post_status`,`comment_status`,`ping_status`,`post_name`,`post_modified`,`post_modified_gmt`,`post_parent`,`guid`,`menu_order`,`post_type`,`post_mime_type`,`comment_count`) "
-            f"VALUES (1,NOW(),UTC_TIMESTAMP(),'','{esc(item['title'])} - تصویر {idx}','','inherit','open','closed','{esc(name.rsplit('.',1)[0])}',NOW(),UTC_TIMESTAMP(),@post_id,'{esc(url)}',0,'attachment','image/webp',0); "
-            f"SET @media_{idx}=LAST_INSERT_ID(); "
-            f"INSERT INTO `{META}` (`post_id`,`meta_key`,`meta_value`) VALUES (@media_{idx},'_wp_attached_file','2026/09/navar-article-generated/{esc(name)}');"
+            f"SELECT 1,NOW(),UTC_TIMESTAMP(),'','{esc(item['title'])} - تصویر {idx}','','inherit','open','closed','{esc(name.rsplit('.',1)[0])}',NOW(),UTC_TIMESTAMP(),@post_id,'{esc(url)}',0,'attachment','{esc(image['mime'])}',0 WHERE @media_{idx} IS NULL AND @post_id IS NOT NULL; "
+            f"SET @media_{idx}=IF(@post_id IS NULL,NULL,COALESCE(@media_{idx},LAST_INSERT_ID())); "
+            f"INSERT INTO `{META}` (`post_id`,`meta_key`,`meta_value`) SELECT @media_{idx},'_navar_queue_image_id','{esc(image_key)}' WHERE @media_{idx} IS NOT NULL AND NOT EXISTS (SELECT 1 FROM `{META}` WHERE post_id=@media_{idx} AND meta_key='_navar_queue_image_id'); "
+            f"INSERT INTO `{META}` (`post_id`,`meta_key`,`meta_value`) SELECT @media_{idx},'_wp_attached_file','{esc(attached_file)}' WHERE @media_{idx} IS NOT NULL AND NOT EXISTS (SELECT 1 FROM `{META}` WHERE post_id=@media_{idx} AND meta_key='_wp_attached_file'); "
+            f"INSERT INTO `{META}` (`post_id`,`meta_key`,`meta_value`) SELECT @media_{idx},'_wp_attachment_metadata','{esc(metadata)}' WHERE @media_{idx} IS NOT NULL AND NOT EXISTS (SELECT 1 FROM `{META}` WHERE post_id=@media_{idx} AND meta_key='_wp_attachment_metadata');"
         )
-    q.append("INSERT INTO `ha_postmeta` (`post_id`,`meta_key`,`meta_value`) VALUES (@post_id,'_thumbnail_id',@media_1);")
+    q.append(f"UPDATE `{META}` SET meta_value=@media_1 WHERE post_id=@post_id AND meta_key='_thumbnail_id';")
+    q.append(f"INSERT INTO `{META}` (`post_id`,`meta_key`,`meta_value`) SELECT @post_id,'_thumbnail_id',@media_1 WHERE @post_id IS NOT NULL AND NOT EXISTS (SELECT 1 FROM `{META}` WHERE post_id=@post_id AND meta_key='_thumbnail_id');")
     q.append("COMMIT;")
     rollback = (
-        f"START TRANSACTION; "
-        f"DELETE pm FROM `{META}` pm JOIN `{TABLE}` p ON p.ID=pm.post_id WHERE p.post_parent=(SELECT ID FROM `{TABLE}` WHERE post_name='{esc(slug)}' AND post_type='{esc(pt)}' LIMIT 1) AND p.post_type='attachment'; "
-        f"DELETE FROM `{TABLE}` WHERE post_parent=(SELECT ID FROM `{TABLE}` WHERE post_name='{esc(slug)}' AND post_type='{esc(pt)}' LIMIT 1) AND post_type='attachment'; "
-        f"DELETE pm FROM `{META}` pm JOIN `{TABLE}` p ON p.ID=pm.post_id WHERE p.post_name='{esc(slug)}' AND post_type='{esc(pt)}'; "
-        f"DELETE FROM `ha_term_relationships` WHERE object_id=(SELECT ID FROM `{TABLE}` WHERE post_name='{esc(slug)}' AND post_type='{esc(pt)}' LIMIT 1); "
-        f"DELETE FROM `{TABLE}` WHERE post_name='{esc(slug)}' AND post_type='{esc(pt)}'; "
+        f"START TRANSACTION; SET @post_id=(SELECT post_id FROM `{META}` WHERE meta_key='_navar_queue_item_id' AND meta_value='{esc(queue_key)}' LIMIT 1); "
+        f"DELETE pm FROM `{META}` pm JOIN `{TABLE}` p ON p.ID=pm.post_id WHERE p.post_parent=@post_id AND p.post_type='attachment'; "
+        f"DELETE FROM `{TABLE}` WHERE post_parent=@post_id AND post_type='attachment'; "
+        f"DELETE FROM `{META}` WHERE post_id=@post_id; "
+        f"DELETE FROM `ha_term_relationships` WHERE object_id=@post_id; "
+        f"DELETE FROM `{TABLE}` WHERE ID=@post_id; "
         f"COMMIT;\n"
     )
     return "\n".join(q) + "\n", rollback, body
 
 
+def select_batch(q):
+    """Retry failed work before starting new work, up to MAX_ATTEMPTS."""
+    eligible = [
+        x for x in q["items"]
+        if x.get("status") in {"pending", "failed"}
+        and int(x.get("attempts", 0)) < MAX_ATTEMPTS
+    ]
+    eligible.sort(key=lambda x: (x.get("status") != "failed", x.get("failed_at", ""), x["id"]))
+    return eligible[:BATCH]
+
+
 def process(q):
+    # A killed runner may leave an item in processing. Make it retryable.
+    for item in q["items"]:
+        if item.get("status") == "processing":
+            item.update(status="failed", failed_at=now(), last_error="Previous runner stopped while processing")
+
     if any(x["status"] == "blocked_image_model" for x in q["items"]):
         write_status(q, "blocked_image_model")
         raise RuntimeError(q.get("image_model_error", "Image model is blocked"))
 
-    batch = [x for x in q["items"] if x["status"] == "pending" and x["attempts"] < MAX_ATTEMPTS][:BATCH]
+    batch = select_batch(q)
     try:
         existing_urls = {l["url"] for l in q.get("link_index", [])}
         smlinks = [l for l in sitemap_index() if l["url"] not in existing_urls]
@@ -470,34 +559,46 @@ def process(q):
         print(f"sitemap_index warning: {type(e).__name__}: {e}", flush=True)
 
     if not batch:
-        write_status(q, "complete")
+        exhausted = any(x.get("status") == "failed" for x in q["items"])
+        write_status(q, "attention_required" if exhausted else "complete")
         return
 
     for item in batch:
         item.update(status="processing", attempts=item["attempts"]+1, started_at=now())
         QUEUE.write_text(json.dumps(q, ensure_ascii=False, indent=2), encoding="utf-8")
+        stage = "text"
         try:
             obj = make_content(item, q["link_index"])
-            names = []; hashes = []
+            stage = "image"
+            images = []
             for kind in range(1, 4):
-                name, digest = generate_image(item, kind)
-                names.append(name); hashes.append(digest)
+                images.append(generate_image(item, kind))
                 time.sleep(2)
-            insert, rollback, body = sql_for(item, obj, names)
+            insert, rollback, body = sql_for(item, obj, images)
             (SQL / f"{item['id']}.sql").write_text(insert, encoding="utf-8")
             (ROLLBACK / f"{item['id']}.sql").write_text(rollback, encoding="utf-8")
             (ITEMS / f"{item['id']}.json").write_text(
-                json.dumps({**item, **obj, "html": body, "images": names, "image_sha256": hashes},
+                json.dumps({**item, **obj, "html": body, "images": images},
                           ensure_ascii=False, indent=2),
                 encoding="utf-8"
             )
-            item.update(status="completed", completed_at=now(), word_count=words(body), images=names, last_error="")
+            item.update(
+                status="completed",
+                completed_at=now(),
+                word_count=words(body),
+                images=[x["name"] for x in images],
+                image_sha256=[x["sha256"] for x in images],
+                last_error="",
+            )
         except Exception as e:
             msg = str(e)[:900]
-            blocked = ("models.github.ai" in msg or "Image response" in msg or
-                      "GITHUB_MODELS_TOKEN" in msg or "HTTP 4" in msg)
+            permanent_codes = ("HTTP 400 ", "HTTP 401 ", "HTTP 403 ", "HTTP 404 ")
+            blocked = stage == "image" and (
+                "IMAGE_API_KEY/AGNES_API_KEY is missing" in msg
+                or any(code in msg for code in permanent_codes)
+            )
             item.update(status="blocked_image_model" if blocked else "failed",
-                        failed_at=now(), last_error=msg)
+                        failed_at=now(), last_error=msg, failed_stage=stage)
             if blocked:
                 q["image_model_error"] = msg
                 QUEUE.write_text(json.dumps(q, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -508,7 +609,7 @@ def process(q):
         write_status(q, "processing")
 
     (OUT / "create-all-completed.sql").write_text(
-        "\n".join(["-- Review before importing. Generated articles will be published."] +
+        "\n".join(["-- Review before importing. Generated articles are intentionally published."] +
                   [p.read_text(encoding="utf-8") for p in sorted(SQL.glob("*.sql"))]),
         encoding="utf-8"
     )
@@ -516,7 +617,11 @@ def process(q):
         "\n".join(p.read_text(encoding="utf-8") for p in sorted(ROLLBACK.glob("*.sql"))),
         encoding="utf-8"
     )
-    write_status(q, "ready")
+    exhausted = any(
+        x.get("status") == "failed" and int(x.get("attempts", 0)) >= MAX_ATTEMPTS
+        for x in q["items"]
+    )
+    write_status(q, "attention_required" if exhausted else "ready")
 
 
 def main():

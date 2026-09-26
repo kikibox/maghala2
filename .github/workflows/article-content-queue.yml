@@ -16,10 +16,16 @@ concurrency:
 
 env:
   AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
-  AGNES_API_BASE: https://apihub.agnes-ai.com/v1
-  AGNES_MODEL: agnes-3.0-flash
-  GITHUB_MODELS_TOKEN: ${{ secrets.GITHUB_MODELS_TOKEN }}
-  IMAGE_MODEL: agnes-image-2.0-flash
+  AGNES_API_BASE: ${{ vars.AGNES_API_BASE || 'https://apihub.agnes-ai.com/v1' }}
+  AGNES_MODEL: ${{ vars.AGNES_MODEL || 'agnes-3.0-flash' }}
+  IMAGE_MODEL: ${{ vars.IMAGE_MODEL || 'agnes-image-2.0-flash' }}
+  ARTICLE_IMAGE_UPLOAD_SUBDIR: ${{ vars.ARTICLE_IMAGE_UPLOAD_SUBDIR || '2026/09/navar-article-generated' }}
+  FTP_HOST: ftp.navar-abyari.ir
+  FTP_PORT: "21"
+  FTP_USER: zzz@navar-abyari.ir
+  FTP_REMOTE_DIR: /
+  FTP_TLS_VERIFY: "false"
+  FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
   # One article per run (every 5 minutes)
   BATCH_SIZE: '1'
 
@@ -38,31 +44,52 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Install image tooling
+        run: python -m pip install --disable-pip-version-check pillow
+
       - name: Regenerate topics matrix
         run: |
           python automation/topic_matrix.py
 
-      - name: Build article queue
+      - name: Run article queue tests
         run: |
+          python -m unittest discover -s tests -p 'test_article_content_queue.py'
+
+      - name: Build article queue
+        id: build
+        shell: bash
+        run: |
+          set +e
           python automation/article_content_queue.py
+          rc=$?
+          echo "queue_rc=$rc" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Upload generated article images to WordPress
+        if: steps.build.outputs.queue_rc == '0'
+        run: |
+          python automation/upload_article_images_ftps.py
 
       - name: Commit queue state back to git
+        if: always()
         # Ensures the live STATUS.md / queue.json on GitHub reflect the run,
-        # not just the private artifact. Pull first to avoid conflicts with
-        # the city queue workflow that commits to the same branch.
+        # not just the private artifact.
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add artifacts/article-content-queue/STATUS.md \
                   artifacts/article-content-queue/queue.json \
-                  artifacts/article-content-queue/status.json 2>/dev/null || true
-          if git diff --cached --quiet; then
-            echo "No queue state to commit"
-          else
+                  artifacts/article-content-queue/status.json 2>/dev/null
+          git diff --cached --quiet || \
             git commit -m "Update article queue state [skip ci]"
-            git pull --rebase origin main
-            git push origin main
-          fi
+          git pull --rebase --autostash origin main
+          git push origin main
+
+      - name: Fail after recording a blocked queue
+        if: steps.build.outputs.queue_rc != '0'
+        run: |
+          echo "Article queue failed; state was recorded before failing the workflow."
+          exit 1
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
