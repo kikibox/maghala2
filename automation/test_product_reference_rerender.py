@@ -42,7 +42,9 @@ CASES = {
         "assets": ["afp-layflat.webp.b64", "afp-layflat-bare.jpg.b64"],
         "text": (
             'The packaged object must keep the exact readable marks "AFP" and "layflat". '
-            "The bare black coil has no logo or writing. Keep them separate and do not fuse them."
+            "The bare black coil has no logo or writing. Keep them separate and do not fuse them. "
+            "Both coils must rest flat and horizontally, parallel to the soil. Never stand either "
+            "roll upright like a wheel."
         ),
         "shape": (
             "exactly two related objects beside each other: one packaged low wide black "
