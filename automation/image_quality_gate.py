@@ -2,7 +2,7 @@
 """Fast image QA with hard rejection for product identity and physics failures."""
 import base64,json,os,re,urllib.request
 import image_prompt_policy
-REVIEW_POLICY='strict-no-human-scale-watermark-v8-role-isolated-set-reviewed'
+REVIEW_POLICY='strict-no-human-scale-watermark-v9-semantic-composition-set-reviewed'
 MAX_IMAGE_ATTEMPTS=max(1,int(os.getenv('IMAGE_QA_ATTEMPTS','6')))
 MIN_IMAGE_SCORE=int(os.getenv('IMAGE_QA_MIN_SCORE','70'))
 FAST_MODE=os.getenv('IMAGE_QA_FAST_MODE','1')!='0'
@@ -40,8 +40,9 @@ def _metric_check(family,verdict):
  # The vision model's x-center estimate is noisy by a few percentage points.
  # Reject only a truly centered estimate; semantic placement still has to pass
  # the model review above.
- if 49.5<=x_center<=50.5:
-  issues.append('Move the product clearly to the left or right lower third; do not center it.')
+ # Horizontal placement is judged semantically by the vision reviewer and
+ # again by the three-image set gate. A one-point x-center estimate is too
+ # noisy to discard an otherwise valid image here.
  return not issues,issues
 
 def _vision_review(base,path,item,kind):

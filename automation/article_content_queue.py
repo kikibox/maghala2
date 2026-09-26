@@ -932,7 +932,8 @@ def generate_images_parallel(item, pool=None):
     set_review_path = OUT / "image-reviews" / f"{review_id}-set.json"
     set_history = []
     try:
-        for set_attempt in range(1, 4):
+        max_set_attempts = max(1, int(os.getenv("IMAGE_SET_QA_ATTEMPTS", "4")))
+        for set_attempt in range(1, max_set_attempts + 1):
             futures = {}
             for kind in sorted(pending):
                 candidate = dict(item)
@@ -954,7 +955,7 @@ def generate_images_parallel(item, pool=None):
                 (OUT / "images" / results[kind]["name"]).unlink(missing_ok=True)
                 (OUT / "image-reviews" / f"{review_id}-{kind}.json").unlink(missing_ok=True)
                 results.pop(kind,None)
-        raise RuntimeError("Image-set diversity gate rejected the three-image editorial set after 3 rounds")
+        raise RuntimeError(f"Image-set diversity gate rejected the three-image editorial set after {max_set_attempts} rounds")
     finally:
         if owns_pool: executor.shutdown(wait=True, cancel_futures=False)
 
@@ -1026,7 +1027,7 @@ def process(q):
                         word_count=words(body), images=[x["name"] for x in images],
                         image_sha256=[x["sha256"] for x in images],
                         image_generation_mode="reference-conditioned-3d-rerender-approved-scales-topic-first",
-                        image_rebuild_policy="reference-rerender-3d-v9-role-isolated-set-reviewed",
+                        image_rebuild_policy="reference-rerender-3d-v10-semantic-composition-set-reviewed",
                         delivery="sql_package", last_error="",
                     )
                     item.pop("failed_stage", None);item.pop("failed_at", None);item.pop("started_at", None)

@@ -115,7 +115,7 @@ class ArticleQueueTests(unittest.TestCase):
         )
         self.assertFalse(ok)
         self.assertTrue(any("Enlarge" in issue for issue in issues))
-        self.assertTrue(any("do not center" in issue for issue in issues))
+        self.assertFalse(any("do not center" in issue for issue in issues))
 
     def test_seo_image_names_are_descriptive_and_sanitized(self):
         item = {"id": "crop-001", "slug": "هزینه کشت گوجه / نوار تیپ"}

@@ -29,6 +29,7 @@ env:
   IMAGE_MODEL: ${{ vars.IMAGE_MODEL || 'agnes-image-2.5-flash' }}
   IMAGE_WORKERS: '3'
   IMAGE_QA_ATTEMPTS: '8'
+  IMAGE_SET_QA_ATTEMPTS: '4'
   IMAGE_QA_FAST_MODE: '0'
   IMAGE_REBUILD_POST_LIMIT: '1'
 
@@ -61,7 +62,7 @@ jobs:
         run: |
           set +e
           mkdir -p artifacts/article-content-queue
-          python automation/rebuild_article_images_exact_product.py 2>&1 | tee artifacts/article-content-queue/full-image-rebuild-v9.log
+          python automation/rebuild_article_images_exact_product.py 2>&1 | tee artifacts/article-content-queue/full-image-rebuild-v10.log
           rc=${PIPESTATUS[0]}
           echo "exit_code=$rc" >> "$GITHUB_OUTPUT"
           exit 0
@@ -89,10 +90,10 @@ jobs:
           git add -f artifacts/article-content-queue/images/* 2>/dev/null || true
           git add -f artifacts/article-content-queue/items/*.json 2>/dev/null || true
           git add -f artifacts/article-content-queue/packages/*.zip 2>/dev/null || true
-          git add -f artifacts/article-content-queue/full-image-rebuild-v9.log 2>/dev/null || true
+          git add -f artifacts/article-content-queue/full-image-rebuild-v10.log 2>/dev/null || true
           git add -A artifacts/article-content-queue
           if ! git diff --cached --quiet; then
-            git commit -m 'Rebuild article images under strict v9 role-isolated policy [skip ci]'
+            git commit -m 'Rebuild article images under strict v10 semantic-composition policy [skip ci]'
             git push origin HEAD:main
           fi
       - name: Upload rebuild diagnostics
