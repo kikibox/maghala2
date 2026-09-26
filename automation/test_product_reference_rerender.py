@@ -38,27 +38,18 @@ CASES = {
         ),
         "scene": "a real drip-irrigated row-crop field during installation",
     },
-    "layflat": {
-        "asset": "afp-layflat.webp.b64",
-        "text": 'The package must keep the exact readable marks "AFP" and "layflat".',
-        "shape": (
-            "a low, wide black woven layflat hose coil held by the same folded printed "
-            "cardboard top and bottom pieces and the same crossing black straps, preserving "
-            "the center opening, coil thickness and package proportions"
-        ),
-        "scene": "a real farm water-transfer setup beside cultivated rows",
-    },
-    "layflat-bare": {
-        "asset": "afp-layflat-bare.jpg.b64",
-        "mime": "image/jpeg",
+    "layflat-pair": {
+        "assets": ["afp-layflat.webp.b64", "afp-layflat-bare.jpg.b64"],
         "text": (
-            "This unboxed hose has no carton label: do not add AFP, layflat, a logo "
-            "or any invented writing to the black hose."
+            'The packaged object must keep the exact readable marks "AFP" and "layflat". '
+            "The bare black coil has no logo or writing. Keep them separate and do not fuse them."
         ),
         "shape": (
-            "one low wide coil of unboxed black woven layflat hose, preserving the "
-            "flat concentric layers, short hollow cardboard center, woven diagonal "
-            "surface texture, coil thickness and the small loose hose end"
+            "exactly two related objects beside each other: one packaged low wide black "
+            "woven layflat hose coil preserving its printed folded cardboard, crossing straps, "
+            "center opening and proportions; and one unboxed black woven hose coil preserving "
+            "its flat concentric layers, short cardboard center, diagonal surface texture, "
+            "coil thickness and small loose hose end"
         ),
         "scene": "a practical layflat-hose installation beside a farm water-transfer line",
     },
@@ -68,7 +59,7 @@ CASES = {
 def prompt(case: dict) -> str:
     return (
         "Create one photorealistic 16:9 agricultural editorial photograph. The attached image "
-        "is an identity and geometry reference for the product, not a flat layer to paste. "
+        "or images are identity and geometry references, not flat layers to paste. "
         f"Reconstruct the product as a true three-dimensional object: {case['shape']}. "
         "Show it from a slightly different but physically plausible three-quarter camera angle, "
         "about 10 to 20 degrees away from the reference angle. Preserve the exact product family, "
@@ -121,7 +112,10 @@ def generate(name: str, case: dict) -> dict:
         "return_base64": True,
         "extra_body": {
             "response_format": "b64_json",
-            "image": [reference_data_url(case["asset"])],
+            "image": [
+                reference_data_url(filename)
+                for filename in case.get("assets", [case.get("asset")])
+            ],
         },
     }
     last = None
