@@ -124,7 +124,7 @@ def status_payload():
         complete = sum((TRANS / str(item["id"]) / f"{lang}.json").exists() for item, _ in sources)
         per_language[lang] = {"completed": complete, "pending": len(sources) - complete}
     backlog_sources = sum(bool(missing_languages(str(item["id"]))) for item, _ in sources)
-    image_marker = OUT / "image-rebuild-reference-rerender-3d-v6-strict-no-human-topic-diverse.json"
+    image_marker = OUT / "image-rebuild-reference-rerender-3d-v7-set-reviewed-topic-diverse.json"
     image_data = {}
     if image_marker.exists():
         try:
