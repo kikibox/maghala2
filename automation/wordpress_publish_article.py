@@ -100,7 +100,10 @@ def upload_media(image: dict, item: dict, index: int):
 
 def render_html(item: dict, obj: dict, media_rows: list[dict]) -> str:
     body = obj["html"]
-    for index, media in enumerate(media_rows, 1):
+    if len(media_rows) != 5:
+        raise RuntimeError(f"exactly five media rows are required; got {len(media_rows)}")
+    # Media 1 is featured-only. Images 2..5 are distributed in the body.
+    for index, media in enumerate(media_rows[1:], 2):
         url = media.get("source_url")
         if not url:
             raise RuntimeError(f"WordPress media {media.get('id')} has no source_url")

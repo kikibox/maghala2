@@ -21,19 +21,20 @@ class WordPressPublisherTests(unittest.TestCase):
         self.obj = {
             "title": "عنوان مقاله",
             "excerpt": "خلاصه",
-            "html": "<p>متن</p>[[[IMAGE_1]]][[[IMAGE_2]]][[[IMAGE_3]]]",
+            "html": "<p>متن</p>[[[IMAGE_2]]][[[IMAGE_3]]][[[IMAGE_4]]][[[IMAGE_5]]]",
         }
-        self.images = [{"name": f"crop-001-{i}.jpg"} for i in range(1, 4)]
+        self.images = [{"name": f"crop-001-{i}.jpg"} for i in range(1, 6)]
         self.media = [
             {"id": i, "source_url": f"https://example.test/image-{i}.jpg"}
-            for i in range(1, 4)
+            for i in range(1, 6)
         ]
 
     def test_render_html_replaces_every_marker(self):
         body = wp.render_html(self.item, self.obj, self.media)
         self.assertNotIn("[[[IMAGE_", body)
-        self.assertEqual(body.count("<figure"), 3)
-        self.assertIn("image-1.jpg", body)
+        self.assertEqual(body.count("<figure"), 4)
+        self.assertNotIn("image-1.jpg", body)
+        self.assertIn("image-2.jpg", body)
 
     @patch.object(wp, "verify_credentials")
     @patch.object(wp, "upload_media")
