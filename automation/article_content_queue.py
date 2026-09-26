@@ -645,13 +645,8 @@ def generate_image(item, kind):
          "Accept": "application/json", "User-Agent": "navar-article-queue"},
         {"model": IMAGE_MODEL, "prompt": image_prompt(item, kind),
          "size": "1024x768", "return_base64": True,
-         # Agnes 2.5 requires a non-empty image input. This plain canvas is
-         # transport-only and does not condition the scene on a product photo.
-         "extra_body": {"response_format": "b64_json", "image": [
-             "data:image/png;base64," + base64.b64encode(
-                 _neutral_image_bytes(Image, io)
-             ).decode("ascii")
-         ]}},
+         "extra_body": {"response_format": "b64_json",
+                        "image": image_prompt_policy.reference_images(kind, item)}},
         600
     )
     row = data["data"][0]
@@ -678,7 +673,7 @@ def generate_image(item, kind):
         top = (height - new_height) // 2
         image = image.crop((0, top, width, top + new_height))
     image = image.resize((1200, 675), Image.Resampling.LANCZOS)
-    image = image_prompt_policy.composite_product(image, item, kind)
+    image = image_prompt_policy.add_phone_watermark(image)
     buffer = io.BytesIO()
     image.save(buffer, "WEBP", quality=60, method=6)
     blob = buffer.getvalue()
@@ -874,8 +869,8 @@ def process(q):
                         status="completed", completed_at=completed_at,
                         word_count=words(body), images=[x["name"] for x in images],
                         image_sha256=[x["sha256"] for x in images],
-                        image_generation_mode="exact-approved-asset-composite",
-                        image_rebuild_policy="exact-asset-composite-v1",
+                        image_generation_mode="reference-conditioned-3d-rerender",
+                        image_rebuild_policy="reference-rerender-3d-v3",
                         delivery="sql_package", last_error="",
                     )
                     item.pop("failed_stage", None);item.pop("failed_at", None);item.pop("started_at", None)

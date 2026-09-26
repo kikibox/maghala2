@@ -9,9 +9,9 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import article_content_queue as queue
 
-POLICY = "exact-asset-composite-v1"
-MODE = "exact-approved-asset-composite"
-MARKER = queue.OUT / "image-rebuild-exact-asset-composite-v1.json"
+POLICY = "reference-rerender-3d-v3"
+MODE = "reference-conditioned-3d-rerender"
+MARKER = queue.OUT / "image-rebuild-reference-rerender-3d-v3.json"
 WORKERS = max(1, int(os.getenv("IMAGE_WORKERS", "8")))
 
 

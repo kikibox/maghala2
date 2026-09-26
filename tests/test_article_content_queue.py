@@ -79,12 +79,11 @@ class ArticleQueueTests(unittest.TestCase):
                 self.assertEqual(payload["model"], "agnes-image-2.5-flash")
                 self.assertEqual(len(payload["extra_body"]["image"]), 1)
                 neutral = payload["extra_body"]["image"][0]
-                self.assertTrue(neutral.startswith("data:image/png;base64,"))
-                self.assertNotIn(queue.image_prompt_policy.DRIP_TAPE_ROLL_REFERENCE, neutral)
+                self.assertTrue(neutral.startswith("data:image/webp;base64,"))
                 prompt = queue.image_prompt(item, 1)
-                self.assertIn("do not generate", prompt)
-                self.assertIn("later exact product overlay", prompt)
-                self.assertNotIn("Drip Irrigation tape", prompt)
+                self.assertIn("true three-dimensional object", prompt)
+                self.assertIn("no more than 10 to 14 percent", prompt)
+                self.assertIn("Drip Irrigation Tape", prompt)
                 output = Path(tmp) / "images" / record["name"]
                 self.assertEqual(record["mime"], "image/webp")
                 self.assertEqual(record["name"], "راهنمای-کشت-گوجه-با-نوار-تیپ-تصویر-شاخص.webp")
@@ -123,26 +122,28 @@ class ArticleQueueTests(unittest.TestCase):
         self.assertEqual([row["name"] for row in rows], ["1.webp", "2.webp", "3.webp"])
         self.assertGreaterEqual(peak, 2)
 
-    def test_product_is_not_generated_and_exact_asset_is_composited(self):
+    def test_product_uses_family_specific_reference_and_3d_rerender_prompt(self):
         tape = queue.image_prompt_policy.image_prompt(
             {"source_id": "crop-001", "title": "مقاله نوار تیپ"}, 1
         )
         layflat = queue.image_prompt_policy.image_prompt(
             {"source_id": "crop-001-layflat", "title": "مقاله لوله نخدار"}, 1
         )
-        for prompt in (tape, layflat):
-            self.assertIn("do not generate", prompt)
-            self.assertIn("later exact product overlay", prompt)
-        scene = Image.new("RGB", (1200, 675), (120, 90, 60))
-        tape_result = queue.image_prompt_policy.composite_product(
-            scene, {"source_id": "crop-001"}, 1
+        self.assertIn("Drip Irrigation Tape", tape)
+        self.assertIn('"layflat"', layflat)
+        self.assertIn("no sticker look", tape)
+        tape_ref = queue.image_prompt_policy.reference_images(
+            1, {"source_id": "crop-001"}
+        )[0]
+        layflat_refs = queue.image_prompt_policy.reference_images(
+            1, {"source_id": "crop-001-layflat"}
         )
-        layflat_result = queue.image_prompt_policy.composite_product(
-            scene, {"source_id": "crop-001-layflat"}, 1
-        )
-        self.assertNotEqual(tape_result.tobytes(), scene.tobytes())
-        self.assertNotEqual(layflat_result.tobytes(), scene.tobytes())
-        self.assertNotEqual(tape_result.tobytes(), layflat_result.tobytes())
+        self.assertTrue(tape_ref.startswith("data:image/webp;base64,"))
+        self.assertEqual(len(layflat_refs), 2)
+        self.assertTrue(layflat_refs[0].startswith("data:image/webp;base64,"))
+        self.assertTrue(layflat_refs[1].startswith("data:image/jpeg;base64,"))
+        self.assertNotEqual(tape_ref, layflat_refs[0])
+        self.assertNotEqual(layflat_refs[0], layflat_refs[1])
 
     def test_sql_is_publish_idempotent_and_rollback_is_marker_scoped(self):
         item = {
