@@ -1,0 +1,43 @@
+{
+  "id": "crop-004",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-scale-watermark-v5-full-rerender",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Presence of people: The image contains two individuals (faces, bodies, and hands visible), which is a hard reject per the 'zero people' constraint.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 15% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to strictly remove all people, faces, and hands. Ensure only the white and blue cylindrical drip-tape roll, the farm equipment, and the crop field are visible, while maintaining the AFP watermark in the bottom-right corner. Enlarge the product group from 15% to 20-23% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 20,
+      "product_height_percent": 15,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product (AFP white-and-blue wide low cylindrical drip-tape carton) occupies roughly 20% of full frame width, within the 20–23% range",
+        "Product height is ~15% of frame, well under the 28% upper bound",
+        "Visible diameter ≈ 1.6× visible height (20% width ÷ ~12.5% effective height) — compliant",
+        "Product is secondary, off-center, and placed on the lower third of the frame",
+        "Product is naturally positioned on soil in a farm drip-irrigation context (crop rows, pipe, and unattended equipment visible)",
+        "Zero people, human body parts, or silhouettes present",
+        "No forbidden objects: no second roll, no bottle/jar/canister/bucket/fertilizer/pesticide, no layflat hose, no pipe through the roll",
+        "Background matches farm/drip-tape topic (soil, crop rows, irrigation pipe, unattended tractor)",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner and correctly retained"
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-طالبی-با-آبیاری-قطرهای-جزئیات-فنی.webp"
+}

@@ -1,0 +1,99 @@
+{
+  "id": "crop-003",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-scale-watermark-v5-full-rerender",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 10,
+      "product_height_percent": 10,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Hard reject: The image contains two visible people (men) in the foreground.",
+        "Hard reject: Human body parts including hands, faces, and legs are visible.",
+        "Layout failure: The product is centered and staged with people, not placed off-center on the lower third.",
+        "Proportion failure: The product bounding box is approximately 10% of frame width, well below the required 20-23% minimum.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human silhouettes. Remove the workers entirely. The AFP drip tape roll must be positioned alone, off-center on the soil in the lower third of the image, occupying 20-23% of the frame width. Maintain the farm field background and the bottom-right AFP watermark. Enlarge the product group from 10% to 20-23% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 18.5,
+      "product_height_percent": 13.5,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Zero people, human body parts, or silhouettes detected.",
+        "Product matches specification: White and blue cylindrical AFP drip-tape carton.",
+        "Product is secondary, off-center in the lower third, and naturally placed on soil.",
+        "Background features drip lines and crop rows in a farm context matching the topic.",
+        "Watermark 'AFP | 09134922013' is present in the bottom right corner.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 18.5% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Enlarge the product group from 18.5% to 20-23% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "reasons": [
+        "visual reviewer unavailable: HTTPError"
+      ],
+      "correction_prompt": "Regenerate a clean candidate and retry strict visual review.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 8,
+      "product_height_percent": 10,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: The image contains two men (people) crouching in the frame, which violates the requirement for zero people or human body parts.",
+        "Hard reject: The product packaging is a small bucket or container, not the required wide, low cylindrical drip-tape carton roll.",
+        "Hard reject: The product is centered in the lower third of the frame, which violates the requirement to be off-center.",
+        "Hard reject: The product size is significantly smaller than the required 20-23% of the full frame width.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 20-23% of frame width.; Move the product clearly to the left or right lower third; do not center it."
+      ],
+      "correction_prompt": "Regenerate the image showing a wide, low cylindrical drip-tape carton roll placed on soil in a farm context. Ensure there are zero people or human silhouettes. The roll must occupy roughly 20-23% of the frame width, have a wide diameter (1.6-1.8x its height), be positioned off-center in the lower third, and feature the bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 8% to 20-23% of frame width. Move the product clearly to the left or right lower third; do not center it.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 64,
+      "product_width_percent": 32,
+      "product_height_percent": 34,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Product width exceeds 23% limit",
+        "Product height exceeds 28% limit",
+        "Diameter-to-height ratio is too small (nearly 1:1 instead of 1.6-1.8:1), making the roll appear tall and narrow rather than wide and low",
+        "Product is too large and dominates the foreground instead of appearing secondary",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 20-23% of frame width.; Reduce product height from 34% to at most 28% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a significantly smaller, wider, and shorter drip-tape roll. The roll must have a wide cylindrical low profile (diameter at least 1.6x its height) occupying roughly 20% of frame width and no more than 25% of frame height. Ensure it remains secondary, placed off-center on the lower-left soil, clearly smaller relative to the vast farm rows in the background. Reduce the product group from 32% to 20-23% of frame width. Reduce product height from 34% to at most 28% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 16,
+      "product_height_percent": 15,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Hard reject: Image contains a human figure (farmer/worker) which violates the 'zero people' constraint.",
+        "Product width (16%) is below the required minimum of 20%.",
+        "Product height (15%) is below the required minimum relative to width.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 16% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Remove the human figure entirely. Resize the drip-tape carton roll to occupy 20-23% of the frame width. Ensure the roll is placed on the soil in the lower third, off-center, maintaining a wide cylindrical shape with a diameter approx 1.6-1.8x its height. Enlarge the product group from 16% to 20-23% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

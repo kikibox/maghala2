@@ -1,0 +1,72 @@
+{
+  "id": "crop-001",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-scale-watermark-v5-full-rerender",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 5,
+      "product_x_center_percent": 72,
+      "reasons": [
+        "The image contains multiple people (two farmers), which is a hard reject violation.",
+        "The product being held is a generic white roll, not an 'AFP white-and-blue wide low cylindrical drip-tape carton'.",
+        "There is a blue container or bucket on the ground that is not the specified product roll.",
+        "The specified product does not meet the dimensional requirements (must be 20-23% width, currently ~8%).",
+        "The product is being held by a person, violating the 'unattended' and 'zero people' constraints.",
+        "Centered product staging is not observed, but the primary reason for rejection is the presence of people.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Remove all people and the blue container. Generate a single AFP white-and-blue wide low cylindrical drip-tape carton roll resting on the soil in the lower third, off-center. The roll must be large (20-23% of frame width). Keep the farm context and AFP watermark. Enlarge the product group from 8% to 20-23% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 18,
+      "product_height_percent": 23,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Visible persons/human silhouettes in the background (violates 'zero people' rule)",
+        "Product width is too small (approx 18%, below 20-23% requirement)",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 18% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Remove the human silhouettes in the background; increase the width of the drip-tape carton roll to approximately 21% of the image frame. Enlarge the product group from 18% to 20-23% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Image contains two human figures (workers/farmers) with visible body parts, faces, hands, and legs, which violates the strict 'zero people' constraint.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with the two men completely removed. Show only the white and blue AFP cylindrical drip-tape carton roll placed on the soil in a farm field. The roll must be off-center, occupying approximately 20% of the frame width. Enlarge the product group from 0% to 20-23% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 20,
+      "product_height_percent": 23,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Product is exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "No people or human silhouettes present.",
+        "Watermark 'AFP | 09134922013' is present and correctly positioned in the bottom right.",
+        "Roll is placed off-center on the lower third, resting naturally on the soil.",
+        "Roll dimensions (20% width, 23% height) fall within required limits.",
+        "Geometry of the roll is consistent (width ~1.7 times height)."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "میزان-برداشت-اسفناج-در-هکتار-با-نوار-تیپ-کاربرد-عملی.webp"
+}

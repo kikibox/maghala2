@@ -1,0 +1,42 @@
+{
+  "id": "crop-003",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-scale-watermark-v5-full-rerender",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Product width is estimated at approximately 30% of the frame width, exceeding the hard limit of 23%.",
+        "The presence of a seedling tray with seedlings to the right of the roll constitutes an extra commercial product/container, which triggers a hard reject.",
+        "The roll is positioned centrally in the lower third, which risks 'centered product staging' rejection.",
+        "Product width and height are 0% because the object fails the hard limits, and the tray violates the 'zero extra commercial product' rule.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the drip tape roll width reduced to approximately 20% of the frame width to satisfy the 20-23% constraint. Remove the seedling tray and all seedlings completely to ensure only one product is visible. Shift the roll's position to the left, ensuring it is clearly off-center while remaining on the soil. Enlarge the product group from 0% to 20-23% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 21,
+      "product_height_percent": 18,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Product is a single AFP drip-tape roll, correctly proportioned and placed on soil in the lower-left third.",
+        "No people or human body parts are present.",
+        "Background features crop rows and a drip line, matching the farm context.",
+        "Watermark 'AFP | 09134922013' is present and correctly positioned in the bottom-right corner.",
+        "No forbidden objects (bottles, extra rolls, or containers) are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "هزینه-کشت-کنجد-با-نوار-تیپ-در-هکتار-تصویر-شاخص.webp"
+}

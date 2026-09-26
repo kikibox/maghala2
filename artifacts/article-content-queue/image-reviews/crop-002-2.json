@@ -1,0 +1,105 @@
+{
+  "id": "crop-002",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-scale-watermark-v5-full-rerender",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 11,
+      "product_height_percent": 12,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Hard reject: Presence of a person (human silhouette, face, hands, and body parts visible).",
+        "Product does not meet the size requirement (must occupy 20-23% of frame width, currently ~11%).",
+        "Product is centered on the frame axis, violating the 'off-center on the lower third' requirement.",
+        "Product is being held by hands, violating the 'naturally placed on soil' requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes. Recreate the scene to show a single wide, cylindrical AFP drip-tape carton roll resting on the soil in the lower-right third of the frame. The roll must be significantly larger, occupying 20-23% of the total image width and appearing as a wide cylinder (diameter ~1.7x height). Enlarge the product group from 11% to 20-23% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 92,
+      "product_width_percent": 24,
+      "product_height_percent": 16,
+      "product_x_center_percent": 60,
+      "reasons": [
+        "The roll is properly off-center on the lower third",
+        "The roll is placed naturally on the soil",
+        "The background matches the farm context (crop rows and farm infrastructure)",
+        "No people, farmers, or human body parts are visible in the frame",
+        "The required AFP watermark is clearly visible in the bottom-right corner",
+        "No prohibited secondary packaging or containers are present",
+        "machine-enforced bounding-box check failed: Reduce the product group from 24% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 24% to 20-23% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 16,
+      "product_height_percent": 22,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Contains people (two farmers) and human body parts (faces, arms, hands, legs), which is a hard reject criterion.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 16% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with exactly one AFP drip-tape roll in the farm context with no people or human body parts visible. Enlarge the product group from 16% to 20-23% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Presence of a full human figure (woman) violates the zero-people rule (hard reject).",
+        "Product width is approximately 14% of the frame, failing the minimum 20% requirement.",
+        "Product height is approximately 18% of the frame, failing the maximum 28% requirement (though the ratio is correct, the scale is wrong).",
+        "Product placement is too small relative to the required size specifications.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 14% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Remove the person completely. Increase the size of the white and blue 'AFP' drip-tape roll so its width occupies 20-23% of the frame. Keep the roll positioned on the soil in the lower-left area. Enlarge the product group from 14% to 20-23% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 92,
+      "product_width_percent": 19.5,
+      "product_height_percent": 16.0,
+      "product_x_center_percent": 24.0,
+      "reasons": [
+        "Product geometry (cylindrical drip-tape roll) and size constraints (width/height ratios) meet strict parameters.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No people or human silhouettes detected.",
+        "Placement is secondary and off-center in the lower-left third.",
+        "Irrigation channel in background provides authentic farm drip-tape context.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 19.5% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Enlarge the product group from 19.5% to 20-23% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 15,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Image contains a full-body human figure (person) present in the scene.",
+        "Product Geometry: The roll is too tall relative to its width (diameter/height ratio does not meet the 1.6-1.8 requirement).",
+        "Product Sizing: The visible bounding box does not occupy the required 20-23% of frame width.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 15% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures and silhouettes completely. Regenerate the image to show only the cylindrical drip-tape roll on the soil. The roll must be the dominant object, occupying roughly 20% of the frame width with a diameter-to-height ratio of approximately 1.7. Position it in the lower-left third of the frame with no other objects or products visible. Enlarge the product group from 15% to 20-23% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

@@ -1,0 +1,61 @@
+{
+  "id": "crop-004",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-scale-watermark-v5-full-rerender",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Product width (approx 24%) exceeds the maximum allowed 23% of frame width.",
+        "Product height (approx 30%) exceeds the maximum allowed 28% of frame height.",
+        "Aspect ratio (width/height) is approx 0.8, failing the 1.6-1.8 requirement for a wide cylindrical roll.",
+        "An extra commercial package/label card is visible next to the roll.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 24% to 20-23% of frame width.; Reduce product height from 30% to at most 28% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image: reduce the drip-tape roll size to 20-23% of frame width and 28% of frame height. Increase the apparent width (diameter) so the aspect ratio is 1.6-1.8. Ensure the roll is placed on the soil, off-center. Remove the loose label card next to the roll. Reduce the product group from 24% to 20-23% of frame width. Reduce product height from 30% to at most 28% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 90,
+      "product_width_percent": 18.5,
+      "product_height_percent": 22.5,
+      "product_x_center_percent": 25.0,
+      "reasons": [
+        "Product width is estimated at 18.5%, which is slightly below the ideal 20% target but does not violate the strict maximum rejection limit of 23%.",
+        "Product height is estimated at 22.5%, well within the 28% limit.",
+        "Roll geometry (aspect ratio) matches the 1.6:1 to 1.8:1 requirement.",
+        "Product is correctly positioned in the lower third, off-center to the left.",
+        "Scene context (drip-irrigation field) aligns with the topic.",
+        "All required text (watermark) is present and correct. No prohibited elements (people, second rolls, jars) are visible.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 18.5% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Enlarge the product group from 18.5% to 20-23% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 20,
+      "product_height_percent": 14,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Product is exactly one AFP white-and-blue cylindrical drip-tape roll",
+        "No people, human body parts, or silhouettes are visible in the image",
+        "Roll dimensions are within the specified limits (width ~20%, height ~14%)",
+        "The product is placed off-center on the lower third, naturally on the soil",
+        "The background shows an active farm field with rows of crops, matching the topic",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-طالبی-با-آبیاری-قطرهای-تصویر-شاخص.webp"
+}
