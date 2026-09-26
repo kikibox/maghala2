@@ -574,6 +574,14 @@ def process(q):
             for kind in range(1, 4):
                 images.append(generate_image(item, kind))
                 time.sleep(2)
+            # Upload before marking the item completed. If FTPS fails, the item
+            # stays retryable instead of pointing WordPress at missing images.
+            stage = "image_upload"
+            if (os.getenv("UPLOAD_ARTICLE_IMAGES", "true").lower()
+                    not in {"0", "false", "no"}):
+                import upload_article_images_ftps
+                upload_article_images_ftps.main()
+            stage = "sql"
             insert, rollback, body = sql_for(item, obj, images)
             (SQL / f"{item['id']}.sql").write_text(insert, encoding="utf-8")
             (ROLLBACK / f"{item['id']}.sql").write_text(rollback, encoding="utf-8")
