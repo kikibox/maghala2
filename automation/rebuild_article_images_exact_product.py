@@ -8,9 +8,9 @@ import os
 
 import article_content_queue as queue
 
-POLICY = "reference-rerender-3d-v7-set-reviewed-topic-diverse"
+POLICY = "reference-rerender-3d-v8-role-blueprint-set-reviewed"
 MODE = "reference-conditioned-3d-rerender-approved-scales-topic-first"
-MARKER = queue.OUT / "image-rebuild-reference-rerender-3d-v7-set-reviewed-topic-diverse.json"
+MARKER = queue.OUT / "image-rebuild-reference-rerender-3d-v8-role-blueprint-set-reviewed.json"
 WORKERS = min(2, max(1, int(os.getenv("IMAGE_WORKERS", "2"))))
 POST_LIMIT = max(1, int(os.getenv("IMAGE_REBUILD_POST_LIMIT", "4")))
 

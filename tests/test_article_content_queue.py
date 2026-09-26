@@ -176,6 +176,17 @@ class ArticleQueueTests(unittest.TestCase):
         self.assertIn("People must not appear", prompts[0])
         self.assertNotIn("If people appear", prompts[0])
 
+    def test_role_blueprints_force_crop_identity_and_distinct_compositions(self):
+        item = {"id": "crop-spinach", "title": "میزان برداشت اسفناج در هکتار", "excerpt": "افزایش عملکرد با نوار تیپ"}
+        self.assertEqual(queue.image_prompt_policy.named_crop(item), "اسفناج (spinach)")
+        roles = [queue.image_prompt_policy.role_directive(item, kind) for kind in (1, 2, 3)]
+        self.assertIn("CROP-IDENTITY HERO", roles[0])
+        self.assertIn("AGRONOMIC CLOSE EVIDENCE", roles[1])
+        self.assertIn("No horizon", roles[1])
+        self.assertIn("IRRIGATION-SYSTEM STORY", roles[2])
+        self.assertIn("no centered vanishing-point furrows", roles[2])
+        self.assertEqual(len(set(roles)), 3)
+
     def test_full_rebuild_uses_three_image_set_gate(self):
         rebuild = (ROOT / "automation" / "rebuild_article_images_exact_product.py").read_text(encoding="utf-8")
         self.assertIn("queue.generate_images_parallel", rebuild)

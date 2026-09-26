@@ -1026,7 +1026,7 @@ def process(q):
                         word_count=words(body), images=[x["name"] for x in images],
                         image_sha256=[x["sha256"] for x in images],
                         image_generation_mode="reference-conditioned-3d-rerender-approved-scales-topic-first",
-                        image_rebuild_policy="reference-rerender-3d-v7-set-reviewed-topic-diverse",
+                        image_rebuild_policy="reference-rerender-3d-v8-role-blueprint-set-reviewed",
                         delivery="sql_package", last_error="",
                     )
                     item.pop("failed_stage", None);item.pop("failed_at", None);item.pop("started_at", None)

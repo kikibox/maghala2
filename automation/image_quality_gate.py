@@ -2,7 +2,7 @@
 """Fast image QA with hard rejection for product identity and physics failures."""
 import base64,json,os,re,urllib.request
 import image_prompt_policy
-REVIEW_POLICY='strict-no-human-scale-watermark-v6-set-reviewed-full-rerender'
+REVIEW_POLICY='strict-no-human-scale-watermark-v7-role-blueprint-set-reviewed'
 MAX_IMAGE_ATTEMPTS=max(1,int(os.getenv('IMAGE_QA_ATTEMPTS','6')))
 MIN_IMAGE_SCORE=int(os.getenv('IMAGE_QA_MIN_SCORE','70'))
 FAST_MODE=os.getenv('IMAGE_QA_FAST_MODE','1')!='0'

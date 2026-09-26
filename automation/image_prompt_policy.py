@@ -34,6 +34,16 @@ ENVIRONMENTS=[
 ]
 LIGHTING=['soft blue-hour dawn light','bright overcast documentary light','warm late-afternoon side light','clean high-noon light with short realistic shadows','diffused post-cloud light with saturated crop color','backlit sunrise with restrained haze and no lens flare','cool morning light with warm soil tones']
 STORY_DEVICES=['make field geometry and spacing the visual story','make crop condition and growth stage the visual story','make water distribution and wetting pattern the visual story','make filtration, pressure or connection detail the visual story','make seedbed preparation and row planning the visual story','make maintenance evidence and clean system layout the visual story','make soil texture, moisture and root-zone context the visual story']
+CROPS={
+ 'اسفناج':'spinach','عدس':'lentil','کنجد':'sesame','طالبی':'cantaloupe','اسپرس':'sainfoin',
+ 'خیار':'cucumber','سیر':'garlic','باقلا':'fava bean','ذرت':'maize','یونجه':'alfalfa',
+ 'گندم':'wheat','سویا':'soybean','تره':'leek','سورگوم':'sorghum','زعفران':'saffron crocus',
+ 'نخود':'chickpea','شاهی':'garden cress','خربزه':'melon','ریحان':'basil','کاهو':'lettuce',
+ 'ملون':'melon','سبزی':'leafy vegetables','چغندر':'sugar beet','مرزه':'summer savory',
+ 'لپه':'yellow split-pea crop','گشنیز':'coriander','شبدر':'clover','ماش':'mung bean',
+ 'پاپریکا':'paprika pepper','موسیر':'Persian shallot','رزماری':'rosemary','تریتیکاله':'triticale',
+ 'چاودار':'rye',
+}
 
 def visual_brief(item,max_chars=650):
  item=item or {};parts=[]
@@ -59,6 +69,24 @@ def topic_visual_anchor(item):
   if any(key in text for key in keys):return anchor
  return 'derive one unmistakable visual anchor from the article title and summary; a generic empty field is not sufficient'
 
+def named_crop(item):
+ text=visual_brief(item)
+ for fa,en in CROPS.items():
+  if fa in text:return f'{fa} ({en})'
+ return 'the exact named crop from the article title'
+
+def role_directive(item,kind):
+ crop=named_crop(item);text=visual_brief(item).lower()
+ if kind==1:
+  detail='show mature pre-harvest crop density and uniformity' if any(x in text for x in ('برداشت','عملکرد','yield','harvest')) else 'show the crop at the growth stage discussed by the article'
+  return f'CROP-IDENTITY HERO: a high or eye-level wide editorial view of unmistakable {crop}; {detail}. Do not use a low centered furrow composition. The crop species, not bare soil or the AFP roll, must dominate.'
+ if kind==2:
+  evidence='visible non-graphic leaf symptoms and crop-specific monitoring evidence' if any(x in text for x in ('آفت','بیماری','pest','disease')) else 'recognizable leaves or crowns, the drip line and the localized wetting band/root-zone evidence'
+  if any(x in text for x in ('بذر','seed')): evidence='article-specific seeds, calibrated seed quantity and establishment spacing beside recognizable young plants'
+  if any(x in text for x in ('فاصله','spacing')): evidence='clearly measured row and emitter spacing with neutral stakes and visible drip-line placement'
+  return f'AGRONOMIC CLOSE EVIDENCE: an overhead or high-oblique close technical view of {crop} showing {evidence}. No horizon, barn, tractor, landscape panorama or long symmetrical furrows. This must look categorically different from role 1.'
+ return f'IRRIGATION-SYSTEM STORY: a medium side view at the edge of a {crop} bed, centered on an unattended header, filter, pressure gauge, manifold or flush point and visible water-distribution evidence. No open-field panorama, no centered vanishing-point furrows, no tractor and no repeated role-1 composition. The hardware narrative must be obvious while the AFP roll stays secondary.'
+
 def visual_recipe(item,kind):
  identity='|'.join(str((item or {}).get(k) or '') for k in ('id','source_id','slug','title'))
  seed=int(hashlib.sha256((identity+'|creative-recipe-v2').encode('utf-8')).hexdigest()[:12],16);k=max(0,int(kind)-1)
@@ -66,7 +94,7 @@ def visual_recipe(item,kind):
 
 def visual_template(item,kind):
  r=visual_recipe(item,kind)
- return f"Camera: {r['camera']}. Environment: {r['environment']}. Light: {r['lighting']}. Narrative: {r['story']}. Topic anchor: {r['anchor']}. Variation token {r['token']} is a seed only and must never be rendered."
+ return f"Mandatory role blueprint: {role_directive(item,kind)} Camera: {r['camera']}. Environment: {r['environment']}. Light: {r['lighting']}. Narrative: {r['story']}. Topic anchor: {r['anchor']}. If a generic recipe conflicts with the mandatory role blueprint, the role blueprint wins. Variation token {r['token']} is a seed only and must never be rendered."
 
 def reference_images(kind,item=None):
  family=product_family(item)
