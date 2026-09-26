@@ -29,18 +29,26 @@ class WordPressPublisherTests(unittest.TestCase):
             for i in range(1, 4)
         ]
 
+    @patch.object(wp, "request_json")
+    def test_verify_category_requires_exact_target(self, request_json):
+        request_json.return_value = {"id": 35, "name": "مقاله‌ها", "slug": "مقاله-ها"}
+        self.assertEqual(wp.verify_category(35)["id"], 35)
+        request_json.return_value = {"id": 36}
+        with self.assertRaises(RuntimeError):
+            wp.verify_category(35)
+
     def test_render_html_replaces_every_marker(self):
         body = wp.render_html(self.item, self.obj, self.media)
         self.assertNotIn("[[[IMAGE_", body)
         self.assertEqual(body.count("<figure"), 3)
         self.assertIn("image-1.jpg", body)
 
-    @patch.object(wp, "verify_credentials")
+    @patch.object(wp, "verify_publish_target")
     @patch.object(wp, "upload_media")
     @patch.object(wp, "find_post")
     @patch.object(wp, "request_json")
     def test_publish_updates_existing_slug_idempotently(
-        self, request_json, find_post, upload_media, verify_credentials
+        self, request_json, find_post, upload_media, verify_publish_target
     ):
         upload_media.side_effect = self.media
         find_post.return_value = {"id": 99, "slug": self.item["slug"]}

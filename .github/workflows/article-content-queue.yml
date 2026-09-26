@@ -21,7 +21,7 @@ env:
   AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
   AGNES_API_BASE: ${{ vars.AGNES_API_BASE || 'https://apihub.agnes-ai.com/v1' }}
   AGNES_MODEL: ${{ vars.AGNES_MODEL || 'agnes-3.0-flash' }}
-  IMAGE_MODEL: ${{ vars.IMAGE_MODEL || 'agnes-image-2.0-flash' }}
+  IMAGE_MODEL: ${{ vars.IMAGE_MODEL || 'agnes-image-2.5-flash' }}
   WP_SITE_URL: https://navar-abyari.ir
   WP_USERNAME: ${{ secrets.WP_USERNAME }}
   WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
@@ -60,6 +60,11 @@ jobs:
           python -m py_compile automation/article_content_queue.py
           python -m unittest discover -s tests -p 'test_*.py'
 
+      - name: Validate WordPress publish target
+        env:
+          PYTHONPATH: automation
+        run: python -c "from wordpress_publish_article import verify_publish_target; verify_publish_target(35)"
+
       - name: Regenerate deterministic topics
         run: python automation/topic_matrix.py
 
@@ -80,16 +85,21 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -u artifacts/article-content-queue
-          git add artifacts/article-content-queue/STATUS.md \
-                  artifacts/article-content-queue/queue.json \
-                  artifacts/article-content-queue/status.json \
-                  artifacts/article-content-queue/topics.json
+
+          # Preserve generated state, update to the latest main, then restore
+          # generated files. This avoids add/add and rebase conflicts when
+          # STATUS.md or another tracked state file changes during a run.
+          state_dir="$(mktemp -d)"
+          cp -a artifacts/article-content-queue/. "$state_dir/"
+          git fetch origin main
+          git reset --hard origin/main
+          mkdir -p artifacts/article-content-queue
+          cp -a "$state_dir/." artifacts/article-content-queue/
+          git add -A artifacts/article-content-queue
           if ! git diff --cached --quiet; then
             git commit -m 'Update article queue state [skip ci]'
+            git push origin HEAD:main
           fi
-          git pull --rebase --autostash origin main
-          git push origin HEAD:main
 
       - name: Upload run artifacts
         if: always()

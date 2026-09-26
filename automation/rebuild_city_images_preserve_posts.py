@@ -16,7 +16,7 @@ POLICY = "reference-conditioned-full-scene-v19"
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "artifacts" / "city-content-queue"
 MARKER = OUT / "image-rebuild-reference-full-scene-v19.json"
-MODEL = os.getenv("AGNES_IMAGE_MODEL", "agnes-image-2.0-flash")
+MODEL = os.getenv("AGNES_IMAGE_MODEL", "agnes-image-2.5-flash")
 API = os.getenv("AGNES_API_BASE", "https://apihub.agnes-ai.com/v1").rstrip("/")
 KEY = os.getenv("AGNES_API_KEY", "").strip()
 image_prompt_policy.install(backend)

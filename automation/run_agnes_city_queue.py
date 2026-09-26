@@ -7,7 +7,7 @@ import city_content_queue_cloudflare as backend
 import image_prompt_policy
 image_prompt_policy.install(backend)
 
-MODEL=os.getenv('AGNES_IMAGE_MODEL','agnes-image-2.0-flash')
+MODEL=os.getenv('AGNES_IMAGE_MODEL','agnes-image-2.5-flash')
 KEY=os.getenv('AGNES_API_KEY','').strip();API=os.getenv('AGNES_API_BASE','https://apihub.agnes-ai.com/v1').rstrip('/')
 TARGET_WORDS=max(base.MIN_WORDS+200,1250)
 RAW_AGNES=base.agnes

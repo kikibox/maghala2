@@ -5,7 +5,7 @@ from pathlib import Path
 from PIL import Image,ImageDraw,ImageFont
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'artifacts/city-content-queue/test-images';OUT.mkdir(parents=True,exist_ok=True)
 KEY=os.getenv('AGNES_API_KEY','').strip();BASE=os.getenv('AGNES_API_BASE','https://apihub.agnes-ai.com/v1').rstrip('/')
-TEXT_MODEL=os.getenv('AGNES_MODEL','agnes-3.0-flash');IMAGE_MODEL=os.getenv('AGNES_IMAGE_MODEL','agnes-image-2.0-flash')
+TEXT_MODEL=os.getenv('AGNES_MODEL','agnes-3.0-flash');IMAGE_MODEL=os.getenv('AGNES_IMAGE_MODEL','agnes-image-2.5-flash')
 STATUS=OUT/'agnes-models-status.json';IMAGE=OUT/'davoudabad-markazi-agnes-image-2-test.jpg'
 if not KEY:raise RuntimeError('AGNES_API_KEY is missing')
 

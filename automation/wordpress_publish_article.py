@@ -54,6 +54,23 @@ def verify_credentials():
     return user
 
 
+def verify_category(category_id: int):
+    category = request_json(
+        "GET",
+        f"/categories/{int(category_id)}?context=edit&_fields=id,name,slug",
+    )
+    if int(category.get("id", 0)) != int(category_id):
+        raise RuntimeError(f"WordPress category {category_id} is unavailable")
+    return category
+
+
+def verify_publish_target(category_id: int):
+    return {
+        "user": verify_credentials(),
+        "category": verify_category(category_id),
+    }
+
+
 def find_media(slug: str):
     query = urllib.parse.urlencode({
         "slug": slug,
@@ -128,7 +145,7 @@ def find_post(slug: str):
 
 
 def publish_article(item: dict, obj: dict, images: list[dict]):
-    verify_credentials()
+    verify_publish_target(int(item["category_id"]))
     media_rows = [upload_media(image, item, i) for i, image in enumerate(images, 1)]
     body = render_html(item, obj, media_rows)
     payload = {

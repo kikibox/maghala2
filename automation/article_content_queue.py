@@ -39,7 +39,7 @@ AGNES_MODEL = os.getenv("AGNES_MODEL") or "agnes-3.0-flash"
 # implementation. The previous GitHub Models endpoint was incompatible with
 # the Agnes image model name.
 IMAGE_TOKEN = (os.getenv("IMAGE_API_KEY") or AGNES_KEY).strip()
-IMAGE_MODEL = os.getenv("IMAGE_MODEL") or "agnes-image-2.0-flash"
+IMAGE_MODEL = os.getenv("IMAGE_MODEL") or "agnes-image-2.5-flash"
 IMAGE_ENDPOINT = os.getenv("IMAGE_ENDPOINT") or f"{AGNES_BASE}/images/generations"
 UPLOAD_SUBDIR = (os.getenv("ARTICLE_IMAGE_UPLOAD_SUBDIR") or "2026/09/navar-article-generated").strip("/")
 PUBLIC_UPLOAD_BASE = f"{SITE}/wp-content/uploads/{UPLOAD_SUBDIR}"
@@ -591,6 +591,9 @@ def process(q):
         exhausted = any(x.get("status") == "failed" for x in q["items"])
         write_status(q, "attention_required" if exhausted else "complete")
         return
+
+    from wordpress_publish_article import verify_publish_target
+    verify_publish_target(CATEGORY_TAXONOMY_ID)
 
     batch_errors = []
     for item in batch:

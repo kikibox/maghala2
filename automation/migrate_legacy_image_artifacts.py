@@ -29,7 +29,7 @@ def main():
   if path.exists():path.unlink();deleted[name]=1
  queue['updated_at']=now();queue.setdefault('rules',{})['image_policy_version']=CURRENT_POLICY;queue['rules']['legacy_image_artifacts_reset']=True;queue['rules']['image_quality_review_required']=True
  QUEUE.write_text(json.dumps(queue,ensure_ascii=False,indent=2),encoding='utf-8');counts=Counter(item.get('status') for item in queue.get('items',[]))
- STATUS.write_text(json.dumps({'result':'reset_for_image_repair','updated_at':now(),'total':len(queue.get('items',[])),'pending':counts['pending'],'processing':counts['processing'],'completed':counts['completed'],'failed':counts['failed'],'blocked_image_model':counts['blocked_image_model'],'image_model':'agnes-image-2.0-flash','batch_size':1,'image_policy_version':CURRENT_POLICY,'legacy_items_reset':len(reset_ids)},ensure_ascii=False,indent=2),encoding='utf-8')
+ STATUS.write_text(json.dumps({'result':'reset_for_image_repair','updated_at':now(),'total':len(queue.get('items',[])),'pending':counts['pending'],'processing':counts['processing'],'completed':counts['completed'],'failed':counts['failed'],'blocked_image_model':counts['blocked_image_model'],'image_model':'agnes-image-2.5-flash','batch_size':1,'image_policy_version':CURRENT_POLICY,'legacy_items_reset':len(reset_ids)},ensure_ascii=False,indent=2),encoding='utf-8')
  marker={'current_policy':CURRENT_POLICY,'completed':True,'completed_at':now(),'reset_source_ids':reset_ids,'deleted_files':deleted};MARKER.write_text(json.dumps(marker,ensure_ascii=False,indent=2),encoding='utf-8')
  print(f'image_policy_migration=completed policy={CURRENT_POLICY} reset_items={len(reset_ids)} deleted={deleted}',flush=True)
 if __name__=='__main__':main()
