@@ -921,8 +921,8 @@ def process(q):
                         status="completed", completed_at=completed_at,
                         word_count=words(body), images=[x["name"] for x in images],
                         image_sha256=[x["sha256"] for x in images],
-                        image_generation_mode="reference-conditioned-3d-rerender",
-                        image_rebuild_policy="reference-rerender-3d-v3",
+                        image_generation_mode="reference-conditioned-3d-rerender-scale-controlled",
+                        image_rebuild_policy="reference-rerender-3d-v4-scale-controlled",
                         delivery="sql_package", last_error="",
                     )
                     item.pop("failed_stage", None);item.pop("failed_at", None);item.pop("started_at", None)
