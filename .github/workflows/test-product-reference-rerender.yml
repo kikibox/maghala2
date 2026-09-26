@@ -1,0 +1,56 @@
+name: Test 3D product reference rerender
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/test-product-reference-rerender.yml'
+      - 'automation/test_product_reference_rerender.py'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: product-reference-rerender-test
+  cancel-in-progress: true
+
+jobs:
+  test-rerender:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+      IMAGE_API_KEY: ${{ secrets.IMAGE_API_KEY || secrets.AGNES_API_KEY }}
+      AGNES_API_BASE: ${{ vars.AGNES_API_BASE || 'https://apihub.agnes-ai.com/v1' }}
+      IMAGE_ENDPOINT: ${{ vars.IMAGE_ENDPOINT || 'https://apihub.agnes-ai.com/v1/images/generations' }}
+      IMAGE_MODEL: ${{ vars.IMAGE_MODEL || 'agnes-image-2.5-flash' }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --disable-pip-version-check pillow
+      - name: Generate tape and layflat review samples
+        run: |
+          python -m py_compile automation/test_product_reference_rerender.py
+          python automation/test_product_reference_rerender.py
+      - name: Upload review samples
+        uses: actions/upload-artifact@v7
+        with:
+          name: product-reference-rerender-samples
+          path: artifacts/product-rerender-test/
+          retention-days: 30
+      - name: Commit review samples
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f artifacts/product-rerender-test/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add 3D product rerender test samples [skip ci]'
+            git pull --rebase origin main
+            git push origin main
+          fi
