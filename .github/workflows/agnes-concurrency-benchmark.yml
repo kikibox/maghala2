@@ -6,7 +6,13 @@ on:
       levels:
         description: 'Concurrency levels, comma separated'
         required: true
-        default: '1,2,4'
+        default: '4,6,8'
+      service:
+        description: 'Service to benchmark'
+        required: true
+        type: choice
+        options: [image, both, text]
+        default: image
   push:
     branches: [main]
     paths:
@@ -43,9 +49,13 @@ jobs:
         run: python -m py_compile automation/benchmark_agnes_concurrency.py
       - name: Run controlled concurrency ladder
         env:
-          BENCHMARK_LEVELS: ${{ inputs.levels || '1,2,4' }}
+          BENCHMARK_LEVELS: ${{ inputs.levels || '4,6,8' }}
+          BENCHMARK_SERVICE: ${{ inputs.service || 'image' }}
         run: |
-          python automation/benchmark_agnes_concurrency.py
+          args=()
+          if [ "$BENCHMARK_SERVICE" = image ]; then args+=(--image-only); fi
+          if [ "$BENCHMARK_SERVICE" = text ]; then args+=(--text-only); fi
+          python automation/benchmark_agnes_concurrency.py "${args[@]}"
           cat artifacts/benchmarks/latest.md >> "$GITHUB_STEP_SUMMARY"
       - name: Upload benchmark report
         uses: actions/upload-artifact@v7
