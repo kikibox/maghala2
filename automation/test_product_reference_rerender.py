@@ -47,6 +47,20 @@ CASES = {
         ),
         "scene": "a real farm water-transfer setup beside cultivated rows",
     },
+    "layflat-bare": {
+        "asset": "afp-layflat-bare.jpg.b64",
+        "mime": "image/jpeg",
+        "text": (
+            "This unboxed hose has no carton label: do not add AFP, layflat, a logo "
+            "or any invented writing to the black hose."
+        ),
+        "shape": (
+            "one low wide coil of unboxed black woven layflat hose, preserving the "
+            "flat concentric layers, short hollow cardboard center, woven diagonal "
+            "surface texture, coil thickness and the small loose hose end"
+        ),
+        "scene": "a practical layflat-hose installation beside a farm water-transfer line",
+    },
 }
 
 
@@ -72,7 +86,8 @@ def prompt(case: dict) -> str:
 
 def reference_data_url(filename: str) -> str:
     encoded = (ASSETS / filename).read_text(encoding="ascii").strip()
-    return "data:image/webp;base64," + encoded
+    mime = "image/jpeg" if filename.endswith(".jpg.b64") else "image/webp"
+    return f"data:{mime};base64," + encoded
 
 
 def generate(name: str, case: dict) -> dict:
