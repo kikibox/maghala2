@@ -6,7 +6,7 @@ from html.parser import HTMLParser
 ROOT=Path(__file__).resolve().parents[1]
 BASE=os.getenv('AGNES_API_BASE','https://apihub.agnes-ai.com/v1').rstrip('/')
 TOKEN=os.environ.get('AGNES_API_KEY','').strip()
-MODEL=os.getenv('AGNES_MODEL','agnes-2.5-flash').strip()
+MODEL=os.getenv('AGNES_MODEL','agnes-3.0-flash').strip()
 LIMIT=max(1,int(os.getenv('MAX_ARTICLES','1')))
 STATE=ROOT/'state/progress.json'
 SOURCE_IDS=ROOT/'data/source_ids.txt'
@@ -52,7 +52,11 @@ def call_chat(messages,max_tokens=12000):
     return json.loads(text)
 
 def language_label(lang):
-    return 'Iraqi Arabic in clear professional Modern Standard Arabic suitable for Iraqi farmers' if lang=='ar-IQ' else 'natural Tajik in Cyrillic script suitable for Tajik farmers'
+    return {
+        'ar-IQ':'Iraqi Arabic in clear professional Modern Standard Arabic suitable for Iraqi farmers',
+        'tg-TJ':'natural Tajik in Cyrillic script suitable for Tajik farmers',
+        'en-US':'clear international technical English suitable for farmers and irrigation professionals',
+    }[lang]
 
 class PreserveHTML(HTMLParser):
     def __init__(self):
@@ -141,6 +145,7 @@ def translate_validated(source,lang):
         if a.get(tag,0)!=b.get(tag,0): raise ValueError(f'HTML count changed for {tag}: {a.get(tag,0)} -> {b.get(tag,0)}')
     if lang=='ar-IQ' and len(re.findall(r'[ء-ي]',result['html']))<100: raise ValueError('Arabic script validation failed')
     if lang=='tg-TJ' and len(re.findall(r'[А-Яа-яҚқҒғҲҳҶҷӢӣӮӯ]',result['html']))<100: raise ValueError('Tajik script validation failed')
+    if lang=='en-US' and len(re.findall(r'\b[A-Za-z]{2,}\b',result['html']))<100: raise ValueError('English text validation failed')
     return result
 
 def main():
@@ -148,9 +153,11 @@ def main():
     ids=[int(x.strip()) for x in SOURCE_IDS.read_text().splitlines() if x.strip()]
     if len(ids)!=len(set(ids)): raise RuntimeError('Duplicate source IDs in queue')
     state=json.loads(STATE.read_text(encoding='utf-8'))
+    languages=('ar-IQ','tg-TJ','en-US')
+    state['total_units']=len(ids)*len(languages)
     completed=set(state.get('completed_keys',[])); done_articles=0
     for post_id in ids:
-        needed=[lang for lang in ('ar-IQ','tg-TJ') if f'{post_id}:{lang}' not in completed]
+        needed=[lang for lang in languages if f'{post_id}:{lang}' not in completed]
         if not needed: continue
         source=fetch_source(post_id)
         print(f'Processing source {post_id}: {source["title"]} -> {needed}',flush=True)

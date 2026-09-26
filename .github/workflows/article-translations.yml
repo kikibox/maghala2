@@ -1,0 +1,65 @@
+name: Generate Arabic Tajik and English translations
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/article-translations.yml'
+      - 'automation/translate_queue.py'
+      - 'sqlbuild/build_patch.py'
+      - 'data/source_ids.txt'
+  schedule:
+    - cron: '7,37 * * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: article-translation-queue
+  cancel-in-progress: false
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    env:
+      AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+      AGNES_API_BASE: ${{ vars.AGNES_API_BASE || 'https://apihub.agnes-ai.com/v1' }}
+      AGNES_MODEL: ${{ vars.AGNES_MODEL || 'agnes-3.0-flash' }}
+      MAX_ARTICLES: '4'
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Validate translation pipeline
+        run: |
+          test -n "$AGNES_API_KEY"
+          python -m py_compile automation/translate_queue.py sqlbuild/build_patch.py
+      - name: Generate missing language units
+        run: python automation/translate_queue.py
+      - name: Build SQL when every language is complete
+        shell: bash
+        run: |
+          sources=$(grep -cve '^[[:space:]]*$' data/source_ids.txt)
+          english=$(find translations -mindepth 2 -maxdepth 2 -name 'en-US.json' | wc -l)
+          echo "source_articles=$sources english_ready=$english"
+          if [ "$english" -eq "$sources" ]; then
+            python sqlbuild/build_patch.py
+          else
+            echo "English queue is incomplete; SQL build deferred."
+          fi
+      - name: Persist translation state
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add translations state docs
+          git add -f artifacts/generated-translations* artifacts/generated-english-translations* artifacts/fix-imported-translations* 2>/dev/null || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Update multilingual article translations [skip ci]'
+          git pull --rebase origin main
+          git push origin main

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import gzip, hashlib, html, json, re
+import gzip, hashlib, html, json, os, re
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import urlparse, unquote
@@ -7,7 +7,7 @@ from urllib.parse import urlparse, unquote
 ROOT=Path(__file__).resolve().parents[1]
 TRANS=ROOT/'translations'; OUT=ROOT/'artifacts'; OUT.mkdir(exist_ok=True)
 POST_ID_START=502017; META_ID_START=67470
-CATEGORY={'ar-IQ':259,'tg-TJ':261}; PREFIX={'ar-IQ':'iq','tg-TJ':'tj'}; LANGS=('ar-IQ','tg-TJ')
+CATEGORY={'ar-IQ':259,'tg-TJ':261}; PREFIX={'ar-IQ':'iraq','tg-TJ':'tj','en-US':'en'}; LANGS=('ar-IQ','tg-TJ','en-US')
 
 def esc(v):
  s=str(v); return s.replace('\\','\\\\').replace("'","\\'").replace('\0','\\0').replace('\r','\\r').replace('\n','\\n')
@@ -34,28 +34,29 @@ def clean_body(body):
  return cleaned.strip()+'\n',stats
 
 folders=sorted((p for p in TRANS.iterdir() if p.is_dir()),key=lambda p:int(p.name))
-if len(folders)!=152: raise SystemExit(f'Expected 152 automated translation folders, found {len(folders)}')
+if not folders: raise SystemExit('No automated translation folders found')
 records=[]; slug_maps={x:{} for x in LANGS}; used=set(); cleanup_totals={'container_toc':0,'manual_toc':0,'browser_junk':0}
-for folder in folders:
- source_id=int(folder.name)
- for lang in LANGS:
-  hp=folder/f'{lang}.html'; jp=folder/f'{lang}.json'
-  if not hp.exists() or not jp.exists(): raise SystemExit(f'Missing files for {source_id}:{lang}')
-  m=json.loads(jp.read_text(encoding='utf-8')); body,stats=clean_body(hp.read_text(encoding='utf-8'))
-  for k,v in stats.items(): cleanup_totals[k]+=v
-  if not m.get('validated') or m.get('language')!=lang or int(m.get('source_id'))!=source_id: raise SystemExit(f'Invalid manifest for {source_id}:{lang}')
-  if len(body)<100 or not m.get('title') or not m.get('slug'): raise SystemExit(f'Empty translation for {source_id}:{lang}')
-  slug=re.sub(r'[^a-z0-9-]+','-',m['slug'].lower()).strip('-')[:180] or f'translation-{source_id}'; original=slug; n=2
-  while slug in used: slug=f'{original}-{source_id}-{n}'; n+=1
-  used.add(slug); m['_final_slug']=slug; slug_maps[lang][normalize_slug(m.get('source_slug'))]=slug; records.append((source_id,lang,m,body))
-slug_maps['ar-IQ']['انواع-سیستم-های-آبیاری']='anwa-anthimat-al-ray'; slug_maps['tg-TJ']['انواع-سیستم-های-آبیاری']='navhoi-sistemahoi-obyor'
+for language_group in (('ar-IQ','tg-TJ'),('en-US',)):
+ for folder in folders:
+  source_id=int(folder.name)
+  for lang in language_group:
+   hp=folder/f'{lang}.html'; jp=folder/f'{lang}.json'
+   if not hp.exists() or not jp.exists(): raise SystemExit(f'Missing files for {source_id}:{lang}')
+   m=json.loads(jp.read_text(encoding='utf-8')); body,stats=clean_body(hp.read_text(encoding='utf-8'))
+   for k,v in stats.items(): cleanup_totals[k]+=v
+   if not m.get('validated') or m.get('language')!=lang or int(m.get('source_id'))!=source_id: raise SystemExit(f'Invalid manifest for {source_id}:{lang}')
+   if len(body)<100 or not m.get('title') or not m.get('slug'): raise SystemExit(f'Empty translation for {source_id}:{lang}')
+   slug=re.sub(r'[^a-z0-9-]+','-',m['slug'].lower()).strip('-')[:180] or f'translation-{source_id}'; original=slug; n=2
+   while slug in used: slug=f'{original}-{source_id}-{n}'; n+=1
+   used.add(slug); m['_final_slug']=slug; slug_maps[lang][normalize_slug(m.get('source_slug'))]=slug; records.append((source_id,lang,m,body))
+slug_maps['ar-IQ']['انواع-سیستم-های-آبیاری']='anwa-anthimat-al-ray'; slug_maps['tg-TJ']['انواع-سیستم-های-آبیاری']='navhoi-sistemahoi-obyor'; slug_maps['en-US']['انواع-سیستم-های-آبیاری']='types-of-irrigation-systems'
 href_re=re.compile(r'href=("|\')(.*?)(\1)',re.I)
 def localize(body,lang):
  def repl(m):
   parsed=urlparse(m.group(2))
   if parsed.netloc and parsed.netloc.lower() not in ('navar-abyari.ir','www.navar-abyari.ir'): return m.group(0)
   path=unquote(parsed.path).strip('/')
-  if not path or path.startswith(('iq/','tj/','wp-content/','wp-admin/','wp-json/')): return m.group(0)
+  if not path or path.startswith(('iraq/','iq/','tj/','en/','wp-content/','wp-admin/','wp-json/')): return m.group(0)
   target=slug_maps[lang].get(normalize_slug(path.split('/')[-1]))
   if not target: return m.group(0)
   new='https://navar-abyari.ir/'+PREFIX[lang]+'/'+target+'/'
@@ -66,7 +67,7 @@ def localize(body,lang):
 
 now_utc=datetime.now(timezone.utc).replace(microsecond=0); now_local=now_utc+timedelta(hours=3,minutes=30)
 modified=now_local.strftime('%Y-%m-%d %H:%M:%S'); modified_gmt=now_utc.strftime('%Y-%m-%d %H:%M:%S')
-post_rows=[]; meta_rows=[]; rel_rows=[]; hotfix_rows=[]; manifest_rows=[]; post_id=POST_ID_START; meta_id=META_ID_START
+post_rows=[]; meta_rows=[]; rel_rows=[]; dynamic_rel_rows=[]; hotfix_rows=[]; manifest_rows=[]; english_post_rows=[]; english_meta_rows=[]; english_rel_rows=[]; post_id=POST_ID_START; meta_id=META_ID_START
 for source_id,lang,m,body in records:
  source_date=str(m.get('source_date') or modified).replace('T',' ')[:19]
  if not re.match(r'^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$',source_date): source_date=modified
@@ -74,19 +75,32 @@ for source_id,lang,m,body in records:
  except ValueError: source_gmt=modified_gmt
  localized=localize(body,lang)
  values=[post_id,1,source_date,source_gmt,localized,m['title'],'','publish','closed','closed','',m['_final_slug'],'','',modified,modified_gmt,'',0,'https://navar-abyari.ir/?p='+str(post_id),0,'post','',0]
- post_rows.append('('+', '.join(q(v) for v in values)+')')
+ post_row='('+', '.join(q(v) for v in values)+')';post_rows.append(post_row)
+ if lang=='en-US':english_post_rows.append(post_row)
  for key,val in [('_navar_translation_source_id',source_id),('_navar_translation_language',lang),('_yoast_wpseo_title',m.get('seo_title','')),('_yoast_wpseo_metadesc',m.get('seo_description',''))]:
-  meta_rows.append(f'({meta_id},{post_id},{q(key)},{q(val)})'); meta_id+=1
- rel_rows.append(f'({post_id},{CATEGORY[lang]},0)')
+  meta_row=f'({meta_id},{post_id},{q(key)},{q(val)})';meta_rows.append(meta_row)
+  if lang=='en-US':english_meta_rows.append(meta_row)
+  meta_id+=1
+ if lang in CATEGORY:
+  rel_row=f'({post_id},{CATEGORY[lang]},0)';rel_rows.append(rel_row)
+ else:
+  rel_sql=f"INSERT INTO `ha_term_relationships` (`object_id`,`term_taxonomy_id`,`term_order`) SELECT {post_id},tt.term_taxonomy_id,0 FROM `ha_term_taxonomy` tt JOIN `ha_terms` t ON t.term_id=tt.term_id WHERE tt.taxonomy='category' AND t.slug IN ('en','english') ORDER BY (t.slug='en') DESC LIMIT 1;"
+  dynamic_rel_rows.append(rel_sql);english_rel_rows.append(rel_sql)
  hotfix_rows.append(f'UPDATE `ha_posts` SET `post_content`={q(localized)}, `post_modified`={q(modified)}, `post_modified_gmt`={q(modified_gmt)} WHERE `ID`={post_id} AND `post_type`=\'post\';')
- manifest_rows.append({'post_id':post_id,'source_id':source_id,'language':lang,'slug':m['_final_slug'],'category_term_taxonomy_id':CATEGORY[lang]}); post_id+=1
-header='-- Corrected translation patch for navar-abyari.ir\n-- Embedded/manual TOCs removed; WordPress TOC plugin remains authoritative.\n-- Automated units: 304; manual source 739 is applied separately.\nSET NAMES utf8mb4;\nSTART TRANSACTION;\n\n'
+ manifest_rows.append({'post_id':post_id,'source_id':source_id,'language':lang,'slug':m['_final_slug'],'category_term_taxonomy_id':CATEGORY.get(lang),'category_slug':'en' if lang=='en-US' else None}); post_id+=1
+header=f'-- Corrected multilingual translation patch for navar-abyari.ir\n-- Canonical prefixes: /iraq/, /tj/, /en/.\n-- Automated units: {len(records)}.\nSET NAMES utf8mb4;\nSTART TRANSACTION;\n\n'
 posts='INSERT INTO `ha_posts` (`ID`,`post_author`,`post_date`,`post_date_gmt`,`post_content`,`post_title`,`post_excerpt`,`post_status`,`comment_status`,`ping_status`,`post_password`,`post_name`,`to_ping`,`pinged`,`post_modified`,`post_modified_gmt`,`post_content_filtered`,`post_parent`,`guid`,`menu_order`,`post_type`,`post_mime_type`,`comment_count`) VALUES\n'+',\n'.join(post_rows)+';\n\n'
 meta='INSERT INTO `ha_postmeta` (`meta_id`,`post_id`,`meta_key`,`meta_value`) VALUES\n'+',\n'.join(meta_rows)+';\n\n'
-rels='INSERT INTO `ha_term_relationships` (`object_id`,`term_taxonomy_id`,`term_order`) VALUES\n'+',\n'.join(rel_rows)+';\n\nUPDATE `ha_term_taxonomy` SET `count`=`count`+152 WHERE `term_taxonomy_id` IN (259,261);\n\nCOMMIT;\n'
+rels='INSERT INTO `ha_term_relationships` (`object_id`,`term_taxonomy_id`,`term_order`) VALUES\n'+',\n'.join(rel_rows)+';\n\n'+'\n'.join(dynamic_rel_rows)+"\n\nUPDATE `ha_term_taxonomy` SET `count`=(SELECT COUNT(*) FROM `ha_term_relationships` r WHERE r.term_taxonomy_id=`ha_term_taxonomy`.`term_taxonomy_id`) WHERE `taxonomy`='category';\n\nCOMMIT;\n"
 sql=header+posts+meta+rels
 (OUT/'generated-translations.sql').write_text(sql,encoding='utf-8')
 with gzip.GzipFile(filename='',mode='wb',fileobj=open(OUT/'generated-translations.sql.gz','wb'),mtime=0) as gz: gz.write(sql.encode())
+english_header='-- English-only translation import. Requires category slug en or english.\nSET NAMES utf8mb4;\nSTART TRANSACTION;\n\n'
+english_posts='INSERT INTO `ha_posts` (`ID`,`post_author`,`post_date`,`post_date_gmt`,`post_content`,`post_title`,`post_excerpt`,`post_status`,`comment_status`,`ping_status`,`post_password`,`post_name`,`to_ping`,`pinged`,`post_modified`,`post_modified_gmt`,`post_content_filtered`,`post_parent`,`guid`,`menu_order`,`post_type`,`post_mime_type`,`comment_count`) VALUES\n'+',\n'.join(english_post_rows)+';\n\n'
+english_meta='INSERT INTO `ha_postmeta` (`meta_id`,`post_id`,`meta_key`,`meta_value`) VALUES\n'+',\n'.join(english_meta_rows)+';\n\n'
+english_sql=english_header+english_posts+english_meta+'\n'.join(english_rel_rows)+"\nUPDATE `ha_term_taxonomy` SET `count`=(SELECT COUNT(*) FROM `ha_term_relationships` r WHERE r.term_taxonomy_id=`ha_term_taxonomy`.`term_taxonomy_id`) WHERE `taxonomy`='category';\nCOMMIT;\n"
+(OUT/'generated-english-translations.sql').write_text(english_sql,encoding='utf-8')
+with gzip.GzipFile(filename='',mode='wb',fileobj=open(OUT/'generated-english-translations.sql.gz','wb'),mtime=0) as gz: gz.write(english_sql.encode())
 hotfix='-- Hotfix for translations already imported into navar-abyari.ir\nSET NAMES utf8mb4;\nSTART TRANSACTION;\n'+'\n'.join(hotfix_rows)+'\nCOMMIT;\n'
 (OUT/'fix-imported-translations.sql').write_text(hotfix,encoding='utf-8')
 with gzip.GzipFile(filename='',mode='wb',fileobj=open(OUT/'fix-imported-translations.sql.gz','wb'),mtime=0) as gz: gz.write(hotfix.encode())

@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: Navar Translation Link Fix
- * Description: Keeps article content and menus synchronized across Persian, Arabic and Tajik.
- * Version: 1.3.0
+ * Description: Direct canonical switching across Persian, Arabic, Tajik and English without redirect chains.
+ * Version: 2.0.0
  */
 if (!defined('ABSPATH')) exit;
 
@@ -49,7 +49,7 @@ function navar_translation_targets($post_id) {
     ));
     foreach ($ids as $id) {
         $language = (string) get_post_meta($id, '_navar_translation_language', true);
-        if ($language === 'ar-IQ' || $language === 'tg-TJ') $targets[$language] = absint($id);
+        if (in_array($language, array('ar-IQ','tg-TJ','en-US'), true)) $targets[$language] = absint($id);
     }
     return $targets;
 }
@@ -60,6 +60,7 @@ function navar_requested_language($raw) {
         'iran'=>'fa-IR','fa'=>'fa-IR','fa-ir'=>'fa-IR','persian'=>'fa-IR',
         'iraq'=>'ar-IQ','iq'=>'ar-IQ','ar'=>'ar-IQ','ar-iq'=>'ar-IQ','arabic'=>'ar-IQ',
         'tajikistan'=>'tg-TJ','tj'=>'tg-TJ','tg'=>'tg-TJ','tg-tj'=>'tg-TJ','tajik'=>'tg-TJ',
+        'english'=>'en-US','en'=>'en-US','en-us'=>'en-US',
     );
     return isset($map[$value]) ? $map[$value] : '';
 }
@@ -68,6 +69,7 @@ function navar_country_value($language) {
     if ($language === 'fa-IR') return 'iran';
     if ($language === 'ar-IQ') return 'iraq';
     if ($language === 'tg-TJ') return 'tajikistan';
+    if ($language === 'en-US') return 'english';
     return '';
 }
 
@@ -82,8 +84,7 @@ add_action('template_redirect', function () {
     if (!$target_id || $target_id === $current_id) return;
     $destination = get_permalink($target_id);
     if (!$destination) return;
-    $destination = add_query_arg('navar_lang', navar_country_value($requested), $destination);
-    wp_safe_redirect($destination, 302, 'Navar Translation Link Fix');
+    wp_safe_redirect($destination, 301, 'Navar Translation Link Fix');
     exit;
 }, 0);
 
@@ -94,10 +95,10 @@ add_action('wp_footer', function () {
     $links = array();
     foreach ($targets as $language => $target_id) {
         $country = navar_country_value($language);
-        if ($country) $links[$country] = add_query_arg('navar_lang', $country, get_permalink($target_id));
+        if ($country) $links[$country] = get_permalink($target_id);
     }
     ?>
-<script id="navar-translation-link-fix-v130">
+<script id="navar-translation-link-fix-v200">
 (() => {
   const links = <?php echo wp_json_encode($links, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?>;
   for (const anchor of document.querySelectorAll('a[href]')) {
@@ -106,11 +107,6 @@ add_action('wp_footer', function () {
       const requested = (url.searchParams.get('navar_lang') || '').toLowerCase();
       if (links[requested]) anchor.href = links[requested];
     } catch (_) {}
-  }
-  const selected = (new URL(location.href).searchParams.get('navar_lang') || '').toLowerCase();
-  if (links[selected]) {
-    const expected = new URL(links[selected], location.href);
-    if (expected.pathname !== location.pathname) location.replace(expected.href);
   }
 })();
 </script>
