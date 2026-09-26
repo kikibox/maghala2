@@ -304,23 +304,52 @@ def make_content(item, links):
         import random
         random.Random(item["id"]).shuffle(approved)
         approved = approved[:12]
+    if len(approved) < MIN_LINKS:
+        raise RuntimeError(f"Text QA cannot run: only {len(approved)} approved internal links available")
     link_lines = "\n".join(f"- {x['title']} | {x['url']}" for x in approved)
-    prompt = f'''برای مقاله مفید با موضوع "{item["title"]}" در حوزه آبیاری قطره‌ای و نوار تیپ، یک مقاله سئوشده و کاربردی بنویس. متن فارسی طبیعی، دست‌کم {MIN_WORDS} کلمه، بدون ادعای ساختگی درباره قیمت یا نمایندگی محلی. ساختار HTML فقط با h2/h3/p/ul/ol/table/strong/a باشد و H1 نداشته باشد. موضوعات: مقدمه، بخش‌های تخصصی مرتبط با {item["focus"]}، نکات عملی، FAQ و جمع‌بندی. حداقل {MIN_LINKS} و حداکثر ۷ لینک داخلی فقط از فهرست زیر استفاده کن. سه نشانگر دقیق [[[IMAGE_1]]], [[[IMAGE_2]]], [[[IMAGE_3]]] را هرکدام یک‌بار و بین بخش‌های مناسب بگذار. JSON با کلیدهای title, meta_title, meta_description, focus_keyword, excerpt, html برگردان.
+    target_words = max(MIN_WORDS + 250, 1300)
+    prompt = f'''برای مقاله مفید با موضوع "{item["title"]}" در حوزه آبیاری قطره‌ای و نوار تیپ، یک مقاله سئوشده و کاربردی بنویس. متن فارسی طبیعی، دست‌کم {target_words} کلمه، بدون ادعای ساختگی درباره قیمت یا نمایندگی محلی. ساختار HTML فقط با h2/h3/p/ul/ol/table/strong/a باشد و H1 نداشته باشد. موضوعات: مقدمه، بخش‌های تخصصی مرتبط با {item["focus"]}، نکات عملی، FAQ و جمع‌بندی. حداقل {MIN_LINKS} و حداکثر ۷ لینک داخلی فقط از فهرست زیر استفاده کن. سه نشانگر دقیق [[[IMAGE_1]]], [[[IMAGE_2]]], [[[IMAGE_3]]] را هرکدام یک‌بار و بین بخش‌های مناسب بگذار. JSON با کلیدهای title, meta_title, meta_description, focus_keyword, excerpt, html برگردان.
 لینک‌های مجاز:
 {link_lines}'''
-    for _ in range(4):
-        obj = agnes(prompt)
-        body = obj.get("html","")
-        allowed = {x["url"] for x in approved}
-        body = sanitize_links(body, allowed)
+    obj = None
+    last_errors = []
+    allowed = {x["url"] for x in approved}
+    for attempt in range(1, 5):
+        if attempt == 1:
+            obj = agnes(prompt)
+        else:
+            repair_prompt = f'''نسخه زیر در کنترل کیفیت رد شده است. همان مقاله را ویرایش کن و کوتاه یا از نو بازنویسی نکن. خطاهای دقیق: {'; '.join(last_errors)}. متن را به دست‌کم {target_words} کلمه برسان، فقط {MIN_LINKS} تا ۷ لینک از فهرست مجاز نگه دار و هر سه نشانگر تصویر را دقیقاً یک‌بار حفظ کن. فقط JSON معتبر با همان شش کلید برگردان.
+لینک‌های مجاز:
+{link_lines}
+نسخه قبلی:
+{json.dumps(obj, ensure_ascii=False)}'''
+            obj = agnes(repair_prompt)
+        if not isinstance(obj, dict):
+            last_errors = ["response is not a JSON object"]
+            continue
+        body = sanitize_links(obj.get("html", ""), allowed)
         used = internal_links(body)
-        if words(body) >= MIN_WORDS and MIN_LINKS <= len(used) <= 7 and \
-           all(body.count(f"[[[IMAGE_{i}]]]") == 1 for i in range(1,4)) and not (used - allowed):
-            # Persist exactly the body that passed the link and content gate.
+        errors = []
+        word_count = words(body)
+        if word_count < MIN_WORDS:
+            errors.append(f"word count {word_count} below {MIN_WORDS}")
+        if not (MIN_LINKS <= len(used) <= 7):
+            errors.append(f"internal link count {len(used)} outside {MIN_LINKS}-7")
+        if used - allowed:
+            errors.append("unapproved internal links remain")
+        for i in range(1, 4):
+            marker_count = body.count(f"[[[IMAGE_{i}]]]")
+            if marker_count != 1:
+                errors.append(f"IMAGE_{i} marker count is {marker_count}, expected 1")
+        for key in ("title", "meta_title", "meta_description", "focus_keyword", "excerpt", "html"):
+            if not obj.get(key):
+                errors.append(f"missing {key}")
+        if not errors:
             obj["html"] = body
             return obj
-        prompt += "\nنسخه قبلی کنترل کیفیت را رد کرد؛ طول، لینک‌ها یا نشانگرهای تصویر را دقیق اصلاح کن."
-    raise RuntimeError("Text QA failed after 4 attempts")
+        obj["html"] = body
+        last_errors = errors
+    raise RuntimeError("Text QA failed after 4 attempts: " + "; ".join(last_errors))
 
 
 def image_prompt(item, kind):
