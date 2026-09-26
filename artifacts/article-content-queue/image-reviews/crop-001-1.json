@@ -2,39 +2,58 @@
   "id": "crop-001",
   "kind": 1,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v9-semantic-composition-set-reviewed",
+  "policy": "strict-no-human-scale-watermark-v10-topic-identity-semantic-composition-set-reviewed",
   "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 15,
+      "score": 85,
       "product_width_percent": 14,
-      "product_height_percent": 11,
-      "product_x_center_percent": 50,
+      "product_height_percent": 15,
+      "product_x_center_percent": 66,
       "reasons": [
-        "Critical violation: Image contains a full-body person (farmer) crouching in the center frame, which is explicitly prohibited by the 'zero people' constraint.",
-        "Placement violation: The product is placed directly in front of the person and centered, rather than being off-center on the lower third of the image as a secondary element.",
+        "Crop visually matches spinach (dense low rosettes, smooth dark-green leaves)",
+        "Required bottom-right watermark present",
+        "No people or body parts visible",
+        "Drip tape context accurate",
         "machine-enforced bounding-box check failed: Enlarge the product group from 14% to 20-23% of frame width."
       ],
-      "correction_prompt": "Generate an image of a solitary white and blue AFP drip-tape carton roll placed on the soil in a farm field. The roll must be positioned off-center on the lower third of the frame. The scene must contain absolutely no people, farmers, or human silhouettes. Ensure the 'AFP | 09134922013' watermark is visible in the bottom right corner. Enlarge the product group from 14% to 20-23% of frame width.",
+      "correction_prompt": "Enlarge the product group from 14% to 20-23% of frame width.",
       "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 8,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: A person (farmer) is clearly visible in the image, which violates the 'zero people and zero human body parts' requirement.",
+        "Product failure: The product is a white plastic jar/bottle, not the required wide low cylindrical drip-tape carton roll.",
+        "Product size: The product is significantly too small, occupying less than 20% of the frame width (target 20-23%).",
+        "Product placement: The product is being held by a hand and placed at the center, failing the 'secondary, off-center on the lower third' requirement.",
+        "Crop ambiguity: The visible crop rows are generic and do not clearly match the specific visual definition for spinach provided in the prompt.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people. Show a wide, white-and-blue cylindrical drip-tape carton roll resting on the soil in the lower-right off-center position, appearing to be about 1.5 times its height in width. Place it amidst clearly recognizable spinach rosettes (dense, low, dark green arrow-shaped leaves). Ensure the crop is visually dominant to represent spinach. Enlarge the product group from 8% to 20-23% of frame width.",
+      "attempt": 2
     },
     {
       "pass": true,
       "score": 95,
-      "product_width_percent": 21,
-      "product_height_percent": 27,
-      "product_x_center_percent": 48,
+      "product_width_percent": 22,
+      "product_height_percent": 25,
+      "product_x_center_percent": 58,
       "reasons": [
-        "The image contains exactly one AFP white and blue wide cylindrical drip-tape roll, clearly positioned on the soil.",
-        "The bounding box dimensions (approximately 21% width, 27% height, 48% center) satisfy all geometric and placement constraints.",
-        "The bottom-right watermark 'AFP | 09134922013' is present and intact.",
-        "Zero people, body parts, or human silhouettes are visible in the frame.",
-        "The background context of a farm field with rows of young crops perfectly matches the image role and topic.",
-        "Geometry of the roll is realistic, with no fake text, gibberish, or impossible features."
+        "Product is a wide, low cylindrical drip-tape roll with correct aspect ratio (approx 1.7:1 diameter to height).",
+        "Product placement is off-center in the lower third, naturally resting on soil.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Image contains zero people or human body parts.",
+        "Visible text on the package is authentic branding (AFP) and no gibberish is present.",
+        "Background is a farm context with rows of crops; while the crop leaves are slightly broader than typical wild spinach, the rosette growth habit is consistent with the requested 'spinach' context, so it passes the visual recognition threshold."
       ],
       "correction_prompt": "",
-      "attempt": 2
+      "attempt": 3
     }
   ],
   "approved_image": "میزان-برداشت-اسفناج-در-هکتار-با-نوار-تیپ-تصویر-شاخص.webp"
