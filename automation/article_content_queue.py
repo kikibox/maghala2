@@ -571,6 +571,13 @@ def image_info(blob):
     raise RuntimeError("Generated image format is unsupported or corrupt")
 
 
+def _neutral_image_bytes(Image, io):
+    canvas = Image.new("RGB", (1024, 576), (232, 234, 228))
+    buffer = io.BytesIO()
+    canvas.save(buffer, "PNG", optimize=True)
+    return buffer.getvalue()
+
+
 def generate_image(item, kind):
     import base64
     import io
@@ -583,7 +590,13 @@ def generate_image(item, kind):
          "Accept": "application/json", "User-Agent": "navar-article-queue"},
         {"model": IMAGE_MODEL, "prompt": image_prompt(item, kind),
          "size": "1024x768", "return_base64": True,
-         "extra_body": {"response_format": "b64_json"}},
+         # Agnes 2.5 requires a non-empty image input. This plain canvas is
+         # transport-only and does not condition the scene on a product photo.
+         "extra_body": {"response_format": "b64_json", "image": [
+             "data:image/png;base64," + base64.b64encode(
+                 _neutral_image_bytes(Image, io)
+             ).decode("ascii")
+         ]}},
         600
     )
     row = data["data"][0]

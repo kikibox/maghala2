@@ -57,7 +57,10 @@ class ArticleQueueTests(unittest.TestCase):
                     record = queue.generate_image(item, 1)
                 payload = fetch_json.call_args.args[2]
                 self.assertEqual(payload["model"], "agnes-image-2.5-flash")
-                self.assertNotIn("image", payload["extra_body"])
+                self.assertEqual(len(payload["extra_body"]["image"]), 1)
+                neutral = payload["extra_body"]["image"][0]
+                self.assertTrue(neutral.startswith("data:image/png;base64,"))
+                self.assertNotIn(queue.image_prompt_policy.DRIP_TAPE_ROLL_REFERENCE, neutral)
                 prompt = queue.image_prompt(item, 1)
                 self.assertIn("1000-meter", prompt)
                 self.assertIn("10 to 20 percent", prompt)
