@@ -73,6 +73,20 @@ class ArticleQueueTests(unittest.TestCase):
             finally:
                 queue.OUT, queue.IMAGE_TOKEN = old_out, old_token
 
+    def test_product_label_text_is_exact_and_family_specific(self):
+        tape = queue.image_prompt_policy.image_prompt(
+            {"source_id": "crop-001", "title": "مقاله نوار تیپ"}, 1
+        )
+        layflat = queue.image_prompt_policy.image_prompt(
+            {"source_id": "crop-001-layflat", "title": "مقاله لوله نخدار"}, 1
+        )
+        for required in ("AFP", "آبگسترفراپارسیان", "Drip Irrigation tape"):
+            self.assertIn(required, tape)
+        self.assertIn('never print "layflat"', tape)
+        for required in ("AFP", "آبگسترفراپارسیان", 'lowercase "layflat"'):
+            self.assertIn(required, layflat)
+        self.assertIn('never print "Drip Irrigation tape"', layflat)
+
     def test_sql_is_publish_idempotent_and_rollback_is_marker_scoped(self):
         item = {
             "id": "crop-001", "title": "عنوان", "slug": "onvan",
