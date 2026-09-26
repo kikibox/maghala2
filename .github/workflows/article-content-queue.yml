@@ -121,6 +121,10 @@ jobs:
           PACKAGE_BATCH_SIZE: '50'
         run: python automation/package_article_content_batches.py
 
+      - name: Refresh dashboard after image rebuild
+        if: always()
+        run: python automation/render_article_queue_status.py
+
       - name: Persist queue state
         if: always()
         shell: bash

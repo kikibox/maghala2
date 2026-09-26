@@ -309,7 +309,7 @@ def write_status(q, result):
         "",
         f"- مدل متن: `{AGNES_MODEL}`",
         f"- مدل تصویر: `{IMAGE_MODEL}`",
-        f"- آبجکت الزامی تصویر: **محصول AFP با مقیاس واقعی، زیر ارتفاع زانو و حداکثر ۶ تا ۹٪ عرض کادر**؛ تمرکز اصلی روی موضوع مقاله",
+        f"- آبجکت الزامی تصویر: **نوار تیپ با مقیاس 03-compact (۲۰ تا ۲۳٪ عرض کادر) و جفت لی‌فلت با مقیاس 05-pair-far (۱۲ تا ۱۵٪ عرض کادر)**؛ پس‌زمینه و فعالیت متناسب با موضوع مقاله",
         f"- تعداد تصاویر هر مقاله: **{q.get('images_per_post', 3)}**",
         f"- حداقل کلمات: **{q.get('rules', {}).get('minimum_words', MIN_WORDS)}**",
         f"- لینک داخلی مجاز: **{q.get('rules', {}).get('minimum_internal_links', MIN_LINKS)} تا ۷**",
@@ -921,8 +921,8 @@ def process(q):
                         status="completed", completed_at=completed_at,
                         word_count=words(body), images=[x["name"] for x in images],
                         image_sha256=[x["sha256"] for x in images],
-                        image_generation_mode="reference-conditioned-3d-rerender-scale-controlled",
-                        image_rebuild_policy="reference-rerender-3d-v4-scale-controlled",
+                        image_generation_mode="reference-conditioned-3d-rerender-approved-scales-topic-first",
+                        image_rebuild_policy="reference-rerender-3d-v5-approved-scales-topic-first",
                         delivery="sql_package", last_error="",
                     )
                     item.pop("failed_stage", None);item.pop("failed_at", None);item.pop("started_at", None)

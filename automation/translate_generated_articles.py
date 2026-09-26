@@ -124,7 +124,7 @@ def status_payload():
         complete = sum((TRANS / str(item["id"]) / f"{lang}.json").exists() for item, _ in sources)
         per_language[lang] = {"completed": complete, "pending": len(sources) - complete}
     backlog_sources = sum(bool(missing_languages(str(item["id"]))) for item, _ in sources)
-    image_marker = OUT / "image-rebuild-reference-rerender-3d-v4-scale-controlled.json"
+    image_marker = OUT / "image-rebuild-reference-rerender-3d-v5-approved-scales-topic-first.json"
     image_data = {}
     if image_marker.exists():
         try:
@@ -145,6 +145,8 @@ def status_payload():
             "completed": bool(image_data.get("completed")),
             "failures": len(image_data.get("failures", [])),
             "total_candidates": image_data.get("total_candidates", len(sources)),
+            "remaining_candidates": image_data.get("remaining_candidates", len(sources)),
+            "rebuilt_posts": len(image_data.get("rebuilt_posts", [])),
         },
     }
     package_manifest = OUT / "translation-packages" / "manifest.json"
