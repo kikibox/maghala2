@@ -102,6 +102,21 @@ class ArticleQueueTests(unittest.TestCase):
             finally:
                 queue.OUT, queue.IMAGE_TOKEN = old_out, old_token
 
+    def test_image_gate_metric_feedback_is_directional_and_tolerates_estimation_noise(self):
+        ok, issues = queue.image_quality_gate._metric_check(
+            "tape20",
+            {"product_width_percent": 22, "product_height_percent": 25, "product_x_center_percent": 48},
+        )
+        self.assertTrue(ok)
+        self.assertEqual(issues, [])
+        ok, issues = queue.image_quality_gate._metric_check(
+            "tape20",
+            {"product_width_percent": 18, "product_height_percent": 24, "product_x_center_percent": 50},
+        )
+        self.assertFalse(ok)
+        self.assertTrue(any("Enlarge" in issue for issue in issues))
+        self.assertTrue(any("do not center" in issue for issue in issues))
+
     def test_seo_image_names_are_descriptive_and_sanitized(self):
         item = {"id": "crop-001", "slug": "هزینه کشت گوجه / نوار تیپ"}
         self.assertEqual(

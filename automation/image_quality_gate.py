@@ -2,7 +2,7 @@
 """Fast image QA with hard rejection for product identity and physics failures."""
 import base64,json,os,re,urllib.request
 import image_prompt_policy
-REVIEW_POLICY='strict-no-human-scale-watermark-v3-metrics'
+REVIEW_POLICY='strict-no-human-scale-watermark-v4-metric-feedback'
 MAX_IMAGE_ATTEMPTS=max(1,int(os.getenv('IMAGE_QA_ATTEMPTS','6')))
 MIN_IMAGE_SCORE=int(os.getenv('IMAGE_QA_MIN_SCORE','70'))
 FAST_MODE=os.getenv('IMAGE_QA_FAST_MODE','1')!='0'
@@ -20,6 +20,29 @@ def _quick_file_check(path):
  if (not path.exists()) or path.stat().st_size<10000:
   return {'pass':False,'score':0,'reasons':['image file missing or too small'],'correction_prompt':'Regenerate a valid photorealistic farm irrigation image.'}
  return None
+
+
+def _metric_check(family,verdict):
+ try:
+  width=float(verdict.get('product_width_percent'))
+  height=float(verdict.get('product_height_percent'))
+  x_center=float(verdict.get('product_x_center_percent'))
+ except (TypeError,ValueError):
+  return False,['Return numeric product_width_percent, product_height_percent and product_x_center_percent.']
+ min_width,max_width=(12,15) if family=='layflat' else (20,23)
+ issues=[]
+ if width<min_width:
+  issues.append(f'Enlarge the product group from {width:g}% to {min_width}-{max_width}% of frame width.')
+ elif width>max_width:
+  issues.append(f'Reduce the product group from {width:g}% to {min_width}-{max_width}% of frame width.')
+ if height>28:
+  issues.append(f'Reduce product height from {height:g}% to at most 28% of frame height.')
+ # The vision model's x-center estimate is noisy by a few percentage points.
+ # Reject only a truly centered estimate; semantic placement still has to pass
+ # the model review above.
+ if 49.5<=x_center<=50.5:
+  issues.append('Move the product clearly to the left or right lower third; do not center it.')
+ return not issues,issues
 
 def _vision_review(base,path,item,kind):
  quick=_quick_file_check(path)
@@ -43,18 +66,12 @@ The exact bottom-right watermark "AFP | 09134922013" is REQUIRED and must never 
  content=raw['choices'][0]['message']['content']
  if isinstance(content,list):content=''.join(str(x.get('text','')) for x in content if isinstance(x,dict))
  verdict=_extract_json(content)
- try:
-  width=float(verdict.get('product_width_percent'))
-  height=float(verdict.get('product_height_percent'))
-  x_center=float(verdict.get('product_x_center_percent'))
-  numeric_ok=(12<=width<=15 and height<=28) if family=='layflat' else (20<=width<=23 and height<=28)
-  off_center=x_center<=43 or x_center>=57
- except (TypeError,ValueError):
-  numeric_ok=off_center=False
- verdict['pass']=bool(verdict.get('pass')) and int(verdict.get('score',0))>=MIN_IMAGE_SCORE and numeric_ok and off_center
- if not numeric_ok or not off_center:
-  verdict.setdefault('reasons',[]).append('machine-enforced bounding-box scale/off-center check failed')
-  verdict['correction_prompt']='Make the product smaller to the exact requested pixel percentage and place it clearly off-center on the lower third.'
+ metric_ok,metric_issues=_metric_check(family,verdict)
+ verdict['pass']=bool(verdict.get('pass')) and int(verdict.get('score',0))>=MIN_IMAGE_SCORE and metric_ok
+ if not metric_ok:
+  verdict.setdefault('reasons',[]).append('machine-enforced bounding-box check failed: '+'; '.join(metric_issues))
+  model_correction=str(verdict.get('correction_prompt') or '').strip()
+  verdict['correction_prompt']=' '.join(x for x in [model_correction,' '.join(metric_issues)] if x)
  return verdict
 
 def review_image(base,path,item,kind):
