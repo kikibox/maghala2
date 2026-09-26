@@ -747,6 +747,8 @@ def _generate_image_once(item, kind):
 def generate_image(item, kind):
     """Generate and replace an image only after strict visual QA passes."""
     history = []
+    reviews_dir = OUT / "image-reviews"
+    reviews_dir.mkdir(parents=True, exist_ok=True)
     feedback = ""
     for attempt in range(1, image_quality_gate.MAX_IMAGE_ATTEMPTS + 1):
         candidate_item = dict(item)
@@ -767,6 +769,22 @@ def generate_image(item, kind):
             }
         verdict["attempt"] = attempt
         history.append(verdict)
+        review_id = str(item.get("id") or item.get("source_id") or "unknown")
+        (reviews_dir / f"{review_id}-{kind}.json").write_text(
+            json.dumps(
+                {
+                    "id": review_id,
+                    "kind": kind,
+                    "family": image_prompt_policy.product_family(item),
+                    "approved": bool(verdict.get("pass")),
+                    "attempts": history,
+                    "approved_image": result["name"] if verdict.get("pass") else None,
+                },
+                ensure_ascii=False,
+                indent=2,
+            ),
+            encoding="utf-8",
+        )
         print(
             f"article_image_qa id={item.get('id')} kind={kind} "
             f"attempt={attempt} pass={verdict.get('pass')} "
