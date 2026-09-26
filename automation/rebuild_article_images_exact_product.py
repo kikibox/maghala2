@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One-time rebuild of completed article images with exact AFP product assets."""
+"""Gradually rebuild completed article images with the approved AFP product policy."""
 from __future__ import annotations
 
 import datetime as dt
@@ -9,26 +9,28 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import article_content_queue as queue
 
-POLICY = "reference-rerender-3d-v4-scale-controlled"
-MODE = "reference-conditioned-3d-rerender-scale-controlled"
-MARKER = queue.OUT / "image-rebuild-reference-rerender-3d-v4-scale-controlled.json"
-WORKERS = max(1, int(os.getenv("IMAGE_WORKERS", "8")))
+POLICY = "reference-rerender-3d-v5-approved-scales-topic-first"
+MODE = "reference-conditioned-3d-rerender-approved-scales-topic-first"
+MARKER = queue.OUT / "image-rebuild-reference-rerender-3d-v5-approved-scales-topic-first.json"
+WORKERS = min(2, max(1, int(os.getenv("IMAGE_WORKERS", "2"))))
+POST_LIMIT = max(1, int(os.getenv("IMAGE_REBUILD_POST_LIMIT", "4")))
 
 
 def now() -> str:
     return dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat()
 
 
-def write_marker(rebuilt, skipped, failures, total, completed=False):
+def write_marker(rebuilt, skipped, failures, total, remaining, completed=False):
     MARKER.parent.mkdir(parents=True, exist_ok=True)
     MARKER.write_text(
         json.dumps(
             {
                 "policy": POLICY,
                 "mode": MODE,
-                "completed": bool(completed and not failures),
-                "completed_at": now() if completed and not failures else None,
+                "completed": bool(completed and not failures and remaining == 0),
+                "completed_at": now() if completed and not failures and remaining == 0 else None,
                 "total_candidates": total,
+                "remaining_candidates": remaining,
                 "rebuilt_posts": sorted(rebuilt),
                 "skipped": skipped,
                 "failures": failures,
@@ -59,11 +61,14 @@ def main() -> int:
             continue
         records[item_id] = (item, path, data)
 
+    pending_total = len(records)
     if not records:
-        write_marker([], skipped, [], len(completed), completed=True)
+        write_marker([], skipped, [], len(completed), 0, completed=True)
         print("exact_product_rebuild=already_current")
         return 0
 
+    selected_ids = list(records)[:POST_LIMIT]
+    records = {item_id: records[item_id] for item_id in selected_ids}
     results = {item_id: {} for item_id in records}
     failures = []
     with ThreadPoolExecutor(max_workers=WORKERS, thread_name_prefix="exact-product") as pool:
@@ -104,12 +109,13 @@ def main() -> int:
         )
         rebuilt.append(item_id)
 
+    remaining = max(0, pending_total - len(rebuilt))
     state["updated_at"] = now()
     queue.QUEUE.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
-    write_marker(rebuilt, skipped, failures, len(completed), completed=True)
+    write_marker(rebuilt, skipped, failures, len(completed), remaining, completed=True)
     print(
-        f"exact_product_rebuild rebuilt={len(rebuilt)} failures={len(failures)} "
-        f"workers={WORKERS} policy={POLICY}",
+        f"exact_product_rebuild rebuilt={len(rebuilt)} remaining={remaining} failures={len(failures)} "
+        f"workers={WORKERS} post_limit={POST_LIMIT} policy={POLICY}",
         flush=True,
     )
     return 0
