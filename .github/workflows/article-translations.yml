@@ -17,6 +17,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: article-content-pipeline
@@ -90,3 +91,22 @@ jobs:
           git commit -m 'Update multilingual article translations [skip ci]'
           git pull --rebase origin main
           git push origin main
+
+      - name: Resume Persian queue when translations are current
+        if: success()
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set +e
+          python automation/translate_generated_articles.py --check-backlog
+          rc=$?
+          set -e
+          if [ "$rc" -eq 0 ]; then
+            echo "All generated translations are current; dispatching the next Persian article batch."
+            gh workflow run article-content-queue.yml --ref main
+          elif [ "$rc" -eq 2 ]; then
+            echo "Translation backlog remains; Persian queue stays paused."
+          else
+            exit "$rc"
+          fi
