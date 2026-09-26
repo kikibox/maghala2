@@ -3,24 +3,140 @@
   "kind": 2,
   "family": "tape20",
   "policy": "strict-no-human-scale-watermark-v8-role-isolated-set-reviewed",
-  "approved": true,
+  "approved": false,
   "attempts": [
     {
-      "pass": true,
-      "score": 98,
-      "product_width_percent": 22.5,
-      "product_height_percent": 17.5,
-      "product_x_center_percent": 28.5,
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 20.5,
+      "product_height_percent": 35.5,
+      "product_x_center_percent": 70,
       "reasons": [
-        "The product (AFP drip-tape roll) is positioned in the lower-left third, naturally placed on the soil, and remains secondary to the foreground crop context.",
-        "The estimated bounding box meets all dimensional constraints: width is ~22.5%, height is ~17.5% (well under the 28% limit), and the visible diameter-to-height ratio is roughly 1.7:1, fitting the required 1.6–1.8 range.",
-        "The image contains zero people, human silhouettes, or body parts.",
-        "The bottom-right 'AFP | 09134922013' watermark is present and correctly formatted.",
-        "The farm background (soil and crop rows) matches the specified 'farm context' without any prohibited commercial clutter or extra products."
+        "Roll is too tall: estimated height is ~35% of frame, exceeding the 28% limit.",
+        "Visible diameter-to-height ratio is too low (nearly 1:1), failing the 1.6 to 1.8 requirement for a wide, low cylindrical roll.",
+        "Unwanted loop of tape lies on the soil in front of the carton.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35.5% to at most 28% of frame height."
       ],
-      "correction_prompt": "",
+      "correction_prompt": "Regenerate with a wider, flatter cylindrical roll (diameter ~1.7x height) occupying <28% frame height and 20-23% width. Remove the tape loop on the ground, keeping only the straight white line. Ensure the roll is secondary and off-center on the lower third. Reduce product height from 35.5% to at most 28% of frame height.",
       "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 10,
+      "product_height_percent": 14,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Presence of a person/farmer and visible human body parts (face, arms, legs) which is a hard reject criterion",
+        "The drip-tape roll is the secondary focus and is much smaller than required (target 20-23% width), occupying only about 10%",
+        "The product is not positioned in the lower third; it is in the center foreground",
+        "The product is not naturally placed on the soil but is being held by a person",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts. Reposition the AFP white-and-blue cylindrical drip-tape roll to the lower third of the frame, off-center. Scale the roll to be secondary but prominent, occupying roughly 20-23% of the frame width. Place the roll naturally on the soil in a farm context with crop rows. Enlarge the product group from 10% to 20-23% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 92,
+      "product_width_percent": 21.0,
+      "product_height_percent": 17.0,
+      "product_x_center_percent": 50.0,
+      "reasons": [
+        "Product is a single AFP white-and-blue cylindrical drip-tape carton roll",
+        "Placed naturally on soil in a farm context (crop rows and barn visible)",
+        "Bounding box estimates show width ~21% (within 20-23%) and height ~17% (within <28%)",
+        "Roll is secondary and positioned on the lower third",
+        "Zero people or human body parts visible",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner",
+        "No prohibited items (bottles, jars, extra rolls, etc.) are visible",
+        "machine-enforced bounding-box check failed: Move the product clearly to the left or right lower third; do not center it."
+      ],
+      "correction_prompt": "Move the product clearly to the left or right lower third; do not center it.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 13,
+      "product_height_percent": 13,
+      "product_x_center_percent": 73,
+      "reasons": [
+        "Presence of a person (farmer) in the image, which is a hard reject condition",
+        "Product (drip-tape carton) is too small, occupying less than the required 20-23% of frame width",
+        "Product aspect ratio is roughly square (diameter not 1.6-1.8 times height)",
+        "Product is placed in the hands of the person rather than naturally placed on soil as the secondary subject",
+        "Product is not off-center on the lower third (it is in the middle band, but blocked by the person)",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 13% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with no people or body parts. Show a single white-and-blue drip-tape carton roll naturally placed on the soil of a farm field. The roll must occupy 20-23% of the image width, have a low cylindrical shape (width 1.6-1.8x height), and be positioned off-center in the lower third. Background should match the specific farm context. Enlarge the product group from 13% to 20-23% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 25,
+      "product_height_percent": 20,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product width exceeds the strict upper limit of 23 percent of the frame width (estimated at ~25 percent).",
+        "The visible diameter-to-height ratio of the roll is approximately 1.25:1 (width/height), which fails the 1.6-1.8 aspect ratio requirement for wide cylindrical rolls.",
+        "The product is centered horizontally (x_center ~48%) rather than being off-center.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 25% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Shrink the drip-tape roll to exactly 20-22% of frame width to ensure it appears wider than it is tall (1.7:1 ratio). Shift the roll slightly to the left so its center is at roughly 35-40% of the frame width, maintaining its position on the soil in the lower third. Reduce the product group from 25% to 20-23% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 19,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: Visible human body parts (legs, hands) present in the background",
+        "The roll's aspect ratio fails: it is too tall relative to its width (diameter is not 1.6-1.8x its height)",
+        "The roll's width is only ~15% of the frame, failing the 20-23% requirement",
+        "The roll's height is ~19%, which is too tall relative to the required width-to-height ratio",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 15% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures and body parts. Regenerate the scene with zero people. Increase the roll's diameter and lower its height to achieve a wider cylindrical shape where the width is approximately 1.7 times the height. Adjust scale so the roll width is ~20% of the frame width. Position it in the lower third. Enlarge the product group from 15% to 20-23% of frame width.",
+      "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 14,
+      "product_height_percent": 15,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Contains a prominent person (woman) touching the product",
+        "Contains visible human body parts (hands, arms, legs)",
+        "Product is centered in the frame instead of off-center on the lower third",
+        "Product diameter-to-height ratio does not meet the 1.6-1.8x requirement (too narrow)",
+        "Product width is less than the required 20-23 percent of frame width",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 14% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Re-place the white-and-blue cylindrical drip-tape carton roll off-center on the lower right third. Increase the product's width to 20-23% of the frame and ensure its diameter is roughly 1.7 times its height. Show the roll resting on soil with farm crops in the background, no people, no hands. Enlarge the product group from 14% to 20-23% of frame width.",
+      "attempt": 7
+    },
+    {
+      "pass": false,
+      "score": 82,
+      "product_width_percent": 21.25,
+      "product_height_percent": 27.0,
+      "product_x_center_percent": 50.0,
+      "reasons": [
+        "Contains exactly one cylindrical drip-tape roll with white and blue packaging.",
+        "Product is placed naturally on soil in a farm context.",
+        "Required watermark 'AFP | 09134922013' is clearly visible in the bottom-right corner.",
+        "Zero people or human body parts visible.",
+        "Product dimensions (width ~21.25%, height ~27%) fall within the specified limits, although the width is on the higher end of the acceptable range.",
+        "machine-enforced bounding-box check failed: Move the product clearly to the left or right lower third; do not center it."
+      ],
+      "correction_prompt": "Move the product clearly to the left or right lower third; do not center it.",
+      "attempt": 8
     }
   ],
-  "approved_image": "میزان-برداشت-اسفناج-در-هکتار-با-نوار-تیپ-کاربرد-عملی.webp"
+  "approved_image": null
 }
