@@ -12,7 +12,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = Path(__file__).with_name("assets")
@@ -24,6 +24,7 @@ KEY = (os.getenv("IMAGE_API_KEY") or os.getenv("AGNES_API_KEY", "")).strip()
 MODEL = os.getenv("IMAGE_MODEL") or os.getenv(
     "AGNES_IMAGE_MODEL", "agnes-image-2.5-flash"
 )
+PHONE_LABEL = "AFP | 09134922013"
 
 
 CASES = {
@@ -90,6 +91,28 @@ def reference_data_url(filename: str) -> str:
     return f"data:{mime};base64," + encoded
 
 
+def add_phone_watermark(image: Image.Image) -> Image.Image:
+    canvas = image.convert("RGBA")
+    overlay = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
+    draw = ImageDraw.Draw(overlay)
+    try:
+        font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 27)
+    except OSError:
+        font = ImageFont.load_default()
+    box = draw.textbbox((0, 0), PHONE_LABEL, font=font)
+    width, height = box[2] - box[0], box[3] - box[1]
+    margin, pad_x, pad_y = 18, 16, 10
+    x = canvas.width - width - margin - 2 * pad_x
+    y = canvas.height - height - margin - 2 * pad_y
+    draw.rounded_rectangle(
+        (x, y, canvas.width - margin, canvas.height - margin),
+        radius=8,
+        fill=(0, 0, 0, 178),
+    )
+    draw.text((x + pad_x, y + pad_y - box[1]), PHONE_LABEL, font=font, fill="white")
+    return Image.alpha_composite(canvas, overlay).convert("RGB")
+
+
 def generate(name: str, case: dict) -> dict:
     payload = {
         "model": MODEL,
@@ -137,6 +160,7 @@ def generate(name: str, case: dict) -> dict:
                 top = (height - new_height) // 2
                 image = image.crop((0, top, width, top + new_height))
             image = image.resize((1200, 675), Image.Resampling.LANCZOS)
+            image = add_phone_watermark(image)
             output = io.BytesIO()
             image.save(output, "WEBP", quality=72, method=6)
             result = output.getvalue()
