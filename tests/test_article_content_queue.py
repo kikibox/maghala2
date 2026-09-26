@@ -168,7 +168,11 @@ class ArticleQueueTests(unittest.TestCase):
         recipes = [queue.image_prompt_policy.visual_recipe(item, kind) for kind in (1, 2, 3)]
         self.assertEqual(len({row["camera"] for row in recipes}), 3)
         self.assertEqual(len({row["environment"] for row in recipes}), 3)
-        self.assertTrue(all("seed" in row["anchor"] for row in recipes))
+        self.assertIn("seed", recipes[0]["anchor"])
+        self.assertIn("seed", recipes[1]["anchor"])
+        self.assertIn("filtration", recipes[2]["anchor"])
+        self.assertTrue(recipes[1]["camera"].startswith(("near-overhead", "high-oblique", "top-down", "close lateral")))
+        self.assertTrue(any(word in recipes[2]["environment"] for word in ("irrigation", "filter", "flush", "pressure")))
         prompts = [queue.image_prompt_policy.image_prompt(item, kind) for kind in (1, 2, 3)]
         self.assertEqual(len(set(prompts)), 3)
         self.assertTrue(all("different editorial assignments" in prompt for prompt in prompts))

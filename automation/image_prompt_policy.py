@@ -18,22 +18,22 @@ SCENES={
  2:'unattended practical agricultural arrangement showing article-specific selection, comparison, measurement or setup evidence as the main subject; no person performs the activity',
  3:'empty technical field detail showing article-specific irrigation hardware, crop response, installation evidence or maintenance result as the main subject; no human action is shown',
 }
-CAMERAS=[
- 'low ground-level 28mm view across crop rows', 'high-oblique technical view that reveals bed geometry',
- 'long-lens side view with compressed layered background', 'wide environmental 35mm view with a low horizon',
- 'overhead-leaning detail view of soil and irrigation layout', 'orchard-aisle perspective with strong diagonal depth',
- 'greenhouse-edge perspective looking across cultivated beds', 'close technical foreground with a broad contextual background',
- 'distant landscape view with the field pattern as the hero',
-]
-ENVIRONMENTS=[
- 'open row-crop field with long leading lines and no vehicles', 'young orchard aisle with textured soil and deep perspective',
- 'empty greenhouse edge with cultivated beds visible through the structure', 'prepared seedbed with precise furrows and generous negative space',
- 'mature crop canopy with irrigation lines visible between rows', 'irrigation header zone with an unattended filter, gauge or manifold',
- 'field edge after irrigation with a visible wetting pattern', 'sloped agricultural landscape with layered fields and distant hills',
- 'clean technical soil cross-section area beside planted rows',
-]
+ROLE_CAMERAS={
+ 1:['high-oblique 35mm crop-canopy view','eye-level 50mm side view across a dense crop block','elevated wide 40mm view with an asymmetric field edge','long-lens 85mm crop-layer view with no central vanishing point'],
+ 2:['near-overhead 55mm agronomic close view','high-oblique 70mm crop-and-soil detail','top-down technical view with no visible horizon','close lateral 85mm view across leaves, tape and wetting band'],
+ 3:['medium-height 50mm side view of irrigation hardware','three-quarter 65mm technical view across a header assembly','high-oblique 55mm view of manifold and adjacent crop bed','close 70mm hardware foreground with shallow crop context'],
+}
+ROLE_ENVIRONMENTS={
+ 1:['mature recognizable crop canopy filling most of the frame','asymmetric production block at the exact crop growth stage','dense crop bed beside a restrained field boundary','layered crop canopy with minimal bare soil and no vehicles'],
+ 2:['tight crop-leaf, soil and drip-line zone with no skyline','localized wetting band and root-zone evidence between recognizable plants','measured emitter placement among crop-specific leaves with no landscape background','crop-health detail area with irrigation evidence and no buildings'],
+ 3:['unattended irrigation header beside the named crop bed','filter, gauge and manifold zone at a field edge with no vehicle','flush-point and water-distribution detail beside the crop','clean pressure-control assembly with a short section of adjacent crop bed'],
+}
 LIGHTING=['soft blue-hour dawn light','bright overcast documentary light','warm late-afternoon side light','clean high-noon light with short realistic shadows','diffused post-cloud light with saturated crop color','backlit sunrise with restrained haze and no lens flare','cool morning light with warm soil tones']
-STORY_DEVICES=['make field geometry and spacing the visual story','make crop condition and growth stage the visual story','make water distribution and wetting pattern the visual story','make filtration, pressure or connection detail the visual story','make seedbed preparation and row planning the visual story','make maintenance evidence and clean system layout the visual story','make soil texture, moisture and root-zone context the visual story']
+ROLE_STORIES={
+ 1:['make crop identity and growth stage the visual story','make canopy density and uniform establishment the visual story','make crop vigor and field-block consistency the visual story'],
+ 2:['make leaf condition, tape placement and wetting evidence the visual story','make spacing and root-zone moisture evidence the visual story','make crop-specific agronomic detail the visual story'],
+ 3:['make filtration, pressure and connection hardware the visual story','make water-distribution control and clean system layout the visual story','make the unattended irrigation headworks the visual story'],
+}
 CROPS={
  'اسفناج':'spinach','عدس':'lentil','کنجد':'sesame','طالبی':'cantaloupe','اسپرس':'sainfoin',
  'خیار':'cucumber','سیر':'garlic','باقلا':'fava bean','ذرت':'maize','یونجه':'alfalfa',
@@ -87,10 +87,19 @@ def role_directive(item,kind):
   return f'AGRONOMIC CLOSE EVIDENCE: an overhead or high-oblique close technical view of {crop} showing {evidence}. No horizon, barn, tractor, landscape panorama or long symmetrical furrows. This must look categorically different from role 1.'
  return f'IRRIGATION-SYSTEM STORY: a medium side view at the edge of a {crop} bed, centered on an unattended header, filter, pressure gauge, manifold or flush point and visible water-distribution evidence. No open-field panorama, no centered vanishing-point furrows, no tractor and no repeated role-1 composition. The hardware narrative must be obvious while the AFP roll stays secondary.'
 
+def role_topic_anchor(item,kind):
+ text=visual_brief(item).lower();crop=named_crop(item)
+ if kind==3:
+  return f'show unattended filtration, pressure, manifold or flush-point evidence configured for {crop}; keep the crop as nearby context only, never as a field panorama'
+ if kind==2 and any(x in text for x in ('برداشت','عملکرد','yield','harvest')):
+  return f'show close evidence of {crop} canopy density, leaf quality, drip-line placement and uniform wetting as the yield story; no panorama'
+ return topic_visual_anchor(item)
+
 def visual_recipe(item,kind):
  identity='|'.join(str((item or {}).get(k) or '') for k in ('id','source_id','slug','title'))
- seed=int(hashlib.sha256((identity+'|creative-recipe-v2').encode('utf-8')).hexdigest()[:12],16);k=max(0,int(kind)-1)
- return {'camera':CAMERAS[(seed+k*5)%len(CAMERAS)],'environment':ENVIRONMENTS[(seed*3+k*4)%len(ENVIRONMENTS)],'lighting':LIGHTING[(seed*5+k*3)%len(LIGHTING)],'story':STORY_DEVICES[(seed*7+k*2)%len(STORY_DEVICES)],'anchor':topic_visual_anchor(item),'token':hashlib.sha256(f'{identity}|{kind}|creative-v2'.encode('utf-8')).hexdigest()[:10]}
+ seed=int(hashlib.sha256((identity+'|creative-recipe-v3').encode('utf-8')).hexdigest()[:12],16);kind=max(1,min(3,int(kind)))
+ cameras=ROLE_CAMERAS[kind];environments=ROLE_ENVIRONMENTS[kind];stories=ROLE_STORIES[kind]
+ return {'camera':cameras[seed%len(cameras)],'environment':environments[(seed*3)%len(environments)],'lighting':LIGHTING[(seed*5+kind*3)%len(LIGHTING)],'story':stories[(seed*7)%len(stories)],'anchor':role_topic_anchor(item,kind),'token':hashlib.sha256(f'{identity}|{kind}|creative-v3'.encode('utf-8')).hexdigest()[:10]}
 
 def visual_template(item,kind):
  r=visual_recipe(item,kind)
@@ -128,7 +137,7 @@ def image_prompt(item,kind):
   scale=('Use the balanced scale-conditioned reference: the product occupies approximately 20 to 23 percent of frame width, stays low in real-world scale and remains off-center on the lower third.')
   people_rule=('NO PEOPLE in any drip-tape image: no farmer, worker, person, face, hand, arm, leg, body part, human silhouette or distant human figure. Do not show a tractor, harvester, vehicle cabin, hand-held tool or human-associated activity unless machinery is essential to the article itself; default to an empty equipment-free scene. Show the article-specific field, crop, irrigation system and unattended equipment without any human presence.')
  return ('Create one photorealistic 16:9 agricultural editorial photograph. The attached image is an identity and geometry reference, not a flat layer to paste. '
-  +f'Article topic: {topic}. {summary_instruction}{correction_instruction}Main scene: {SCENES.get(kind,SCENES[1])}. Selected visual template: {template}. This recipe is one member of a deterministic creative set. Follow every camera, environment, light, narrative and topic-anchor instruction. The three sibling images must look like different editorial assignments, not alternate crops of one scene. The background, activity and equipment must be specifically derived from the article topic and summary and remain the main subject. {people_rule} Reconstruct the product as a true three-dimensional object: {shape}. '
+  +f'Article topic: {topic}. {summary_instruction}{correction_instruction}Main scene: {SCENES.get(kind,SCENES[1])}. Selected visual template: {template}. This recipe is one member of a deterministic creative set. Follow every camera, environment, light, narrative and topic-anchor instruction. The three sibling images must look like different editorial assignments, not alternate crops of one scene. The background, physical evidence and equipment must be specifically derived from the article topic and summary and remain the main subject. The farm must look temporarily empty before photography; nobody is performing any task. {people_rule} Reconstruct the product as a true three-dimensional object: {shape}. '
   'Show it from a slightly different but physically plausible three-quarter angle, about 10 to 20 degrees from the reference. Preserve the silhouette, packaging construction, proportions, material, printed-panel layout and brand colors. '
   +exact+' '+scale+' Enforce believable real-world scale. A drip-tape carton roll is roughly 40 to 55 cm across and 20 to 30 cm high; each layflat coil is roughly 45 to 65 cm across and 15 to 25 cm high. People must not appear. Every roll must remain clearly below knee height as implied by normal real-world scale and must never look waist-high, table-sized or large enough for a person to lean on. '
   'Use a wide environmental composition with substantial context around the products; the article subject is the hero and the product is a secondary prop. Do not add any extra package, roll, bottle, jar, canister, bucket, container, advertisement or invented product. Reject forced-perspective enlargement, giant packaging and any crop that cuts through the product. Match scene perspective, depth of field, color cast, contact shadow, reflected light and slight soil interaction. '
