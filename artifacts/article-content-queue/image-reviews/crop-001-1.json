@@ -1,0 +1,75 @@
+{
+  "id": "crop-001",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-scale-watermark-v8-role-isolated-set-reviewed",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "The image contains no carton roll or drip-tape roll.",
+        "The central object is a white container functioning as a flower pot/plant holder, which violates the specific requirement for a cylindrical drip-tape carton roll.",
+        "Hard reject rule triggered: 'bottle, jar, canister, bucket' or container present.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Regenerate image to show exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll on soil. Remove the plant and the container acting as a pot. The roll must be off-center in the lower third (x 20-23% width, max 28% height). Retain the AFP | 09134922013 watermark. Enlarge the product group from 0% to 20-23% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 14,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Exactly one white-and-blue AFP drip-tape carton roll is visible and clearly identifiable.",
+        "No people, human body parts, or human silhouettes are present in the frame.",
+        "The background shows a farm field with crop rows, matching the topic context.",
+        "The bottom-right watermark 'AFP | 09134922013' is present and correctly formatted.",
+        "The product is placed on soil, secondary to the crop rows, and off-center on the lower third.",
+        "No extra commercial products, containers, or impossible geometry are visible.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 18% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Enlarge the product group from 18% to 20-23% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: Image contains a prominent human subject (male crouching).",
+        "Hard reject: Visible human body parts including face, head, hair, eyes, nose, mouth, chin, neck, shoulder, arms, hands, fingers, torso, waist, legs, knees, and boots.",
+        "Product bounding box exceeds minimum width constraint (must be 20-23%, current is ~15%).",
+        "Product is vertically too tall relative to width (diameter/height ratio approx 0.75, must be 1.6-1.8).",
+        "Product x-center is slightly left of required off-center placement for a 'lower third' focus.",
+        "Background context (generic crouching pose) does not align with the specific 'family tape' usage implied for a secondary crop shot.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 15% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures and body parts completely. Increase the physical width of the cylindrical drip-tape roll to occupy 20-23% of the frame width. Adjust the roll's aspect ratio so the visible diameter is 1.7x the visible height. Place the roll off-center on the lower third of the frame on bare soil. Keep the unattended farm equipment and crop rows in the background. Enlarge the product group from 15% to 20-23% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Strict hard reject triggered: Human silhouettes/farmers visible in the mid-ground behind the tractor.",
+        "Strict hard reject triggered: Multiple visible human body parts including faces, arms, and legs on the person leaning on the tractor.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Regenerate image removing all humans, silhouettes, and body parts. Ensure the only subjects are unattended equipment, crops, and the AFP drip-tape roll on the soil in the lower-third, off-center. Enlarge the product group from 0% to 20-23% of frame width.",
+      "attempt": 4
+    }
+  ],
+  "approved_image": null
+}
