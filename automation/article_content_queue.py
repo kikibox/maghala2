@@ -592,6 +592,7 @@ def process(q):
         write_status(q, "attention_required" if exhausted else "complete")
         return
 
+    batch_errors = []
     for item in batch:
         item.update(status="processing", attempts=item["attempts"]+1, started_at=now())
         QUEUE.write_text(json.dumps(q, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -637,6 +638,7 @@ def process(q):
             )
             item.update(status="blocked_image_model" if blocked else "failed",
                         failed_at=now(), last_error=msg, failed_stage=stage)
+            batch_errors.append(f"{item['id']} ({stage}): {msg}")
             if blocked:
                 q["image_model_error"] = msg
                 QUEUE.write_text(json.dumps(q, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -660,6 +662,8 @@ def process(q):
         for x in q["items"]
     )
     write_status(q, "attention_required" if exhausted else "ready")
+    if batch_errors:
+        raise RuntimeError("Queue item failed: " + " | ".join(batch_errors))
 
 
 def main():
