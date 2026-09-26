@@ -52,7 +52,8 @@ class ArticleQueueTests(unittest.TestCase):
             queue.OUT = Path(tmp)
             queue.IMAGE_TOKEN = "test"
             try:
-                with patch.object(queue, "fetch_json", return_value=response):
+                with patch.object(queue, "fetch_json", return_value=response), \
+                     patch.object(queue.article_image_policy, "validate_ocr", return_value=(True, "")):
                     record = queue.generate_image(
                         {"id": "crop-001", "focus": "crop", "vertical": "crop"}, 1
                     )
@@ -72,14 +73,15 @@ class ArticleQueueTests(unittest.TestCase):
             "focus": "focus", "vertical": "crop", "post_type": "post",
         }
         obj = {
-            "title": "عنوان", "html": "[[[IMAGE_1]]][[[IMAGE_2]]][[[IMAGE_3]]]",
+            "title": "عنوان",
+            "html": "".join(f"[[[IMAGE_{i}]]]" for i in range(1, 6)),
             "excerpt": "خلاصه", "meta_title": "متا",
             "meta_description": "شرح", "focus_keyword": "کلید",
         }
         images = [
             {"name": f"crop-001-{i}.png", "mime": "image/png", "width": 1536,
              "height": 1024, "sha256": "x"}
-            for i in range(1, 4)
+            for i in range(1, 6)
         ]
         sql, rollback, body = queue.sql_for(item, obj, images)
         self.assertIn("'publish'", sql)

@@ -10,7 +10,7 @@ Shared infrastructure (reused, not modified):
   - Agnes API client (same model, same base URL pattern)
   - Internal-link pool (same link_index refresh logic)
   - Reversible SQL output (same per-item + combined + rollback pattern)
-  - 1050+ words / 4-7 internal links / 3 image markers (same QA gate)
+  - 1050+ words / exactly 4 policy-selected internal links / 5 images
 
 Output: artifacts/article-content-queue/
   queue.json, items/, sql/, rollback/, create-all-completed.sql
@@ -19,6 +19,8 @@ import json, os, re, time, hashlib, struct, urllib.request, urllib.error, html, 
 from collections import Counter
 from pathlib import Path
 from agnes_json_client import call as agnes_json_call
+import article_image_policy
+import content_layout_policy
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "artifacts" / "article-content-queue"
@@ -102,7 +104,7 @@ def internal_links(text):
 
 
 def sitemap_index():
-    """Same as city queue: resolve sitemap posts + use link-index cache."""
+    """Collect all healthy content URLs exposed by the site's sitemap indexes."""
     import urllib.parse as _up, json as _json, re as _re
     cache = OUT / "link-index-sitemap.json"
     if cache.exists():
@@ -112,12 +114,31 @@ def sitemap_index():
                 return c["links"]
         except Exception:
             pass
-    urls = set()
-    for sm in ("post-sitemap1.xml", "post-sitemap2.xml"):
+    def read_url(url, timeout=60):
+        req = urllib.request.Request(url, headers={"User-Agent": "navar-article-queue"})
+        with urllib.request.urlopen(req, timeout=timeout) as response:
+            return response.read().decode("utf-8", "replace")
+
+    sitemap_urls = set()
+    for index_name in ("sitemap_index.xml", "wp-sitemap.xml"):
         try:
-            req = urllib.request.Request(f"{SITE}/{sm}", headers={"User-Agent":"navar-article-queue"})
-            with urllib.request.urlopen(req, timeout=60) as r:
-                urls.update(_re.findall(r"<loc>(.*?)</loc>", r.read().decode("utf-8","replace")))
+            for loc in _re.findall(r"<loc>(.*?)</loc>", read_url(f"{SITE}/{index_name}")):
+                lowered = loc.lower()
+                if any(token in lowered for token in (
+                    "post-sitemap", "page-sitemap", "product-sitemap",
+                    "wp-sitemap-posts-post", "wp-sitemap-posts-page",
+                    "wp-sitemap-posts-product",
+                )):
+                    sitemap_urls.add(loc)
+        except Exception:
+            pass
+    if not sitemap_urls:
+        sitemap_urls = {f"{SITE}/post-sitemap1.xml", f"{SITE}/post-sitemap2.xml"}
+
+    urls = set()
+    for sitemap_url in sorted(sitemap_urls):
+        try:
+            urls.update(_re.findall(r"<loc>(.*?)</loc>", read_url(sitemap_url)))
         except Exception:
             pass
     if not urls:
@@ -141,7 +162,18 @@ def sitemap_index():
         except Exception:
             pass
         if not title:
-            title = path.replace("%","").replace("-"," ").strip() or "مقاله"
+            try:
+                page = read_url(url, timeout=20)
+                match = _re.search(r"<title[^>]*>(.*?)</title>", page, _re.I | _re.S)
+                if match:
+                    title = html.unescape(_re.sub(r"<[^>]+>", "", match.group(1)))
+                    title = _re.split(r"\s+[|–—-]\s+", title, maxsplit=1)[0].strip()
+            except Exception:
+                pass
+        if not title:
+            # A URL without an authoritative title cannot provide trustworthy
+            # anchor text, so it is excluded instead of inventing a label.
+            continue
         links.append({"title": title, "url": url, "post_type": "post"})
     OUT.mkdir(parents=True, exist_ok=True)
     cache.write_text(_json.dumps({"count":len(links),"links":links}, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -279,7 +311,7 @@ def initialize(force=False):
         "scope": "useful articles — separate from city queue",
         "text_model": AGNES_MODEL,
         "image_model": IMAGE_MODEL,
-        "images_per_post": 3,
+        "images_per_post": 5,
         "category_id": CATEGORY_TAXONOMY_ID,
         "rules": {"draft_only": False, "minimum_words": MIN_WORDS, "minimum_internal_links": MIN_LINKS},
         "items": items,
@@ -297,47 +329,31 @@ def agnes(prompt):
 
 
 def make_content(item, links):
-    CONTENT_TYPES = {"post", "page", "product", "faq"}
-    approved = [x for x in links if (x.get("post_type") in CONTENT_TYPES or
-              (x.get("post_type") not in {"acf-field","acf-field-group","nav_menu_item","oembed_cache","rank_math_schema","wp_global_styles","elementor_library","custom_css","gp_elements","wpcf7_contact_form","customize_changeset","gp_font"}))]
-    if len(approved) > 12:
-        import random
-        random.Random(item["id"]).shuffle(approved)
-        approved = approved[:12]
-    link_lines = "\n".join(f"- {x['title']} | {x['url']}" for x in approved)
-    prompt = f'''برای مقاله مفید با موضوع "{item["title"]}" در حوزه آبیاری قطره‌ای و نوار تیپ، یک مقاله سئوشده و کاربردی بنویس. متن فارسی طبیعی، دست‌کم {MIN_WORDS} کلمه، بدون ادعای ساختگی درباره قیمت یا نمایندگی محلی. ساختار HTML فقط با h2/h3/p/ul/ol/table/strong/a باشد و H1 نداشته باشد. موضوعات: مقدمه، بخش‌های تخصصی مرتبط با {item["focus"]}، نکات عملی، FAQ و جمع‌بندی. حداقل {MIN_LINKS} و حداکثر ۷ لینک داخلی فقط از فهرست زیر استفاده کن. سه نشانگر دقیق [[[IMAGE_1]]], [[[IMAGE_2]]], [[[IMAGE_3]]] را هرکدام یک‌بار و بین بخش‌های مناسب بگذار. JSON با کلیدهای title, meta_title, meta_description, focus_keyword, excerpt, html برگردان.
-لینک‌های مجاز:
-{link_lines}'''
+    prompt = f'''برای مقاله مفید با موضوع "{item["title"]}" در حوزه آبیاری قطره‌ای و نوار تیپ، یک مقاله سئوشده و کاربردی بنویس. متن فارسی طبیعی، دست‌کم {MIN_WORDS} کلمه و بدون ادعای ساختگی درباره قیمت یا نمایندگی محلی باشد. ساختار HTML فقط با h2/h3/p/ul/ol/table/strong/details/summary باشد و H1 نداشته باشد. پیش از FAQ دست‌کم ۱۲ بلوک مستقل و طبیعی از نوع p، ul، ol یا table ایجاد کن. هیچ لینک، تگ a، تصویر یا marker تصویر نساز؛ سامانه بعداً آن‌ها را با سیاست قطعی درج می‌کند. FAQ باید آخرین بخش مقاله باشد، با یک h2 با عنوان پرسش‌های متداول شروع شود و سؤال‌ها را فقط با details/summary نگه دارد. پس از FAQ هیچ heading، جمع‌بندی یا محتوای تازه‌ای قرار نده. موضوعات: مقدمه، بخش‌های تخصصی مرتبط با {item["focus"]}، نکات عملی، جمع‌بندی و در انتها FAQ. فقط JSON معتبر با کلیدهای title, meta_title, meta_description, focus_keyword, excerpt, html برگردان.'''
     for _ in range(4):
         obj = agnes(prompt)
-        body = obj.get("html","")
-        allowed = {x["url"] for x in approved}
-        body = sanitize_links(body, allowed)
-        used = internal_links(body)
-        if words(body) >= MIN_WORDS and MIN_LINKS <= len(used) <= 7 and \
-           all(body.count(f"[[[IMAGE_{i}]]]") == 1 for i in range(1,4)) and not (used - allowed):
-            # Persist exactly the body that passed the link and content gate.
+        try:
+            body, selected = content_layout_policy.apply_layout(
+                obj.get("html", ""), item, links, MIN_LINKS
+            )
+            used = internal_links(body)
+            if words(body) < MIN_WORDS:
+                raise ValueError(f"length {words(body)} below {MIN_WORDS}")
+            if len(used) != MIN_LINKS:
+                raise ValueError(f"internal link count {len(used)} != {MIN_LINKS}")
+            if any(body.count(f"[[[IMAGE_{i}]]]") != 1 for i in range(2, 6)):
+                raise ValueError("image marker count is invalid")
+            content_layout_policy.validate_faq_tail(body)
             obj["html"] = body
+            obj["selected_internal_links"] = selected
             return obj
-        prompt += "\nنسخه قبلی کنترل کیفیت را رد کرد؛ طول، لینک‌ها یا نشانگرهای تصویر را دقیق اصلاح کن."
+        except Exception as exc:
+            prompt += (
+                "\nنسخه قبلی کنترل کیفیت را رد کرد: "
+                + str(exc)[:240]
+                + ". متن را کامل‌تر کن، FAQ را با details/summary فقط در انتها نگه دار و هیچ لینک یا marker نساز."
+            )
     raise RuntimeError("Text QA failed after 4 attempts")
-
-
-def image_prompt(item, kind):
-    scenes = {
-        1: "wide hero view of a modern agricultural field with drip irrigation system clearly visible",
-        2: "close technical view of drip irrigation components, filter, and regulator in a clean farm setting",
-        3: "farmer hands inspecting drip tape rows, no identifiable face"
-    }
-    vertical_desc = {
-        "crop": f"showing {item.get('focus','crop')} field context",
-        "product": "showing drip tape and pipe products on a clean white background",
-        "strategic": "showing a well-designed drip irrigation system layout",
-        "irrigation": "showing an irrigation method in a farm field",
-        "xref": "showing drip irrigation in a crop field with visible drip tape lines"
-    }
-    v = vertical_desc.get(item.get("vertical",""), "showing a drip irrigation farm")
-    return f"Photorealistic editorial agriculture image, {scenes[kind]}, {v}, natural light, no text, no logo, no watermark, no labels, 16:9 composition"
 
 
 def _urlnorm(u):
@@ -399,54 +415,71 @@ def generate_image(item, kind):
     from PIL import Image
     if not IMAGE_TOKEN:
         raise RuntimeError("IMAGE_API_KEY/AGNES_API_KEY is missing")
-    data = fetch_json(
-        IMAGE_ENDPOINT,
-        {"Authorization": f"Bearer {IMAGE_TOKEN}", "Content-Type": "application/json",
-         "Accept": "application/json", "User-Agent": "navar-article-queue"},
-        {"model": IMAGE_MODEL, "prompt": image_prompt(item, kind),
-         "size": "1024x768", "return_base64": True,
-         "extra_body": {"response_format": "b64_json"}},
-        600
-    )
-    row = data["data"][0]
-    if row.get("b64_json"):
-        blob = base64.b64decode(row["b64_json"])
-    elif row.get("url"):
-        with urllib.request.urlopen(row["url"], timeout=180) as r:
-            blob = r.read()
-    else:
-        raise RuntimeError("Image response has neither b64_json nor url")
-    if len(blob) < 10000:
-        raise RuntimeError("Generated image is unexpectedly small")
-    # Normalize every provider response to a real 16:9 JPEG so the extension,
-    # MIME type, dimensions, SQL metadata, and public file all agree.
-    image = Image.open(io.BytesIO(blob)).convert("RGB")
-    width, height = image.size
-    target = 16 / 9
-    if width / height > target:
-        new_width = int(height * target)
-        left = (width - new_width) // 2
-        image = image.crop((left, 0, left + new_width, height))
-    else:
-        new_height = int(width / target)
-        top = (height - new_height) // 2
-        image = image.crop((0, top, width, top + new_height))
-    image = image.resize((1200, 675), Image.Resampling.LANCZOS)
-    buffer = io.BytesIO()
-    image.save(buffer, "JPEG", quality=92, optimize=True)
-    blob = buffer.getvalue()
-    suffix, mime, width, height = image_info(blob)
     img_dir = OUT / "images"
     img_dir.mkdir(exist_ok=True)
-    name = f"{item['id']}-{kind}{suffix}"
-    (img_dir / name).write_bytes(blob)
-    return {
-        "name": name,
-        "sha256": hashlib.sha256(blob).hexdigest(),
-        "mime": mime,
-        "width": width,
-        "height": height,
-    }
+    name = f"{item['id']}-{kind}.jpg"
+    path = img_dir / name
+    ocr_results = []
+    # Three identity-preserving attempts, followed by one safe fallback where
+    # labels/logos are deliberately not readable (maximum three regenerations).
+    for attempt in range(1, 5):
+        hide_label = attempt == 4
+        references = article_image_policy.reference_images(item, kind)
+        extra_body = {"response_format": "b64_json"}
+        if references:
+            extra_body["image"] = references
+        data = fetch_json(
+            IMAGE_ENDPOINT,
+            {"Authorization": f"Bearer {IMAGE_TOKEN}", "Content-Type": "application/json",
+             "Accept": "application/json", "User-Agent": "navar-article-queue"},
+            {"model": IMAGE_MODEL,
+             "prompt": article_image_policy.image_prompt(item, kind, hide_label=hide_label),
+             "size": "1024x768", "return_base64": True, "extra_body": extra_body},
+            600
+        )
+        row = data["data"][0]
+        if row.get("b64_json"):
+            source_blob = base64.b64decode(row["b64_json"])
+        elif row.get("url"):
+            with urllib.request.urlopen(row["url"], timeout=180) as r:
+                source_blob = r.read()
+        else:
+            raise RuntimeError("Image response has neither b64_json nor url")
+        if len(source_blob) < 10000:
+            raise RuntimeError("Generated image is unexpectedly small")
+        image = Image.open(io.BytesIO(source_blob)).convert("RGB")
+        width, height = image.size
+        target = 16 / 9
+        if width / height > target:
+            new_width = int(height * target)
+            left = (width - new_width) // 2
+            image = image.crop((left, 0, left + new_width, height))
+        else:
+            new_height = int(width / target)
+            top = (height - new_height) // 2
+            image = image.crop((0, top, width, top + new_height))
+        image = image.resize((1200, 675), Image.Resampling.LANCZOS)
+        buffer = io.BytesIO()
+        image.save(buffer, "JPEG", quality=92, optimize=True)
+        blob = buffer.getvalue()
+        path.write_bytes(blob)
+        valid, observed = article_image_policy.validate_ocr(
+            path, item, kind, hide_label=hide_label
+        )
+        ocr_results.append({"attempt": attempt, "valid": valid, "text": observed[:300]})
+        if valid:
+            suffix, mime, width, height = image_info(blob)
+            return {
+                "name": name,
+                "sha256": hashlib.sha256(blob).hexdigest(),
+                "mime": mime,
+                "width": width,
+                "height": height,
+                "variation": article_image_policy.variation_spec(item, kind),
+                "ocr": ocr_results,
+            }
+        path.unlink(missing_ok=True)
+    raise RuntimeError(f"Image OCR policy failed after 3 retries and safe fallback: {ocr_results}")
 
 
 def _php_attachment_metadata(image):
@@ -549,6 +582,8 @@ def process(q):
         write_status(q, "blocked_image_model")
         raise RuntimeError(q.get("image_model_error", "Image model is blocked"))
 
+    q["images_per_post"] = 5
+    q.setdefault("rules", {})["layout_policy"] = "deterministic-v1"
     batch = select_batch(q)
     try:
         existing_urls = {l["url"] for l in q.get("link_index", [])}
@@ -571,7 +606,7 @@ def process(q):
             obj = make_content(item, q["link_index"])
             stage = "image"
             images = []
-            for kind in range(1, 4):
+            for kind in range(1, 6):
                 images.append(generate_image(item, kind))
                 time.sleep(2)
             # Publish media and the article through WordPress REST. Completion
