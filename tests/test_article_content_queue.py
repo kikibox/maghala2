@@ -82,10 +82,9 @@ class ArticleQueueTests(unittest.TestCase):
                 self.assertTrue(neutral.startswith("data:image/png;base64,"))
                 self.assertNotIn(queue.image_prompt_policy.DRIP_TAPE_ROLL_REFERENCE, neutral)
                 prompt = queue.image_prompt(item, 1)
-                self.assertIn("1000-meter", prompt)
-                self.assertIn("10 to 20 percent", prompt)
-                self.assertIn("75 to 85 percent", prompt)
-                self.assertIn("not a reference image", prompt)
+                self.assertIn("do not generate", prompt)
+                self.assertIn("later exact product overlay", prompt)
+                self.assertNotIn("Drip Irrigation tape", prompt)
                 output = Path(tmp) / "images" / record["name"]
                 self.assertEqual(record["mime"], "image/webp")
                 self.assertEqual(record["name"], "راهنمای-کشت-گوجه-با-نوار-تیپ-تصویر-شاخص.webp")
@@ -124,19 +123,26 @@ class ArticleQueueTests(unittest.TestCase):
         self.assertEqual([row["name"] for row in rows], ["1.webp", "2.webp", "3.webp"])
         self.assertGreaterEqual(peak, 2)
 
-    def test_product_label_text_is_exact_and_family_specific(self):
+    def test_product_is_not_generated_and_exact_asset_is_composited(self):
         tape = queue.image_prompt_policy.image_prompt(
             {"source_id": "crop-001", "title": "مقاله نوار تیپ"}, 1
         )
         layflat = queue.image_prompt_policy.image_prompt(
             {"source_id": "crop-001-layflat", "title": "مقاله لوله نخدار"}, 1
         )
-        for required in ("AFP", "آبگسترفراپارسیان", "Drip Irrigation tape"):
-            self.assertIn(required, tape)
-        self.assertIn('never print "layflat"', tape)
-        for required in ("AFP", "آبگسترفراپارسیان", 'lowercase "layflat"'):
-            self.assertIn(required, layflat)
-        self.assertIn('never print "Drip Irrigation tape"', layflat)
+        for prompt in (tape, layflat):
+            self.assertIn("do not generate", prompt)
+            self.assertIn("later exact product overlay", prompt)
+        scene = Image.new("RGB", (1200, 675), (120, 90, 60))
+        tape_result = queue.image_prompt_policy.composite_product(
+            scene, {"source_id": "crop-001"}, 1
+        )
+        layflat_result = queue.image_prompt_policy.composite_product(
+            scene, {"source_id": "crop-001-layflat"}, 1
+        )
+        self.assertNotEqual(tape_result.tobytes(), scene.tobytes())
+        self.assertNotEqual(layflat_result.tobytes(), scene.tobytes())
+        self.assertNotEqual(tape_result.tobytes(), layflat_result.tobytes())
 
     def test_sql_is_publish_idempotent_and_rollback_is_marker_scoped(self):
         item = {

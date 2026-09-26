@@ -8,6 +8,8 @@ on:
       - '.github/workflows/article-content-queue.yml'
       - 'automation/article_content_queue.py'
       - 'automation/image_prompt_policy.py'
+      - 'automation/assets/**'
+      - 'automation/rebuild_article_images_exact_product.py'
       - 'automation/agnes_json_client.py'
       - 'automation/compress_article_images.py'
       - 'tests/test_article_content_queue.py'
@@ -70,7 +72,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python -m py_compile automation/article_content_queue.py automation/compress_article_images.py automation/package_article_content_batches.py
+          python -m py_compile automation/article_content_queue.py automation/image_prompt_policy.py automation/rebuild_article_images_exact_product.py automation/compress_article_images.py automation/package_article_content_batches.py
           python -m unittest discover -s tests -p 'test_*.py'
 
       - name: Regenerate deterministic topics
@@ -85,6 +87,10 @@ jobs:
           rc=$?
           echo "exit_code=$rc" >> "$GITHUB_OUTPUT"
           exit 0
+
+      - name: Rebuild legacy images with exact product assets
+        if: always()
+        run: python automation/rebuild_article_images_exact_product.py
 
       - name: Optimize article images as WebP
         if: always()

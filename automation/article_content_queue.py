@@ -678,6 +678,7 @@ def generate_image(item, kind):
         top = (height - new_height) // 2
         image = image.crop((0, top, width, top + new_height))
     image = image.resize((1200, 675), Image.Resampling.LANCZOS)
+    image = image_prompt_policy.composite_product(image, item, kind)
     buffer = io.BytesIO()
     image.save(buffer, "WEBP", quality=60, method=6)
     blob = buffer.getvalue()
@@ -873,6 +874,8 @@ def process(q):
                         status="completed", completed_at=completed_at,
                         word_count=words(body), images=[x["name"] for x in images],
                         image_sha256=[x["sha256"] for x in images],
+                        image_generation_mode="exact-approved-asset-composite",
+                        image_rebuild_policy="exact-asset-composite-v1",
                         delivery="sql_package", last_error="",
                     )
                     item.pop("failed_stage", None);item.pop("failed_at", None);item.pop("started_at", None)
