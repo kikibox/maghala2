@@ -52,7 +52,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python -m py_compile automation/article_content_queue.py automation/package_article_content_batches.py
+          python -m py_compile automation/article_content_queue.py automation/compress_article_images.py automation/package_article_content_batches.py
           python -m unittest discover -s tests -p 'test_*.py'
 
       - name: Regenerate deterministic topics
@@ -67,6 +67,10 @@ jobs:
           rc=$?
           echo "exit_code=$rc" >> "$GITHUB_OUTPUT"
           exit 0
+
+      - name: Optimize article images as WebP
+        if: always()
+        run: python automation/compress_article_images.py
 
       - name: Build completed 50-article packages
         if: always()

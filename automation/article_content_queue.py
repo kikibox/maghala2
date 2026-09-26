@@ -609,8 +609,8 @@ def generate_image(item, kind):
         raise RuntimeError("Image response has neither b64_json nor url")
     if len(blob) < 10000:
         raise RuntimeError("Generated image is unexpectedly small")
-    # Normalize every provider response to a real 16:9 JPEG so the extension,
-    # MIME type, dimensions, SQL metadata, and public file all agree.
+    # Normalize every provider response to an optimized 16:9 WebP so the
+    # extension, MIME type, dimensions, SQL metadata, and public file agree.
     image = Image.open(io.BytesIO(blob)).convert("RGB")
     width, height = image.size
     target = 16 / 9
@@ -624,9 +624,9 @@ def generate_image(item, kind):
         image = image.crop((0, top, width, top + new_height))
     image = image.resize((1200, 675), Image.Resampling.LANCZOS)
     buffer = io.BytesIO()
-    image.save(buffer, "JPEG", quality=92, optimize=True)
+    image.save(buffer, "WEBP", quality=60, method=6)
     blob = buffer.getvalue()
-    suffix, mime, width, height = image_info(blob)
+    suffix, mime, width, height = ".webp", "image/webp", 1200, 675
     img_dir = OUT / "images"
     img_dir.mkdir(exist_ok=True)
     name = f"{item['id']}-{kind}{suffix}"

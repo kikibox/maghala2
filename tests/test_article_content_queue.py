@@ -43,7 +43,7 @@ class ArticleQueueTests(unittest.TestCase):
         finally:
             queue.BATCH, queue.MAX_ATTEMPTS = old_batch, old_attempts
 
-    def test_image_response_is_normalized_to_real_16_by_9_jpeg(self):
+    def test_image_response_is_normalized_to_optimized_16_by_9_webp(self):
         source = io.BytesIO()
         Image.effect_noise((1024, 768), 64).convert("RGB").save(source, "PNG")
         response = {"data": [{"b64_json": base64.b64encode(source.getvalue()).decode()}]}
@@ -67,12 +67,12 @@ class ArticleQueueTests(unittest.TestCase):
                 self.assertIn("75 to 85 percent", prompt)
                 self.assertIn("not a reference image", prompt)
                 output = Path(tmp) / "images" / record["name"]
-                self.assertEqual(record["mime"], "image/jpeg")
-                self.assertTrue(record["name"].endswith(".jpg"))
+                self.assertEqual(record["mime"], "image/webp")
+                self.assertTrue(record["name"].endswith(".webp"))
                 self.assertEqual((record["width"], record["height"]), (1200, 675))
                 with Image.open(output) as image:
                     self.assertEqual(image.size, (1200, 675))
-                    self.assertEqual(image.format, "JPEG")
+                    self.assertEqual(image.format, "WEBP")
             finally:
                 queue.OUT, queue.IMAGE_TOKEN = old_out, old_token
 
