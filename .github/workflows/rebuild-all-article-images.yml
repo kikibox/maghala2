@@ -18,9 +18,9 @@ permissions:
 
 concurrency:
   group: article-content-pipeline
-  # A pushed policy fix supersedes a stale rebuild immediately. Scheduled
-  # batches remain non-destructive and wait their turn.
-  cancel-in-progress: ${{ github.event_name == 'push' }}
+  # Temporarily prioritize the v8 proof run over stale queue work. This is
+  # restored to non-destructive scheduling after the proof set is approved.
+  cancel-in-progress: true
 
 env:
   AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
