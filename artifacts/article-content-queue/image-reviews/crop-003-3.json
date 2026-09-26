@@ -2,37 +2,37 @@
   "id": "crop-003",
   "kind": 3,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v5-full-rerender",
+  "policy": "strict-no-human-scale-watermark-v6-set-reviewed-full-rerender",
   "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 15,
-      "product_width_percent": 9,
-      "product_height_percent": 14,
-      "product_x_center_percent": 26,
+      "score": 45,
+      "product_width_percent": 24,
+      "product_height_percent": 24,
+      "product_x_center_percent": 29,
       "reasons": [
-        "Image contains a person (farmer/worker) which is a hard reject condition.",
-        "Human body parts (head, hands, legs, torso) are clearly visible in the foreground.",
-        "Additional people are visible in the background (distant silhouettes/near tractors).",
-        "The carton roll is not sized correctly; it occupies approximately 9-10% of the frame width, failing the 20-23% requirement.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 20-23% of frame width."
+        "Product width (approx. 24%) and height (approx. 24%) exceed the maximum 23% and 28% limits respectively, making the roll appear too large and centered.",
+        "An extra commercial product (baskets of soybeans/seed) is visible on the right side, violating the 'zero extra product' rule.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 24% to 20-23% of frame width."
       ],
-      "correction_prompt": "Remove the person in the foreground and all background figures. Regenerate the image to show only the unattended farm context. Increase the size of the AFP drip-tape carton roll so it occupies 20 to 23 percent of the frame width and is placed on the soil in the lower third. Enlarge the product group from 9% to 20-23% of frame width.",
+      "correction_prompt": "Reduce the carton roll size to 20% width and 18% height to fit strictly in the lower third off-center. Remove the baskets of seed completely to ensure only the single roll is present in the foreground. Reduce the product group from 24% to 20-23% of frame width.",
       "attempt": 1
     },
     {
       "pass": true,
-      "score": 95,
-      "product_width_percent": 22,
-      "product_height_percent": 20,
-      "product_x_center_percent": 29,
+      "score": 92,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 28,
       "reasons": [
-        "Visible diameter-to-height ratio is approximately 1.7, matching the 1.6-1.8 requirement.",
-        "Product is wide, low, and cylindrical, consistent with a drip-tape carton roll.",
-        "Product is off-center and placed naturally on soil in the lower-left third.",
-        "Zero people or human body parts are visible in the frame.",
-        "Watermark 'AFP | 09134922013' is present and correctly formatted."
+        "The image shows exactly one white-and-blue wide low cylindrical drip-tape carton roll placed on soil in a farm context.",
+        "No people, human silhouettes, or body parts are visible.",
+        "The product bounding box is estimated at 20% width and 22% height, which falls within the specified ranges (20-23% width, <28% height).",
+        "The roll is positioned on the lower left (secondary, off-center), avoiding centered product staging.",
+        "The background shows agricultural rows and drip irrigation lines, matching the topic context.",
+        "The required watermark 'AFP | 09134922013' is clearly visible in the bottom right corner.",
+        "Visible geometry of the roll is natural and realistic."
       ],
       "correction_prompt": "",
       "attempt": 2
