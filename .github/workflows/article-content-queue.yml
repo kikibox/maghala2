@@ -23,8 +23,7 @@ permissions:
 
 concurrency:
   group: article-content-pipeline
-  # A pushed workflow fix supersedes an older article run. Scheduled runs wait.
-  cancel-in-progress: ${{ github.event_name == 'push' }}
+  cancel-in-progress: true
 
 env:
   AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
