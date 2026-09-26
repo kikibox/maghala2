@@ -481,6 +481,20 @@ def ensure_minimum_internal_links(body, approved):
     return body
 
 
+def ensure_image_markers(body):
+    clean = re.sub(r"\[\[\[IMAGE_[1-3]\]\]\]", "", body or "")
+    matches = list(re.finditer(r"</p>", clean, re.I))
+    if not matches:
+        return clean + "\n" + "\n".join(f"[[[IMAGE_{i}]]]" for i in range(1, 4))
+    positions = []
+    for i in range(1, 4):
+        index = min(len(matches) - 1, max(0, (len(matches) * i) // 4))
+        positions.append((matches[index].end(), i))
+    for pos, i in sorted(positions, reverse=True):
+        clean = clean[:pos] + f"\n[[[IMAGE_{i}]]]" + clean[pos:]
+    return clean
+
+
 def make_content(item, links):
     CONTENT_TYPES = {"post", "page", "product", "faq"}
     approved = [x for x in links if (x.get("post_type") in CONTENT_TYPES or
@@ -514,6 +528,7 @@ def make_content(item, links):
             continue
         body = sanitize_links(obj.get("html", ""), allowed)
         body = ensure_minimum_internal_links(body, approved)
+        body = ensure_image_markers(body)
         used = internal_links(body)
         errors = []
         word_count = words(body)
@@ -570,15 +585,16 @@ def _urlnorm(u):
 
 def sanitize_links(html_text, allowed_urls):
     import re as _re
-    allowed_norm = {_urlnorm(u) for u in allowed_urls}
+    allowed_map = {_urlnorm(u): u for u in allowed_urls}
     def _keep(match):
         tag = match.group(0)
         m = _re.search(r'href=["\']([^"\']+)', tag, _re.I)
         if not m:
             return tag
         href = m.group(1)
-        if _urlnorm(href) in allowed_norm:
-            return tag
+        canonical = allowed_map.get(_urlnorm(href))
+        if canonical:
+            return tag[:m.start(1)] + canonical + tag[m.end(1):]
         # Preserve visible text but strip every non-allowlisted destination.
         return _re.sub(r'</?a\b[^>]*>', '', tag)
     return _re.sub(r'<a\b[^>]*>.*?</a>', _keep, html_text, flags=_re.I | _re.S)

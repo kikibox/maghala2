@@ -31,7 +31,7 @@ def encode(source:Path)->bytes:
 
 
 def main()->int:
-    item_docs={};plans={}
+    item_docs={};plans={};item_targets=set()
     if ITEMS.exists():
         for path in sorted(ITEMS.glob('*.json')):
             try:data=json.loads(path.read_text(encoding='utf-8'))
@@ -39,7 +39,7 @@ def main()->int:
             item_docs[path]=data
             for index,record in enumerate(data.get('images',[]),1):
                 if isinstance(record,dict) and record.get('name'):
-                    plans[record['name']]=seo_name(data,index)
+                    target_name=seo_name(data,index);plans[record['name']]=target_name;item_targets.add(target_name)
     # Convert and SEO-rename every planned image; also convert orphan legacy images.
     if IMAGES.exists():
         for source in sorted(IMAGES.iterdir()):
@@ -77,7 +77,12 @@ def main()->int:
         for old,new in mapping.items():updated=updated.replace(old,new)
         if mapping:updated=updated.replace("'image/jpeg'","'image/webp'").replace('"mime": "image/jpeg"','"mime": "image/webp"')
         if updated!=text:path.write_text(updated,encoding='utf-8');rewritten+=1
-    report={'quality':QUALITY,'converted_images':converted,'seo_renamed_images':renamed,'source_bytes':before,'webp_bytes':after,'saved_percent':round((1-after/before)*100,2) if before else 0,'reference_files_rewritten':rewritten}
+    orphan_removed=0
+    if IMAGES.exists() and item_targets:
+        for path in IMAGES.iterdir():
+            if path.is_file() and path.suffix.lower() in {'.jpg','.jpeg','.png','.webp'} and path.name not in item_targets:
+                path.unlink();orphan_removed+=1
+    report={'quality':QUALITY,'converted_images':converted,'seo_renamed_images':renamed,'orphan_images_removed':orphan_removed,'source_bytes':before,'webp_bytes':after,'saved_percent':round((1-after/before)*100,2) if before else 0,'reference_files_rewritten':rewritten}
     OUT.mkdir(parents=True,exist_ok=True)
     (OUT/'image-compression-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps(report,ensure_ascii=False));return 0

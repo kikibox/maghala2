@@ -41,6 +41,16 @@ class ArticleQueueTests(unittest.TestCase):
         self.assertEqual(len(queue.internal_links(repaired)), queue.MIN_LINKS)
         self.assertIn("مطالب مرتبط", repaired)
 
+    def test_link_variants_are_canonicalized_and_markers_repaired(self):
+        canonical = "https://navar-abyari.ir/%D9%86%D9%88%D8%A7%D8%B1/"
+        variant = "https://navar-abyari.ir/نوار/"
+        body = f'<p><a href="{variant}">لینک</a></p><p>دو</p><p>سه</p><p>چهار</p>'
+        cleaned = queue.sanitize_links(body, {canonical})
+        self.assertIn(f'href="{canonical}"', cleaned)
+        repaired = queue.ensure_image_markers(cleaned)
+        for i in range(1, 4):
+            self.assertEqual(repaired.count(f"[[[IMAGE_{i}]]]"), 1)
+
     def test_failed_items_are_retried_first(self):
         old_batch, old_attempts = queue.BATCH, queue.MAX_ATTEMPTS
         queue.BATCH, queue.MAX_ATTEMPTS = 1, 4
