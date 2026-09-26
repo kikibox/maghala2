@@ -462,6 +462,25 @@ def agnes(prompt):
     return agnes_json_call(sys.modules[__name__], prompt, attempts=4)
 
 
+def ensure_minimum_internal_links(body, approved):
+    used = internal_links(body)
+    if len(used) >= MIN_LINKS:
+        return body
+    additions = []
+    for link in approved:
+        url = link.get("url")
+        if not url or url in used:
+            continue
+        title = html.escape(str(link.get("title") or "مطالعه بیشتر"))
+        additions.append(f'<a href="{html.escape(url, quote=True)}">{title}</a>')
+        used.add(url)
+        if len(used) >= MIN_LINKS:
+            break
+    if additions:
+        body += "\n<p><strong>مطالب مرتبط:</strong> " + "، ".join(additions) + "</p>"
+    return body
+
+
 def make_content(item, links):
     CONTENT_TYPES = {"post", "page", "product", "faq"}
     approved = [x for x in links if (x.get("post_type") in CONTENT_TYPES or
@@ -494,6 +513,7 @@ def make_content(item, links):
             last_errors = ["response is not a JSON object"]
             continue
         body = sanitize_links(obj.get("html", ""), allowed)
+        body = ensure_minimum_internal_links(body, approved)
         used = internal_links(body)
         errors = []
         word_count = words(body)

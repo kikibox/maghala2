@@ -31,6 +31,16 @@ class ArticleQueueTests(unittest.TestCase):
         self.assertNotIn("example.com", cleaned)
         self.assertIn("غیرمجاز", cleaned)
 
+    def test_missing_internal_links_are_added_deterministically(self):
+        links = [
+            {"title": f"مطلب {i}", "url": f"https://navar-abyari.ir/post-{i}/"}
+            for i in range(1, 7)
+        ]
+        body = '<p><a href="https://navar-abyari.ir/post-1/">یک</a></p>'
+        repaired = queue.ensure_minimum_internal_links(body, links)
+        self.assertEqual(len(queue.internal_links(repaired)), queue.MIN_LINKS)
+        self.assertIn("مطالب مرتبط", repaired)
+
     def test_failed_items_are_retried_first(self):
         old_batch, old_attempts = queue.BATCH, queue.MAX_ATTEMPTS
         queue.BATCH, queue.MAX_ATTEMPTS = 1, 4
