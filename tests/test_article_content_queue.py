@@ -52,7 +52,7 @@ class ArticleQueueTests(unittest.TestCase):
             queue.OUT = Path(tmp)
             queue.IMAGE_TOKEN = "test"
             try:
-                item = {"id": "crop-001", "title": "مقاله نوار تیپ", "focus": "crop", "vertical": "crop"}
+                item = {"id": "crop-001", "title": "مقاله نوار تیپ", "slug": "راهنمای-کشت-گوجه-با-نوار-تیپ", "focus": "crop", "vertical": "crop"}
                 with patch.object(queue, "fetch_json", return_value=response) as fetch_json:
                     record = queue.generate_image(item, 1)
                 payload = fetch_json.call_args.args[2]
@@ -68,13 +68,21 @@ class ArticleQueueTests(unittest.TestCase):
                 self.assertIn("not a reference image", prompt)
                 output = Path(tmp) / "images" / record["name"]
                 self.assertEqual(record["mime"], "image/webp")
-                self.assertTrue(record["name"].endswith(".webp"))
+                self.assertEqual(record["name"], "راهنمای-کشت-گوجه-با-نوار-تیپ-تصویر-شاخص.webp")
                 self.assertEqual((record["width"], record["height"]), (1200, 675))
                 with Image.open(output) as image:
                     self.assertEqual(image.size, (1200, 675))
                     self.assertEqual(image.format, "WEBP")
             finally:
                 queue.OUT, queue.IMAGE_TOKEN = old_out, old_token
+
+    def test_seo_image_names_are_descriptive_and_sanitized(self):
+        item = {"id": "crop-001", "slug": "هزینه کشت گوجه / نوار تیپ"}
+        self.assertEqual(
+            queue.seo_image_name(item, 2),
+            "هزینه-کشت-گوجه-نوار-تیپ-کاربرد-عملی.webp",
+        )
+        self.assertNotIn("crop-001", queue.seo_image_name(item, 2))
 
     def test_product_label_text_is_exact_and_family_specific(self):
         tape = queue.image_prompt_policy.image_prompt(

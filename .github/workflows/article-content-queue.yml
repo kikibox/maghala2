@@ -4,7 +4,13 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['.github/workflows/article-content-queue.yml']
+    paths:
+      - '.github/workflows/article-content-queue.yml'
+      - 'automation/article_content_queue.py'
+      - 'automation/image_prompt_policy.py'
+      - 'automation/agnes_json_client.py'
+      - 'automation/compress_article_images.py'
+      - 'tests/test_article_content_queue.py'
   schedule:
     # One article normally needs 15–22 minutes. A 30-minute cadence avoids
     # building a queue of overlapping scheduled runs.

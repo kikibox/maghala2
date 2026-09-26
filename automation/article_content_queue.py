@@ -514,6 +514,21 @@ def make_content(item, links):
     raise RuntimeError("Text QA failed after 4 attempts: " + "; ".join(last_errors))
 
 
+IMAGE_ROLE_SLUGS = {
+    1: "تصویر-شاخص",
+    2: "کاربرد-عملی",
+    3: "جزئیات-فنی",
+}
+
+
+def seo_image_name(item, kind):
+    raw = str(item.get("slug") or item.get("focus") or item.get("title") or item.get("id") or "article")
+    slug = re.sub(r"[^0-9A-Za-z\u0600-\u06FF-]+", "-", raw.lower())
+    slug = re.sub(r"-{2,}", "-", slug).strip("-")[:140].strip("-") or "article"
+    role = IMAGE_ROLE_SLUGS.get(int(kind), f"تصویر-{kind}")
+    return f"{slug}-{role}.webp"
+
+
 def image_prompt(item, kind):
     return image_prompt_policy.image_prompt(item, kind)
 
@@ -629,7 +644,7 @@ def generate_image(item, kind):
     suffix, mime, width, height = ".webp", "image/webp", 1200, 675
     img_dir = OUT / "images"
     img_dir.mkdir(exist_ok=True)
-    name = f"{item['id']}-{kind}{suffix}"
+    name = seo_image_name(item, kind)
     (img_dir / name).write_bytes(blob)
     return {
         "name": name,
