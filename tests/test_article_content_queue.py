@@ -172,6 +172,14 @@ class ArticleQueueTests(unittest.TestCase):
         prompts = [queue.image_prompt_policy.image_prompt(item, kind) for kind in (1, 2, 3)]
         self.assertEqual(len(set(prompts)), 3)
         self.assertTrue(all("different editorial assignments" in prompt for prompt in prompts))
+        self.assertIn("no person performs the activity", prompts[1])
+        self.assertIn("People must not appear", prompts[0])
+        self.assertNotIn("If people appear", prompts[0])
+
+    def test_full_rebuild_uses_three_image_set_gate(self):
+        rebuild = (ROOT / "automation" / "rebuild_article_images_exact_product.py").read_text(encoding="utf-8")
+        self.assertIn("queue.generate_images_parallel", rebuild)
+        self.assertNotIn("pool.submit(queue.generate_image", rebuild)
 
     def test_set_gate_regenerates_only_duplicate_role(self):
         calls = []

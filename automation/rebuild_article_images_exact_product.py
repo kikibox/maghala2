@@ -5,7 +5,6 @@ from __future__ import annotations
 import datetime as dt
 import json
 import os
-from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import article_content_queue as queue
 
@@ -57,6 +56,19 @@ def current_policy_ids(completed):
             current.append(item_id)
     return sorted(current)
 
+def previously_failed_ids():
+    if not MARKER.exists():
+        return set()
+    try:
+        marker = json.loads(MARKER.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return set()
+    return {
+        str(row.get("id") or "")
+        for row in marker.get("failures", [])
+        if row.get("id")
+    }
+
 
 def main() -> int:
     if not queue.QUEUE.exists():
@@ -84,29 +96,30 @@ def main() -> int:
         print("exact_product_rebuild=already_current")
         return 0
 
-    selected_ids = list(records)[:POST_LIMIT]
+    # Do not let a few difficult records permanently starve the rest of the
+    # rebuild queue. Retry previous failures after unseen records; once only
+    # failures remain they naturally return to the front.
+    failed_before = previously_failed_ids()
+    selected_ids = sorted(records, key=lambda item_id: (item_id in failed_before, item_id))[:POST_LIMIT]
     records = {item_id: records[item_id] for item_id in selected_ids}
-    results = {item_id: {} for item_id in records}
+    results = {}
     failures = []
-    with ThreadPoolExecutor(max_workers=WORKERS, thread_name_prefix="exact-product") as pool:
-        futures = {}
-        for item_id, (item, _, data) in records.items():
-            enriched = {**item, **data}
-            for kind in range(1, 4):
-                futures[pool.submit(queue.generate_image, enriched, kind)] = (item_id, kind)
-        for future in as_completed(futures):
-            item_id, kind = futures[future]
-            try:
-                results[item_id][kind] = future.result()
-            except Exception as exc:
-                failures.append({"id": item_id, "kind": kind, "error": str(exc)[:1200]})
+    # Process one article set at a time. The set manager already generates
+    # roles in parallel, runs individual QA, then reviews all three together
+    # and selectively regenerates duplicate roles. Calling generate_image()
+    # directly here used to bypass that final diversity gate.
+    for item_id, (item, _, data) in records.items():
+        try:
+            results[item_id] = queue.generate_images_parallel({**item, **data})
+        except Exception as exc:
+            failures.append({"id": item_id, "kind": "set", "error": str(exc)[:1200]})
 
     failed_ids = {x["id"] for x in failures}
     rebuilt, stamp = [], now()
     for item_id, (item, path, data) in records.items():
-        if item_id in failed_ids or len(results[item_id]) != 3:
+        if item_id in failed_ids or len(results.get(item_id, [])) != 3:
             continue
-        images = [results[item_id][kind] for kind in range(1, 4)]
+        images = results[item_id]
         names = [x["name"] for x in images]
         hashes = [x["sha256"] for x in images]
         data.update(
