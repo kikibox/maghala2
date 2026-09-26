@@ -10,7 +10,6 @@ on:
       - 'automation/image_prompt_policy.py'
       - 'automation/image_quality_gate.py'
       - 'automation/assets/**'
-      - 'automation/rebuild_article_images_exact_product.py'
       - 'automation/agnes_json_client.py'
       - 'automation/compress_article_images.py'
       - 'tests/test_article_content_queue.py'
@@ -24,7 +23,8 @@ permissions:
 
 concurrency:
   group: article-content-pipeline
-  cancel-in-progress: false
+  # A pushed workflow fix supersedes an older article run. Scheduled runs wait.
+  cancel-in-progress: ${{ github.event_name == 'push' }}
 
 env:
   AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
@@ -37,6 +37,7 @@ env:
   ARTICLE_WORKERS: '1'
   IMAGE_WORKERS: '3'
   IMAGE_QA_ATTEMPTS: '6'
+  IMAGE_SET_QA_ATTEMPTS: '4'
   IMAGE_QA_FAST_MODE: '0'
 
 jobs:
@@ -112,10 +113,6 @@ jobs:
           echo "exit_code=$rc" >> "$GITHUB_OUTPUT"
           exit 0
 
-      - name: Rebuild legacy images with exact product assets
-        if: always()
-        run: python automation/rebuild_article_images_exact_product.py
-
       - name: Optimize article images as WebP
         if: always()
         run: python automation/compress_article_images.py
@@ -126,7 +123,7 @@ jobs:
           PACKAGE_BATCH_SIZE: '50'
         run: python automation/package_article_content_batches.py
 
-      - name: Refresh dashboard after image rebuild
+      - name: Refresh dashboard
         if: always()
         run: python automation/render_article_queue_status.py
 
