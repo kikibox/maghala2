@@ -19,6 +19,7 @@ import json, os, re, time, hashlib, struct, urllib.request, urllib.error, html, 
 from collections import Counter
 from pathlib import Path
 from agnes_json_client import call as agnes_json_call
+import image_prompt_policy
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "artifacts" / "article-content-queue"
@@ -286,6 +287,7 @@ def write_status(q, result):
         "",
         f"- مدل متن: `{AGNES_MODEL}`",
         f"- مدل تصویر: `{IMAGE_MODEL}`",
+        f"- تصویر مرجع محصول: **رول/کارتن اصلی AFP هزارمتری** — `{image_prompt_policy.DRIP_TAPE_ROLL_REFERENCE}`",
         f"- تعداد تصاویر هر مقاله: **{q.get('images_per_post', 3)}**",
         f"- حداقل کلمات: **{q.get('rules', {}).get('minimum_words', MIN_WORDS)}**",
         f"- لینک داخلی مجاز: **{q.get('rules', {}).get('minimum_internal_links', MIN_LINKS)} تا ۷**",
@@ -513,20 +515,17 @@ def make_content(item, links):
 
 
 def image_prompt(item, kind):
-    scenes = {
-        1: "wide hero view of a modern agricultural field with drip irrigation system clearly visible",
-        2: "close technical view of drip irrigation components, filter, and regulator in a clean farm setting",
-        3: "farmer hands inspecting drip tape rows, no identifiable face"
-    }
-    vertical_desc = {
-        "crop": f"showing {item.get('focus','crop')} field context",
-        "product": "showing drip tape and pipe products on a clean white background",
-        "strategic": "showing a well-designed drip irrigation system layout",
-        "irrigation": "showing an irrigation method in a farm field",
-        "xref": "showing drip irrigation in a crop field with visible drip tape lines"
-    }
-    v = vertical_desc.get(item.get("vertical",""), "showing a drip irrigation farm")
-    return f"Photorealistic editorial agriculture image, {scenes[kind]}, {v}, natural light, no text, no logo, no watermark, no labels, 16:9 composition"
+    # Reuse the locked product-identity policy from the city generator. The
+    # supplied reference is the original AFP 1000-meter drip-tape roll/carton.
+    base_prompt = image_prompt_policy.image_prompt(item, kind)
+    article_context = (
+        f" Editorial context: {item.get('title', '')}. "
+        "The approved AFP 1000-meter product must be clearly visible in every image, "
+        "while the farm background and technical context should support the article topic. "
+        "Keep exactly one intact product, preserve its real proportions and packaging, "
+        "and do not replace it with a generic roll or invented brand."
+    )
+    return base_prompt + article_context
 
 
 def _urlnorm(u):
@@ -594,7 +593,10 @@ def generate_image(item, kind):
          "Accept": "application/json", "User-Agent": "navar-article-queue"},
         {"model": IMAGE_MODEL, "prompt": image_prompt(item, kind),
          "size": "1024x768", "return_base64": True,
-         "extra_body": {"response_format": "b64_json"}},
+         "extra_body": {
+             "response_format": "b64_json",
+             "image": image_prompt_policy.reference_images(kind, item),
+         }},
         600
     )
     row = data["data"][0]
