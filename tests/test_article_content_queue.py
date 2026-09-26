@@ -73,7 +73,14 @@ class ArticleQueueTests(unittest.TestCase):
             queue.IMAGE_TOKEN = "test"
             try:
                 item = {"id": "crop-001", "title": "مقاله نوار تیپ", "slug": "راهنمای-کشت-گوجه-با-نوار-تیپ", "focus": "crop", "vertical": "crop"}
-                with patch.object(queue, "fetch_json", return_value=response) as fetch_json:
+                approved = {
+                    "pass": True,
+                    "score": 100,
+                    "reasons": ["unit-test fixture"],
+                    "correction_prompt": "",
+                }
+                with patch.object(queue, "fetch_json", return_value=response) as fetch_json, \
+                     patch.object(queue.image_quality_gate, "review_image", return_value=approved):
                     record = queue.generate_image(item, 1)
                 payload = fetch_json.call_args.args[2]
                 self.assertEqual(payload["model"], "agnes-image-2.5-flash")
