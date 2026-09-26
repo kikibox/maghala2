@@ -20,7 +20,7 @@ ROLLBACK = OUT / "translation-rollback"
 STATUS = OUT / "translation-status.json"
 LANGUAGES = ("ar-IQ", "tg-TJ", "en-US")
 PREFIX = {"ar-IQ": "iraq", "tg-TJ": "tj", "en-US": "en"}
-BATCH = max(1, int(os.getenv("GENERATED_TRANSLATION_BATCH_SIZE", "2")))
+BATCH = max(1, int(os.getenv("GENERATED_TRANSLATION_BATCH_SIZE", "4")))
 
 
 def now() -> str:
@@ -124,7 +124,7 @@ def status_payload():
         complete = sum((TRANS / str(item["id"]) / f"{lang}.json").exists() for item, _ in sources)
         per_language[lang] = {"completed": complete, "pending": len(sources) - complete}
     backlog_sources = sum(bool(missing_languages(str(item["id"]))) for item, _ in sources)
-    image_marker = OUT / "image-rebuild-reference-rerender-3d-v3.json"
+    image_marker = OUT / "image-rebuild-reference-rerender-3d-v4-scale-controlled.json"
     image_data = {}
     if image_marker.exists():
         try:

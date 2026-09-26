@@ -82,7 +82,8 @@ class ArticleQueueTests(unittest.TestCase):
                 self.assertTrue(neutral.startswith("data:image/webp;base64,"))
                 prompt = queue.image_prompt(item, 1)
                 self.assertIn("true three-dimensional object", prompt)
-                self.assertIn("no more than 10 to 14 percent", prompt)
+                self.assertIn("6 to 9 percent of frame width", prompt)
+                self.assertIn("below knee height", prompt)
                 self.assertIn("Drip Irrigation Tape", prompt)
                 output = Path(tmp) / "images" / record["name"]
                 self.assertEqual(record["mime"], "image/webp")

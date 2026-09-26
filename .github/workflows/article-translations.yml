@@ -7,6 +7,9 @@ on:
     paths:
       - '.github/workflows/article-translations.yml'
       - 'automation/translate_queue.py'
+      - 'automation/translate_generated_articles.py'
+      - 'automation/render_article_queue_status.py'
+      - 'automation/package_article_translation_batches.py'
       - 'sqlbuild/build_patch.py'
       - 'data/source_ids.txt'
   schedule:
@@ -28,7 +31,7 @@ jobs:
       AGNES_API_BASE: ${{ vars.AGNES_API_BASE || 'https://apihub.agnes-ai.com/v1' }}
       AGNES_MODEL: ${{ vars.AGNES_MODEL || 'agnes-3.0-flash' }}
       MAX_ARTICLES: '4'
-      GENERATED_TRANSLATION_BATCH_SIZE: '2'
+      GENERATED_TRANSLATION_BATCH_SIZE: '4'
     steps:
       - uses: actions/checkout@v7
         with:
