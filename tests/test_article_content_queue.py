@@ -84,6 +84,26 @@ class ArticleQueueTests(unittest.TestCase):
         )
         self.assertNotIn("crop-001", queue.seo_image_name(item, 2))
 
+    def test_parallel_image_manager_preserves_role_order(self):
+        import threading
+        active = 0
+        peak = 0
+        lock = threading.Lock()
+        def fake_generate(item, kind):
+            nonlocal active, peak
+            with lock:
+                active += 1
+                peak = max(peak, active)
+            import time
+            time.sleep(0.03)
+            with lock:
+                active -= 1
+            return {"name": f"{kind}.webp", "sha256": str(kind)}
+        with patch.object(queue, "generate_image", side_effect=fake_generate):
+            rows = queue.generate_images_parallel({"id": "crop-001"})
+        self.assertEqual([row["name"] for row in rows], ["1.webp", "2.webp", "3.webp"])
+        self.assertGreaterEqual(peak, 2)
+
     def test_product_label_text_is_exact_and_family_specific(self):
         tape = queue.image_prompt_policy.image_prompt(
             {"source_id": "crop-001", "title": "مقاله نوار تیپ"}, 1

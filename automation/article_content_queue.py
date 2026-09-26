@@ -17,6 +17,7 @@ Output: artifacts/article-content-queue/
 """
 import json, os, re, time, hashlib, struct, urllib.request, urllib.error, html, datetime as dt
 from collections import Counter
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from agnes_json_client import call as agnes_json_call
 import image_prompt_policy
@@ -46,6 +47,8 @@ UPLOAD_SUBDIR = (os.getenv("ARTICLE_IMAGE_UPLOAD_SUBDIR") or "2026/09/navar-arti
 PUBLIC_UPLOAD_BASE = f"{SITE}/wp-content/uploads/{UPLOAD_SUBDIR}"
 
 BATCH = max(1, int(os.getenv("BATCH_SIZE", "2")))
+ARTICLE_WORKERS = max(1, int(os.getenv("ARTICLE_WORKERS", "2")))
+IMAGE_WORKERS = max(1, int(os.getenv("IMAGE_WORKERS", "4")))
 MIN_WORDS = int(os.getenv("MIN_WORDS", "1050"))
 MIN_LINKS = int(os.getenv("MIN_INTERNAL_LINKS", "4"))
 MAX_ATTEMPTS = max(1, int(os.getenv("MAX_ATTEMPTS", "4")))
@@ -292,6 +295,7 @@ def write_status(q, result):
         f"- حداقل کلمات: **{q.get('rules', {}).get('minimum_words', MIN_WORDS)}**",
         f"- لینک داخلی مجاز: **{q.get('rules', {}).get('minimum_internal_links', MIN_LINKS)} تا ۷**",
         f"- اندازه هر اجرا: **{BATCH} مقاله**",
+        f"- مدیر موازی: **{ARTICLE_WORKERS} مقاله / {IMAGE_WORKERS} تصویر هم‌زمان**",
         f"- حداکثر تلاش هر مقاله: **{MAX_ATTEMPTS}**",
         f"- دسته وردپرس: **مقاله‌ها** (`{CATEGORY_TAXONOMY_ID}`)",
         f"- لینک‌های داخلی شناخته‌شده: **{len(q.get('link_index', []))}**",
@@ -745,6 +749,40 @@ def select_batch(q):
     return eligible[:BATCH]
 
 
+class StageFailure(RuntimeError):
+    def __init__(self, stage, error):
+        self.stage = stage
+        self.original = error
+        super().__init__(str(error))
+
+
+def generate_images_parallel(item, pool=None):
+    owns_pool = pool is None
+    executor = pool or ThreadPoolExecutor(max_workers=IMAGE_WORKERS, thread_name_prefix="article-image")
+    futures = {executor.submit(generate_image, item, kind): kind for kind in range(1, 4)}
+    results = {}
+    try:
+        for future in as_completed(futures):
+            kind = futures[future]
+            results[kind] = future.result()
+        return [results[kind] for kind in range(1, 4)]
+    finally:
+        if owns_pool:
+            executor.shutdown(wait=True, cancel_futures=False)
+
+
+def _produce_item(item, links, image_pool):
+    try:
+        obj = make_content(item, links)
+    except Exception as exc:
+        raise StageFailure("text", exc) from exc
+    try:
+        images = generate_images_parallel(item, image_pool)
+    except Exception as exc:
+        raise StageFailure("image", exc) from exc
+    return obj, images
+
+
 def process(q):
     # A killed runner may leave an item in processing. Make it retryable.
     for item in q["items"]:
@@ -769,75 +807,72 @@ def process(q):
         write_status(q, "attention_required" if exhausted else "complete")
         return
 
-    batch_errors = []
+    # The coordinator owns queue state. Workers only call APIs and return
+    # results, preventing concurrent JSON/SQL/Git state writes.
     for item in batch:
         item.update(status="processing", attempts=item["attempts"]+1, started_at=now())
-        QUEUE.write_text(json.dumps(q, ensure_ascii=False, indent=2), encoding="utf-8")
-        stage = "text"
-        try:
-            obj = make_content(item, q["link_index"])
-            stage = "image"
-            images = []
-            for kind in range(1, 4):
-                images.append(generate_image(item, kind))
-                time.sleep(2)
-            # Produce reversible SQL and local image assets. Publishing is
-            # intentionally manual in 50-post packages; no WordPress REST
-            # credentials are required by the generator.
-            stage = "sql"
-            insert, rollback, body = sql_for(item, obj, images)
-            (SQL / f"{item['id']}.sql").write_text(insert, encoding="utf-8")
-            (ROLLBACK / f"{item['id']}.sql").write_text(rollback, encoding="utf-8")
-            completed_at = now()
-            item.update(
-                status="completed",
-                completed_at=completed_at,
-                word_count=words(body),
-                images=[x["name"] for x in images],
-                image_sha256=[x["sha256"] for x in images],
-                delivery="sql_package",
-                last_error="",
-            )
-            (ITEMS / f"{item['id']}.json").write_text(
-                json.dumps({**item, **obj, "html": body, "images": images},
-                          ensure_ascii=False, indent=2),
-                encoding="utf-8"
-            )
-        except Exception as e:
-            msg = str(e)[:900]
-            permanent_codes = ("HTTP 400 ", "HTTP 401 ", "HTTP 403 ", "HTTP 404 ")
-            blocked = stage == "image" and (
-                "IMAGE_API_KEY/AGNES_API_KEY is missing" in msg
-                or any(code in msg for code in permanent_codes)
-            )
-            item.update(status="blocked_image_model" if blocked else "failed",
-                        failed_at=now(), last_error=msg, failed_stage=stage)
-            batch_errors.append(f"{item['id']} ({stage}): {msg}")
-            if blocked:
-                q["image_model_error"] = msg
+    q["updated_at"] = now()
+    QUEUE.write_text(json.dumps(q, ensure_ascii=False, indent=2), encoding="utf-8")
+    write_status(q, "processing")
+
+    batch_errors = []
+    article_workers = min(ARTICLE_WORKERS, len(batch))
+    with ThreadPoolExecutor(max_workers=IMAGE_WORKERS, thread_name_prefix="article-image") as image_pool:
+        with ThreadPoolExecutor(max_workers=article_workers, thread_name_prefix="article-text") as article_pool:
+            future_items = {
+                article_pool.submit(_produce_item, item, q["link_index"], image_pool): item
+                for item in batch
+            }
+            for future in as_completed(future_items):
+                item = future_items[future]
+                stage = "text"
+                try:
+                    obj, images = future.result()
+                    stage = "sql"
+                    insert, rollback, body = sql_for(item, obj, images)
+                    (SQL / f"{item['id']}.sql").write_text(insert, encoding="utf-8")
+                    (ROLLBACK / f"{item['id']}.sql").write_text(rollback, encoding="utf-8")
+                    completed_at = now()
+                    item.update(
+                        status="completed", completed_at=completed_at,
+                        word_count=words(body), images=[x["name"] for x in images],
+                        image_sha256=[x["sha256"] for x in images],
+                        delivery="sql_package", last_error="",
+                    )
+                    item.pop("failed_stage", None);item.pop("failed_at", None);item.pop("started_at", None)
+                    (ITEMS / f"{item['id']}.json").write_text(
+                        json.dumps({**item, **obj, "html": body, "images": images}, ensure_ascii=False, indent=2),
+                        encoding="utf-8")
+                except Exception as exc:
+                    if isinstance(exc, StageFailure):
+                        stage=exc.stage;error=exc.original
+                    else:
+                        error=exc
+                    msg=str(error)[:900]
+                    permanent_codes=("HTTP 400 ","HTTP 401 ","HTTP 403 ","HTTP 404 ")
+                    blocked=stage=="image" and (
+                        "IMAGE_API_KEY/AGNES_API_KEY is missing" in msg
+                        or any(code in msg for code in permanent_codes)
+                    )
+                    item.update(status="blocked_image_model" if blocked else "failed", failed_at=now(), last_error=msg, failed_stage=stage)
+                    item.pop("started_at", None)
+                    batch_errors.append(f"{item['id']} ({stage}): {msg}")
+                    if blocked:q["image_model_error"]=msg
+                q["updated_at"] = now()
                 QUEUE.write_text(json.dumps(q, ensure_ascii=False, indent=2), encoding="utf-8")
-                write_status(q, "blocked_image_model")
-                raise
-        q["updated_at"] = now()
-        QUEUE.write_text(json.dumps(q, ensure_ascii=False, indent=2), encoding="utf-8")
-        write_status(q, "processing")
+                write_status(q, "processing")
 
     (OUT / "create-all-completed.sql").write_text(
         "\n".join(["-- Review before importing. Generated articles are intentionally published."] +
-                  [p.read_text(encoding="utf-8") for p in sorted(SQL.glob("*.sql"))]),
-        encoding="utf-8"
-    )
+                  [p.read_text(encoding="utf-8") for p in sorted(SQL.glob("*.sql"))]), encoding="utf-8")
     (OUT / "rollback-all-completed.sql").write_text(
-        "\n".join(p.read_text(encoding="utf-8") for p in sorted(ROLLBACK.glob("*.sql"))),
-        encoding="utf-8"
-    )
-    exhausted = any(
-        x.get("status") == "failed" and int(x.get("attempts", 0)) >= MAX_ATTEMPTS
-        for x in q["items"]
-    )
-    write_status(q, "attention_required" if exhausted else "ready")
-    if batch_errors:
-        raise RuntimeError("Queue item failed: " + " | ".join(batch_errors))
+        "\n".join(p.read_text(encoding="utf-8") for p in sorted(ROLLBACK.glob("*.sql"))), encoding="utf-8")
+    if any(x.get("status") == "blocked_image_model" for x in q["items"]):
+        write_status(q, "blocked_image_model")
+    else:
+        exhausted=any(x.get("status")=="failed" and int(x.get("attempts",0))>=MAX_ATTEMPTS for x in q["items"])
+        write_status(q, "attention_required" if exhausted else "ready")
+    if batch_errors:raise RuntimeError("Queue item failed: " + " | ".join(batch_errors))
 
 
 def main():
