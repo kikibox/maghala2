@@ -42,6 +42,21 @@ def write_marker(rebuilt, skipped, failures, total, remaining, completed=False):
         encoding="utf-8",
     )
 
+def current_policy_ids(completed):
+    current = []
+    for item in completed:
+        item_id = str(item.get("id") or item.get("source_id") or "")
+        path = queue.ITEMS / f"{item_id}.json"
+        if not item_id or not path.exists():
+            continue
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if data.get("image_rebuild_policy") == POLICY:
+            current.append(item_id)
+    return sorted(current)
+
 
 def main() -> int:
     if not queue.QUEUE.exists():
@@ -63,7 +78,9 @@ def main() -> int:
 
     pending_total = len(records)
     if not records:
-        write_marker([], skipped, [], len(completed), 0, completed=True)
+        current = current_policy_ids(completed)
+        remaining = max(0, len(completed) - len(current))
+        write_marker(current, skipped, [], len(completed), remaining, completed=True)
         print("exact_product_rebuild=already_current")
         return 0
 
@@ -109,16 +126,17 @@ def main() -> int:
         )
         rebuilt.append(item_id)
 
-    remaining = max(0, pending_total - len(rebuilt))
     state["updated_at"] = now()
     queue.QUEUE.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
-    write_marker(rebuilt, skipped, failures, len(completed), remaining, completed=True)
+    current = current_policy_ids(completed)
+    remaining = max(0, len(completed) - len(current))
+    write_marker(current, skipped, failures, len(completed), remaining, completed=True)
     print(
         f"exact_product_rebuild rebuilt={len(rebuilt)} remaining={remaining} failures={len(failures)} "
         f"workers={WORKERS} post_limit={POST_LIMIT} policy={POLICY}",
         flush=True,
     )
-    return 0
+    return 1 if failures else 0
 
 
 if __name__ == "__main__":
