@@ -574,19 +574,18 @@ def process(q):
             for kind in range(1, 4):
                 images.append(generate_image(item, kind))
                 time.sleep(2)
-            # Upload before marking the item completed. If FTPS fails, the item
-            # stays retryable instead of pointing WordPress at missing images.
-            stage = "image_upload"
-            if (os.getenv("UPLOAD_ARTICLE_IMAGES", "true").lower()
-                    not in {"0", "false", "no"}):
-                import upload_article_images_ftps
-                upload_article_images_ftps.main()
+            # Publish media and the article through WordPress REST. Completion
+            # is recorded only after WordPress confirms status=publish.
+            stage = "wordpress_publish"
+            from wordpress_publish_article import publish_article
+            published = publish_article(item, obj, images)
             stage = "sql"
             insert, rollback, body = sql_for(item, obj, images)
             (SQL / f"{item['id']}.sql").write_text(insert, encoding="utf-8")
             (ROLLBACK / f"{item['id']}.sql").write_text(rollback, encoding="utf-8")
             (ITEMS / f"{item['id']}.json").write_text(
-                json.dumps({**item, **obj, "html": body, "images": images},
+                json.dumps({**item, **obj, "html": published["html"], "images": images,
+                            "wordpress": published},
                           ensure_ascii=False, indent=2),
                 encoding="utf-8"
             )
@@ -596,6 +595,8 @@ def process(q):
                 word_count=words(body),
                 images=[x["name"] for x in images],
                 image_sha256=[x["sha256"] for x in images],
+                wordpress_post_id=published["post_id"],
+                wordpress_url=published.get("link"),
                 last_error="",
             )
         except Exception as e:
