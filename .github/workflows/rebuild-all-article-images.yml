@@ -17,6 +17,8 @@ permissions:
   contents: write
 
 concurrency:
+  # Strict proof runs own the real pipeline lock; queue runs marked
+  # [image-rebuild] use a separate skipped-workflow lock.
   group: article-content-pipeline
   cancel-in-progress: false
 

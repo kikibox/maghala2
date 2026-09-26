@@ -22,7 +22,9 @@ permissions:
   contents: write
 
 concurrency:
-  group: article-content-pipeline
+  # A skipped queue run must not acquire the production-pipeline lock first
+  # and cancel the dedicated image proof triggered by the same commit.
+  group: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[image-rebuild]') && 'article-content-pipeline-image-rebuild-skip' || 'article-content-pipeline' }}
   cancel-in-progress: true
 
 env:
