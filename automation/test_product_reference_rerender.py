@@ -68,13 +68,36 @@ def prompt(case: dict) -> str:
         "topic": "layflat" if is_layflat else "tape20",
         "slug": "scale-test",
     }
-    return image_prompt_policy.image_prompt(item, 1)
+    return (
+        "The first attached image is a strict composition-and-scale map. Keep the product at the same tiny relative size and lower-third location shown there; do not zoom into it or enlarge it. "
+        + image_prompt_policy.image_prompt(item, 1)
+    )
 
 
 def reference_data_url(filename: str) -> str:
     encoded = (ASSETS / filename).read_text(encoding="ascii").strip()
     mime = "image/jpeg" if filename.endswith(".jpg.b64") else "image/webp"
     return f"data:{mime};base64," + encoded
+
+
+def composition_reference(case: dict) -> str:
+    filenames = case.get("assets", [case.get("asset")])
+    canvas = Image.new("RGB", (1024, 576), (214, 219, 203))
+    draw = ImageDraw.Draw(canvas)
+    draw.rectangle((0, 0, 1024, 330), fill=(202, 219, 226))
+    draw.rectangle((0, 330, 1024, 576), fill=(151, 131, 96))
+    thumb_width = 78 if len(filenames) > 1 else 92
+    x = 90
+    for filename in filenames:
+        encoded = (ASSETS / filename).read_text(encoding="ascii").strip()
+        source = Image.open(io.BytesIO(base64.b64decode(encoded))).convert("RGB")
+        source.thumbnail((thumb_width, 72), Image.Resampling.LANCZOS)
+        y = 500 - source.height
+        canvas.paste(source, (x, y))
+        x += source.width + 14
+    buffer = io.BytesIO()
+    canvas.save(buffer, "JPEG", quality=90, optimize=True)
+    return "data:image/jpeg;base64," + base64.b64encode(buffer.getvalue()).decode("ascii")
 
 
 def add_phone_watermark(image: Image.Image) -> Image.Image:
@@ -107,10 +130,7 @@ def generate(name: str, case: dict) -> dict:
         "return_base64": True,
         "extra_body": {
             "response_format": "b64_json",
-            "image": [
-                reference_data_url(filename)
-                for filename in case.get("assets", [case.get("asset")])
-            ],
+            "image": [composition_reference(case)],
         },
     }
     last = None
