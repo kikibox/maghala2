@@ -2,57 +2,39 @@
   "id": "crop-001",
   "kind": 1,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v8-role-isolated-set-reviewed",
+  "policy": "strict-no-human-scale-watermark-v9-semantic-composition-set-reviewed",
   "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 95,
-      "product_width_percent": 16,
-      "product_height_percent": 22,
+      "score": 15,
+      "product_width_percent": 14,
+      "product_height_percent": 11,
       "product_x_center_percent": 50,
       "reasons": [
-        "The image contains exactly one wide, low cylindrical drip-tape carton roll.",
-        "Zero people or human body parts are visible in the frame.",
-        "The roll is placed naturally on soil in a farm context.",
-        "The background matches the topic of farm drip-tape application.",
-        "The required bottom-right watermark 'AFP | 09134922013' is present.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 16% to 20-23% of frame width.; Move the product clearly to the left or right lower third; do not center it."
+        "Critical violation: Image contains a full-body person (farmer) crouching in the center frame, which is explicitly prohibited by the 'zero people' constraint.",
+        "Placement violation: The product is placed directly in front of the person and centered, rather than being off-center on the lower third of the image as a secondary element.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 14% to 20-23% of frame width."
       ],
-      "correction_prompt": "Enlarge the product group from 16% to 20-23% of frame width. Move the product clearly to the left or right lower third; do not center it.",
+      "correction_prompt": "Generate an image of a solitary white and blue AFP drip-tape carton roll placed on the soil in a farm field. The roll must be positioned off-center on the lower third of the frame. The scene must contain absolutely no people, farmers, or human silhouettes. Ensure the 'AFP | 09134922013' watermark is visible in the bottom right corner. Enlarge the product group from 14% to 20-23% of frame width.",
       "attempt": 1
     },
     {
-      "pass": false,
-      "score": 25,
-      "product_width_percent": 11.5,
-      "product_height_percent": 14.0,
-      "product_x_center_percent": 39.5,
-      "reasons": [
-        "The image contains a full human figure (a man) who is actively holding the product, which is a hard reject requirement.",
-        "The product bounding box width (approx. 11.5%) is significantly below the minimum required threshold of 20% of the frame width.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 11.5% to 20-23% of frame width."
-      ],
-      "correction_prompt": "Regenerate the image without any people or human body parts. The image must show only the AFP white-and-blue wide low cylindrical drip-tape carton roll placed naturally on the soil in a farm context. The roll must be larger, occupying roughly 20 to 23 percent of the frame width, and positioned off-center on the lower third. Enlarge the product group from 11.5% to 20-23% of frame width.",
-      "attempt": 2
-    },
-    {
       "pass": true,
-      "score": 92,
-      "product_width_percent": 22.5,
-      "product_height_percent": 18,
-      "product_x_center_percent": 53,
+      "score": 95,
+      "product_width_percent": 21,
+      "product_height_percent": 27,
+      "product_x_center_percent": 48,
       "reasons": [
-        "The single AFP white-and-blue cylindrical drip-tape roll is present and correctly placed on the soil in the lower third.",
-        "The product size is approximately 22.5% of the frame width and 18% of the height, falling within the 20-23% width and <28% height constraints.",
-        "The product is off-center (x_center ~53%), not centered.",
-        "The aspect ratio (diameter/height) is approximately 1.6, matching the 1.6-1.8 requirement.",
-        "No people, human silhouettes, or human body parts are present in the image.",
-        "The background (field of green crops) matches the farm context.",
-        "The required bottom-right watermark 'AFP | 09134922013' is present and clearly legible."
+        "The image contains exactly one AFP white and blue wide cylindrical drip-tape roll, clearly positioned on the soil.",
+        "The bounding box dimensions (approximately 21% width, 27% height, 48% center) satisfy all geometric and placement constraints.",
+        "The bottom-right watermark 'AFP | 09134922013' is present and intact.",
+        "Zero people, body parts, or human silhouettes are visible in the frame.",
+        "The background context of a farm field with rows of young crops perfectly matches the image role and topic.",
+        "Geometry of the roll is realistic, with no fake text, gibberish, or impossible features."
       ],
       "correction_prompt": "",
-      "attempt": 3
+      "attempt": 2
     }
   ],
   "approved_image": "میزان-برداشت-اسفناج-در-هکتار-با-نوار-تیپ-تصویر-شاخص.webp"
