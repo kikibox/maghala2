@@ -4,7 +4,7 @@
 
 ## نمای کلی
 
-- آخرین بروزرسانی: `2026-09-26T03:59:38+00:00`
+- آخرین بروزرسانی: `2026-09-26T04:18:48+00:00`
 - وضعیت صف: **آماده اجرای بعدی** (`ready`)
 - پیشرفت: **0 از 1148 (0.00٪)**
 - نمودار پیشرفت: `░░░░░░░░░░░░░░░░░░░░`
@@ -47,7 +47,7 @@
 - عنوان: **میزان برداشت اسفناج در هکتار با نوار تیپ**
 - شناسه: `crop-001`
 - گروه: `crop`
-- تعداد تلاش قبلی: **1**
+- تعداد تلاش قبلی: **2**
 
 ## آخرین مقالات تکمیل‌شده
 
@@ -55,7 +55,7 @@
 
 ## خطاهای اخیر
 
-- **میزان برداشت اسفناج در هکتار با نوار تیپ** — `crop-001` — مرحله: `text` — تلاش: **1/4** — `Text QA failed after 4 attempts: IMAGE_1 marker count is 0, expected 1; IMAGE_2 marker count is 0, expected 1; IMAGE_3 marker count is 0, expected 1`
+- **میزان برداشت اسفناج در هکتار با نوار تیپ** — `crop-001` — مرحله: `text` — تلاش: **2/4** — `Text QA failed after 4 attempts: internal link count 2 outside 4-7; IMAGE_1 marker count is 0, expected 1; IMAGE_2 marker count is 0, expected 1; IMAGE_3 marker count is 0, expected 1`
 
 ## بسته‌های ۵۰تایی آماده
 
