@@ -1,7 +1,37 @@
 {
   "id": "crop-001",
-  "policy": "strict-no-human-scale-watermark-v9-semantic-composition-set-reviewed",
+  "policy": "strict-no-human-scale-watermark-v10-topic-identity-semantic-composition-set-reviewed",
   "history": [
+    {
+      "pass": false,
+      "score": 55,
+      "duplicate_roles": [
+        1,
+        2
+      ],
+      "reasons": [
+        "The visual composition of Image 1 and Image 2 is nearly identical, repeating the same 'furrow field plus low-angle product placement' narrative. The camera height and angle have not sufficiently changed between these two, violating the requirement for distinct technical perspectives. While Image 3 adds a useful technical element (pressure gauges) and a different crop stage, the overall set fails to provide three distinct narratives, effectively presenting one composition with variations.",
+        "The background in all three images is a generic green field. It does not clearly visualize the 'spinach crop' specific to the article topic, nor does it show the 'drip irrigation' infrastructure (lines, emitters) that is central to the summary. The connection to the specific article problem is weak.",
+        "All images utilize a very similar low-angle 'hero shot' perspective of the product placed in a furrow. There is no variation in shot type (e.g., overhead, wide landscape, close-up on soil moisture) to satisfy the 'clearly different camera height or angle' mandate."
+      ],
+      "correction_prompt": "Replace the second image with a high-angle aerial shot showing the drip irrigation line layout on the soil surface, and replace the first image with a close-up shot of a pressure gauge or a cross-section of the soil showing moisture levels to distinctly differentiate the technical narrative from the current set.",
+      "set_attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "duplicate_roles": [
+        1,
+        2
+      ],
+      "reasons": [
+        "Images 1 and 2 are near-duplicates: they share the same camera height (eye-level low angle), the same composition (product centered in a furrow), the same generic farm structures in the background, and fail to visually distinguish 'drip tape' application.",
+        "The images fail to visualize the article-specific crop and technique: the crops look like generic broadleaf plants rather than distinctive spinach, and the 'drip tape' irrigation is not visible in any of the images (it should be the primary subject along with the product).",
+        "Image 1 is nearly identical to Image 2, violating the requirement for different camera angles or environments."
+      ],
+      "correction_prompt": "Create three unique images specifically for the spinach and drip-tape article: (1) A high-angle 'God's eye' shot showing a dense grid of spinach beds with visible black drip tape lines and the AFP product, (2) A tight close-up macro shot showing water droplets on the visible drip tape next to the AFP product, and (3) An installation shot with gloves and tools actively laying the drip tape in the soil beside the product roll.",
+      "set_attempt": 2
+    },
     {
       "pass": false,
       "score": 40,
@@ -11,12 +41,12 @@
         3
       ],
       "reasons": [
-        "The set fails to visualize the specific article topic of 'drip irrigation' (نوار تیپ); none of the images show the physical presence of drip tapes, lines, or water delivery on the furrows.",
-        "All three images share nearly identical framing, low-angle composition, and product placement on the soil, resulting in a lack of distinct editorial variety.",
-        "The background narrative is repetitive, using generic furrow fields without distinguishing elements related to spinach growth stages or irrigation infrastructure."
+        "Lack of visual variation: All three images share the exact same camera perspective (low angle), composition (symmetrical centering), and background structure (open field with a central furrow).",
+        "Repetitive narrative: The images fail to tell a sequential or multi-faceted story. They essentially show the same 'product in a field' shot with minor prop variations (hoses, gauges) rather than distinct scenes (e.g., installation, water flow, harvest result).",
+        "Weak topic connection: The crops are generic green seedlings. The article focuses on 'spinach yield,' but the plants lack distinct spinach features (large flat leaves), and the background is not specific to the drip irrigation topic beyond vague hoses/gauges."
       ],
-      "correction_prompt": "Regenerate the set to include: 1) a close-up of a soil cross-section clearly showing a drip tape line beneath spinach roots; 2) a high-angle wide shot showing an entire field with parallel irrigation lines installed; and 3) an extreme macro shot of water dripping from the system onto spinach foliage. Do not use tractors as a substitute for irrigation hardware.",
-      "set_attempt": 1
+      "correction_prompt": "Create three distinct editorial scenes: 1) A top-down macro shot of the drip tape installed directly at the base of mature, large-leafed spinach plants showing water droplets; 2) A close-up profile view of the tape's emitters functioning with clear water, set against dark, moist soil; 3) A split-comparison view of dense, healthy spinach crops on the left (irrigated) versus sparse, wilted plants on the right (dry), both using the same field environment but with different crop density.",
+      "set_attempt": 3
     }
   ]
 }
