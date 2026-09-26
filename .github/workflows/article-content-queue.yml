@@ -20,14 +20,9 @@ env:
   AGNES_API_BASE: ${{ vars.AGNES_API_BASE || 'https://apihub.agnes-ai.com/v1' }}
   AGNES_MODEL: ${{ vars.AGNES_MODEL || 'agnes-3.0-flash' }}
   IMAGE_MODEL: ${{ vars.IMAGE_MODEL || 'agnes-image-2.0-flash' }}
-  ARTICLE_IMAGE_UPLOAD_SUBDIR: ${{ vars.ARTICLE_IMAGE_UPLOAD_SUBDIR || '2026/09/navar-article-generated' }}
-  UPLOAD_ARTICLE_IMAGES: 'true'
-  FTP_HOST: ftp.navar-abyari.ir
-  FTP_PORT: '21'
-  FTP_USER: zzz@navar-abyari.ir
-  FTP_REMOTE_DIR: /
-  FTP_TLS_VERIFY: 'false'
-  FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+  WP_SITE_URL: https://navar-abyari.ir
+  WP_USERNAME: ${{ secrets.WP_USERNAME }}
+  WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
   BATCH_SIZE: '1'
 
 jobs:
@@ -53,15 +48,16 @@ jobs:
         run: |
           set -euo pipefail
           test -n "$AGNES_API_KEY" || { echo '::error::AGNES_API_KEY is missing'; exit 1; }
-          test -n "$FTP_PASSWORD" || { echo '::error::FTP_PASSWORD is missing'; exit 1; }
+          test -n "$WP_USERNAME" || { echo '::error::WP_USERNAME is missing'; exit 1; }
+          test -n "$WP_APP_PASSWORD" || { echo '::error::WP_APP_PASSWORD is missing'; exit 1; }
 
       - name: Run tests
-        run: python -m unittest discover -s tests -p 'test_article_content_queue.py'
+        run: python -m unittest discover -s tests -p 'test_*.py'
 
       - name: Regenerate deterministic topics
         run: python automation/topic_matrix.py
 
-      - name: Process next article, images, and FTPS upload
+      - name: Generate and publish next article through WordPress REST
         id: queue
         shell: bash
         run: |
