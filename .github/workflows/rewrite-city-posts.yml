@@ -2,31 +2,6 @@ name: Rewrite city posts with Agnes
 
 on:
   workflow_dispatch:
-    inputs:
-      mode:
-        description: "audit = گزارش، rewrite = تولید SQL"
-        required: true
-        type: choice
-        options: [audit, rewrite]
-        default: audit
-      dump_path:
-        description: "مسیر SQL یا SQL.GZ"
-        required: true
-        default: "database/incoming/navaraby_wp569.sql.gz"
-      post_types:
-        description: "post typeهای شهری با کاما؛ خالی = تشخیص خودکار"
-        required: false
-        default: ""
-      max_posts:
-        description: "۰ = همه؛ برای تست ۳"
-        required: true
-        default: "0"
-  push:
-    branches: [main]
-    paths:
-      - "database/incoming/*.sql"
-      - "database/incoming/*.sql.gz"
-      - "automation/city-rewrite-trigger.txt"
 
 permissions:
   contents: write
@@ -46,6 +21,7 @@ env:
 
 jobs:
   process:
+    if: ${{ false }} # City-post system intentionally disabled
     runs-on: ubuntu-latest
     timeout-minutes: 360
     steps:

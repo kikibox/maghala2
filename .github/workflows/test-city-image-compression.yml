@@ -2,18 +2,13 @@ name: Test city image compression
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - "automation/image-compression-test-trigger.txt"
-      - "automation/compress_city_images.py"
-      - ".github/workflows/test-city-image-compression.yml"
 
 permissions:
   contents: write
 
 jobs:
   test:
+    if: ${{ false }} # City-post system intentionally disabled
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
