@@ -69,7 +69,7 @@ def prompt(case: dict) -> str:
         "slug": "scale-test",
     }
     return (
-        "The first attached image is a strict composition-and-scale map. Keep the product at the same tiny relative size and lower-third location shown there; do not zoom into it or enlarge it. "
+        "The first attached image is a strict composition-and-scale map. Keep the product at the same extremely tiny relative size and lower-third middle-distance location shown there; do not zoom into it or enlarge it. No person may touch, carry, lean on, stand beside, or approach within three metres of the product. "
         + image_prompt_policy.image_prompt(item, 1)
     )
 
@@ -86,7 +86,7 @@ def composition_reference(case: dict) -> str:
     draw = ImageDraw.Draw(canvas)
     draw.rectangle((0, 0, 1024, 330), fill=(202, 219, 226))
     draw.rectangle((0, 330, 1024, 576), fill=(151, 131, 96))
-    thumb_width = 78 if len(filenames) > 1 else 92
+    thumb_width = 22 if len(filenames) > 1 else 28
     x = 90
     for filename in filenames:
         encoded = (ASSETS / filename).read_text(encoding="ascii").strip()
