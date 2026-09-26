@@ -1,18 +1,38 @@
 {
   "id": "crop-002",
-  "policy": "strict-no-human-scale-watermark-v8-role-isolated-set-reviewed",
+  "policy": "strict-no-human-scale-watermark-v9-semantic-composition-set-reviewed",
   "history": [
     {
       "pass": false,
-      "score": 35,
-      "duplicate_roles": [],
-      "reasons": [
-        "The set fails to visualize the article's specific crop topic; none of the images depict lentils (عدس), showing flowers, generic grass, or a plowed field instead.",
-        "The images do not visualize the connection between drip irrigation and pest/disease control, appearing instead as generic agricultural scenes.",
-        "The inclusion of a tractor in the third image and the use of broad, indistinct crops makes the set fail to demonstrate the specific problem described in the text."
+      "score": 25,
+      "duplicate_roles": [
+        2,
+        3
       ],
-      "correction_prompt": "Regenerate all three images specifically featuring rows of lentil plants; depict one with visible fungal infection, one with a soil-level view of a drip irrigation line on healthy lentils, and one showing a close-up of lentil roots to illustrate soil health management.",
+      "reasons": [
+        "Failure to visualize the article-specific crop: The article focuses on lentil (عدس), but Image 1 features sunflowers, and Images 2 and 3 display generic row crops or bare soil. There is no clear visual connection to lentils in any of the images.",
+        "Duplicate backgrounds: Images 2 and 3 use the identical 'red barn and tractor' background, which violates the requirement for a visibly different environment structure.",
+        "Weak technical narrative: While Image 1 shows drip lines, it lacks the specific focus on soil moisture zones or the pest/disease context required by the article summary.",
+        "Generic farming tropes: The set repeats the 'tractor and barn' composition found in two of the three images."
+      ],
+      "correction_prompt": "Regenerate the set to strictly feature a lentil field (dwarf, bushy plants) for all three images; for the crop-specific requirement, replace Image 1's sunflowers with lentils. Differentiate the backgrounds significantly: use a close-up of drip tubing on soil for one, a wide shot of a specialized irrigation control unit for another, and a detail shot of the plant root zone to visualize moisture; avoid generic barn/tractor backgrounds entirely.",
       "set_attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "duplicate_roles": [
+        1,
+        2,
+        3
+      ],
+      "reasons": [
+        "Crop Irrelevance: Image 1 depicts sunflowers and images 2 & 3 show indistinct bare soil, completely failing to visualize the article's focus on lentils (عدس).",
+        "Missing Subject: There are no visual elements representing fungal or bacterial disease symptoms, pests, or the specific drip irrigation infrastructure (pipes, emitters) mentioned in the article summary.",
+        "Composition Repetition: Images 2 and 3 are nearly identical in environment (tillage soil with a background red barn), differing only in the presence of tiny sprouts in Image 2."
+      ],
+      "correction_prompt": "Regenerate a set of three images specifically featuring lentil fields: 1) A close-up of lentil plants exhibiting fungal or bacterial symptoms next to a drip irrigation line, 2) A high-angle view of lentil rows under a drip irrigation system, and 3) A macro shot of an AFp product placed next to a lentil plant with visible disease spots on the leaves.",
+      "set_attempt": 2
     }
   ]
 }
