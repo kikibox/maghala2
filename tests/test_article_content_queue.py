@@ -192,6 +192,10 @@ class ArticleQueueTests(unittest.TestCase):
         self.assertIn("IRRIGATION-SYSTEM STORY", roles[2])
         self.assertIn("no centered vanishing-point furrows", roles[2])
         self.assertEqual(len(set(roles)), 3)
+        self.assertIn("dense low rosettes", queue.image_prompt_policy.crop_identity_spec(item))
+        prompt = queue.image_prompt_policy.image_prompt(item, 1)
+        self.assertIn("BOTANICAL IDENTITY LOCK", prompt)
+        self.assertIn("dense low rosettes", prompt)
 
     def test_full_rebuild_uses_three_image_set_gate(self):
         rebuild = (ROOT / "automation" / "rebuild_article_images_exact_product.py").read_text(encoding="utf-8")

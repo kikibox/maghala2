@@ -44,6 +44,32 @@ CROPS={
  'پاپریکا':'paprika pepper','موسیر':'Persian shallot','رزماری':'rosemary','تریتیکاله':'triticale',
  'چاودار':'rye',
 }
+CROP_VISUALS={
+ 'اسفناج':'spinach with dense low rosettes of smooth dark-green oval to arrow-shaped leaves; no flowers, pods, tall stalks or broad bean-like foliage',
+ 'عدس':'lentil plants as low fine-textured bushy legumes with many thin branching stems, small paired pinnate oval leaflets and small flat pods; absolutely no corn blades, sunflower heads, brassica flowers or large bean leaves',
+ 'کنجد':'upright sesame stems with narrow lance-shaped leaves and elongated seed capsules',
+ 'طالبی':'cantaloupe vines with lobed leaves and restrained netted fruit still attached to the vine',
+ 'خیار':'cucumber vines with angular leaves, tendrils and small attached cucumbers',
+ 'سیر':'garlic rows with narrow flat blue-green leaves emerging in upright clusters',
+ 'باقلا':'fava bean plants with thick upright stems, broad paired leaflets and visible elongated pods',
+ 'ذرت':'maize with tall upright stalks and long blade leaves',
+ 'یونجه':'alfalfa with dense fine trifoliate leaflets and no large broad leaves',
+ 'گندم':'wheat with narrow leaves and mature compact grain heads',
+ 'سویا':'soybean with trifoliate leaves and fuzzy pods held close to branching stems',
+ 'زعفران':'saffron crocus with narrow grass-like leaves and sparse purple flowers',
+ 'نخود':'chickpea as low bushy plants with many tiny serrated leaflets and inflated pods',
+ 'شاهی':'garden cress as a dense low bed of small divided green leaves',
+ 'ریحان':'basil with opposite oval aromatic leaves on compact branching stems',
+ 'کاهو':'lettuce heads as low layered rosettes of broad crinkled leaves',
+ 'چغندر':'sugar beet with large low rosettes and thick reddish leaf stems',
+ 'گشنیز':'coriander with finely divided feathery leaves',
+ 'شبدر':'clover with unmistakable three-leaflet leaves in a dense low canopy',
+ 'ماش':'mung bean as compact legumes with trifoliate leaves and slender dark pods',
+ 'پاپریکا':'paprika pepper plants with narrow oval leaves and attached elongated red peppers',
+ 'موسیر':'Persian shallot with narrow strap-like leaves growing in clustered bulbs',
+ 'رزماری':'rosemary as woody low shrubs with many needle-like dark-green leaves',
+ 'چاودار':'rye with tall slender stems and long narrow grain heads',
+}
 
 def visual_brief(item,max_chars=650):
  item=item or {};parts=[]
@@ -75,17 +101,24 @@ def named_crop(item):
   if fa in text:return f'{fa} ({en})'
  return 'the exact named crop from the article title'
 
+def crop_identity_spec(item):
+ text=visual_brief(item)
+ for fa,en in CROPS.items():
+  if fa in text:
+   return CROP_VISUALS.get(fa,f'{fa} ({en}) with botanically accurate leaves, stems, growth habit and harvest stage')
+ return 'the exact named crop from the article title with botanically accurate, unmistakable morphology'
+
 def role_directive(item,kind):
- crop=named_crop(item);text=visual_brief(item).lower()
+ crop=named_crop(item);identity=crop_identity_spec(item);text=visual_brief(item).lower()
  if kind==1:
   detail='show mature pre-harvest crop density and uniformity' if any(x in text for x in ('برداشت','عملکرد','yield','harvest')) else 'show the crop at the growth stage discussed by the article'
-  return f'CROP-IDENTITY HERO: a high or eye-level wide editorial view of unmistakable {crop}; {detail}. Do not use a low centered furrow composition. The crop species, not bare soil or the AFP roll, must dominate.'
+  return f'CROP-IDENTITY HERO: a high or eye-level wide editorial view of unmistakable {crop}; botanical identity: {identity}; {detail}. Do not use a low centered furrow composition. The crop species, not bare soil or the AFP roll, must dominate.'
  if kind==2:
   evidence='visible non-graphic leaf symptoms and crop-specific monitoring evidence' if any(x in text for x in ('آفت','بیماری','pest','disease')) else 'recognizable leaves or crowns, the drip line and the localized wetting band/root-zone evidence'
   if any(x in text for x in ('بذر','seed')): evidence='article-specific seeds, calibrated seed quantity and establishment spacing beside recognizable young plants'
   if any(x in text for x in ('فاصله','spacing')): evidence='clearly measured row and emitter spacing with neutral stakes and visible drip-line placement'
-  return f'AGRONOMIC CLOSE EVIDENCE: an overhead or high-oblique close technical view of {crop} showing {evidence}. No horizon, barn, tractor, landscape panorama or long symmetrical furrows. This must look categorically different from role 1.'
- return f'IRRIGATION-SYSTEM STORY: a medium side view at the edge of a {crop} bed, centered on an unattended header, filter, pressure gauge, manifold or flush point and visible water-distribution evidence. No open-field panorama, no centered vanishing-point furrows, no tractor and no repeated role-1 composition. The hardware narrative must be obvious while the AFP roll stays secondary.'
+  return f'AGRONOMIC CLOSE EVIDENCE: an overhead or high-oblique close technical view of {crop} showing {evidence}. Botanical identity must visibly match: {identity}. No horizon, barn, tractor, landscape panorama or long symmetrical furrows. This must look categorically different from role 1.'
+ return f'IRRIGATION-SYSTEM STORY: a medium side view at the edge of a {crop} bed, centered on an unattended header, filter, pressure gauge, manifold or flush point and visible water-distribution evidence. Nearby crop morphology must match: {identity}. No open-field panorama, no centered vanishing-point furrows, no tractor and no repeated role-1 composition. The hardware narrative must be obvious while the AFP roll stays secondary.'
 
 def role_topic_anchor(item,kind):
  text=visual_brief(item).lower();crop=named_crop(item)
@@ -123,6 +156,7 @@ def image_prompt(item,kind):
  brief=visual_brief(item)
  summary_instruction=f'Article visual brief extracted from the post: {brief}. Every background must visibly express this brief rather than a generic farm. ' if brief else ''
  template=visual_template(item,kind)
+ identity=crop_identity_spec(item)
  correction=str((item or {}).get('_image_qa_feedback') or '').strip()
  correction_instruction=f'Previous candidate was rejected by visual QA. Correct all of these issues: {correction}. ' if correction else ''
  family=product_family(item)
@@ -137,7 +171,7 @@ def image_prompt(item,kind):
   scale=('Use the balanced scale-conditioned reference: the product occupies approximately 20 to 23 percent of frame width, stays low in real-world scale and remains off-center on the lower third.')
   people_rule=('NO PEOPLE in any drip-tape image: no farmer, worker, person, face, hand, arm, leg, body part, human silhouette or distant human figure. Do not show a tractor, harvester, vehicle cabin, hand-held tool or human-associated activity unless machinery is essential to the article itself; default to an empty equipment-free scene. Show the article-specific field, crop, irrigation system and unattended equipment without any human presence.')
  return ('Create one photorealistic 16:9 agricultural editorial photograph. The attached image is an identity and geometry reference, not a flat layer to paste. '
-  +f'Article topic: {topic}. {summary_instruction}{correction_instruction}Main scene: {SCENES.get(kind,SCENES[1])}. Selected visual template: {template}. This recipe is one member of a deterministic creative set. Follow every camera, environment, light, narrative and topic-anchor instruction. The three sibling images must look like different editorial assignments, not alternate crops of one scene. The background, physical evidence and equipment must be specifically derived from the article topic and summary and remain the main subject. The farm must look temporarily empty before photography; nobody is performing any task. {people_rule} Reconstruct the product as a true three-dimensional object: {shape}. '
+  +f'Article topic: {topic}. {summary_instruction}{correction_instruction}BOTANICAL IDENTITY LOCK: show {identity}. A visibly different crop species is a hard failure even when the rest of the scene is attractive. Main scene: {SCENES.get(kind,SCENES[1])}. Selected visual template: {template}. This recipe is one member of a deterministic creative set. Follow every camera, environment, light, narrative and topic-anchor instruction. The three sibling images must look like different editorial assignments, not alternate crops of one scene. The background, physical evidence and equipment must be specifically derived from the article topic and summary and remain the main subject. The farm must look temporarily empty before photography; nobody is performing any task. {people_rule} Reconstruct the product as a true three-dimensional object: {shape}. '
   'Show it from a slightly different but physically plausible three-quarter angle, about 10 to 20 degrees from the reference. Preserve the silhouette, packaging construction, proportions, material, printed-panel layout and brand colors. '
   +exact+' '+scale+' Enforce believable real-world scale. A drip-tape carton roll is roughly 40 to 55 cm across and 20 to 30 cm high; each layflat coil is roughly 45 to 65 cm across and 15 to 25 cm high. People must not appear. Every roll must remain clearly below knee height as implied by normal real-world scale and must never look waist-high, table-sized or large enough for a person to lean on. '
   'Use a wide environmental composition with substantial context around the products; the article subject is the hero and the product is a secondary prop. Do not add any extra package, roll, bottle, jar, canister, bucket, container, advertisement or invented product. Reject forced-perspective enlargement, giant packaging and any crop that cuts through the product. Match scene perspective, depth of field, color cast, contact shadow, reflected light and slight soil interaction. '
