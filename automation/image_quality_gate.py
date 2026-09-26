@@ -2,7 +2,7 @@
 """Fast image QA with hard rejection for product identity and physics failures."""
 import base64,json,os,re,urllib.request
 import image_prompt_policy
-REVIEW_POLICY='strict-no-human-scale-watermark-v4-metric-feedback'
+REVIEW_POLICY='strict-no-human-scale-watermark-v5-full-rerender'
 MAX_IMAGE_ATTEMPTS=max(1,int(os.getenv('IMAGE_QA_ATTEMPTS','6')))
 MIN_IMAGE_SCORE=int(os.getenv('IMAGE_QA_MIN_SCORE','70'))
 FAST_MODE=os.getenv('IMAGE_QA_FAST_MODE','1')!='0'
@@ -76,6 +76,27 @@ The exact bottom-right watermark "AFP | 09134922013" is REQUIRED and must never 
 
 def review_image(base,path,item,kind):
  return _vision_review(base,path,item,kind)
+
+def review_image_set(base,paths,item):
+ encoded=[base64.b64encode(path.read_bytes()).decode('ascii') for path in paths]
+ title=str((item or {}).get('title') or '')
+ summary=image_prompt_policy.visual_brief(item)
+ prompt=f'''Review these three already individually-approved article images as one editorial set. Article: {title}. Summary: {summary}. The same AFP product is expected in all three, so do not call product identity itself duplication. Pass only when the images have clearly different camera height or angle, visibly different environment/background structure, different technical or crop narrative, and each background has an unmistakable connection to the article topic. Reject a set that repeats the same furrow field plus tractor composition, merely moves the product, uses three generic farms, or fails to visualize the article-specific crop/problem. Zero people remains mandatory. Return only JSON: {{"pass":true|false,"score":0-100,"duplicate_roles":[1,2,3],"reasons":["..."],"correction_prompt":"one concise instruction for a substantially different replacement"}}.'''
+ content=[{'type':'text','text':prompt}]
+ content.extend({'type':'image_url','image_url':{'url':'data:image/webp;base64,'+blob}} for blob in encoded)
+ payload={'model':base.AGNES_MODEL,'messages':[{'role':'user','content':content}],'temperature':0,'response_format':{'type':'json_object'}}
+ req=urllib.request.Request(base.AGNES_BASE+'/chat/completions',data=json.dumps(payload).encode(),headers={'Authorization':f'Bearer {base.AGNES_KEY}','Content-Type':'application/json'})
+ with urllib.request.urlopen(req,timeout=90) as response:raw=json.loads(response.read())
+ body=raw['choices'][0]['message']['content']
+ if isinstance(body,list):body=''.join(str(x.get('text','')) for x in body if isinstance(x,dict))
+ verdict=_extract_json(body);roles=[]
+ for value in verdict.get('duplicate_roles',[]):
+  try:value=int(value)
+  except (TypeError,ValueError):continue
+  if value in (1,2,3) and value not in roles:roles.append(value)
+ verdict['duplicate_roles']=roles
+ verdict['pass']=bool(verdict.get('pass')) and int(verdict.get('score',0))>=75 and not roles
+ return verdict
 
 def install(base,backend,raw_generator):
  reviews=base.OUT/'image-reviews';reviews.mkdir(parents=True,exist_ok=True)

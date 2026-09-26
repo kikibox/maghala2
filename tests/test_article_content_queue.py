@@ -140,10 +140,62 @@ class ArticleQueueTests(unittest.TestCase):
             with lock:
                 active -= 1
             return {"name": f"{kind}.webp", "sha256": str(kind)}
-        with patch.object(queue, "generate_image", side_effect=fake_generate):
-            rows = queue.generate_images_parallel({"id": "crop-001"})
+        approved_set = {"pass": True, "score": 95, "duplicate_roles": [], "reasons": [], "correction_prompt": ""}
+        old_out = queue.OUT
+        with tempfile.TemporaryDirectory() as tmp:
+            queue.OUT = Path(tmp)
+            try:
+                with patch.object(queue, "generate_image", side_effect=fake_generate), \
+                     patch.object(queue.image_quality_gate, "review_image_set", return_value=approved_set):
+                    rows = queue.generate_images_parallel({"id": "crop-001"})
+            finally:
+                queue.OUT = old_out
         self.assertEqual([row["name"] for row in rows], ["1.webp", "2.webp", "3.webp"])
         self.assertGreaterEqual(peak, 2)
+
+    def test_visual_brief_extracts_post_summary_for_image_grounding(self):
+        item = {"title": "مقدار بذر رزماری", "focus": "seed rate", "excerpt": "<p>محاسبه بذر، فاصله ردیف و آبیاری رزماری</p>", "meta_description": "راهنمای مزرعه"}
+        brief = queue.image_prompt_policy.visual_brief(item)
+        self.assertIn("رزماری", brief)
+        self.assertIn("فاصله ردیف", brief)
+        self.assertNotIn("<p>", brief)
+        prompt = queue.image_prompt_policy.image_prompt(item, 1)
+        self.assertIn("Article visual brief extracted from the post", prompt)
+        self.assertIn("Every background must visibly express this brief", prompt)
+
+    def test_creative_recipes_are_distinct_and_seed_topic_grounded(self):
+        item = {"id": "crop-seed", "title": "مقدار بذر رزماری در هکتار", "excerpt": "محاسبه بذر و فاصله ردیف"}
+        recipes = [queue.image_prompt_policy.visual_recipe(item, kind) for kind in (1, 2, 3)]
+        self.assertEqual(len({row["camera"] for row in recipes}), 3)
+        self.assertEqual(len({row["environment"] for row in recipes}), 3)
+        self.assertTrue(all("seed" in row["anchor"] for row in recipes))
+        prompts = [queue.image_prompt_policy.image_prompt(item, kind) for kind in (1, 2, 3)]
+        self.assertEqual(len(set(prompts)), 3)
+        self.assertTrue(all("different editorial assignments" in prompt for prompt in prompts))
+
+    def test_set_gate_regenerates_only_duplicate_role(self):
+        calls = []
+        def fake_generate(item, kind):
+            calls.append(kind)
+            return {"name": f"{kind}.webp", "sha256": f"hash-{kind}"}
+        reviews = [
+            {"pass": False, "score": 60, "duplicate_roles": [2], "reasons": ["role 2 repeats role 1"], "correction_prompt": "change camera and environment"},
+            {"pass": True, "score": 92, "duplicate_roles": [], "reasons": [], "correction_prompt": ""},
+        ]
+        old_out = queue.OUT
+        with tempfile.TemporaryDirectory() as tmp:
+            queue.OUT = Path(tmp)
+            (queue.OUT / "images").mkdir(parents=True)
+            try:
+                with patch.object(queue, "generate_image", side_effect=fake_generate), \
+                     patch.object(queue.image_quality_gate, "review_image_set", side_effect=reviews):
+                    rows = queue.generate_images_parallel({"id": "crop-diverse"})
+            finally:
+                queue.OUT = old_out
+        self.assertEqual([row["name"] for row in rows], ["1.webp", "2.webp", "3.webp"])
+        self.assertEqual(calls.count(1), 1)
+        self.assertEqual(calls.count(2), 2)
+        self.assertEqual(calls.count(3), 1)
 
     def test_product_uses_family_specific_reference_and_3d_rerender_prompt(self):
         tape = queue.image_prompt_policy.image_prompt(

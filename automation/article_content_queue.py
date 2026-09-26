@@ -926,16 +926,37 @@ class StageFailure(RuntimeError):
 def generate_images_parallel(item, pool=None):
     owns_pool = pool is None
     executor = pool or ThreadPoolExecutor(max_workers=IMAGE_WORKERS, thread_name_prefix="article-image")
-    futures = {executor.submit(generate_image, item, kind): kind for kind in range(1, 4)}
-    results = {}
+    results, feedback = {}, {}
+    pending = {1, 2, 3}
+    review_id = str(item.get("id") or item.get("source_id") or "unknown")
+    set_review_path = OUT / "image-reviews" / f"{review_id}-set.json"
+    set_history = []
     try:
-        for future in as_completed(futures):
-            kind = futures[future]
-            results[kind] = future.result()
-        return [results[kind] for kind in range(1, 4)]
+        for set_attempt in range(1, 4):
+            futures = {}
+            for kind in sorted(pending):
+                candidate = dict(item)
+                if feedback.get(kind): candidate["_image_qa_feedback"] = feedback[kind]
+                futures[executor.submit(generate_image, candidate, kind)] = kind
+            for future in as_completed(futures):
+                kind = futures[future]; results[kind] = future.result()
+            paths = [OUT / "images" / results[kind]["name"] for kind in range(1, 4)]
+            verdict = image_quality_gate.review_image_set(__import__(__name__), paths, item)
+            verdict["set_attempt"] = set_attempt; set_history.append(verdict)
+            set_review_path.parent.mkdir(parents=True, exist_ok=True)
+            set_review_path.write_text(json.dumps({"id":review_id,"policy":image_quality_gate.REVIEW_POLICY,"history":set_history},ensure_ascii=False,indent=2),encoding="utf-8")
+            print(f"article_image_set_qa id={review_id} attempt={set_attempt} pass={verdict.get('pass')} score={verdict.get('score')} duplicate_roles={verdict.get('duplicate_roles',[])} reasons={verdict.get('reasons',[])}",flush=True)
+            if verdict.get("pass"): return [results[kind] for kind in range(1, 4)]
+            pending = set(verdict.get("duplicate_roles") or (1,2,3))
+            correction = str(verdict.get("correction_prompt") or "; ".join(verdict.get("reasons",[])))
+            for kind in pending:
+                feedback[kind] = correction + f" Create a new role-{kind} scene that is clearly unlike the other two approved images."
+                (OUT / "images" / results[kind]["name"]).unlink(missing_ok=True)
+                (OUT / "image-reviews" / f"{review_id}-{kind}.json").unlink(missing_ok=True)
+                results.pop(kind,None)
+        raise RuntimeError("Image-set diversity gate rejected the three-image editorial set after 3 rounds")
     finally:
-        if owns_pool:
-            executor.shutdown(wait=True, cancel_futures=False)
+        if owns_pool: executor.shutdown(wait=True, cancel_futures=False)
 
 
 def _produce_item(item, links, image_pool):
@@ -1005,7 +1026,7 @@ def process(q):
                         word_count=words(body), images=[x["name"] for x in images],
                         image_sha256=[x["sha256"] for x in images],
                         image_generation_mode="reference-conditioned-3d-rerender-approved-scales-topic-first",
-                        image_rebuild_policy="reference-rerender-3d-v5-approved-scales-topic-first",
+                        image_rebuild_policy="reference-rerender-3d-v6-strict-no-human-topic-diverse",
                         delivery="sql_package", last_error="",
                     )
                     item.pop("failed_stage", None);item.pop("failed_at", None);item.pop("started_at", None)
