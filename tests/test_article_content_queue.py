@@ -82,7 +82,7 @@ class ArticleQueueTests(unittest.TestCase):
                 self.assertTrue(neutral.startswith("data:image/webp;base64,"))
                 prompt = queue.image_prompt(item, 1)
                 self.assertIn("true three-dimensional object", prompt)
-                self.assertIn("6 to 9 percent of frame width", prompt)
+                self.assertIn("20 to 23 percent of frame width", prompt)
                 self.assertIn("below knee height", prompt)
                 self.assertIn("Drip Irrigation Tape", prompt)
                 output = Path(tmp) / "images" / record["name"]
@@ -132,6 +132,8 @@ class ArticleQueueTests(unittest.TestCase):
         )
         self.assertIn("Drip Irrigation Tape", tape)
         self.assertIn('"layflat"', layflat)
+        self.assertIn("20 to 23 percent of frame width", tape)
+        self.assertIn("12 to 15 percent of frame width", layflat)
         self.assertIn("no sticker look", tape)
         tape_ref = queue.image_prompt_policy.reference_images(
             1, {"source_id": "crop-001"}
