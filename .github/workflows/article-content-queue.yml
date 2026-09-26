@@ -108,7 +108,7 @@ jobs:
           mkdir -p artifacts/article-content-queue
           python automation/article_content_queue.py \
             2>&1 | tee artifacts/article-content-queue/run.log
-          rc=$?
+          rc=${PIPESTATUS[0]}
           echo "exit_code=$rc" >> "$GITHUB_OUTPUT"
           exit 0
 
@@ -155,6 +155,7 @@ jobs:
           git add -f artifacts/article-content-queue/sql/*.sql 2>/dev/null || true
           git add -f artifacts/article-content-queue/rollback/*.sql 2>/dev/null || true
           git add -f artifacts/article-content-queue/packages/*.zip 2>/dev/null || true
+          git add -f artifacts/article-content-queue/run.log 2>/dev/null || true
           git add -A artifacts/article-content-queue
           if ! git diff --cached --quiet; then
             git commit -m 'Update article queue state [skip ci]'
