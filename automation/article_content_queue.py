@@ -287,7 +287,7 @@ def write_status(q, result):
         "",
         f"- مدل متن: `{AGNES_MODEL}`",
         f"- مدل تصویر: `{IMAGE_MODEL}`",
-        f"- تصویر مرجع محصول: **رول/کارتن اصلی AFP هزارمتری** — `{image_prompt_policy.DRIP_TAPE_ROLL_REFERENCE}`",
+        f"- آبجکت الزامی تصویر: **محصول AFP به‌صورت فرعی (۱۰ تا ۲۰٪ کادر)**؛ تمرکز اصلی روی موضوع مقاله",
         f"- تعداد تصاویر هر مقاله: **{q.get('images_per_post', 3)}**",
         f"- حداقل کلمات: **{q.get('rules', {}).get('minimum_words', MIN_WORDS)}**",
         f"- لینک داخلی مجاز: **{q.get('rules', {}).get('minimum_internal_links', MIN_LINKS)} تا ۷**",
@@ -515,17 +515,7 @@ def make_content(item, links):
 
 
 def image_prompt(item, kind):
-    # Reuse the locked product-identity policy from the city generator. The
-    # supplied reference is the original AFP 1000-meter drip-tape roll/carton.
-    base_prompt = image_prompt_policy.image_prompt(item, kind)
-    article_context = (
-        f" Editorial context: {item.get('title', '')}. "
-        "The approved AFP 1000-meter product must be clearly visible in every image, "
-        "while the farm background and technical context should support the article topic. "
-        "Keep exactly one intact product, preserve its real proportions and packaging, "
-        "and do not replace it with a generic roll or invented brand."
-    )
-    return base_prompt + article_context
+    return image_prompt_policy.image_prompt(item, kind)
 
 
 def _urlnorm(u):
@@ -593,10 +583,7 @@ def generate_image(item, kind):
          "Accept": "application/json", "User-Agent": "navar-article-queue"},
         {"model": IMAGE_MODEL, "prompt": image_prompt(item, kind),
          "size": "1024x768", "return_base64": True,
-         "extra_body": {
-             "response_format": "b64_json",
-             "image": image_prompt_policy.reference_images(kind, item),
-         }},
+         "extra_body": {"response_format": "b64_json"}},
         600
     )
     row = data["data"][0]
