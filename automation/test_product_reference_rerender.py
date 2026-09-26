@@ -14,6 +14,8 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 
+import image_prompt_policy
+
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = Path(__file__).with_name("assets")
 OUT = ROOT / "artifacts" / "product-rerender-test"
@@ -59,23 +61,14 @@ CASES = {
 
 
 def prompt(case: dict) -> str:
-    return (
-        "Create one photorealistic 16:9 agricultural editorial photograph. The attached image "
-        "or images are identity and geometry references, not flat layers to paste. "
-        f"Reconstruct the product as a true three-dimensional object: {case['shape']}. "
-        "Show it from a slightly different but physically plausible three-quarter camera angle, "
-        "about 10 to 20 degrees away from the reference angle. Preserve the exact product family, "
-        "silhouette, packaging construction, proportions, material, printed-panel layout and "
-        "brand colors. Do not invent a new package and do not turn it into a pipe, wheel, box or "
-        f"different roll. {case['text']} The setting is {case['scene']}. "
-        "The agricultural activity and article context occupy 75 to 85 percent of the frame; "
-        "the product is a secondary object occupying about 12 to 18 percent, positioned naturally "
-        "on the lower third. It must share the scene's perspective, depth of field, color cast, "
-        "contact shadow, reflected light and slight soil interaction. It may be subtly occluded by "
-        "a few foreground soil particles or leaves. Absolutely no sticker look, hard cut-out edge, "
-        "white halo, flat front-facing packshot, collage, floating object, duplicate product, "
-        "caption, added logo or invented writing."
-    )
+    is_layflat = "assets" in case
+    item = {
+        "source_id": "scale-test-layflat" if is_layflat else "scale-test-tape20",
+        "title": "آزمایش مقیاس لوله نخ‌دار" if is_layflat else "آزمایش مقیاس نوار تیپ",
+        "topic": "layflat" if is_layflat else "tape20",
+        "slug": "scale-test",
+    }
+    return image_prompt_policy.image_prompt(item, 1)
 
 
 def reference_data_url(filename: str) -> str:
