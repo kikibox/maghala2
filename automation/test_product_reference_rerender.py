@@ -8,9 +8,11 @@ ROOT=Path(__file__).resolve().parents[1];ASSETS=Path(__file__).with_name('assets
 API=os.getenv('IMAGE_ENDPOINT') or os.getenv('AGNES_API_BASE','https://apihub.agnes-ai.com/v1').rstrip('/')+'/images/generations';KEY=(os.getenv('IMAGE_API_KEY') or os.getenv('AGNES_API_KEY','')).strip();MODEL=os.getenv('IMAGE_MODEL') or os.getenv('AGNES_IMAGE_MODEL','agnes-image-2.5-flash');PHONE='AFP | 09134922013'
 VARIANTS=[
  ('03-compact','Use the selected compact scale: the complete pair together occupies approximately 20 to 23 percent of frame width. Both coils stay clearly below knee height and sit about two metres from the camera.'),
+ ('04-pair-compact','Reduce only the complete two-object group one gradual step to approximately 16 to 19 percent of frame width. Keep both coils below knee height and about three metres from the camera.'),
+ ('05-pair-far','Reduce only the complete two-object group one final gradual step to approximately 12 to 15 percent of frame width. Keep both coils low on the soil and about four metres from the camera.'),
 ]
 def refs():return ['data:image/webp;base64,'+(ASSETS/'afp-layflat.webp.b64').read_text().strip(),'data:image/jpeg;base64,'+(ASSETS/'afp-layflat-bare.jpg.b64').read_text().strip()]
-def prompt(scale):return '''Create one photorealistic 16:9 agricultural editorial photograph in a real Iranian field beside a practical water-transfer line. Keep the field activity and irrigation context dominant, with one adult worker nearby for human scale. Reconstruct exactly two attached-reference objects as true three-dimensional objects integrated into soil, lighting and perspective: first the packaged AFP layflat coil with its folded printed cardboard and crossing straps; second the bare black woven layflat coil with concentric layers and loose hose end. Keep both rolls separate, flat, horizontal and parallel to the soil; never stand either upright like a wheel. Preserve AFP and layflat markings on the packaged object and add no writing to the bare roll. Do not paste flat cutouts. Use natural three-quarter views, contact shadows, reflected soil light and slight soil interaction. '''+scale+''' Keep the pair off-center on the lower third. Do not add any third package, roll, jar, container, advertisement or invented product. No person touches, leans on or carries either coil.'''
+def prompt(scale):return '''Create one photorealistic 16:9 agricultural editorial photograph in a real Iranian field beside a practical water-transfer line. Keep the field activity and irrigation context dominant, with one adult worker nearby for human scale. Reconstruct exactly two attached-reference objects as true three-dimensional objects integrated into soil, lighting and perspective: first the packaged AFP layflat coil with its folded printed cardboard and crossing straps; second the bare black woven layflat coil with concentric layers and loose hose end. Keep both rolls separate, flat, horizontal and parallel to the soil; never stand either upright like a wheel. Preserve AFP and layflat markings on the packaged object and add no writing to the bare roll. Do not paste flat cutouts. Use natural three-quarter views, contact shadows, reflected soil light and slight soil interaction. '''+scale+''' Keep the pair off-center on the lower third. Do not add any third package, roll, jar, container, advertisement or invented product. No person touches, leans on or carries either coil. The benchmark variants must differ only in total pair scale and camera distance, not product identity.'''
 
 def watermark(im):
  c=im.convert('RGBA');o=Image.new('RGBA',c.size,(0,0,0,0));d=ImageDraw.Draw(o)
@@ -38,11 +40,18 @@ def call(name,scale):
    if attempt<3:time.sleep(30*attempt)
  raise RuntimeError(f'{name} failed: {last}')
 def contact_sheet(rows):
- return None
+ thumbs=[]
+ for name,im in rows:
+  t=im.resize((400,225),Image.Resampling.LANCZOS);thumbs.append((name,t))
+ sheet=Image.new('RGB',(1200,265),'white');d=ImageDraw.Draw(sheet)
+ try:f=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',20)
+ except OSError:f=ImageFont.load_default()
+ for i,(name,t) in enumerate(thumbs):sheet.paste(t,(i*400,40));d.text((i*400+12,10),name,font=f,fill='black')
+ sheet.save(OUT/'layflat-scale-benchmark.webp','WEBP',quality=78,method=6)
 def main():
  if not KEY:raise RuntimeError('IMAGE_API_KEY/AGNES_API_KEY is missing')
  OUT.mkdir(parents=True,exist_ok=True);records=[];images=[]
  for name,scale in VARIANTS:
   im,row=call(name,scale);images.append((name,im));records.append(row)
- contact_sheet(images);(OUT/'layflat-compact-manifest.json').write_text(json.dumps(records,ensure_ascii=False,indent=2));print(json.dumps(records,ensure_ascii=False,indent=2));return 0
+ contact_sheet(images);(OUT/'layflat-scale-benchmark-manifest.json').write_text(json.dumps(records,ensure_ascii=False,indent=2));print(json.dumps(records,ensure_ascii=False,indent=2));return 0
 if __name__=='__main__':raise SystemExit(main())
