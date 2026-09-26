@@ -155,7 +155,8 @@ def main():
     state=json.loads(STATE.read_text(encoding='utf-8'))
     languages=('ar-IQ','tg-TJ','en-US')
     state['total_units']=len(ids)*len(languages)
-    completed=set(state.get('completed_keys',[])); done_articles=0
+    valid_keys={f'{post_id}:{lang}' for post_id in ids for lang in languages}
+    completed=set(state.get('completed_keys',[])) & valid_keys; done_articles=0
     for post_id in ids:
         needed=[lang for lang in languages if f'{post_id}:{lang}' not in completed]
         if not needed: continue

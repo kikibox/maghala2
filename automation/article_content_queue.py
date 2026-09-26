@@ -233,6 +233,22 @@ def write_status(q, result):
             package_data.update(json.loads(package_manifest.read_text(encoding="utf-8")))
         except Exception:
             pass
+    translation_data = {
+        "source_articles_completed": done,
+        "languages": {lang: {"completed": 0, "pending": done} for lang in ("ar-IQ", "tg-TJ", "en-US")},
+        "total_translation_units": done * 3,
+        "completed_translation_units": 0,
+        "pending_translation_units": done * 3,
+        "articles_missing_any_translation": done,
+        "persian_queue_paused": done > 0,
+        "images": {},
+    }
+    translation_status = OUT / "translation-status.json"
+    if translation_status.exists():
+        try:
+            translation_data.update(json.loads(translation_status.read_text(encoding="utf-8")))
+        except Exception:
+            pass
     updated = now()
     status_payload = {
         "result": result,
@@ -254,6 +270,7 @@ def write_status(q, result):
         "by_vertical": {name: dict(counts) for name, counts in sorted(by_vertical.items())},
         "outputs": output_counts,
         "packages": package_data,
+        "translations": translation_data,
     }
     STATUS.write_text(json.dumps(status_payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
@@ -264,6 +281,7 @@ def write_status(q, result):
         "attention_required": "نیازمند بررسی",
         "complete": "تکمیل‌شده",
         "blocked_image_model": "مسدود به‌دلیل مدل تصویر",
+        "translations_pending": "توقف موقت برای تکمیل ترجمه‌های عقب‌مانده",
     }
     bar_width = 20
     filled = min(bar_width, int(pct * bar_width / 100))
@@ -285,6 +303,7 @@ def write_status(q, result):
         f"- ناموفق: **{c['failed']}**",
         f"- مسدود مدل تصویر: **{c['blocked_image_model']}**",
         f"- میانگین طول مقالات تکمیل‌شده: **{average_words or '—'} کلمه**",
+        f"- اولویت فعلی: **{'تکمیل ترجمه‌های موجود' if translation_data.get('persian_queue_paused') else 'تولید مقاله فارسی بعدی'}**",
         "",
         "## تنظیمات تولید و انتشار",
         "",
@@ -316,6 +335,37 @@ def write_status(q, result):
         )
     if not by_vertical:
         lines.append("| — | 0 | 0 | 0 | 0 | 0 | 0٪ |")
+
+    lines += [
+        "",
+        "## وضعیت ترجمه مقالات تولیدشده",
+        "",
+        f"- مقالات فارسی تکمیل‌شده: **{translation_data.get('source_articles_completed', done)}**",
+        f"- واحدهای ترجمه تکمیل‌شده: **{translation_data.get('completed_translation_units', 0)} از {translation_data.get('total_translation_units', done * 3)}**",
+        f"- واحدهای ترجمه باقی‌مانده: **{translation_data.get('pending_translation_units', done * 3)}**",
+        f"- مقالات فاقد حداقل یک ترجمه: **{translation_data.get('articles_missing_any_translation', done)}**",
+        f"- وضعیت صف فارسی: **{'متوقف تا تکمیل ترجمه‌ها' if translation_data.get('persian_queue_paused') else 'فعال'}**",
+        f"- بسته‌های ترجمه ۵۰تایی آماده: **{translation_data.get('packages', {}).get('ready_batches', 0)}**",
+        "",
+        "| زبان | تکمیل | باقی‌مانده | مسیر |",
+        "|---|---:|---:|---|",
+    ]
+    language_labels = {"ar-IQ": ("عربی عراق", "/iraq/"), "tg-TJ": ("تاجیکی", "/tj/"), "en-US": ("انگلیسی", "/en/")}
+    for lang in ("ar-IQ", "tg-TJ", "en-US"):
+        row = translation_data.get("languages", {}).get(lang, {})
+        label, prefix = language_labels[lang]
+        lines.append(f"| {label} (`{lang}`) | {row.get('completed', 0)} | {row.get('pending', done)} | `{prefix}` |")
+
+    image_state = translation_data.get("images", {})
+    lines += [
+        "",
+        "## وضعیت بازطراحی تصاویر",
+        "",
+        f"- سیاست تصویر: `{image_state.get('policy') or 'نامشخص'}`",
+        f"- بازطراحی کامل: **{'بله' if image_state.get('completed') else 'خیر'}**",
+        f"- تعداد مقاله‌های بررسی‌شده: **{image_state.get('total_candidates', done)}**",
+        f"- خطاهای بازطراحی: **{image_state.get('failures', 0)}**",
+    ]
 
     lines += ["", "## در حال پردازش", ""]
     if processing:
@@ -392,6 +442,8 @@ def write_status(q, result):
         "- [SQL تجمیعی بازگشت](./rollback-all-completed.sql)",
         "- [پوشه تصاویر](./images/)",
         "- [پوشه خروجی مقاله‌ها](./items/)",
+        "- [وضعیت ترجمه‌ها](./translation-status.json)",
+        "- [SQL تجمیعی ترجمه‌ها](./create-all-translations.sql)",
         "",
     ]
     (OUT / "STATUS.md").write_text("\n".join(lines), encoding="utf-8")

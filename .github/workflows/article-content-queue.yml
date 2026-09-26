@@ -72,13 +72,32 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python -m py_compile automation/article_content_queue.py automation/image_prompt_policy.py automation/rebuild_article_images_exact_product.py automation/compress_article_images.py automation/package_article_content_batches.py
+          python -m py_compile automation/article_content_queue.py automation/image_prompt_policy.py automation/rebuild_article_images_exact_product.py automation/translate_generated_articles.py automation/render_article_queue_status.py automation/compress_article_images.py automation/package_article_content_batches.py
           python -m unittest discover -s tests -p 'test_*.py'
 
+      - name: Prioritize translation backlog
+        id: translation_backlog
+        shell: bash
+        run: |
+          set +e
+          python automation/translate_generated_articles.py --check-backlog
+          rc=$?
+          if [ "$rc" -eq 2 ]; then
+            echo "pending=1" >> "$GITHUB_OUTPUT"
+            echo "Persian generation paused until all completed articles have Arabic, Tajik, and English versions."
+          elif [ "$rc" -eq 0 ]; then
+            echo "pending=0" >> "$GITHUB_OUTPUT"
+          else
+            exit "$rc"
+          fi
+          python automation/render_article_queue_status.py
+
       - name: Regenerate deterministic topics
+        if: steps.translation_backlog.outputs.pending == '0'
         run: python automation/topic_matrix.py
 
       - name: Generate next article, images, and reversible SQL
+        if: steps.translation_backlog.outputs.pending == '0'
         id: queue
         shell: bash
         run: |
@@ -144,5 +163,5 @@ jobs:
           retention-days: 30
 
       - name: Fail run when queue processing failed
-        if: steps.queue.outputs.exit_code != '0'
+        if: steps.queue.outcome != 'skipped' && steps.queue.outputs.exit_code != '0'
         run: exit 1

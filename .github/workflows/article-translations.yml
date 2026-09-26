@@ -28,6 +28,7 @@ jobs:
       AGNES_API_BASE: ${{ vars.AGNES_API_BASE || 'https://apihub.agnes-ai.com/v1' }}
       AGNES_MODEL: ${{ vars.AGNES_MODEL || 'agnes-3.0-flash' }}
       MAX_ARTICLES: '4'
+      GENERATED_TRANSLATION_BATCH_SIZE: '2'
     steps:
       - uses: actions/checkout@v7
         with:
@@ -38,9 +39,26 @@ jobs:
       - name: Validate translation pipeline
         run: |
           test -n "$AGNES_API_KEY"
-          python -m py_compile automation/translate_queue.py sqlbuild/build_patch.py
-      - name: Generate missing language units
-        run: python automation/translate_queue.py
+          python -m py_compile automation/translate_queue.py automation/translate_generated_articles.py automation/render_article_queue_status.py automation/package_article_translation_batches.py sqlbuild/build_patch.py
+      - name: Translate completed generated articles first
+        run: |
+          python automation/translate_generated_articles.py
+          python automation/package_article_translation_batches.py
+          python automation/render_article_queue_status.py
+      - name: Continue legacy English queue after generated backlog
+        shell: bash
+        run: |
+          set +e
+          python automation/translate_generated_articles.py --check-backlog
+          rc=$?
+          set -e
+          if [ "$rc" -eq 0 ]; then
+            python automation/translate_queue.py
+          elif [ "$rc" -eq 2 ]; then
+            echo "Generated article translations still pending; legacy English queue deferred."
+          else
+            exit "$rc"
+          fi
       - name: Build SQL when every language is complete
         shell: bash
         run: |
@@ -58,6 +76,9 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add translations state docs
+          git add -A artifacts/article-content-queue/translations artifacts/article-content-queue/translation-sql artifacts/article-content-queue/translation-rollback 2>/dev/null || true
+          git add -f artifacts/article-content-queue/translation-status.json artifacts/article-content-queue/create-all-translations.sql artifacts/article-content-queue/rollback-all-translations.sql artifacts/article-content-queue/STATUS.md artifacts/article-content-queue/status.json 2>/dev/null || true
+          git add -f artifacts/article-content-queue/translation-packages/*.zip artifacts/article-content-queue/translation-packages/manifest.json 2>/dev/null || true
           git add -f artifacts/generated-translations* artifacts/generated-english-translations* artifacts/fix-imported-translations* 2>/dev/null || true
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'Update multilingual article translations [skip ci]'
