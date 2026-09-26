@@ -1,0 +1,73 @@
+{
+  "id": "crop-005",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-scale-watermark-v5-full-rerender",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Presence of two prominent human figures (farmers) in the foreground and midground",
+        "Visible human faces, hands, and body parts",
+        "Product is centered relative to the human subjects rather than off-center on the lower third",
+        "No wide cylindrical drip-tape carton roll is present; instead, a small canister/bucket-like container is shown",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Regenerate with zero people or human silhouettes. Place a wide, low, white-and-blue cylindrical drip-tape carton roll in the lower third, off-center to the left or right, naturally on soil in a farm context. The roll must occupy 20-23% of frame width, max 28% height, and have a diameter 1.6-1.8 times its height. Maintain the bottom-right AFP | 09134922013 watermark. Background must match a city/family farm drip irrigation theme. Enlarge the product group from 0% to 20-23% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 82,
+      "product_width_percent": 26,
+      "product_height_percent": 28,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Zero people, human body parts, or silhouettes are visible.",
+        "Background correctly displays a farm field with drip lines and a barn, matching the 'city/family' agricultural topic context.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Product is placed on the soil in the lower third of the frame and is off-center.",
+        "Roll dimensions (28% height) sit at the very top of the acceptable limit and its width (26%) slightly exceeds the 23% maximum, but its appearance as a low, wide cylindrical drip tape carton is consistent with the target geometry.",
+        "Authentic package print is visible; no fake headlines or gibberish text detected.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 26% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 26% to 20-23% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Visible people and human body parts present (two men kneeling in the foreground), which is a hard reject criterion.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Regenerate without any people or human silhouettes. Show exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll placed naturally on soil, occupying 20-23% of frame width and 24-28% of frame height. Ensure the visible diameter is 1.6-1.8 times the visible height. Place the roll off-center on the lower third in a drip-irrigated crop field. Enlarge the product group from 0% to 20-23% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 15.0,
+      "product_height_percent": 11.0,
+      "product_x_center_percent": 50.0,
+      "reasons": [
+        "Product width is approximately 15% of the frame, which is below the minimum required 20-23% range",
+        "The roll's visible diameter-to-height ratio is approximately 1.36 (15/11), which is significantly below the required 1.6-1.8 range, making it appear too cylindrical rather than wide and low",
+        "The product is centered horizontally (50% x-axis), violating the requirement to be off-center in the lower third",
+        "The roll appears to float slightly on the soil bed rather than being naturally placed",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 15% to 20-23% of frame width.; Move the product clearly to the left or right lower third; do not center it."
+      ],
+      "correction_prompt": "Regenerate to show the white and blue AFP drip-tape roll placed off-center to the left (around 35% horizontal axis) in the foreground. Increase the roll's width to occupy 20-23% of the frame width. Reduce the vertical height so the width-to-height ratio is 1.7:1. Ensure the roll sits naturally on the soil surface with the drip line visible. Enlarge the product group from 15% to 20-23% of frame width. Move the product clearly to the left or right lower third; do not center it.",
+      "attempt": 4
+    }
+  ],
+  "approved_image": null
+}

@@ -1,0 +1,119 @@
+{
+  "id": "crop-006",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-scale-watermark-v5-full-rerender",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "The image contains a prominent human figure (a man), which is a hard reject criterion (zero people and zero human body parts allowed).",
+        "The main subject is the person rather than the product, violating the requirement for the product to be 'secondary' or naturally placed without human staging.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Remove the man entirely from the image. Keep the drip tape roll on the soil in the farm context. Ensure the roll is secondary and off-center in the lower third, occupying 20-23% of the width. Ensure no people or body parts are visible. Enlarge the product group from 12% to 20-23% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 33,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Product height occupies approximately 33% of the frame, which violates the 'no more than about 28 percent of frame height' requirement.",
+        "The visible diameter (width) to height ratio is less than 1.0 (wider than it is tall), which violates the '1.6 to 1.8 times its visible height' requirement.",
+        "Product width is approximately 18% of frame width, below the required '20 to 23 percent' range.",
+        "Image role is 'family tape20' (wide low cylindrical), but the object is depicted as a compact, tall roll, failing the specific shape requirements.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 18% to 20-23% of frame width.; Reduce product height from 33% to at most 28% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a wide, low cylindrical drip-tape roll that is 20-23% of frame width and max 28% height. Ensure the roll's diameter is 1.6-1.8x its height. Place it on soil in the lower third, off-center. Keep the farm background and AFP watermark exactly as they are. Enlarge the product group from 18% to 20-23% of frame width. Reduce product height from 33% to at most 28% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 18,
+      "product_height_percent": 14,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Product width is approximately 18% of the frame width, failing the required 20-23% range.",
+        "Product aspect ratio (width/height) is approximately 1.3:1, failing the required 1.6-1.8:1 range for a wide cylindrical roll.",
+        "Product placement is too close to the vertical center line rather than being distinctly off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 18% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Enlarge the AFP white-and-blue wide low cylindrical drip-tape carton roll so it occupies 20-23% of the frame width and has an aspect ratio of 1.7:1. Position it more clearly off-center to the right on the soil in the lower third. Maintain the strawberry field background and exact bottom-right watermark. Enlarge the product group from 18% to 20-23% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: Image contains a person (farmer/worker) who is clearly visible and not a silhouette, violating the 'zero people and zero human body parts' constraint.",
+        "Hard reject: The presence of human hands and body parts immediately disqualifies the image regardless of the product's placement."
+      ],
+      "correction_prompt": "Regenerate the image to remove the person entirely. Keep only the AFP drip-tape roll on the soil in the strawberry field, ensuring no human body parts are visible.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 90,
+      "product_width_percent": 19,
+      "product_height_percent": 18,
+      "product_x_center_percent": 53,
+      "reasons": [
+        "No people or human body parts are visible.",
+        "Image contains exactly one product roll.",
+        "The roll has the required 'AFP' text and phone watermark.",
+        "Product geometry is consistent with a low cylindrical drip-tape roll (diameter ~1.7x height).",
+        "Placement is off-center in the lower third on soil.",
+        "Background matches the farm context (crop field with rows).",
+        "Product dimensions are within the specified width (20-23%) and height (<28%) bounds.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 19% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Enlarge the product group from 19% to 20-23% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 10,
+      "product_height_percent": 14,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Contains a person (farmer) and hands",
+        "Product bounding box width (10%) is below the required 20-23% range",
+        "Product is not a wide low cylindrical carton roll; it appears as a small compact tube",
+        "Product is not positioned naturally on soil in a secondary off-center manner relative to a larger frame",
+        "Presence of human silhouette is a hard reject condition",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with a wide, low cylindrical white-and-blue AFP drip-tape roll occupying 20-23% of the frame width and no people, placed on soil in a farm field. Enlarge the product group from 10% to 20-23% of frame width.",
+      "attempt": 6
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 22,
+      "product_height_percent": 27,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Successfully displays the required AFP white-and-blue drip-tape roll as the primary product in a farm context (tomato field).",
+        "No people, faces, body parts, or human silhouettes are present.",
+        "Product aspect ratio (approx 1.7:1) and position (lower third, off-center) align with strict geometric requirements.",
+        "Watermark 'AFP | 09134922013' is present in the bottom right."
+      ],
+      "correction_prompt": "",
+      "attempt": 7
+    }
+  ],
+  "approved_image": "مقدار-بذر-خیار-در-هکتار-راهنمای-جامع-کاربرد-عملی.webp"
+}

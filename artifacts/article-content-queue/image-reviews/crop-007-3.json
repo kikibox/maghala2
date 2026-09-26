@@ -1,0 +1,42 @@
+{
+  "id": "crop-007",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-scale-watermark-v5-full-rerender",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 17,
+      "product_height_percent": 23,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Image contains visible human body parts (legs, hands, torso) which is a hard reject requirement",
+        "Product width (approx 17%) is below the required minimum of 20%",
+        "Product height (approx 23%) is relatively high against its width, failing the aspect ratio requirement (diameter should be 1.6-1.8x height)",
+        "Product is centrally located in the lower half rather than being distinctly off-center/secondary as requested",
+        "Extra commercial products present (metal watering can and red valve/pipe equipment) which are not allowed",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 17% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with zero visible people or body parts. The AFP drip tape roll must be the only product, occupying 20-23% of frame width with a wide cylindrical aspect ratio (1.7:1 width-to-height). Place the roll off-center in the lower third on soil. Remove all other equipment like watering cans or red valves. Maintain the farm background. Enlarge the product group from 17% to 20-23% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Presence of people/farmers in the background (hard reject)",
+        "Product is partially cropped at the bottom of the frame, violating the requirement for a fully visible roll on soil",
+        "Product is not visible enough to accurately estimate bounding box dimensions relative to the frame constraints provided",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people, workers, or human silhouettes. The product roll must be fully visible, un-cropped, and clearly placed on the soil. Ensure the roll is secondary and off-center on the lower third, without dominating the scene. Enlarge the product group from 0% to 20-23% of frame width.",
+      "attempt": 2
+    }
+  ],
+  "approved_image": null
+}

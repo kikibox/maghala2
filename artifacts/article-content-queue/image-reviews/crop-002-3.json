@@ -3,95 +3,95 @@
   "kind": 3,
   "family": "tape20",
   "policy": "strict-no-human-scale-watermark-v5-full-rerender",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 30,
-      "product_width_percent": 11,
-      "product_height_percent": 22,
-      "product_x_center_percent": 35,
+      "score": 0,
+      "product_width_percent": 9,
+      "product_height_percent": 11,
+      "product_x_center_percent": 32,
       "reasons": [
-        "Hard reject: Presence of two people (a man in the foreground and a worker in the background) and visible human body parts.",
-        "Hard reject: The product roll is missing the required 'AFP | 09134922013' bottom-right watermark.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 20-23% of frame width."
+        "Multiple people present (foreground crouching figure, middle-ground crouching figure, background standing figure)",
+        "Roll is too small (width < 20%)",
+        "Roll is centered horizontally rather than offset to the lower third",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 20-23% of frame width."
       ],
-      "correction_prompt": "Remove all human figures and body parts. Add the text 'AFP | 09134922013' as a white text label in a black box at the bottom right corner of the image. Ensure the white and blue drip tape roll remains centered on the lower third and placed on soil. Enlarge the product group from 11% to 20-23% of frame width.",
+      "correction_prompt": "Remove all people and human body parts. Scale up the AFP drip tape roll to occupy 20-23% of the frame width, keeping it off-center on the lower third and resting on the soil. Enlarge the product group from 9% to 20-23% of frame width.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 15,
-      "product_width_percent": 14,
-      "product_height_percent": 18,
-      "product_x_center_percent": 35,
+      "score": 20,
+      "product_width_percent": 20,
+      "product_height_percent": 27,
+      "product_x_center_percent": 27,
       "reasons": [
-        "Image contains two visible human silhouettes (farmers) in the background, which violates the hard reject rule for any human body parts or silhouettes.",
-        "The product roll (drip tape) is too small relative to the frame; its width is estimated at ~14%, which falls below the required 20% minimum threshold.",
-        "Product height is too tall relative to its width (~1.3x), not meeting the required 1.6-1.8x ratio for a wide cylindrical roll.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 14% to 20-23% of frame width."
+        "Image contains two human figures in the background, violating the zero-persons rule."
       ],
-      "correction_prompt": "Remove all people and silhouettes from the background. Crop or scale the drip tape roll significantly so it occupies 20-23% of the frame width. Ensure the roll appears physically wider than it is tall (aspect ratio 1.6:1 to 1.8:1) to accurately represent a wide carton roll. Keep the roll off-center in the lower third. Enlarge the product group from 14% to 20-23% of frame width.",
+      "correction_prompt": "Remove all people, workers, and human silhouettes from the background while keeping the farm context and unattended equipment.",
       "attempt": 2
     },
     {
       "pass": false,
-      "score": 15,
-      "product_width_percent": 24,
-      "product_height_percent": 29,
-      "product_x_center_percent": 32,
+      "score": 10,
+      "product_width_percent": 16,
+      "product_height_percent": 22,
+      "product_x_center_percent": 30,
       "reasons": [
-        "Hard reject: Presence of people (two farmers/workers) violates the 'zero people' constraint.",
-        "Hard reject: Presence of human body parts (hands, arms, legs) violates the 'zero body parts' constraint.",
-        "The product's height (approx 29%) exceeds the 28% limit.",
-        "The product's width (approx 24%) exceeds the 23% limit.",
-        "machine-enforced bounding-box check failed: Reduce the product group from 24% to 20-23% of frame width.; Reduce product height from 29% to at most 28% of frame height."
+        "The image contains a human face, torso, and arm, which is a hard reject.",
+        "A second person is visible in the background squatting, which is a hard reject.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 16% to 20-23% of frame width."
       ],
-      "correction_prompt": "Regenerate the image removing all human figures and body parts. Keep the farm background. Resize the cylindrical drip tape roll to be strictly 20-23% of image width and under 28% of image height. Ensure the roll remains off-center in the lower third. Reduce the product group from 24% to 20-23% of frame width. Reduce product height from 29% to at most 28% of frame height.",
+      "correction_prompt": "Regenerate the image to completely remove all human figures, faces, hands, and body parts. Show only the AFP drip-tape roll on the soil and the background farm equipment. Ensure the roll is wider, occupying 20-23% of the frame width. Enlarge the product group from 16% to 20-23% of frame width.",
       "attempt": 3
     },
     {
       "pass": false,
-      "score": 25,
-      "product_width_percent": 16,
-      "product_height_percent": 21,
-      "product_x_center_percent": 32,
+      "score": 90,
+      "product_width_percent": 24,
+      "product_height_percent": 19,
+      "product_x_center_percent": 28,
       "reasons": [
-        "Hard reject: presence of multiple human figures (two farmers standing/bending in the background).",
-        "Hard reject: visible human silhouettes and body parts (arms, hands, legs) violating the zero-person rule.",
-        "Product width (approx 16%) falls below the required minimum of 20%.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 16% to 20-23% of frame width."
+        "No people or human body parts present.",
+        "Watermark 'AFP | 09134922013' is present in the correct bottom-right position.",
+        "Product is a single white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product is placed naturally on soil in the lower third, off-center to the left.",
+        "Background with unattended tractor and crop rows matches farm context.",
+        "However, the product width (24%) slightly exceeds the 23% upper limit.",
+        "Text on the roll is authentic-style but some is gibberish ('Ppo Uzaoken Toes').",
+        "machine-enforced bounding-box check failed: Reduce the product group from 24% to 20-23% of frame width."
       ],
-      "correction_prompt": "Remove all people, farmers, and human silhouettes from the background. Replace with distant farm buildings and crops only. Scale the AFP drip-tape roll up to occupy 21-23% of the frame width while maintaining its lower-third off-center position on the soil. Enlarge the product group from 16% to 20-23% of frame width.",
+      "correction_prompt": "Reduce the width of the drip-tape roll to strictly under 23% of the frame width and ensure all text on the roll is clear and non-gibberish. Reduce the product group from 24% to 20-23% of frame width.",
       "attempt": 4
     },
     {
       "pass": false,
-      "score": 45,
-      "product_width_percent": 20.5,
-      "product_height_percent": 26.0,
-      "product_x_center_percent": 28.5,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 20,
+      "product_x_center_percent": 25,
       "reasons": [
-        "The visible diameter of the roll is too flat, being approximately 2.6 times its visible height, which violates the 1.6-1.8x aspect ratio requirement."
+        "Hard reject: Image contains a prominent person (farmer) in the foreground.",
+        "Hard reject: Human body parts (face, hands, legs) are clearly visible.",
+        "The product roll is slightly too small and wide compared to the specific aspect ratio constraints, but the presence of a human is the immediate cause of rejection.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 14% to 20-23% of frame width."
       ],
-      "correction_prompt": "Regenerate the roll with a taller vertical profile so that its width is only 1.6 to 1.8 times its height.",
+      "correction_prompt": "Regenerate the image without any people. Remove the man completely. Ensure the drip tape roll is the sole subject, placed on the soil, and sized to occupy roughly 20-23% of the frame width. Enlarge the product group from 14% to 20-23% of frame width.",
       "attempt": 5
     },
     {
-      "pass": false,
-      "score": 20,
-      "product_width_percent": 14,
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 21,
       "product_height_percent": 18,
-      "product_x_center_percent": 48,
+      "product_x_center_percent": 29,
       "reasons": [
-        "Hard reject: Image contains multiple human figures (workers) and clearly visible body parts (hands, arms, legs), which is strictly prohibited.",
-        "Product geometry: The visible diameter (width) is approximately 14% of the frame width, falling significantly below the required 20-23% range.",
-        "Product placement: The roll is placed in a manner that appears to be primary product staging rather than being secondary/off-center in the lower third context required by the instructions.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 14% to 20-23% of frame width."
+        "Product is a wide, low, cylindrical white-and-blue drip-tape carton roll placed naturally on the soil in a farm context."
       ],
-      "correction_prompt": "Remove all people and human silhouettes completely. Crop or scale the image so the drip-tape roll occupies 20-23% of the frame width and is positioned off-center in the lower third. Maintain the 'city, family' context without any human presence. Enlarge the product group from 14% to 20-23% of frame width.",
+      "correction_prompt": "",
       "attempt": 6
     }
   ],
-  "approved_image": null
+  "approved_image": "آفات-و-بیماریهای-عدس-با-آبیاری-قطرهای-جزئیات-فنی.webp"
 }

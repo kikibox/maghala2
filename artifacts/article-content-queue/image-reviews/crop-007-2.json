@@ -1,0 +1,42 @@
+{
+  "id": "crop-007",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-scale-watermark-v5-full-rerender",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 25,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Hard reject: Presence of a human (farmer) and multiple human body parts (face, hands, legs, torso).",
+        "Hard reject: Product width is approximately 14% of frame width, failing the 20-23% minimum requirement.",
+        "Product height is approximately 25% of frame height, which is near the upper limit and inconsistent with the required aspect ratio.",
+        "Product is centered rather than off-center on the lower third as required.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 14% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Remove the farmer entirely. Increase the size of the drip-tape roll so it occupies 20-23% of the frame width with a visible diameter 1.6-1.8 times its height. Move the roll to be off-center on the lower third, placed naturally on the soil without a person interacting with it. Enlarge the product group from 14% to 20-23% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 18.3,
+      "product_height_percent": 22.5,
+      "product_x_center_percent": 45.5,
+      "reasons": [
+        "Product is exactly one AFP drip-tape roll in the lower third",
+        "Roll is off-center and placed naturally on soil",
+        "No people or body parts visible",
+        "Background matches farm/drip-irrigation context with visible crop rows and unattended layout",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 18.3% to 20-23% of frame width."
+      ],
+      "correction_prompt": "Enlarge the product group from 18.3% to 20-23% of frame width.",
+      "attempt": 2
+    }
+  ],
+  "approved_image": null
+}
