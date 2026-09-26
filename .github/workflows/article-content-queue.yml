@@ -103,6 +103,9 @@ jobs:
           cp -a artifacts/article-content-queue/. "$state_dir/"
           git fetch origin main
           git reset --hard origin/main
+          # Replace the tracked artifact tree rather than overlaying it so
+          # migrations can actually delete legacy JPG and non-SEO duplicates.
+          rm -rf artifacts/article-content-queue
           mkdir -p artifacts/article-content-queue
           cp -a "$state_dir/." artifacts/article-content-queue/
           git add -f artifacts/article-content-queue/images/* 2>/dev/null || true
