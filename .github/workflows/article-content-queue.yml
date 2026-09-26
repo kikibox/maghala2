@@ -32,9 +32,11 @@ env:
   IMAGE_API_KEY: ${{ secrets.IMAGE_API_KEY || secrets.AGNES_API_KEY }}
   IMAGE_ENDPOINT: ${{ vars.IMAGE_ENDPOINT || 'https://apihub.agnes-ai.com/v1/images/generations' }}
   IMAGE_MODEL: ${{ vars.IMAGE_MODEL || 'agnes-image-2.5-flash' }}
-  BATCH_SIZE: '4'
-  ARTICLE_WORKERS: '4'
-  IMAGE_WORKERS: '8'
+  BATCH_SIZE: '1'
+  ARTICLE_WORKERS: '1'
+  IMAGE_WORKERS: '3'
+  IMAGE_QA_ATTEMPTS: '6'
+  IMAGE_QA_FAST_MODE: '0'
 
 jobs:
   process-next-article:
@@ -72,7 +74,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python -m py_compile automation/article_content_queue.py automation/image_prompt_policy.py automation/rebuild_article_images_exact_product.py automation/translate_generated_articles.py automation/render_article_queue_status.py automation/compress_article_images.py automation/package_article_content_batches.py
+          python -m py_compile automation/article_content_queue.py automation/image_prompt_policy.py automation/image_quality_gate.py automation/rebuild_article_images_exact_product.py automation/translate_generated_articles.py automation/render_article_queue_status.py automation/compress_article_images.py automation/package_article_content_batches.py
           python -m unittest discover -s tests -p 'test_*.py'
 
       - name: Prioritize translation backlog

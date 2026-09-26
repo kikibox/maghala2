@@ -21,6 +21,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from agnes_json_client import call as agnes_json_call
 import image_prompt_policy
+import image_quality_gate
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "artifacts" / "article-content-queue"
@@ -685,7 +686,7 @@ def _neutral_image_bytes(Image, io):
     return buffer.getvalue()
 
 
-def generate_image(item, kind):
+def _generate_image_once(item, kind):
     import base64
     import io
     from PIL import Image
@@ -741,6 +742,49 @@ def generate_image(item, kind):
         "width": width,
         "height": height,
     }
+
+
+def generate_image(item, kind):
+    """Generate and replace an image only after strict visual QA passes."""
+    history = []
+    feedback = ""
+    for attempt in range(1, image_quality_gate.MAX_IMAGE_ATTEMPTS + 1):
+        candidate_item = dict(item)
+        if feedback:
+            candidate_item["_image_qa_feedback"] = feedback
+        result = _generate_image_once(candidate_item, kind)
+        path = OUT / "images" / result["name"]
+        try:
+            verdict = image_quality_gate.review_image(
+                __import__(__name__), path, item, kind
+            )
+        except Exception as exc:
+            verdict = {
+                "pass": False,
+                "score": 0,
+                "reasons": [f"visual reviewer unavailable: {type(exc).__name__}"],
+                "correction_prompt": "Regenerate a clean candidate and retry strict visual review.",
+            }
+        verdict["attempt"] = attempt
+        history.append(verdict)
+        print(
+            f"article_image_qa id={item.get('id')} kind={kind} "
+            f"attempt={attempt} pass={verdict.get('pass')} "
+            f"score={verdict.get('score')} reasons={verdict.get('reasons', [])}",
+            flush=True,
+        )
+        if verdict.get("pass"):
+            return result
+        path.unlink(missing_ok=True)
+        feedback = str(
+            verdict.get("correction_prompt")
+            or "; ".join(verdict.get("reasons", []))
+        )
+    reasons = history[-1].get("reasons", []) if history else []
+    raise RuntimeError(
+        f"Image QA rejected article image {kind} after "
+        f"{image_quality_gate.MAX_IMAGE_ATTEMPTS} attempts: {reasons}"
+    )
 
 
 def _php_attachment_metadata(image):
@@ -861,7 +905,7 @@ def _produce_item(item, links, image_pool):
     except Exception as exc:
         raise StageFailure("text", exc) from exc
     try:
-        images = generate_images_parallel(item, image_pool)
+        images = generate_images_parallel({**item, **obj}, image_pool)
     except Exception as exc:
         raise StageFailure("image", exc) from exc
     return obj, images
@@ -940,7 +984,12 @@ def process(q):
                         "IMAGE_API_KEY/AGNES_API_KEY is missing" in msg
                         or any(code in msg for code in permanent_codes)
                     )
-                    item.update(status="blocked_image_model" if blocked else "failed", failed_at=now(), last_error=msg, failed_stage=stage)
+                    qa_retry = stage == "image" and "Image QA rejected article image" in msg
+                    if qa_retry:
+                        item.update(status="pending", last_error=msg, failed_stage="image_qa")
+                        item["attempts"] = max(0, int(item.get("attempts", 0)) - 1)
+                    else:
+                        item.update(status="blocked_image_model" if blocked else "failed", failed_at=now(), last_error=msg, failed_stage=stage)
                     item.pop("started_at", None)
                     batch_errors.append(f"{item['id']} ({stage}): {msg}")
                     if blocked:q["image_model_error"]=msg
