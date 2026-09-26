@@ -2,7 +2,7 @@
 """Fast image QA with hard rejection for product identity and physics failures."""
 import base64,json,os,re,urllib.request
 import image_prompt_policy
-REVIEW_POLICY='strict-no-human-scale-watermark-v9-semantic-composition-set-reviewed'
+REVIEW_POLICY='strict-no-human-scale-watermark-v10-topic-identity-semantic-composition-set-reviewed'
 MAX_IMAGE_ATTEMPTS=max(1,int(os.getenv('IMAGE_QA_ATTEMPTS','6')))
 MIN_IMAGE_SCORE=int(os.getenv('IMAGE_QA_MIN_SCORE','70'))
 FAST_MODE=os.getenv('IMAGE_QA_FAST_MODE','1')!='0'
@@ -49,6 +49,7 @@ def _vision_review(base,path,item,kind):
  quick=_quick_file_check(path)
  if quick:return quick
  family=__import__('image_prompt_policy').product_family(item)
+ crop=image_prompt_policy.named_crop(item)
  if FAST_MODE and kind not in REVIEW_KINDS:
   return {'pass':True,'score':90,'reasons':['fast mode: trusted prompt for non-key image'],'correction_prompt':''}
  encoded=base64.b64encode(path.read_bytes()).decode('ascii')
@@ -56,8 +57,8 @@ def _vision_review(base,path,item,kind):
   criteria='The image must show exactly two approved layflat objects: one packaged AFP coil and one bare black woven coil. The complete pair must occupy only about 12 to 15 percent of frame width, stay off-center on the lower third, remain fully visible, separate and flat on the ground. The image must contain zero people and zero human body parts.'
   reject='Hard reject any person, farmer, worker, face, hand, arm, leg, body part or human silhouette, even distant. Hard reject a pair wider than 15 percent of the frame, centered product staging, any third hose or product, round pipe, drip tape, cable, fitting, valve, bottle, jar, canister, bucket, invented package, fake label, impossible intersection, object passing through a coil, floating or merged product, or distorted dimensions.'
  else:
-  criteria='The image must show exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll in a topic-specific farm context. Estimate its pixel bounding box: it must occupy roughly 20 to 23 percent of full frame width, no more than about 28 percent of frame height, its visible diameter must be about 1.6 to 1.8 times its visible height, and it must be secondary, off-center on the lower third and naturally placed on soil. The image must contain zero people and zero human body parts. The background must visibly match the article title/summary and selected image role.'
-  reject='Hard reject any person, farmer, worker, face, hand, arm, leg, body part or human silhouette, even distant. Hard reject a roll wider than 23 percent of the frame, taller than 28 percent of the frame, centered product staging, bottle, jar, canister, bucket, fertilizer or pesticide container, second package, second roll, extra commercial product, tall narrow drum, giant roll, layflat hose, pipe through the roll, impossible geometry, fake headline, caption, gibberish text or invented writing outside authentic package print and the AFP phone watermark.'
+  criteria=f'The image must show exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll in a topic-specific farm context. The required article crop is {crop}; roles 1 and 2 must make that exact crop visually recognizable, while role 3 must show it as nearby context beside the irrigation hardware. Estimate the product pixel bounding box: it must occupy roughly 20 to 23 percent of full frame width, no more than about 28 percent of frame height, its visible diameter must be about 1.6 to 1.8 times its visible height, and it must be secondary, off-center on the lower third and naturally placed on soil. The image must contain zero people and zero human body parts. The background must visibly match the article title/summary and selected image role.'
+  reject=f'Hard reject a clearly different crop species, a generic crop that does not visibly represent {crop}, or bare-soil scenery with no recognizable {crop} evidence. Hard reject any person, farmer, worker, face, hand, arm, leg, body part or human silhouette, even distant. Hard reject a roll wider than 23 percent of the frame, taller than 28 percent of the frame, centered product staging, bottle, jar, canister, bucket, fertilizer or pesticide container, second package, second roll, extra commercial product, tall narrow drum, giant roll, layflat hose, pipe through the roll, impossible geometry, fake headline, caption, gibberish text or invented writing outside authentic package print and the AFP phone watermark.'
  prompt=f'''Fast practical QA for city {item.get('city','')}, family {family}, image role {kind}. {criteria}
 {reject}
 The exact bottom-right watermark "AFP | 09134922013" is REQUIRED and must never be rejected or requested for removal. Unattended tractors, pumps, filters and ordinary farm equipment are allowed when no person or human silhouette is visible; do not classify them as extra commercial products. Estimate the product bounding box from image pixels. Report product_width_percent, product_height_percent and product_x_center_percent as numeric percentages of the full image. If pass is true, correction_prompt must be empty. Do not reject only for ordinary soil texture or distant crop rows. Return only JSON: {{"pass":true|false,"score":0-100,"product_width_percent":0,"product_height_percent":0,"product_x_center_percent":0,"reasons":["..."],"correction_prompt":"short regeneration instruction"}}. Pass at score {MIN_IMAGE_SCORE} or higher.'''

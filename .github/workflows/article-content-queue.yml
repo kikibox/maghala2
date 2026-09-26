@@ -41,6 +41,9 @@ env:
 
 jobs:
   process-next-article:
+    # Image-rebuild commits intentionally trigger the dedicated proof workflow.
+    # Do not let this queue job cancel or compete with that strict rebuild.
+    if: github.event_name != 'push' || !contains(github.event.head_commit.message, '[image-rebuild]')
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:

@@ -137,6 +137,8 @@ class ArticleQueueTests(unittest.TestCase):
                 peak = max(peak, active)
             import time
             time.sleep(0.03)
+            output = Path(item["_image_output_dir"]) / f"{kind}.webp"
+            output.write_bytes(f"candidate-{kind}".encode())
             with lock:
                 active -= 1
             return {"name": f"{kind}.webp", "sha256": str(kind)}
@@ -200,6 +202,8 @@ class ArticleQueueTests(unittest.TestCase):
         calls = []
         def fake_generate(item, kind):
             calls.append(kind)
+            output = Path(item["_image_output_dir"]) / f"{kind}.webp"
+            output.write_bytes(f"candidate-{kind}-{len(calls)}".encode())
             return {"name": f"{kind}.webp", "sha256": f"hash-{kind}"}
         reviews = [
             {"pass": False, "score": 60, "duplicate_roles": [2], "reasons": ["role 2 repeats role 1"], "correction_prompt": "change camera and environment"},
@@ -219,6 +223,45 @@ class ArticleQueueTests(unittest.TestCase):
         self.assertEqual(calls.count(1), 1)
         self.assertEqual(calls.count(2), 2)
         self.assertEqual(calls.count(3), 1)
+
+    def test_failed_image_set_keeps_previously_published_images_untouched(self):
+        old_out = queue.OUT
+        rejected = {
+            "pass": False,
+            "score": 20,
+            "duplicate_roles": [1, 2, 3],
+            "reasons": ["wrong crop and duplicate composition"],
+            "correction_prompt": "use the exact crop and three distinct scenes",
+        }
+        with tempfile.TemporaryDirectory() as tmp, patch.dict(
+            os.environ, {"IMAGE_SET_QA_ATTEMPTS": "1"}
+        ):
+            queue.OUT = Path(tmp)
+            final_images = queue.OUT / "images"
+            final_images.mkdir(parents=True)
+            original = {}
+            for kind in (1, 2, 3):
+                name = queue.seo_image_name({"id": "crop-safe", "slug": "crop-safe"}, kind)
+                original[name] = f"published-{kind}".encode()
+                (final_images / name).write_bytes(original[name])
+
+            def fake_generate(item, kind):
+                name = queue.seo_image_name(item, kind)
+                (Path(item["_image_output_dir"]) / name).write_bytes(
+                    f"rejected-candidate-{kind}".encode()
+                )
+                return {"name": name, "sha256": f"candidate-{kind}"}
+
+            try:
+                with patch.object(queue, "generate_image", side_effect=fake_generate), \
+                     patch.object(queue.image_quality_gate, "review_image_set", return_value=rejected):
+                    with self.assertRaises(RuntimeError):
+                        queue.generate_images_parallel({"id": "crop-safe", "slug": "crop-safe"})
+                for name, expected in original.items():
+                    self.assertEqual((final_images / name).read_bytes(), expected)
+                self.assertFalse(any(queue.OUT.glob(".image-staging-*")))
+            finally:
+                queue.OUT = old_out
 
     def test_product_uses_family_specific_reference_and_3d_rerender_prompt(self):
         tape = queue.image_prompt_policy.image_prompt(

@@ -15,7 +15,7 @@ Shared infrastructure (reused, not modified):
 Output: artifacts/article-content-queue/
   queue.json, items/, sql/, rollback/, create-all-completed.sql
 """
-import json, os, re, time, hashlib, struct, urllib.request, urllib.error, html, datetime as dt
+import json, os, re, time, hashlib, struct, urllib.request, urllib.error, html, datetime as dt, tempfile, shutil
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
@@ -731,8 +731,8 @@ def _generate_image_once(item, kind):
     image.save(buffer, "WEBP", quality=60, method=6)
     blob = buffer.getvalue()
     suffix, mime, width, height = ".webp", "image/webp", 1200, 675
-    img_dir = OUT / "images"
-    img_dir.mkdir(exist_ok=True)
+    img_dir = Path(item.get("_image_output_dir") or (OUT / "images"))
+    img_dir.mkdir(parents=True, exist_ok=True)
     name = seo_image_name(item, kind)
     (img_dir / name).write_bytes(blob)
     return {
@@ -747,11 +747,12 @@ def _generate_image_once(item, kind):
 def generate_image(item, kind):
     """Generate and replace an image only after strict visual QA passes."""
     history = []
-    reviews_dir = OUT / "image-reviews"
+    reviews_dir = Path(item.get("_image_review_dir") or (OUT / "image-reviews"))
     reviews_dir.mkdir(parents=True, exist_ok=True)
     review_id = str(item.get("id") or item.get("source_id") or "unknown")
     review_path = reviews_dir / f"{review_id}-{kind}.json"
-    image_path = OUT / "images" / seo_image_name(item, kind)
+    image_dir = Path(item.get("_image_output_dir") or (OUT / "images"))
+    image_path = image_dir / seo_image_name(item, kind)
     try:
         prior = json.loads(review_path.read_text(encoding="utf-8"))
         if (
@@ -776,7 +777,7 @@ def generate_image(item, kind):
         if feedback:
             candidate_item["_image_qa_feedback"] = feedback
         result = _generate_image_once(candidate_item, kind)
-        path = OUT / "images" / result["name"]
+        path = image_dir / result["name"]
         try:
             verdict = image_quality_gate.review_image(
                 __import__(__name__), path, item, kind
@@ -931,33 +932,56 @@ def generate_images_parallel(item, pool=None):
     review_id = str(item.get("id") or item.get("source_id") or "unknown")
     set_review_path = OUT / "image-reviews" / f"{review_id}-set.json"
     set_history = []
+    OUT.mkdir(parents=True, exist_ok=True)
+    staging_root = Path(tempfile.mkdtemp(prefix=f".image-staging-{review_id}-", dir=OUT))
+    staging_images = staging_root / "images"
+    staging_reviews = staging_root / "image-reviews"
+    staging_images.mkdir(parents=True, exist_ok=True)
+    staging_reviews.mkdir(parents=True, exist_ok=True)
     try:
         max_set_attempts = max(1, int(os.getenv("IMAGE_SET_QA_ATTEMPTS", "4")))
         for set_attempt in range(1, max_set_attempts + 1):
             futures = {}
             for kind in sorted(pending):
                 candidate = dict(item)
+                candidate["_image_output_dir"] = str(staging_images)
+                candidate["_image_review_dir"] = str(staging_reviews)
                 if feedback.get(kind): candidate["_image_qa_feedback"] = feedback[kind]
                 futures[executor.submit(generate_image, candidate, kind)] = kind
             for future in as_completed(futures):
                 kind = futures[future]; results[kind] = future.result()
-            paths = [OUT / "images" / results[kind]["name"] for kind in range(1, 4)]
+            paths = [staging_images / results[kind]["name"] for kind in range(1, 4)]
             verdict = image_quality_gate.review_image_set(__import__(__name__), paths, item)
             verdict["set_attempt"] = set_attempt; set_history.append(verdict)
             set_review_path.parent.mkdir(parents=True, exist_ok=True)
             set_review_path.write_text(json.dumps({"id":review_id,"policy":image_quality_gate.REVIEW_POLICY,"history":set_history},ensure_ascii=False,indent=2),encoding="utf-8")
             print(f"article_image_set_qa id={review_id} attempt={set_attempt} pass={verdict.get('pass')} score={verdict.get('score')} duplicate_roles={verdict.get('duplicate_roles',[])} reasons={verdict.get('reasons',[])}",flush=True)
-            if verdict.get("pass"): return [results[kind] for kind in range(1, 4)]
+            if verdict.get("pass"):
+                final_images = OUT / "images"
+                final_reviews = OUT / "image-reviews"
+                final_images.mkdir(parents=True, exist_ok=True)
+                final_reviews.mkdir(parents=True, exist_ok=True)
+                for kind in range(1, 4):
+                    staged_image = staging_images / results[kind]["name"]
+                    if not staged_image.exists():
+                        raise RuntimeError(f"Approved staged image is missing for role {kind}")
+                    os.replace(staged_image, final_images / staged_image.name)
+                    staged_review = staging_reviews / f"{review_id}-{kind}.json"
+                    if staged_review.exists():
+                        os.replace(staged_review, final_reviews / staged_review.name)
+                return [results[kind] for kind in range(1, 4)]
             pending = set(verdict.get("duplicate_roles") or (1,2,3))
             correction = str(verdict.get("correction_prompt") or "; ".join(verdict.get("reasons",[])))
             for kind in pending:
                 feedback[kind] = correction + f" Create a new role-{kind} scene that is clearly unlike the other two approved images."
-                (OUT / "images" / results[kind]["name"]).unlink(missing_ok=True)
-                (OUT / "image-reviews" / f"{review_id}-{kind}.json").unlink(missing_ok=True)
+                (staging_images / results[kind]["name"]).unlink(missing_ok=True)
+                (staging_reviews / f"{review_id}-{kind}.json").unlink(missing_ok=True)
                 results.pop(kind,None)
         raise RuntimeError(f"Image-set diversity gate rejected the three-image editorial set after {max_set_attempts} rounds")
     finally:
-        if owns_pool: executor.shutdown(wait=True, cancel_futures=False)
+        if owns_pool:
+            executor.shutdown(wait=True, cancel_futures=False)
+        shutil.rmtree(staging_root, ignore_errors=True)
 
 
 def _produce_item(item, links, image_pool):
