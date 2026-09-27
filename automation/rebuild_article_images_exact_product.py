@@ -5,12 +5,13 @@ from __future__ import annotations
 import datetime as dt
 import json
 import os
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import article_content_queue as queue
 
-POLICY = "reference-rerender-3d-v10-semantic-composition-set-reviewed"
+POLICY = "reference-rerender-3d-v11-no-human-no-container-full-rebuild"
 MODE = "reference-conditioned-3d-rerender-approved-scales-topic-first"
-MARKER = queue.OUT / "image-rebuild-reference-rerender-3d-v10-semantic-composition-set-reviewed.json"
+MARKER = queue.OUT / "image-rebuild-reference-rerender-3d-v11-no-human-no-container-full-rebuild.json"
 WORKERS = min(2, max(1, int(os.getenv("IMAGE_WORKERS", "2"))))
 POST_LIMIT = max(1, int(os.getenv("IMAGE_REBUILD_POST_LIMIT", "4")))
 
@@ -104,15 +105,20 @@ def main() -> int:
     records = {item_id: records[item_id] for item_id in selected_ids}
     results = {}
     failures = []
-    # Process one article set at a time. The set manager already generates
-    # roles in parallel, runs individual QA, then reviews all three together
-    # and selectively regenerates duplicate roles. Calling generate_image()
-    # directly here used to bypass that final diversity gate.
-    for item_id, (item, _, data) in records.items():
-        try:
-            results[item_id] = queue.generate_images_parallel({**item, **data})
-        except Exception as exc:
-            failures.append({"id": item_id, "kind": "set", "error": str(exc)[:1200]})
+    # Rebuild two article sets concurrently. Each set still generates its
+    # three roles in parallel, applies individual no-human/no-container QA,
+    # then applies the editorial-set gate before atomically replacing files.
+    with ThreadPoolExecutor(max_workers=WORKERS, thread_name_prefix="article-rebuild-set") as pool:
+        futures = {
+            pool.submit(queue.generate_images_parallel, {**item, **data}): item_id
+            for item_id, (item, _, data) in records.items()
+        }
+        for future in as_completed(futures):
+            item_id = futures[future]
+            try:
+                results[item_id] = future.result()
+            except Exception as exc:
+                failures.append({"id": item_id, "kind": "set", "error": str(exc)[:1200]})
 
     failed_ids = {x["id"] for x in failures}
     rebuilt, stamp = [], now()

@@ -10,6 +10,8 @@ on:
       - 'automation/image_prompt_policy.py'
       - 'automation/image_quality_gate.py'
       - 'automation/assets/**'
+  schedule:
+    - cron: '15 */2 * * *'
 
 permissions:
   contents: write
@@ -31,8 +33,8 @@ env:
   IMAGE_QA_ATTEMPTS: '10'
   IMAGE_SET_QA_ATTEMPTS: '4'
   IMAGE_QA_FAST_MODE: '0'
-# Keep proof runs to one article until the first v10 set is visually approved.
-  IMAGE_REBUILD_POST_LIMIT: '1'
+# Rebuild every completed article; two article sets run concurrently.
+  IMAGE_REBUILD_POST_LIMIT: '100'
 
 jobs:
   rebuild:
@@ -63,7 +65,7 @@ jobs:
         run: |
           set +e
           mkdir -p artifacts/article-content-queue
-          python automation/rebuild_article_images_exact_product.py 2>&1 | tee artifacts/article-content-queue/full-image-rebuild-v10.log
+          python automation/rebuild_article_images_exact_product.py 2>&1 | tee artifacts/article-content-queue/full-image-rebuild-v11.log
           rc=${PIPESTATUS[0]}
           echo "exit_code=$rc" >> "$GITHUB_OUTPUT"
           exit 0
@@ -91,10 +93,10 @@ jobs:
           git add -f artifacts/article-content-queue/images/* 2>/dev/null || true
           git add -f artifacts/article-content-queue/items/*.json 2>/dev/null || true
           git add -f artifacts/article-content-queue/packages/*.zip 2>/dev/null || true
-          git add -f artifacts/article-content-queue/full-image-rebuild-v10.log 2>/dev/null || true
+          git add -f artifacts/article-content-queue/full-image-rebuild-v11.log 2>/dev/null || true
           git add -A artifacts/article-content-queue
           if ! git diff --cached --quiet; then
-            git commit -m 'Rebuild article images under strict v10 semantic-composition policy [skip ci]'
+            git commit -m 'Rebuild article images under strict v11 no-human/no-container policy [skip ci]'
             git push origin HEAD:main
           fi
       - name: Upload rebuild diagnostics
