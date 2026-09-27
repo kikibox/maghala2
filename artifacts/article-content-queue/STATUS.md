@@ -4,7 +4,7 @@
 
 ## نمای کلی
 
-- آخرین بروزرسانی: `2026-09-27T02:12:07+00:00`
+- آخرین بروزرسانی: `2026-09-27T02:21:08+00:00`
 - وضعیت صف: **آماده اجرای بعدی** (`ready`)
 - پیشرفت: **50 از 1148 (4.36٪)**
 - نمودار پیشرفت: `░░░░░░░░░░░░░░░░░░░░`
@@ -24,8 +24,8 @@
 - تعداد تصاویر هر مقاله: **3**
 - حداقل کلمات: **1050**
 - لینک داخلی مجاز: **4 تا ۷**
-- اندازه هر اجرا: **2 مقاله**
-- مدیر موازی: **2 مقاله / 3 تصویر هم‌زمان**
+- اندازه هر اجرا: **1 مقاله**
+- مدیر موازی: **1 مقاله / 3 تصویر هم‌زمان**
 - حداکثر تلاش هر مقاله: **4**
 - دسته وردپرس: **مقاله‌ها** (`35`)
 - لینک‌های داخلی شناخته‌شده: **682**
@@ -69,10 +69,10 @@
 
 ## مقاله بعدی صف
 
-- عنوان: **میزان برداشت مارچوبه در هکتار با نوار تیپ**
-- شناسه: `crop-052`
+- عنوان: **راهنمای جامع کاشت تره با آبیاری قطره‌ای**
+- شناسه: `crop-053`
 - گروه: `crop`
-- تعداد تلاش قبلی: **1**
+- تعداد تلاش قبلی: **0**
 
 ## آخرین مقالات تکمیل‌شده
 
@@ -99,7 +99,7 @@
 
 ## خطاهای اخیر
 
-- **میزان برداشت مارچوبه در هکتار با نوار تیپ** — `crop-052` — مرحله: `image` — تلاش: **1/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
+- **میزان برداشت مارچوبه در هکتار با نوار تیپ** — `crop-052` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ["The image contains two prominent human subjects (farmers/field workers) which is an absolute 'hard reject' condition under the constraints (zero people allowed).", "The irrigation product is not a flat 'drip-tape' but appears to be a 3D vertical cartridge or roll, which deviates from the required 'wide low cylindrical drip-tape carton roll' geometry.", 'machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of`
 
 ## بسته‌های ۵۰تایی آماده
 
