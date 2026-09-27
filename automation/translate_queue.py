@@ -2,6 +2,7 @@
 import html, json, os, re, time, unicodedata, urllib.request, urllib.error
 from pathlib import Path
 from html.parser import HTMLParser
+from agnes_json_client import parse_object
 
 ROOT=Path(__file__).resolve().parents[1]
 BASE=os.getenv('AGNES_API_BASE','https://apihub.agnes-ai.com/v1').rstrip('/')
@@ -47,9 +48,10 @@ def fetch_source(post_id):
 def call_chat(messages,max_tokens=12000):
     payload={'model':MODEL,'messages':messages,'temperature':0.1,'max_tokens':max_tokens}
     result=request_json(BASE+'/chat/completions',payload,authenticated=True)
-    text=result['choices'][0]['message']['content'].strip()
-    text=re.sub(r'^```(?:json)?\s*|\s*```$','',text)
-    return json.loads(text)
+    raw=result['choices'][0]['message']['content']
+    if isinstance(raw,list):
+        raw=''.join(str(x.get('text','')) for x in raw if isinstance(x,dict))
+    return parse_object(raw)
 
 def language_label(lang):
     return {
