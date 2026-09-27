@@ -1,0 +1,57 @@
+{
+  "id": "crop-075",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 65,
+      "product_height_percent": 75,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Major violation: Human hands and arms are visible in the image, which is a hard reject.",
+        "Product violation: The roll is held vertically rather than lying naturally on the soil.",
+        "Crop violation: The vegetation has large, broad leaves instead of the required fine trifoliate leaflets of alfalfa.",
+        "Geometry violation: The roll's diameter is not 1.5 to 1.9 times its height.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 65% to 13-27% of frame width.; Reduce product height from 75% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove all human hands and arms. Place a white-and-blue cylindrical drip-tape roll horizontally on the soil in the lower third. Replace the broad-leaf plants with a neutral bed of young alfalfa seedlings. Show exactly one roll with correct proportions. Reduce the product group from 65% to 13-27% of frame width. Reduce product height from 75% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 58,
+      "product_width_percent": 23,
+      "product_height_percent": 25,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Gibberish/invented text on the product packaging (unreadable characters under the 'AFP' logo).",
+        "The crop vegetation in the rows does not clearly match the specific botanical morphology of alfalfa (trifoliate leaflets); the leaves appear broad and indeterminate.",
+        "Product width (23%) is at the upper limit of the preferred 20-23% range and close to the 27% hard reject threshold."
+      ],
+      "correction_prompt": "Regenerate the image ensuring the crop rows clearly display small, three-part trifoliate leaves characteristic of alfalfa. Remove all invented or gibberish text from the product packaging, leaving only clear brand identification. Slightly reduce the product width to under 20% of the frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 15,
+      "product_height_percent": 14,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The image contains the required AFP white-and-blue wide low cylindrical drip-tape carton roll in a farm context.",
+        "The background features distinct rows of young crops that are acceptable as neutral young vegetation with a clear agronomic story.",
+        "The product bounding box is correctly positioned off-center on the lower third and naturally placed on the soil.",
+        "Product proportions are within the acceptable range (width 15%, height 14%, ratio ~1.07).",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "There are no people, human body parts, or prohibited items (extra containers, pipes, etc.)."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "فاصله-نوار-تیپ-در-کشت-گلرنگ-استانداردهای-توصیهشده-کاربرد-عملی.webp"
+}
