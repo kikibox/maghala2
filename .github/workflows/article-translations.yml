@@ -13,7 +13,10 @@ on:
       - 'sqlbuild/build_patch.py'
       - 'data/source_ids.txt'
   schedule:
-    # Hourly serialized window, after image rebuild and before article queue.
+    # Sole hourly entry point for the production chain. It waits behind any
+    # active strict rebuild, clears translations, then dispatches the Persian
+    # queue. The article queue has no independent schedule, so this pending run
+    # cannot be replaced while it waits for the shared lock.
     - cron: '20 * * * *'
 
 permissions:
@@ -21,6 +24,9 @@ permissions:
   actions: write
 
 concurrency:
+  # Keep one serialized writer for translations, Persian generation and strict
+  # rebuilds. With generation chained below, GitHub never replaces a pending
+  # translator with a second scheduled request in this group.
   group: article-content-pipeline
   cancel-in-progress: false
 
