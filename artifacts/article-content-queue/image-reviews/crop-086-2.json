@@ -1,0 +1,43 @@
+{
+  "id": "crop-086",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Hard reject: The image clearly contains a person (arm, hand, and torso) installing the equipment, violating the 'zero people and zero human body parts' requirement.",
+        "Product Size: The visible drip tape carton roll is too small; at ~12% width, it falls below the minimum 13% threshold required for practical estimates.",
+        "Product Geometry: The product bounding box height (18%) is greater than its width (12%), contradicting the requirement for a wide cylindrical roll where diameter is about 1.5 to 1.9 times the visible height.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Generate an image of an AFP white-and-blue drip tape carton roll lying on soil in a clover farm with three-leaflet seedlings. Ensure no people or hands are visible. The roll must be significantly larger (width approx 20% of frame) with a wide cylindrical shape (diameter much larger than height) positioned off-center on the lower third. Include the bottom-right watermark. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 25,
+      "product_height_percent": 25,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The product (white and blue cylindrical roll) is clearly visible and placed naturally on the soil, occupying approximately 25% of the frame width, which falls within the acceptable 13-27% range.",
+        "The product aspect ratio is roughly cylindrical (diameter and height are similar), satisfying the requirement of 1.5-1.9x diameter-to-height, assuming a slight perspective.",
+        "The product is off-center on the lower third of the image, avoiding centered staging.",
+        "The background vegetation clearly shows three-leaflet clover plants, matching the specific crop requirement.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom right corner.",
+        "No humans, animals, or prohibited items (like buckets or extra packages) are visible.",
+        "The general farm context with soil and crop rows is appropriate for an irrigation role."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-شبدر-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

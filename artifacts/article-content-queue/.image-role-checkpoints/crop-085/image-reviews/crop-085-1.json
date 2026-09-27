@@ -1,0 +1,69 @@
+{
+  "id": "crop-085",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: The image clearly shows a person (a male farmer) crouching in the foreground, which violates the absolute requirement for zero people and zero human body parts.",
+        "The product is being interacted with by the person, implying human presence rather than a natural static placement on soil.",
+        "The crop shown is generic young green vegetation, not specifically identifiable as basil (araghula) with opposite oval aromatic leaves.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image: Remove all people and human body parts. Show exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll on the soil in a farm context, off-center on the lower third. The background must show a basil crop (ريحان) with opposite oval aromatic leaves. The roll must be secondary, taking up 20-23% of the frame width. Keep the bottom-right watermark 'AFP | 09134922013' exactly as is. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 22.2,
+      "product_height_percent": 28.0,
+      "product_x_center_percent": 36.1,
+      "reasons": [
+        "Text on product label contains gibberish characters instead of legible, authentic package print.",
+        "Required bottom-right watermark 'AFP | 09134922013' is missing."
+      ],
+      "correction_prompt": "Regenerate image with clear, readable branding on the carton and include the required 'AFP | 09134922013' watermark in the bottom right corner.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 13,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Hard reject: A prominent person is crouching next to the product (body parts and face visible).",
+        "Hard reject: The product's vertical position and overall size do not meet the required 'secondary element' threshold (should be 20-23% width, max 32% height).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with the exact same background farm scene but remove the person completely. Place the white-and-blue AFP drip-tape roll on the soil in the lower-left corner, off-center, maintaining its secondary size relative to the frame. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 18,
+      "product_height_percent": 20,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "Exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll present.",
+        "Roll is off-center on the lower third and placed naturally on soil.",
+        "Visible crop matches basil article role (compact branching stems, opposite oval aromatic leaves).",
+        "Zero people or human body parts visible.",
+        "Watermark \"AFP | 09134922013\" visible in bottom-right corner.",
+        "Product dimensions within acceptable limits (width < 27%, height < 32%, width ~0.9x height, off-center)."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "میزان-برداشت-ریحان-در-هکتار-با-نوار-تیپ-تصویر-شاخص.webp"
+}

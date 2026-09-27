@@ -1,0 +1,49 @@
+{
+  "id": "crop-085",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "The image contains a human (farmer/worker) crouching next to the product roll, which violates the absolute requirement for zero people.",
+        "Human body parts (face, arm, hand, leg) are clearly visible.",
+        "While the product dimensions are within acceptable ranges, the presence of a person constitutes a hard reject under the specified filtering criteria."
+      ],
+      "correction_prompt": "Regenerate the image to show the AFP drip-tape roll lying on the soil in a farm context. Remove the farmer entirely. Ensure the image contains no human silhouettes or body parts. Keep the roll off-center and secondary to the scene.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 30,
+      "product_height_percent": 40,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product height exceeds the maximum limit of 32 percent (estimated at 40 percent).",
+        "Product width exceeds the acceptable range of 27 percent (estimated at 30 percent).",
+        "Product is centered horizontally rather than being off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width.; Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shrink the roll to 20-23% width and <32% height; move it off-center to the lower right third; maintain the farm background. Reduce the product group from 30% to 13-27% of frame width. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "review_unavailable": true,
+      "reasons": [
+        "article_image_review unavailable after 4 retries: HTTPError"
+      ],
+      "correction_prompt": "Retry strict visual review of the preserved candidate without regenerating it.",
+      "attempt": 3
+    }
+  ],
+  "approved_image": null
+}
