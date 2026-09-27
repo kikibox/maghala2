@@ -1,0 +1,98 @@
+{
+  "id": "crop-068",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 40,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The container is a potted plant bucket, not a white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product height exceeds the maximum 32% constraint.",
+        "Center of mass appears too high and the roll shape (cylindrical) is incorrect for a potted plant.",
+        "machine-enforced bounding-box check failed: Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Replace the potted plant bucket with a white and blue wide low cylindrical drip-tape carton roll placed on the soil in the lower third. Ensure the product is a flat roll, not a vertical pot, and reduce its height to no more than 32% of the frame width. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Hard reject: A person (farmer/worker) is clearly visible in the foreground.",
+        "Hard reject: The drip tape roll is a vertical spool rather than the specified 'wide low cylindrical' shape (diameter/height ratio < 1.0, should be ~1.5-1.9).",
+        "The image role and context for 'family/city' and specific crop are not clearly represented; the crop looks like generic seedlings.",
+        "Hard reject: Visible person/body parts are explicitly forbidden."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or body parts. Replace the vertical drip tape spool with a wide, low cylindrical drip tape carton roll (diameter approx. 1.5x height) placed off-center on the lower left. Ensure the background features a specific family farm context (urban/city setting) with clearly identifiable, specific crop seedlings to match the article title.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 21,
+      "product_height_percent": 40,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "Hard reject due to the presence of a person (farmer) and human body parts.",
+        "The drip tape roll's visible diameter (width-to-height ratio of approx. 1.5x) fails the required 1.5 to 1.9 times ratio constraint (specifically, the height is too large relative to the width compared to the 1.5-1.9x rule for a standard wide low roll).",
+        "Only a portion of the roll is visible, with the top half cut off by the bottom frame edge.",
+        "machine-enforced bounding-box check failed: Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image to strictly remove the man. Include one complete, off-center (lower third) AFP wide cylindrical drip-tape roll resting on the soil with visible proportions roughly 1.5 to 1.9 times its height. Preserve the red barn farm context and the required bottom-right watermark 'AFP | 09134922013'. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The required bottom-right watermark 'AFP | 09134922013' is missing, which is a mandatory element for this specific check.",
+        "The crop in the field appears to be young maize/corn seedlings (identified by leaf morphology and growth habit), which does not align with the specific agricultural context of tobacco drip tape irrigation typically associated with 'drip-tape' + 'farm' queries in this dataset.",
+        "The product is a generic roll with 'AFP' branding but lacks the 'wide low cylindrical' visual proportion described as preferred (the roll appears somewhat tall relative to its width)."
+      ],
+      "correction_prompt": "Add the watermark 'AFP | 09134922013' in the bottom right corner. Change the background crop to tobacco seedlings to match the specific drip-tape article context. Make the white and blue roll appear wider and flatter (low cylindrical) to better match the product specification.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: The image contains a human figure (farmer/worker) in the foreground, violating the strict requirement of zero people and zero body parts.",
+        "Product geometry violation: The drip-tape roll is being held by the person rather than naturally placed on the soil in the lower third off-center position.",
+        "Product appearance violation: The roll appears cylindrical with height greater than width, whereas the spec requires a 'wide low' cylindrical shape with a diameter approximately 1.5-1.9 times its visible height.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or body parts visible. Place a wide, low, white-and-blue drip-tape roll naturally on the soil in the lower third, positioned off-center (not centered). Ensure the roll's width is greater than its height and it constitutes roughly 20% of the frame width. Keep the corn field context. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 18,
+      "product_height_percent": 18,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product geometry is incorrect: The roll is vertical (upright) rather than a wide low cylindrical layout lying horizontally on the soil.",
+        "Proportions are incorrect: The visible diameter is not approximately 1.5 to 1.9 times the visible height; the current roll is roughly square in bounding box.",
+        "Centering and placement: The product is centered on the frame rather than off-center on the lower third."
+      ],
+      "correction_prompt": "Regenerate the image with the drip-tape roll lying flat and horizontal on the soil (wide low cylindrical shape). Ensure the visible diameter is roughly 1.75x the visible height and move the product to the lower right third (off-center).",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}
