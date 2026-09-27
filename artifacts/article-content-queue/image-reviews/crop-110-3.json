@@ -1,0 +1,70 @@
+{
+  "id": "crop-110",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 20,
+      "product_height_percent": 26,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Identifiable crop morphology (cotton seedlings) is visible and does not match the article title crop 'lentil', triggering a hard reject.",
+        "A second commercial package (the small white ring/roll on the far left) is present in the frame.",
+        "The watermark is positioned on top of the hardware (pressure gauge) instead of the standard bottom-right corner clear of product occlusion."
+      ],
+      "correction_prompt": "Replace the visible green cotton seedlings with generic bare soil or neutral low vegetation suitable for lentils; remove the small white ring on the far left; move the crop out of focus or neutralize it; ensure the background infrastructure remains but no new crops are introduced.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Product placement is centered horizontally, violating the off-center lower third requirement (product_x_center_percent is 49%).",
+        "Product height (24%) significantly exceeds the maximum allowed 32% (it is nearly half the width, failing the 1.5-1.9 aspect ratio test).",
+        "The product appears to be an artificial, solid cylindrical standee box/canister with a hole, rather than a wide, low cylindrical roll of continuous drip tape, which is a hard reject for 'impossible geometry' or 'second package'."
+      ],
+      "correction_prompt": "Regenerate image with a low, wide cylindrical roll of drip tape placed on the left side of the lower third, resting on soil. Ensure the roll width is 1.5-1.9 times its height and is clearly tape, not a solid box. Keep the farm background and bottom-right watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 25,
+      "product_height_percent": 35,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Hard reject: A full-body person (farmer) is present in the image, violating the zero-person constraint.",
+        "Hard reject: Human body parts (face, hands, legs) are visible.",
+        "Hard reject: Product height estimate is approximately 35% of the frame, exceeding the 32% limit.",
+        "Crop mismatch: Visible sprouts and distant rows strongly suggest corn/maize (based on spacing and height), which contradicts the 'lentil' crop specified in the article title.",
+        "Staging: The product placement appears overly staged and centered within the left third rather than naturally integrated into the farm context.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes from the image. Replace the visible crops with lentil sprouts or maintain a neutral soil background without identifiable contradictory rows. Reduce the visible height of the drip-tape roll so it is under 32% of the frame height, and ensure the geometry looks naturally placed on the soil. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 18,
+      "product_height_percent": 20,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product is exactly one AFP white-and-blue wide low cylindrical drip-tape roll, placed naturally on soil.",
+        "Image contains zero people or human body parts.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Product is off-center in the lower third and remains secondary to the farm context (approx 18% width and 20% height)."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "میزان-برداشت-هویج-در-هکتار-با-نوار-تیپ-جزئیات-فنی.webp"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "crop-108",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 11,
+      "product_height_percent": 13,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "The crop shown is clearly maize (corn) rather than sorghum, violating the requirement for botanically accurate articles (maize has broader leaves and different leaf-sheath structure).",
+        "The product width is too small (approx. 11% of frame width); the target range is 13-27%.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Replace the crop with sorghum (narrower leaves, more upright stems with reddish/purple tinge where appropriate) and increase the size of the white and blue AFP drip-tape roll so it occupies at least 15-20% of the image width. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "The presence of a human (the crouching man) is a hard reject, as the image must contain zero people or body parts.",
+        "The crop in the field is visually identifiable as corn (maize) rather than sorghum, which is a hard reject for the specified agronomic story.",
+        "The drip-tape roll product is too small (below the 13% width minimum) and lacks the required 'wide' cylindrical proportion relative to its height.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the human and replace the corn field with a field of botanically accurate sorghum. Reposition the AFP blue-and-white drip-tape roll to the lower third so it occupies approximately 20% of the frame width, keeping it off-center and free of any human silhouettes. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 17,
+      "product_height_percent": 22,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "The AFP white-and-blue wide low cylindrical drip-tape carton roll is clearly visible and correctly positioned off-center on the lower third of the image.",
+        "The crop shown is botanically accurate for Sorghum, with recognizable leaf structure, stem growth, and panicles indicative of the correct growth stage.",
+        "The product dimensions are within the acceptable range (17% width, 22% height), maintaining a natural, secondary presence in the scene.",
+        "There are no people or human body parts visible in the image, meeting the strict safety requirements.",
+        "The required watermark 'AFP | 09134922013' is present at the bottom right.",
+        "The context of a farm field with drip irrigation infrastructure aligns perfectly with the image role and topic."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "فاصله-نوار-تیپ-در-کشت-سورگوم-استانداردهای-توصیهشده-کاربرد-عملی.webp"
+}

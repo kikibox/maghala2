@@ -1,0 +1,58 @@
+{
+  "id": "crop-107",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Human body parts (arms, hands, legs, torso) and a farmer are clearly visible in the foreground.",
+        "The product is not a wide low cylindrical carton roll; it appears as a small canister or potted plant base.",
+        "Product position is centered rather than off-center on the lower third as required.",
+        "Product width is too small relative to the required specification (must be at least 13% width).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures and body parts completely. Replace the central object with a large white and blue wide cylindrical drip-tape carton roll, placed off-center in the lower third on the soil. Ensure the roll is approximately 20% of the frame width. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 24,
+      "product_height_percent": 34,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The product height is estimated at 34%, exceeding the strict 32% maximum limit.",
+        "The product is staged on a bare tilled soil strip between planting rows rather than being 'naturally placed on soil' directly within the crop stand, which feels like commercial product staging rather than a natural farm context.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Scale the drip-tape roll down to ensure its height is no more than 28% of the frame and width is around 20%. Move the roll directly onto the soil surface next to a summer savory plant row instead of on a bare tilled path. Ensure the roll has a taller cylindrical proportion (height should be approximately 1/1.7 of its width) so it reads as a standard carton roll. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 74,
+      "product_width_percent": 14,
+      "product_height_percent": 15,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Product width (14%) is within the acceptable 13-27% range but below the preferred 20-23%.",
+        "Product aspect ratio (width vs height) is roughly square (~1.0x), failing the required 1.5 to 1.9x width-to-height ratio for a wide cylindrical roll.",
+        "Product is correctly placed in the lower-left area on the soil.",
+        "Watermark 'AFP | 09134922013' is present in the correct bottom-right position.",
+        "No people or human body parts are visible.",
+        "Botanical subject is acceptable as young, unidentifiable vegetation consistent with the 'prepared bed' allowance for the specific crop (مرزه).",
+        "Background context of a farm field with irrigation layout is appropriate for the role."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "نگهداری-مرزه-با-نوار-تیپ-نکات-کلیدی-کاربرد-عملی.webp"
+}

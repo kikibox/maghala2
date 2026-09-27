@@ -1,0 +1,58 @@
+{
+  "id": "crop-105",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 8,
+      "product_height_percent": 8,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The image contains a visible person (farmer) crouching in the field, which is a hard reject.",
+        "The background crop is clearly sunflowers, not yellow split-pea (لپه).",
+        "The product is not a wide low cylindrical carton roll; it appears to be a small container and a roll on the ground, violating geometry requirements.",
+        "The product does not meet the size and shape constraints (diameter 1.5-1.9x height).",
+        "The required bottom-right watermark text does not match the mandatory format ('AFP | 09134922013' vs 'AFP | 0913492201').",
+        "Extra commercial products (containers) are present in the frame.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human parts. Change the crop to yellow split-pea. Replace the current product with a wide, low, cylindrical drip-tape carton roll placed on the soil off-center (lower left or right third). Ensure the roll is wide but short, secondary in size to the crop background. The product should not be the main focus. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 25,
+      "product_height_percent": 32,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "The crop shown (yellow podded stems) is clearly identifiable as a different species (resembling corn or broad beans with yellow pods) rather than the required 'Lappe' (yellow split-pea crop) with its characteristic round pods.",
+        "The product visible is a roll of tape or label material, not a 'wide low cylindrical drip-tape carton roll' as specified.",
+        "Product geometry fails: The object's height is approximately equal to its width (aspect ratio ~1.1), whereas the requirement is for a wide, low roll (aspect ratio 1.5 to 1.9).",
+        "Text on the product appears to be gibberish or invented writing, lacking authentic package print."
+      ],
+      "correction_prompt": "Regenerate image showing a wide, low cylindrical drip-tape roll (aspect ratio ~1.7:1) placed on soil. The crop must be yellow split-pea plants (Lappe) with distinctive round yellow pods, not corn or beans. Ensure product has authentic AFP branding.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 23,
+      "product_height_percent": 30,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Product dimensions are within the specified ranges: width 23%, height 30%, and center x 31% (off-center lower left).",
+        "Diameter to height ratio is approximately 1.6, falling within the 1.5-1.9 requirement.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom right corner.",
+        "The farm context is clear and matches the drip-tape irrigation narrative without identifying a clearly wrong species."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-لپه-با-آبیاری-قطرهای-تصویر-شاخص.webp"
+}

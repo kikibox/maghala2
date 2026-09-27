@@ -1,0 +1,81 @@
+{
+  "id": "crop-108",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 11,
+      "product_height_percent": 13,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product is centered (product_x_center_percent: 50), violating the requirement to be off-center on the lower third.",
+        "Product is too small (product_width_percent: 11%), falling below the minimum acceptable threshold of 13%.",
+        "Visible diameter (11%) is not approximately 1.5 to 1.9 times its visible height (13%); the aspect ratio is inverted (diameter < height).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Shift the product significantly off-center to the left or right of the lower third. Increase the product's visible width to 18-22% of the frame width. Adjust the perspective so the visible diameter is roughly 1.5x the visible height. Keep the required watermark intact. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 17,
+      "product_height_percent": 18,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The background crop contains clearly identifiable red tulips, which is a hard reject against the required sorghum article context.",
+        "The drip tape carton roll is not wide and low; it is nearly cubic/vertical (aspect ratio of ~1:1 instead of the required 1.5-1.9:1)."
+      ],
+      "correction_prompt": "Replace the tulip flowers with young sorghum sprouts. Make the white and blue carton roll significantly flatter and wider (a wide, low cylinder) so its diameter is 1.5 to 1.9 times its height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 82,
+      "product_width_percent": 25,
+      "product_height_percent": 25,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "The crop shown in the foreground (and likely the planted rows) does not have the distinctly tall, erect, single-branched or unbranched flowering heads characteristic of mature sorghum; it visually resembles maize or other grass-family species. While the rule allows 'neutral young vegetation', the foreground plant is detailed and clearly distinguishable, resembling maize more than sorghum, which risks a 'hard reject' for identifiable different species."
+      ],
+      "correction_prompt": "Regenerate the crop to be clearly identifiable as sorghum. Show the characteristic broad, thick leaves and the distinctive round, bristly seed head (panicle) of sorghum, ensuring it looks botanically accurate for the crop specified.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 45,
+      "product_height_percent": 25,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Product width exceeds the strict hard-reject limit of 27% of the frame (estimated at 45%).",
+        "The product is positioned too centrally relative to the requirements for an off-center lower-third placement.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Generate the image with the drip tape roll significantly smaller (width under 25% of the frame) and shifted to the far left or far right edge of the soil bed. Keep the sorghum crops and AFP watermark intact. Reduce the product group from 45% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 14,
+      "product_height_percent": 13,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The image displays a single AFP white-and-blue wide low cylindrical drip-tape roll, consistent with the required product description.",
+        "The product is off-center on the lower third (x-center ~28%), naturally placed on soil.",
+        "The crop is recognizable as sorghum (سورگوم), with botanically accurate leaves and stems matching the mid-stage growth habit.",
+        "The background context matches a farm/agricultural setting with irrigation infrastructure.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Zero people, faces, body parts, or human silhouettes are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "فاصله-نوار-تیپ-در-کشت-سورگوم-استانداردهای-توصیهشده-تصویر-شاخص.webp"
+}

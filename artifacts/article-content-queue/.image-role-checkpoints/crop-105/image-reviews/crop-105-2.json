@@ -1,0 +1,95 @@
+{
+  "id": "crop-105",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Image contains a person (farmer/worker) and visible human body parts (hands, face), violating the zero-person constraint.",
+        "Hard reject: Wrong crop. The image shows sunflowers, which is a clearly identifiable different species; the required crop is yellow split-pea (لپه).",
+        "Hard reject: Product geometry mismatch. There are two rolls (one open coiled hose, one carton roll), violating the 'exactly one' and 'no second package' constraints.",
+        "Hard reject: Missing the required specific drip-tape carton roll in the specified wide, low cylindrical shape.",
+        "Hard reject: Centered product staging and generic farm layout rather than the specific agricultural story.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Generate a wide low cylindrical white and blue drip tape roll (AFP branded) resting on soil in a sunflower-free field of yellow split-pea (لپه). Ensure exactly one roll is visible (20-23% frame width). Remove all people and human body parts. Place the roll in the lower third, off-center, with a background of split-pea rows. Maintain the 'AFP | 09134922013' watermark. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 25,
+      "product_height_percent": 22,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The crop shown in the background is clearly identifiable as corn (maize) at a late growth stage with distinct tassels, which does not match the article's topic of yellow split-pea (Lopa). The rules state that a clearly identifiable different species is a hard reject.",
+        "The product roll is positioned near the horizontal center of the frame rather than being off-center as required by the 'lower third' placement criteria."
+      ],
+      "correction_prompt": "Regenerate image with yellow split-pea (Lopa) crop in the background instead of corn. Ensure the split-pea plants are visible as young bushes or drying pods, not tall stalks with tassels. Move the AFP drip-tape roll to the bottom-right area of the frame (off-center), keeping it lying naturally on the soil.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 64,
+      "reasons": [
+        "The crop shown in the background is clearly millet, not yellow split-pea (Lape). Millet has distinctive tassels and panicle inflorescences which are botanically different from legume pods, constituting a hard reject for 'clearly identifiable different species'.",
+        "The product is depicted as a vertical standing cylinder rather than a flat, wide low cylindrical roll lying on the soil, failing the geometric and placement requirements."
+      ],
+      "correction_prompt": "Regenerate the scene showing an actual field of yellow split-pea plants (legumes with pods) instead of millet. Place the AFP white and blue drip-tape roll horizontally on the soil in the lower-right foreground, making it appear wide and flat, with the text watermark 'AFP | 09134922013' visible in the bottom right corner.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 24,
+      "product_height_percent": 26,
+      "product_x_center_percent": 62,
+      "reasons": [
+        "Reject: The crop is clearly identifiable as a different species (yellow bell peppers) rather than the required yellow split-pea (لپه) or a botanically neutral bed."
+      ],
+      "correction_prompt": "Regenerate the image with a field of yellow split-pea (lupi) or a botanically neutral soil bed with tiny indistinguishable seedlings instead of yellow bell peppers. Keep the same drip-tape roll placement, aspect ratio, and AFP watermark position.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 11,
+      "product_height_percent": 18,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Hard reject: Presence of a human (farmer/worker) and body parts (face, hands, arms, legs) violates the 'zero people' constraint.",
+        "Product size mismatch: The drip-tape roll is only ~11% of the frame width, failing the 13% minimum practical threshold.",
+        "Product geometry mismatch: The roll appears vertically taller (cylindrical can shape) rather than the required wide, low, flat roll geometry (diameter 1.5-1.9x height).",
+        "Product placement: The roll is centered horizontally rather than off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human body parts. Replace the tall cylindrical container with a wide, low, flat drip-tape roll that is 13-27% of the frame width and sits low on the soil. Place the roll off-center in the lower third. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 20,
+      "product_height_percent": 18,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Hard reject: Presence of a person (man wearing a hat and holding a tool) violates the zero-people/zero-human-body-parts rule.",
+        "Hard reject: The crop shown is clearly sunflowers, which is a different species than the required yellow split-pea (لپه).",
+        "Product placement: The roll is centered too horizontally and lacks the required off-center/lower-third offset."
+      ],
+      "correction_prompt": "Remove all humans and body parts. Replace sunflowers with yellow split-pea crops (or neutral prepared soil). Reposition the white and blue AFP drip-tape carton roll to the lower-left or lower-right third of the frame, off-center, placed directly on soil. Maintain the 'AFP | 09134922013' watermark in the bottom right.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}
