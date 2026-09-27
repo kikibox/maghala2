@@ -4,14 +4,14 @@
 
 ## نمای کلی
 
-- آخرین بروزرسانی: `2026-09-27T04:31:24+00:00`
+- آخرین بروزرسانی: `2026-09-27T04:47:28+00:00`
 - وضعیت صف: **آماده اجرای بعدی** (`ready`)
 - پیشرفت: **50 از 1148 (4.36٪)**
 - نمودار پیشرفت: `░░░░░░░░░░░░░░░░░░░░`
 - تکمیل‌شده: **50**
 - در حال پردازش: **0**
-- در انتظار: **1094**
-- ناموفق: **4**
+- در انتظار: **1093**
+- ناموفق: **5**
 - مسدود مدل تصویر: **0**
 - میانگین طول مقالات تکمیل‌شده: **1279 کلمه**
 - اولویت فعلی: **تولید مقاله فارسی بعدی**
@@ -24,8 +24,8 @@
 - تعداد تصاویر هر مقاله: **3**
 - حداقل کلمات: **1050**
 - لینک داخلی مجاز: **4 تا ۷**
-- اندازه هر اجرا: **2 مقاله**
-- مدیر موازی: **2 مقاله / 4 تصویر هم‌زمان**
+- اندازه هر اجرا: **1 مقاله**
+- مدیر موازی: **1 مقاله / 3 تصویر هم‌زمان**
 - حداکثر تلاش هر مقاله: **4**
 - دسته وردپرس: **مقاله‌ها** (`35`)
 - لینک‌های داخلی شناخته‌شده: **682**
@@ -35,7 +35,7 @@
 
 | گروه | کل | تکمیل | در انتظار | در حال پردازش | ناموفق | پیشرفت |
 |---|---:|---:|---:|---:|---:|---:|
-| `crop` | 341 | 50 | 287 | 0 | 4 | 14.66٪ |
+| `crop` | 341 | 50 | 286 | 0 | 5 | 14.66٪ |
 | `irrigation` | 12 | 0 | 12 | 0 | 0 | 0.00٪ |
 | `product` | 112 | 0 | 112 | 0 | 0 | 0.00٪ |
 | `strategic` | 33 | 0 | 33 | 0 | 0 | 0.00٪ |
@@ -69,8 +69,8 @@
 
 ## مقاله بعدی صف
 
-- عنوان: **نگهداری زعفران با نوار تیپ: نکات کلیدی**
-- شناسه: `crop-056`
+- عنوان: **هزینه کشت بادمجان با نوار تیپ در هکتار**
+- شناسه: `crop-057`
 - گروه: `crop`
 - تعداد تلاش قبلی: **0**
 
@@ -99,6 +99,7 @@
 
 ## خطاهای اخیر
 
+- **نگهداری زعفران با نوار تیپ: نکات کلیدی** — `crop-056` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ['The visible crop in the background consists of tulips, which clearly contradicts the topic-specific requirement for saffron (zaafaran) crocus plants.', 'The product roll appears nearly square in aspect ratio (height 19% vs width 17%), whereas it is required to be wider than it is tall (diameter ~1.5-1.9 times height).', 'There is faint, illegible gibberish text on the side of the product label.']`
 - **آفات و بیماری‌های شنبلیله با آبیاری قطره‌ای** — `crop-055` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
 - **میزان برداشت چاودار در هکتار با نوار تیپ** — `crop-054` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
 - **راهنمای جامع کاشت تره با آبیاری قطره‌ای** — `crop-053` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
