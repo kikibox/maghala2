@@ -1,0 +1,94 @@
+{
+  "id": "crop-076",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 8,
+      "product_height_percent": 22,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: Human silhouettes and body parts are visible. The image contains two people (a woman in the main view and a man in the inset) with faces, arms, legs, and torsos clearly visible.",
+        "Product shape failure: The product is a white cylindrical canister/bucket, not a wide low cylindrical drip-tape roll.",
+        "Product size/geometry failure: The product aspect ratio is roughly 1:3 (tall and narrow). It is not 'wide and low' as required (should be 1.5–1.9 times as wide as tall).",
+        "Layout failure: The product is centered on the woman's knee rather than naturally placed on soil in the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all humans, faces, and body parts completely. Replace the white bucket with a low, wide cylindrical roll of blue and white drip tape (aspect ratio 1.8:1) resting directly on the soil in the lower-left area of the main frame. Retain the saffron crop bed and the inset showing the purple flower and drip irrigation filter. Ensure the AFP watermark is present in the bottom right. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 25,
+      "product_height_percent": 32,
+      "product_x_center_percent": 76,
+      "reasons": [
+        "Multiple drip tape rolls present (violation of 'exactly one' rule)",
+        "The product (spiral roll on the right) is not flat/low cylindrical, it is a coiled spiral",
+        "Irregular/impossible geometry in the roll structure (pipes running through the core)",
+        "The product is not off-center on the lower third as required (it is on the right middle)",
+        "Extra commercial product visible (left carton)"
+      ],
+      "correction_prompt": "Generate a single flat, low cylindrical drip-tape roll (AFP white and blue) placed on the soil in the bottom-left third. Remove the coiled spiral roll and the other carton. Ensure the crop is clearly saffron (narrow grass-like leaves and purple flowers). Maintain the 'AFP | 09134922013' watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 17,
+      "product_height_percent": 28,
+      "product_x_center_percent": 21,
+      "reasons": [
+        "Presence of a crouching human figure on the right side of the frame, including visible face, torso, arms, hands, and legs.",
+        "Violation of the strict 'zero people and zero human body parts' requirement."
+      ],
+      "correction_prompt": "Regenerate the image removing all human elements (person, hands, face) from the scene while keeping the saffron crop context and the AFP drip-tape carton roll in the lower-left.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 25,
+      "product_height_percent": 25,
+      "product_x_center_percent": 20,
+      "reasons": [
+        "Hard reject: Crop is clearly not saffron crocus (yellow flowers and multiple species present; only one small purple clump in foreground)",
+        "Height constraint violation: Product height (25%) exceeds 32% limit for secondary placement"
+      ],
+      "correction_prompt": "Regenerate scene with ONLY saffron crocus (narrow grass-like leaves, sparse purple flowers) as the crop. Remove all yellow flowers and other species. Move the AFP drip-tape roll to the lower-right third of the frame. Scale the roll down so its height is under 30% of the image. Keep the AFP | 09134922013 watermark in the bottom right corner. Ensure zero people or human body parts are visible.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 18.0,
+      "product_height_percent": 14.0,
+      "product_x_center_percent": 68.0,
+      "reasons": [
+        "Hard reject: visible human body parts (arms, hands, legs, shoes) and farmer present",
+        "Crop context shows broadleaf tulip morphology instead of narrow grass-like saffron leaves"
+      ],
+      "correction_prompt": "Remove all humans and human body parts. Replace crop with saffron crocus featuring narrow grass-like leaves and sparse purple flowers. Keep one AFP white-and-blue wide low cylindrical drip-tape carton roll on soil in the lower third, off-center.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 20,
+      "product_height_percent": 24,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "The product geometry is rejected: the visible diameter is approximately equal to the height (1.0:1 ratio) rather than the required wider cylindrical shape (1.5:1 to 1.9:1).",
+        "Product staging is rejected: the object is centered on the horizontal axis rather than being positioned in the lower third of the frame."
+      ],
+      "correction_prompt": "Regenerate the image to show a wide, low cylindrical drip-tape roll that is visibly wider than it is tall (1.5x width ratio) and positioned clearly in the bottom 33% of the frame on the soil. Keep the unattended tractor and saffron crop layout.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

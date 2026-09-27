@@ -1,0 +1,64 @@
+{
+  "id": "crop-076",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 29,
+      "product_x_center_percent": 83,
+      "reasons": [
+        "The image fails to show a 'wide low cylindrical drip-tape carton roll' (a flat spool). Instead, it depicts a tall, cylindrical plastic drum/barrel that has been modified or misinterpreted as a roll. This violates the hard reject criteria for a 'tall narrow drum' and fails to meet the specific geometry of a flat drip-tape carton.",
+        "The product height (approx 29%) and width (approx 22%) do not satisfy the required aspect ratio where the visible diameter should be about 1.5 to 1.9 times its visible height. The product in the image is taller than it is wide (height > width), which is the inverse of the required geometry.",
+        "The drip tape is visibly unrolled and running through the scene with a connector, which creates a visual disconnect from the product being a 'carton roll' as requested; it looks like a generic spool rather than a packaged product."
+      ],
+      "correction_prompt": "Regenerate with a flat, wide drip-tape carton roll (like a flat pizza roll) lying on the soil. The roll must be significantly wider than it is tall (diameter 1.5-1.9x height). Keep the product in the lower-right off-center position on the soil. Remove the unrolled tape running across the foreground; keep the roll intact and closed. Maintain the saffron crocus context and the 'AFP | 09134922013' watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 24,
+      "product_height_percent": 35,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Product height exceeds the 32% maximum threshold, measuring approximately 35% of the frame.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shrink the drip-tape carton roll so its height is less than 32% of the frame (around 20-25%); maintain the wide low cylindrical shape and off-center position on the soil. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Image contains a person (crouching farmer/worker) and human body parts (arms, hands, legs).",
+        "The product (drip-tape roll) is significantly too small, violating the 13-27% width requirement (estimated at ~12%).",
+        "The product's visible height exceeds its width, failing the 1.5-1.9x diameter-to-height ratio requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes. Reframe the shot to focus on the AFP drip-tape roll, ensuring it is wide/low and occupies between 20-25% of the frame width. Place the roll off-center on the lower third of the frame directly on the soil, keeping the saffron field in the background but without any human presence. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 20,
+      "product_height_percent": 19,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The product is the correct wide, low cylindrical drip-tape roll."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "میزان-برداشت-زعفران-در-هکتار-با-نوار-تیپ-جزئیات-فنی.webp"
+}

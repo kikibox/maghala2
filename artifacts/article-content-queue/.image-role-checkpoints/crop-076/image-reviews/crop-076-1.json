@@ -1,0 +1,63 @@
+{
+  "id": "crop-076",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Missing required bottom-right watermark 'AFP | 09134922013'."
+      ],
+      "correction_prompt": "Add the exact watermark 'AFP | 09134922013' in the bottom-right corner of the main farm image.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "Human figure present: a person is prominently crouching in the center of the image, which is a hard reject according to the constraints (zero people and zero human body parts)."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove the person. Keep the saffron crocus field and the white-and-blue drip tape roll in the foreground, but ensure the scene contains no people, faces, or body parts. Maintain the agricultural context and the specific product.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 24,
+      "product_height_percent": 21,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product is centered (x=32%) instead of off-center on the lower third",
+        "Crop context (yellow flowers) does not strictly align with the 'saffron crocus' article requirement"
+      ],
+      "correction_prompt": "Reposition the AFP white-and-blue drip-tape carton roll to the right side (x > 40%) to ensure it is clearly off-center. Refine the background crop rows to clearly display purple saffron crocus flowers with narrow grass-like leaves to match the article context.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 21,
+      "product_height_percent": 18,
+      "product_x_center_percent": 68,
+      "reasons": [
+        "The crop in the background clearly shows purple flowers and narrow grass-like leaves, matching the saffron crocus profile.",
+        "The product is a white and blue cylindrical drip-tape carton roll, placed naturally on the soil.",
+        "Zero people or human body parts are visible in the frame.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Product dimensions and off-center placement in the lower third are acceptable."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "میزان-برداشت-زعفران-در-هکتار-با-نوار-تیپ-تصویر-شاخص.webp"
+}
