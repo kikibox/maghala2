@@ -36,6 +36,7 @@ ROLE_STORIES={
 }
 CROPS={
  'اسفناج':'spinach','عدس':'lentil','کنجد':'sesame','طالبی':'cantaloupe','اسپرس':'sainfoin',
+ 'کلزا':'canola (rapeseed)',
  'خیار':'cucumber','سیر':'garlic','باقلا':'fava bean','ذرت':'maize','یونجه':'alfalfa',
  'گندم':'wheat','سویا':'soybean','تره':'leek','سورگوم':'sorghum','زعفران':'saffron crocus',
  'نخود':'chickpea','شاهی':'garden cress','خربزه':'melon','ریحان':'basil','کاهو':'lettuce',
@@ -48,6 +49,7 @@ CROP_VISUALS={
  'اسفناج':'spinach with dense low rosettes of smooth dark-green oval to arrow-shaped leaves; no flowers, pods, tall stalks or broad bean-like foliage',
  'عدس':'lentil plants as low fine-textured bushy legumes with many thin branching stems, small paired pinnate oval leaflets and small flat pods; absolutely no corn blades, sunflower heads, brassica flowers or large bean leaves',
  'کنجد':'upright sesame stems with narrow lance-shaped leaves and elongated seed capsules',
+ 'کلزا':'canola (rapeseed) as low bluish-green rosettes of broad lobed brassica leaves at establishment, or slender branching stems with small yellow four-petal flowers at bloom; absolutely no maize or corn blade leaves, tomato vines, cereal heads or generic tall grass',
  'طالبی':'cantaloupe vines with lobed leaves and restrained netted fruit still attached to the vine',
  'خیار':'cucumber vines with angular leaves, tendrils and small attached cucumbers',
  'سیر':'garlic rows with narrow flat blue-green leaves emerging in upright clusters',
@@ -171,6 +173,11 @@ def image_prompt(item,kind):
  correction=str((item or {}).get('_image_qa_feedback') or '').strip()
  correction_instruction=f'Previous candidate was rejected by visual QA. Correct all of these issues: {correction}. ' if correction else ''
  family=product_family(item)
+ composition_contract={
+  1:'FINAL COMPOSITION CONTRACT: use an elevated or eye-level wide crop-canopy editorial view. The crop block dominates; keep the product near a lower corner. Do not use a close low-angle product-on-furrow shot and do not make a barn the main background structure.',
+  2:'FINAL COMPOSITION CONTRACT: use a near-overhead or high-oblique tight agronomic evidence view with no horizon, skyline, barn or landscape panorama. Show recognizable leaves or neutral seedlings, drip-line placement, wetting band, spacing or root-zone evidence around the product.',
+  3:'FINAL COMPOSITION CONTRACT: use a medium side-view technical hardware story centered on an unattended filter, gauge, manifold, regulator or flush point. Do not repeat the role-1 crop panorama or the role-2 top-down detail.',
+ }.get(int(kind),'')
  if family=='layflat':
   shape=('exactly two separate related layflat-hose objects placed naturally beside each other: first, the packaged low wide black woven hose coil with the same folded printed cardboard pieces, crossing straps, center opening and package proportions; second, the unboxed black woven layflat hose coil exactly like its reference, as a low flat horizontal coil made of many tight concentric layers with a short hollow brown cardboard center, visible diagonal woven fabric texture, realistic compressed thickness and one short loose hose end')
   exact=('Keep the packaged object marks "AFP" and "layflat" readable. The bare black coil has no carton, logo or writing. The two references are two separate objects in the same final scene, never alternatives and never fused into one object. Both coils must rest flat, horizontal and parallel to the soil. Never turn the bare coil into smooth round tubing, a tall cable spool, an upright wheel, a solid tire or a plastic pipe coil.')
@@ -185,7 +192,7 @@ def image_prompt(item,kind):
   +f'Article topic: {topic}. {summary_instruction}{correction_instruction}{identity_lock}Main scene: {SCENES.get(kind,SCENES[1])}. Selected visual template: {template}. This recipe is one member of a deterministic creative set. Follow every camera, environment, light, narrative and topic-anchor instruction. The three sibling images must look like different editorial assignments, not alternate crops of one scene. The background, physical evidence and equipment must be specifically derived from the article topic and summary and remain the main subject. The farm must look temporarily empty before photography; nobody is performing any task. {people_rule} Reconstruct the product as a true three-dimensional object: {shape}. '
   'Show it from a slightly different but physically plausible three-quarter angle, about 10 to 20 degrees from the reference. Preserve the silhouette, packaging construction, proportions, material, printed-panel layout and brand colors. '
   +exact+' '+scale+' Enforce believable real-world scale. A drip-tape carton roll is roughly 40 to 55 cm across and 20 to 30 cm high; each layflat coil is roughly 45 to 65 cm across and 15 to 25 cm high. People must not appear. Every roll must remain clearly below knee height as implied by normal real-world scale and must never look waist-high, table-sized or large enough for a person to lean on. '
-  'Use a wide environmental composition with substantial context around the products; the article subject is the hero and the product is a secondary prop. Do not add any extra package, roll, bottle, jar, canister, bucket, container, advertisement or invented product. Reject forced-perspective enlargement, giant packaging and any crop that cuts through the product. Match scene perspective, depth of field, color cast, contact shadow, reflected light and slight soil interaction. '
+  +composition_contract+' The article subject is the hero and the product is a secondary prop. Do not add any extra package, roll, bottle, jar, canister, bucket, container, advertisement or invented product. Reject forced-perspective enlargement, giant packaging and any crop that cuts through the product. Match scene perspective, depth of field, color cast, contact shadow, reflected light and slight soil interaction. '
   'Absolutely no sticker look, hard cut-out edge, white halo, flat front-facing packshot, collage, floating or duplicate product, caption, headline, added logo or invented writing anywhere outside the authentic package print and required phone watermark. Natural daylight and believable Iranian farm environment.')
 
 def add_phone_watermark(image):

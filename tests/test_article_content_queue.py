@@ -197,6 +197,26 @@ class ArticleQueueTests(unittest.TestCase):
         self.assertIn("BOTANICAL IDENTITY LOCK", prompt)
         self.assertIn("dense low rosettes", prompt)
 
+    def test_canola_identity_and_role_compositions_do_not_collapse(self):
+        item = {
+            "id": "crop-051",
+            "title": "راهنمای جامع کاشت کلزا با آبیاری قطره‌ای",
+            "excerpt": "فاصله ردیف و استقرار کلزا با نوار تیپ",
+        }
+        self.assertEqual(
+            queue.image_prompt_policy.named_crop(item),
+            "کلزا (canola (rapeseed))",
+        )
+        self.assertIn("no maize or corn", queue.image_prompt_policy.crop_identity_spec(item))
+        prompts = [
+            queue.image_prompt_policy.image_prompt(item, kind)
+            for kind in (1, 2, 3)
+        ]
+        self.assertIn("wide crop-canopy editorial view", prompts[0])
+        self.assertIn("near-overhead or high-oblique tight agronomic", prompts[1])
+        self.assertIn("medium side-view technical hardware", prompts[2])
+        self.assertEqual(len(set(prompts)), 3)
+
     def test_full_rebuild_uses_three_image_set_gate(self):
         rebuild = (ROOT / "automation" / "rebuild_article_images_exact_product.py").read_text(encoding="utf-8")
         self.assertIn("queue.generate_images_parallel", rebuild)
