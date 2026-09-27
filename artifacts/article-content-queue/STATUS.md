@@ -4,14 +4,14 @@
 
 ## نمای کلی
 
-- آخرین بروزرسانی: `2026-09-27T03:48:52+00:00`
+- آخرین بروزرسانی: `2026-09-27T03:57:51+00:00`
 - وضعیت صف: **آماده اجرای بعدی** (`ready`)
 - پیشرفت: **50 از 1148 (4.36٪)**
 - نمودار پیشرفت: `░░░░░░░░░░░░░░░░░░░░`
 - تکمیل‌شده: **50**
 - در حال پردازش: **0**
-- در انتظار: **1095**
-- ناموفق: **3**
+- در انتظار: **1094**
+- ناموفق: **4**
 - مسدود مدل تصویر: **0**
 - میانگین طول مقالات تکمیل‌شده: **1279 کلمه**
 - اولویت فعلی: **تولید مقاله فارسی بعدی**
@@ -35,7 +35,7 @@
 
 | گروه | کل | تکمیل | در انتظار | در حال پردازش | ناموفق | پیشرفت |
 |---|---:|---:|---:|---:|---:|---:|
-| `crop` | 341 | 50 | 288 | 0 | 3 | 14.66٪ |
+| `crop` | 341 | 50 | 287 | 0 | 4 | 14.66٪ |
 | `irrigation` | 12 | 0 | 12 | 0 | 0 | 0.00٪ |
 | `product` | 112 | 0 | 112 | 0 | 0 | 0.00٪ |
 | `strategic` | 33 | 0 | 33 | 0 | 0 | 0.00٪ |
@@ -69,8 +69,8 @@
 
 ## مقاله بعدی صف
 
-- عنوان: **آفات و بیماری‌های شنبلیله با آبیاری قطره‌ای**
-- شناسه: `crop-055`
+- عنوان: **نگهداری زعفران با نوار تیپ: نکات کلیدی**
+- شناسه: `crop-056`
 - گروه: `crop`
 - تعداد تلاش قبلی: **0**
 
@@ -99,6 +99,7 @@
 
 ## خطاهای اخیر
 
+- **آفات و بیماری‌های شنبلیله با آبیاری قطره‌ای** — `crop-055` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
 - **میزان برداشت چاودار در هکتار با نوار تیپ** — `crop-054` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
 - **راهنمای جامع کاشت تره با آبیاری قطره‌ای** — `crop-053` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
 - **میزان برداشت مارچوبه در هکتار با نوار تیپ** — `crop-052` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ["The image contains two prominent human subjects (farmers/field workers) which is an absolute 'hard reject' condition under the constraints (zero people allowed).", "The irrigation product is not a flat 'drip-tape' but appears to be a 3D vertical cartridge or roll, which deviates from the required 'wide low cylindrical drip-tape carton roll' geometry.", 'machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of`
