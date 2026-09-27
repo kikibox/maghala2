@@ -1,0 +1,71 @@
+{
+  "id": "crop-083",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 10,
+      "product_height_percent": 22,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Human body parts (arms, hands, and torso) are explicitly visible in the foreground, violating the zero-person constraint",
+        "The drip tape roll is extremely small and positioned in the center-left rather than the required lower third",
+        "The product width and height percentages are far below the acceptable practical minimums",
+        "The central product staging violates the off-center requirement",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures and body parts completely, regenerate the image to show an unattended wide white-and-blue drip tape roll (20-23% width) placed off-center in the lower third of a garden cress field, keep the bottom-right watermark Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 28,
+      "product_height_percent": 25,
+      "product_x_center_percent": 51,
+      "reasons": [
+        "The product is centered in the frame, which is strictly prohibited for this image role.",
+        "The product is too wide (28% of frame), exceeding the acceptable 27% maximum.",
+        "The background crops are clearly identifiable as seedlings of another species (likely purple lettuce or chard), not the required شاهی (garden cress).",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Move the product to the lower-left or lower-right third to off-center it and reduce its width to 23% of the frame. Change the background to show a dense, low bed of small divided green garden cress plants with no identifiable other species. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 20,
+      "product_height_percent": 18,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Hard reject: Image contains visible human body parts (arms and hands) in the right side of the frame.",
+        "Hard reject: Product roll is positioned too centrally (below the 50% mark) relative to the off-center requirement on the lower third.",
+        "Background crop row includes pink flowering plants which is inconsistent with the strict 'garden cress' (dense low bed of small divided green leaves) description, representing a clearly identifiable different species context."
+      ],
+      "correction_prompt": "Regenerate the image to strictly remove all human figures and body parts. Position the white-and-blue drip tape roll off-center on the lower third, specifically on the left or right side of the frame rather than center. Ensure the crop bed consists exclusively of dense low green garden cress without any pink flowers or other distinguishable plant species. Retain the exact bottom-right watermark 'AFP | 09134922013'.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 16,
+      "product_x_center_percent": 60,
+      "reasons": [
+        "Product geometry and placement meet strict requirements: width 18% and height 16% fall within acceptable bounds, aspect ratio is consistent with a wide cylindrical roll, and the item is correctly positioned off-center on the lower third of the frame.",
+        "Watermark 'AFP | 09134922013' is present and accurate, which is a hard requirement for a pass.",
+        "Zero people, human body parts, or silhouettes are visible in the image.",
+        "No prohibited extra commercial products (buckets, bottles, multiple rolls) are present.",
+        "The background shows a farm context with crop rows; the crop morphology is consistent with a low bed of small divided green leaves (garden cress) in a young stage, satisfying the botanical requirements without hard rejection for neutral young vegetation."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "مقدار-بذر-شاهی-در-هکتار-راهنمای-جامع-کاربرد-عملی.webp"
+}
