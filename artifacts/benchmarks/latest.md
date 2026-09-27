@@ -4,14 +4,14 @@
 - Image model: `agnes-image-2.5-flash`
 - Text keys detected: **8**
 - Image keys detected: **8**
-- Safe text concurrency: **32**
-- Safe image concurrency: **32**
+- Safe text concurrency: **48**
+- Safe image concurrency: **64**
 
 | Service | Concurrency | Success | Failure | Wall time |
 |---|---:|---:|---:|---:|
-| text | 20 | 20 | 0 | 28.468s |
-| image | 20 | 20 | 0 | 27.257s |
-| text | 24 | 24 | 0 | 6.176s |
-| image | 24 | 24 | 0 | 26.451s |
-| text | 32 | 32 | 0 | 5.207s |
-| image | 32 | 32 | 0 | 49.66s |
+| text | 40 | 40 | 0 | 5.158s |
+| image | 40 | 40 | 0 | 60.016s |
+| text | 48 | 48 | 0 | 7.244s |
+| image | 48 | 48 | 0 | 33.72s |
+| text | 64 | 40 | 24 | 9.289s |
+| image | 64 | 64 | 0 | 63.612s |
