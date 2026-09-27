@@ -47,9 +47,10 @@ env:
   IMAGE_MODEL: ${{ vars.IMAGE_MODEL || 'agnes-image-2.5-flash' }}
   # Operational setting after the eight-key benchmark: eight articles share sixteen image workers
   # to increase throughput without a nine-request image API burst.
-  BATCH_SIZE: '8'
-  ARTICLE_WORKERS: '8'
-  IMAGE_WORKERS: '16'
+  # Controlled full-power ramp: both repositories share the eight-key pool.
+  BATCH_SIZE: '12'
+  ARTICLE_WORKERS: '12'
+  IMAGE_WORKERS: '24'
   IMAGE_QA_ATTEMPTS: '6'
   IMAGE_SET_QA_ATTEMPTS: '4'
   IMAGE_QA_FAST_MODE: '0'
