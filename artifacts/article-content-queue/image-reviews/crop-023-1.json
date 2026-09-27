@@ -1,0 +1,59 @@
+{
+  "id": "crop-023",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 6,
+      "product_height_percent": 9,
+      "product_x_center_percent": 56,
+      "reasons": [
+        "Product bounding box width is approximately 6%, which is significantly below the minimum acceptable threshold of 13%.",
+        "Product bounding box height is approximately 9%, which is far below the preferred range (the product appears very small relative to the frame).",
+        "The product is not a 'wide low cylindrical' roll; it appears as a small, compacted tube or jar-like shape rather than a wide roll of tape.",
+        "The crop is not identifiable as Fava bean (Vicia faba); the plants shown resemble broadleaf weeds or young brassicas rather than the specific morphology of Fava beans (thick upright stems, broad paired leaflets, elongated pods).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image: Feature a wide, low cylindrical drip-tape roll (white and blue AFP branding) that is clearly visible and occupies approximately 20-25% of the frame width. Place the roll on the soil in the lower third, off-center. The crop must be clearly identifiable as Fava bean plants (thick stems, broad paired leaves, visible pods) in a farm context. Include the bottom-right watermark 'AFP | 09134922013'. No people. Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 19,
+      "product_height_percent": 24,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "The image fails due to the 'gibberish text' hard reject rule: the package displays the required 'AFP' logo but also includes invented, illegible text lines ('Brand', 'Irrigation', 'Co.', and a bottom line) that are not part of authentic package print.",
+        "The product geometry fails the aspect ratio requirement: the visible width (19%) is not approximately 1.5 to 1.9 times its height (24%), making it too tall relative to its width.",
+        "The background crop morphology does not clearly represent fava bean (broad paired leaflets, thick upright stems); the plants resemble a generic weed or young broad-leafed crop rather than the specific article crop."
+      ],
+      "correction_prompt": "Redesign the package text to contain only the 'AFP' logo and authentic packaging print, removing all invented illegible lines. Flatten the roll to achieve a 1.7:1 width-to-height ratio. Modify the crop in the foreground to clearly show fava bean morphology (broad paired leaflets, visible pods).",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 13,
+      "product_height_percent": 15,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product is a single AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product is off-center on the lower third and naturally placed on soil.",
+        "Product dimensions are within acceptable practical limits (width ~13%, height ~15%).",
+        "Background shows farm context with crop rows and soil, appropriate for the agronomic story.",
+        "Zero people or human body parts visible.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present.",
+        "Vegetation is botanically neutral/young; no clearly identifiable different species that contradicts the fava bean story.",
+        "Irrigation hardware (if any) is not present as extra commercial products; only the roll is shown."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-باقلا-با-آبیاری-قطرهای-تصویر-شاخص.webp"
+}

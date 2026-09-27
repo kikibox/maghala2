@@ -1,0 +1,55 @@
+{
+  "id": "crop-025",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The crop visible in the image (watermelon seedlings) clearly contradicts the specific crop topic (طالبی / cantaloupe), which triggers a hard reject condition.",
+        "The white cylindrical carton roll is not placed on the soil; it is sitting on top of the drip irrigation tape/line, violating the requirement for the product to be 'naturally placed on soil'.",
+        "Unrelated object (a watermelon) is present in the foreground."
+      ],
+      "correction_prompt": "Regenerate the image with a cantaloupe (طالبی) field context or neutral soil background. Ensure the white and blue drip-tape roll is placed directly on the soil, not on the irrigation line. Remove the watermelon. Maintain the AFP watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Watermark in the bottom-right is 'AFP | 09134922013' instead of the required 'AFP | 09134922013' (extra '0' at the start of the number).",
+        "The product is positioned near the horizontal center (49%) instead of being clearly off-center.",
+        "There are identifiable green crop plants in the foreground and background. According to the prompt, if an identifiable crop appears in a close-up/filter view, it should only be hard rejected if it clearly contradicts 'طالبی' (cantaloupe). While it's not a blatant contradiction, the specific requirement for a hardware close-up suggests a more neutral background is preferred, or the crop morphology must be strictly correct for cantaloupe, which these generic green shoots are not."
+      ],
+      "correction_prompt": "Replace the bottom-right watermark text with exactly 'AFP | 09134922013'. Move the drip tape roll to the left side of the frame (approx 20-25% x-center) to ensure it is off-center. Remove the small green plants from the immediate foreground near the roll to maintain a neutral hardware focus, or ensure any visible plants clearly look like cantaloupe vines.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 20,
+      "product_height_percent": 24,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Product is a single wide low cylindrical carton roll placed on soil in the lower third, off-center.",
+        "Product width and height are within the 13-27% and <32% practical limits.",
+        "Zero people or human body parts are visible.",
+        "Unattended tractor in the background serves as acceptable infrastructure/hardware context for Role 3.",
+        "Identifiable crop morphology is not contradictory in the context of a hardware story.",
+        "Required watermark is present."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-طالبی-با-آبیاری-قطرهای-جزئیات-فنی.webp"
+}

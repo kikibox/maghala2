@@ -1,0 +1,70 @@
+{
+  "id": "crop-020",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 14,
+      "product_height_percent": 24,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product geometry fails: The roll is too narrow; the width (approx 14%) is not at least 1.5 times the height (approx 24%), failing the aspect ratio requirement (1.5-1.9x).",
+        "Crop mismatch: The plant in the foreground with the red flower is botanically distinct from a melon (خربزه), which would have vines and different leaf structures.",
+        "Context mismatch: The background field contains rows of plants with red flowers (resembling hibiscus/okra) rather than a prepared bed or seedlings specific to the melon article."
+      ],
+      "correction_prompt": "Regenerate with a wider cylindrical drip-tape roll (width approx 2x height) placed in the lower third. Replace the red-flowering plant with a young melon seedling or a melon vine with characteristic leaves. Set the background to a field with rows of green melon vines or a prepared soil bed with tiny melon seedlings.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 22,
+      "product_height_percent": 29,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The product is correctly positioned on the lower-left third",
+        "The image contains the required watermark 'AFP | 09134922013'",
+        "There are no people or human parts in the image",
+        "However, the drip tape roll appears to be a white cylindrical canister/drum rather than a wide low cylindrical carton roll",
+        "The background crops are generic small seedlings, which does not explicitly visualize the specific 'melon' (خربزه) article with botanically accurate leaves or mature morphology"
+      ],
+      "correction_prompt": "Regenerate the image showing a wide, low white and blue drip-tape carton roll lying horizontally on the soil. Ensure the background clearly depicts identifiable melon vines with broad leaves and developing fruit, not just generic seedlings.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The crop shown in the foreground is clearly identifiable as tomato plants bearing red tomatoes.",
+        "This is a clear violation of the crop rule which requires the article crop 'melon' (خربزه) or a botanically neutral bed/seedlings.",
+        "Hard reject triggered by the clearly identifiable different species (tomatoes) present in the main context of the image."
+      ],
+      "correction_prompt": "Regenerate the image to feature a melon field with visible melons on vines, or a generic vegetable field with small seedlings and no identifiable fruit on plants.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 18,
+      "product_height_percent": 14,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is a white-and-blue cylindrical drip tape roll with AFP branding placed on soil",
+        "Crop context clearly shows melon (cucurbit) plants with lobed leaves and developing fruit",
+        "Product is secondary to the crop and landscape, positioned in the lower third",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner",
+        "No people, body parts, or extraneous containers are visible"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "میزان-برداشت-خربزه-در-هکتار-با-نوار-تیپ-تصویر-شاخص.webp"
+}

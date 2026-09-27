@@ -1,36 +1,67 @@
 {
   "id": "crop-001",
-  "policy": "strict-no-human-scale-watermark-v10-topic-identity-semantic-composition-set-reviewed",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "history": [
     {
       "pass": false,
-      "score": 35,
+      "score": 40,
       "duplicate_roles": [
         1,
+        2
+      ],
+      "reasons": [
+        "While the crop (spinach) and background structures differ, images 1 and 2 fail the requirement to provide distinct technical narratives or visible evidence of the specific irrigation method (drip tape) discussed in the article.",
+        "Image 1 uses a generic furrow composition with no visible drip tape.",
+        "Image 2 relies on a manual watering can, which does not align with the 'drip irrigation' theme and contradicts the precision of the technical article.",
+        "The set lacks the 'irrigation layout or root-zone evidence' required to carry the specific technical topic of maximizing yield via drip tape."
+      ],
+      "correction_prompt": "Replace images 1 and 2 with low-angle close-ups showing the drip tape directly on the soil next to the spinach plants, including a visible water droplet to emphasize the 'increased yield through proper water management' narrative.",
+      "set_attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "duplicate_roles": [
+        1,
+        3
+      ],
+      "reasons": [
+        "Visual background duplication: Image 1 and Image 3 use the exact same red barn as a background anchor, making the environmental structure repetitive.",
+        "Technical narrative failure: The article discusses 'drip irrigation' (نوار تیپ). None of the images clearly show a drip line (tape) installed in the soil or running along the beds, which is the core evidence required for this topic. Image 2 shows a line, but it looks like a string or generic white material, not clearly an irrigation tape.",
+        "Angle homogeny: Images 1 and 2 are nearly identical in camera height and perspective, failing to provide the distinct angle variation required for a high-scoring set.",
+        "Weak crop connection: While the spinach is visible, the lack of irrigation evidence in the 'setup' (soil only in image 3, generic beds in 1 & 2) makes the link to the specific yield-boosting method weak."
+      ],
+      "correction_prompt": "Replace Image 1 with a close-up shot of an unrolled drip tape running along a spinach bed in the soil. Replace Image 3 with a diagrammatic or clear shot of the irrigation manifold/valve setup connected to the line. Ensure all backgrounds are distinct (e.g., greenhouse, open field, close-up) and the drip line is visible in every shot.",
+      "set_attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "duplicate_roles": [
+        1,
+        2
+      ],
+      "reasons": [
+        "Image 1 and Image 2 are nearly identical in camera angle, perspective, and furrow composition, failing to meet the requirement for visibly different camera height or angle.",
+        "The background structure in Image 1 (red barn) and Image 2 (concrete building/treeline) are generic and do not provide specific agronomic evidence of the 'drip irrigation' theme beyond the generic crop layout.",
+        "The visual difference between the first two images is insufficient to create a diverse editorial set as required."
+      ],
+      "correction_prompt": "Regenerate Image 1 and 2 to feature clearly distinct vantage points (e.g., aerial view vs. ground-level macro) and unique irrigation infrastructure backgrounds such as a visible control panel or filtration system instead of a generic red barn.",
+      "set_attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "duplicate_roles": [
         2,
         3
       ],
       "reasons": [
-        "Repetition of the same low-angle furrow field composition: all three images share the same ground-level perspective, crop furrow structure, and foreground soil texture, failing the 'clearly different camera height' requirement.",
-        "Lack of technical narrative: The article specifically focuses on 'drip irrigation' (نوار تیپ) systems for maximizing crop yield, yet none of the images visualize the actual drip lines or irrigation infrastructure. They only show generic leafy crops.",
-        "Product placement homogeneity: The AFP product is simply moved within the same generic farm environment in all three images without distinct environmental changes.",
-        "Generic background structure: All images feature the same open-field horizon and blurred background elements, lacking the distinct structural variation required for a passing editorial set."
+        "Image 2 and Image 3 are nearly identical. They share the exact same greenhouse background structure, the identical metallic irrigation valve on the right, and the same perspective. The only difference is the addition of the product tube in Image 3, which constitutes a 'merely moves the product' duplication.",
+        "Image 1 is distinct, but Images 2 and 3 fail the 'clearly different camera height or angle' and 'visibly different environment/background structure' tests for an editorial set."
       ],
-      "correction_prompt": "Create an image showing a high-angle aerial view of a spinach farm specifically focused on the drip irrigation infrastructure. Visualize white drip lines clearly emerging from the soil to water the spinach leaves, with a detailed close-up of the AFP product placed at the end of a drip line to highlight its technical integration.",
-      "set_attempt": 1
-    },
-    {
-      "pass": true,
-      "score": 94,
-      "duplicate_roles": [],
-      "reasons": [
-        "The set avoids the specific negative constraint of a tractor/furrow composition.",
-        "The environment shows visible variation: Image 1 features a distinct barn in the background, Image 2 focuses on the micro-narrative of drip lines on the soil, and Image 3 utilizes a 'split' visual with bare tilled soil in the background.",
-        "All three images clearly depict the article's crop (spinach) and subject (drip irrigation/AFP product).",
-        "No people are present in any of the images."
-      ],
-      "correction_prompt": "N/A",
-      "set_attempt": 2
+      "correction_prompt": "Replace Image 3 with a completely new shot: a high-angle close-up of a drip tape line emerging from the soil at the base of a young spinach plant, clearly showing the tape in the root zone.",
+      "set_attempt": 4
     }
   ]
 }

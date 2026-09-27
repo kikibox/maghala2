@@ -1,68 +1,34 @@
 {
   "id": "crop-003",
-  "policy": "strict-no-human-scale-watermark-v10-topic-identity-semantic-composition-set-reviewed",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "history": [
     {
       "pass": false,
-      "score": 85,
+      "score": 25,
       "duplicate_roles": [
         1,
-        2,
-        3
+        2
       ],
       "reasons": [
-        "Distinct visual narrative per image: 1) young seedling stage with drip layout, 2) late-stage cotton with visible pods, 3) field preparation/irrigation setup with equipment.",
-        "Clearly different backgrounds and environmental structures: young open soil vs. dense mature canopy vs. prepared field with tractors.",
-        "Consistent topical relevance: each image features cotton morphology and drip irrigation evidence connecting to the economic/practical article topic.",
-        "No people present, zero-people constraint maintained."
+        "Crop morphology in Image 1 and Image 2 strongly resembles corn (Zea mays) or a broad-leaf generic, which contradicts the article topic of Hemp (Cannabis) that has distinct narrow, saw-toothed leaves.",
+        "Image 3 is a generic tilled field with a tractor in the distance; it lacks any visual evidence of drip tape irrigation or hemp-specific agronomy, making it a generic filler image.",
+        "The set fails to clearly distinguish between irrigation stages or field layout for hemp as required by the 'different technical narrative' criteria."
       ],
-      "correction_prompt": "If replacing, vary the season and crop part (e.g., bolls, root-zone closeup, or water-application shot) to further differentiate agronomic stages while keeping the drip-tape product and cotton context.",
+      "correction_prompt": "Regenerate Image 1 and Image 2 featuring distinct Cannabis (hemp) morphology with visible drip tape lines; replace Image 3 with a specific view of hemp seedlings or irrigation infrastructure rather than a generic empty field.",
       "set_attempt": 1
     },
     {
-      "pass": false,
-      "score": 45,
-      "duplicate_roles": [
-        1,
-        3
-      ],
+      "pass": true,
+      "score": 88,
+      "duplicate_roles": [],
       "reasons": [
-        "Image 1 depicts a clearly identifiable monocot crop (likely corn or sorghum) with long, narrow leaves, which strongly contradicts the article's focus on hemp/hemp-like crops (distinguished by their palmate, lobed leaves visible in Image 2).",
-        "Image 1 and Image 3 share a nearly identical perspective: both are low-angle shots at soil level looking straight down crop rows toward the horizon.",
-        "The set lacks visible evidence of the specific irrigation method highlighted in the title ('nvar tipe' / drip tape), relying only on the product roll which is a generic prop.",
-        "Image 2 is the only one that correctly aligns with the expected crop morphology (lobed leaves), making the set inconsistent."
+        "The set successfully depicts a logical chronological timeline of crop management: pre-planting land preparation (Image 3), early post-planting drip installation (Image 2), and established vegetation maintenance (Image 1).",
+        "Each image features a distinctly different background and technical context: Image 3 focuses on the root-zone/soil preparation with a tractor, Image 2 highlights the specific drip tape irrigation infrastructure, and Image 1 shows the mature field perspective.",
+        "All images contain clear article-specific agronomic and irrigation evidence (tractor, drip lines, crop rows) that connect directly to the topic of hemp cultivation costs and drip methods.",
+        "The set maintains variety in camera angles and narrative without repeating the same furrow composition or merely repositioning the product against a static background."
       ],
-      "correction_prompt": "Regenerate Image 1 to display crops with the correct palmate leaves matching Image 2 (hemp) and visibly add black drip irrigation tape running along the soil row. Change Image 3 to a top-down or mid-high angle shot of the beds to differentiate it from Image 1's low-angle perspective.",
+      "correction_prompt": "",
       "set_attempt": 2
-    },
-    {
-      "pass": false,
-      "score": 35,
-      "duplicate_roles": [
-        1,
-        3
-      ],
-      "reasons": [
-        "Images 1 and 3 are visually near-identical: both feature a wide field with long, parallel furrows and identical low camera angles. The primary difference is the background (flat horizon vs. a barn), which does not constitute a sufficient difference in environment or narrative.",
-        "The article focuses on 'drip tape' (نوار تیپ), but none of the images clearly display the irrigation infrastructure. There is no visible tape in the furrows or on the plants in any of the shots, failing to connect the visual evidence to the specific technical topic of the article.",
-        "All three images use the same 'product-in-foreground, field-in-background' compositional template, resulting in a lack of diverse technical perspectives (e.g., close-up installation or system layout)."
-      ],
-      "correction_prompt": "Regenerate images 1 and 3. Image 1 should show a close-up installation view of drip tape laid out in the furrows of a sesame field. Image 3 should depict a technical overhead or aerial view showing the drip tape layout grid across the crop rows to clearly demonstrate the irrigation system.",
-      "set_attempt": 3
-    },
-    {
-      "pass": false,
-      "score": 65,
-      "duplicate_roles": [
-        1
-      ],
-      "reasons": [
-        "Image 1 depicts corn/maize (Poeae), which is a clearly contradictory identifiable crop for an article focused on sesame (Cnidoscolus/SESAMUM indicum) cultivation.",
-        "The agronomic narrative in Image 1 does not align with the article's subject of sesame morphology or specific cost/irrigation dynamics.",
-        "Images 2 and 3 are strong (Sesame and Irrigation layout), but the set fails because Image 1 uses a completely different plant species."
-      ],
-      "correction_prompt": "Replace Image 1 with a wide-angle shot of a sesame crop at mid-growth stage showing mature foliage and developing seed capsules, with the AFP drip tape product placed in the foreground against a dirt background.",
-      "set_attempt": 4
     }
   ]
 }

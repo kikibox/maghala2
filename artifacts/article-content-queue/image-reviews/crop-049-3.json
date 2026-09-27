@@ -2,43 +2,37 @@
   "id": "crop-049",
   "kind": 3,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v4-metric-feedback",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 95,
-      "product_width_percent": 24.5,
-      "product_height_percent": 19.2,
-      "product_x_center_percent": 32.5,
+      "score": 55,
+      "product_width_percent": 27,
+      "product_height_percent": 28,
+      "product_x_center_percent": 35,
       "reasons": [
-        "The main product is a wide low cylindrical drip-tape roll, matching the white and blue specifications.",
-        "The product is placed off-center on the lower third of the frame, naturally on soil.",
-        "The background shows a tree orchard, which is a plausible farm context for drip tape (Topic 3).",
-        "There are zero people or human body parts in the image.",
-        "The 'AFP | 09134922013' watermark is present in the bottom right corner.",
-        "Note: There is a loose ring of tape on the ground to the right, which is a common way to display the product's material and does not constitute a second commercial product or package.",
-        "The estimated bounding box for the main roll is 24.5% width (slightly above the 23% target but within the 'roughly' estimation context for visual prominence) and 19.2% height. It does not meet the 'wide' aspect ratio requirement (Diameter vs Height) perfectly as it appears nearly square, but it is the dominant object and clearly intended as the product.",
-        "machine-enforced bounding-box check failed: Reduce the product group from 24.5% to 20-23% of frame width."
+        "Product width exceeds the 27% hard limit",
+        "The visible crop is a flowering plant that clearly contradicts the required rosemary morphology for a hardware story featuring identifiable plants",
+        "Product height is too tall relative to its width, violating the 1.5-1.9 diameter-to-height ratio requirement"
       ],
-      "correction_prompt": "Reduce the product group from 24.5% to 20-23% of frame width.",
+      "correction_prompt": "Regenerate the image using a wider, flatter drip-tape roll (width 20-23%, height <16%) that looks like a low cylindrical carton. Remove the flowering plant entirely to avoid crop contradiction, or replace it with small, neutral rosemary sprigs that do not dominate the hardware focus. Keep the product off-center on the lower third and place it naturally on soil.",
       "attempt": 1
     },
     {
       "pass": true,
-      "score": 85,
-      "product_width_percent": 22,
-      "product_height_percent": 24,
-      "product_x_center_percent": 42,
+      "score": 92,
+      "product_width_percent": 21,
+      "product_height_percent": 15,
+      "product_x_center_percent": 38,
       "reasons": [
-        "Product is exactly one white-and-blue AFP wide low cylindrical drip-tape roll",
-        "Product is placed in a soil context within an orchard (likely olive) farm",
-        "Product width is approximately 22% of the frame (within 20-23% range)",
-        "Product height is approximately 24% of the frame (within 28% limit)",
-        "The visible diameter (width) is about 1.7 times the visible height, meeting the 1.6-1.8 ratio requirement",
-        "Product is off-center and positioned in the lower third of the frame",
-        "No people, body parts, or human silhouettes are visible",
-        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner"
+        "Product width (21%) is within the 13-27% practical estimate.",
+        "Product height (15%) is within the <32% limit.",
+        "The visible diameter-to-height ratio is approximately 1.6, fitting the 1.5-1.9 requirement.",
+        "The product is naturally placed on soil in the lower-left quadrant.",
+        "The AFP | 09134922013 watermark is present in the bottom-right corner.",
+        "The rosemary sprig provides topic context without conflicting with the hardware story.",
+        "The background farm infrastructure is unattended."
       ],
       "correction_prompt": "",
       "attempt": 2

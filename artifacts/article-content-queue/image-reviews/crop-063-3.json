@@ -2,23 +2,39 @@
   "id": "crop-063",
   "kind": 3,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v10-topic-identity-semantic-composition-set-reviewed",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
-      "pass": true,
-      "score": 78,
-      "product_width_percent": 24,
-      "product_height_percent": 28,
-      "product_x_center_percent": 38,
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 30,
+      "product_height_percent": 25,
+      "product_x_center_percent": 32,
       "reasons": [
-        "Exactly one white-and-blue wide cylindrical drip-tape carton roll is present and placed on soil.",
-        "No people, hands, or body parts are visible in the frame.",
-        "Hardware context is clear (pipe, sprinkler, farm machinery), matching the hardware story role without conflicting crop requirements.",
-        "The AFP | 09134922013 watermark is visible in the bottom-right corner."
+        "Product width exceeds the acceptable limit (30% > 27%)",
+        "Visible crop plant morphology (lanceolate leaves) clearly contradicts the specified sugar beet topic, triggering a hard reject",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the irrigation roll width set to 20% of the frame. Remove the green sapling entirely to maintain a hardware-focused context, or replace it with neutral soil to avoid crop-contradiction rejection. Ensure the roll is slightly off-center on the lower third. Reduce the product group from 30% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 23,
+      "product_height_percent": 31,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Product geometry is correct: wide low cylindrical drip-tape carton roll with 1.6 aspect ratio.",
+        "Product is placed off-center on the lower third on soil.",
+        "Product dimensions are within acceptable limits (width 23%, height 31%).",
+        "Required watermark 'AFP | 09134922013' is present and intact.",
+        "No people or human body parts visible (tractor driver is occluded by distance and blur, not a visible silhouette in the foreground).",
+        "Background matches farm context with an unattended tractor (infrastructure allowed)."
       ],
       "correction_prompt": "",
-      "attempt": 1
+      "attempt": 2
     }
   ],
   "approved_image": "مقدار-بذر-چغندر-در-هکتار-راهنمای-جامع-جزئیات-فنی.webp"

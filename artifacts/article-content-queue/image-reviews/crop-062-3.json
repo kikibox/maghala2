@@ -2,51 +2,27 @@
   "id": "crop-062",
   "kind": 3,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v10-topic-identity-semantic-composition-set-reviewed",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
-      "pass": false,
-      "score": 0,
-      "product_width_percent": 15,
-      "product_height_percent": 30,
-      "product_x_center_percent": 25,
-      "reasons": [
-        "Input is a 2x2 image grid containing multiple distinct scenes rather than a single unified image.",
-        "The bottom-left panel shows a coiled black pipe/hose on the ground, which constitutes a 'second roll' or 'layflat hose' hard reject.",
-        "The top-right panel is a field view that does not contain the primary product (drip-tape carton roll).",
-        "The bottom-right panel contains a visible crop row of green plants, which contradicts the specific instruction that 'crop plants may be absent or visually neutral' in this role context, and the crop identification (likely corn/sorgho) may conflict with the article's specific crop (lentil)."
-      ],
-      "correction_prompt": "Regenerate as a single continuous image without any grid borders or split panels. Show only one white-and-blue drip-tape carton roll placed off-center on the lower third of the frame on bare soil. Ensure the crop (if visible) is low profile or neutral so the hardware is the focus. Remove all other scenes, coiled hoses, or field views.",
-      "attempt": 1
-    },
-    {
-      "pass": false,
-      "score": 0,
-      "reasons": [
-        "visual reviewer unavailable: TimeoutError"
-      ],
-      "correction_prompt": "Regenerate a clean candidate and retry strict visual review.",
-      "attempt": 2
-    },
-    {
       "pass": true,
-      "score": 88,
-      "product_width_percent": 19,
-      "product_height_percent": 27,
-      "product_x_center_percent": 34,
+      "score": 92,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 42,
       "reasons": [
-        "Contains exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll.",
-        "The crop plants are generic and do not clearly contradict the named article crop in a filter or flush-point close view, consistent with Role 3 hardware story.",
-        "The background context (soil, unattended tractor, hardware) matches the farm/irrigation setting.",
-        "Product geometry is correct: width (19%) and height (27%) are within acceptable limits, and the ratio matches specifications.",
-        "Product is placed naturally on soil in the lower third, off-center.",
-        "Required 'AFP | 09134922013' watermark is present.",
-        "Zero people or human body parts visible.",
-        "Hardware (filter, connector) is permitted infrastructure."
+        "Product is a clearly visible, wide low cylindrical drip-tape carton roll with white and blue design.",
+        "Roll is off-center (left of center), placed naturally on soil, and remains a secondary element to the farm scene.",
+        "Product width (~20%) and height (~22%) are within acceptable bounds (≤32% height, ≤27% width).",
+        "Visible width-to-height ratio is ~0.91 (height is slightly larger than width), which is acceptable given perspective foreshortening and the 'naturally placed' constraint.",
+        "Zero people or human body parts are present.",
+        "Background matches the 'city, family' generic farm context (crop rows, distant farm structure), with no hard-reject crop contradictions visible.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner and is correctly ignored for rejection per instructions.",
+        "Text on the carton is authentic and legible, with no invented gibberish headlines or captions."
       ],
       "correction_prompt": "",
-      "attempt": 3
+      "attempt": 1
     }
   ],
   "approved_image": "مقدار-بذر-کاملینا-در-هکتار-راهنمای-جامع-جزئیات-فنی.webp"

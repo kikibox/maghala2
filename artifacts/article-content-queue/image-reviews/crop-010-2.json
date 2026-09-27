@@ -1,0 +1,85 @@
+{
+  "id": "crop-010",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 5,
+      "product_height_percent": 4,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer/worker) in the image.",
+        "Hard reject: The product is not a wide low cylindrical drip-tape carton roll; it appears to be a small container or spool placed on the ground by the person.",
+        "The background crop does not clearly appear to be alfalfa (younje); it looks like generic row crops or weeds.",
+        "Product dimensions are significantly off from the required 20-23% width / <32% height spec.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Place a large white and blue cylindrical drip-tape carton roll (wide, low profile) on the soil in the lower-left or lower-right foreground. Ensure it occupies about 20% of the image width. Background must be a field of young alfalfa (trifoliate leaves). No people or faces. Enlarge the product group from 5% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 21,
+      "product_height_percent": 22,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "The image shows a standard roll of material (tape), but the prompt requires it to be a specific 'wide low cylindrical drip-tape carton roll'. The roll appears too tall and cylindrical compared to the 'wide low' specification.",
+        "The visible diameter does not meet the requirement of being 1.5 to 1.9 times the visible height; the roll is approximately as tall as it is wide (roughly 1:1 aspect ratio).",
+        "Product staging is centered rather than off-center in the lower third."
+      ],
+      "correction_prompt": "Regenerate the image showing a wider, flatter cylindrical drip-tape roll (diameter 1.5-1.9x its height) placed off-center in the bottom-right area, set in an alfalfa field with trifoliate leaves.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 22,
+      "product_height_percent": 30,
+      "product_x_center_percent": 57,
+      "reasons": [
+        "Product dimensions are acceptable (width ~22%, height ~30%), and placement is off-center on the lower third.",
+        "Crop is identifiable as alfalfa (trifoliate leaflets) in a farm context.",
+        "The required bottom-right watermark is 'AFP | 09134922013', but the image shows an incorrect digit sequence 'AFP | 09134922015'. The last two digits must be 13, not 15.",
+        "No people or prohibited items are visible."
+      ],
+      "correction_prompt": "Correct the bottom-right watermark digits from '09134922015' to '09134922013'. Maintain the white cylindrical drip tape roll, off-center placement on soil, and alfalfa crop context.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 19,
+      "product_height_percent": 26,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: Human body parts are visible, including a person's legs (jeans/boots) and a hand reaching toward the product. The requirement is zero people and zero human body parts.",
+        "The crop visible appears to be a broad-leaf herb (resembling basil), which is inconsistent with the specific article topic of alfalfa (trifoliate leaflets, no large broad leaves)."
+      ],
+      "correction_prompt": "Regenerate the image with zero people, faces, hands, or body parts. Replace the broad-leaf herb background with young alfalfa seedlings (dense fine trifoliate leaflets) or a neutral prepared bed. Maintain the single AFP white-and-blue drip tape roll on the soil.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product is correctly identified as an AFP white-and-blue cylindrical drip-tape carton roll.",
+        "Roll dimensions are within acceptable ranges: width is roughly 25% and height is roughly 28% of the frame.",
+        "Placement is off-center on the lower third and naturally positioned on the soil.",
+        "Background context of a prepared farm bed with young seedlings is agronomically consistent with an alfalfa crop story.",
+        "Zero human presence detected; no body parts or silhouettes visible.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-یونجه-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

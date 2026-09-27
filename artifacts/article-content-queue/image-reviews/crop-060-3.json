@@ -2,24 +2,56 @@
   "id": "crop-060",
   "kind": 3,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v10-topic-identity-semantic-composition-set-reviewed",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
-      "pass": true,
-      "score": 88,
-      "product_width_percent": 19,
-      "product_height_percent": 28,
-      "product_x_center_percent": 37,
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 36,
       "reasons": [
-        "Product (carton roll) is off-center and placed naturally on soil in the lower third.",
-        "Visible diameter ratio and width/height percentages fall within acceptable practical estimates.",
-        "Zero people or human body parts detected in the image.",
-        "The 'AFP | 09134922013' watermark is clearly present in the bottom-right corner.",
-        "Role 3 hardware context (pressure gauge/filter) is appropriate and visually neutral."
+        "Presence of a person (farmer) in the foreground, which is a hard reject.",
+        "Product is not a wide cylindrical drip-tape carton roll; it appears to be a standard vertical or low-profile cylinder, likely a pump or filter, which does not meet the geometric requirements (diameter 1.5x-1.9x height).",
+        "Product size is too small to be the primary focus as required for role 3.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image removing the person entirely. Place a wide, low, cylindrical white and blue drip-tape carton roll on the soil, sized to occupy 20-25% of the frame width, with no people, faces, or human body parts visible. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 88,
+      "product_width_percent": 28,
+      "product_height_percent": 24,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Product width is slightly outside the acceptable range (>27%),",
+        "Watermark required 'AFP | 09134922013' is present",
+        "Zero people/human parts",
+        "Product is off-center and naturally placed on soil",
+        "Background matches farm context with neutral crop presence",
+        "Diameter-to-height ratio is appropriate",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 23,
+      "product_height_percent": 25,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product matches the required wide, low, cylindrical white-and-blue drip-tape carton roll in a natural farm context.",
+        "All dimensions and framing requirements (13-27% width, max 32% height, 1.5-1.9 aspect ratio, off-center lower third on soil) are met.",
+        "Image contains no people, human silhouettes, or body parts.",
+        "The exact required bottom-right watermark 'AFP | 09134922013' is clearly present and legible."
       ],
       "correction_prompt": "",
-      "attempt": 1
+      "attempt": 3
     }
   ],
   "approved_image": "فاصله-نوار-تیپ-در-کشت-خربزه-استانداردهای-توصیهشده-جزئیات-فنی.webp"

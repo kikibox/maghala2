@@ -1,7 +1,55 @@
 {
   "id": "crop-005",
-  "policy": "strict-no-human-scale-watermark-v8-role-isolated-set-reviewed",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "history": [
+    {
+      "pass": false,
+      "score": 40,
+      "duplicate_roles": [
+        1,
+        2,
+        3
+      ],
+      "reasons": [
+        "Crop morphology is a hard reject: The article is about coffee (اسپرس). Image 2 shows lavender (lilac) and Image 3 shows a flowering plant in a bare field (resembling anise or fennel), which are botanically contradictory to the specified topic. Image 1 shows generic sprouts.",
+        "Agronomic/Irrigation evidence is missing: The article specifically focuses on 'drip tape' (نوار تیپ) and cost analysis. None of the images show the technical layout of drip lines, mulch sheets, or root-zone evidence of the irrigation system mentioned in the narrative. The product (the roll) is merely placed in the foreground without context.",
+        "Camera angles and composition are repetitive: All three images use a similar low-angle, product-centered framing that fails to provide the varied 'camera height or angle' required for a distinct editorial set."
+      ],
+      "correction_prompt": "Three distinct editorial angles featuring young coffee tree seedlings or established coffee plantations (with visible red stems and dark leaves). Show the drip tape layout explicitly (white or black lines running along the soil surface near the plant roots) to match the technical narrative. Ensure varied camera angles (one wide overhead, one ground-level close-up of the irrigation lines, one medium landscape view) with no human figures present.",
+      "set_attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "duplicate_roles": [
+        2,
+        3
+      ],
+      "reasons": [
+        "The set is rejected because images 2 and 3 are nearly identical, reusing the exact same camera angle, low-ground perspective, and 'product + flowering crop + background yellow field' composition with only trivial prop adjustments.",
+        "Neither image provides specific agronomic or irrigation evidence required by the article summary; they are generic farm shots that do not clearly convey drip-tape or coffee crop costs.",
+        "Image 3 introduces a large hay bale and a mesh net that are visually disconnected from the drip-tape irrigation topic and do not represent crop cost analysis or agricultural cost optimization."
+      ],
+      "correction_prompt": "For a substantially different replacement set, use three distinct images: (1) a top-down drone shot of a coffee farm showing a clear drip-tape irrigation layout across rows, (2) a detailed eye-level shot of a seedling bed with visible water droplets on a white drip tape line, and (3) a side-view shot of a soil profile next to an irrigation line showing the root-zone connection. No generic farm backgrounds, no hay bales, and no repeated camera angles.",
+      "set_attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "duplicate_roles": [
+        1,
+        2
+      ],
+      "reasons": [
+        "The camera angle in image 1 is significantly lower than the others, creating a strong sense of perspective that makes the crop rows look like they are diving towards the viewer; image 2 is much flatter, and image 3 is a bare-field composition. While the camera angles differ, the 'crop morphology' is inconsistent: the crops in image 1 (large leaves, possibly vegetables or young tobacco) and image 2 (thin stalks) look distinct enough to be different varieties or seasons, but the visual connection to coffee (espresso) is weak in all.",
+        "Although the crops in image 1 and 2 are not botanically identical coffee plants (which makes sense for a generic drip-tape article), image 3 is a bare field with no plants or roots, providing the least narrative connection to 'cropping costs' and 'yield' in the immediate shot.",
+        "The set passes the 'three generic farms' test because of the specific irrigation narrative (tape on soil in img 1, tape under young crop in img 2, pre-planting in img 3). However, it's borderline. I'm marking it 'fail' only because the 'crop morphology' requirement is tricky; the crops in image 1 and 2 look like different generic seedlings rather than a consistent coffee plantation, which might mislead the user who expects a coffee context. But wait, the instructions say 'Exact crop morphology is preferred, but botanically neutral beds... may carry the topic'.",
+        "Re-evaluating: The instructions say 'Reject a set that repeats the same furrow composition'. Image 1 and Image 2 have very similar 'furrow/row' compositions (diagonal lines receding into the horizon), even though the crop density differs. They share a compositional DNA that feels somewhat repetitive for a set of three distinct editorial shots. The angle difference saves it from a total duplicate, but the strong compositional similarity between the 'young crop' shots in 1 and 2 weakens the set. I will judge this as a fail based on compositional repetition of the 'diagonal furrow' structure between 1 and 2, despite the crop difference.",
+        "Actually, looking closely at Image 1 vs Image 2: Image 1 is a low angle looking *down* a row. Image 2 is a wide flat shot *across* a field. These are different enough. The real issue is the connection to the article. The article is about *costs*. The images show product placement. This is standard for AFP. The 'fail' trigger must be strict. I'm going to stick with 'fail' because the transition from a dense row (1) to a sparse row (2) to bare dirt (3) feels like a disjointed timeline rather than a cohesive set, and image 3 is the weakest link for a 'crop cost' article, which implies an active growing environment."
+      ],
+      "correction_prompt": "Replace image 3 with a close-up shot of the drip tape actually running along the root zone of young coffee seedlings or bare soil where plants are about to be transplanted, to maintain the 'irrigation' visual thread established in images 1 and 2.",
+      "set_attempt": 3
+    },
     {
       "pass": false,
       "score": 45,
@@ -10,12 +58,13 @@
         2
       ],
       "reasons": [
-        "Both Image 1 and Image 2 fail to visualize the specific 'drip tape' narrative mentioned in the article title and summary; the white roll placed on the ground lacks any visual connection (hoses, sprinkler heads, emitters) to the soil or the plants.",
-        "The crop in Image 1 appears to be a generic leafy vegetable or corn, and the crop in Image 2 looks like soybeans or similar; neither clearly visualizes 'caffeinated coffee' (اسپرس) in a way that justifies the specific article topic.",
-        "Image 2 and Image 3 are nearly redundant duplicates, both featuring the AFP roll on dry brown soil with a similar background structure of red farm buildings and silos, failing to provide distinct editorial variety."
+        "Image 1 displays a generic crop with heart-shaped leaves (resembling tobacco or sunflower seedlings) rather than coffee, failing to match the article's subject matter.",
+        "Images 1 and 2 utilize nearly identical furrow compositions and a low-angle camera perspective, resulting in the 'merely moves the product' repetition.",
+        "Image 3 shifts the environment to a dry field with tractors, but the entire set lacks the specific agronomic or drip-tape irrigation evidence required to illustrate the technical narrative of the article.",
+        "Zero people constraint is satisfied in all three images."
       ],
-      "correction_prompt": "Generate three distinct 3D images of an AFP roll of drip tape installed in a 'caffeinated coffee' crop field, showing a close-up of the tape entering the soil, a mid-range of the green cafe crop with water mist, and a wide-angle view of the irrigation network without any people.",
-      "set_attempt": 1
+      "correction_prompt": "Regenerate the set with images that clearly feature coffee plants (Coffee arabica) at various growth stages. Ensure Image 1 shows drip tape actively lying on the ground near the root zone, Image 2 depicts a young seedling with a high-angle perspective, and Image 3 provides a close-up of the mature plant or irrigation infrastructure, avoiding generic or tobacco-like foliage.",
+      "set_attempt": 4
     }
   ]
 }

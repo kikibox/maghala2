@@ -2,24 +2,39 @@
   "id": "crop-048",
   "kind": 3,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v4-metric-feedback",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 9,
+      "product_height_percent": 9,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Hard reject: The image contains multiple visible human body parts, including a person crouching with a hand and leg in the main panel and a person's arm/torso in the top-right panel.",
+        "Composition Error: The provided image is a four-panel collage/mosaic rather than a single coherent farm scene.",
+        "Geometry Error: The visible drip tape roll does not meet the required dimensions; the diameter is not 1.5-1.9 times its height, and the product is under-sized.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate a single, non-collaged landscape image. Remove all human figures, hands, and body parts completely. Place exactly one white-and-blue wide low cylindrical drip-tape roll on the soil in the lower third, off-center. Ensure the roll's diameter is approximately 1.5 to 1.9 times its height, and it occupies 20-23% of the frame width. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
       "pass": true,
-      "score": 88,
-      "product_width_percent": 21,
-      "product_height_percent": 24,
+      "score": 85,
+      "product_width_percent": 27,
+      "product_height_percent": 20,
       "product_x_center_percent": 48,
       "reasons": [
-        "The main subject is a single white-and-blue wide low cylindrical drip-tape carton roll, placed secondary and off-center on the lower third of the frame, naturally sitting on soil.",
-        "Zero people or human body parts are visible; the background is a clear farm context with crop rows matching a family farming scenario.",
-        "The roll's estimated width is within the 20–23% frame-width range, its height is under the 28% frame-height limit, and its visible diameter is roughly 1.7 times its height, consistent with the required geometry.",
-        "No rejected items are present: no second package, roll, bottle, jar, canister, bucket, fertilizer/pesticide container, tall narrow drum, giant roll, layflat hose, pipe, impossible geometry, fake headline, or gibberish text.",
-        "The required bottom-right watermark 'AFP | 09134922013' is present and authentic."
+        "No people, faces, hands, or body parts visible in the frame.",
+        "Product width is at the upper limit of the practical tolerance (27% of frame).",
+        "Watermark 'AFP | 09134922013' is present in the bottom right.",
+        "Hardware context (tractor, irrigation roll) matches Role 3 story.",
+        "Product placement is on soil, slightly off-center."
       ],
       "correction_prompt": "",
-      "attempt": 1
+      "attempt": 2
     }
   ],
   "approved_image": "فاصله-نوار-تیپ-در-کشت-چاودار-استانداردهای-توصیهشده-جزئیات-فنی.webp"

@@ -1,0 +1,71 @@
+{
+  "id": "crop-023",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 11,
+      "product_height_percent": 18,
+      "product_x_center_percent": 68,
+      "reasons": [
+        "Presence of a person (farmer) and visible human body parts (arms, legs, face) results in an immediate hard reject.",
+        "The crop shown is corn/maize, which is a clearly identifiable different species from the required fava beans (baqal); this constitutes a hard reject.",
+        "The product is a white canister (tin), not the required wide low cylindrical drip-tape carton roll.",
+        "The product lacks the required geometry, appearing as a tall narrow drum rather than a low cylindrical roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes. Change the crop to fava beans (thick upright stems, broad paired leaflets, and visible elongated pods). Replace the white canister with a wide, low, cylindrical drip-tape carton roll (white and blue) positioned on the soil in the lower third of the frame. Maintain the 'AFP | 09134922013' watermark in the bottom-right corner. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 19,
+      "product_height_percent": 24,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Hard reject: Human person visible in the background",
+        "Crop morphology is incorrect (shows broad single leaves rather than fava bean pinnate leaves)"
+      ],
+      "correction_prompt": "Remove all people from the scene. Replace the background crop with fava bean plants (thick stems, paired leaflets). Ensure the drip tape roll remains in the lower-left foreground on soil.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 22,
+      "product_height_percent": 30,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Product color is primarily white, but requirements specify a white-and-blue cartoon roll; the current roll lacks the required blue color element.",
+        "The visible drip tape is pink/red, not the specified blue material.",
+        "The crop shown resembles sunflowers (characteristic palmate leaves and flower heads) rather than fava beans, failing the specific crop requirement."
+      ],
+      "correction_prompt": "Replace the pink drip tape and crop with a white and blue drip tape roll and fava bean plants (thick upright stems, broad paired leaflets, visible elongated pods). Keep the roll size and position (lower third, off-center). Maintain the farm context and watermark.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 72,
+      "product_width_percent": 17,
+      "product_height_percent": 13,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The product width (~17%) is within the acceptable practical range of 13–27% and the product is clearly secondary to the crop rows in the foreground.",
+        "Height is ~13% which is well below the 32% limit.",
+        "The product is off-center in the lower third and placed naturally on soil.",
+        "Zero people, body parts, or silhouettes present.",
+        "The crop rows are consistent with the broad-leafed, bushy habit of young fava beans (or botanically-neutral preparation as permitted), not a clear different species rejection trigger.",
+        "The bottom-right watermark 'AFP | 09134922013' is present and required.",
+        "No prohibited extra commercial products (like bottles or jars)."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-باقلا-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

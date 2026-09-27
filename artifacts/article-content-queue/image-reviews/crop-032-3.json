@@ -1,0 +1,54 @@
+{
+  "id": "crop-032",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 19,
+      "product_height_percent": 34,
+      "product_x_center_percent": 39,
+      "reasons": [
+        "Human body part (arm and hand) is clearly visible, which is a hard reject.",
+        "The visible height of the product exceeds 32 percent of the frame.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the human arm and hand entirely so the roll of drip tape is resting independently on the soil. Ensure the product's bounding box height is less than 32 percent of the image frame height. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 20,
+      "product_height_percent": 30,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The product roll is centered in the frame (near 50% x-axis), violating the requirement for off-center positioning on the lower third.",
+        "The image depicts tulip flowers (broad petals, cup shape) which are not saffron crocus (saffron has distinct saffron-red stigmas and thinner petals); this is a clear crop contradiction for the specific context."
+      ],
+      "correction_prompt": "Shift the product roll to the left or right side of the lower third (off-center). Replace the tulips with saffron crocus plants in the soil rows.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 20,
+      "product_height_percent": 24,
+      "product_x_center_percent": 72,
+      "reasons": [
+        "The product is a single white and blue wide cylindrical drip-tape carton roll matching the AFP branding and description.",
+        "The crop context features saffron crocuses, which perfectly aligns with the specified topic and does not contradict the hardware story role.",
+        "The product is off-center on the lower right third and naturally placed on the soil.",
+        "The product's proportions (width/height ratio and overall size relative to the frame) fall within the acceptable practical limits.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Zero people, human body parts, or prohibited containers are visible in the image."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "مقدار-بذر-زعفران-در-هکتار-راهنمای-جامع-جزئیات-فنی.webp"
+}

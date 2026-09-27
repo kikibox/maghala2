@@ -2,24 +2,37 @@
   "id": "crop-048",
   "kind": 1,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v4-metric-feedback",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
-      "pass": true,
-      "score": 82,
-      "product_width_percent": 21,
-      "product_height_percent": 22,
-      "product_x_center_percent": 46,
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 14,
+      "product_height_percent": 12,
+      "product_x_center_percent": 42,
       "reasons": [
-        "Image contains exactly one AFP white-and-blue drip-tape roll in a farm context (drip irrigation lines and tractor in the background).",
-        "No people or human body parts are visible.",
-        "The product bounding box (approx 21% width, 22% height) meets the required size constraints (20-23% width, <28% height).",
-        "The roll is positioned off-center in the lower third of the frame, naturally placed on soil.",
-        "The 'AFP | 09134922013' watermark is present in the bottom right corner."
+        "Hard reject: The image contains a clearly visible person (woman) crouching in the upper right section, holding a plant and notebook. This violates the 'zero people and zero human body parts' rule.",
+        "The image layout appears to be a composite with a split-screen/overlap effect, which is not a standard single-scene photo required for this product context."
+      ],
+      "correction_prompt": "Regenerate the image as a single cohesive photograph. Remove the woman/farmer from the scene. Ensure the field background and the drip tape roll exist in the same continuous space without a split-screen effect. Keep the crop, the roll position, and the bottom-right watermark identical.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 80,
+      "product_width_percent": 22,
+      "product_height_percent": 20,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is the correct wide, low cylindrical drip-tape carton roll.",
+        "Product is positioned in the lower third and off-center, sitting naturally on the soil.",
+        "Background clearly matches the article context with visible rows of grain crops.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No people or human body parts are visible."
       ],
       "correction_prompt": "",
-      "attempt": 1
+      "attempt": 2
     }
   ],
   "approved_image": "فاصله-نوار-تیپ-در-کشت-چاودار-استانداردهای-توصیهشده-تصویر-شاخص.webp"

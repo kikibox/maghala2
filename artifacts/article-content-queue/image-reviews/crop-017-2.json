@@ -1,0 +1,42 @@
+{
+  "id": "crop-017",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 10,
+      "product_height_percent": 18,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: The image contains a clearly visible person (male farmer in blue shirt and jeans) kneeling in the foreground, which violates the zero human body parts rule.",
+        "Product staging: The drip-tape roll is held in the hands of a person rather than being placed naturally and unattended on the soil.",
+        "Product geometry: The cylindrical roll appears to be held at an angle, failing the requirement for a wide, low, off-center placement on the ground.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image to remove all persons and human body parts. Place the white-and-blue wide low cylindrical drip-tape carton roll unattended on the soil in the lower third, off-center, with no one touching or holding it. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 80,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The exact bottom-right watermark 'AFP | 09134922013' is present and legible.",
+        "The product is a single wide low cylindrical drip-tape carton roll, positioned off-center on the lower third and naturally placed on soil.",
+        "The product dimensions are within the acceptable ranges: width is estimated at 24% and height at 30%, satisfying the constraint that height must be no more than 32%.",
+        "No people, human body parts, or human silhouettes are visible in the frame.",
+        "The farm context is clearly visible with distinct crop rows and soil, though the plants show generic young vegetation rather than the specific mature morphology of chickpeas (inflated pods).",
+        "The visual presence of pink/purple flowers is atypical for the required crop (chickpea), but the hard reject criteria specifically protect 'neutral young vegetation' when the general agronomic story of irrigation and crop context is clear."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "هزینه-کشت-نخود-با-نوار-تیپ-در-هکتار-کاربرد-عملی.webp"
+}

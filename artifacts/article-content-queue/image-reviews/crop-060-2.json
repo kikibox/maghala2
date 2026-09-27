@@ -2,27 +2,40 @@
   "id": "crop-060",
   "kind": 2,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v10-topic-identity-semantic-composition-set-reviewed",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
-      "pass": true,
-      "score": 88,
-      "product_width_percent": 16,
-      "product_height_percent": 24,
-      "product_x_center_percent": 52,
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
       "reasons": [
-        "The drip tape roll is correctly identified as a white cylindrical package with the 'AFP' logo and appears to be lying horizontally.",
-        "The required watermark 'AFP | 09134922013' is clearly visible in the bottom-right corner.",
-        "The image contains zero people or body parts.",
-        "The background shows a farm setting with drip irrigation lines and young leafy plants which fits the 'melon' context without explicitly showing a mature melon, which is allowed as neutral young vegetation.",
-        "The product size (width 16%, height 24%) falls within the acceptable range of 13-27% width and <32% height.",
-        "The product is placed naturally on the soil in the lower third of the frame.",
-        "Visible diameter (16%) is roughly 0.66 times the visible height (24%), which is consistent with a roll of drip tape lying on its side where the diameter corresponds to the width of the tape.",
-        "The image is a realistic farm context with no impossible geometry or fake text."
+        "Presence of a person/farmer in the main image (left) violates the strict zero-person rule.",
+        "Presence of multiple people in the right-side images violates the strict zero-person rule.",
+        "The crop depicted in the upper-right corner is a clearly identifiable fruit (likely a watermelon or squash) with a vine, which does not match the specified article crop of melon (خربزه).",
+        "The overall composition is a multi-panel collage with a person, rather than a single clean image of the product in a farm context.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate a single, unified image showing exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll placed naturally on the soil in a melon (خربزه) field. Include zero people or human body parts. Place the product off-center in the lower third. Ensure the crop shows botanically accurate melon leaves and stems. Include the bottom-right watermark \"AFP | 09134922013\". Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 22,
+      "product_height_percent": 14,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Product dimensions and placement align with the preferred 20-23% width and off-center lower third positioning.",
+        "The visible product is a wide, cylindrical drip-tape roll with appropriate blue and white branding.",
+        "The background shows a farm context with neutral young seedlings, fitting the 'melons' article role as early-stage vegetation.",
+        "The required bottom-right watermark 'AFP | 09134922013' is clearly visible.",
+        "No human figures or disallowed hardware are present in the frame."
       ],
       "correction_prompt": "",
-      "attempt": 1
+      "attempt": 2
     }
   ],
   "approved_image": "فاصله-نوار-تیپ-در-کشت-خربزه-استانداردهای-توصیهشده-کاربرد-عملی.webp"

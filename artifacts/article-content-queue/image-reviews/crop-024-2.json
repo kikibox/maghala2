@@ -1,0 +1,71 @@
+{
+  "id": "crop-024",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 8,
+      "product_height_percent": 10,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "The product width is significantly smaller than the required minimum of 13% (estimated at 8%).",
+        "The product does not have the required wide cylindrical proportion (diameter roughly 1.5-1.9 times its height).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image significantly enlarging the drip-tape roll so its width is at least 13% of the frame, ensuring the roll has a wide cylindrical shape with a diameter noticeably larger than its height. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Presence of a human figure (farmer) is a hard reject requirement violation.",
+        "The product roll is visibly a narrow, tall drum shape rather than a 'wide low' cylindrical carton roll; it fails the aspect ratio test (diameter should be 1.5-1.9x height, but here height > width).",
+        "Product height (18%) is too small relative to width (12%); the roll should be wider.",
+        "Product staging is centered/interacting with the person rather than naturally placed on soil in the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people completely. Regenerate the drip-tape roll as a wide, low horizontal cylinder (wider than it is tall) resting flat on the soil in the lower third of the frame, off-center. Ensure the roll width is roughly 20% of the image width. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 20,
+      "product_height_percent": 18,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Human silhouette/figure is clearly visible in the background near the red barn in the upper right quadrant."
+      ],
+      "correction_prompt": "Remove the human figure and silhouette near the red barn in the background; ensure the scene is completely free of people and body parts.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 14,
+      "product_height_percent": 16,
+      "product_x_center_percent": 60,
+      "reasons": [
+        "Contains exactly one white-and-blue drip tape carton roll in a farm context.",
+        "Lettuce heads are clearly visible as low layered rosettes of broad crinkled leaves.",
+        "Irrigation tape is laid out in rows, supporting the agronomic story.",
+        "Zero people or human body parts visible.",
+        "Product is off-center, placed naturally on soil.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Product width and height fall within acceptable ranges; geometry is plausible.",
+        "No hard reject elements (bottles, extra rolls, fake text, etc.) detected."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "میزان-برداشت-کاهو-در-هکتار-با-نوار-تیپ-کاربرد-عملی.webp"
+}

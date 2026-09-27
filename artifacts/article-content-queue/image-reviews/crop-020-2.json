@@ -1,0 +1,70 @@
+{
+  "id": "crop-020",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product width is too small (12%) relative to the required 13-27% range.",
+        "Product is centered horizontally (50%) instead of being off-center on the lower third.",
+        "Product aspect ratio is inverted (height > width) instead of the required wide cylindrical shape (width ~1.5-1.9x height).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with a significantly wider (20% of frame) and flatter (low height) drip-tape roll placed off-center in the lower third, maintaining the melon crop context. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 35,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Human silhouette and full body of a male farmer are visible in the frame, which is a hard reject condition.",
+        "The drip tape roll is cut off by the bottom edge of the image and is not clearly visible as a complete wide low cylindrical carton roll.",
+        "The visible portion of the roll appears too tall and narrow relative to the specified aspect ratio requirements.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the person entirely from the image. Reframe the shot to show the full wide, low cylindrical drip tape carton roll sitting on the soil without being cropped by the bottom edge, ensuring it is off-center and appears wide and low. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 18,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The crop shown is clearly identifiable as bell peppers (capsicum) with red fruits and square-stemmed foliage, which is a hard reject for the required article 'melon' (خربزه).",
+        "The background context shows pepper farming, which does not match the botanical requirements for melon (vining growth habit, lobed leaves).",
+        "The drip tape roll is a standard cylindrical cardboard core roll rather than the specified wide flat carton roll shape."
+      ],
+      "correction_prompt": "Replace the pepper plants with young melon vines featuring lobed leaves and tendrils on a prepared flat bed. Keep the wide, low, white-and-blue AFP drip tape carton roll in the same position with the required bottom-right watermark.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 53,
+      "reasons": [
+        "The product is correctly identified as a white and blue cylindrical drip-tape carton roll.",
+        "The crop shown (melon seedlings) is botanically accurate for the topic.",
+        "The product is placed naturally on the soil and is off-center (lower third).",
+        "The required bottom-right watermark 'AFP | 09134922013' is clearly visible.",
+        "No people, human silhouettes, or body parts are present in the image."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "میزان-برداشت-خربزه-در-هکتار-با-نوار-تیپ-کاربرد-عملی.webp"
+}

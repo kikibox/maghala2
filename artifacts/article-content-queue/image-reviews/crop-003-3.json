@@ -2,56 +2,40 @@
   "id": "crop-003",
   "kind": 3,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v8-role-isolated-set-reviewed",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 92,
-      "product_width_percent": 15.2,
-      "product_height_percent": 21.4,
-      "product_x_center_percent": 28.5,
+      "score": 55,
+      "product_width_percent": 45,
+      "product_height_percent": 20,
+      "product_x_center_percent": 55,
       "reasons": [
-        "The image contains exactly one white and blue drip-tape carton roll.",
-        "Zero people or human body parts are visible in the scene.",
-        "The crop context (cassava field with irrigation lines) matches the background requirement.",
-        "The 'AFP | 09134922013' watermark is clearly visible and correct in the bottom-right corner.",
-        "Although the width and height percentages (15.2% and 21.4%) fall slightly below the 20-23% ideal range, the roll is secondary, off-center on the lower third, and the overall composition meets the primary quality standards for the role.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 15.2% to 20-23% of frame width."
+        "The product (drip tape) appears in multiple forms (a coiled roll and a coiled hose with connector), which triggers the hard reject for 'second roll' or 'extra commercial product'.",
+        "The visible drip tape roll is not a wide, low cylindrical carton; it appears to be a smaller spool with loose tape, failing the 'wide low cylindrical carton roll' description.",
+        "The product staging is centered rather than off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 13-27% of frame width."
       ],
-      "correction_prompt": "Enlarge the product group from 15.2% to 20-23% of frame width.",
+      "correction_prompt": "Regenerate to show a single wide, low cylindrical carton roll of white-and-blue drip tape on the soil. Remove the coiled hose, the second spool, and the metal connector. Place the carton roll on the left side (lower third) and ensure it is not centered. Reduce the product group from 45% to 13-27% of frame width.",
       "attempt": 1
-    },
-    {
-      "pass": false,
-      "score": 45,
-      "product_width_percent": 20,
-      "product_height_percent": 18,
-      "product_x_center_percent": 30,
-      "reasons": [
-        "Second commercial product visible (pressure gauge)",
-        "Pipe/hose component visible next to the roll, violating geometry rules",
-        "Product width is slightly under the 20-23% target"
-      ],
-      "correction_prompt": "Regenerate image showing ONLY the single AFP drip-tape roll on the soil, remove the pressure gauge and all hose tubing, and slightly increase the roll's width to approximately 22 percent of the frame",
-      "attempt": 2
     },
     {
       "pass": true,
       "score": 85,
-      "product_width_percent": 21,
-      "product_height_percent": 16,
-      "product_x_center_percent": 34,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 25,
       "reasons": [
-        "Product (drip-tape roll) is off-center on the lower third, resting naturally on soil.",
-        "Width (~21%) and height (~16%) of the main roll fall within acceptable bounds (20-23% width, <28% height).",
-        "Visible diameter (width) is approximately 1.3-1.4x visible height, visually consistent with a wide, low cylindrical roll.",
-        "Contains no people, human body parts, or forbidden objects (bottles, cans, etc.).",
-        "Required AFP watermark is present in bottom-right corner.",
-        "Background (field, tractor) matches the farm context."
+        "The image features exactly one AFP wide cylindrical drip-tape carton roll placed on soil in a farm context.",
+        "The product is off-center on the lower left, consistent with the 'lower third' and 'off-center' staging requirements.",
+        "No people, human body parts, or silhouettes are visible; the tractor in the background is an unattended, fixed piece of infrastructure and is not a commercial product.",
+        "The image contains zero identifiable crops, which is acceptable for a hardware story where the crop may be visually neutral.",
+        "The required watermark 'AFP | 09134922013' is clearly present in the bottom-right corner.",
+        "The product's relative width and height are within the acceptable 13-27% and max 32% ranges respectively, keeping the product secondary to the scene."
       ],
       "correction_prompt": "",
-      "attempt": 3
+      "attempt": 2
     }
   ],
   "approved_image": "هزینه-کشت-کنجد-با-نوار-تیپ-در-هکتار-جزئیات-فنی.webp"

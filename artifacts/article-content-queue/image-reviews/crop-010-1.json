@@ -1,0 +1,70 @@
+{
+  "id": "crop-010",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 8,
+      "product_height_percent": 10,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: Human presence detected (farmer is crouching and holding the product, which is prohibited).",
+        "Hard reject: The product shown is a canister/container, not a wide low cylindrical drip-tape carton roll.",
+        "Hard reject: Missing the required 'AFP | 09134922013' watermark (the image displays a duplicate incorrect watermark 'AFP | 09134922013').",
+        "Hard reject: The article crop 'یونجه' (alfalfa) is not recognizable; the plants shown are flowering broadleaf weeds or a non-alfalfa crop with large leaves.",
+        "Product geometry does not match the required wide low cylindrical roll shape.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and body parts. Replace the canister with a wide, low cylindrical white and blue drip-tape carton roll placed naturally on the soil in the lower third. The roll should be secondary to the scene, roughly 20% of frame width. Show a field of distinct alfalfa with dense fine trifoliate leaflets (no broad leaves). Ensure the exact watermark 'AFP | 09134922013' appears in the bottom-right corner. No human silhouettes or infrastructure should be visible. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 19,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The visible crops in the foreground and mid-ground feature broad, large leaves that do not match the specific morphology of 'dense fine trifoliate leaflets' required for the alfalfa article; they appear to be broad-leaf weeds or different broad-leaf crop species, causing a hard reject.",
+        "Although the 'AFP | 09134922013' watermark is present at the bottom right, the crop species identification fails to meet the strict botanical requirement for the alfalfa context.",
+        "The product geometry and placement (secondary, lower-left) are acceptable, but the crop error prevents the image from passing."
+      ],
+      "correction_prompt": "Regenerate with the foreground and mid-ground crops specifically showing dense, small alfalfa trifoliate leaves (clover-like) instead of broad leaves, while maintaining the exact AFP white-and-blue drip-tape roll placement and the required watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 18,
+      "product_height_percent": 16,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "The background crop shows broad leaves characteristic of tomato or similar species, rather than the dense fine trifoliate leaflets required to make alfalfa recognizable.",
+        "The product is placed on the top soil rather than within the crop rows where drip tape would typically be installed."
+      ],
+      "correction_prompt": "Replace background broad-leaf crops with dense fine trifoliate alfalfa seedlings; move the drip-tape roll to the soil surface directly within a crop row.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 14,
+      "product_height_percent": 26,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "The product is a white-and-blue wide cylindrical drip-tape carton roll.",
+        "The background shows rows of crops, which are acceptable neutral young vegetation.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present.",
+        "There are no people or human body parts visible.",
+        "The product is placed naturally on the soil."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-یونجه-با-آبیاری-قطرهای-تصویر-شاخص.webp"
+}

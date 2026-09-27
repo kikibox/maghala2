@@ -1,0 +1,111 @@
+{
+  "id": "crop-025",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "The required 'AFP white-and-blue wide low cylindrical drip-tape carton roll' is completely missing from the image.",
+        "The image features a watermelon and watermelon seedlings in the foreground. While the prompt allows for a botanically neutral story, watermelon is a clearly identifiable different species from cantaloupe, which often triggers a hard reject for clear species mismatch in this context.",
+        "The watermelon is centered in the frame and serves as the focal point, conflicting with the requirement that the (missing) product be off-center and secondary.",
+        "The required watermark text is present ('AFP | 09134922013'), but the primary subject requirement fails.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with a white and blue cylindrical drip tape carton roll placed on the soil in the lower third, off-center. The crop should be a neutral young seedling or cantaloupe vine, not a watermelon. The drip tape roll should be small and secondary to the scene. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 21,
+      "product_height_percent": 28,
+      "product_x_center_percent": 29,
+      "reasons": [
+        "The visible watermark in the bottom-right corner reads 'AFP | 09134922013', which does not exactly match the required string 'AFP | 09134922013' (there is a spacing/character mismatch).",
+        "The crop in the foreground appears to be a tree seedling with broad, heart-shaped leaves (resembling a poplar or cotton tree) rather than the specific cantaloupe vines with lobed leaves and netted fruit required for the article context.",
+        "While the irrigation hardware (roll) is correctly placed and sized, the mismatch in the biological context (wrong crop species) makes the image unsuitable for the specific cantaloupe article."
+      ],
+      "correction_prompt": "Regenerate the image to show a cantaloupe vine with distinct lobed leaves and netted fruit in the background instead of a generic tree seedling. Ensure the bottom-right watermark text is exactly 'AFP | 09134922013'.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 18,
+      "product_height_percent": 18,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "The prominent plant in the foreground has large, deeply lobed leaves that appear botanically similar to fig (Ficus carica) or other broad-leaved species, rather than the specific lobed leaves and restrained netted fruit attached to the vine required for the cantaloupe (طالبی) crop definition."
+      ],
+      "correction_prompt": "Replace the foreground broad-leaved plant with a cantaloupe vine that displays its characteristic lobed leaves and a small, restrained netted fruit still attached to the vine; keep the white and blue AFP drip-tape roll in its current position.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 14.0,
+      "product_height_percent": 16.0,
+      "product_x_center_percent": 38.0,
+      "reasons": [
+        "The cantaloupe fruit shown is smooth and un-netted, which does not meet the 'restrained netted fruit' requirement for the specific article crop طالبی.",
+        "The drip-tape roll is a white canister (upright orientation) rather than a wide, low, cylindrical carton roll lying flat on the soil."
+      ],
+      "correction_prompt": "Regenerate the image with the cantaloupe fruit clearly showing netted ridges on its surface. Replace the white canister with a wide, low, cylindrical white-and-blue drip-tape carton roll placed flat and off-center on the soil.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 24,
+      "product_height_percent": 33,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The crop shown is a clearly identifiable watermelon (Citrullus lanatus), which is a different species from the required article crop, cantaloupe (Cucumis melo var. cantalupensis).",
+        "Cantaloupe vines are defined by lobed leaves and netted fruit; the watermelon in the image has smooth green/white stripes and broad leaves, failing the botanical recognition criteria.",
+        "The required exact bottom-right watermark 'AFP | 09134922013' is missing from the image.",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image to show a cantaloupe vine with lobed leaves and a netted cantaloupe fruit instead of a watermelon. Ensure the cantaloupe is still attached to the vine. Add the exact watermark 'AFP | 09134922013' in the bottom-right corner. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 38,
+      "product_width_percent": 8,
+      "product_height_percent": 11,
+      "product_x_center_percent": 19,
+      "reasons": [
+        "Hard reject: Product visible width is far below the 13% minimum threshold; the roll is disproportionately small relative to the frame (approx. 8%).",
+        "Article crop (cantaloupe) is not clearly identifiable; the visible fruit exhibits prominent zebra stripes characteristic of a watermelon rather than the netted texture of a cantaloupe.",
+        "Product roll is positioned too far left, violating the requirement for a natural off-center placement closer to the right side of the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Enlarge the drip-tape roll so its width is 15% of the frame width, reposition it to the right-lower-third, and ensure the crop vines and restrained netted fruit are distinctly recognizable as cantaloupes without dark zebra stripes. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 6
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 18,
+      "product_height_percent": 13,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The image correctly displays the required 'AFP white-and-blue wide low cylindrical drip-tape carton roll'.",
+        "The article-specific crop (cantaloupe) is clearly recognizable with vines, lobed leaves, and netted fruit attached.",
+        "The product is secondary in composition, placed on the soil, and off-center in the lower third.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No people, human body parts, or extra commercial products are visible in the scene."
+      ],
+      "correction_prompt": "",
+      "attempt": 7
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-طالبی-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}
