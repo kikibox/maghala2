@@ -4,14 +4,14 @@
 
 ## نمای کلی
 
-- آخرین بروزرسانی: `2026-09-27T07:33:22+00:00`
+- آخرین بروزرسانی: `2026-09-27T07:47:28+00:00`
 - وضعیت صف: **آماده اجرای بعدی** (`ready`)
 - پیشرفت: **52 از 1148 (4.53٪)**
 - نمودار پیشرفت: `░░░░░░░░░░░░░░░░░░░░`
 - تکمیل‌شده: **52**
 - در حال پردازش: **0**
-- در انتظار: **1089**
-- ناموفق: **7**
+- در انتظار: **1088**
+- ناموفق: **8**
 - مسدود مدل تصویر: **0**
 - میانگین طول مقالات تکمیل‌شده: **1273 کلمه**
 - اولویت فعلی: **تولید مقاله فارسی بعدی**
@@ -24,8 +24,8 @@
 - تعداد تصاویر هر مقاله: **3**
 - حداقل کلمات: **1050**
 - لینک داخلی مجاز: **4 تا ۷**
-- اندازه هر اجرا: **2 مقاله**
-- مدیر موازی: **2 مقاله / 4 تصویر هم‌زمان**
+- اندازه هر اجرا: **1 مقاله**
+- مدیر موازی: **1 مقاله / 3 تصویر هم‌زمان**
 - حداکثر تلاش هر مقاله: **4**
 - دسته وردپرس: **مقاله‌ها** (`35`)
 - لینک‌های داخلی شناخته‌شده: **682**
@@ -35,7 +35,7 @@
 
 | گروه | کل | تکمیل | در انتظار | در حال پردازش | ناموفق | پیشرفت |
 |---|---:|---:|---:|---:|---:|---:|
-| `crop` | 341 | 52 | 282 | 0 | 7 | 15.25٪ |
+| `crop` | 341 | 52 | 281 | 0 | 8 | 15.25٪ |
 | `irrigation` | 12 | 0 | 12 | 0 | 0 | 0.00٪ |
 | `product` | 112 | 0 | 112 | 0 | 0 | 0.00٪ |
 | `strategic` | 33 | 0 | 33 | 0 | 0 | 0.00٪ |
@@ -69,8 +69,8 @@
 
 ## مقاله بعدی صف
 
-- عنوان: **فاصله نوار تیپ در کشت خیار: استانداردهای توصیه‌شده**
-- شناسه: `crop-061`
+- عنوان: **مقدار بذر کاملینا در هکتار: راهنمای جامع**
+- شناسه: `crop-062`
 - گروه: `crop`
 - تعداد تلاش قبلی: **0**
 
@@ -99,6 +99,7 @@
 
 ## خطاهای اخیر
 
+- **فاصله نوار تیپ در کشت خیار: استانداردهای توصیه‌شده** — `crop-061` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['The visible crop in the foreground shows a tomato plant (identifiable by the angular lobed leaves and the small green tomato fruit), which is a clearly identifiable different species to the required cucumber (خیار).', "The drip tape roll's width (22%) and height (24%) fall outside the specified geometric constraints; the required diameter-to-height ratio is 1.5–1.9x, but this roll has a ratio of approximately 0.9x."]`
 - **هزینه کشت یونجه با نوار تیپ در هکتار** — `crop-059` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['Presence of a man (human silhouette and face)', 'Product is not an AFP white-and-blue wide low cylindrical drip-tape carton roll; it is a roll of white tape, not the specific carton roll described', 'Image does not match the required crop context of alfalfa (younger, broad-leaved seedlings shown instead of the dense, fine trifoliate leaves described)', 'Product is placed center-left rather than naturally off-center on the lower third of the f`
 - **هزینه کشت لپه با نوار تیپ در هکتار** — `crop-058` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['The crop in the background is clearly identifiable as sunflowers, which is a completely different species from the required لپه (yellow split-pea crop). The rules state that a clearly identifiable different species must be hard rejected.', 'The background fails to match the required topic of لپه (yellow split-pea crop).']`
 - **نگهداری زعفران با نوار تیپ: نکات کلیدی** — `crop-056` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ['The visible crop in the background consists of tulips, which clearly contradicts the topic-specific requirement for saffron (zaafaran) crocus plants.', 'The product roll appears nearly square in aspect ratio (height 19% vs width 17%), whereas it is required to be wider than it is tall (diameter ~1.5-1.9 times height).', 'There is faint, illegible gibberish text on the side of the product label.']`
