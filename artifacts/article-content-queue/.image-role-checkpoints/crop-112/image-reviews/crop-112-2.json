@@ -1,0 +1,47 @@
+{
+  "id": "crop-112",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 14,
+      "product_height_percent": 12,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: The image contains a human (farmer) with clearly visible hands, arms, legs, and body parts.",
+        "The presence of a person violates the strict 'zero people' and 'zero human body parts' requirement."
+      ],
+      "correction_prompt": "Regenerate the image strictly removing all humans, workers, and body parts. Keep the AFP white-and-blue drip-tape roll and the coriander farm context.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 20.5,
+      "product_height_percent": 31.0,
+      "product_x_center_percent": 34.0,
+      "reasons": [
+        "Crop in the foreground is clearly identifiable as a different species (broad leaves, not finely divided feathery coriander leaves)",
+        "The crop is unacceptably prominent (taller than the product roll), competing for focus and reducing product secondary positioning",
+        "Product height is near the hard limit (31%), making the roll feel oversized relative to the frame"
+      ],
+      "correction_prompt": "Replace the central plant with very small, neutral, unidentifiable seedlings (tiny green shoots, not distinct broad leaves). Keep the white-and-blue AFP drip-tape roll at the same off-center lower-third position on soil, but ensure the roll is clearly secondary. Maintain the farm row context, the background farm buildings, and the exact bottom-right watermark 'AFP | 09134922013'.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "review_unavailable": true,
+      "reasons": [
+        "article_image_review unavailable after 4 retries: HTTPError"
+      ],
+      "correction_prompt": "Retry strict visual review of the preserved candidate without regenerating it.",
+      "attempt": 3
+    }
+  ],
+  "approved_image": null
+}

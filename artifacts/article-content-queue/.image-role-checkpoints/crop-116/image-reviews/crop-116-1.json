@@ -1,0 +1,35 @@
+{
+  "id": "crop-116",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 15,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Presence of a human (farmer) squatting in the field, violating the 'zero people' rule.",
+        "Product is not a wide low cylindrical drip-tape carton roll; it is a small canister/container.",
+        "Product is too small relative to the frame (width 8%, height 15%), falling below the 13% minimum width threshold and failing the cylindrical aspect ratio check.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate to remove the human entirely. Replace the small canister with a large, wide, low cylindrical drip-tape carton roll (white and blue) placed off-center on the soil. Ensure the roll is secondary to the background context. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "review_unavailable": true,
+      "reasons": [
+        "article_image_review unavailable after 4 retries: HTTPError"
+      ],
+      "correction_prompt": "Retry strict visual review of the preserved candidate without regenerating it.",
+      "attempt": 2
+    }
+  ],
+  "approved_image": null
+}
