@@ -6,13 +6,13 @@ on:
       levels:
         description: 'Concurrency levels, comma separated'
         required: true
-        default: '10,12,16'
+        default: '8,12,16'
       service:
         description: 'Service to benchmark'
         required: true
         type: choice
         options: [image, both, text]
-        default: image
+        default: both
   push:
     branches: [main]
     paths:
@@ -29,6 +29,13 @@ concurrency:
 env:
   AGNES_API_BASE: ${{ vars.AGNES_API_BASE || 'https://apihub.agnes-ai.com/v1' }}
   AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+  AGNES_API_KEY2: ${{ secrets.AGNES_API_KEY2 }}
+  AGNES_API_KEY3: ${{ secrets.AGNES_API_KEY3 }}
+  AGNES_API_KEY4: ${{ secrets.AGNES_API_KEY4 }}
+  AGNES_API_KEY5: ${{ secrets.AGNES_API_KEY5 }}
+  AGNES_API_KEY6: ${{ secrets.AGNES_API_KEY6 }}
+  AGNES_API_KEY7: ${{ secrets.AGNES_API_KEY7 }}
+  AGNES_API_KEY8: ${{ secrets.AGNES_API_KEY8 }}
   AGNES_MODEL: ${{ vars.AGNES_MODEL || 'agnes-3.0-flash' }}
   IMAGE_API_KEY: ${{ secrets.IMAGE_API_KEY || secrets.AGNES_API_KEY }}
   IMAGE_ENDPOINT: ${{ vars.IMAGE_ENDPOINT || 'https://apihub.agnes-ai.com/v1/images/generations' }}
@@ -49,8 +56,8 @@ jobs:
         run: python -m py_compile automation/benchmark_agnes_concurrency.py
       - name: Run controlled concurrency ladder
         env:
-          BENCHMARK_LEVELS: ${{ inputs.levels || '10,12,16' }}
-          BENCHMARK_SERVICE: ${{ inputs.service || 'image' }}
+          BENCHMARK_LEVELS: ${{ inputs.levels || '8,12,16' }}
+          BENCHMARK_SERVICE: ${{ inputs.service || 'both' }}
         run: |
           args=()
           if [ "$BENCHMARK_SERVICE" = image ]; then args+=(--image-only); fi

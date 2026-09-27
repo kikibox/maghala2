@@ -9,9 +9,16 @@ from PIL import Image
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'artifacts'/'benchmarks'
 TEXT_BASE=(os.getenv('AGNES_API_BASE') or 'https://apihub.agnes-ai.com/v1').rstrip('/')
-TEXT_KEY=(os.getenv('AGNES_API_KEY') or '').strip()
+TEXT_KEYS=[]
+for _name in ['AGNES_API_KEY',*[f'AGNES_API_KEY{i}' for i in range(2,9)]]:
+    _value=(os.getenv(_name) or '').strip()
+    if _value and _value not in TEXT_KEYS:TEXT_KEYS.append(_value)
+TEXT_KEY=TEXT_KEYS[0] if TEXT_KEYS else ''
 TEXT_MODEL=os.getenv('AGNES_MODEL') or 'agnes-3.0-flash'
-IMAGE_KEY=(os.getenv('IMAGE_API_KEY') or TEXT_KEY).strip()
+IMAGE_KEYS=[]
+for _value in [(os.getenv('IMAGE_API_KEY') or '').strip(),*TEXT_KEYS]:
+    if _value and _value not in IMAGE_KEYS:IMAGE_KEYS.append(_value)
+IMAGE_KEY=IMAGE_KEYS[0] if IMAGE_KEYS else ''
 IMAGE_ENDPOINT=os.getenv('IMAGE_ENDPOINT') or f'{TEXT_BASE}/images/generations'
 IMAGE_MODEL=os.getenv('IMAGE_MODEL') or 'agnes-image-2.5-flash'
 
@@ -34,9 +41,9 @@ def post(url,key,payload,timeout):
         return {'ok':False,'status':None,'seconds':round(time.perf_counter()-started,3),'error':f'{type(exc).__name__}: {exc}'}
 
 
-def text_request(_):
+def text_request(index):
     payload={'model':TEXT_MODEL,'messages':[{'role':'user','content':'Return only this JSON object: {"ok":true}'}],'temperature':0,'max_tokens':80}
-    result=post(TEXT_BASE+'/chat/completions',TEXT_KEY,payload,180)
+    result=post(TEXT_BASE+'/chat/completions',TEXT_KEYS[index%len(TEXT_KEYS)],payload,180)
     if result['ok']:
         content=(result.pop('response').get('choices') or [{}])[0].get('message',{}).get('content','')
         result['valid_response']='ok' in str(content).lower()
@@ -44,9 +51,9 @@ def text_request(_):
     return result
 
 
-def image_request(_):
+def image_request(index):
     payload={'model':IMAGE_MODEL,'prompt':'Photorealistic wide 16:9 Iranian farm field, natural daylight, no text, no logo, no product close-up.','size':'1024x768','return_base64':True,'extra_body':{'response_format':'b64_json','image':[neutral_input()]}}
-    result=post(IMAGE_ENDPOINT,IMAGE_KEY,payload,600)
+    result=post(IMAGE_ENDPOINT,IMAGE_KEYS[index%len(IMAGE_KEYS)],payload,600)
     if result['ok']:
         row=(result.pop('response').get('data') or [{}])[0]
         result['valid_response']=bool(row.get('b64_json') or row.get('url'))
@@ -73,9 +80,9 @@ def main()->int:
         if not args.image_only:rows.append(measure('text',level,text_request))
         if not args.text_only:rows.append(measure('image',level,image_request))
     safe={service:max([r['concurrency'] for r in rows if r['service']==service and r['failures']==0],default=0) for service in ('text','image')}
-    report={'created_at':dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat(),'levels':levels,'text_model':TEXT_MODEL,'image_model':IMAGE_MODEL,'separate_image_endpoint':IMAGE_ENDPOINT!=TEXT_BASE+'/images/generations','safe_concurrency':safe,'runs':rows}
+    report={'created_at':dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat(),'levels':levels,'text_model':TEXT_MODEL,'image_model':IMAGE_MODEL,'separate_image_endpoint':IMAGE_ENDPOINT!=TEXT_BASE+'/images/generations','text_key_count':len(TEXT_KEYS),'image_key_count':len(IMAGE_KEYS),'safe_concurrency':safe,'runs':rows}
     OUT.mkdir(parents=True,exist_ok=True);path=OUT/'latest.json';path.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-    summary=['# Agnes concurrency benchmark','',f'- Text model: `{TEXT_MODEL}`',f'- Image model: `{IMAGE_MODEL}`',f'- Safe text concurrency: **{safe["text"]}**',f'- Safe image concurrency: **{safe["image"]}**','', '| Service | Concurrency | Success | Failure | Wall time |','|---|---:|---:|---:|---:|']
+    summary=['# Agnes concurrency benchmark','',f'- Text model: `{TEXT_MODEL}`',f'- Image model: `{IMAGE_MODEL}`',f'- Text keys detected: **{len(TEXT_KEYS)}**',f'- Image keys detected: **{len(IMAGE_KEYS)}**',f'- Safe text concurrency: **{safe["text"]}**',f'- Safe image concurrency: **{safe["image"]}**','', '| Service | Concurrency | Success | Failure | Wall time |','|---|---:|---:|---:|---:|']
     for row in rows:summary.append(f"| {row['service']} | {row['concurrency']} | {row['successes']} | {row['failures']} | {row['wall_seconds']}s |")
     (OUT/'latest.md').write_text('\n'.join(summary)+'\n',encoding='utf-8');print('\n'.join(summary));return 0
 
