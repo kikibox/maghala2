@@ -356,6 +356,34 @@ class ArticleQueueTests(unittest.TestCase):
         self.assertIn("_navar_queue_item_id", rollback)
         self.assertNotIn("[[[IMAGE_", body)
 
+    def test_partial_image_roles_survive_failed_rebuild_attempt(self):
+        from concurrent.futures import ThreadPoolExecutor
+        old_out = queue.OUT
+        with tempfile.TemporaryDirectory() as tmp:
+            queue.OUT = Path(tmp)
+            def fake_generate(item, kind):
+                if kind == 2:
+                    raise RuntimeError("role 2 exhausted")
+                name = f"{kind}.webp"
+                image_dir = Path(item["_image_output_dir"])
+                review_dir = Path(item["_image_review_dir"])
+                image_dir.joinpath(name).write_bytes(b"x" * 12000)
+                review_dir.joinpath(f"crop-checkpoint-{kind}.json").write_text(
+                    '{"policy":"%s","approved":true,"attempts":[{"pass":true}]}' % queue.image_quality_gate.REVIEW_POLICY,
+                    encoding="utf-8",
+                )
+                return {"name": name, "sha256": str(kind)}
+            try:
+                with patch.object(queue, "generate_image", side_effect=fake_generate):
+                    with self.assertRaises(RuntimeError):
+                        queue.generate_images_parallel({"id": "crop-checkpoint"})
+                checkpoint = queue.OUT / ".image-role-checkpoints" / "crop-checkpoint"
+                self.assertTrue((checkpoint / "images" / "1.webp").exists())
+                self.assertTrue((checkpoint / "images" / "3.webp").exists())
+                self.assertFalse((queue.OUT / "images" / "1.webp").exists())
+            finally:
+                queue.OUT = old_out
+
 
 if __name__ == "__main__":
     unittest.main()

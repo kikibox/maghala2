@@ -753,8 +753,10 @@ def generate_image(item, kind):
     review_path = reviews_dir / f"{review_id}-{kind}.json"
     image_dir = Path(item.get("_image_output_dir") or (OUT / "images"))
     image_path = image_dir / seo_image_name(item, kind)
+    feedback = ""
     try:
         prior = json.loads(review_path.read_text(encoding="utf-8"))
+        prior_attempts = prior.get("attempts") or []
         if (
             prior.get("policy") == image_quality_gate.REVIEW_POLICY
             and prior.get("approved")
@@ -769,9 +771,12 @@ def generate_image(item, kind):
                 "width": 1200,
                 "height": 675,
             }
+        if prior.get("policy") == image_quality_gate.REVIEW_POLICY and prior_attempts:
+            history = list(prior_attempts[-20:])
+            last = prior_attempts[-1]
+            feedback = str(last.get("correction_prompt") or "; ".join(last.get("reasons") or [])).strip()
     except (OSError, json.JSONDecodeError):
         pass
-    feedback = ""
     for attempt in range(1, image_quality_gate.MAX_IMAGE_ATTEMPTS + 1):
         candidate_item = dict(item)
         if feedback:
@@ -799,7 +804,7 @@ def generate_image(item, kind):
                     "family": image_prompt_policy.product_family(item),
                     "policy": image_quality_gate.REVIEW_POLICY,
                     "approved": bool(verdict.get("pass")),
-                    "attempts": history,
+                    "attempts": history[-20:],
                     "approved_image": result["name"] if verdict.get("pass") else None,
                 },
                 ensure_ascii=False,
@@ -933,11 +938,12 @@ def generate_images_parallel(item, pool=None):
     set_review_path = OUT / "image-reviews" / f"{review_id}-set.json"
     set_history = []
     OUT.mkdir(parents=True, exist_ok=True)
-    staging_root = Path(tempfile.mkdtemp(prefix=f".image-staging-{review_id}-", dir=OUT))
+    staging_root = OUT / ".image-role-checkpoints" / review_id
     staging_images = staging_root / "images"
     staging_reviews = staging_root / "image-reviews"
     staging_images.mkdir(parents=True, exist_ok=True)
     staging_reviews.mkdir(parents=True, exist_ok=True)
+    completed = False
     try:
         max_set_attempts = max(1, int(os.getenv("IMAGE_SET_QA_ATTEMPTS", "4")))
         for set_attempt in range(1, max_set_attempts + 1):
@@ -969,6 +975,7 @@ def generate_images_parallel(item, pool=None):
                     staged_review = staging_reviews / f"{review_id}-{kind}.json"
                     if staged_review.exists():
                         os.replace(staged_review, final_reviews / staged_review.name)
+                completed = True
                 return [results[kind] for kind in range(1, 4)]
             pending = set(verdict.get("duplicate_roles") or (1,2,3))
             correction = str(verdict.get("correction_prompt") or "; ".join(verdict.get("reasons",[])))
@@ -981,7 +988,16 @@ def generate_images_parallel(item, pool=None):
     finally:
         if owns_pool:
             executor.shutdown(wait=True, cancel_futures=False)
-        shutil.rmtree(staging_root, ignore_errors=True)
+        if completed:
+            shutil.rmtree(staging_root, ignore_errors=True)
+        else:
+            # Keep individually approved roles for the next rebuild attempt;
+            # remove only completely empty checkpoints.
+            try:
+                if not any(staging_images.iterdir()) and not any(staging_reviews.iterdir()):
+                    shutil.rmtree(staging_root, ignore_errors=True)
+            except OSError:
+                pass
 
 
 def _produce_item(item, links, image_pool):

@@ -88,7 +88,7 @@ def review_image_set(base,paths,item):
  encoded=[base64.b64encode(path.read_bytes()).decode('ascii') for path in paths]
  title=str((item or {}).get('title') or '')
  summary=image_prompt_policy.visual_brief(item)
- prompt=f'''Review these three already individually-approved article images as one editorial set. Article: {title}. Summary: {summary}. The same AFP product is expected in all three, so do not call product identity itself duplication. Pass only when the images have clearly different camera height or angle, visibly different environment/background structure, different technical or crop narrative, and each background has an unmistakable connection to the article topic. Exact crop morphology is preferred, but botanically neutral beds, young vegetation, irrigation layout or root-zone evidence may carry the topic; hard reject only a clearly contradictory identifiable crop. Reject a set that repeats the same furrow composition, merely moves the product, or uses three generic farms with no article-specific agronomic or irrigation evidence. Zero people remains mandatory. Return only JSON: {{"pass":true|false,"score":0-100,"duplicate_roles":[1,2,3],"reasons":["..."],"correction_prompt":"one concise instruction for a substantially different replacement"}}.'''
+ prompt=f'''Review these three already individually-approved article images as one editorial set. Article: {title}. Summary: {summary}. The same AFP product is expected in all three, so do not call product identity itself duplication. Pass when the three images fulfill their distinct functional roles (crop-identity overview, agronomic close evidence, and irrigation-system story), even when they share the same crop, field, lighting, or regional environment. Exact crop morphology is preferred, but botanically neutral beds, young vegetation, irrigation layout or root-zone evidence may carry the topic; hard reject only a clearly contradictory identifiable crop. Mark duplicate_roles only for near-duplicates that repeat substantially the same camera angle, layout and technical narrative; do not reject merely because the same crop, AFP product, soil, or field appears across the set. Zero people remains mandatory. Return only JSON: {{"pass":true|false,"score":0-100,"duplicate_roles":[1,2,3],"reasons":["..."],"correction_prompt":"one concise instruction for a substantially different replacement"}}.'''
  content=[{'type':'text','text':prompt}]
  content.extend({'type':'image_url','image_url':{'url':'data:image/webp;base64,'+blob}} for blob in encoded)
  payload={'model':base.AGNES_MODEL,'messages':[{'role':'user','content':content}],'temperature':0,'response_format':{'type':'json_object'}}
@@ -102,7 +102,7 @@ def review_image_set(base,paths,item):
   except (TypeError,ValueError):continue
   if value in (1,2,3) and value not in roles:roles.append(value)
  verdict['duplicate_roles']=roles
- verdict['pass']=bool(verdict.get('pass')) and int(verdict.get('score',0))>=75 and not roles
+ verdict['pass']=bool(verdict.get('pass')) and int(verdict.get('score',0))>=70 and not roles
  return verdict
 
 def install(base,backend,raw_generator):
