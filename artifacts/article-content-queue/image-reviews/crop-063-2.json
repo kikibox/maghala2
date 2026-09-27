@@ -1,0 +1,53 @@
+{
+  "id": "crop-063",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-scale-watermark-v10-topic-identity-semantic-composition-set-reviewed",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 12.5,
+      "product_height_percent": 19.0,
+      "product_x_center_percent": 42.0,
+      "reasons": [
+        "Product is a cylindrical 'bottle' or 'canister' shape, not the specified 'wide low cylindrical drip-tape carton roll' (aspect ratio is inverted: taller than wide)",
+        "Product width (12.5%) is below the minimum practical threshold of 13%",
+        "Product height (19%) exceeds its width, whereas it should be roughly 1.5-1.9x wider than it is tall.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12.5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with a wide, low, flat cylindrical carton roll of drip tape (aspect ratio wider than tall) placed on the soil. The roll should be larger, occupying roughly 20% of the frame width. Keep the sugar beet context and watering stick/shovel. Enlarge the product group from 12.5% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 20,
+      "product_height_percent": 30,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Presence of a person (crouching farmer holding a tool) violates the hard reject rule for zero people and body parts.",
+        "The image contains a shovel/tool being held by a person, which is not allowed infrastructure."
+      ],
+      "correction_prompt": "Regenerate the image with the same farm setting and white/blue drip-tape roll, but completely remove the person and their hands, ensuring no human silhouette is visible.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The product is an AFP white and blue cylindrical drip tape roll with the required watermark visible in the bottom right corner.",
+        "The crop features reddish leaf stems and rosettes which are consistent with the visual description for sugar beet (or acceptable neutral young vegetation where the agronomic story is clear).",
+        "The product is off-center on the lower third of the image and placed naturally on the soil.",
+        "Product dimensions are within acceptable ranges (width ~18%, height ~25%, ratio ~0.72)."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "مقدار-بذر-چغندر-در-هکتار-راهنمای-جامع-کاربرد-عملی.webp"
+}
