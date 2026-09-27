@@ -2,41 +2,92 @@
   "id": "crop-007",
   "kind": 3,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v5-full-rerender",
-  "approved": false,
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 25,
-      "product_width_percent": 17,
-      "product_height_percent": 23,
-      "product_x_center_percent": 48,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 14,
+      "product_x_center_percent": 45,
       "reasons": [
-        "Image contains visible human body parts (legs, hands, torso) which is a hard reject requirement",
-        "Product width (approx 17%) is below the required minimum of 20%",
-        "Product height (approx 23%) is relatively high against its width, failing the aspect ratio requirement (diameter should be 1.6-1.8x height)",
-        "Product is centrally located in the lower half rather than being distinctly off-center/secondary as requested",
-        "Extra commercial products present (metal watering can and red valve/pipe equipment) which are not allowed",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 17% to 20-23% of frame width."
+        "Visible crop row (wheat/barley) directly contradicts the required garlic (سیر) context",
+        "Large corn plant in the foreground contradicts the required garlic (سیر) context",
+        "Product width is below the 13-27% acceptable range (estimated ~12%)",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate image with zero visible people or body parts. The AFP drip tape roll must be the only product, occupying 20-23% of frame width with a wide cylindrical aspect ratio (1.7:1 width-to-height). Place the roll off-center in the lower third on soil. Remove all other equipment like watering cans or red valves. Maintain the farm background. Enlarge the product group from 17% to 20-23% of frame width.",
+      "correction_prompt": "Replace the corn plant and wheat row with garlic crop (سیر) context; increase the carton roll size to at least 13% width while maintaining its off-center position in the lower third on soil, and keep the 'AFP | 09134922013' watermark. Enlarge the product group from 12% to 13-27% of frame width.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 25,
-      "product_width_percent": 0,
-      "product_height_percent": 0,
-      "product_x_center_percent": 0,
+      "score": 65,
+      "product_width_percent": 22,
+      "product_height_percent": 25,
+      "product_x_center_percent": 28,
       "reasons": [
-        "Presence of people/farmers in the background (hard reject)",
-        "Product is partially cropped at the bottom of the frame, violating the requirement for a fully visible roll on soil",
-        "Product is not visible enough to accurately estimate bounding box dimensions relative to the frame constraints provided",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 20-23% of frame width."
+        "Crop contradiction: The image clearly shows corn/maize plants in the rows, which directly contradicts the required 'garlic' context. The hard reject rule for clear crop contradiction is triggered here."
       ],
-      "correction_prompt": "Regenerate the image with zero people, workers, or human silhouettes. The product roll must be fully visible, un-cropped, and clearly placed on the soil. Ensure the roll is secondary and off-center on the lower third, without dominating the scene. Enlarge the product group from 0% to 20-23% of frame width.",
+      "correction_prompt": "Replace the corn plants in the field with garlic plants (distinctive long green leaves and white flower stems) to match the garlic topic.",
       "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 15,
+      "product_height_percent": 13,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: A human figure is prominently visible in the center/right of the frame, violating the 'zero people' rule.",
+        "Hard reject: The visible crop (white tulips) clearly contradicts the garlic topic, as the crop morphology is identifiable and inconsistent.",
+        "Product Placement: The product is not placed on the soil in the lower third as required; instead, it is being actively held by the human subject."
+      ],
+      "correction_prompt": "Regenerate the image with no humans or body parts visible. Ensure the crop is garlic or visually neutral soil. Place the AFP white-and-blue wide cylindrical drip-tape roll on the soil in the lower third, with a background matching the garlic topic.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 17,
+      "product_height_percent": 14,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "The image contains two visible human figures (silhouettes) in the background, which is a hard reject under role 3 hardware story requirements.",
+        "The crop shown is not identifiable as garlic, and its presence may violate the topic-specific filter for a hardware close-up story."
+      ],
+      "correction_prompt": "Regenerate the image with no people or human silhouettes in the background; maintain the hardware story context with the drip-tape roll off-center on soil and no identifiable crop.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 23,
+      "product_height_percent": 28,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Person (farmer) visible in the background on the tractor, violating the zero-person hard reject rule.",
+        "Human silhouette is clearly present, which is a mandatory rejection criterion regardless of distance."
+      ],
+      "correction_prompt": "Remove the person from the tractor in the background; keep the tractor unattended or replace the driver with a blurred non-human element to comply with the no-human-body-parts constraint.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 19,
+      "product_height_percent": 25,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Exactly one white and blue wide cylindrical drip-tape carton roll is present and placed on soil in the lower third",
+        "An identifiable garlic bulb (سیر) is present, which does not contradict the crop context",
+        "Unattended tractor in the background is allowed as infrastructure and contains no visible human body parts or silhouette",
+        "Product dimensions (19% width, 25% height) and off-center positioning are within acceptable practical ranges",
+        "The required watermark \"AFP | 09134922013\" is present in the bottom-right corner"
+      ],
+      "correction_prompt": "",
+      "attempt": 6
     }
   ],
-  "approved_image": null
+  "approved_image": "راهنمای-جامع-کاشت-سیر-با-آبیاری-قطرهای-جزئیات-فنی.webp"
 }

@@ -2,38 +2,35 @@
   "id": "crop-007",
   "kind": 1,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v5-full-rerender",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 92,
-      "product_width_percent": 24.7,
-      "product_height_percent": 26.4,
-      "product_x_center_percent": 25.1,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 20,
+      "product_x_center_percent": 34,
       "reasons": [
-        "Background and context are a perfect match, with the visible drip-tape line extending into the crop furrows validating the product and farm setting.",
-        "The image contains zero people, faces, or human silhouettes.",
-        "The watermark in the bottom-right corner is present and intact.",
-        "The roll is wide and relatively flat, with a diameter-to-height ratio (approx. 1.7) that falls strictly within the 1.6 to 1.8 requirement.",
-        "machine-enforced bounding-box check failed: Reduce the product group from 24.7% to 20-23% of frame width."
+        "Product geometry mismatch: The roll's width (22%) is not 1.5 to 1.9 times its height (20%), violating the aspect ratio requirement.",
+        "Missing drip tape texture: The roll is depicted as a generic white canister without visible blue-and-white wide drip tape or cylindrical roll characteristics."
       ],
-      "correction_prompt": "Reduce the product group from 24.7% to 20-23% of frame width.",
+      "correction_prompt": "Regenerate the foreground product as a wide, cylindrical roll of white-and-blue drip tape with visible texture. Ensure the roll's width is approximately 1.5 times its height and the canister shape is removed.",
       "attempt": 1
     },
     {
       "pass": true,
-      "score": 95,
-      "product_width_percent": 20,
-      "product_height_percent": 18,
-      "product_x_center_percent": 24,
+      "score": 80,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 22,
       "reasons": [
-        "Image contains exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll.",
-        "No people, farmers, workers, or human body parts are visible in the image.",
-        "Product is naturally placed on the soil in the lower-left, off-center, in a farm context.",
-        "Product dimensions (width ~20%, height ~18%) and aspect ratio fit the specified requirements.",
-        "Required watermark 'AFP | 09134922013' is clearly visible in the bottom right.",
-        "Background (irrigated farm field) matches the topic and is free of prohibited items."
+        "The AFP white-and-blue drip-tape carton roll is clearly visible and fits the width (13-27%) and height (<32%) constraints.",
+        "The product is off-center and placed naturally on the soil.",
+        "The crop in the image matches the 'garlic' description (narrow flat blue-green leaves in upright clusters) well.",
+        "The background (farm with red barn) is appropriate for a farm context.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "There are zero people or human body parts in the image."
       ],
       "correction_prompt": "",
       "attempt": 2
