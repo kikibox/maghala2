@@ -40,8 +40,9 @@ jobs:
       AGNES_MODEL: ${{ vars.AGNES_MODEL || 'agnes-3.0-flash' }}
       # One run can translate the complete output of a three-article Persian batch,
       # plus one carried-over article after a partial API failure.
-      MAX_ARTICLES: '4'
-      GENERATED_TRANSLATION_BATCH_SIZE: '4'
+      MAX_ARTICLES: '1'
+      GENERATED_TRANSLATION_BATCH_SIZE: '1'
+      MAX_TRANSLATION_BACKLOG_SOURCES: '4'
     steps:
       - uses: actions/checkout@v7
         with:
@@ -73,30 +74,11 @@ jobs:
           if [ "$generated_rc" -ne 0 ]; then
             echo "::warning::Generated translation exited $generated_rc; partial progress and diagnostics will be committed before the job reports failure."
           fi
-      - name: Continue legacy English queue after generated backlog
+      - name: Preserve API capacity for generated article pipeline
         shell: bash
         run: |
-          if [ "${GENERATED_TRANSLATION_RC:-0}" -ne 0 ]; then
-            echo "Generated translation had an error; legacy queue deferred."
-            exit 0
-          fi
-          set +e
-          python automation/translate_generated_articles.py --check-backlog
-          rc=$?
-          set -e
-          if [ "$rc" -eq 0 ]; then
-            set +e
-            python automation/translate_queue.py 2>&1 | tee artifacts/article-content-queue/legacy-translation-run.log
-            legacy_rc=${PIPESTATUS[0]}
-            set -e
-            if [ "$legacy_rc" -ne 0 ]; then
-              echo "::warning::Legacy English queue failed with exit code $legacy_rc; generated multilingual articles remain authoritative and will still be persisted."
-            fi
-          elif [ "$rc" -eq 2 ]; then
-            echo "Generated article translations still pending; legacy English queue deferred."
-          else
-            exit "$rc"
-          fi
+          echo "Legacy WordPress translation queue is deferred while the generated Persian article pipeline is active."
+          echo "This prevents the legacy queue from exhausting the shared Agnes free-tier request quota."
       - name: Build SQL when every language is complete
         shell: bash
         run: |
@@ -137,8 +119,8 @@ jobs:
           git commit -m 'Update multilingual article translations [skip ci]'
           git push origin main
 
-      - name: Resume Persian queue when translations are current
-        if: success() && env.GENERATED_TRANSLATION_RC == '0'
+      - name: Resume Persian queue below bounded translation backlog
+        if: always()
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
@@ -148,10 +130,10 @@ jobs:
           rc=$?
           set -e
           if [ "$rc" -eq 0 ]; then
-            echo "All generated translations are current; dispatching the next Persian article batch."
+            echo "Translation backlog is below the safety threshold; dispatching the next Persian article batch."
             gh workflow run article-content-queue.yml --ref main
           elif [ "$rc" -eq 2 ]; then
-            echo "Translation backlog remains; Persian queue stays paused."
+            echo "Translation backlog reached the safety threshold; Persian queue stays paused."
           else
             exit "$rc"
           fi

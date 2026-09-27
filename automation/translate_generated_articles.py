@@ -21,6 +21,7 @@ STATUS = OUT / "translation-status.json"
 LANGUAGES = ("ar-IQ", "tg-TJ", "en-US")
 PREFIX = {"ar-IQ": "iraq", "tg-TJ": "tj", "en-US": "en"}
 BATCH = max(1, int(os.getenv("GENERATED_TRANSLATION_BATCH_SIZE", "4")))
+MAX_BACKLOG_SOURCES = max(1, int(os.getenv("MAX_TRANSLATION_BACKLOG_SOURCES", "4")))
 
 
 def now() -> str:
@@ -139,7 +140,10 @@ def status_payload():
         "completed_translation_units": sum(row["completed"] for row in per_language.values()),
         "pending_translation_units": sum(row["pending"] for row in per_language.values()),
         "articles_missing_any_translation": backlog_sources,
-        "persian_queue_paused": backlog_sources > 0,
+        # A small translation tail must not starve Persian production. Pause
+        # only when the backlog grows beyond the bounded safety threshold.
+        "persian_queue_paused": backlog_sources >= MAX_BACKLOG_SOURCES,
+        "persian_queue_pause_threshold": MAX_BACKLOG_SOURCES,
         "images": {
             "policy": image_data.get("policy"),
             "completed": bool(image_data.get("completed")),
@@ -168,7 +172,7 @@ def main() -> int:
     initial = status_payload()
     if args.check_backlog:
         print(initial["articles_missing_any_translation"])
-        return 2 if initial["articles_missing_any_translation"] else 0
+        return 2 if initial["persian_queue_paused"] else 0
     if not translator.TOKEN:
         raise RuntimeError("AGNES_API_KEY is empty")
     TRANS.mkdir(parents=True, exist_ok=True);SQL.mkdir(parents=True, exist_ok=True);ROLLBACK.mkdir(parents=True, exist_ok=True)

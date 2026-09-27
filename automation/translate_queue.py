@@ -30,13 +30,27 @@ def request_json(url,payload=None,authenticated=False):
     headers={'Accept':'application/json','User-Agent':'navar-abyari-actions'}
     if payload is not None: headers['Content-Type']='application/json'
     if authenticated: headers['Authorization']=f'Bearer {TOKEN}'
-    req=urllib.request.Request(url,data=data,headers=headers)
-    try:
-        with urllib.request.urlopen(req,timeout=240) as response: return json.load(response)
-    except urllib.error.HTTPError as exc:
-        detail=exc.read().decode('utf-8','replace')
-        print(f'HTTP {exc.code} on {url}: {detail}',flush=True)
-        raise
+    attempts=3 if authenticated else 1
+    last=None
+    for attempt in range(1,attempts+1):
+        req=urllib.request.Request(url,data=data,headers=headers)
+        try:
+            with urllib.request.urlopen(req,timeout=240) as response:return json.load(response)
+        except urllib.error.HTTPError as exc:
+            detail=exc.read().decode('utf-8','replace');last=exc
+            print(f'HTTP {exc.code} on {url}: {detail}',flush=True)
+            if exc.code not in (408,429,500,502,503,504) or attempt>=attempts:raise
+            retry_after=exc.headers.get('Retry-After') if exc.headers else None
+            delay=int(retry_after) if retry_after and retry_after.isdigit() else 45*attempt
+            print(f'API backoff {delay}s before retry {attempt+1}/{attempts}',flush=True)
+            time.sleep(min(180,delay))
+        except (TimeoutError,urllib.error.URLError,ConnectionError,OSError) as exc:
+            last=exc
+            if attempt>=attempts:raise
+            delay=20*attempt
+            print(f'API transport retry {attempt+1}/{attempts} after {delay}s: {type(exc).__name__}',flush=True)
+            time.sleep(delay)
+    raise RuntimeError(f'API request failed after {attempts} attempts: {last}')
 
 def fetch_source(post_id):
     data=request_json(f'https://navar-abyari.ir/wp-json/wp/v2/posts/{post_id}')
@@ -147,7 +161,7 @@ def translate_html(source_html,lang):
     batch=[]; chars=0
     for item in parser.items:
         n=len(item['text'])
-        if batch and (len(batch)>=18 or chars+n>3500):
+        if batch and (len(batch)>=8 or chars+n>1600):
             translated.update(translate_segment_batch(batch,lang)); batch=[]; chars=0
         batch.append(item); chars+=n
     if batch: translated.update(translate_segment_batch(batch,lang))
