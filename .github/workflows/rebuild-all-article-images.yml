@@ -11,7 +11,9 @@ on:
       - 'automation/image_quality_gate.py'
       - 'automation/assets/**'
   schedule:
-    - cron: '*/15 * * * *'
+    # Shared pipeline lock: run once per hour in a dedicated window so newer
+    # translation/article schedules cannot replace this pending run.
+    - cron: '5 * * * *'
 
 permissions:
   contents: write

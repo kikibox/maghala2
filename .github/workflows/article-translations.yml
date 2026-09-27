@@ -13,7 +13,8 @@ on:
       - 'sqlbuild/build_patch.py'
       - 'data/source_ids.txt'
   schedule:
-    - cron: '7,37 * * * *'
+    # Hourly serialized window, after image rebuild and before article queue.
+    - cron: '20 * * * *'
 
 permissions:
   contents: write

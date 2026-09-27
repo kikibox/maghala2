@@ -15,9 +15,10 @@ on:
       - 'automation/compress_article_images.py'
       - 'tests/test_article_content_queue.py'
   schedule:
-    # One article normally needs 15–22 minutes. A 30-minute cadence avoids
-    # building a queue of overlapping scheduled runs.
-    - cron: '*/30 * * * *'
+    # Rebuild runs at :05 and translation at :20. Start generation at :35 so
+    # the shared concurrency group never replaces another workflow's pending
+    # run. One article normally needs 15–22 minutes.
+    - cron: '35 * * * *'
 
 permissions:
   contents: write
