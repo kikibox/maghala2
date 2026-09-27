@@ -1,0 +1,92 @@
+{
+  "id": "crop-094",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "The crop shown in the center of the image has prominent palmate leaves (shaped like a hand), which is characteristic of crops like hibiscus or cotton, not the trifoliate leaves (three distinct leaflets) of mung beans (ماش).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image replacing the central palmate plant with a mung bean seedling featuring distinct trifoliate leaves (three small leaflets on one stem), and a thin white drip tape running along the soil row without a roll, keeping the soil context and lighting consistent. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 16,
+      "product_height_percent": 15,
+      "product_x_center_percent": 23,
+      "reasons": [
+        "The required bottom-right watermark is incorrect; it reads 'AFP | 09134922013' instead of the mandatory 'AFP | 091349220131'.",
+        "Product is missing the required 'white-and-blue' colorway; it features black markings and lacks blue branding.",
+        "Product geometry is invalid; the roll appears as a short block where the diameter is not 1.5 to 1.9 times its visible height (aspect ratio approx 1.06).",
+        "The crop is not clearly recognizable as mung bean (ماش), appearing instead as a generic unidentifiable dicot seedling, which fails the article-specific requirements."
+      ],
+      "correction_prompt": "Remove all people and silhouettes. Update the bottom-right watermark to exactly 'AFP | 091349220131'. Render a single off-center white-and-blue drip-tape roll in the lower-left on soil with a diameter-to-height ratio of 1.5 to 1.9. Display clear mung bean plants (compact legumes with trifoliate leaves and slender dark pods) to ensure article-specific recognition.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 15,
+      "product_x_center_percent": 20,
+      "reasons": [
+        "Contains a clearly visible person (farmer), which is a hard reject requirement."
+      ],
+      "correction_prompt": "Remove all human figures and body parts from the scene; keep the AFP drip-tape roll and mung bean context.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 20,
+      "product_height_percent": 26,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product ratio: The roll's width is not sufficiently larger than its height. The rules require the diameter to be 1.5 to 1.9 times the height, but here the ratio is closer to 0.8 (20/26), making the roll appear too short or squashed rather than cylindrical."
+      ],
+      "correction_prompt": "Increase the height of the drip tape roll so its diameter is 1.5 to 1.9 times its height, maintaining the correct proportions while keeping the current position and size relative to the frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 24.0,
+      "product_height_percent": 20.0,
+      "product_x_center_percent": 32.0,
+      "reasons": [
+        "The visible geometry of the product is incorrect; the drip-tape roll appears as a short, tall cylinder (aspect ratio ~1.2:1) rather than the required 'wide low cylindrical' shape (diameter ~1.5-1.9 times height). This makes the geometry 'impossible' for the specified product.",
+        "The crop morphology does not clearly match mung bean (میش); while trifoliate leaves are visible, the dense rows and specific leaf structure are not definitively 'compact legumes' and could be misidentified as a different species."
+      ],
+      "correction_prompt": "Regenerate the drip-tape roll to be visually wide and low (diameter at least 1.5x height) with a flatter profile. Ensure the crop foliage clearly shows compact mung bean morphology with trifoliate leaves and slender pods if mature. Maintain the roll off-center on the lower third.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 19,
+      "product_height_percent": 23,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Product width (19%) and height (23%) are well within the 13-27% and <32% acceptability ranges.",
+        "Product is positioned off-center in the lower third and is placed naturally on soil.",
+        "Contains the required watermark 'AFP | 09134922013' in the bottom right corner.",
+        "No people, body parts, or extra commercial products (like bottles or cans) are present.",
+        "Drip line/irrigation layout is visible, supporting the product's function.",
+        "Vegetation is generic and not clearly identifiable as a conflicting mature crop species, allowing it to pass for the mung bean article context."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "نگهداری-ماش-با-نوار-تیپ-نکات-کلیدی-کاربرد-عملی.webp"
+}
