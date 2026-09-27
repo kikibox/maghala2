@@ -1,16 +1,21 @@
 {
   "id": "crop-003",
-  "policy": "strict-no-human-scale-watermark-v8-role-isolated-set-reviewed",
+  "policy": "strict-no-human-scale-watermark-v10-topic-identity-semantic-composition-set-reviewed",
   "history": [
     {
       "pass": false,
-      "score": 45,
-      "duplicate_roles": [],
-      "reasons": [
-        "The three images fail to visualize the specific crop (sesame) required by the article. Images 2 and 3 feature maize/corn seedlings and bare soil, which creates a disconnect between the economic analysis for sesame and the visual assets.",
-        "The composition repeats the same 'furrow field plus product' template across all three images without changing the camera angle (all are low-angle, ground-level) or the background structure, effectively violating the rule against repeating the same composition merely moving the product context."
+      "score": 35,
+      "duplicate_roles": [
+        1,
+        2,
+        3
       ],
-      "correction_prompt": "Regenerate the set with distinct visual narratives: 1) A macro shot of a white sesame seed and the AFP tape within a furrow; 2) A medium shot of mature green sesame plants with visible leaves; 3) A high-angle shot of the field showing the drip tape layout on a dry plot, ensuring no generic corn or bare-field shots are used.",
+      "reasons": [
+        "The set repeats the same visual theme of a generic field with the product, failing to capture the specific cost or economic angle mentioned in the article title.",
+        "Image 3 includes a tractor, which directly contradicts the mandatory 'zero people/machinery narrative' style preference for a focused product/crop shot, and the crop shown (small leafy plant) is indistinct compared to the clear crops in images 1 and 2.",
+        "None of the images visually differentiate the 'drip tape' aspect in a technical way; they are all just product roll + generic green plants/soil, resulting in high compositional similarity across the set."
+      ],
+      "correction_prompt": "Generate a close-up technical diagram-style shot showing the specific layout of drip tape lines on the soil, without a background tractor, focusing strictly on the irrigation infrastructure to differentiate it from the standard 'product roll in field' shots.",
       "set_attempt": 1
     }
   ]
