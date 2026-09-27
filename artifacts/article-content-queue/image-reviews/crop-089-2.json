@@ -1,0 +1,56 @@
+{
+  "id": "crop-089",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 11,
+      "product_height_percent": 16,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Presence of two human subjects (farmers) in the frame violates the zero people rule.",
+        "Hard reject: The subject with the camera is holding a camera, which is not allowed; only irrigation hardware is permitted in the background.",
+        "Product Proportion: The drip-tape roll is too small (width 11% and height 16%) relative to the requested 20-23% width. It is also very short/stubby rather than the preferred wide, low cylindrical shape.",
+        "Geometry: The roll's aspect ratio is roughly 1:1 (width:height) rather than the required 1.5-1.9 times wider than it is tall.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with zero people and no human silhouettes. Place a wide, low cylindrical white-and-blue AFP drip-tape roll on the soil. The roll must be larger (approx 20% frame width), positioned off-center on the lower third. Ensure the roll is visibly wide and low (diameter approx 1.5-1.9x its height). Keep the background as a tritical farm field with unattended irrigation infrastructure. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 22,
+      "product_height_percent": 22,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: image contains a clearly visible full-body person (farmer/worker) standing in the field. The requirements explicitly state 'zero people' and 'zero human body parts'.",
+        "Product aspect ratio is approximately square (22% width vs 22% height), failing the requirement of being 1.5 to 1.9 times wider than it is tall (cylindrical drip-tape carton)."
+      ],
+      "correction_prompt": "Remove the human figure entirely. Change the product container to a wide cylindrical shape where the width is approximately 1.5 to 1.9 times the height. Keep the triticale crop context and the bottom-right watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 21,
+      "product_height_percent": 30,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Product is a white-and-blue cylindrical carton roll with AFP branding, matching the required 'wide low' geometry.",
+        "Placement is in the lower-left (off-center), consistent with the lower-third framing rule.",
+        "Height (30%) is within the limit of no more than 32%; width (21%) falls within the preferred 20-23% range.",
+        "No people, human body parts, or silhouettes are present in the image.",
+        "Watermark 'AFP | 09134922013' is visible in the bottom-right corner as required.",
+        "Crop is a young cereal (triticale is a cross between wheat and rye), which is botanically neutral early-stage vegetation that matches the context without hard reject features."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-تریتیکاله-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

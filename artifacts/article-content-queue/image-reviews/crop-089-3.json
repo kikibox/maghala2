@@ -1,0 +1,73 @@
+{
+  "id": "crop-089",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 10,
+      "product_height_percent": 16,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Contains a person (male farmer crouching next to the roll).",
+        "Visible human body parts (face, hands, arms, legs, boots) are present.",
+        "Product is not a wide low cylindrical roll but appears as a narrower vertical cylinder held/placed near the person.",
+        "Product staging is influenced by the person rather than being independently placed on soil in the lower third off-center.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image showing exactly one wide, low-cylindrical drip-tape roll placed naturally on soil in the lower-third (right or left), with NO people, NO human body parts, and no farm workers visible. Include the triticale crop context (young cereal-like rows) in the background. Product should be wide (13-27% of frame width), low (<=32% height), and off-center. Include the required watermark 'AFP | 09134922013' at the bottom right. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 26,
+      "product_height_percent": 40,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product height exceeds the maximum limit of 32% (estimated at 40%).",
+        "Product width is at the upper limit of 27% (estimated at 26%).",
+        "Product x-center is approximately 50%, which violates the requirement for an off-center position on the lower third.",
+        "machine-enforced bounding-box check failed: Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with the drip-tape roll appearing significantly smaller (under 15% of frame height) and positioned distinctly off-center in the lower third of the frame (x-center < 40% or > 60%). Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 6,
+      "product_height_percent": 12,
+      "product_x_center_percent": 39,
+      "reasons": [
+        "Hard reject: The image contains a person (farmer) which is explicitly forbidden.",
+        "Hard reject: The product roll is upright (cylindrical stand) rather than lying flat on the soil as a wide, low roll.",
+        "Product size: The roll's visible height (12%) is greater than its width (6%), failing the 'diameter should be 1.5 to 1.9 times height' geometry check.",
+        "Product size: The roll is smaller than the minimum acceptable width threshold (13%).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person/farmer completely. Place a wide, low, flat-lying drip-tape roll on the soil in the lower third of the frame, making it much larger so it occupies approximately 20% of the frame width. The roll should look like a short, wide disc (laid flat) or cylinder, not a tall standing cup. Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 72,
+      "product_width_percent": 17,
+      "product_height_percent": 26,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Product is positioned in the lower third of the frame on soil.",
+        "Product is off-center (x-center at 49%).",
+        "Zero people or human body parts visible.",
+        "Background infrastructure (tractor) is present without human operators, matching hardware context.",
+        "Watermark is present and correct."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-تریتیکاله-با-آبیاری-قطرهای-جزئیات-فنی.webp"
+}

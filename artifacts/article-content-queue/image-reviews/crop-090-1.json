@@ -1,0 +1,41 @@
+{
+  "id": "crop-090",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 30,
+      "product_height_percent": 28,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The drip tape roll is centered horizontally and vertically, violating the 'off-center on the lower third' requirement.",
+        "The product bounding box is too wide (~30%), exceeding the preferred 20-23% and the maximum practical 27% threshold.",
+        "The product is placed at a significant distance from the foreground (center frame) rather than being prominently positioned in the lower third.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reposition the AFP drip tape roll so it is strictly off-center (e.g., left third or right third) and placed within the bottom quarter of the frame. Reduce the roll's scale to be approximately 20% of the frame width. Ensure the roll appears naturally integrated on the soil in the immediate foreground. Reduce the product group from 30% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 16,
+      "product_height_percent": 24,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The required AFP white-and-blue cylindrical drip-tape roll is clearly visible on the soil in the foreground.",
+        "The image geometry is correct: the product is off-center to the left (lower third), has a wide cylindrical shape (wider than it is tall), and its dimensions (~16% width, ~24% height) are within acceptable limits.",
+        "The background shows a farm context with rows of young, botanically neutral seedlings, which allows for a clear irrigation layout story without violating the 'hard reject' rule on identifiable species.",
+        "Zero people or human body parts are visible.",
+        "The exact bottom-right watermark 'AFP | 09134922013' is present as required."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "مقدار-بذر-کینوا-در-هکتار-راهنمای-جامع-تصویر-شاخص.webp"
+}

@@ -1,0 +1,54 @@
+{
+  "id": "crop-091",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 72,
+      "product_width_percent": 21,
+      "product_height_percent": 17,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Unattended tractor and irrigation hardware (filters, gauges, manifolds, connectors, drip tape coil) are visible in the frame, violating the strict zero-extra-commercial-product and zero-irrigation-hardware rule.",
+        "The product is not on the lower third; it is positioned in the bottom-center to bottom-left, failing the 'off-center on the lower third' and 'naturally placed on soil' placement constraints."
+      ],
+      "correction_prompt": "Remove all background irrigation hardware (tractor, filters, gauges, manifolds, coiled drip tape, and the small cylindrical filters). Reposition the AFP white-and-blue roll to be off-center in the lower third of the frame, naturally resting directly on the soil. Ensure the crop remains absent or visually neutral without contradicting triticale, and keep the exact 'AFP | 09134922013' watermark in the bottom-right corner.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 58,
+      "product_width_percent": 23,
+      "product_height_percent": 34,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Product height exceeds the 32% maximum limit, estimated at roughly 34% of the frame.",
+        "The visible aspect ratio (width to height) is approximately 1.3, which is below the required 1.5 to 1.9 range for a low cylindrical roll.",
+        "The product is placed at the center of the frame rather than being off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image ensuring the drip-tape roll is a low wide cylinder (width ~2.0x its height) occupying roughly 25% width and 15% height of the frame. The roll should be placed off-center (left or right) on the soil in the lower third. Maintain the unattended red tractor in the background and the required bottom-right watermark. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 21.0,
+      "product_height_percent": 26.0,
+      "product_x_center_percent": 31.0,
+      "reasons": [
+        "Product is the correct type (wide low cylindrical drip-tape roll) with AFP branding",
+        "Tractor in background is unattended (driver seat appears empty) and acts as permitted hardware context",
+        "Product is off-center on the lower third and placed on soil",
+        "Watermark is present and correct",
+        "Dimensions are within the acceptable range"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "هزینه-کشت-تریتیکاله-با-نوار-تیپ-در-هکتار-جزئیات-فنی.webp"
+}

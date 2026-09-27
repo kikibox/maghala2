@@ -1,0 +1,70 @@
+{
+  "id": "crop-089",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 10,
+      "product_height_percent": 12,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: The image contains a person (man kneeling in a field), which violates the 'zero people' requirement.",
+        "Hard reject: The product roll is not 'wide low cylindrical' (it is a standard tall roll) and is not 'off-center on the lower third' (it is centered at the bottom edge).",
+        "Hard reject: The crop in the background is a harvested cereal stubble (wheat or barley), not recognizable as Triticale (triticale) at a growth stage or with specific agronomic context.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image without any people, showing a wide low cylindrical drip-tape roll off-center on soil, surrounded by Triticale (triticale) growth. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 17,
+      "product_height_percent": 23,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product roll is clearly centered horizontally and vertically, which is explicitly prohibited; it must be off-center on the lower third.",
+        "The crop visible in the rows does not clearly match the required article crop (triticale) morphology, lacking recognizable leaf/blade or tillering characteristics of wheat or barley relative cultivars."
+      ],
+      "correction_prompt": "Shift the drip-tape roll to the lower-left third of the frame so it is not centered; replace the generic green seedling crop with clearly visible early-stage triticale (wheat-like small wheat blade leaves) on the same soil bed and irrigation layout. Keep the 'AFP | 09134922013' watermark in the bottom-right corner and keep the farm backdrop.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 7,
+      "product_height_percent": 12,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Presence of a person (hard reject)",
+        "Product size is significantly smaller than the required 13-27% width and 32% height limits",
+        "Product is not the wide low cylindrical carton roll requested, it is a small canister/jar",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person/farmer. Replace the small canister with a wide low cylindrical drip-tape roll (white and blue) sized to about 20% of the frame width. Place the roll off-center on the soil. Keep the triticale farm background. Enlarge the product group from 7% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is a single AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "The crop context (triticale) is represented by young seedlings, which is acceptable for an early growth stage.",
+        "Product width and height are within acceptable limits.",
+        "The product is placed naturally on the soil and is off-center on the lower third.",
+        "Contains the required AFP watermark and zero people.",
+        "Background fits a farm context with young crop rows."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-تریتیکاله-با-آبیاری-قطرهای-تصویر-شاخص.webp"
+}

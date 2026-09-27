@@ -3,7 +3,7 @@
   "kind": 3,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
@@ -43,7 +43,39 @@
       ],
       "correction_prompt": "Retry strict visual review of the preserved candidate without regenerating it.",
       "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 12,
+      "product_height_percent": 20,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Contains a visible person (farmer crouching).",
+        "Human body parts (hands, arms, legs, face) are visible; hard reject condition met.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the human figure and body parts completely, leaving the drip-tape roll placed naturally on the soil in the background. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": "checkpoint-review"
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 22,
+      "product_height_percent": 31,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Product is a wide low cylindrical drip-tape roll, white and blue, matching the required style.",
+        "Product is off-center on the lower third and naturally placed on soil.",
+        "Visible diameter is approximately 1.5 times the visible height.",
+        "Identifiable crop (basil) does not contradict the topic.",
+        "No people or human body parts are visible.",
+        "Required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "Background (farm field with barn) matches the farm context."
+      ],
+      "correction_prompt": "",
+      "attempt": 1
     }
   ],
-  "approved_image": null
+  "approved_image": "میزان-برداشت-ریحان-در-هکتار-با-نوار-تیپ-جزئیات-فنی.webp"
 }
