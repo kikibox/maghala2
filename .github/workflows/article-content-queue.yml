@@ -14,11 +14,10 @@ on:
       - 'automation/agnes_json_client.py'
       - 'automation/compress_article_images.py'
       - 'tests/test_article_content_queue.py'
-  schedule:
-    # Rebuild runs at :05 and translation at :20. Start generation at :35 so
-    # the shared concurrency group never replaces another workflow's pending
-    # run. One article normally needs 15–22 minutes.
-    - cron: '35 * * * *'
+  # No independent schedule here. The translation workflow dispatches this
+  # queue only after all generated-language backlogs are current. This avoids
+  # GitHub replacing the pending translation run while a long image rebuild
+  # owns the shared article-content-pipeline concurrency lock.
 
 permissions:
   contents: write
@@ -27,8 +26,8 @@ concurrency:
   # A skipped queue run must not acquire the production-pipeline lock first
   # and cancel the dedicated image proof triggered by the same commit.
   group: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[image-rebuild]') && 'article-content-pipeline-image-rebuild-skip' || 'article-content-pipeline' }}
-  # Serialize scheduled article, translation, and rebuild work without
-  # destroying a long-running strict image proof halfway through.
+  # Serialize dispatched article generation with translation and rebuild work
+  # without allowing a second scheduled request to replace the pending translator.
   cancel-in-progress: false
 
 env:
