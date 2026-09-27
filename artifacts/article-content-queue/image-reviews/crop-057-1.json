@@ -1,0 +1,87 @@
+{
+  "id": "crop-057",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-scale-watermark-v10-topic-identity-semantic-composition-set-reviewed",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 13,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Presence of a person (farmer) in the image, which is a hard reject criterion.",
+        "Human body parts (hands, face, limbs) are visible, violating the zero-people rule.",
+        "The product (white container) is a cylindrical canister, not a wide low drip-tape carton roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any people or human silhouettes. Replace the cylindrical canister with a wide, low, cylindrical white-and-blue drip-tape carton roll (AFP branding). Place the roll off-center in the lower third of the frame on soil, ensuring the roll's diameter is approximately 1.5-1.9 times its height. Maintain the background farm context. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 33,
+      "product_height_percent": 45,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Product dimensions are significantly too large; height is approx. 45% of the frame (must be ≤32%) and width is approx. 33% (must be ≤27%).",
+        "Product is centered horizontally; it should be off-center on the lower third.",
+        "The text on the carton (e.g., 'DHY', 'mzmom', 'twm') is gibberish/invented writing, which is a hard reject criterion.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 33% to 13-27% of frame width.; Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with the product significantly smaller (width <27%, height <32%) and positioned off-center on the lower third. Remove gibberish text on the packaging. Reduce the product group from 33% to 13-27% of frame width. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 2,
+      "product_height_percent": 5,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: Presence of a person (woman crouching).",
+        "Hard reject: The required product (white-and-blue wide low cylindrical drip-tape carton roll) is not present in the scene; the subject is holding a tool post with a small canister.",
+        "Product size: The object of interest is far smaller than the minimum 13% width requirement.",
+        "Composition: The scene is dominated by a human figure, which is a prohibited element.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 2% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with zero people or human parts. Place a large white-and-blue cylindrical drip-tape roll (20% width, <32% height) on the soil in the lower third, off-center. Use a date farm background with young date palms and visible irrigation lines. Enlarge the product group from 2% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 32,
+      "product_height_percent": 28,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The product bounding box indicates the roll width is approximately 32% of the frame, which exceeds the hard rejection limit of 27%.",
+        "The required botanically neutral or exact-crop morphology condition is not met, as the background clearly shows mature olive trees instead of the specific crop required for an AFP white-and-blue wide low cylindrical drip-tape carton roll context.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the AFP roll width reduced to 20-23% of frame width, placed in a lower-third off-center position on bare soil. Remove mature trees; use a botanically neutral or matching crop context. Keep the 'AFP | 09134922013' watermark in the bottom right. Reduce the product group from 32% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 19,
+      "product_height_percent": 26,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Product is a single white-and-blue AFP drip-tape carton roll, matching the required brand and geometry.",
+        "The roll is placed on the soil off-center in the lower third of the frame.",
+        "The product dimensions are within acceptable limits (width < 27%, height < 32%).",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and clearly visible.",
+        "No people or human body parts are visible in the image.",
+        "The background depicts a farm field with young seedlings, providing an agronomic context without identifying a conflicting species."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "هزینه-کشت-بادمجان-با-نوار-تیپ-در-هکتار-تصویر-شاخص.webp"
+}

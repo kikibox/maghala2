@@ -1,0 +1,72 @@
+{
+  "id": "crop-057",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-scale-watermark-v10-topic-identity-semantic-composition-set-reviewed",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 6,
+      "product_height_percent": 10,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer/worker) in the image.",
+        "Hard reject: Presence of human body parts (face, arms, legs, hands).",
+        "The product (drip tape roll) is not the primary subject and is being held by a person.",
+        "The product is not placed naturally on the soil as required.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Place exactly one wide, low, cylindrical drip-tape carton roll on the soil at the base of the tree. The roll must be clearly visible, occupying about 20% of the frame width, and must not be held by anyone. Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 14,
+      "product_height_percent": 24,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The specified product must be a 'drip-tape carton roll' (a cylindrical carton roll), but the image shows a roll of flat plastic drip tape. A tape roll cannot match the 'cylindrical carton' geometry.",
+        "The image lacks the required 'exact named crop from the article title' morphological evidence; while it shows 'Olive' farm context, the focus on the drip tape roll conflicts with the specific 'carton' requirement.",
+        "Height percentage (24%) is acceptable but the aspect ratio is not consistent with a cylindrical carton roll (which would typically be taller relative to width if upright, or flatter if lying down)."
+      ],
+      "correction_prompt": "Replace the flat drip tape roll with a cylindrical white and blue drip-tape carton roll (product packaging). Ensure the carton has the dimensions of a large spool or industrial cylinder, placed on the soil near the olive tree base. Maintain the olive orchard background and the bottom-right AFP watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 22,
+      "product_height_percent": 20,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Image contains a person (farmer/worker), which is a hard reject criterion.",
+        "Human body parts (hands, arms, legs, face) are visible touching the product and interacting with the environment.",
+        "Violates the requirement for zero people and zero human body parts in the frame."
+      ],
+      "correction_prompt": "Regenerate the image showing only the AFP drip-tape carton roll placed on the ground in an orchard setting. Completely remove the man, the kneeling figure, and all visible human body parts. Ensure the camera angle is low and the background consists of trees and soil without any human presence.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 22.1,
+      "product_height_percent": 28.6,
+      "product_x_center_percent": 46.5,
+      "reasons": [
+        "The image correctly displays exactly one wide, low, cylindrical carton roll of drip tape.",
+        "The product is white and blue, matching the visual description.",
+        "The roll is placed naturally on the soil off-center in the lower half of the frame.",
+        "The background matches the topic with visible tree rows (likely olive orchards) and small seedlings/irrigation points.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom right.",
+        "There are no people, human body parts, or prohibited items like buckets or extra packaging.",
+        "Product proportions (diameter vs height) are consistent with a wide drip tape roll."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "هزینه-کشت-بادمجان-با-نوار-تیپ-در-هکتار-کاربرد-عملی.webp"
+}
