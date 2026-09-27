@@ -2,68 +2,26 @@
   "id": "crop-004",
   "kind": 3,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v8-role-isolated-set-reviewed",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
-      "pass": false,
-      "score": 30,
-      "product_width_percent": 21,
-      "product_height_percent": 24,
-      "product_x_center_percent": 46,
-      "reasons": [
-        "Presence of a person (farmer) in the background. Hard reject rule: Hard reject any person, farmer, worker, face, hand, arm, leg, body part or human silhouette, even distant."
-      ],
-      "correction_prompt": "Remove the person in the background. Regenerate the image with only unattended farm equipment and the single AFP white-and-blue drip-tape roll placed on the soil in the farm context.",
-      "attempt": 1
-    },
-    {
-      "pass": false,
-      "score": 45,
-      "product_width_percent": 21,
-      "product_height_percent": 32,
-      "product_x_center_percent": 35,
-      "reasons": [
-        "The 'wide low cylindrical' shape constraint is not met; the roll appears relatively tall rather than wide and low.",
-        "The height of the product (approx 32%) exceeds the limit of 28% of frame height.",
-        "The aspect ratio (diameter/height) does not meet the 1.6-1.8x requirement; it appears more vertically aligned (height > diameter).",
-        "machine-enforced bounding-box check failed: Reduce product height from 32% to at most 28% of frame height."
-      ],
-      "correction_prompt": "Regenerate the image with a 'wide low cylindrical' drip-tape roll that is significantly wider than it is tall (aspect ratio ~1.7:1) and fits within 20-22% width and under 28% height of the frame. Reduce product height from 32% to at most 28% of frame height.",
-      "attempt": 2
-    },
-    {
-      "pass": false,
-      "score": 15,
-      "product_width_percent": 18.5,
-      "product_height_percent": 33.5,
-      "product_x_center_percent": 22,
-      "reasons": [
-        "Hard reject: Human silhouettes are visible in the background on the far left.",
-        "Hard reject: A human driver figure is visible on the tractor in the background.",
-        "Product height violation: The product roll is approximately 33% of the frame height, exceeding the maximum limit of 28%.",
-        "Product width violation: The product roll is approximately 18.5% of the frame width, falling below the minimum limit of 20%.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 18.5% to 20-23% of frame width.; Reduce product height from 33.5% to at most 28% of frame height."
-      ],
-      "correction_prompt": "Regenerate to strictly remove all people and human silhouettes from the background, including the tractor driver and figures on the left. Adjust the drip-tape roll dimensions to be wider (occupying 20-23% of frame width) and shorter (occupying less than 28% of frame height) while maintaining the required diameter-to-height ratio. Enlarge the product group from 18.5% to 20-23% of frame width. Reduce product height from 33.5% to at most 28% of frame height.",
-      "attempt": 3
-    },
-    {
       "pass": true,
-      "score": 95,
+      "score": 82,
       "product_width_percent": 22,
-      "product_height_percent": 21,
-      "product_x_center_percent": 32,
+      "product_height_percent": 20,
+      "product_x_center_percent": 36,
       "reasons": [
-        "Product dimensions are within the specified bounds (width ~22%, height ~21%).",
-        "The roll is off-center and placed on the lower third of the frame.",
-        "Zero people or human body parts are visible in the image.",
-        "The bottom-right watermark 'AFP | 09134922013' is present and legible.",
-        "The background (farm field with tractor and barn) is consistent with the context.",
-        "The package appears to be a standard carton roll of drip tape, not a prohibited object like a canister or bottle."
+        "Contains exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product geometry is correct with a wide, low profile (aspect ratio ~1.1), and the visible drip pipe extending naturally.",
+        "Product is properly off-center in the lower third and naturally placed on the soil.",
+        "Product dimensions are within the acceptable range (width ~22%, height ~20%).",
+        "Background context strongly matches the cantaloupe (طالبی) topic, showing a developing melon on the vine.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom right corner.",
+        "Zero people or human body parts visible."
       ],
       "correction_prompt": "",
-      "attempt": 4
+      "attempt": 1
     }
   ],
   "approved_image": "آفات-و-بیماریهای-طالبی-با-آبیاری-قطرهای-جزئیات-فنی.webp"

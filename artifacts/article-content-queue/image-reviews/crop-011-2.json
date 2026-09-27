@@ -1,0 +1,53 @@
+{
+  "id": "crop-011",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "reasons": [
+        "visual reviewer unavailable: TimeoutError"
+      ],
+      "correction_prompt": "Regenerate a clean candidate and retry strict visual review.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 13,
+      "product_height_percent": 15,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The image contains a person (a man), which is a hard reject according to the constraints requiring zero people or human body parts.",
+        "The drip-tape roll is being held by the person, violating the requirement that it must be 'naturally placed on soil'.",
+        "The roll is not on the lower third of the image but rather centered vertically.",
+        "The roll is not off-center to the left or right but is positioned centrally relative to the subject."
+      ],
+      "correction_prompt": "Remove the person entirely. Place a single wide, low, cylindrical white-and-blue AFP drip-tape roll on the soil on the right side of the lower third of the frame. The background must remain a wheat field with mature wheat heads.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 21,
+      "product_height_percent": 18,
+      "product_x_center_percent": 61,
+      "reasons": [
+        "Product is a single white-and-blue AFP drip-tape roll placed naturally on the soil.",
+        "Background clearly shows a mature wheat field, matching the 'wheat' article crop requirement (compact heads visible).",
+        "Product dimensions are within acceptable limits: width is ~21% (secondary) and height is ~18% (< 32% limit).",
+        "Diameter-to-height ratio is ~1.17 (21/18), which is slightly on the small side (cylinders typically 1.5-1.9) but consistent with the specific 'wide low' carton shape described.",
+        "Product is off-center in the lower third of the frame.",
+        "Zero people or human body parts visible.",
+        "Required 'AFP | 09134922013' watermark is present and legible in the bottom-right corner.",
+        "No forbidden containers, second rolls, or fake text found."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-گندم-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

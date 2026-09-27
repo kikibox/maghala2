@@ -1,0 +1,71 @@
+{
+  "id": "crop-044",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Image contains two people (a man and a woman) and multiple visible body parts (faces, arms, hands, legs).",
+        "The drip tape roll is held by a person, which is a hard reject scenario.",
+        "The product is not independently placed on the soil as required.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image showing only a white-and-blue AFP drip tape roll resting on the soil in a farm field. Include a hardware context like a manifold or pressure gauge. Ensure zero people, zero hands, and no human silhouettes are visible in the entire frame. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 30,
+      "product_height_percent": 26,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Human presence: An adult female farmer is clearly visible in the right foreground, violating the zero-person and zero-body-part hard reject rule.",
+        "Product width: The drip tape roll is excessively wide, spanning roughly 30% of the frame width, which exceeds the 27% maximum limit for a secondary product placement.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate without any people or human silhouettes; reduce the drip tape roll width to under 27% of the frame and place it off-center on the lower third of the image. Reduce the product group from 30% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: Two prominent human figures are present in the foreground, clearly touching and interacting with the product.",
+        "Hard reject: Human faces, hands, arms, legs, and boots are clearly visible.",
+        "The product geometry is incorrect; it resembles a short pail, jar, or canister rather than a wide, flat drip-tape carton roll.",
+        "The presence of humans violates the 'zero people' and 'zero body parts' constraint for this specific image role."
+      ],
+      "correction_prompt": "Remove all human figures and body parts entirely. Redraw the product as a wide, flat, cylindrical drip-tape roll (low height, wide diameter) on the soil without any person present.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is a single white and blue cylindrical drip-tape roll positioned on soil.",
+        "Zero people or human body parts visible.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Dimensions are within acceptable ranges (width <27%, height <32%).",
+        "Product is off-center in the lower third, maintaining a secondary presence while remaining identifiable.",
+        "Background matches farm context with a barn and cultivated fields."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "نگهداری-تریتیکاله-با-نوار-تیپ-نکات-کلیدی-جزئیات-فنی.webp"
+}

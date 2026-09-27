@@ -2,106 +2,64 @@
   "id": "crop-004",
   "kind": 1,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v8-role-isolated-set-reviewed",
-  "approved": false,
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 55,
-      "product_width_percent": 13,
-      "product_height_percent": 14,
-      "product_x_center_percent": 50,
+      "score": 30,
+      "product_width_percent": 25,
+      "product_height_percent": 22,
+      "product_x_center_percent": 15,
       "reasons": [
-        "Product width is approximately 13% of the frame width, failing to meet the required 20-23% minimum.",
-        "The roll is centered horizontally, violating the off-center lower third placement rule.",
-        "A white layflat pipe/hose runs vertically through the roll, which is a hard reject condition.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 13% to 20-23% of frame width.; Move the product clearly to the left or right lower third; do not center it."
+        "Article-specific crop error: The fruit and vines depicted are watermelons (smooth rind with striping), not cantaloupes/melons (netted rind and lobed leaves).",
+        "Hard reject: A clearly identifiable different species (watermelon) is shown instead of the required cantaloupe (tabali).",
+        "Product staging: The roll is placed on the soil, not centered, but the crop context makes it fail the agronomic story requirement."
       ],
-      "correction_prompt": "Widen the roll to occupy 20% of frame width. Move the roll off-center to the left or right third. Remove the vertical pipe passing through the roll. Enlarge the product group from 13% to 20-23% of frame width. Move the product clearly to the left or right lower third; do not center it.",
+      "correction_prompt": "Regenerate the image replacing the watermelons with cantaloupes (tabali) showing netted fruit and lobed leaves on vines. Ensure the white-and-blue AFP drip tape roll is placed on the soil in the lower-left third.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 88,
-      "product_width_percent": 13,
-      "product_height_percent": 28,
-      "product_x_center_percent": 33,
+      "score": 62,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 20,
       "reasons": [
-        "No people or human body parts visible.",
-        "Watermark 'AFP | 09134922013' is present and correct in the bottom-right corner.",
-        "The background shows a farm field context, appropriate for a drip-tape product.",
-        "The product is off-center and placed in the lower third on the soil.",
-        "The product appears to be slightly shorter than the minimum required dimensions (20-23% width), but all other requirements are strongly met.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 13% to 20-23% of frame width."
+        "The central melon has dark vertical stripes and smooth skin, which is morphologically incorrect for cantaloupe (Cucumis melo reticulatus) and closely resembles a watermelon, violating the requirement to hard reject a clearly identifiable different species."
       ],
-      "correction_prompt": "Enlarge the product group from 13% to 20-23% of frame width.",
+      "correction_prompt": "Remove the dark vertical stripes from the central melon fruit, replacing them with the fine, beige netting pattern characteristic of a cantaloupe.",
       "attempt": 2
     },
     {
       "pass": false,
-      "score": 45,
-      "product_width_percent": 25,
-      "product_height_percent": 25,
-      "product_x_center_percent": 35,
+      "score": 62,
+      "product_width_percent": 24,
+      "product_height_percent": 24,
+      "product_x_center_percent": 18,
       "reasons": [
-        "The product exceeds the hard limit of 23% frame width (estimated at 25%)",
-        "The product exceeds the height limit of 28% (estimated at 25%)",
-        "machine-enforced bounding-box check failed: Reduce the product group from 25% to 20-23% of frame width."
+        "Product height is approximately 24% of the frame, violating the maximum 32% rule. More critically, the product geometry is a square or cube, whereas a cylindrical drip-tape roll must have a visible diameter approximately 1.5 to 1.9 times its visible height."
       ],
-      "correction_prompt": "Reduce the size of the AFP drip-tape roll so its width is roughly 20% and its height is under 28% of the frame. Reduce the product group from 25% to 20-23% of frame width.",
+      "correction_prompt": "Regenerate with a horizontally oriented cylindrical drip-tape roll that is significantly wider than it is tall (diameter 1.5-1.9x height). Reduce the roll's overall height to less than 20% of the frame while maintaining its width around 22-25%.",
       "attempt": 3
     },
     {
-      "pass": false,
-      "score": 95,
-      "product_width_percent": 12.5,
-      "product_height_percent": 18.5,
-      "product_x_center_percent": 35.5,
-      "reasons": [
-        "Image contains exactly one AFP white-and-blue drip-tape carton roll.",
-        "The roll is positioned on the soil in the lower third, secondary and off-center.",
-        "No people, human body parts, or silhouettes are present.",
-        "The exact bottom-right watermark \"AFP | 09134922013\" is present.",
-        "The background (farm field and crop rows) matches the context of a farm topic.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 12.5% to 20-23% of frame width."
-      ],
-      "correction_prompt": "Enlarge the product group from 12.5% to 20-23% of frame width.",
-      "attempt": 4
-    },
-    {
-      "pass": false,
-      "score": 86,
-      "product_width_percent": 17.6,
-      "product_height_percent": 22.1,
-      "product_x_center_percent": 46.1,
-      "reasons": [
-        "The white-and-blue carton roll with the 'AFP' logo is the dominant foreground element and fits within the required visual geometry (roughly 17% width, 22% height, ~1.6x diameter ratio).",
-        "Zero people, farmers, or human silhouettes are visible.",
-        "The bottom-right watermark 'AFP | 09134922013' is present and undisturbed.",
-        "The crop-row background matches a general 'city/family/drip' farm context (though it is a farmland setting, it is not a hard reject item).",
-        "The product sits on the soil in the lower third of the frame.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 17.6% to 20-23% of frame width."
-      ],
-      "correction_prompt": "Enlarge the product group from 17.6% to 20-23% of frame width.",
-      "attempt": 5
-    },
-    {
-      "pass": false,
-      "score": 82,
-      "product_width_percent": 17,
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
       "product_height_percent": 22,
-      "product_x_center_percent": 48,
+      "product_x_center_percent": 25,
       "reasons": [
-        "Product: AFP white-and-blue wide low cylindrical drip-tape carton roll. Correct shape and color.",
-        "Proportions: Visible diameter (width) is approximately 1.43 times the visible height (17/22). This is slightly below the preferred 1.6-1.8 ratio, resulting in a deduction, but it maintains the 'low cylindrical' character required.",
-        "Placement: The roll is placed on the soil in the lower third of the frame, off-center to the left, and acts as a secondary element to the main crop context.",
-        "Negative checks: No people, body parts, or other forbidden commercial products are visible. Unattended equipment is acceptable if present (none seen here besides the roll).",
-        "Watermark: The 'AFP | 09134922013' watermark is present in the bottom-right corner as required.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 17% to 20-23% of frame width."
+        "Exactly one AFP white-and-blue wide low cylindrical drip-tape roll present.",
+        "Product is placed on soil off-center to the left, not centered.",
+        "Product dimensions fit within the acceptable width (13-27%) and height (<=32%) limits.",
+        "Image features cantaloupe seedlings/vines with lobed leaves in a farm context.",
+        "Zero people, hands, or human silhouettes visible in the scene.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present."
       ],
-      "correction_prompt": "Enlarge the product group from 17% to 20-23% of frame width.",
-      "attempt": 6
+      "correction_prompt": "",
+      "attempt": 4
     }
   ],
-  "approved_image": null
+  "approved_image": "آفات-و-بیماریهای-طالبی-با-آبیاری-قطرهای-تصویر-شاخص.webp"
 }

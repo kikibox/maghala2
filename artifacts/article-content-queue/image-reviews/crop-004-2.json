@@ -2,56 +2,37 @@
   "id": "crop-004",
   "kind": 2,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v8-role-isolated-set-reviewed",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 10,
-      "product_width_percent": 6,
-      "product_height_percent": 10,
-      "product_x_center_percent": 54,
+      "score": 45,
+      "product_width_percent": 23,
+      "product_height_percent": 21,
+      "product_x_center_percent": 15,
       "reasons": [
-        "Image contains two people (farmers/workers), which is a hard reject criterion (zero people allowed).",
-        "Required watermarks 'AFP' and '09134922013' are missing.",
-        "The visible product (tape roll) is too small, occupying only ~6% of width, failing the 20-23% requirement.",
-        "Product placement is centered and staged rather than being secondary/off-center on the lower third.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 20-23% of frame width."
+        "The visible fruit shows distinct dark green stripes, characteristic of watermelon, rather than the netted appearance of cantaloupe ( طالبی), which hard-rejects the article-specific crop requirement.",
+        "The drip tape roll is a closed commercial carton, not the 'wide low cylindrical' shape specified in the prompt."
       ],
-      "correction_prompt": "Regenerate the image with zero people or human silhouettes. Include exactly one AFP white-and-blue wide cylindrical drip-tape carton roll placed naturally on the soil in the lower third, occupying 20-23% of the frame width. Ensure the visible diameter is 1.6-1.8 times the height. Add the exact watermarks 'AFP' and '09134922013' in the bottom-right corner. Keep the farm context visible without a person. Enlarge the product group from 6% to 20-23% of frame width.",
+      "correction_prompt": "Regenerate the image to clearly show netted cantaloupe fruit (طالبی) on the vines. Change the drip tape packaging to a 'wide low cylindrical' shape that is white and blue, placing it on the soil. Ensure the product is in the lower third, off-center, and no larger than 27% of the frame width. Maintain the 'AFP | 09134922013' watermark.",
       "attempt": 1
     },
     {
-      "pass": false,
-      "score": 62,
-      "product_width_percent": 26,
-      "product_height_percent": 34,
-      "product_x_center_percent": 41,
-      "reasons": [
-        "Product is too tall and wide; it occupies ~34% of frame height (limit 28%) and ~26% of frame width (limit 23%).",
-        "Product is positioned too centrally in the frame rather than distinctly in the lower third and off-center as a secondary element.",
-        "Visible aspect ratio (width vs height) is too close to 1:1; the visible diameter is not 1.6 to 1.8 times the visible height.",
-        "machine-enforced bounding-box check failed: Reduce the product group from 26% to 20-23% of frame width.; Reduce product height from 34% to at most 28% of frame height."
-      ],
-      "correction_prompt": "Regenerate with a smaller, wider, flatter roll of drip tape. Ensure the roll occupies no more than 23% of frame width and 28% of frame height. Move the roll off-center to the lower third and place it naturally on the soil. Reduce the product group from 26% to 20-23% of frame width. Reduce product height from 34% to at most 28% of frame height.",
-      "attempt": 2
-    },
-    {
       "pass": true,
-      "score": 92,
-      "product_width_percent": 21.5,
-      "product_height_percent": 13.5,
-      "product_x_center_percent": 39,
+      "score": 82,
+      "product_width_percent": 19,
+      "product_height_percent": 26,
+      "product_x_center_percent": 30,
       "reasons": [
-        "Product occupies approximately 21.5% of frame width and 13.5% of frame height, well within the 20-23% and <28% limits.",
-        "Diameter-to-height ratio is ~1.6, consistent with the required 1.6-1.8 range.",
-        "Product is positioned off-center on the lower third (x-center ~39%), resting naturally on soil.",
-        "No people or human body parts are visible; the tractor in the background is unattended and permitted.",
-        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
-        "Background (crop rows, tractor, barn) matches the farm context."
+        "The image displays a single white-and-blue cylindrical drip-tape roll with authentic AFP branding, positioned off-center in the lower third on the soil surface.",
+        "The cantaloupe vines with netted fruits are clearly visible and recognizable, matching the crop-specific agronomic story required for the article.",
+        "The background farm environment and crop align well with the topic-specific context for image role 2.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "The product dimensions and placement are within acceptable bounds, with no prohibited items or people visible."
       ],
       "correction_prompt": "",
-      "attempt": 3
+      "attempt": 2
     }
   ],
   "approved_image": "آفات-و-بیماریهای-طالبی-با-آبیاری-قطرهای-کاربرد-عملی.webp"

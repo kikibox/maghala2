@@ -1,0 +1,70 @@
+{
+  "id": "crop-044",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 6,
+      "product_height_percent": 10,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Hard reject: The image contains a clearly visible person (a farmer wearing a hat and shirt), which violates the strict 'zero people and zero human body parts' requirement.",
+        "Hard reject: The drip tape roll is not a wide, low, cylindrical carton; it appears as a small, handheld white spool that is not a secondary product to a dominant roll shape.",
+        "Hard reject: The product is not placed on the soil as required; it is being held by a human hand.",
+        "Hard reject: The product bounding box is too small (width ~6%, height ~10%) compared to the minimum practical estimates of 13-27% width.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human body parts. Show exactly one large white and blue wide cylindrical drip tape carton roll resting naturally on the soil. The roll must be secondary in scale (width 13-27% of frame, height <32%). Set the scene in a triticale field with appropriate crop growth stages. Ensure the exact bottom-right watermark 'AFP | 09134922013' is present. Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Product bounding box spans from x=38% to x=62%, resulting in a width of 24%, which fails the required 20-23% target. The product is centrally placed (centered around 50%), violating the 'off-center on the lower third' constraint.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Redraw the AFP drip-tape roll with a width of approximately 21% of the frame. Move the product horizontally to the left side (e.g., x-center at 35%) to ensure it is off-center and positioned in the lower third. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 14.2,
+      "product_height_percent": 19.5,
+      "product_x_center_percent": 21.0,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer) in the image.",
+        "Hard reject: Human body parts (head, arms, hands, legs, face) are clearly visible.",
+        "The background shows an orchard (distant trees in rows) rather than a field of triticale (a cereal grain), which makes the crop story unclear or incorrect for the article."
+      ],
+      "correction_prompt": "Remove the human figure entirely. Change the background to a field of triticale (wheat-like cereal crop). Keep the AFP white-and-blue wide low cylindrical drip-tape carton roll in the lower-left foreground, placed on the soil. Ensure no other people are present.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 18,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Product is a correctly styled white and blue cylindrical drip-tape roll with required AFP branding.",
+        "Product geometry matches requirements: off-center placement in the lower third, natural placement on soil, and aspect ratio is acceptable.",
+        "Product scale is appropriate (width approx 18%, height approx 18%), well within the preferred and acceptable ranges.",
+        "Crop is botanically consistent with a mature cereal like triticale (Triticale), matching the article topic without showing an identifiable different species.",
+        "The watermark 'AFP | 09134922013' is present in the bottom-right corner as required.",
+        "No people, human body parts, or prohibited commercial items (buckets, cans, extra rolls) are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "نگهداری-تریتیکاله-با-نوار-تیپ-نکات-کلیدی-کاربرد-عملی.webp"
+}
