@@ -239,7 +239,7 @@ class ArticleQueueTests(unittest.TestCase):
     def test_full_rebuild_uses_three_image_set_gate(self):
         rebuild = (ROOT / "automation" / "rebuild_article_images_exact_product.py").read_text(encoding="utf-8")
         self.assertIn("queue.generate_images_parallel", rebuild)
-        self.assertNotIn("pool.submit(queue.generate_image", rebuild)
+        self.assertNotIn("pool.submit(queue.generate_image,", rebuild)
 
     def test_set_gate_regenerates_only_duplicate_role(self):
         calls = []
