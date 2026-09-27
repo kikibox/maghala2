@@ -1,12 +1,20 @@
 #!/usr/bin/env python3
-import html, json, os, re, time, unicodedata, urllib.request, urllib.error
+import html, json, os, re, time, unicodedata, urllib.request, urllib.error, itertools, threading
 from pathlib import Path
 from html.parser import HTMLParser
 from agnes_json_client import parse_object
 
 ROOT=Path(__file__).resolve().parents[1]
 BASE=os.getenv('AGNES_API_BASE','https://apihub.agnes-ai.com/v1').rstrip('/')
-TOKEN=os.environ.get('AGNES_API_KEY','').strip()
+TOKENS=[]
+for _name in ['AGNES_API_KEY',*[f'AGNES_API_KEY{i}' for i in range(2,9)]]:
+    _value=os.environ.get(_name,'').strip()
+    if _value and _value not in TOKENS:TOKENS.append(_value)
+TOKEN=TOKENS[0] if TOKENS else ''
+_TOKEN_COUNTER=itertools.count();_TOKEN_LOCK=threading.Lock()
+def next_token():
+    if not TOKENS:raise RuntimeError('No Agnes API key is configured')
+    with _TOKEN_LOCK:return TOKENS[next(_TOKEN_COUNTER)%len(TOKENS)]
 MODEL=os.getenv('AGNES_MODEL','agnes-3.0-flash').strip()
 LIMIT=max(1,int(os.getenv('MAX_ARTICLES','1')))
 STATE=ROOT/'state/progress.json'
@@ -29,7 +37,7 @@ def request_json(url,payload=None,authenticated=False):
     data=None if payload is None else json.dumps(payload,ensure_ascii=False).encode('utf-8')
     headers={'Accept':'application/json','User-Agent':'navar-abyari-actions'}
     if payload is not None: headers['Content-Type']='application/json'
-    if authenticated: headers['Authorization']=f'Bearer {TOKEN}'
+    if authenticated: headers['Authorization']=f'Bearer {next_token()}'
     attempts=3 if authenticated else 1
     last=None
     for attempt in range(1,attempts+1):

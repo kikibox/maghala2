@@ -28,7 +28,7 @@ def parse_object(raw):
 
 
 def call(base,prompt,attempts=None):
- if not base.AGNES_KEY:raise RuntimeError('AGNES_API_KEY is missing')
+ if not getattr(base,'AGNES_KEYS',None) and not base.AGNES_KEY:raise RuntimeError('AGNES_API_KEY is missing')
  if attempts is None:attempts=max(4,int(os.getenv('AGNES_JSON_ATTEMPTS','5')))
  last=None
  for attempt in range(1,attempts+1):
@@ -50,9 +50,10 @@ def call(base,prompt,attempts=None):
   try:
    base_timeout=max(60,int(os.getenv('AGNES_REQUEST_TIMEOUT','180')))
    request_timeout=min(360,base_timeout+(attempt-1)*30)
+   key=base.next_agnes_key() if hasattr(base,'next_agnes_key') else base.AGNES_KEY
    data=base.fetch_json(
     base.AGNES_BASE+'/chat/completions',
-    {'Authorization':'Bearer '+base.AGNES_KEY,'Content-Type':'application/json','User-Agent':'navar-city-content-queue-v8'},
+    {'Authorization':'Bearer '+key,'Content-Type':'application/json','User-Agent':'navar-city-content-queue-v8'},
     payload,timeout=request_timeout)
    raw=data.get('choices',[{}])[0].get('message',{}).get('content','')
    return parse_object(raw)

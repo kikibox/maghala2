@@ -68,7 +68,7 @@ def _vision_review(base,path,item,kind):
 {reject}
 The exact bottom-right watermark "AFP | 09134922013" is REQUIRED and must never be rejected or requested for removal. Unattended tractors, pumps, filters, pressure gauges, regulators, manifolds, connectors and ordinary fixed irrigation hardware are allowed when no person or human silhouette is visible; they are infrastructure, not extra commercial products. Estimate the product bounding box from image pixels. Report product_width_percent, product_height_percent and product_x_center_percent as numeric percentages of the full image. If pass is true, correction_prompt must be empty. Do not reject only for ordinary soil texture or distant crop rows. Return only JSON: {{"pass":true|false,"score":0-100,"product_width_percent":0,"product_height_percent":0,"product_x_center_percent":0,"reasons":["..."],"correction_prompt":"short regeneration instruction"}}. Pass at score {MIN_IMAGE_SCORE} or higher.'''
  payload={'model':base.AGNES_MODEL,'messages':[{'role':'user','content':[{'type':'text','text':prompt},{'type':'image_url','image_url':{'url':'data:image/webp;base64,'+encoded}}]}],'temperature':0,'response_format':{'type':'json_object'}}
- req=urllib.request.Request(base.AGNES_BASE+'/chat/completions',data=json.dumps(payload).encode(),headers={'Authorization':f'Bearer {base.AGNES_KEY}','Content-Type':'application/json'})
+ req=urllib.request.Request(base.AGNES_BASE+'/chat/completions',data=json.dumps(payload).encode(),headers={'Authorization':f"Bearer {base.next_agnes_key() if hasattr(base,'next_agnes_key') else base.AGNES_KEY}",'Content-Type':'application/json'})
  with urllib.request.urlopen(req,timeout=60) as response:raw=json.loads(response.read())
  content=raw['choices'][0]['message']['content']
  if isinstance(content,list):content=''.join(str(x.get('text','')) for x in content if isinstance(x,dict))
@@ -92,7 +92,7 @@ def review_image_set(base,paths,item):
  content=[{'type':'text','text':prompt}]
  content.extend({'type':'image_url','image_url':{'url':'data:image/webp;base64,'+blob}} for blob in encoded)
  payload={'model':base.AGNES_MODEL,'messages':[{'role':'user','content':content}],'temperature':0,'response_format':{'type':'json_object'}}
- req=urllib.request.Request(base.AGNES_BASE+'/chat/completions',data=json.dumps(payload).encode(),headers={'Authorization':f'Bearer {base.AGNES_KEY}','Content-Type':'application/json'})
+ req=urllib.request.Request(base.AGNES_BASE+'/chat/completions',data=json.dumps(payload).encode(),headers={'Authorization':f"Bearer {base.next_agnes_key() if hasattr(base,'next_agnes_key') else base.AGNES_KEY}",'Content-Type':'application/json'})
  with urllib.request.urlopen(req,timeout=90) as response:raw=json.loads(response.read())
  body=raw['choices'][0]['message']['content']
  if isinstance(body,list):body=''.join(str(x.get('text','')) for x in body if isinstance(x,dict))

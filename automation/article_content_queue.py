@@ -15,7 +15,7 @@ Shared infrastructure (reused, not modified):
 Output: artifacts/article-content-queue/
   queue.json, items/, sql/, rollback/, create-all-completed.sql
 """
-import json, os, re, time, hashlib, struct, urllib.request, urllib.error, html, datetime as dt, tempfile, shutil
+import json, os, re, time, hashlib, struct, urllib.request, urllib.error, html, datetime as dt, tempfile, shutil, itertools, threading
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
@@ -35,7 +35,21 @@ TABLE = "ha_posts"; META = "ha_postmeta"
 
 # Agnes config (same as city queue)
 AGNES_BASE = (os.getenv("AGNES_API_BASE") or "https://apihub.agnes-ai.com/v1").rstrip("/")
-AGNES_KEY = os.getenv("AGNES_API_KEY", "").strip()
+AGNES_KEYS = []
+for _name in ["AGNES_API_KEY", *[f"AGNES_API_KEY{i}" for i in range(2, 9)]]:
+    _value = os.getenv(_name, "").strip()
+    if _value and _value not in AGNES_KEYS:
+        AGNES_KEYS.append(_value)
+AGNES_KEY = AGNES_KEYS[0] if AGNES_KEYS else ""
+_KEY_COUNTER = itertools.count()
+_KEY_LOCK = threading.Lock()
+
+def next_agnes_key():
+    if not AGNES_KEYS:
+        raise RuntimeError("No Agnes API key is configured")
+    with _KEY_LOCK:
+        return AGNES_KEYS[next(_KEY_COUNTER) % len(AGNES_KEYS)]
+
 AGNES_MODEL = os.getenv("AGNES_MODEL") or "agnes-3.0-flash"
 
 # Image config uses the same Agnes endpoint/key as the working city image
@@ -696,7 +710,7 @@ def _generate_image_once(item, kind):
         raise RuntimeError("IMAGE_API_KEY/AGNES_API_KEY is missing")
     data = fetch_json(
         IMAGE_ENDPOINT,
-        {"Authorization": f"Bearer {IMAGE_TOKEN}", "Content-Type": "application/json",
+        {"Authorization": f"Bearer {next_agnes_key()}", "Content-Type": "application/json",
          "Accept": "application/json", "User-Agent": "navar-article-queue"},
         {"model": IMAGE_MODEL, "prompt": image_prompt(item, kind),
          "size": "1024x768", "return_base64": True,
@@ -774,19 +788,7 @@ def _call_image_api_with_retry(label, callback, attempts):
                 flush=True,
             )
             if request_attempt < attempts:
-                # Free-tier 429 windows last longer than ordinary network blips.
-                # A short 2/4/8-second retry burst only exhausts the same window,
-                # so back off long enough to preserve the candidate and finish
-                # this batch instead of failing and regenerating it next run.
-                message = str(exc).lower()
-                rate_limited = (
-                    (isinstance(exc, urllib.error.HTTPError) and exc.code == 429)
-                    or "http 429" in message
-                    or "too many requests" in message
-                )
-                delay = min(60, 20 * request_attempt) if rate_limited else min(16, 2 ** request_attempt)
-                print(f"{label}_retry_wait seconds={delay}", flush=True)
-                time.sleep(delay)
+                time.sleep(min(16, 2 ** request_attempt))
     raise RuntimeError(
         f"{label} unavailable after {attempts} retries: "
         f"{type(last_error).__name__ if last_error else 'unknown error'}"
