@@ -13,7 +13,7 @@ on:
       - 'sqlbuild/build_patch.py'
       - 'data/source_ids.txt'
   schedule:
-    # Sole hourly entry point for the production chain. It waits behind any
+    # Sole hourly entry point for the three-article production chain. It waits behind any
     # active strict rebuild, clears translations, then dispatches the Persian
     # queue. The article queue has no independent schedule, so this pending run
     # cannot be replaced while it waits for the shared lock.
@@ -38,6 +38,8 @@ jobs:
       AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
       AGNES_API_BASE: ${{ vars.AGNES_API_BASE || 'https://apihub.agnes-ai.com/v1' }}
       AGNES_MODEL: ${{ vars.AGNES_MODEL || 'agnes-3.0-flash' }}
+      # One run can translate the complete output of a three-article Persian batch,
+      # plus one carried-over article after a partial API failure.
       MAX_ARTICLES: '4'
       GENERATED_TRANSLATION_BATCH_SIZE: '4'
     steps:

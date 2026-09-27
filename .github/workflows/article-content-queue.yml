@@ -1,4 +1,4 @@
-# Restarted after crop-051 canola identity, composition, and QA tolerance correction.
+# Controlled parallel mode: three articles with a shared five-image worker pool.
 name: article-content-queue
 
 on:
@@ -37,9 +37,11 @@ env:
   IMAGE_API_KEY: ${{ secrets.IMAGE_API_KEY || secrets.AGNES_API_KEY }}
   IMAGE_ENDPOINT: ${{ vars.IMAGE_ENDPOINT || 'https://apihub.agnes-ai.com/v1/images/generations' }}
   IMAGE_MODEL: ${{ vars.IMAGE_MODEL || 'agnes-image-2.5-flash' }}
-  BATCH_SIZE: '1'
-  ARTICLE_WORKERS: '1'
-  IMAGE_WORKERS: '3'
+  # Three articles run together; all nine image-role tasks share five workers
+  # to increase throughput without a nine-request image API burst.
+  BATCH_SIZE: '3'
+  ARTICLE_WORKERS: '3'
+  IMAGE_WORKERS: '5'
   IMAGE_QA_ATTEMPTS: '6'
   IMAGE_SET_QA_ATTEMPTS: '4'
   IMAGE_QA_FAST_MODE: '0'
@@ -50,7 +52,7 @@ jobs:
     # Do not let this queue job cancel or compete with that strict rebuild.
     if: github.event_name != 'push' || !contains(github.event.head_commit.message, '[image-rebuild]')
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 240
     steps:
       - name: Checkout
         uses: actions/checkout@v7
