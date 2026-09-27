@@ -2,24 +2,41 @@
   "id": "crop-050",
   "kind": 1,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v4-metric-feedback",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
-      "pass": true,
-      "score": 92,
-      "product_width_percent": 23,
-      "product_height_percent": 18,
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
       "product_x_center_percent": 48,
       "reasons": [
-        "Product is a wide, low cylindrical drip-tape carton roll in a farm context with visible crop rows and irrigation lines.",
-        "The roll is off-center and placed on soil, acting as a secondary element relative to the landscape background.",
-        "No people or human body parts are visible.",
-        "The required bottom-right watermark 'AFP | 09134922013' is present.",
-        "Product dimensions fall within acceptable width (up to 23%) and height limits."
+        "Required bottom-right watermark 'AFP | 09134922013' is missing (image has gibberish/fake number instead).",
+        "Product appears centered (approx 48% x-center) rather than off-center in the lower third.",
+        "Product bounding box estimates show it is positioned higher than the specified 'lower third' requirement."
+      ],
+      "correction_prompt": "Add the exact text 'AFP | 09134922013' as a bottom-right watermark. Shift the product roll to the left so it is clearly off-center, and position it lower on the soil in the bottom third of the frame.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 17.5,
+      "product_height_percent": 22,
+      "product_x_center_percent": 33.5,
+      "reasons": [
+        "Image displays exactly one AFP drip-tape roll positioned on the soil.",
+        "Product width (17.5%) and height (22%) fall within the preferred 13-27% and <=32% acceptable ranges.",
+        "The roll is off-center in the lower third of the frame (x_center ~33.5%).",
+        "Visible diameter-to-height ratio is approximately 1.5:1 (17.5/11.5 vertical dimension vs 17.5 width, accounting for perspective/roll shape).",
+        "Crop context shows cucumber vines with characteristic angular leaves and small attached cucumbers, satisfying the specific 'khiyar' requirement.",
+        "Zero people or human body parts are visible.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present and correctly formatted.",
+        "No disallowed items (bottles, cans, second rolls, layflat hoses) are visible."
       ],
       "correction_prompt": "",
-      "attempt": 1
+      "attempt": 2
     }
   ],
   "approved_image": "هزینه-کشت-خیار-با-نوار-تیپ-در-هکتار-تصویر-شاخص.webp"

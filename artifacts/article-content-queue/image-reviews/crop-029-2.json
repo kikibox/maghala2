@@ -1,0 +1,58 @@
+{
+  "id": "crop-029",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 7,
+      "product_height_percent": 10,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Hard reject: The image clearly shows a human subject (farmer/worker), including a hand, arm, leg, and torso, which is strictly prohibited.",
+        "The drip tape roll is far too small (width ~7%), falling well below the 13% minimum width requirement.",
+        "The drip tape roll is positioned on the far right, whereas it must be off-center on the lower third (more central).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures and body parts. Regenerate the image so the white-and-blue AFP drip-tape roll is much larger, occupying at least 15% of the frame width, and is naturally placed off-center in the lower-middle portion of the soil bed. Ensure the sugar beet crop remains clearly visible with its characteristic reddish leaf stems. Enlarge the product group from 7% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 14,
+      "product_height_percent": 24,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: The product visible in the center of the image is a tall, narrow white drum or large upright container, not a wide, low cylindrical drip-tape carton roll.",
+        "The product aspect ratio is incorrect; it is significantly taller than it is wide, violating the requirement for a visible diameter that is 1.5 to 1.9 times its visible height.",
+        "The product is centered in the frame rather than off-center on the lower third.",
+        "Hard reject: The required exact bottom-right watermark 'AFP | 09134922013' is missing."
+      ],
+      "correction_prompt": "Regenerate the image. Place a wide, low cylindrical white-and-blue drip-tape carton roll (aspect ratio 1.5-1.9x wider than tall) on the soil. Position it in the lower third, offset to the left or right, not in the center. The crop rows must clearly resemble sugar beet (large rosettes with thick reddish leaf stems). Add the exact watermark 'AFP | 09134922013' in the bottom right corner.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18.5,
+      "product_height_percent": 24,
+      "product_x_center_percent": 52.0,
+      "reasons": [
+        "Product is a white-and-blue wide cylindrical carton roll with a visible AFP logo, clearly distinct from the crop.",
+        "Product width and height are within acceptable limits (18.5% width, 24% height).",
+        "Visible diameter is roughly 1.6 times the visible height, meeting the 1.5-1.9x ratio requirement.",
+        "The roll is positioned off-center on the lower third and placed naturally on the soil.",
+        "The image contains zero people or human body parts.",
+        "Background shows rows of young crops with reddish stems, consistent with the specified sugar beet (چغندر) agronomic story.",
+        "The required watermark 'AFP | 09134922013' is present and correct."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-چغندر-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

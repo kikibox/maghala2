@@ -1,0 +1,73 @@
+{
+  "id": "crop-039",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 25,
+      "product_height_percent": 16,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product visible width is 25 percent, which exceeds the maximum acceptable limit of 23 percent for the preferred range, and only barely fits within the loose 27 percent hard reject threshold.",
+        "The product's visible diameter (approx 480px) is about 3 times its visible height (approx 160px), violating the required 1.5 to 1.9 aspect ratio.",
+        "A foreign object (clock) is present next to the product, which is not part of the specified infrastructure or crop. "
+      ],
+      "correction_prompt": "Regenerate with the drip tape roll appearing smaller (approx 20 percent width) and with a correct diameter-to-height ratio (approx 1.5 times), removing the clock.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 9,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Presence of a person (farmer) crouching in the foreground, which violates the hard reject rule for humans.",
+        "Second person/worker visible in the background by the tractor, violating the zero-person constraint.",
+        "Product (carton/roll) is not positioned in the lower third off-center as required; it is placed central-to-left lower.",
+        "Product aspect ratio (width vs height) does not match the required 1.5-1.9 times visible height.",
+        "Product width (approx 8%) is below the minimum preferred threshold of 13%.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or body parts. Show a wide, low cylindrical drip-tape carton roll (white and blue) on the soil in the lower-right third of the frame. The roll must be approximately 20% of the frame width and 1.5x its height. Background should show unattended irrigation hardware and crops without any humans. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 16,
+      "product_height_percent": 26,
+      "product_x_center_percent": 63,
+      "reasons": [
+        "Hard reject: A person (farmer/worker) is clearly visible in the foreground.",
+        "Hard reject: Human body parts (head, hands, legs) are visible.",
+        "The image contains a human silhouette, which is strictly prohibited for this image role."
+      ],
+      "correction_prompt": "Regenerate the image without any people or human body parts. Show only the AFP drip-tape roll and irrigation hardware on the soil with a background of paprika plants.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 26,
+      "product_height_percent": 31,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Watermark 'AFP | 09134922013' is present in bottom-right corner as required",
+        "Exactly one AFP drip-tape roll visible (white and blue)",
+        "Roll is off-center, placed on soil in lower third",
+        "Roll width and height proportions are within acceptable limits",
+        "Irrigation manifold and hardware are present as allowed infrastructure",
+        "Background shows pepper/paprika farm context, matching topic",
+        "No people or human body parts visible in frame"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-پاپریکا-با-آبیاری-قطرهای-جزئیات-فنی.webp"
+}

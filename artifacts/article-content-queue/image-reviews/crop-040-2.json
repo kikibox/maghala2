@@ -1,0 +1,86 @@
+{
+  "id": "crop-040",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Centered product staging (violates off-center requirement)",
+        "Product exceeds height limit (>32% frame height)",
+        "Product is visually primary/prominent rather than secondary",
+        "Illegal 'pipe through the roll' (drip hose loop threading through product core)",
+        "Visible gibberish/invented writing on the carton",
+        "Watermark content mismatch (shows 09134922013, not 09134922013)"
+      ],
+      "correction_prompt": "Regenerate image with off-center drip-tape carton on lower-left third (max 27% width, max 32% height), no hose loop or pipe threading through the roll, no gibberish text on carton, and strict bottom-right watermark reading 'AFP | 09134922013'.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject due to the presence of a visible person (farmer) and hands/body parts in the image.",
+        "The visible product is a cardboard box, not the specified white-and-blue cylindrical drip-tape carton roll.",
+        "The required product (cylindrical roll) is missing from the composition.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image removing the person entirely and replacing the cardboard box with a single wide, low, cylindrical AFP drip-tape roll placed on the soil in the lower-left foreground. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 23,
+      "reasons": [
+        "The central crop is clearly identifiable as wheat or a related cereal/grass due to the flat, long leaves and growth habit, whereas the requirement is for garlic (سیر) or a botanically neutral bed. The instructions require a hard reject for clearly identifiable different species.",
+        "The crop is not consistent with the required article topic (garlic)."
+      ],
+      "correction_prompt": "Replace the field with a prepared bed showing rows of garlic seedlings or neutral young crops that are not identifiable as wheat. Ensure the crop supports the garlic topic context while maintaining the off-center low roll placement.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 24,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "The image contains two people (a standing man and a crouching woman), which is a hard reject according to the requirements for zero people or body parts."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove the man and woman. Keep the white and blue cylindrical drip-tape roll on the soil in the garlic field, maintaining the same framing and the 'AFP | 09134922013' watermark in the bottom right.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 23,
+      "product_height_percent": 25,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "The image shows exactly one white-and-blue cylindrical drip-tape roll with the required 'AFP' branding.",
+        "The crop context is correct, displaying garlic seedlings with the required narrow, flat blue-green leaves in upright clusters.",
+        "The product is off-center in the lower third of the frame and placed naturally on the soil.",
+        "The product proportions meet the requirements: width is approximately 23% (within the preferred 20-23% range) and height is approximately 25% (below the 32% limit).",
+        "The visible diameter is approximately 0.9x the height, which is consistent with a real-world drip tape roll (slightly taller than wide).",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "There are no people, human silhouettes, or prohibited secondary commercial products.",
+        "The background matches the specific agronomic story for garlic cultivation."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-موسیر-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

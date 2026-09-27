@@ -1,0 +1,69 @@
+{
+  "id": "crop-031",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 13.5,
+      "product_height_percent": 14.5,
+      "product_x_center_percent": 35.0,
+      "reasons": [
+        "Image contains a full human figure (farmer/worker) squatting, which is a strict hard reject per the criteria requiring zero people and body parts."
+      ],
+      "correction_prompt": "Regenerate the image strictly without any people. Show only the single wide cylindrical drip-tape carton roll on the soil. Keep the wheat field background, but remove the person. Maintain the exact bottom-right watermark 'AFP | 09134922013'.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 33,
+      "product_height_percent": 35,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product width is approximately 33%, which exceeds the maximum hard-reject threshold of 27%.",
+        "Product height is approximately 35%, which exceeds the maximum hard-reject threshold of 32%.",
+        "The product is centered horizontally at approximately 50%, violating the requirement for an off-center placement in the lower third.",
+        "The geometric ratio of the roll (width/height ~0.94) does not meet the requirement of 1.5 to 1.9 times its visible height.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 33% to 13-27% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shrink the drip tape roll to a width of approximately 20% of the frame width and a height of no more than 30%, ensuring a wide, low cylindrical shape (diameter approx. 1.6x height). Shift the roll's position off-center to the left third of the frame, placing it naturally on the soil in the foreground. Reduce the product group from 33% to 13-27% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 19,
+      "product_height_percent": 18,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject due to the presence of a person (farmer crouching) and multiple human body parts.",
+        "Product roll is positioned at the extreme bottom-left corner, partially cut off, and not placed on the lower-third off-center as required.",
+        "Product height (18%) is too close to its width (19%); it should be wider (diameter ~1.5-1.9x height)."
+      ],
+      "correction_prompt": "Regenerate image removing all people and human body parts. Place the single low cylindrical drip-tape roll off-center on the soil in the lower third of the frame, ensuring it is fully visible, not cut off, and wider than it is tall.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 22,
+      "product_height_percent": 24,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product is exactly one white-and-blue AFP drip-tape carton roll",
+        "No people or human body parts visible",
+        "Off-center placement on the lower third, naturally placed on soil",
+        "Dimensions (width ~22%, height ~24%) fall within the acceptable practical ranges",
+        "Required watermark 'AFP | 09134922013' is present in the bottom right",
+        "Background (farm context) matches the hardware story without contradicting the specified topic"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "نگهداری-گندم-با-نوار-تیپ-نکات-کلیدی-جزئیات-فنی.webp"
+}

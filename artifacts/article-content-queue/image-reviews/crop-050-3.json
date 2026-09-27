@@ -2,56 +2,27 @@
   "id": "crop-050",
   "kind": 3,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v4-metric-feedback",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
-      "pass": false,
-      "score": 20,
-      "product_width_percent": 30,
-      "product_height_percent": 41,
-      "product_x_center_percent": 48,
-      "reasons": [
-        "Product too tall: 41% of frame height (limit 28%)",
-        "Product too wide: 30% of frame width (limit 23%)",
-        "Product is horizontally centered (fail secondary/off-center requirement)",
-        "Visible person and human silhouette in the background (hard reject)",
-        "Incorrect product geometry: Vertical spool (drum) shape instead of wide low cylindrical tape roll",
-        "Invented gibberish text on the package label",
-        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 20-23% of frame width.; Reduce product height from 41% to at most 28% of frame height."
-      ],
-      "correction_prompt": "Remove all people and human silhouettes. Reshape the product into a flat, wide cylindrical drip-tape roll. Scale the roll to occupy exactly 22% of frame width and 25% of frame height, positioning it off-center on the lower third (left-of-center or right-of-center) on the soil. Reduce the product group from 30% to 20-23% of frame width. Reduce product height from 41% to at most 28% of frame height.",
-      "attempt": 1
-    },
-    {
-      "pass": false,
-      "score": 0,
-      "product_width_percent": 15.5,
-      "product_height_percent": 13.5,
-      "product_x_center_percent": 42.5,
-      "reasons": [
-        "Hard reject: visible human body parts present (gloved hand and legs of standing person).",
-        "Hard reject: second person (farmer) visible in the background row.",
-        "Product width is approximately 15.5%, falling below the required minimum of 20%.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 15.5% to 20-23% of frame width."
-      ],
-      "correction_prompt": "Regenerate the image ensuring zero people or human body parts are visible (no hands, legs, or silhouettes). Remove the background farmer entirely. Increase the size of the white and blue AFP drip-tape roll so its width occupies roughly 22% of the full frame width while maintaining the off-center lower third placement on the soil. Enlarge the product group from 15.5% to 20-23% of frame width.",
-      "attempt": 2
-    },
-    {
       "pass": true,
-      "score": 95,
-      "product_width_percent": 21.5,
-      "product_height_percent": 22.0,
-      "product_x_center_percent": 48.5,
+      "score": 85,
+      "product_width_percent": 23,
+      "product_height_percent": 31,
+      "product_x_center_percent": 34,
       "reasons": [
-        "Contains exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll.",
-        "No people or human body parts visible.",
-        "Product is placed naturally on soil, off-center in the lower third.",
-        "Product dimensions are within the specified range (width 21.5%, height 22%)."
+        "Product width within 20-23% ideal range",
+        "Product height ≤32%",
+        "Off-center on lower third",
+        "Naturally placed on soil",
+        "Zero people/human parts",
+        "Watermark 'AFP | 09134922013' present and correct",
+        "Unattended tractor and irrigation hardware allowed as infrastructure",
+        "Crop leaves visually neutral; no clear contradiction to cucumber"
       ],
       "correction_prompt": "",
-      "attempt": 3
+      "attempt": 1
     }
   ],
   "approved_image": "هزینه-کشت-خیار-با-نوار-تیپ-در-هکتار-جزئیات-فنی.webp"

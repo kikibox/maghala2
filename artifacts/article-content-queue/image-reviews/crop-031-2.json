@@ -1,0 +1,55 @@
+{
+  "id": "crop-031",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Presence of a person (male farmer) crouching in the frame, which is a hard reject for zero people.",
+        "The product shown is a tape measure, not the required drip-tape carton roll.",
+        "The crop in the background appears to be rice (broad leaves) rather than the specified wheat.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Replace the tape measure with a wide low cylindrical white and blue drip-tape carton roll. Set the crop to wheat with visible narrow leaves and grain heads. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 38,
+      "product_width_percent": 41.8,
+      "product_height_percent": 36.4,
+      "product_x_center_percent": 60.2,
+      "reasons": [
+        "Product bounding box is too large: width (41.8%) and height (36.4%) exceed the maximum accepted thresholds (27% and 32% respectively)",
+        "Product is not positioned within the required lower third of the frame, violating the composition rule",
+        "Visible diameter-to-height ratio appears to be approximately 1.15:1, which falls below the required 1.5-1.9x range",
+        "machine-enforced bounding-box check failed: Reduce the product group from 41.8% to 13-27% of frame width.; Reduce product height from 36.4% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a smaller drip-tape carton roll (width <25% of frame) placed on soil in the lower third, off-center. Maintain the wheat farm background and the AFP phone watermark, and increase the diameter-to-height ratio to approximately 1.7:1. Reduce the product group from 41.8% to 13-27% of frame width. Reduce product height from 36.4% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 16,
+      "product_height_percent": 18,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Product is a correct wide, low cylindrical roll of drip tape (approx 1.5x diameter-to-height ratio) and is off-center on the lower third of the frame.",
+        "Background clearly depicts mature wheat (compact grain heads, narrow leaves) matching the article topic.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner as required.",
+        "No persons, human silhouettes, or prohibited objects (bottles, cans, other rolls) are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "نگهداری-گندم-با-نوار-تیپ-نکات-کلیدی-کاربرد-عملی.webp"
+}

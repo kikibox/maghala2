@@ -1,0 +1,97 @@
+{
+  "id": "crop-042",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 16,
+      "product_height_percent": 18,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product is horizontally centered (48%), which violates the off-center staging requirement",
+        "Contains a human silhouette (orange-shirted figure) in the background, triggering hard reject"
+      ],
+      "correction_prompt": "Remove all human silhouettes. Reposition the drip-tape roll off-center (roughly 30% x-center) on the soil at the lower third. Keep the spinach crops and farm context.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 19,
+      "product_height_percent": 18,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Human silhouette and identifiable person visible in the background (farmer/worker standing on the soil).",
+        "Hard reject: Human silhouette present (seated figure in the distance behind the standing figure)."
+      ],
+      "correction_prompt": "Remove all human figures and silhouettes from the background; keep the unattended tractor and irrigation context.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Presence of a person (farmer) in the foreground, violating the 'zero people' rule",
+        "Product is not in the lower third off-center (centered around x=42%, too high in frame)",
+        "Product bounding box suggests a diameter-to-height ratio closer to 1:1, not the required 1.5:1 to 1.9:1 wide cylindrical shape",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person completely. Place a wide white and blue AFP drip-tape carton roll on the soil in the lower third, shifted off-center. The roll must be clearly wider than it is tall (ratio 1.5-1.9). Keep the tractor in the background as infrastructure. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Visible crop plants are not spinach, which contradicts the specified topic requirement."
+      ],
+      "correction_prompt": "Replace the visible crop plants with small green spinach seedlings to match the specified topic.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 22,
+      "product_height_percent": 34,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Hard reject: Contains a human figure (a man in green work clothes) in the foreground, which violates the strict zero-person rule.",
+        "Hard reject: The product (drip-tape roll) is held by human hands and is not 'naturally placed on soil' as an unattended object.",
+        "Hard reject: The crop morphology visible in the foreground contradicts the target 'spinach' context; the leaves appear to belong to a different plant species.",
+        "Minor rejection: The product bounding box height slightly exceeds the 32% limit.",
+        "The AFP watermark is present in the bottom-right corner as required.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image completely excluding any people or human body parts. Place a single AFP drip-tape roll unattended on the soil. Ensure the surrounding crop is strictly spinach. Set the roll dimensions to approximately 20% width and 25% height, off-center on the lower left third. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 17,
+      "product_height_percent": 22,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Zero people or human body parts detected",
+        "Exactly one AFP white-and-blue wide low cylindrical drip-tape roll present",
+        "Product is off-center on the lower third and naturally placed on soil in a farm context",
+        "Identifiable crop in the image (spinach-like broad-leaved plants) is consistent with اسفناج, so no crop contradiction",
+        "The required AFP | 09134922013 watermark is visible in the bottom-right corner and has not been flagged for removal",
+        "No forbidden items such as bottles, jars, cans, buckets, fertilizer/pesticide containers, second rolls, layflat hoses, pipes, or impossible geometry are present"
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-اسفناج-با-آبیاری-قطرهای-جزئیات-فنی.webp"
+}
