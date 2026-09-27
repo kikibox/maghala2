@@ -1,0 +1,69 @@
+{
+  "id": "crop-008",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 21,
+      "product_height_percent": 38,
+      "product_x_center_percent": 68,
+      "reasons": [
+        "The product bounding box height is estimated at approximately 38%, which exceeds the maximum 32% height limit.",
+        "The crop plants visible in the foreground and background have a distinct morphological structure (elongated lanceolate leaves on an erect stem) that resembles tobacco or a solanaceous plant, which does not match the required 'baqala' (fava bean) or neutral hardware context, triggering a crop contradiction hard reject.",
+        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reshape the foreground crop to resemble broad-leaved fava bean (broad bean) seedlings instead of narrow-leafed solanaceous plants. Regenerate the scene to ensure the AFP drip-tape roll occupies significantly less vertical space (reducing height to under 32% of the frame) while maintaining a cylindrical aspect ratio, ensuring it remains secondary to the field context. Maintain the bottom-right watermark 'AFP | 09134922013' and remove all human silhouettes. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "The product is a vertically oriented, tall cylindrical canister. This violates the geometric requirement that the visible diameter (width) must be 1.5 to 1.9 times the visible height.",
+        "The crop morphology (large, broad leaves) is visually distinct from fava bean (باقلا) plants, constituting a hard reject due to crop contradiction.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to feature a wide, low cylindrical drip-tape roll placed on the soil. The roll must be wider than it is tall (approx 1.5:1 ratio) and off-center on the lower third. Replace the existing plants with small fava bean seedlings to ensure crop accuracy. Maintain the 'AFP | 09134922013' watermark in the bottom right. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 33,
+      "product_height_percent": 29,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The product is centered horizontally, violating the off-center placement rule.",
+        "The product width is 33% of the frame, exceeding the maximum 27% threshold.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 33% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with the AFP drip-tape roll positioned off-center in the lower third of the frame and scaled down so its width is approximately 20-23% of the total image width. Reduce the product group from 33% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 17,
+      "product_height_percent": 22,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Product is a single AFP white-and-blue cylindrical drip-tape roll placed off-center on the soil.",
+        "Product dimensions are within the preferred width range (13-27%) and height limit (<32%).",
+        "The aspect ratio of width to height is consistent with a wide low cylindrical roll.",
+        "No people or human body parts are visible in the image.",
+        "The background shows a farm context with crops and unattended agricultural equipment (tractor), which is acceptable.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-باقلا-با-آبیاری-قطرهای-جزئیات-فنی.webp"
+}

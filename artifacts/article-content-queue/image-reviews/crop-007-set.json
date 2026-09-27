@@ -4,14 +4,44 @@
   "history": [
     {
       "pass": false,
-      "score": 70,
+      "score": 40,
+      "duplicate_roles": [
+        1,
+        2,
+        3
+      ],
+      "reasons": [
+        "All three images share the exact same technical composition: a low-angle close-up of a young garlic plant placed next to an AFP product canister in a field. This layout repeats substantially across the set, resulting in a near-duplicate narrative rather than fulfilling the required distinct functional roles (overview, agronomic evidence, and irrigation-system story).",
+        "While the crop is correct and there are no people, the set lacks variety. Images 1, 2, and 3 are visually very similar and do not progress from a wide overview to specific technical details as required by the editorial set."
+      ],
+      "correction_prompt": "Replace the images with a wide-angle field overview showing the full crop and irrigation layout, a high-contrast macro shot focusing on a drip tape joint or water emitter, and a top-down diagrammatic view of the crop spacing and root zone.",
+      "set_attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
       "duplicate_roles": [],
       "reasons": [
-        "The third image features a crop that is visually and botanically contradictory to the subject matter of 'garlic' (suggested by the Persian text 'sir' and the strap-leaf morphology of the first two images). The third image displays broad-leafed dicotyledonous sprouts, whereas garlic and its close relatives are monocots with flat, strap-like leaves.",
-        "Due to this crop inconsistency, the third image fails to function as a valid 'agronomic close evidence' or 'irrigation-system story' for a guide on planting garlic."
+        "Image 1 fails to establish the crop-identity role; the young, grass-like seedlings are botanically neutral and do not reliably convey garlic, so the set lacks a clear crop-identity overview.",
+        "Image 3 fails to establish the irrigation-system story; the tilled bed with sparse, non-garlic-identifiable sprouts and no visible drip line, emitter, tape or root-zone evidence does not carry the irrigation/soil-watering theme.",
+        "The agronomic close evidence role is weakly represented by Image 2 but not sufficient to compensate; overall the set does not distinctly fulfill all three required functional roles."
       ],
-      "correction_prompt": "Replace the third image with a scene showing the broad-leafed crop; specifically, generate a close-up of young garlic plants (monocots with strap-like leaves) situated at a drip or tape irrigation line with visible moisture, to match the first two images.",
-      "set_attempt": 1
+      "correction_prompt": "Replace Image 1 with a clear garlic-crop overview showing identifiable young garlic (distinctive foliage/growth habit) in rows, and replace Image 3 with an irrigation-focused shot that explicitly shows drip tape/emitters along the bed with a visible water line and root-zone context, keeping zero people in all frames.",
+      "set_attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "duplicate_roles": [
+        1,
+        2
+      ],
+      "reasons": [
+        "The article specifically focuses on 'Garlic' (سیر), but image 3 features broadleaf plants that are botanically contradictory to garlic morphology (garlic grows in narrow, grass-like spikes). This triggers a hard reject for a clearly identifiable crop mismatch.",
+        "Images 1 and 2 are near-duplicates that fail to provide distinct functional roles. Both utilize an almost identical low-angle camera shot, the same field layout, the same lighting, and the same technical narrative (product placed near young shoots). They do not provide the 'agronomic close evidence' vs. 'irrigation-system story' distinction required for the set."
+      ],
+      "correction_prompt": "Regenerate image 3 to show broadleaf plants with clearly visible drip lines running along the ground to represent 'drip irrigation'. For images 1 and 2, modify one to show a macro-shot of the root-zone or a soil-cross-section to provide 'agronomic evidence' rather than repeating the low-angle field perspective.",
+      "set_attempt": 3
     }
   ]
 }

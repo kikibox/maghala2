@@ -2,24 +2,66 @@
   "id": "crop-006",
   "kind": 1,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v5-full-rerender",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
-      "pass": true,
-      "score": 85,
-      "product_width_percent": 21,
-      "product_height_percent": 24,
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 5,
+      "product_height_percent": 8,
       "product_x_center_percent": 48,
       "reasons": [
-        "Exactly one AFP white-and-blue drip-tape carton roll",
-        "Off-center on the lower third and naturally placed on soil",
-        "No people or human body parts",
-        "Background farm context with crop rows matches topic",
-        "Required AFP | 09134922013 watermark present"
+        "Contains a person (kneeling man), which is a hard reject rule.",
+        "Visible crop is clearly a different species (peppers/tomatoes), not the required cucumber (خیار).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely and replace the crop with recognizable cucumber vines (angular leaves, tendrils, small attached cucumbers). Adjust the drip-tape roll to be larger (width ~20% of frame) and place it off-center in the lower third. Enlarge the product group from 5% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 13,
+      "product_height_percent": 19,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Clearly identifiable tomato plants in the foreground (red fruit) contradict the article crop requirement for cucumber.",
+        "Hard reject: Cylindrical geometry is inverted; the roll's visible diameter (height) is approx 1.5 times its visible width, whereas the spec requires width to be 1.5-1.9 times the height.",
+        "Positional warning: The product x-center (45%) is too close to the middle (50%), failing the 'off-center' constraint."
+      ],
+      "correction_prompt": "Replace tomato plants with cucumber vines (angular leaves, small green cucumbers, no red fruit). Reorient the drip-tape roll to be horizontally elongated (wide low cylinder) so it fits the required aspect ratio and is clearly off-center.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 12,
+      "product_height_percent": 22,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The crop in the image is clearly identifiable as pepper (Capsicum) with characteristic fruits, which conflicts with the required article crop of cucumber (خیار) and hard reject rule for clearly identifiable different species",
+        "The product roll is not wide/low enough to meet preferred 20–23% frame width; it reads secondary but the crop mismatch is the dominant hard reject",
+        "The background is a pepper field, not a cucumber-specific agronomic story",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with a cucumber context: angular cucumber leaves, tendrils, and small attached cucumbers in rows, replacing the pepper plants and fruits. Keep the white-and-blue AFP drip-tape roll on soil, off-center in the lower third, secondary in scale, with the exact bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 13,
+      "product_height_percent": 10,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product is a wide, low cylindrical roll placed on soil.",
+        "The background clearly shows a farm field with rows of crops, consistent with a drip-tape application context.",
+        "The 'AFP | 09134922013' watermark is present as required.",
+        "No people or human body parts are visible in the image."
       ],
       "correction_prompt": "",
-      "attempt": 1
+      "attempt": 4
     }
   ],
   "approved_image": "مقدار-بذر-خیار-در-هکتار-راهنمای-جامع-تصویر-شاخص.webp"

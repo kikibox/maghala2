@@ -4,40 +4,39 @@
   "history": [
     {
       "pass": false,
-      "score": 30,
+      "score": 25,
       "duplicate_roles": [],
       "reasons": [
-        "The first image shows young tomato or potato plants, which are botanically distinct from the target crop, Fava bean (باقلای).",
-        "The second image shows corn or maize, which is clearly not the correct crop for the article.",
-        "The third image shows an irrigation line with an unidentified crop in the row; however, the presence of contradictory identifiable crops in the previous two images fails the 'hard reject' criteria for the set."
+        "Image 1 shows sunflowers, which are botanically contradictory to the article's subject of fava beans (باقلا); the instructions mandate a hard reject for clearly contradictory identifiable crops.",
+        "Image 2 shows cassava, which is also an incorrect and identifiable crop, not fava beans, violating the crop-identity requirement.",
+        "Only Image 3 serves the 'irrigation-system story' role effectively, but the set fails due to two contradictory images."
       ],
-      "correction_prompt": "Regenerate the images to clearly show Fava bean plants (broad, pinnately compound leaves and pods) in the crop-identity and close-up shots, ensuring all visuals match the specific article topic.",
+      "correction_prompt": "Regenerate Images 1 and 2 to clearly feature fava bean plants (Vigna unguiculata/cicer) instead of sunflowers and cassava, maintaining the respective close-up and row-perspective compositions.",
       "set_attempt": 1
-    },
-    {
-      "pass": false,
-      "score": 60,
-      "duplicate_roles": [
-        2,
-        3
-      ],
-      "reasons": [
-        "Crop Mismatch: The article is about Fava Bean (Broad Bean / باقلا), which has compound pinnate leaves and white flowers. The crops shown are clearly grasses or broadleaf dicots (corn/maize in image 1, sunflower/squash in images 2 & 3), which are botanically contradictory to the topic.",
-        "Duplicate Roles: Images 2 and 3 are near-duplicates, both depicting a young dicot plant with large lobed leaves in the same soil environment with the product container, failing to provide distinct visual narrative value."
-      ],
-      "correction_prompt": "Replace all three images with crops that are clearly Fava Beans (Vicia faba) showing the characteristic pinnate leaves with oval leaflets; use 1 for a wide field overview, 2 for a close-up of the foliage, and 3 for a drip tape installation on a fava bean bed.",
-      "set_attempt": 2
     },
     {
       "pass": false,
       "score": 35,
       "duplicate_roles": [],
       "reasons": [
-        "Severe crop mismatch: The article focuses on 'baghla' (broad-bean/fava-bean), but image 1 clearly depicts a corn (maize) field, which is a hard reject contradiction.",
-        "Botanical mismatch in image 2: The depicted crop shows palmate lobed leaves characteristic of okra (lady's finger), not the simple pinnate leaves of a broad-bean plant.",
-        "Vague morphology in image 3: The seedlings are botanically neutral and do not specifically evidence broad-bean growth, failing the preference for exact crop morphology."
+        "Hard reject: Image 3 displays clearly identifiable sunflowers and fennel (the bulb at the base is characteristic of Foeniculum vulgare), which are contradictory identifiable crops, failing the requirement for broad bean (Faba bean) or neutral evidence.",
+        "Image 1 lacks specific agronomic evidence; the young seedlings are botanically neutral rather than showing distinct broad bean morphology.",
+        "The set fails to provide the specific 'irrigation-system story' required for the drip irrigation article, as the tubing in Image 2 is barely visible and does not clearly convey the system's function."
       ],
-      "correction_prompt": "Regenerate all three images specifically featuring broad-bean (vicia faba) plants with their characteristic pinnate compound leaves and cylindrical stems; remove corn and okra entirely.",
+      "correction_prompt": "Replace Image 3 with a close-up of broad bean seedlings emerging next to a clearly visible drip line with an open irrigation valve to demonstrate the water management system.",
+      "set_attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "duplicate_roles": [],
+      "reasons": [
+        "The images successfully fulfill distinct functional roles: Image 1 provides a crop-identity overview with visible irrigation hardware; Image 2 offers close-up agronomic evidence of the crop's health and spacing; Image 3 presents a broader irrigation-system story showing the field layout and scale.",
+        "Although the crop morphology is botanically neutral and does not explicitly confirm the specific 'broad bean (باقلا)' mentioned in the text, the prompt accepts neutral beds or young vegetation that carry the topic without hard rejection.",
+        "There is no duplication of roles; each image provides a different perspective (product focus, crop close-up, field overview) necessary for a comprehensive editorial set.",
+        "All images meet the 'zero people' constraint and maintain the consistent AFP product branding."
+      ],
+      "correction_prompt": "Generate a revised set where the crops in Images 1 and 2 explicitly display the morphology of broad beans (fava beans) with characteristic pinnate leaves and white flowers to align better with the text's specific subject.",
       "set_attempt": 3
     }
   ]

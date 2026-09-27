@@ -2,54 +2,42 @@
   "id": "crop-006",
   "kind": 3,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v5-full-rerender",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 12,
-      "product_width_percent": 5,
-      "product_height_percent": 7,
-      "product_x_center_percent": 46,
-      "reasons": [
-        "Contains multiple people (hard reject)",
-        "Product is a small handheld canister or cup, not a wide low cylindrical drip-tape carton roll",
-        "Product is far too small, occupying less than 5 percent of the frame width",
-        "Product is being handled directly by humans, violating the 'no human body parts' rule",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 20-23% of frame width."
-      ],
-      "correction_prompt": "Regenerate the image to show a wide, low, cylindrical white-and-blue drip-tape carton roll sitting naturally on the soil in the lower third. The roll should occupy 20-23% of the frame width and 1.6-1.8 times its visible height in diameter. Strictly remove all people, faces, and body parts. Ensure no hands are touching the product. Enlarge the product group from 5% to 20-23% of frame width.",
-      "attempt": 1
-    },
-    {
-      "pass": false,
-      "score": 72,
-      "product_width_percent": 26,
+      "score": 15,
+      "product_width_percent": 12,
       "product_height_percent": 18,
-      "product_x_center_percent": 45,
+      "product_x_center_percent": 55,
       "reasons": [
-        "The visible diameter-to-height ratio of the roll is approximately 2.4:1, which is significantly wider than the required 1.6-1.8 range. The roll appears 'giant' or improperly proportioned.",
-        "Product width (~26%) exceeds the maximum threshold of 23%.",
-        "machine-enforced bounding-box check failed: Reduce the product group from 26% to 20-23% of frame width."
+        "Hard reject: Presence of a person (female worker crouching in the field).",
+        "Hard reject: Presence of visible human body parts (face, arms, legs).",
+        "Product shape mismatch: The roll in hand is a flat disc (resembling a tape measure), not a wide cylindrical drip-tape roll.",
+        "Context error: The image shows a worker in a flower/vegetable garden rather than a hardware/irrigation system context.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate the image with the drip tape roll having a flatter aspect ratio (diameter 1.6-1.8x its height). Reduce the total width of the roll so it occupies no more than 22% of the frame width. Reduce the product group from 26% to 20-23% of frame width.",
-      "attempt": 2
+      "correction_prompt": "Regenerate as a hardware close-up: A wide cylindrical white drip-tape roll placed on dry soil in a farm. No people or body parts. Background shows irrigation infrastructure like filters or pipes. The roll must be off-center on the lower third. Preserve the exact AFP | 09134922013 watermark. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
     },
     {
       "pass": true,
       "score": 92,
-      "product_width_percent": 21,
-      "product_height_percent": 24,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
       "product_x_center_percent": 48,
       "reasons": [
-        "Shows exactly one white and blue drip-tape carton roll in a greenhouse context",
-        "No people or human body parts present",
-        "Required watermark 'AFP | 09134922013' is visible and correct",
-        "Product dimensions are within the specified width (20-23%) and height (<28%) limits",
-        "Placed naturally on soil, acting as a secondary element off-center"
+        "Exactly one AFP white-and-blue drip-tape roll visible, matching the required product form and branding.",
+        "Image contains the required bottom-right watermark 'AFP | 09134922013'.",
+        "Product is off-center (centered at 48%) and positioned on the lower third of the frame on soil.",
+        "Product dimensions (width 25%, height 28%) are within acceptable limits, and the diameter-to-height ratio is roughly 0.9 (1:1.1), acceptable for a tape roll viewed at a slight angle.",
+        "Zero people or human body parts are present.",
+        "Background shows a farm context with irrigation hardware (pipes, fittings), which aligns with the 'hardware story' role 3 without contradicting the crop topic.",
+        "Visible text on the package includes gibberish/foreign script in the subtitle area, which is a minor cosmetic defect but does not trigger a hard reject."
       ],
       "correction_prompt": "",
-      "attempt": 3
+      "attempt": 2
     }
   ],
   "approved_image": "مقدار-بذر-خیار-در-هکتار-راهنمای-جامع-جزئیات-فنی.webp"
