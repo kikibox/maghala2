@@ -133,7 +133,9 @@ jobs:
             echo "Translation backlog is below the safety threshold; dispatching the next Persian article batch."
             gh workflow run article-content-queue.yml --ref main
           elif [ "$rc" -eq 2 ]; then
-            echo "Translation backlog reached the safety threshold; Persian queue stays paused."
+            echo "Translation backlog remains at the safety threshold; cooling down and dispatching the next translation slice."
+            sleep 60
+            gh workflow run article-translations.yml --ref main
           else
             exit "$rc"
           fi
