@@ -100,6 +100,7 @@ jobs:
             echo "English queue is incomplete; SQL build deferred."
           fi
       - name: Persist translation state
+        if: always()
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
