@@ -6,7 +6,7 @@ on:
       levels:
         description: 'Concurrency levels, comma separated'
         required: true
-        default: '8,12,16'
+        default: '20,24,32'
       service:
         description: 'Service to benchmark'
         required: true
@@ -56,7 +56,7 @@ jobs:
         run: python -m py_compile automation/benchmark_agnes_concurrency.py
       - name: Run controlled concurrency ladder
         env:
-          BENCHMARK_LEVELS: ${{ inputs.levels || '8,12,16' }}
+          BENCHMARK_LEVELS: ${{ inputs.levels || '20,24,32' }}
           BENCHMARK_SERVICE: ${{ inputs.service || 'both' }}
         run: |
           args=()
