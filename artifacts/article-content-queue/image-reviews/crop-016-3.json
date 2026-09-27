@@ -1,0 +1,97 @@
+{
+  "id": "crop-016",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 15,
+      "product_height_percent": 10,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: image contains two distinct human body parts - a hand and arm in the left panel, and a full farmer figure in the bottom right panel.",
+        "The bottom right panel shows a man (human silhouette), which violates the 'zero people' constraint."
+      ],
+      "correction_prompt": "Regenerate the image removing all people, hands, and human figures. Ensure the scene shows only the drip-tape roll on the soil in a saffron field context, with no human interaction or presence.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 24,
+      "product_height_percent": 33,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product is centered on the frame (x_center ~48%)",
+        "Roll geometry is incorrect: the visible diameter (width) is roughly equal to its height, not the required 1.5 to 1.9 times the height",
+        "Product height (33%) exceeds the maximum allowed 32%",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shrink the roll size slightly, reposition it to the lower-left third, and change its geometry to a wide, flat cylinder where the diameter is roughly twice its vertical height. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 15,
+      "product_height_percent": 22,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: The image contains a man (human body parts: face, arms, legs, torso) which violates the 'zero people' requirement.",
+        "Hard reject: The image contains a second drip tape roll held by the person, violating the 'zero second roll / extra commercial product' requirement."
+      ],
+      "correction_prompt": "Remove the man entirely and delete the second tape roll he is holding. Replace the human figure with unattended irrigation infrastructure like a brass manifold, pressure regulator, or unattended pump on the soil, or simply empty soil to focus on the lone carton roll on the left.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 27,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "Hard reject: Image contains a person (female figure/farmer) and human body parts (face, arms, legs). The requirement mandates zero people and zero human body parts in the frame.",
+        "The presence of a human silhouette makes the image fail the 'hardware story' role which requires only infrastructure."
+      ],
+      "correction_prompt": "Remove the person and all human body parts from the image. Keep the irrigation equipment, the white-and-blue cylindrical drip-tape carton roll in the lower-left, and the farm background (soil, crop rows, distant buildings) completely intact.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 24,
+      "product_height_percent": 33,
+      "product_x_center_percent": 24,
+      "reasons": [
+        "The crop clearly shows red tulips in the foreground, which contradicts the specified 'saffron crocus' context; the prompt requires a hard reject if the visible crop clearly contradicts the subject.",
+        "The product is too close to the bottom edge, and its visible diameter-to-height ratio is less than the required 1.5 to 1.9 multiplier.",
+        "Background rows are too generic and do not match the specific saffron farm context.",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Replace the red tulip flowers with low-profile saffron crocus leaves and purple flowers; reduce the roll's height to 28% and increase its diameter to appear flatter, maintaining the off-center placement on soil. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 84,
+      "product_width_percent": 16,
+      "product_height_percent": 15,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "Exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll is visible",
+        "Product is secondary to the scene, located in the lower third and off-center",
+        "Product geometry matches the 1.5 to 1.9 diameter-to-height ratio requirement",
+        "Zero people or human body parts visible",
+        "Watermark 'AFP | 09134922013' is present at the bottom-right",
+        "Background shows a farm context with purple flowers which are not contradictory to saffron",
+        "Unattended tractor is allowed as infrastructure"
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-زعفران-با-آبیاری-قطرهای-جزئیات-فنی.webp"
+}

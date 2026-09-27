@@ -2,40 +2,57 @@
   "id": "crop-002",
   "kind": 3,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v10-topic-identity-semantic-composition-set-reviewed",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 10,
-      "product_width_percent": 12,
-      "product_height_percent": 18,
-      "product_x_center_percent": 52,
+      "score": 0,
+      "product_width_percent": 9,
+      "product_height_percent": 13,
+      "product_x_center_percent": 35,
       "reasons": [
-        "Hard reject: The image prominently features two people (a man and a woman) in the foreground, violating the 'zero people' constraint.",
-        "Hard reject: The roll is being actively held by a human hand, violating the 'zero human body parts' constraint.",
-        "Hard reject: The product is centered relative to the main subject, whereas the requirement specifies an off-center position.",
-        "Context: The image is staged as a human interaction scene rather than a hardware-focused infrastructure shot.",
-        "Note: The required watermark 'AFP | 09134922013' is present, but the image fails on critical negative constraints.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+        "Hard reject: The image contains a person (a male farmer) kneeling in the field, which strictly violates the 'zero people' rule.",
+        "Product width is significantly below the minimum acceptable range (9% is less than the 13-27% required practical estimate).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate the image completely without any people or hands. Show a single white and blue drip-tape roll placed naturally on the soil. The roll should be off-center (in the lower third) and secondary to the background, which should depict a farm irrigation context (e.g., near pipes or manifold) without showing any human silhouettes. Enlarge the product group from 12% to 13-27% of frame width.",
+      "correction_prompt": "Regenerate the image completely removing the person and any human silhouettes. Increase the physical size and pixel width of the white and blue drip-tape carton roll so it occupies at least 13% of the frame's width, keeping it off-center on the lower third of the image. Enlarge the product group from 9% to 13-27% of frame width.",
       "attempt": 1
     },
     {
-      "pass": true,
-      "score": 82,
-      "product_width_percent": 22,
-      "product_height_percent": 18,
-      "product_x_center_percent": 45,
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 30,
+      "product_height_percent": 25,
+      "product_x_center_percent": 40,
       "reasons": [
-        "The roll is appropriately sized as a secondary element, clearly displaying the required 'AFP | 09134922013' watermark.",
-        "The product is positioned off-center on the soil in the lower third.",
-        "The context is an unattended farm field with a distant tractor, which fits the 'hardware story' role and contains no people.",
-        "No identifiable crop is present to contradict the lentil topic."
+        "Second roll/package present (violation of 'exactly one roll' rule).",
+        "Primary product width (~30%) exceeds the maximum 27% hard limit.",
+        "Product is not placed on the lower third of the frame (positioned too high).",
+        "Flowering plant in the foreground resembles a crop (corn) which is not 'visually neutral' and may contradict the specific lentil context.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate to show only ONE low cylindrical drip tape roll placed in the lower-left third of the frame on soil. Ensure the roll's width is under 25% of the frame. Remove the flowering plant in the foreground and replace it with neutral soil texture or a small neutral stone. Keep the background crop rows distinct. Reduce the product group from 30% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 24,
+      "reasons": [
+        "The image displays exactly one white and blue AFP drip-tape roll situated in a farm context.",
+        "The crop (lentils) is sparse and neutral, which is acceptable for a hardware-focused story (Role 3) without contradicting the topic.",
+        "The product is correctly off-center on the lower third, placed naturally on the soil.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Product dimensions (width ~18%, height ~22%) fall within the acceptable 13-27% width range and <32% height limit.",
+        "The geometry of the roll is realistic and the diameter-to-height ratio is appropriate.",
+        "No people or human body parts are visible.",
+        "The background matches the farm context of the article."
       ],
       "correction_prompt": "",
-      "attempt": 2
+      "attempt": 3
     }
   ],
   "approved_image": "آفات-و-بیماریهای-عدس-با-آبیاری-قطرهای-جزئیات-فنی.webp"

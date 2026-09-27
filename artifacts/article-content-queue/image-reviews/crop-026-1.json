@@ -1,0 +1,54 @@
+{
+  "id": "crop-026",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 10,
+      "product_height_percent": 14,
+      "product_x_center_percent": 51,
+      "reasons": [
+        "The image contains three people (farmers/consortium), which is a hard reject based on the 'zero people' constraint.",
+        "Human hands, faces, arms, and body parts are clearly visible.",
+        "The product (drip tape roll) is not in the lower third, but is held in the center/foreground by the man on the left.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts from the image. Place the single AFP drip tape roll on the soil in the lower third of the frame, off-center. Ensure the crop (melon) is visible in the background without any human presence. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The main fruit featured prominently in the background (and the other smaller ones) exhibits the distinct vertical striping and growth habit of a watermelon (Citrullus lanatus), not a melon (Cucumis melo, as specified by the article crop 'ملون'). Per hard reject criteria, a clearly identifiable different species must be rejected, even if the irrigation layout (drip tape roll) is otherwise correct and agronomically functional."
+      ],
+      "correction_prompt": "Regenerate the image by replacing the large striped watermelon with a mature melon (e.g., cantaloupe or honeydew), which must have botanically accurate ribbed or smooth skin, netting, or coloration. Ensure the AFP white-and-blue drip-tape roll remains in the foreground on the soil, maintaining the 'AFP | 09134922013' watermark in the bottom-right corner.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 17,
+      "product_height_percent": 14,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product is an AFP white-and-blue wide low cylindrical drip-tape carton roll",
+        "Product is naturally placed on soil, off-center on the lower third",
+        "Melon crop (mloun) is botanically accurate, clearly identifiable, and correctly paired with the crop context",
+        "No people, body parts, or silhouettes are visible",
+        "Product dimensions (width < 27%, height < 32%) and off-center positioning are within practical acceptable bounds",
+        "Background matches the image role (farm context with melon crop) and product context (drip irrigation)"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "هزینه-کشت-ملون-با-نوار-تیپ-در-هکتار-تصویر-شاخص.webp"
+}

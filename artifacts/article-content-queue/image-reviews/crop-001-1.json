@@ -2,55 +2,52 @@
   "id": "crop-001",
   "kind": 1,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v10-topic-identity-semantic-composition-set-reviewed",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 85,
-      "product_width_percent": 14,
-      "product_height_percent": 15,
-      "product_x_center_percent": 66,
+      "score": 35,
+      "product_width_percent": 12,
+      "product_height_percent": 14,
+      "product_x_center_percent": 52,
       "reasons": [
-        "Crop visually matches spinach (dense low rosettes, smooth dark-green leaves)",
-        "Required bottom-right watermark present",
-        "No people or body parts visible",
-        "Drip tape context accurate",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 14% to 20-23% of frame width."
+        "Hard reject: Presence of a human (farmer) in the image.",
+        "Product width and height are too small (12-14%) compared to the required 13-27% (width) and <32% (height) ranges, falling below the lower bound.",
+        "Product staging appears unnatural as it is being held by a person.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
       ],
-      "correction_prompt": "Enlarge the product group from 14% to 20-23% of frame width.",
+      "correction_prompt": "Remove the man completely. Place the AFP white-and-blue wide low cylindrical drip-tape carton roll on the soil in the spinach field, ensuring the roll is wider (approx 20-25% of frame width) and not centered. Enlarge the product group from 12% to 13-27% of frame width.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 15,
-      "product_width_percent": 8,
-      "product_height_percent": 8,
-      "product_x_center_percent": 55,
+      "score": 55,
+      "product_width_percent": 24,
+      "product_height_percent": 38,
+      "product_x_center_percent": 50,
       "reasons": [
-        "Hard reject: A person (farmer) is clearly visible in the image, which violates the 'zero people and zero human body parts' requirement.",
-        "Product failure: The product is a white plastic jar/bottle, not the required wide low cylindrical drip-tape carton roll.",
-        "Product size: The product is significantly too small, occupying less than 20% of the frame width (target 20-23%).",
-        "Product placement: The product is being held by a hand and placed at the center, failing the 'secondary, off-center on the lower third' requirement.",
-        "Crop ambiguity: The visible crop rows are generic and do not clearly match the specific visual definition for spinach provided in the prompt.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 20-23% of frame width."
+        "Product is horizontally centered, violating the 'off-center on the lower third' requirement.",
+        "Product height is ~38%, exceeding the 32% maximum height limit.",
+        "Product aspect ratio (Diameter/Height) is approx 1.0 (square), which violates the required 1.5-1.9 ratio for a wide roll.",
+        "Visible packaging text is gibberish, which is a hard reject condition.",
+        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
       ],
-      "correction_prompt": "Regenerate the image with zero people. Show a wide, white-and-blue cylindrical drip-tape carton roll resting on the soil in the lower-right off-center position, appearing to be about 1.5 times its height in width. Place it amidst clearly recognizable spinach rosettes (dense, low, dark green arrow-shaped leaves). Ensure the crop is visually dominant to represent spinach. Enlarge the product group from 8% to 20-23% of frame width.",
+      "correction_prompt": "Regenerate with the roll positioned in the lower-right quadrant (off-center), reduce its height to be smaller than 32% of the frame, increase its width to appear significantly wider than its height (1.5-1.9x aspect), and ensure any text on the packaging is clearly legible or minimal. Reduce product height from 38% to at most 32% of frame height.",
       "attempt": 2
     },
     {
       "pass": true,
-      "score": 95,
-      "product_width_percent": 22,
-      "product_height_percent": 25,
-      "product_x_center_percent": 58,
+      "score": 80,
+      "product_width_percent": 19,
+      "product_height_percent": 21,
+      "product_x_center_percent": 61,
       "reasons": [
-        "Product is a wide, low cylindrical drip-tape roll with correct aspect ratio (approx 1.7:1 diameter to height).",
-        "Product placement is off-center in the lower third, naturally resting on soil.",
-        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
-        "Image contains zero people or human body parts.",
-        "Visible text on the package is authentic branding (AFP) and no gibberish is present.",
-        "Background is a farm context with rows of crops; while the crop leaves are slightly broader than typical wild spinach, the rosette growth habit is consistent with the requested 'spinach' context, so it passes the visual recognition threshold."
+        "The image shows one AFP white-and-blue drip tape roll as required.",
+        "The 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "The farm context with dense green leafy crop rows and visible drip tape lines provides a clear and appropriate agronomic story for the article.",
+        "No people or human body parts are visible.",
+        "Product geometry and placement are practical: off-center on the lower third, secondary to the crop context, and correctly sized."
       ],
       "correction_prompt": "",
       "attempt": 3

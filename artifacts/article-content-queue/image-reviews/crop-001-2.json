@@ -2,25 +2,66 @@
   "id": "crop-001",
   "kind": 2,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v10-topic-identity-semantic-composition-set-reviewed",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
-      "pass": true,
-      "score": 85,
-      "product_width_percent": 20,
-      "product_height_percent": 14,
-      "product_x_center_percent": 59,
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 11,
+      "product_height_percent": 17,
+      "product_x_center_percent": 45,
       "reasons": [
-        "Product bounding box fits within specified width (20-23%) and height (<28%) limits.",
-        "Product geometry is correct (diameter approx. 1.6-1.8x height).",
-        "Product is off-center and located on the lower third, placed naturally on soil.",
-        "Required AFP watermark 'AFP | 09134922013' is present in the bottom right.",
-        "Zero people or human body parts visible.",
-        "Crop foliage appears to be spinach rosettes suitable for the role 2 requirement."
+        "Hard reject: The image clearly contains a person (a woman in work clothes crouching), which is explicitly prohibited.",
+        "Product size: The drip-tape carton roll is too small relative to the frame; it does not meet the minimum width requirement of 13-27% (approx 11%) or the height cap of 32%.",
+        "Product placement: The roll is too high in the frame and is being actively manipulated by hands, failing the 'naturally placed on soil' and 'lower third' requirements.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image completely removing the person and their body parts. Place a single AFP white-and-blue drip-tape roll on the soil in the bottom-right corner. The roll should be clearly visible, secondary to the spinach crop, and not held by anyone. Maintain the 'AFP | 09134922013' watermark in the bottom right. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "Crop morphology shows dense low rosettes with broad, rounded, and heart-shaped leaves, which are botanically distinct from the target spinach (assfinaaj) morphology described as oval to arrow-shaped leaves."
+      ],
+      "correction_prompt": "Regenerate the image ensuring the crop leaves are distinctly oval or arrow-shaped with smoother edges to accurately represent spinach, replacing the current broad/rounded leaves.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Presence of two people (a man and a woman) in the foreground, which is a hard reject condition.",
+        "The product is a flat box/canister held by a person, not a wide low cylindrical drip-tape carton roll on soil.",
+        "The product is held in a hand, violating the requirement that it be naturally placed on soil and unattended.",
+        "Visible human silhouettes and body parts throughout the image.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people from the scene. Place a wide, low, cylindrical white-and-blue drip tape carton roll on the soil in the lower third, off-center. The roll should be wide (approx 20% width) and low. No hands or faces should be visible. The background should show a field of spinach crops without any humans. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 20,
+      "product_height_percent": 18,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product dimensions and placement align with the required specifications.",
+        "Background clearly displays low rosettes of dark-green foliage consistent with spinach.",
+        "Required watermark is present and unaltered.",
+        "No hard-reject elements (people, extra products, invalid packaging) are detected."
       ],
       "correction_prompt": "",
-      "attempt": 1
+      "attempt": 4
     }
   ],
   "approved_image": "میزان-برداشت-اسفناج-در-هکتار-با-نوار-تیپ-کاربرد-عملی.webp"

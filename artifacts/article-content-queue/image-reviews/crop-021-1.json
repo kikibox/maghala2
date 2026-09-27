@@ -1,0 +1,42 @@
+{
+  "id": "crop-021",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 12,
+      "product_height_percent": 24,
+      "product_x_center_percent": 20,
+      "reasons": [
+        "Hard reject: The image contains a prominent full-body human figure (farmer) on the right side, which is strictly forbidden.",
+        "Product mismatch: The main subject on the left is a vertical irrigation manifold/filter unit, not a wide low cylindrical drip-tape carton roll.",
+        "Geometry error: The visible product (manifold) is tall and narrow, violating the required wide cylindrical shape (width must be ~1.5-1.9x height).",
+        "Human holding object: The farmer is holding a pot of seedlings, introducing a prohibited human element.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the farmer completely. Replace the vertical manifold with a wide, short, white-and-blue cylindrical drip-tape carton roll placed on the soil in the lower-left foreground. Keep the alfalfa field and drip irrigation layout background. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 27,
+      "product_height_percent": 31,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Required bottom-right AFP | 09134922013 watermark is present.",
+        "No people, human body parts, or human silhouettes are visible.",
+        "The product is a single white-and-blue wide low cylindrical drip-tape carton roll, positioned in the lower third on soil and off-center.",
+        "The product width is at the upper practical limit but remains acceptable; height is within the required limit.",
+        "The farm context with young crop rows and a thin drip line is agronomically consistent with alfalfa without hard-rejecting the young vegetation."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "نگهداری-یونجه-با-نوار-تیپ-نکات-کلیدی-تصویر-شاخص.webp"
+}

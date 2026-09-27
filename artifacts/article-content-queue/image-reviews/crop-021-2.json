@@ -1,0 +1,95 @@
+{
+  "id": "crop-021",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 17,
+      "product_height_percent": 27,
+      "product_x_center_percent": 17,
+      "reasons": [
+        "Hard reject: Image contains multiple people (a man in the main frame and partial torso/legs in the inset).",
+        "Hard reject: A human hand is visibly holding the product in the inset.",
+        "Hard reject: The main visual shows a long white strap/hose being held by a person, which contradicts the 'exactly one roll' requirement and fails the 'zero people' constraint."
+      ],
+      "correction_prompt": "Regenerate the image to remove all people, hands, and body parts. Show only one AFP white-and-blue cylindrical drip-tape roll lying off-center on the soil in an alfalfa field (dense fine trifoliate leaves or neutral bed). Ensure the roll is roughly 1.5-1.9x as wide as it is tall, positioned in the lower third. Maintain the AFP watermark and farm context.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 21,
+      "product_height_percent": 25,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Product is centered horizontally, failing the 'off-center on the lower third' requirement.",
+        "Product height exceeds the 32% maximum limit."
+      ],
+      "correction_prompt": "Move the drip-tape roll significantly off-center to the lower third and reduce its overall scale to meet height and width constraints.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 11,
+      "product_height_percent": 20,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Image contains a person (man) violating the 'zero people' rule (hard reject).",
+        "Product geometry is inverted (taller than wide) and does not match the 'wide low cylindrical' requirement (ratio 0.55 vs required 1.5-1.9).",
+        "Product width is 11%, which is below the acceptable 13-27% range.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the human figure. Generate a wide low cylindrical white and blue drip-tape carton roll (width > height, ratio ~1.7) positioned on the soil in the lower-left area. The crop must be alfalfa (trifoliate leaves, no broad leaves). Keep the 'AFP | 09134922013' watermark. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "The crop is not alfalfa; visible purple flowers do not match alfalfa morphology (dense fine trifoliate leaflets).",
+        "Product is not low; visible height is close to 30% of frame, above the recommended ratio for a wide low cylindrical roll.",
+        "Product shape and proportions appear inconsistent with a wide low drip-tape roll."
+      ],
+      "correction_prompt": "Regenerate with clearly visible young alfalfa (trifoliate leaflets, no broad leaves or purple flowers). Replace the roll with a low-profile wide cylindrical drip-tape carton, height no more than 25% of frame, width around 20-23%, placed on the lower-left off-center on soil. Keep the bottom-right watermark exactly 'AFP | 09134922013'.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 20,
+      "product_height_percent": 20,
+      "product_x_center_percent": 24,
+      "reasons": [
+        "The image contains a visible person (farmer), which is a hard reject.",
+        "The person's body parts (face, hands, legs) violate the zero-human constraint."
+      ],
+      "correction_prompt": "Remove the person completely from the farm scene while keeping the drip tape roll and alfalfa context.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Product is a single AFP white-and-blue cylindrical drip-tape carton roll on soil, placed on the lower-left third off-center",
+        "No people, faces, body parts, or silhouettes present",
+        "Background shows a young legume crop (clover/alfalfa) in a farm field, consistent with the topic",
+        "The required watermark 'AFP | 09134922013' is present in the bottom right",
+        "No extra commercial containers, bottles, or conflicting hardware"
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "نگهداری-یونجه-با-نوار-تیپ-نکات-کلیدی-کاربرد-عملی.webp"
+}

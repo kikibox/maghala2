@@ -1,0 +1,43 @@
+{
+  "id": "crop-012",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 10,
+      "product_height_percent": 12,
+      "product_x_center_percent": 60,
+      "reasons": [
+        "Presence of a person (human silhouette, body parts) in the image which is a hard reject.",
+        "The product is being held by a hand, violating the zero-person/zero-body-part rule.",
+        "The crop shown does not clearly match the specific botanical requirements for 'sainfoin' (sparsis), though a botanically neutral background is acceptable, the hard reject on human presence is sufficient for failure.",
+        "Product is not 'naturally placed on soil' but held in hand.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person/farmer entirely. Place the AFP white-and-blue drip-tape carton roll on the soil surface in the foreground, off-center (lower third), unattended. Keep the background as a farm context with visible drip tape lines and young green crops (sainfoin). Ensure the product is about 20-23% of the frame width. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 22,
+      "product_height_percent": 25,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Contains exactly one AFP white-and-blue drip-tape roll with accurate cylinder geometry (diameter ~1.6x height)",
+        "No people or human body parts are visible",
+        "Product is off-center on the lower third and placed naturally on soil",
+        "Correct bottom-right watermark 'AFP | 09134922013' present",
+        "Farm context includes drip tape lines and a barn, matching the irrigation family",
+        "Foreground green vegetation is generic, not hard-identifiable as a conflicting species"
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-اسپرس-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

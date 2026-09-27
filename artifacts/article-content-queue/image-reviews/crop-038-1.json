@@ -1,0 +1,40 @@
+{
+  "id": "crop-038",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 7,
+      "product_height_percent": 12,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Image contains a person (farmer crouching), face, arms, and hands.",
+        "Hard reject: Product is a small cylindrical canister/bottle, not the required wide low drip-tape roll.",
+        "Product is held by a human hand, violating the 'zero people' rule.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person completely. Replace the small canister with a wide, low, cylindrical AFP drip-tape roll (diameter approx. 2x height) resting directly on the soil in the lower-right off-center position. Maintain the farm background and watermark. Enlarge the product group from 7% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 80,
+      "product_width_percent": 16,
+      "product_height_percent": 16,
+      "product_x_center_percent": 63,
+      "reasons": [
+        "Product size and placement are within the acceptable ranges (secondary, off-center, lower third).",
+        "Contains zero people or human body parts.",
+        "Required 'AFP | 09134922013' watermark is present in the bottom right.",
+        "The background context (prepared field) supports the article about a crop like garden cress, and the 'neutral young vegetation' guideline allows this to pass."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "میزان-برداشت-شاهی-در-هکتار-با-نوار-تیپ-تصویر-شاخص.webp"
+}

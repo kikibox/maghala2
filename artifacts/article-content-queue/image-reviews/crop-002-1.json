@@ -2,36 +2,32 @@
   "id": "crop-002",
   "kind": 1,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v10-topic-identity-semantic-composition-set-reviewed",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 35,
-      "product_width_percent": 16,
-      "product_height_percent": 26,
-      "product_x_center_percent": 33,
+      "score": 10,
+      "product_width_percent": 45,
+      "product_height_percent": 35,
+      "product_x_center_percent": 30,
       "reasons": [
-        "The crop shown is clearly not lentils. The leaves are large, heart-shaped, and single (simple), whereas the article specifically requires lentil plants which must be bushy with small paired pinnate oval leaflets. This is a 'clearly identifiable different species' (likely a cucurbit or similar) which violates the botanical negative constraint."
+        "The visible geometry of the 'roll' is physically impossible: it consists of a hollow central column with loose coils of tubing lying flat around it on the ground, rather than a solid wound cylindrical roll. This matches the hard reject criteria for 'impossible geometry'.",
+        "There are two distinct coiled sections of black tubing visible in the image (one around the white column on the left, one on the right), which triggers the hard reject for 'second roll' or 'extra commercial product'.",
+        "The crop shown on the right side of the image consists of large leaves and pink flowers, which matches the hard reject criteria for 'brassica flowers' or clearly identifiable non-lentil species (lentils are fine-textured low legumes, not broad-leaved flowering plants).",
+        "The product (tubing + central column) extends to the very bottom edge of the frame, violating the requirement to be naturally placed on the soil and off-center on the lower third without cropping.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 13-27% of frame width.; Reduce product height from 35% to at most 32% of frame height."
       ],
-      "correction_prompt": "Regenerate with the crop changed to young lentil plants, which should appear as low, fine-textured, bushy plants with many thin branching stems and small paired pinnate oval leaflets, not large broad leaves. Keep the white and blue AFP drip-tape roll on the soil, off-center on the lower third, maintaining the exact bottom-right watermark 'AFP | 09134922013'. Ensure there are zero people in the frame.",
+      "correction_prompt": "Regenerate the image to show a single, solid, tightly wound cylindrical roll of white and blue drip tape. The roll must have visible diameter approximately 1.5 times its height. Place the roll on the soil in the lower left. Ensure the crop is strictly lentil plants (fine bushy stems, small oval leaves) without large flowers or broad leaves. Remove the loose coiled tubing lying on the ground. Reduce the product group from 45% to 13-27% of frame width. Reduce product height from 35% to at most 32% of frame height.",
       "attempt": 1
     },
     {
       "pass": true,
-      "score": 82,
-      "product_width_percent": 18,
-      "product_height_percent": 28,
-      "product_x_center_percent": 47,
-      "reasons": [
-        "Image features exactly one AFP drip-tape carton roll, correctly colored white and blue.",
-        "The product is a wide, low cylindrical shape with a visible diameter-to-height ratio of approximately 1.6:1.",
-        "The roll is positioned naturally on soil in the lower section of the frame and is slightly off-center.",
-        "The background contains a farm context with agricultural buildings and orderly crop rows.",
-        "No people or human body parts are visible in the scene.",
-        "The required 'AFP | 09134922013' watermark is clearly present in the bottom-right corner.",
-        "No additional commercial products or prohibited objects (like bottles, jars, or second rolls) are present."
-      ],
+      "score": 95,
+      "product_width_percent": 19,
+      "product_height_percent": 23,
+      "product_x_center_percent": 27,
+      "reasons": [],
       "correction_prompt": "",
       "attempt": 2
     }

@@ -2,71 +2,54 @@
   "id": "crop-005",
   "kind": 3,
   "family": "tape20",
-  "policy": "strict-no-human-scale-watermark-v8-role-isolated-set-reviewed",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 25,
-      "product_width_percent": 18,
-      "product_height_percent": 30,
-      "product_x_center_percent": 38,
+      "score": 10,
+      "product_width_percent": 22,
+      "product_height_percent": 15,
+      "product_x_center_percent": 45,
       "reasons": [
-        "Violation: Presence of a human figure (worker standing by the tractor in the background).",
-        "Violation: The product roll is positioned too centrally (x-center approx 38%), failing the 'off-center' requirement.",
-        "Violation: Product geometry (diameter) and height relative to frame exceed limits slightly or are not optimally 'low profile' enough for the spec.",
-        "Violation: Presence of a small mechanical junction box/fitting next to the roll constitutes an 'extra commercial product' / unrequested object.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 18% to 20-23% of frame width.; Reduce product height from 30% to at most 28% of frame height."
+        "Hard reject: Image contains a man (person) and visible hands/body parts.",
+        "The product shown is unrolled drip tape lines, not the required wide low cylindrical carton roll.",
+        "Product is not placed naturally on the soil as a standalone roll."
       ],
-      "correction_prompt": "Regenerate image removing the human figure entirely. Move the white and blue drip-tape roll to the far left (approx 15-20% x-center) and far right (approx 80-85% x-center) to satisfy the off-center requirement. Remove the small junction box next to the roll. Keep the roll width around 20-23% of frame width. Enlarge the product group from 18% to 20-23% of frame width. Reduce product height from 30% to at most 28% of frame height.",
+      "correction_prompt": "Regenerate an image of a single white-and-blue cylindrical drip-tape carton roll resting on the soil in a farm field. No people or human body parts must be visible. The roll should be in the lower-third off-center, with a diameter roughly 1.5 to 1.9 times its visible height. The background should be neutral farm soil or unattended irrigation hardware.",
       "attempt": 1
     },
     {
       "pass": false,
       "score": 55,
-      "product_width_percent": 11.0,
-      "product_height_percent": 25.0,
-      "product_x_center_percent": 34.0,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 43,
       "reasons": [
-        "The width of the drip-tape roll is approximately 11% of the frame, which is significantly below the required minimum of 20%.",
-        "The roll is positioned on the far left side, making the off-center placement excessive relative to the requested 'lower third' focus.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 20-23% of frame width."
+        "The product is positioned in the bottom center of the frame, failing the requirement to be off-center on the lower third.",
+        "The packaging text (besides 'AFP') is gibberish and illegible, which violates the rule against invented writing.",
+        "There is no visible blue color on the side of the roll; the requirement specifies a 'white-and-blue' carton, which is not clearly present here."
       ],
-      "correction_prompt": "Increase the scale of the drip-tape roll so it occupies 20-23% of the frame width. Move the roll slightly toward the center of the lower third. Enlarge the product group from 11% to 20-23% of frame width.",
+      "correction_prompt": "Regenerate the image with the drip tape roll placed on the far-left or far-right third of the soil instead of the center. Ensure the carton wrap is distinctly blue and white. Replace the gibberish text on the roll with clean, minimal authentic-looking typography that does not distract.",
       "attempt": 2
     },
     {
-      "pass": false,
-      "score": 15,
-      "product_width_percent": 17.5,
-      "product_height_percent": 22,
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
       "product_x_center_percent": 35,
       "reasons": [
-        "Hard reject: Human (a farmer) is clearly visible in the image, violating the zero people/body parts rule.",
-        "The drip tape roll is not the only commercial item; a large coil of tape and a metal stake tool are also present.",
-        "The product roll is not wide enough relative to the frame to meet the 20-23% width requirement.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 17.5% to 20-23% of frame width."
-      ],
-      "correction_prompt": "Remove the human figure and the metal stake tool. Replace the coil with a second roll or remove it entirely to isolate the primary product. Increase the width of the primary drip-tape roll to approximately 21% of the image width. Enlarge the product group from 17.5% to 20-23% of frame width.",
-      "attempt": 3
-    },
-    {
-      "pass": true,
-      "score": 85,
-      "product_width_percent": 21,
-      "product_height_percent": 15,
-      "product_x_center_percent": 40,
-      "reasons": [
-        "Product is a white cylindrical roll matching the description.",
-        "Bounding box estimated at 21% width and 15% height, falling within the 20-23% width and <28% height constraints.",
-        "Aspect ratio of ~1.4 is close to the 1.6-1.8 target for a cylinder viewed at an angle.",
-        "Product is placed off-center in the lower third on soil.",
-        "Background is a farm field, matching the topic.",
-        "Zero people or human body parts visible.",
-        "Required AFP watermark is present at the bottom right."
+        "The product is a single wide, low cylindrical drip-tape carton roll with white and blue color scheme.",
+        "The roll is placed naturally on the soil and is positioned off-center in the lower third of the frame.",
+        "The background shows a farm context with soil and neutral crop sprouts, which does not contradict the topic of sainfoin (سپرسان) for a hardware close-up role.",
+        "No people, body parts, or human silhouettes are visible in the image.",
+        "The required watermark 'AFP | 09134922013' is clearly visible in the bottom-right corner.",
+        "The visible diameter of the roll is approximately 1.75 times its height, fitting the 1.5 to 1.9 ratio requirement.",
+        "Product width (21%) and height (24%) fall within the preferred and acceptable ranges."
       ],
       "correction_prompt": "",
-      "attempt": 4
+      "attempt": 3
     }
   ],
   "approved_image": "هزینه-کشت-اسپرس-با-نوار-تیپ-در-هکتار-جزئیات-فنی.webp"
