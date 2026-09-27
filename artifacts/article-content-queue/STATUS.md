@@ -4,14 +4,14 @@
 
 ## نمای کلی
 
-- آخرین بروزرسانی: `2026-09-27T05:42:44+00:00`
+- آخرین بروزرسانی: `2026-09-27T05:50:41+00:00`
 - وضعیت صف: **آماده اجرای بعدی** (`ready`)
 - پیشرفت: **51 از 1148 (4.44٪)**
 - نمودار پیشرفت: `░░░░░░░░░░░░░░░░░░░░`
 - تکمیل‌شده: **51**
 - در حال پردازش: **0**
-- در انتظار: **1091**
-- ناموفق: **6**
+- در انتظار: **1090**
+- ناموفق: **7**
 - مسدود مدل تصویر: **0**
 - میانگین طول مقالات تکمیل‌شده: **1276 کلمه**
 - اولویت فعلی: **تولید مقاله فارسی بعدی**
@@ -35,7 +35,7 @@
 
 | گروه | کل | تکمیل | در انتظار | در حال پردازش | ناموفق | پیشرفت |
 |---|---:|---:|---:|---:|---:|---:|
-| `crop` | 341 | 51 | 284 | 0 | 6 | 14.96٪ |
+| `crop` | 341 | 51 | 283 | 0 | 7 | 14.96٪ |
 | `irrigation` | 12 | 0 | 12 | 0 | 0 | 0.00٪ |
 | `product` | 112 | 0 | 112 | 0 | 0 | 0.00٪ |
 | `strategic` | 33 | 0 | 33 | 0 | 0 | 0.00٪ |
@@ -69,8 +69,8 @@
 
 ## مقاله بعدی صف
 
-- عنوان: **هزینه کشت یونجه با نوار تیپ در هکتار**
-- شناسه: `crop-059`
+- عنوان: **فاصله نوار تیپ در کشت خربزه: استانداردهای توصیه‌شده**
+- شناسه: `crop-060`
 - گروه: `crop`
 - تعداد تلاش قبلی: **0**
 
@@ -99,6 +99,7 @@
 
 ## خطاهای اخیر
 
+- **هزینه کشت یونجه با نوار تیپ در هکتار** — `crop-059` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['Presence of a man (human silhouette and face)', 'Product is not an AFP white-and-blue wide low cylindrical drip-tape carton roll; it is a roll of white tape, not the specific carton roll described', 'Image does not match the required crop context of alfalfa (younger, broad-leaved seedlings shown instead of the dense, fine trifoliate leaves described)', 'Product is placed center-left rather than naturally off-center on the lower third of the f`
 - **هزینه کشت لپه با نوار تیپ در هکتار** — `crop-058` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['The crop in the background is clearly identifiable as sunflowers, which is a completely different species from the required لپه (yellow split-pea crop). The rules state that a clearly identifiable different species must be hard rejected.', 'The background fails to match the required topic of لپه (yellow split-pea crop).']`
 - **نگهداری زعفران با نوار تیپ: نکات کلیدی** — `crop-056` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ['The visible crop in the background consists of tulips, which clearly contradicts the topic-specific requirement for saffron (zaafaran) crocus plants.', 'The product roll appears nearly square in aspect ratio (height 19% vs width 17%), whereas it is required to be wider than it is tall (diameter ~1.5-1.9 times height).', 'There is faint, illegible gibberish text on the side of the product label.']`
 - **آفات و بیماری‌های شنبلیله با آبیاری قطره‌ای** — `crop-055` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
