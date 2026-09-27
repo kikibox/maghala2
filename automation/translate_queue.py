@@ -45,13 +45,41 @@ def fetch_source(post_id):
     if not title or not content: raise RuntimeError(f'WordPress REST returned empty source for {post_id}')
     return {'id':post_id,'title':title,'slug':data.get('slug',''),'date':data.get('date',''),'content':content}
 
-def call_chat(messages,max_tokens=12000):
+def call_chat_raw(messages,max_tokens=12000):
     payload={'model':MODEL,'messages':messages,'temperature':0.1,'max_tokens':max_tokens}
     result=request_json(BASE+'/chat/completions',payload,authenticated=True)
     raw=result['choices'][0]['message']['content']
     if isinstance(raw,list):
         raw=''.join(str(x.get('text','')) for x in raw if isinstance(x,dict))
+    return str(raw).strip()
+
+def call_chat(messages,max_tokens=12000):
+    raw=call_chat_raw(messages,max_tokens=max_tokens)
     return parse_object(raw)
+
+def translate_single_text(text,lang):
+    """Last-resort non-JSON path for one segment.
+
+    Long translations are still split and validated normally. This fallback
+    only avoids starving the queue when the model returns good prose wrapped
+    in malformed JSON for a single small segment.
+    """
+    label=language_label(lang)
+    messages=[
+        {'role':'system','content':'You are a precise agricultural localization editor.'},
+        {'role':'user','content':(
+            f'Translate the following Persian text into {label}. Return only the translated '
+            'text: no JSON, Markdown fence, label, explanation or quotation marks. Preserve '
+            f'numbers, URLs, product names and AFP.\n\n{text}'
+        )},
+    ]
+    raw=call_chat_raw(messages,max_tokens=min(6000,max(1200,len(text)*3)))
+    raw=re.sub(r'^```(?:text|markdown)?\s*|\s*```$','',raw,flags=re.I|re.S).strip()
+    if len(raw)>=2 and raw[0]==raw[-1] and raw[0] in ('"',"'"):
+        raw=raw[1:-1].strip()
+    if not raw:
+        raise ValueError('Plain-text fallback returned an empty translation')
+    return raw
 
 def language_label(lang):
     return {
@@ -104,7 +132,14 @@ INPUT:\n{json.dumps(items,ensure_ascii=False)}'''
         mid=len(items)//2
         left=translate_segment_batch(items[:mid],lang); right=translate_segment_batch(items[mid:],lang)
         return {**left,**right}
-    raise RuntimeError(f'Segment translation failed for {lang}: {last}')
+    try:
+        translated=translate_single_text(str(items[0]['text']),lang)
+        print(f'Plain-text fallback succeeded for segment {items[0]["id"]} in {lang}',flush=True)
+        return {int(items[0]['id']):translated}
+    except Exception as fallback_exc:
+        raise RuntimeError(
+            f'Segment translation failed for {lang}: JSON={last}; plain={fallback_exc}'
+        ) from fallback_exc
 
 def translate_html(source_html,lang):
     parser=PreserveHTML(); parser.feed(source_html); parser.close()

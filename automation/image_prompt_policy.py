@@ -141,10 +141,16 @@ def visual_template(item,kind):
 def reference_images(kind,item=None):
  family=product_family(item)
  if family=='layflat':
-  return [
-   'data:image/webp;base64,'+(ASSET_DIR/'afp-layflat.webp.b64').read_text(encoding='ascii').strip(),
-   'data:image/jpeg;base64,'+(ASSET_DIR/'afp-layflat-bare.jpg.b64').read_text(encoding='ascii').strip(),
-  ]
+  refs=[]
+  for filename in ('afp-layflat.webp.b64','afp-layflat-bare.jpg.b64'):
+   raw=base64.b64decode((ASSET_DIR/filename).read_text(encoding='ascii').strip())
+   product=Image.open(io.BytesIO(raw)).convert('RGB')
+   product.thumbnail((150,112),Image.Resampling.LANCZOS)
+   canvas=Image.new('RGB',(1200,675),(238,238,235))
+   canvas.paste(product,(90,675-product.height-55))
+   buf=io.BytesIO();canvas.save(buf,'WEBP',quality=90,method=6)
+   refs.append('data:image/webp;base64,'+base64.b64encode(buf.getvalue()).decode('ascii'))
+  return refs
  raw=base64.b64decode((ASSET_DIR/'afp-tape.webp.b64').read_text(encoding='ascii').strip())
  product=Image.open(io.BytesIO(raw)).convert('RGB').resize((280,170),Image.Resampling.LANCZOS)
  canvas=Image.new('RGB',(1200,675),(238,238,235));canvas.paste(product,(90,675-product.height-55))
@@ -158,7 +164,7 @@ def image_prompt(item,kind):
  template=visual_template(item,kind)
  identity=crop_identity_spec(item)
  identity_lock=(
-  f'BOTANICAL IDENTITY LOCK: show {identity}. A visibly different crop species is a hard failure even when the rest of the scene is attractive. '
+  f'BOTANICAL IDENTITY LOCK: prefer an unmistakable, accurate view of {identity}. Never substitute a visibly different crop species. If exact mature morphology cannot be rendered reliably, use botanically neutral prepared beds, tiny unidentifiable seedlings, irrigation evidence or soil/root-zone evidence instead of inventing a different crop. '
   if int(kind) in (1,2)
   else f'TECHNICAL ROLE CROP RULE: the hardware and water-distribution evidence are the subject. Crop plants may be absent or visually neutral; never show a clearly different identifiable crop from {named_crop(item)}. '
  )

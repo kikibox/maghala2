@@ -288,7 +288,7 @@ class ArticleQueueTests(unittest.TestCase):
         self.assertTrue(tape_ref.startswith("data:image/webp;base64,"))
         self.assertEqual(len(layflat_refs), 2)
         self.assertTrue(layflat_refs[0].startswith("data:image/webp;base64,"))
-        self.assertTrue(layflat_refs[1].startswith("data:image/jpeg;base64,"))
+        self.assertTrue(layflat_refs[1].startswith("data:image/webp;base64,"))
         self.assertNotEqual(tape_ref, layflat_refs[0])
         self.assertNotEqual(layflat_refs[0], layflat_refs[1])
 
