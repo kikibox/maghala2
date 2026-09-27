@@ -182,8 +182,8 @@ jobs:
       # A transient reviewer/API failure may leave valid completed articles and
       # a preserved candidate. Keep advancing automatically after a cooldown;
       # translation-only runs remain owned by the translation workflow.
-      - name: Continue article queue automatically
-        if: always() && !cancelled() && steps.queue.outcome != 'skipped'
+      - name: Continue article pipeline automatically
+        if: always() && !cancelled()
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
@@ -196,12 +196,15 @@ jobs:
           print(int(json.loads(path.read_text(encoding='utf-8')).get('pending', 0)) if path.exists() else 0)
           PY
           )"
-          if [ "$pending" -gt 0 ]; then
+          if [ "${{ steps.translation_backlog.outputs.pending }}" = "1" ]; then
+            echo "Translation backlog reached its bound; dispatching the translator before more Persian generation."
+            gh workflow run article-translations.yml --ref main
+          elif [ "$pending" -gt 0 ] && [ "${{ steps.queue.outcome }}" != "skipped" ]; then
             echo "Queue has $pending pending articles; cooling down before the next batch."
             sleep 60
             gh workflow run article-content-queue.yml --ref main
           else
-            echo "No pending articles remain; automatic chaining is complete."
+            echo "No generation handoff is required from this run."
           fi
 
       - name: Fail run when queue processing failed
