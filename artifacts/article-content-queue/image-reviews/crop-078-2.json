@@ -1,0 +1,96 @@
+{
+  "id": "crop-078",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 18,
+      "product_height_percent": 18,
+      "product_x_center_percent": 62,
+      "reasons": [
+        "Hard reject: A person is visible on the far right side of the image (a portion of a blue shirt and arm is visible behind the wooden plank).",
+        "The roll height is slightly too tall, appearing nearly square in the foreground rather than having the required low, wide cylindrical aspect ratio (width should be approx 1.5-1.9 times height)."
+      ],
+      "correction_prompt": "Regenerate the image removing the person on the right. Ensure the drip tape roll is wider and shorter (flatter) so it looks like a low cylinder, maintaining the 'family tape20' aesthetic without any human presence.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 18,
+      "product_height_percent": 35,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product is centered horizontally, violating the 'off-center on the lower third' requirement.",
+        "Product height (~35% of frame) exceeds the hard limit of 32%.",
+        "Centered product staging is a hard reject criterion.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shift the drip-tape roll 20% to the right to break symmetry and reduce its height relative to the frame (ensure height is under 32%). Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 61,
+      "reasons": [
+        "Presence of people or human body parts",
+        "A farmer with visible arm, hand, and leg is present in the image, which is a hard reject condition."
+      ],
+      "correction_prompt": "Remove all people and human body parts. Ensure the AFP drip-tape roll is centered on the soil without any human interaction.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 52,
+      "product_width_percent": 22,
+      "product_height_percent": 34,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "The drip tape cartridge is visually centered rather than placed off-center on the lower third of the frame.",
+        "The width of the visible cartridge (including its blue base) exceeds the strict 32 percent height limit.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shift the AFP drip-tape cartridge significantly to the left third of the frame, place it on the soil off-center, and scale it down slightly to ensure its total vertical height is well under 32 percent of the frame. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 70,
+      "product_width_percent": 17.5,
+      "product_height_percent": 38.0,
+      "product_x_center_percent": 27.0,
+      "reasons": [
+        "Product bounding box height (approx 38% of frame) exceeds the strict maximum limit of 32%.",
+        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image to make the drip-tape carton roll physically smaller in the frame so its height is under 32% of the image, while keeping the roll on the soil and maintaining the young crop context. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 98,
+      "product_width_percent": 20,
+      "product_height_percent": 20,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The product matches the required AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "The crop is identifiable as maize (corn) seedlings, which matches the 'maize' article title with botanically accurate morphology.",
+        "The product width (approx. 20%) and height (approx. 20%) fall within the preferred and acceptable ranges.",
+        "The product is placed off-center in the lower third on the soil, consistent with natural staging.",
+        "The background features a prepared field with visible drip irrigation lines, matching the 'drip' and 'irrigation' context.",
+        "No people, human body parts, or other prohibited commercial products are visible.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and authentic."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "فاصله-نوار-تیپ-در-کشت-بامیه-استانداردهای-توصیهشده-کاربرد-عملی.webp"
+}

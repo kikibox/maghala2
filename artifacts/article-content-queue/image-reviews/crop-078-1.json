@@ -1,0 +1,56 @@
+{
+  "id": "crop-078",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 11,
+      "product_height_percent": 14,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Hard reject: The image contains a person (farmer/worker).",
+        "Hard reject: Visible human body parts including face, hands, and legs are present.",
+        "The presence of a human silhouette in the frame violates the strict requirement for zero people.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person and all human body parts completely. Place the white and blue cylindrical drip-tape roll on the soil in the foreground left side, ensuring it is not centered and maintains a 1.5-1.9 diameter-to-height ratio, with no hands touching it. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 16.5,
+      "product_height_percent": 26.0,
+      "product_x_center_percent": 26.0,
+      "reasons": [
+        "Product width is 16.5%, which is below the preferred range of 20-23% and at the very bottom of the acceptable practical range.",
+        "The visible aspect ratio of the roll is approximately 1.6:1 (width/height), which is at the absolute lower limit of the 1.5-1.9 requirement, making the object look slightly squashed or short.",
+        "The product is placed on the very bottom edge of the frame; moving it slightly up would better satisfy the 'lower third' requirement while maintaining context."
+      ],
+      "correction_prompt": "Increase the visual width of the drip tape roll to approximately 22% of the frame width to meet the preferred size. Slightly increase the visible height to make the aspect ratio closer to 1.8. Shift the roll vertically up by 5% to place it more comfortably within the lower third of the image.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 20,
+      "product_height_percent": 17,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Product matches the required AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product is correctly placed in the bottom-center/lower-third off-center position on the soil.",
+        "Product width (~20%) and height (~17%) fall within the acceptable limits for a secondary product.",
+        "Background shows a farm context with rows of seedlings, which passes as a neutral young vegetation context.",
+        "No people or human body parts are visible.",
+        "The required bottom-right watermark is present."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "فاصله-نوار-تیپ-در-کشت-بامیه-استانداردهای-توصیهشده-تصویر-شاخص.webp"
+}
