@@ -1,0 +1,70 @@
+{
+  "id": "crop-064",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 21,
+      "product_x_center_percent": 53,
+      "reasons": [
+        "Hard reject: Human body parts visible (arms, hands, and legs of a farmer)."
+      ],
+      "correction_prompt": "Regenerate without any people, body parts, or human silhouettes. The product should sit naturally on the soil.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 27.5,
+      "product_height_percent": 36.5,
+      "product_x_center_percent": 33.5,
+      "reasons": [
+        "Product visible height is 36.5%, exceeding the maximum threshold of 32%",
+        "Product width of 27.5% exceeds the 27% acceptable limit for hard rejection",
+        "machine-enforced bounding-box check failed: Reduce the product group from 27.5% to 13-27% of frame width.; Reduce product height from 36.5% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shrink the drip-tape roll so the visible height is <= 32% of the frame and the width is between 13% and 26%; keep it off-center on the lower third, on soil, with the same farm context and required AFP watermark. Reduce the product group from 27.5% to 13-27% of frame width. Reduce product height from 36.5% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 26,
+      "product_height_percent": 24,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Watermark text 'AFP | 09134922013' is an invented number and does not match the required 'AFP | 09134922013'.",
+        "Product is centered horizontally, violating the 'off-center' requirement.",
+        "Product bounding box is positioned in the bottom center rather than naturally on the lower third.",
+        "A distinct green crop plant is visible next to the product. As this is a mung bean (mach) specific context, and the plant lacks clear mung bean morphological characteristics (such as specific leaf shape or seed pods), it risks being a visual contradiction if not a neutral/unclear stage, triggering a potential hard reject for visual conflict with the specific crop context.",
+        "Product width is at the upper limit of acceptability (26%) but the primary failure is the watermark text error."
+      ],
+      "correction_prompt": "Regenerate the image. The bottom-right watermark must exactly read 'AFP | 09134922013' (the '013' is critical). Move the product roll to the left side of the frame (lower-left third). Remove the green plant next to the roll to ensure a hardware-only focus, or ensure it is clearly a mung bean plant if retained. Keep the background farm scene with tractors intact.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "Exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll is visible.",
+        "Product is placed on soil in the lower third, off-center to the left (x_center ~26%).",
+        "Product dimensions are within acceptable ranges (width 24%, height 28%).",
+        "Background shows unattended tractors and farm context, matching hardware story role.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Zero people, human body parts, or silhouettes are visible.",
+        "Visible crop is a generic seedling and does not clearly contradict mung bean."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "هزینه-کشت-ماش-با-نوار-تیپ-در-هکتار-جزئیات-فنی.webp"
+}
