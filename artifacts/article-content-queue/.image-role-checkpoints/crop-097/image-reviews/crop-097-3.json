@@ -1,0 +1,95 @@
+{
+  "id": "crop-097",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 22,
+      "product_height_percent": 18,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Person is present in the image (crouching man)",
+        "Human body parts are clearly visible (head, arms, legs)",
+        "Product is not on the lower third; it is placed in the middle-lower left near the person",
+        "Personnel/farm worker presence violates the zero-person rule",
+        "Product placement is unnatural due to person interaction"
+      ],
+      "correction_prompt": "Regenerate the image with zero people, no farmer, no worker, and no human body parts. Place the AFP white-and-blue drip-tape roll alone on the soil in the lower-left third of the frame. The roll should be wide and low, approximately 20-23% of the frame width, no taller than 32%, with visible diameter 1.5-1.9 times its height. The background should show a farm context matching sainfoin irrigation (e.g., unattended tractor, soil, distant crop rows, or irrigation hardware), with no person, no hand, no arm, no face, and no silhouette. Include the bottom-right watermark \"AFP | 09134922013\". Ensure no bottle, jar, canister, bucket, fertilizer, pesticide container, second roll, pipe, or fake text. The product must be secondary to the farm scene and off-center on the lower third.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 22,
+      "product_height_percent": 25,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Hard reject: The image contains a visible person (farmer) in the background, violating the strict 'zero people' rule.",
+        "Hard reject: A green pipe/hose segment (second commercial product/layflat hose) is visible on the ground next to the farmer.",
+        "Hard reject: The product's visible diameter is approximately equal to its height, failing the 1.5-1.9x width-to-height ratio requirement."
+      ],
+      "correction_prompt": "Remove the farmer and all human silhouettes from the background. Remove the green pipe/hose. Regenerate the AFP drip-tape carton to have a wide low cylindrical shape (diameter 1.5x its height). Ensure the roll is off-center on the lower third.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: The image contains a person (man crouching next to the product).",
+        "Hard reject: Presence of a human body parts (arms, hands, legs) and silhouette violates the requirement for zero people.",
+        "The requirement for Role 3 (hardware story) states that crop plants may be absent or neutral, but the primary blocker is the human presence."
+      ],
+      "correction_prompt": "Regenerate the image to exclude any people or human body parts. Show only the AFP white-and-blue wide low cylindrical drip-tape carton roll placed naturally on soil in a farm context. Ensure the background includes visible irrigation hardware (like unattended tractors, pumps, or filters) if appropriate for the hardware story, but strictly maintain zero humans.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 25,
+      "product_height_percent": 34,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product height is approximately 34% of the frame, exceeding the 32% maximum limit.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with the drip-tape roll positioned slightly further back on the soil so its vertical height is reduced to approximately 28% of the frame. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: The image contains two identifiable people/farmers in the background (one bending over, one standing with a hat). The rule explicitly requires zero people or human body parts, even in the distance.",
+        "The crop in the foreground appears to be corn/maize, which visually contradicts the required 'sainfoin' (lentil family) context for a strict reject scenario (though secondary to the person rejection)."
+      ],
+      "correction_prompt": "Regenerate without any people or farmers in the background. Use a clean field view with only soil and unobtrusive irrigation infrastructure in the distance. Ensure the crop is consistent with sainfoin or absent/neutral.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Multiple people visible (foreground crouching man, background worker crouching, background farmer standing with shovel) - hard reject for any human presence",
+        "Product appears small and not properly staged as required",
+        "People violate zero-human rule even though product and watermark are present",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with zero people or human silhouettes; show only the AFP white-and-blue wide cylindrical drip-tape carton roll placed naturally on soil in farm context, positioned in lower third, off-center, with correct dimensions (1.5-1.9x diameter-to-height ratio, 13-27% frame width), maintaining the required bottom-right watermark. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

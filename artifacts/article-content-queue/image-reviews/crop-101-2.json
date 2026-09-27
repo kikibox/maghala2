@@ -1,0 +1,54 @@
+{
+  "id": "crop-101",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 12,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer) in the image, which is explicitly prohibited. The prompt requires zero people or human body parts."
+      ],
+      "correction_prompt": "Remove the person entirely. The image must show only the AFP drip tape roll placed on the soil in the rye field, without any farmer, worker, or human silhouette.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 22.0,
+      "product_height_percent": 18.0,
+      "product_x_center_percent": 38.0,
+      "reasons": [
+        "Botanical crop mismatch: The crop in the image clearly shows distinct awns and spikelets characteristic of wheat or a similar species, failing to match the required rye (tall slender stems, long narrow grain heads without prominent awns of this type).",
+        "Watermark error: The phone number in the bottom-right watermark is '09134922013' (9 digits), which is not the required '09134922013' (11 digits)."
+      ],
+      "correction_prompt": "Regenerate the image to show a rye field (distinctive long narrow, non-awned grain heads) instead of wheat. Correct the phone number in the bottom-right watermark to 11 digits. Ensure the product is a white and blue AFP drip-tape roll placed on the soil.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 20.5,
+      "product_height_percent": 15.2,
+      "product_x_center_percent": 35.0,
+      "reasons": [
+        "Product width of 20.5% is within the preferred 20-23% range and comfortably inside the 13-27% acceptable bounds.",
+        "Product height of 15.2% is well below the 32% maximum constraint.",
+        "The visible diameter-to-height ratio is approximately 1.35:1. While this is slightly lower than the 1.5-1.9 ideal ratio, the product geometry remains consistent with a realistic cylindrical drip-tape carton roll.",
+        "The product is correctly positioned off-center on the lower third of the frame (x-center ~35%) and is naturally placed on the soil surface.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and correctly formatted.",
+        "There are zero people, human body parts, or human silhouettes visible in the image.",
+        "The background shows a farm context with rows of tall crops. The vegetation is sufficiently neutral/indistinguishable from mature rye (چاودار) to pass the 'agronomic story' test, as no clearly different species is identifiable.",
+        "No prohibited containers (bottles, jars, buckets, etc.) or extra commercial products are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-چاودار-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

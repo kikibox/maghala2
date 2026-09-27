@@ -1,0 +1,72 @@
+{
+  "id": "crop-101",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 9,
+      "product_height_percent": 11,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: Image contains two visible male farmers (people), violating the strict 'zero people' and 'zero human body parts' rule.",
+        "Hard reject: The product is being held by a person, rather than being 'naturally placed on soil' and off-center in the lower third as required.",
+        "Product size estimate: The visible bounding box is significantly below the required minimum width (approx 9% vs minimum 13%) and is not the 'secondary' wide cylindrical roll requested.",
+        "The image violates the layout requirement as the product is not an off-center roll on the ground but is instead positioned in the center being inspected by people.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image showing exactly one AFP wide low cylindrical drip-tape carton roll (white and blue) placed on the ground soil in the bottom right or bottom left of the frame. Remove all people, hands, and human silhouettes from the image. The crop must clearly be rye (tall slender stems with long narrow grain heads). Ensure the product roll is secondary to the crop, roughly 20% of frame width and off-center. Keep the bottom-right watermark \"AFP | 09134922013\" visible. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 24,
+      "product_height_percent": 27,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "The required bottom-right watermark text 'AFP | 09134922013' is missing, which is a mandatory hard requirement.",
+        "The crop shown has the morphology of wheat or barley (wide glumes and awns visible on the mature heads), which may not strictly satisfy the 'tall slender stems and long narrow grain heads' requirement for rye (چاودار), risking a rejection for an identifiable different species."
+      ],
+      "correction_prompt": "Regenerate the image with the exact watermark 'AFP | 09134922013' in the bottom right corner. Replace the background crop with a clear, recognizable field of Rye (Secale cereale) showing tall slender stems and long, narrow spike-like grain heads with long awns, ensuring it visually matches the target crop description.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 12,
+      "product_height_percent": 14,
+      "product_x_center_percent": 57,
+      "reasons": [
+        "Image contains a prominent human figure (farmer/man), which triggers a hard reject per the 'zero people' constraint.",
+        "The drip tape roll is being held by a hand, which is explicitly prohibited.",
+        "The crop shown is mature wheat or barley with long awns, not the specified rye (tall slender stems and long narrow grain heads), which triggers a hard reject for a clearly identifiable different species.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with zero humans or body parts. Remove the person. Show an AFP white-and-blue cylindrical drip-tape roll off-center on the lower third of a soil bed or among young rye seedlings (neutral vegetation). The roll must be naturally placed on the ground, not held. Ensure the 'AFP | 09134922013' watermark is in the bottom right corner. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 21,
+      "product_height_percent": 18,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "The image displays a single AFP white-and-blue drip-tape roll in a farm context.",
+        "The crop is a grassy cereal (rye/barley type) which is botanically compatible with the target article.",
+        "The roll is placed off-center in the lower third of the frame on the soil.",
+        "The bounding box dimensions (21% width, 18% height) fall within the acceptable 13-27% width range and the 32% height limit.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom right corner.",
+        "Zero people or human body parts are visible.",
+        "The geometry of the roll is realistic and consistent with the required proportions."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-چاودار-با-آبیاری-قطرهای-تصویر-شاخص.webp"
+}
