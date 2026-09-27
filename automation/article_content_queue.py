@@ -50,6 +50,8 @@ PUBLIC_UPLOAD_BASE = f"{SITE}/wp-content/uploads/{UPLOAD_SUBDIR}"
 BATCH = max(1, int(os.getenv("BATCH_SIZE", "2")))
 ARTICLE_WORKERS = max(1, int(os.getenv("ARTICLE_WORKERS", "2")))
 IMAGE_WORKERS = max(1, int(os.getenv("IMAGE_WORKERS", "4")))
+API_REQUEST_ATTEMPTS = max(1, int(os.getenv("API_REQUEST_ATTEMPTS", "4")))
+IMAGE_QA_REVIEW_ATTEMPTS = max(1, int(os.getenv("IMAGE_QA_REVIEW_ATTEMPTS", "4")))
 MIN_WORDS = int(os.getenv("MIN_WORDS", "1050"))
 MIN_LINKS = int(os.getenv("MIN_INTERNAL_LINKS", "4"))
 MAX_ATTEMPTS = max(1, int(os.getenv("MAX_ATTEMPTS", "4")))
@@ -744,6 +746,41 @@ def _generate_image_once(item, kind):
     }
 
 
+def _is_transient_image_api_error(exc):
+    message = str(exc).lower()
+    return (
+        isinstance(exc, (TimeoutError, urllib.error.URLError, ConnectionError, OSError))
+        or (isinstance(exc, urllib.error.HTTPError) and exc.code in {408, 429, 500, 502, 503, 504})
+        or any(term in message for term in (
+            "http 408", "http 429", "http 500", "http 502", "http 503", "http 504",
+            "too many requests", "timed out", "timeout", "remote end closed",
+            "connection reset", "temporarily unavailable",
+        ))
+    )
+
+
+def _call_image_api_with_retry(label, callback, attempts):
+    last_error = None
+    for request_attempt in range(1, attempts + 1):
+        try:
+            return callback()
+        except Exception as exc:
+            if not _is_transient_image_api_error(exc):
+                raise
+            last_error = exc
+            print(
+                f"{label}_retry attempt={request_attempt}/{attempts} "
+                f"error={type(exc).__name__}: {str(exc)[:180]}",
+                flush=True,
+            )
+            if request_attempt < attempts:
+                time.sleep(min(16, 2 ** request_attempt))
+    raise RuntimeError(
+        f"{label} unavailable after {attempts} retries: "
+        f"{type(last_error).__name__ if last_error else 'unknown error'}"
+    )
+
+
 def generate_image(item, kind):
     """Generate and replace an image only after strict visual QA passes."""
     history = []
@@ -775,24 +812,77 @@ def generate_image(item, kind):
             history = list(prior_attempts[-20:])
             last = prior_attempts[-1]
             feedback = str(last.get("correction_prompt") or "; ".join(last.get("reasons") or [])).strip()
+            if (
+                last.get("review_unavailable")
+                and image_path.exists()
+                and image_path.stat().st_size > 10000
+            ):
+                verdict = _call_image_api_with_retry(
+                    "article_image_review",
+                    lambda: image_quality_gate.review_image(
+                        __import__(__name__), image_path, item, kind
+                    ),
+                    IMAGE_QA_REVIEW_ATTEMPTS,
+                )
+                verdict["attempt"] = "checkpoint-review"
+                history.append(verdict)
+                review_path.write_text(
+                    json.dumps(
+                        {
+                            "id": review_id,
+                            "kind": kind,
+                            "family": image_prompt_policy.product_family(item),
+                            "policy": image_quality_gate.REVIEW_POLICY,
+                            "approved": bool(verdict.get("pass")),
+                            "attempts": history[-20:],
+                            "approved_image": image_path.name if verdict.get("pass") else None,
+                        },
+                        ensure_ascii=False,
+                        indent=2,
+                    ),
+                    encoding="utf-8",
+                )
+                if verdict.get("pass"):
+                    blob = image_path.read_bytes()
+                    return {
+                        "name": image_path.name,
+                        "sha256": hashlib.sha256(blob).hexdigest(),
+                        "mime": "image/webp",
+                        "width": 1200,
+                        "height": 675,
+                    }
+                image_path.unlink(missing_ok=True)
+                feedback = str(
+                    verdict.get("correction_prompt")
+                    or "; ".join(verdict.get("reasons", []))
+                )
     except (OSError, json.JSONDecodeError):
         pass
     for attempt in range(1, image_quality_gate.MAX_IMAGE_ATTEMPTS + 1):
         candidate_item = dict(item)
         if feedback:
             candidate_item["_image_qa_feedback"] = feedback
-        result = _generate_image_once(candidate_item, kind)
+        result = _call_image_api_with_retry(
+            "article_image_generation",
+            lambda: _generate_image_once(candidate_item, kind),
+            API_REQUEST_ATTEMPTS,
+        )
         path = image_dir / result["name"]
         try:
-            verdict = image_quality_gate.review_image(
-                __import__(__name__), path, item, kind
+            verdict = _call_image_api_with_retry(
+                "article_image_review",
+                lambda: image_quality_gate.review_image(
+                    __import__(__name__), path, item, kind
+                ),
+                IMAGE_QA_REVIEW_ATTEMPTS,
             )
         except Exception as exc:
             verdict = {
                 "pass": False,
                 "score": 0,
-                "reasons": [f"visual reviewer unavailable: {type(exc).__name__}"],
-                "correction_prompt": "Regenerate a clean candidate and retry strict visual review.",
+                "review_unavailable": True,
+                "reasons": [str(exc)],
+                "correction_prompt": "Retry strict visual review of the preserved candidate without regenerating it.",
             }
         verdict["attempt"] = attempt
         history.append(verdict)
@@ -820,6 +910,10 @@ def generate_image(item, kind):
         )
         if verdict.get("pass"):
             return result
+        if verdict.get("review_unavailable"):
+            raise RuntimeError(
+                "visual reviewer unavailable after retries; candidate checkpoint preserved"
+            )
         path.unlink(missing_ok=True)
         feedback = str(
             verdict.get("correction_prompt")
@@ -957,7 +1051,13 @@ def generate_images_parallel(item, pool=None):
             for future in as_completed(futures):
                 kind = futures[future]; results[kind] = future.result()
             paths = [staging_images / results[kind]["name"] for kind in range(1, 4)]
-            verdict = image_quality_gate.review_image_set(__import__(__name__), paths, item)
+            verdict = _call_image_api_with_retry(
+                "article_image_set_review",
+                lambda: image_quality_gate.review_image_set(
+                    __import__(__name__), paths, item
+                ),
+                IMAGE_QA_REVIEW_ATTEMPTS,
+            )
             verdict["set_attempt"] = set_attempt; set_history.append(verdict)
             set_review_path.parent.mkdir(parents=True, exist_ok=True)
             set_review_path.write_text(json.dumps({"id":review_id,"policy":image_quality_gate.REVIEW_POLICY,"history":set_history},ensure_ascii=False,indent=2),encoding="utf-8")

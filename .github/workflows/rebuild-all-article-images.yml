@@ -15,6 +15,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   # Strict proof runs own the real pipeline lock; queue runs marked
@@ -31,6 +32,8 @@ env:
   IMAGE_MODEL: ${{ vars.IMAGE_MODEL || 'agnes-image-2.5-flash' }}
   IMAGE_WORKERS: '3'
   IMAGE_QA_ATTEMPTS: '10'
+  IMAGE_QA_REVIEW_ATTEMPTS: '4'
+  API_REQUEST_ATTEMPTS: '4'
   IMAGE_SET_QA_ATTEMPTS: '4'
   IMAGE_QA_FAST_MODE: '0'
 # Rebuild every completed article; two article sets run concurrently.
@@ -109,3 +112,27 @@ jobs:
       - name: Fail only after preserving partial progress
         if: steps.rebuild.outputs.exit_code != '0'
         run: echo "::warning::One image set was quarantined after diagnostics were preserved; the production article queue remains healthy."
+      - name: Continue remaining rebuilds automatically
+        if: always()
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          read -r remaining stalled <<<"$(python - <<'PY'
+          import json
+          from pathlib import Path
+          path=Path('artifacts/article-content-queue/image-rebuild-reference-rerender-3d-v11-no-human-no-container-full-rebuild.json')
+          data=json.loads(path.read_text(encoding='utf-8')) if path.exists() else {}
+          print(int(data.get('remaining_candidates',0)), int(data.get('consecutive_no_progress_runs',0)))
+          PY
+          )"
+          if [ "$remaining" -gt 0 ] && [ "$stalled" -lt 3 ]; then
+            echo "$remaining image sets remain; dispatching the next resumable rebuild."
+            sleep 20
+            gh workflow run rebuild-all-article-images.yml --ref main
+          elif [ "$remaining" -gt 0 ]; then
+            echo "::warning::$remaining sets remain after $stalled no-progress runs; hourly watchdog will retry without creating an endless chain."
+          else
+            echo "Strict image rebuild is complete."
+          fi

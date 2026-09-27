@@ -20,7 +20,21 @@ def now() -> str:
     return dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat()
 
 
-def write_marker(rebuilt, skipped, failures, total, remaining, completed=False):
+def write_marker(rebuilt, skipped, failures, total, remaining, completed=False, rebuilt_this_run=0):
+    previous_no_progress = 0
+    if MARKER.exists():
+        try:
+            previous_no_progress = int(
+                json.loads(MARKER.read_text(encoding="utf-8")).get(
+                    "consecutive_no_progress_runs", 0
+                )
+            )
+        except (OSError, json.JSONDecodeError, TypeError, ValueError):
+            previous_no_progress = 0
+    no_progress_runs = (
+        0 if rebuilt_this_run > 0 or remaining == 0
+        else previous_no_progress + 1
+    )
     MARKER.parent.mkdir(parents=True, exist_ok=True)
     MARKER.write_text(
         json.dumps(
@@ -31,6 +45,8 @@ def write_marker(rebuilt, skipped, failures, total, remaining, completed=False):
                 "completed_at": now() if completed and not failures and remaining == 0 else None,
                 "total_candidates": total,
                 "remaining_candidates": remaining,
+                "rebuilt_this_run": int(rebuilt_this_run),
+                "consecutive_no_progress_runs": no_progress_runs,
                 "rebuilt_posts": sorted(rebuilt),
                 "skipped": skipped,
                 "failures": failures,
@@ -149,7 +165,10 @@ def main() -> int:
     queue.QUEUE.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
     current = current_policy_ids(completed)
     remaining = max(0, len(completed) - len(current))
-    write_marker(current, skipped, failures, len(completed), remaining, completed=True)
+    write_marker(
+        current, skipped, failures, len(completed), remaining,
+        completed=True, rebuilt_this_run=len(rebuilt)
+    )
     print(
         f"exact_product_rebuild rebuilt={len(rebuilt)} remaining={remaining} failures={len(failures)} "
         f"workers={WORKERS} post_limit={POST_LIMIT} policy={POLICY}",

@@ -172,11 +172,17 @@ def image_prompt(item,kind):
  )
  correction=str((item or {}).get('_image_qa_feedback') or '').strip()
  correction_instruction=f'Previous candidate was rejected by visual QA. Correct all of these issues: {correction}. ' if correction else ''
+ if int(kind) in (1,2) and correction and any(term in correction.lower() for term in ('different species','crop mismatch','contradict','botanical','morphology','sunflower','tomato')):
+  identity_lock=(
+   f'BOTANICAL SAFE FALLBACK: the previous image invented a visibly wrong crop for {named_crop(item)}. '
+   'Use a clean prepared bed with tiny botanically unidentifiable seedlings, drip-line placement and root-zone or spacing evidence. '
+   'Do not render mature flowers, fruits, pods, grain heads or broad leaves that could identify another species. '
+  )
  family=product_family(item)
  composition_contract={
   1:'FINAL COMPOSITION CONTRACT: use an elevated or eye-level wide crop-canopy editorial view. The crop block dominates; keep the product near a lower corner. Do not use a close low-angle product-on-furrow shot and do not make a barn the main background structure.',
   2:'FINAL COMPOSITION CONTRACT: use a near-overhead or high-oblique tight agronomic evidence view with no horizon, skyline, barn or landscape panorama. Show recognizable leaves or neutral seedlings, drip-line placement, wetting band, spacing or root-zone evidence around the product.',
-  3:'FINAL COMPOSITION CONTRACT: use a medium side-view technical hardware story centered on an unattended filter, gauge, manifold, regulator or flush point. Do not repeat the role-1 crop panorama or the role-2 top-down detail.',
+  3:'FINAL COMPOSITION CONTRACT: use a medium side-view technical hardware story centered on an unattended filter, gauge, manifold, regulator or flush point. Crop all people, vehicles and horizon out of frame. Use only neutral soil or tiny unidentifiable seedlings around the hardware; do not show fruiting plants or a recognizable crop species. Do not repeat the role-1 crop panorama or the role-2 top-down detail.',
  }.get(int(kind),'')
  if family=='layflat':
   shape=('exactly two separate related layflat-hose objects placed naturally beside each other: first, the packaged low wide black woven hose coil with the same folded printed cardboard pieces, crossing straps, center opening and package proportions; second, the unboxed black woven layflat hose coil exactly like its reference, as a low flat horizontal coil made of many tight concentric layers with a short hollow brown cardboard center, visible diagonal woven fabric texture, realistic compressed thickness and one short loose hose end')
