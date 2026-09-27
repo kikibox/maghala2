@@ -113,8 +113,15 @@ class ArticleQueueTests(unittest.TestCase):
             "tape20",
             {"product_width_percent": 18, "product_height_percent": 24, "product_x_center_percent": 50},
         )
+        self.assertTrue(ok)
+        self.assertEqual(issues, [])
+        ok, issues = queue.image_quality_gate._metric_check(
+            "tape20",
+            {"product_width_percent": 12, "product_height_percent": 33, "product_x_center_percent": 50},
+        )
         self.assertFalse(ok)
         self.assertTrue(any("Enlarge" in issue for issue in issues))
+        self.assertTrue(any("at most 32%" in issue for issue in issues))
         self.assertFalse(any("do not center" in issue for issue in issues))
 
     def test_seo_image_names_are_descriptive_and_sanitized(self):
