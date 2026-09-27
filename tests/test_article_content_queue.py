@@ -16,6 +16,18 @@ import article_content_queue as queue
 
 
 class ArticleQueueTests(unittest.TestCase):
+    def test_image_qa_failure_is_quarantined_instead_of_starving_queue(self):
+        source = (ROOT / "automation" / "article_content_queue.py").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("image_qa_deferred", source)
+        self.assertIn("deferred_image_qa_items", source)
+        self.assertIn('item["attempts"] = MAX_ATTEMPTS', source)
+        self.assertNotIn(
+            'item["attempts"] = max(0, int(item.get("attempts", 0)) - 1)',
+            source,
+        )
+
     def test_api_base_has_safe_fallback(self):
         self.assertTrue(queue.AGNES_BASE.startswith("https://"))
         self.assertNotEqual(queue.AGNES_BASE, "")

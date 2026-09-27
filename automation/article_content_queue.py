@@ -1029,6 +1029,7 @@ def process(q):
     write_status(q, "processing")
 
     batch_errors = []
+    deferred_image_qa = []
     article_workers = min(ARTICLE_WORKERS, len(batch))
     with ThreadPoolExecutor(max_workers=IMAGE_WORKERS, thread_name_prefix="article-image") as image_pool:
         with ThreadPoolExecutor(max_workers=article_workers, thread_name_prefix="article-text") as article_pool:
@@ -1069,10 +1070,24 @@ def process(q):
                         "IMAGE_API_KEY/AGNES_API_KEY is missing" in msg
                         or any(code in msg for code in permanent_codes)
                     )
-                    qa_retry = stage == "image" and "Image QA rejected article image" in msg
+                    qa_retry = stage == "image" and any(
+                        signal in msg for signal in (
+                            "Image QA rejected article image",
+                            "Image-set diversity gate rejected",
+                        )
+                    )
                     if qa_retry:
-                        item.update(status="pending", last_error=msg, failed_stage="image_qa")
-                        item["attempts"] = max(0, int(item.get("attempts", 0)) - 1)
+                        # Quarantine a visually impossible item so a stochastic
+                        # image gate cannot monopolize every scheduled batch.
+                        # The stored diagnostics preserve it for later review.
+                        item.update(
+                            status="failed",
+                            last_error=msg,
+                            failed_stage="image_qa_deferred",
+                            failed_at=now(),
+                        )
+                        item["attempts"] = MAX_ATTEMPTS
+                        deferred_image_qa.append(item["id"])
                     else:
                         item.update(status="blocked_image_model" if blocked else "failed", failed_at=now(), last_error=msg, failed_stage=stage)
                     item.pop("started_at", None)
@@ -1092,7 +1107,10 @@ def process(q):
     else:
         exhausted=any(x.get("status")=="failed" and int(x.get("attempts",0))>=MAX_ATTEMPTS for x in q["items"])
         write_status(q, "attention_required" if exhausted else "ready")
-    if batch_errors:raise RuntimeError("Queue item failed: " + " | ".join(batch_errors))
+    if deferred_image_qa:
+        print("deferred_image_qa_items=" + ",".join(deferred_image_qa), flush=True)
+    if batch_errors and not deferred_image_qa:
+        raise RuntimeError("Queue item failed: " + " | ".join(batch_errors))
 
 
 def main():
