@@ -45,11 +45,11 @@ env:
   IMAGE_API_KEY: ${{ secrets.IMAGE_API_KEY || secrets.AGNES_API_KEY }}
   IMAGE_ENDPOINT: ${{ vars.IMAGE_ENDPOINT || 'https://apihub.agnes-ai.com/v1/images/generations' }}
   IMAGE_MODEL: ${{ vars.IMAGE_MODEL || 'agnes-image-2.5-flash' }}
-  # Three articles run together; all nine image-role tasks share five workers
+  # Operational setting after the eight-key benchmark: eight articles share sixteen image workers
   # to increase throughput without a nine-request image API burst.
-  BATCH_SIZE: '4'
-  ARTICLE_WORKERS: '4'
-  IMAGE_WORKERS: '8'
+  BATCH_SIZE: '8'
+  ARTICLE_WORKERS: '8'
+  IMAGE_WORKERS: '16'
   IMAGE_QA_ATTEMPTS: '6'
   IMAGE_SET_QA_ATTEMPTS: '4'
   IMAGE_QA_FAST_MODE: '0'
