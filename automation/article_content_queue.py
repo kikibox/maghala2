@@ -774,7 +774,19 @@ def _call_image_api_with_retry(label, callback, attempts):
                 flush=True,
             )
             if request_attempt < attempts:
-                time.sleep(min(16, 2 ** request_attempt))
+                # Free-tier 429 windows last longer than ordinary network blips.
+                # A short 2/4/8-second retry burst only exhausts the same window,
+                # so back off long enough to preserve the candidate and finish
+                # this batch instead of failing and regenerating it next run.
+                message = str(exc).lower()
+                rate_limited = (
+                    (isinstance(exc, urllib.error.HTTPError) and exc.code == 429)
+                    or "http 429" in message
+                    or "too many requests" in message
+                )
+                delay = min(60, 20 * request_attempt) if rate_limited else min(16, 2 ** request_attempt)
+                print(f"{label}_retry_wait seconds={delay}", flush=True)
+                time.sleep(delay)
     raise RuntimeError(
         f"{label} unavailable after {attempts} retries: "
         f"{type(last_error).__name__ if last_error else 'unknown error'}"
