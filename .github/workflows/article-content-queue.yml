@@ -21,6 +21,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   # A skipped queue run must not acquire the production-pipeline lock first
@@ -177,6 +178,31 @@ jobs:
             artifacts/article-content-queue/
             data/article-catalog.json
           retention-days: 30
+
+      # A transient reviewer/API failure may leave valid completed articles and
+      # a preserved candidate. Keep advancing automatically after a cooldown;
+      # translation-only runs remain owned by the translation workflow.
+      - name: Continue article queue automatically
+        if: always() && !cancelled() && steps.queue.outcome != 'skipped'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          pending="$(python - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path('artifacts/article-content-queue/status.json')
+          print(int(json.loads(path.read_text(encoding='utf-8')).get('pending', 0)) if path.exists() else 0)
+          PY
+          )"
+          if [ "$pending" -gt 0 ]; then
+            echo "Queue has $pending pending articles; cooling down before the next batch."
+            sleep 60
+            gh workflow run article-content-queue.yml --ref main
+          else
+            echo "No pending articles remain; automatic chaining is complete."
+          fi
 
       - name: Fail run when queue processing failed
         if: steps.queue.outcome != 'skipped' && steps.queue.outputs.exit_code != '0'
