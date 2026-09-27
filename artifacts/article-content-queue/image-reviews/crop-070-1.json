@@ -1,0 +1,70 @@
+{
+  "id": "crop-070",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 15,
+      "product_height_percent": 25,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Contains people (worker visible on right)",
+        "Contains human body parts (arm/leg visible)",
+        "Product is centered rather than off-center on lower third",
+        "Product height is slightly too high relative to width ratio",
+        "Crop background does not clearly match lentil article requirements (shows generic green vegetation with pink flowers, not specified lentil morphology)"
+      ],
+      "correction_prompt": "Regenerate image with zero people or human body parts. Move the AFP white-and-blue drip-tape carton roll to the left or right side (off-center) in the lower third of the frame. Ensure the background shows low bushy legume plants with thin branching stems and small paired pinnate leaflets consistent with lentil crops, not generic flowers. Maintain the required bottom-right watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 26,
+      "product_height_percent": 21,
+      "product_x_center_percent": 68,
+      "reasons": [
+        "The background crop is clearly identifiable as flax (characterized by the small, distinct blue and pink flowers), which directly violates the requirement for lentil plants and the hard reject rule for clearly identifiable different species.",
+        "Lentil plants should appear as low, bushy, fine-textured legumes with pinnate leaflets; the displayed crop is not botanical correct for lentils"
+      ],
+      "correction_prompt": "Regenerate the image with a background of recognizable lentil plants (low bushy legumes with small paired pinnate leaflets) instead of the current flowering flax crop. Keep the AFP white-and-blue wide low cylindrical drip-tape roll in the lower-right position on the soil, maintaining the required product proportions and the bottom-right watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 13.5,
+      "product_height_percent": 22,
+      "product_x_center_percent": 61,
+      "reasons": [
+        "The crop in the background is a tall, broad-leaved crop with large purple flowers, which is botanically identifiable as a different species (resembling potato or tobacco) and explicitly violates the requirement for 'small flat pods' lentil plants.",
+        "The crop is too tall, bushy, and robust to represent lentil plants (عدس), which are defined as 'low fine-textured bushy legumes with many thin branching stems and small paired pinnate oval leaflets'."
+      ],
+      "correction_prompt": "Regenerate the image replacing the large purple-flowered plants in the background with small, low-growing, fine-textured green bushy legume plants with thin stems and small pinnate leaflets (lentils). Remove the tall purple flowers entirely. Keep the AFP drip-tape roll and the bottom-right watermark exactly as they are.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The image displays exactly one AFP white-and-blue drip-tape carton roll as the primary subject.",
+        "The product is located in the lower third of the frame, off-center to the left, and is naturally placed on the soil bed.",
+        "The aspect ratio of the roll (visible diameter ~1.8x height) aligns with the 1.5-1.9x requirement.",
+        "The background clearly shows rows of low, bushy legume seedlings in a farm context, which is botanically consistent with young lentil plants without showing clearly identifiable incorrect species.",
+        "The 'AFP | 09134922013' watermark is correctly present in the bottom-right corner.",
+        "The image is completely free of people, human body parts, and extraneous commercial products like bottles or buckets.",
+        "Text on the package is partially legible (reading 'BCLP' instead of 'Drip Tape'), but this is a minor cosmetic artifact acceptable for this level of QA."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "هزینه-کشت-عدس-با-نوار-تیپ-در-هکتار-تصویر-شاخص.webp"
+}

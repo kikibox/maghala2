@@ -4,16 +4,16 @@
 
 ## نمای کلی
 
-- آخرین بروزرسانی: `2026-09-27T17:38:48+00:00`
-- وضعیت صف: **آماده اجرای بعدی** (`ready`)
-- پیشرفت: **58 از 1148 (5.05٪)**
+- آخرین بروزرسانی: `2026-09-27T18:02:13+00:00`
+- وضعیت صف: **توقف موقت برای تکمیل ترجمه‌های عقب‌مانده** (`translations_pending`)
+- پیشرفت: **60 از 1148 (5.23٪)**
 - نمودار پیشرفت: `█░░░░░░░░░░░░░░░░░░░`
-- تکمیل‌شده: **58**
+- تکمیل‌شده: **60**
 - در حال پردازش: **0**
-- در انتظار: **1080**
-- ناموفق: **10**
+- در انتظار: **1077**
+- ناموفق: **11**
 - مسدود مدل تصویر: **0**
-- میانگین طول مقالات تکمیل‌شده: **1271 کلمه**
+- میانگین طول مقالات تکمیل‌شده: **1284 کلمه**
 - اولویت فعلی: **تولید مقاله فارسی بعدی**
 
 ## تنظیمات تولید و انتشار
@@ -24,8 +24,8 @@
 - تعداد تصاویر هر مقاله: **3**
 - حداقل کلمات: **1050**
 - لینک داخلی مجاز: **4 تا ۷**
-- اندازه هر اجرا: **2 مقاله**
-- مدیر موازی: **2 مقاله / 4 تصویر هم‌زمان**
+- اندازه هر اجرا: **3 مقاله**
+- مدیر موازی: **3 مقاله / 5 تصویر هم‌زمان**
 - حداکثر تلاش هر مقاله: **4**
 - دسته وردپرس: **مقاله‌ها** (`35`)
 - لینک‌های داخلی شناخته‌شده: **682**
@@ -35,7 +35,7 @@
 
 | گروه | کل | تکمیل | در انتظار | در حال پردازش | ناموفق | پیشرفت |
 |---|---:|---:|---:|---:|---:|---:|
-| `crop` | 341 | 58 | 273 | 0 | 10 | 17.01٪ |
+| `crop` | 341 | 60 | 270 | 0 | 11 | 17.60٪ |
 | `irrigation` | 12 | 0 | 12 | 0 | 0 | 0.00٪ |
 | `product` | 112 | 0 | 112 | 0 | 0 | 0.00٪ |
 | `strategic` | 33 | 0 | 33 | 0 | 0 | 0.00٪ |
@@ -43,18 +43,18 @@
 
 ## وضعیت ترجمه مقالات تولیدشده
 
-- مقالات فارسی تکمیل‌شده: **58**
-- واحدهای ترجمه تکمیل‌شده: **174 از 174**
-- واحدهای ترجمه باقی‌مانده: **0**
-- مقالات فاقد حداقل یک ترجمه: **0**
+- مقالات فارسی تکمیل‌شده: **60**
+- واحدهای ترجمه تکمیل‌شده: **174 از 180**
+- واحدهای ترجمه باقی‌مانده: **6**
+- مقالات فاقد حداقل یک ترجمه: **2**
 - وضعیت صف فارسی: **فعال**
 - بسته‌های ترجمه ۵۰تایی آماده: **0**
 
 | زبان | تکمیل | باقی‌مانده | مسیر |
 |---|---:|---:|---|
-| عربی عراق (`ar-IQ`) | 58 | 0 | `/iraq/` |
-| تاجیکی (`tg-TJ`) | 58 | 0 | `/tj/` |
-| انگلیسی (`en-US`) | 58 | 0 | `/en/` |
+| عربی عراق (`ar-IQ`) | 58 | 2 | `/iraq/` |
+| تاجیکی (`tg-TJ`) | 58 | 2 | `/tj/` |
+| انگلیسی (`en-US`) | 58 | 2 | `/en/` |
 
 ## وضعیت بازطراحی تصاویر
 
@@ -69,13 +69,15 @@
 
 ## مقاله بعدی صف
 
-- عنوان: **هزینه کشت عدس با نوار تیپ در هکتار**
-- شناسه: `crop-070`
+- عنوان: **فاصله نوار تیپ در کشت شوید: استانداردهای توصیه‌شده**
+- شناسه: `crop-073`
 - گروه: `crop`
 - تعداد تلاش قبلی: **0**
 
 ## آخرین مقالات تکمیل‌شده
 
+- **هزینه کشت عدس با نوار تیپ در هکتار** — `crop-070` — `crop` — 1480 کلمه — تحویل: `SQL package` — `2026-09-27T17:56:10+00:00`
+- **فاصله نوار تیپ در کشت اسپرس: استانداردهای توصیه‌شده** — `crop-071` — `crop` — 1819 کلمه — تحویل: `SQL package` — `2026-09-27T17:55:48+00:00`
 - **راهنمای جامع کاشت زعفران با آبیاری قطره‌ای** — `crop-066` — `crop` — 1157 کلمه — تحویل: `SQL package` — `2026-09-27T17:06:16+00:00`
 - **فاصله نوار تیپ در کشت نخود: استانداردهای توصیه‌شده** — `crop-069` — `crop` — 1194 کلمه — تحویل: `SQL package` — `2026-09-27T17:04:59+00:00`
 - **فاصله نوار تیپ در کشت پنبه: استانداردهای توصیه‌شده** — `crop-065` — `crop` — 1254 کلمه — تحویل: `SQL package` — `2026-09-27T15:52:01+00:00`
@@ -94,11 +96,10 @@
 - **راهنمای جامع کاشت اسفناج با آبیاری قطره‌ای** — `crop-042` — `crop` — 1272 کلمه — تحویل: `SQL package` — `2026-09-26T10:45:12+00:00`
 - **هزینه کشت شبدر با نوار تیپ در هکتار** — `crop-043` — `crop` — 1513 کلمه — تحویل: `SQL package` — `2026-09-26T10:44:37+00:00`
 - **فاصله نوار تیپ در کشت رزماری: استانداردهای توصیه‌شده** — `crop-041` — `crop` — 1173 کلمه — تحویل: `SQL package` — `2026-09-26T10:44:09+00:00`
-- **راهنمای جامع کاشت موسیر با آبیاری قطره‌ای** — `crop-040` — `crop` — 1224 کلمه — تحویل: `SQL package` — `2026-09-26T10:43:43+00:00`
-- **میزان برداشت شاهی در هکتار با نوار تیپ** — `crop-038` — `crop` — 1163 کلمه — تحویل: `SQL package` — `2026-09-26T10:22:08+00:00`
 
 ## خطاهای اخیر
 
+- **راهنمای جامع کاشت گلرنگ با آبیاری قطره‌ای** — `crop-072` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
 - **راهنمای جامع کاشت بامیه با آبیاری قطره‌ای** — `crop-068` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Product geometry is incorrect: The roll is vertical (upright) rather than a wide low cylindrical layout lying horizontally on the soil.', 'Proportions are incorrect: The visible diameter is not approximately 1.5 to 1.9 times the visible height; the current roll is roughly square in bounding box.', 'Centering and placement: The product is centered on the frame rather than off-center on the lower third.']`
 - **آفات و بیماری‌های کاملینا با آبیاری قطره‌ای** — `crop-067` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['The visible watermark text at the bottom right reads \'09134922013\', but the required identifier is \'09134922013\' -> Actually, the required text is \'09134922013\' and the image text is \'09134922013\' -> Wait, looking closely at the prompt requirements: \'The exact bottom-right watermark "AFP | 09134922013" is REQUIRED\'. In the image, the text is \'AFP | 09134922013\'. Wait, let me look at the image again. The last digit is a \'3\' or a `
 - **فاصله نوار تیپ در کشت خیار: استانداردهای توصیه‌شده** — `crop-061` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['The visible crop in the foreground shows a tomato plant (identifiable by the angular lobed leaves and the small green tomato fruit), which is a clearly identifiable different species to the required cucumber (خیار).', "The drip tape roll's width (22%) and height (24%) fall outside the specified geometric constraints; the required diameter-to-height ratio is 1.5–1.9x, but this roll has a ratio of approximately 0.9x."]`
@@ -108,7 +109,6 @@
 - **آفات و بیماری‌های شنبلیله با آبیاری قطره‌ای** — `crop-055` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
 - **میزان برداشت چاودار در هکتار با نوار تیپ** — `crop-054` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
 - **راهنمای جامع کاشت تره با آبیاری قطره‌ای** — `crop-053` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
-- **میزان برداشت مارچوبه در هکتار با نوار تیپ** — `crop-052` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ["The image contains two prominent human subjects (farmers/field workers) which is an absolute 'hard reject' condition under the constraints (zero people allowed).", "The irrigation product is not a flat 'drip-tape' but appears to be a 3D vertical cartridge or roll, which deviates from the required 'wide low cylindrical drip-tape carton roll' geometry.", 'machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of`
 
 ## بسته‌های ۵۰تایی آماده
 
@@ -116,10 +116,10 @@
 
 ## خروجی‌های تولیدشده
 
-- فایل JSON مقاله‌ها: **58**
-- تصاویر تولیدشده: **172**
-- فایل‌های SQL: **58**
-- فایل‌های Rollback: **58**
+- فایل JSON مقاله‌ها: **60**
+- تصاویر تولیدشده: **178**
+- فایل‌های SQL: **60**
+- فایل‌های Rollback: **60**
 
 ## فایل‌های مدیریتی
 
