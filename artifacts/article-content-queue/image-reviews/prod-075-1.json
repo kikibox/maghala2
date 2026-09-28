@@ -1,25 +1,55 @@
 {
   "id": "prod-075",
   "kind": 1,
-  "family": "tape20",
+  "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
-      "pass": true,
-      "score": 88,
-      "product_width_percent": 19,
-      "product_height_percent": 13,
-      "product_x_center_percent": 32,
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 45,
+      "product_height_percent": 22,
+      "product_x_center_percent": 50,
       "reasons": [
-        "Product is a white cylindrical carton roll with blue accents, placed naturally on soil in the lower-left (off-center).",
-        "The visible diameter of the roll is approximately 1.5 times its visible height, complying with geometric constraints.",
-        "The required bottom-right watermark 'AFP | 09134922013' is present and legible.",
-        "The crop shown (young sunflower) is botanically accurate for the article title.",
-        "No people or human body parts are visible in the frame."
+        "Hard reject: The image contains a prominent human subject (a woman crouching in the center of the frame).",
+        "Hard reject: Product staging is not 'off-center on the lower third'; the main coil is in the bottom left and a secondary inset box is in the bottom right, violating the single-pair layout rule.",
+        "The bounding box for the products exceeds the 15% width limit specified for the prompt.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any people or body parts. Show a single packaged AFP coil and a single bare black woven coil placed flat on the ground in the lower third of the frame, off-center to the left. Ensure the pair of coils occupies only about 12% of the frame width. Keep the 'AFP | 09134922013' watermark in the bottom right corner. Reduce the product group from 45% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 45,
+      "product_height_percent": 35,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The complete pair of products is significantly wider than the required 12 to 15 percent of the frame width.",
+        "The products are centered rather than placed off-center on the lower third as requested.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the combined width of the two coils to approximately 12 to 15 percent of the image width. Position the pair off-center on the lower third of the frame, maintaining them as separate, flat objects on the ground without any overlap or distortion. Reduce the product group from 45% to 9-20% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Contains the exact two required objects (packaged AFP coil and bare black woven coil).",
+        "Product pair width is within the 12-15% limit and height is proportionate.",
+        "Composition is in the lower third and slightly off-center.",
+        "Both objects are fully visible, separate, and sitting flat on the ground.",
+        "Watermark 'AFP | 09134922013' is present and correct.",
+        "No people, body parts, or human silhouettes are visible."
       ],
       "correction_prompt": "",
-      "attempt": 1
+      "attempt": 3
     }
   ],
   "approved_image": "مراحل-نصب-لوله-نخدار-110-میلیمتر-در-سیستم-آبیاری-تصویر-شاخص.webp"
