@@ -1,0 +1,30 @@
+name: Bug report
+description: Report a reproducible code, data, or packaging defect
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: summary
+    attributes: {label: Summary, description: "What is wrong?"}
+    validations: {required: true}
+  - type: textarea
+    id: evidence
+    attributes: {label: Evidence, description: Include run URL, item IDs, counts, and redacted logs.}
+    validations: {required: true}
+  - type: textarea
+    id: expected
+    attributes: {label: Expected behavior}
+    validations: {required: true}
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Impact
+      options: ["No external side effect", "Paid API risk", "WordPress/FTPS risk", "Data integrity risk", "Security risk"]
+    validations: {required: true}
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety
+      options:
+        - label: Logs are redacted and contain no secrets.
+          required: true

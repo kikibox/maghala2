@@ -1,0 +1,34 @@
+name: Workflow failure
+description: Track failed, cancelled, skipped, stalled, or unexpectedly costly automation
+title: "[Workflow]: "
+labels: ["workflow"]
+body:
+  - type: input
+    id: run
+    attributes: {label: Run URL}
+    validations: {required: true}
+  - type: input
+    id: sha
+    attributes: {label: Commit SHA}
+    validations: {required: true}
+  - type: dropdown
+    id: state
+    attributes:
+      label: Observed state
+      options: ["failed", "cancelled", "skipped", "queued/stalled", "unexpected cost/output"]
+    validations: {required: true}
+  - type: textarea
+    id: intended
+    attributes: {label: Intended output, description: Item/range/language/image/package counts.}
+    validations: {required: true}
+  - type: textarea
+    id: coverage
+    attributes: {label: "Was the output covered by a newer run?"}
+    validations: {required: true}
+  - type: checkboxes
+    id: rerun
+    attributes:
+      label: Rerun safety
+      options:
+        - label: I verified this old SHA should be rerun, or documented why a newer SHA is required.
+          required: true
