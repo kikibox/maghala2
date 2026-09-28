@@ -1,0 +1,79 @@
+name: Upload new article batches via FTPS
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'automation/article-ftps-initial-trigger.txt'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: article-ftps-upload
+  cancel-in-progress: false
+
+env:
+  FTP_HOST: ftp.navar-abyari.ir
+  FTP_PORT: '21'
+  FTP_USER: zzz@navar-abyari.ir
+  FTP_REMOTE_DIR: /
+  FTP_TLS_VERIFY: 'false'
+  FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v7
+        with: {python-version: '3.12'}
+      - name: Detect unuploaded article packages
+        id: detect
+        shell: bash
+        run: |
+          set -euo pipefail
+          python automation/write_new_article_batch_signal.py
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import hashlib,json
+          from pathlib import Path
+          root=Path('artifacts/article-content-queue');packages=root/'packages';signal=root/'.new-batch-signal';state_path=root/'ftps-upload-state.json'
+          try:tracked=json.loads(state_path.read_text(encoding='utf-8')).get('files',{})
+          except Exception:tracked={}
+          pending=[]
+          if signal.exists():
+            for raw in signal.read_text(encoding='utf-8').splitlines():
+              name=Path(raw.strip()).name
+              if not name:continue
+              if not name.endswith('.zip'):name+='.zip'
+              path=packages/name
+              if not path.exists():raise SystemExit(f'signaled article package missing: {name}')
+              digest=hashlib.sha256(path.read_bytes()).hexdigest();previous=tracked.get(name,{})
+              if previous.get('sha256')!=digest or int(previous.get('size',-1))!=path.stat().st_size:pending.append(name)
+          print('has_changes='+('true' if pending else 'false'))
+          print('pending_names='+','.join(pending))
+          PY
+      - name: Verify FTPS credentials
+        if: steps.detect.outputs.has_changes == 'true'
+        run: test -n "$FTP_PASSWORD"
+      - name: Upload only unrecorded article ZIPs
+        if: steps.detect.outputs.has_changes == 'true'
+        run: python automation/upload_new_article_batches_ftps.py
+      - name: Persist article upload state
+        if: steps.detect.outputs.has_changes == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          state_dir="$(mktemp -d)"
+          cp artifacts/article-content-queue/ftps-upload-state.json "$state_dir/state.json"
+          git fetch origin main
+          git reset --hard origin/main
+          cp "$state_dir/state.json" artifacts/article-content-queue/ftps-upload-state.json
+          git add -f artifacts/article-content-queue/ftps-upload-state.json
+          git commit -m 'Record automatic article FTPS batch uploads [skip ci]'
+          git push origin HEAD:main

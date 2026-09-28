@@ -6,11 +6,7 @@ on:
   push:
     branches: [main]
     paths:
-      - '.github/workflows/article-content-queue.yml'
       - 'automation/article_content_queue.py'
-      - 'automation/image_prompt_policy.py'
-      - 'automation/image_quality_gate.py'
-      - 'automation/assets/**'
       - 'automation/agnes_json_client.py'
       - 'automation/compress_article_images.py'
       - 'tests/test_article_content_queue.py'
@@ -100,7 +96,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python -m py_compile automation/article_content_queue.py automation/image_prompt_policy.py automation/image_quality_gate.py automation/rebuild_article_images_exact_product.py automation/translate_generated_articles.py automation/render_article_queue_status.py automation/compress_article_images.py automation/package_article_content_batches.py
+          python -m py_compile automation/article_content_queue.py automation/image_prompt_policy.py automation/image_quality_gate.py automation/rebuild_article_images_exact_product.py automation/translate_generated_articles.py automation/render_article_queue_status.py automation/compress_article_images.py automation/package_article_content_batches.py automation/write_new_article_batch_signal.py automation/upload_new_article_batches_ftps.py
           python -m unittest discover -s tests -p 'test_*.py'
 
       - name: Prioritize translation backlog
@@ -151,6 +147,34 @@ jobs:
         if: always()
         run: python automation/render_article_queue_status.py
 
+      - name: Detect a newly completed 50-article package
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python automation/write_new_article_batch_signal.py
+          ready="$(python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          root=Path('artifacts/article-content-queue');signal=root/'.new-batch-signal';packages=root/'packages';state=root/'ftps-upload-state.json'
+          try:tracked=json.loads(state.read_text(encoding='utf-8')).get('files',{})
+          except Exception:tracked={}
+          pending=0
+          if signal.exists():
+            for raw in signal.read_text(encoding='utf-8').splitlines():
+              name=Path(raw.strip()).name
+              if not name:continue
+              if not name.endswith('.zip'):name+='.zip'
+              path=packages/name
+              if not path.exists():continue
+              digest=hashlib.sha256(path.read_bytes()).hexdigest();previous=tracked.get(name,{})
+              if previous.get('sha256')!=digest or int(previous.get('size',-1))!=path.stat().st_size:pending+=1
+          print(1 if pending else 0)
+          PY
+          )"
+          echo "NEW_ARTICLE_BATCH_READY=$ready" >> "$GITHUB_ENV"
+          echo "article_ftps_dispatch_ready=$ready"
+
       - name: Persist queue state
         if: always()
         shell: bash
@@ -177,11 +201,19 @@ jobs:
           git add -f artifacts/article-content-queue/rollback/*.sql 2>/dev/null || true
           git add -f artifacts/article-content-queue/packages/*.zip 2>/dev/null || true
           git add -f artifacts/article-content-queue/run.log 2>/dev/null || true
+          git add -f artifacts/article-content-queue/.new-batch-signal 2>/dev/null || true
           git add -A artifacts/article-content-queue
           if ! git diff --cached --quiet; then
             git commit -m 'Update article queue state [skip ci]'
             git push origin HEAD:main
           fi
+
+      - name: Dispatch FTPS only while an unuploaded 50-article ZIP exists
+        if: always() && !cancelled() && env.NEW_ARTICLE_BATCH_READY == '1'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run upload-article-batches-ftps.yml --ref main
 
       - name: Upload run artifacts
         if: always()
