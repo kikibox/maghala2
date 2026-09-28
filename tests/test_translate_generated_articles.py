@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "automation"))
 
 import translate_generated_articles as translations
+import package_article_content_batches as article_packages
 
 
 class GeneratedTranslationTests(unittest.TestCase):
@@ -65,6 +66,24 @@ class GeneratedTranslationTests(unittest.TestCase):
         self.assertIn("shared-translation-slug-crop-001-en", create)
         self.assertIn("@resolved_conflict", create)
         self.assertNotIn("@slug_conflict IS NULL,LAST_INSERT_ID()", create)
+
+    def test_legacy_article_sql_is_normalized_before_packaging(self):
+        legacy = (
+            "SET NAMES utf8mb4;\n"
+            "SET @post_id=(SELECT post_id FROM `ha_postmeta` "
+            "WHERE meta_value=@queue_key LIMIT 1);"
+        )
+        fixed = article_packages.normalize_sql(legacy)
+        self.assertNotIn("SET NAMES utf8mb4;", fixed)
+        self.assertNotIn("meta_value=@queue_key", fixed)
+        self.assertIn(
+            "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_520_ci;", fixed
+        )
+        self.assertIn(
+            "meta_value COLLATE utf8mb4_unicode_520_ci = "
+            "@queue_key COLLATE utf8mb4_unicode_520_ci",
+            fixed,
+        )
 
 
 if __name__ == "__main__":

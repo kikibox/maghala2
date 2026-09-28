@@ -24,6 +24,11 @@ def load(path,default):
 
 def item_id(item):return str(item.get('id') or '')
 
+def normalize_sql(sql):
+ sql=sql.replace('SET NAMES utf8mb4;', "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_520_ci;\nSET collation_connection = 'utf8mb4_unicode_520_ci';")
+ sql=sql.replace('meta_value=@queue_key','meta_value COLLATE utf8mb4_unicode_520_ci = @queue_key COLLATE utf8mb4_unicode_520_ci')
+ return sql
+
 def ordered_completed(completed,old):
  by_id={item_id(x):x for x in completed};locked=[];seen=set()
  for package in old.get('packages',[]):
@@ -47,6 +52,8 @@ def healthy(path,name,batch):
    actual={str(x.get('id') or '') for x in manifest.get('posts',[])}
    if manifest.get('batch')!=name or actual!=expected or int(manifest.get('post_count',0))!=len(batch):return None
    if rollback_name not in names or f'USE `{DB_NAME}`;' not in sql[:500]:return None
+   if 'SET NAMES utf8mb4;' in sql or 'meta_value=@queue_key' in sql:return None
+   if 'SET NAMES utf8mb4 COLLATE utf8mb4_unicode_520_ci;' not in sql:return None
    if len([x for x in names if x.startswith('items/') and x.endswith('.json')])<len(batch):return None
    if not any(x.startswith('wp-content/uploads/') for x in names):return None
    manifest.update(zip=path.name,zip_sha256=sha256(path),zip_bytes=path.stat().st_size)
@@ -65,7 +72,7 @@ def build(batch,name):
   key=item_id(item);posts.append({'id':key,'title':item.get('title'),'slug':item.get('slug'),'vertical':item.get('vertical'),'completed_at':item.get('completed_at'),'word_count':item.get('word_count')})
   cf=OUT/'sql'/f'{key}.sql';rf=OUT/'rollback'/f'{key}.sql';jf=OUT/'items'/f'{key}.json'
   if not cf.exists() or not rf.exists() or not jf.exists():raise RuntimeError(f'Incomplete artifacts for completed article {key}')
-  create.append(f'\n-- article: {key}\n'+cf.read_text(encoding='utf-8'));rollback.append(f'\n-- article: {key}\n'+rf.read_text(encoding='utf-8'))
+  create.append(f'\n-- article: {key}\n'+normalize_sql(cf.read_text(encoding='utf-8')));rollback.append(f'\n-- article: {key}\n'+normalize_sql(rf.read_text(encoding='utf-8')))
   shutil.copy2(jf,work/'items'/jf.name);files.append(f'items/{jf.name}')
   data=load(jf,{})
   for image in data.get('images',[]):
