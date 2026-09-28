@@ -7,27 +7,49 @@
   "attempts": [
     {
       "pass": false,
-      "score": 15,
-      "product_width_percent": 18,
-      "product_height_percent": 8,
-      "product_x_center_percent": 18,
+      "score": 10,
+      "product_width_percent": 35,
+      "product_height_percent": 35,
+      "product_x_center_percent": 78,
       "reasons": [
-        "Presence of people: The image contains three visible individuals (farmers/workers), which is a hard reject.",
-        "Product width exceedance: The pair of coils occupies approximately 18% of the frame width, exceeding the maximum 15% limit.",
-        "Incorrect object type: One of the products is a coil mounted on a reel or in a frame, not a bare layflat coiled product as required."
+        "Two visible people (hard reject)",
+        "Missing packaged AFP coil (only one visible product)",
+        "Product pair width too large (>15%)",
+        "Product positioning too large/low rather than small/off-center lower third",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height."
       ],
-      "correction_prompt": "Remove all people. Compress the two coils (one packaged AFP coil, one bare black woven coil) to a total width of 12% of the frame. Place them low on the lower third, off-center. Keep the 'AFP | 09134922013' watermark.",
+      "correction_prompt": "Regenerate with zero people. Show exactly two products (one packaged AFP coil, one bare black woven coil) placed flat and separate on the ground. The pair must occupy only 12-15% of the frame width, positioned off-center in the lower third. Keep the bottom-right watermark. Reduce the product group from 35% to 9-20% of frame width. Reduce product height from 35% to at most 32% of frame height.",
       "attempt": 1
     },
     {
-      "pass": true,
-      "score": 85,
-      "product_width_percent": 13,
-      "product_height_percent": 9,
-      "product_x_center_percent": 28,
-      "reasons": [],
-      "correction_prompt": "",
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 38,
+      "product_height_percent": 32,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Product pair width exceeds the 15% maximum threshold (est. 38%)",
+        "Product pair is centered rather than offset in the lower third",
+        "Product height is excessive relative to the required width percentage",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Scale down the packaged coil and black hose coil significantly so the pair occupies only 12-15% of frame width, offset to the lower right, with more of the field visible around them. Reduce the product group from 38% to 9-20% of frame width.",
       "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 15,
+      "product_height_percent": 15,
+      "product_x_center_percent": 61,
+      "reasons": [
+        "No visible people or human body parts",
+        "Correct product count (one packaged, one bare)",
+        "Watermark present and correct",
+        "Products are in the lower third"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
     }
   ],
   "approved_image": "مشخصات-فنی-لوله-نخ-دار-75-میلیمتر-راهنمای-انتخاب-کاربرد-عملی.webp"

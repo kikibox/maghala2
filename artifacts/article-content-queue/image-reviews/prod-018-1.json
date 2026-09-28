@@ -1,84 +1,39 @@
 {
   "id": "prod-018",
   "kind": 1,
-  "family": "tape20",
+  "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 72,
-      "product_width_percent": 38,
-      "product_height_percent": 32,
-      "product_x_center_percent": 28,
+      "score": 0,
+      "product_width_percent": 20,
+      "product_height_percent": 15,
+      "product_x_center_percent": 45,
       "reasons": [
-        "Product width 38% is outside acceptable range 13-27%. Must be reduced to 20-23% preferred or within 13-27% practical bounds.",
-        "Drip pipe emerging from roll is visible in foreground; hard reject rule disallows any pipe or hose through or from roll.",
-        "Article crop is not clearly identifiable; young sprouts visible but morphologically neutral. Per instructions, neutral young vegetation may pass if agronomic context is clear; here context is field but article-specific story may not be precise. No hard reject, but noted.",
-        "Roll shape and proportions within allowed range; off-center, on soil; no human parts; watermark present and correct.",
-        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 13-27% of frame width."
+        "Hard reject: Human presence (a farmer/man is prominently crouching and interacting with the product).",
+        "Hard reject: Wrong product composition (shows a single coiled wire/metal tube instead of a pair: one packaged AFP coil and one bare black woven coil).",
+        "Hard reject: The product pair does not occupy the required 12-15% width and is not positioned on the lower third as specified."
       ],
-      "correction_prompt": "Reduce drip-tape roll width to 20-23% of frame; remove any drip pipe or hose emerging from roll; keep roll off-center on soil in lower third with clear farm context and no people. Reduce the product group from 38% to 13-27% of frame width.",
+      "correction_prompt": "Remove the human figure entirely. Generate exactly two separate coiled objects (one packaged AFP coil, one bare black woven coil) placed flat on the ground in the lower third. Ensure the pair occupies only 12-15% of the frame width, is off-center, and remains distinct.",
       "attempt": 1
     },
     {
-      "pass": false,
-      "score": 20,
-      "product_width_percent": 18,
-      "product_height_percent": 15,
-      "product_x_center_percent": 38,
-      "reasons": [
-        "Hard reject: The image contains a person (a woman kneeling in the field), violating the strict rule of zero people or human body parts."
-      ],
-      "correction_prompt": "Regenerate the image showing the white and blue AFP drip-tape roll in the farm context but strictly exclude any people, faces, hands, or body parts. Remove the woman from the frame entirely, focusing only on the product and the crops/soil.",
-      "attempt": 2
-    },
-    {
-      "pass": false,
-      "score": 62,
-      "product_width_percent": 12,
-      "product_height_percent": 18,
-      "product_x_center_percent": 44,
-      "reasons": [
-        "The product width (approx 12%) is below the acceptable minimum of 13%.",
-        "The product does not occupy a sufficient portion of the frame relative to the preferred width of 20-23%.",
-        "The product is not placed in the lower third of the image, but rather in the middle.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
-      ],
-      "correction_prompt": "Resize the product to be between 20-23% of the image width and place it on the soil in the lower third of the image. Enlarge the product group from 12% to 13-27% of frame width.",
-      "attempt": 3
-    },
-    {
-      "pass": false,
-      "score": 10,
-      "product_width_percent": 19,
-      "product_height_percent": 16,
-      "product_x_center_percent": 36,
-      "reasons": [
-        "Presence of a person (farmer) and visible human body parts (head, hands, legs), which are hard rejects.",
-        "The crop morphology shown is corn (maize) seedlings, which is a clearly identifiable different species compared to the required article title crop."
-      ],
-      "correction_prompt": "Regenerate the image to show exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll in a farm context with the correct article-specific crop. Strictly exclude any people, faces, hands, or body parts. The crop must be botanically accurate for the article title.",
-      "attempt": 4
-    },
-    {
       "pass": true,
-      "score": 86,
-      "product_width_percent": 27,
-      "product_height_percent": 22,
-      "product_x_center_percent": 34,
+      "score": 90,
+      "product_width_percent": 13,
+      "product_height_percent": 12,
+      "product_x_center_percent": 45,
       "reasons": [
-        "The image features exactly one wide, low cylindrical carton roll that is visually consistent with the AFP white-and-blue drip-tape product specifications.",
-        "The product is positioned off-center on the lower third of the frame and is naturally resting on the soil, appearing secondary to the wider farm context.",
-        "The farm context includes a barn and young crop rows, satisfying the requirement for a topic-specific farm context.",
-        "The crop visible consists of small, unidentifiable young seedlings, which passes the guidelines as a botanically neutral prepared bed.",
-        "Irrigation hardware, specifically a drip line, is visible on the soil, providing root-zone and irrigation layout evidence.",
-        "Zero people or human body parts are visible in the frame.",
-        "The required watermark 'AFP | 09134922013' is present in the bottom right corner.",
-        "No forbidden commercial products (bottles, jars, cans) or text issues are present."
+        "Contains exactly two approved objects: one packaged AFP coil and one bare black woven coil",
+        "Pair occupies approximately 13% of frame width, within the 12-15% requirement",
+        "Positioned off-center on the lower third, separate and flat on the ground",
+        "Contains zero people, human body parts, or silhouettes",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner"
       ],
       "correction_prompt": "",
-      "attempt": 5
+      "attempt": 2
     }
   ],
   "approved_image": "مراحل-نصب-لوله-نخدار-125-میلیمتر-در-سیستم-آبیاری-تصویر-شاخص.webp"

@@ -1,56 +1,64 @@
 {
   "id": "prod-044",
   "kind": 3,
-  "family": "tape20",
+  "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
       "pass": false,
       "score": 10,
-      "product_width_percent": 9,
-      "product_height_percent": 15,
-      "product_x_center_percent": 48,
+      "product_width_percent": 25,
+      "product_height_percent": 45,
+      "product_x_center_percent": 70,
       "reasons": [
-        "Contains a visible person (farmer/worker) violating the zero people requirement.",
-        "Product is far too small and not positioned in the lower third.",
-        "Product is centered rather than off-center.",
-        "Product proportions do not match the required wide low cylindrical shape (height is greater than width).",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+        "Hard reject: Multiple people and human body parts are present in the image (three distinct individuals visible in the separate panels).",
+        "Hard reject: The image is a composite/collage of three different scenes rather than a single cohesive shot.",
+        "Hard reject: The product pair is not correctly staged; it is not off-center on the lower third, and the products are not separate and flat on the ground in the required manner.",
+        "Hard reject: The product width significantly exceeds the 15% limit.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 25% to 9-20% of frame width.; Reduce product height from 45% to at most 32% of frame height."
       ],
-      "correction_prompt": "Remove all people and faces completely. Show a single, wide, low, cylindrical white and blue drip-tape carton roll on the soil. The roll should be located in the lower third, off-center, and occupy 20-23 percent of the image width. The roll must be physically wider than it is tall (approx 1.5:1 ratio). Keep the 'AFP | 09134922013' watermark. Enlarge the product group from 9% to 13-27% of frame width.",
+      "correction_prompt": "Regenerate a single, non-composite image of a field with two layflat objects (one packaged AFP coil and one bare black woven coil) that are separate, flat on the ground, and small (approx 12-15% of frame width). Ensure the product pair is positioned off-center on the lower third. Remove all people and human silhouettes from the scene. Keep the exact bottom-right watermark 'AFP | 09134922013'. Reduce the product group from 25% to 9-20% of frame width. Reduce product height from 45% to at most 32% of frame height.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 15,
-      "product_width_percent": 22,
-      "product_height_percent": 28,
-      "product_x_center_percent": 48,
+      "score": 95,
+      "product_width_percent": 24,
+      "product_height_percent": 18,
+      "product_x_center_percent": 45,
       "reasons": [
-        "Cow visible in the background on the left side, which is an animal not present in the city/farm context for a generic drip tape hardware story.",
-        "Cow visible in the background on the right side near the barn, which is an animal not present in the city/farm context for a generic drip tape hardware story.",
-        "Tractor driver (silhouette/figure) visible in the background tractor on the left, which is a hard reject for human presence."
+        "The required watermark 'AFP | 09134922013' is clearly visible in the bottom-right corner.",
+        "No people or human body parts are present.",
+        "The two required objects—a packaged AFP coil and a bare black woven coil—are present, separate, and flat on the ground.",
+        "The composition is off-center (slightly left of center) and located in the lower third.",
+        "The product pair's width (approx. 24%) exceeds the ideal 12-15% target, but it is not so wide as to trigger a hard reject, and it maintains a natural, un-staged look.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 24% to 9-20% of frame width."
       ],
-      "correction_prompt": "Remove the cows and the tractor driver. Show an empty field or a static irrigation setup. Ensure the central roll is clearly off-center to the right or left, not in the middle.",
+      "correction_prompt": "Reduce the product group from 24% to 9-20% of frame width.",
       "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 12,
+      "product_x_center_percent": 17,
+      "reasons": [
+        "Hard reject: The image contains a person (a man) touching a crop, which violates the zero-people constraint."
+      ],
+      "correction_prompt": "Remove the person entirely. Keep the two coiled products flat on the soil in the lower left. Ensure the pair of coils occupies approximately 12-15% of the frame width. Do not add any human figures.",
+      "attempt": 3
     },
     {
       "pass": true,
       "score": 90,
-      "product_width_percent": 16.7,
-      "product_height_percent": 16.7,
-      "product_x_center_percent": 41.7,
-      "reasons": [
-        "One clearly visible AFP white-and-blue wide, low cylindrical drip-tape roll placed naturally on soil",
-        "Zero people or human body parts visible",
-        "Unattended tractor and ordinary irrigation lines in the background are permitted as infrastructure/hardware and are not extra commercial products",
-        "Product bounding box estimates: width ~16.7% of frame (within the preferred 20–23% band but acceptable range), height ~16.7% (≤32%), x-center ~41.7% off-center in the lower third",
-        "Background farm context (cultivated soil, farm buildings, irrigation infrastructure) is topic-appropriate; crop absence/neutral treatment is acceptable for a hardware story",
-        "Required bottom-right watermark 'AFP | 09134922013' present and authentic-looking"
-      ],
+      "product_width_percent": 14,
+      "product_height_percent": 14,
+      "product_x_center_percent": 26,
+      "reasons": [],
       "correction_prompt": "",
-      "attempt": 3
+      "attempt": 4
     }
   ],
   "approved_image": "راهنمای-جامع-خرید-لوله-تاشو-3-اینچ-75-میلیمتر-نکات-انتخاب-و-قیمت-جزئیات-فنی.webp"
