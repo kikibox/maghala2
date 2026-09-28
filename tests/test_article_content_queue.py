@@ -310,9 +310,8 @@ class ArticleQueueTests(unittest.TestCase):
         tape = queue.image_prompt_policy.image_prompt(
             {"source_id": "crop-001", "title": "مقاله نوار تیپ"}, 1
         )
-        layflat = queue.image_prompt_policy.image_prompt(
-            {"source_id": "crop-001-layflat", "title": "مقاله لوله نخدار"}, 1
-        )
+        layflat_item = {"source_id": "prod-081", "title": "اندازه‌گیری لوله نخ دار 90 میلیمتر برای مزرعه"}
+        layflat = queue.image_prompt_policy.image_prompt(layflat_item, 1)
         self.assertIn("Drip Irrigation Tape", tape)
         self.assertIn('"layflat"', layflat)
         self.assertIn("20 to 23 percent of frame width", tape)
@@ -321,15 +320,12 @@ class ArticleQueueTests(unittest.TestCase):
         tape_ref = queue.image_prompt_policy.reference_images(
             1, {"source_id": "crop-001"}
         )[0]
-        layflat_refs = queue.image_prompt_policy.reference_images(
-            1, {"source_id": "crop-001-layflat"}
-        )
+        layflat_refs = queue.image_prompt_policy.reference_images(1, layflat_item)
         self.assertTrue(tape_ref.startswith("data:image/webp;base64,"))
-        self.assertEqual(len(layflat_refs), 2)
+        self.assertEqual(queue.image_prompt_policy.product_family(layflat_item), "layflat")
+        self.assertEqual(len(layflat_refs), 1)
         self.assertTrue(layflat_refs[0].startswith("data:image/webp;base64,"))
-        self.assertTrue(layflat_refs[1].startswith("data:image/webp;base64,"))
         self.assertNotEqual(tape_ref, layflat_refs[0])
-        self.assertNotEqual(layflat_refs[0], layflat_refs[1])
 
     def test_sql_is_publish_idempotent_and_rollback_is_marker_scoped(self):
         item = {

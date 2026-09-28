@@ -35,7 +35,6 @@ env:
   AGNES_API_KEY11: ${{ secrets.AGNES_API_KEY11 }}
   AGNES_API_KEY12: ${{ secrets.AGNES_API_KEY12 }}
   AGNES_API_KEY13: ${{ secrets.AGNES_API_KEY13 }}
-  AGNES_API_KEY14: ${{ secrets.AGNES_API_KEY14 }}
   AGNES_API_BASE: ${{ vars.AGNES_API_BASE || 'https://apihub.agnes-ai.com/v1' }}
   AGNES_MODEL: ${{ vars.AGNES_MODEL || 'agnes-3.0-flash' }}
   IMAGE_API_KEY: ${{ secrets.IMAGE_API_KEY || secrets.AGNES_API_KEY }}
@@ -79,7 +78,7 @@ jobs:
         run: |
           set +e
           mkdir -p artifacts/article-content-queue
-          python automation/rebuild_article_images_exact_product.py 2>&1 | tee artifacts/article-content-queue/full-image-rebuild-v11.log
+          python automation/rebuild_article_images_exact_product.py 2>&1 | tee artifacts/article-content-queue/family-aware-image-rebuild-v12.log
           rc=${PIPESTATUS[0]}
           echo "exit_code=$rc" >> "$GITHUB_OUTPUT"
           exit 0
@@ -107,17 +106,17 @@ jobs:
           git add -f artifacts/article-content-queue/images/* 2>/dev/null || true
           git add -f artifacts/article-content-queue/items/*.json 2>/dev/null || true
           git add -f artifacts/article-content-queue/packages/*.zip 2>/dev/null || true
-          git add -f artifacts/article-content-queue/full-image-rebuild-v11.log 2>/dev/null || true
+          git add -f artifacts/article-content-queue/family-aware-image-rebuild-v12.log 2>/dev/null || true
           git add -A artifacts/article-content-queue
           if ! git diff --cached --quiet; then
-            git commit -m 'Rebuild article images under strict v11 no-human/no-container policy [skip ci]'
+            git commit -m 'Repair layflat article images with family-aware references [image-rebuild] [skip ci]'
             git push origin HEAD:main
           fi
       - name: Upload rebuild diagnostics
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: strict-article-image-rebuild-${{ github.run_id }}
+          name: family-aware-article-image-rebuild-${{ github.run_id }}
           path: artifacts/article-content-queue/
           retention-days: 30
       - name: Fail only after preserving partial progress
@@ -133,7 +132,7 @@ jobs:
           read -r remaining stalled <<<"$(python - <<'PY'
           import json
           from pathlib import Path
-          path=Path('artifacts/article-content-queue/image-rebuild-reference-rerender-3d-v11-no-human-no-container-full-rebuild.json')
+          path=Path('artifacts/article-content-queue/image-rebuild-reference-rerender-3d-v12-family-aware-layflat-repair.json')
           data=json.loads(path.read_text(encoding='utf-8')) if path.exists() else {}
           print(int(data.get('remaining_candidates',0)), int(data.get('consecutive_no_progress_runs',0)))
           PY
@@ -145,5 +144,6 @@ jobs:
           elif [ "$remaining" -gt 0 ]; then
             echo "::warning::$remaining sets remain after $stalled no-progress runs; use manual dispatch after reviewing diagnostics."
           else
-            echo "Strict image rebuild is complete."
+            echo "Family-aware image repair is complete; resuming translations before Persian generation."
+            gh workflow run article-translations.yml --ref main
           fi

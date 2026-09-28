@@ -11,12 +11,6 @@ on:
       - 'automation/package_article_translation_batches.py'
       - 'sqlbuild/build_patch.py'
       - 'data/source_ids.txt'
-  schedule:
-    # Sole hourly entry point for the three-article production chain. It waits behind any
-    # active strict rebuild, clears translations, then dispatches the Persian
-    # queue. The article queue has no independent schedule, so this pending run
-    # cannot be replaced while it waits for the shared lock.
-    - cron: '20 * * * *'
 
 permissions:
   contents: write
@@ -47,15 +41,14 @@ jobs:
       AGNES_API_KEY11: ${{ secrets.AGNES_API_KEY11 }}
       AGNES_API_KEY12: ${{ secrets.AGNES_API_KEY12 }}
       AGNES_API_KEY13: ${{ secrets.AGNES_API_KEY13 }}
-      AGNES_API_KEY14: ${{ secrets.AGNES_API_KEY14 }}
       AGNES_API_BASE: ${{ vars.AGNES_API_BASE || 'https://apihub.agnes-ai.com/v1' }}
       AGNES_MODEL: ${{ vars.AGNES_MODEL || 'agnes-3.0-flash' }}
       # Clear one sixteen-article Persian batch per slice with four source-level workers.
       # This uses only a controlled share of the fourteen-key pool and preserves city headroom.
-      MAX_ARTICLES: '16'
-      GENERATED_TRANSLATION_BATCH_SIZE: '16'
-      MAX_TRANSLATION_BACKLOG_SOURCES: '17'
-      TRANSLATION_WORKERS: '4'
+      MAX_ARTICLES: '24'
+      GENERATED_TRANSLATION_BATCH_SIZE: '24'
+      MAX_TRANSLATION_BACKLOG_SOURCES: '25'
+      TRANSLATION_WORKERS: '8'
     steps:
       - uses: actions/checkout@v7
         with:
@@ -138,6 +131,11 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          rebuild_active="$(gh run list --workflow rebuild-all-article-images.yml --limit 20 --json status --jq '[.[] | select(.status == "queued" or .status == "in_progress" or .status == "waiting" or .status == "pending" or .status == "requested")] | length')"
+          if [ "$rebuild_active" -gt 0 ]; then
+            echo "An image-family rebuild is queued; it owns the next pipeline handoff."
+            exit 0
+          fi
           set +e
           python automation/translate_generated_articles.py --check-backlog
           rc=$?

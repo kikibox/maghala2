@@ -9,9 +9,10 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import article_content_queue as queue
 
-POLICY = "reference-rerender-3d-v11-no-human-no-container-full-rebuild"
-MODE = "reference-conditioned-3d-rerender-approved-scales-topic-first"
-MARKER = queue.OUT / "image-rebuild-reference-rerender-3d-v11-no-human-no-container-full-rebuild.json"
+LEGACY_POLICY = "reference-rerender-3d-v11-no-human-no-container-full-rebuild"
+POLICY = "reference-rerender-3d-v12-family-aware-layflat-repair"
+MODE = "reference-conditioned-3d-rerender-product-family-aware"
+MARKER = queue.OUT / "image-rebuild-reference-rerender-3d-v12-family-aware-layflat-repair.json"
 WORKERS = min(2, max(1, int(os.getenv("IMAGE_WORKERS", "2"))))
 POST_LIMIT = max(1, int(os.getenv("IMAGE_REBUILD_POST_LIMIT", "4")))
 
@@ -58,6 +59,13 @@ def write_marker(rebuilt, skipped, failures, total, remaining, completed=False, 
         encoding="utf-8",
     )
 
+def is_current(item, data):
+    family = queue.image_prompt_policy.product_family({**item, **data})
+    if family != "layflat":
+        return True
+    return data.get("image_rebuild_policy") == POLICY and data.get("image_product_family") == "layflat"
+
+
 def current_policy_ids(completed):
     current = []
     for item in completed:
@@ -69,7 +77,7 @@ def current_policy_ids(completed):
             data = json.loads(path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
             continue
-        if data.get("image_rebuild_policy") == POLICY:
+        if is_current(item, data):
             current.append(item_id)
     return sorted(current)
 
@@ -101,7 +109,7 @@ def main() -> int:
             skipped.append({"id": item_id, "reason": "item JSON missing"})
             continue
         data = json.loads(path.read_text(encoding="utf-8"))
-        if data.get("image_rebuild_policy") == POLICY:
+        if is_current(item, data):
             continue
         records[item_id] = (item, path, data)
 
@@ -150,6 +158,7 @@ def main() -> int:
             image_generation_mode=MODE,
             image_rebuild_policy=POLICY,
             image_rebuilt_at=stamp,
+            image_product_family=queue.image_prompt_policy.product_family({**item, **data}),
         )
         path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
         item.update(
@@ -158,6 +167,7 @@ def main() -> int:
             image_generation_mode=MODE,
             image_rebuild_policy=POLICY,
             image_rebuilt_at=stamp,
+            image_product_family=queue.image_prompt_policy.product_family({**item, **data}),
         )
         rebuilt.append(item_id)
 

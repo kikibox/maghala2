@@ -10,8 +10,12 @@ LAYFLAT_REFERENCE_PACKAGE='https://navar-abyari.ir/wp-content/uploads/%D9%84%D9%
 REFERENCE_IMAGES={'drip_tape_roll':DRIP_TAPE_ROLL_REFERENCE,'layflat_package':LAYFLAT_REFERENCE_PACKAGE}
 
 def product_family(item):
- item=item or {};sid=str(item.get('source_id') or '').lower();text=' '.join(str(item.get(k) or '') for k in ('topic','topic_title','topic_focus','title','slug','source_id'))
- return 'layflat' if sid.endswith('-layflat') or any(x in text.lower() for x in ('layflat','لوله نخی','لوله تاشو','looleh nakhi','looleh-nakhi')) else 'tape20'
+ item=item or {}
+ sid=str(item.get('source_id') or item.get('id') or '').lower()
+ raw=' '.join(str(item.get(k) or '') for k in ('topic','topic_title','topic_focus','focus','title','slug','excerpt','meta_description','source_id','id'))
+ text=re.sub(r'[\s_\-]+',' ',raw.lower().replace('‌',' ').replace('ي','ی').replace('ك','ک')).strip()
+ layflat_terms=('layflat','lay flat','looleh nakhi','لوله نخی','لوله نخ دار','لوله نخدار','لوله تاشو','لوله تخت','لوله لی فلت','لوله آتش نشانی','شلنگ نخی')
+ return 'layflat' if sid.endswith('-layflat') or any(term in text for term in layflat_terms) else 'tape20'
 
 SCENES={
  1:'wide editorial hero in which the article topic, crop, field condition or irrigation problem is the unmistakable main subject',
@@ -143,16 +147,16 @@ def visual_template(item,kind):
 def reference_images(kind,item=None):
  family=product_family(item)
  if family=='layflat':
-  refs=[]
+  # Reuse the proven nono conditioning: one combined reference keeps the AFP
+  # packaged coil and bare woven coil together at realistic relative scale.
+  canvas=Image.new('RGB',(1200,675),(238,238,235));x=72
   for filename in ('afp-layflat.webp.b64','afp-layflat-bare.jpg.b64'):
    raw=base64.b64decode((ASSET_DIR/filename).read_text(encoding='ascii').strip())
    product=Image.open(io.BytesIO(raw)).convert('RGB')
-   product.thumbnail((150,112),Image.Resampling.LANCZOS)
-   canvas=Image.new('RGB',(1200,675),(238,238,235))
-   canvas.paste(product,(90,675-product.height-55))
-   buf=io.BytesIO();canvas.save(buf,'WEBP',quality=90,method=6)
-   refs.append('data:image/webp;base64,'+base64.b64encode(buf.getvalue()).decode('ascii'))
-  return refs
+   product.thumbnail((112,84),Image.Resampling.LANCZOS)
+   canvas.paste(product,(x,675-product.height-55));x+=product.width+24
+  buf=io.BytesIO();canvas.save(buf,'WEBP',quality=90,method=6)
+  return ['data:image/webp;base64,'+base64.b64encode(buf.getvalue()).decode('ascii')]
  raw=base64.b64decode((ASSET_DIR/'afp-tape.webp.b64').read_text(encoding='ascii').strip())
  product=Image.open(io.BytesIO(raw)).convert('RGB').resize((280,170),Image.Resampling.LANCZOS)
  canvas=Image.new('RGB',(1200,675),(238,238,235));canvas.paste(product,(90,675-product.height-55))
