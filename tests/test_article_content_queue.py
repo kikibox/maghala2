@@ -53,6 +53,31 @@ class ArticleQueueTests(unittest.TestCase):
         self.assertEqual(len(queue.internal_links(repaired)), queue.MIN_LINKS)
         self.assertIn("مطالب مرتبط", repaired)
 
+    def test_existing_related_block_is_extended_not_duplicated(self):
+        links = [
+            {"title": f"مطلب {i}", "url": f"https://navar-abyari.ir/post-{i}/"}
+            for i in range(1, 7)
+        ]
+        body = (
+            '<p>متن</p><p><strong>مطالب مرتبط:</strong> '
+            '<a href="https://navar-abyari.ir/post-1/">یک</a></p>'
+        )
+        repaired = queue.ensure_minimum_internal_links(body, links)
+        self.assertEqual(repaired.count("مطالب مرتبط"), 1)
+        self.assertEqual(len(queue.internal_links(repaired)), queue.MIN_LINKS)
+        self.assertIn("<p>متن</p>", repaired)
+
+    def test_percentless_utf8_hex_is_decoded_and_duplicate_tail_removed(self):
+        encoded = "D986D988D8A7D8B1"
+        body = (
+            f"<p><strong>مطالب مرتبط:</strong> {encoded}</p>"
+            f'<p><strong>مطالب مرتبط:</strong> <a href="/x/">{encoded}</a></p>'
+        )
+        repaired = queue.cleanup_persian_html(body)
+        self.assertEqual(repaired.count("مطالب مرتبط"), 1)
+        self.assertNotIn(encoded, repaired)
+        self.assertIn("نوار", repaired)
+
     def test_link_variants_are_canonicalized_and_markers_repaired(self):
         canonical = "https://navar-abyari.ir/%D9%86%D9%88%D8%A7%D8%B1/"
         variant = "https://navar-abyari.ir/نوار/"

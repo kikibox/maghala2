@@ -7,6 +7,7 @@ on:
     paths:
       - 'automation/translate_queue.py'
       - 'automation/translate_generated_articles.py'
+      - 'automation/repair_persian_article_text.py'
       - 'automation/render_article_queue_status.py'
       - 'automation/package_article_content_batches.py'
       - 'automation/write_new_article_batch_signal.py'
@@ -63,7 +64,9 @@ jobs:
       - name: Validate translation pipeline
         run: |
           test -n "$AGNES_API_KEY"
-          python -m py_compile automation/translate_queue.py automation/translate_generated_articles.py automation/render_article_queue_status.py automation/package_article_content_batches.py automation/write_new_article_batch_signal.py sqlbuild/build_patch.py
+          python -m py_compile automation/translate_queue.py automation/translate_generated_articles.py automation/repair_persian_article_text.py automation/render_article_queue_status.py automation/package_article_content_batches.py automation/write_new_article_batch_signal.py sqlbuild/build_patch.py
+      - name: Repair legacy Persian article tails without API calls
+        run: python automation/repair_persian_article_text.py
       - name: Translate completed generated articles first
         id: generated
         shell: bash

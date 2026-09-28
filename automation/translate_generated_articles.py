@@ -32,13 +32,14 @@ MAX_BACKLOG_SOURCES = max(1, int(os.getenv("MAX_TRANSLATION_BACKLOG_SOURCES", "4
 TRANSLATION_WORKERS = max(1, int(os.getenv("TRANSLATION_WORKERS", "1")))
 HEX_TEXT = re.compile(r"\b(?:[0-9A-Fa-f]{2}){6,}\b")
 RELATED_LABEL = re.compile(
-    r"موضوعات مرتبط|مواضيع ذات صلة|مواد ذات صلة|"
+    r"مطالب مرتبط|موضوعات مرتبط|مواضيع ذات صلة|مواد ذات صلة|"
     r"Мавзӯъҳои алоқаманд|Маводи робита|маҳсулҳои муталлиқ|"
     r"Related (?:topics|posts|articles)",
     re.IGNORECASE,
 )
 PARAGRAPH = re.compile(r"<p\b[^>]*>.*?</p>", re.IGNORECASE | re.DOTALL)
 GENERIC_RELATED_LABEL = {
+    "fa-IR": "مقاله مرتبط",
     "ar-IQ": "مقالة ذات صلة",
     "tg-TJ": "Мақолаи марбут",
     "en-US": "Related article",

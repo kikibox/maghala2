@@ -80,6 +80,11 @@ CATEGORY_TAXONOMY_ID = int(
 
 WORD_RE = re.compile(r"[\u0600-\u06ff\u200c]+|[A-Za-z]+")
 HREF_RE = re.compile(r'<a\b[^>]*href=["\']([^"\']+)', re.I)
+HEX_TEXT_RE = re.compile(r"(?<![0-9A-Fa-f])(?:[0-9A-Fa-f]{2}){6,}(?![0-9A-Fa-f])")
+PERSIAN_RELATED_PARAGRAPH_RE = re.compile(
+    r"<p\b[^>]*>(?:(?!</p>).)*?(?:مطالب مرتبط|موضوعات مرتبط)(?:(?!</p>).)*?</p>",
+    re.I | re.S,
+)
 
 
 def now():
@@ -112,6 +117,43 @@ def words(text):
     return len(WORD_RE.findall(re.sub(r'<[^>]+>',' ',text or '')))
 
 
+def repair_percentless_utf8_hex(text):
+    """Undo the legacy sitemap fallback that stripped '%' from UTF-8 URLs."""
+    def replace(match):
+        token = match.group(0)
+        try:
+            decoded = bytes.fromhex(token).decode("utf-8")
+        except (ValueError, UnicodeDecodeError):
+            return token
+        return decoded if re.search(r"[\u0600-\u06ff]", decoded) else token
+
+    return HEX_TEXT_RE.sub(replace, str(text or ""))
+
+
+def cleanup_persian_html(body):
+    """Repair legacy hex labels and keep only the best related-links block."""
+    body = repair_percentless_utf8_hex(body)
+    related = list(PERSIAN_RELATED_PARAGRAPH_RE.finditer(body))
+    if len(related) <= 1:
+        return body
+    keep = max(
+        related,
+        key=lambda match: (
+            len(re.findall(r"<a\b", match.group(0), re.I)),
+            len(re.sub(r"<[^>]+>", "", match.group(0))),
+        ),
+    )
+    pieces = []
+    cursor = 0
+    for match in related:
+        pieces.append(body[cursor:match.start()])
+        if match.start() == keep.start():
+            pieces.append(match.group(0))
+        cursor = match.end()
+    pieces.append(body[cursor:])
+    return "".join(pieces)
+
+
 def internal_links(text):
     from urllib.parse import urlparse
     found = set()
@@ -130,7 +172,23 @@ def sitemap_index():
         try:
             c = _json.loads(cache.read_text(encoding="utf-8"))
             if c.get("count", 0) > 0:
-                return c["links"]
+                links = c["links"]
+                changed = False
+                for link in links:
+                    repaired = repair_percentless_utf8_hex(link.get("title", ""))
+                    if repaired != link.get("title", ""):
+                        link["title"] = repaired
+                        changed = True
+                if changed:
+                    cache.write_text(
+                        _json.dumps(
+                            {"count": len(links), "links": links},
+                            ensure_ascii=False,
+                            indent=1,
+                        ),
+                        encoding="utf-8",
+                    )
+                return links
         except Exception:
             pass
     urls = set()
@@ -162,7 +220,7 @@ def sitemap_index():
         except Exception:
             pass
         if not title:
-            title = path.replace("%","").replace("-"," ").strip() or "مقاله"
+            title = _up.unquote(path).replace("-", " ").strip() or "مقاله"
         links.append({"title": title, "url": url, "post_type": "post"})
     OUT.mkdir(parents=True, exist_ok=True)
     cache.write_text(_json.dumps({"count":len(links),"links":links}, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -532,6 +590,7 @@ def agnes(prompt):
 
 
 def ensure_minimum_internal_links(body, approved):
+    body = cleanup_persian_html(body)
     used = internal_links(body)
     if len(used) >= MIN_LINKS:
         return body
@@ -546,7 +605,21 @@ def ensure_minimum_internal_links(body, approved):
         if len(used) >= MIN_LINKS:
             break
     if additions:
-        body += "\n<p><strong>مطالب مرتبط:</strong> " + "، ".join(additions) + "</p>"
+        related = PERSIAN_RELATED_PARAGRAPH_RE.search(body)
+        addition_text = "، ".join(additions)
+        if related:
+            paragraph = related.group(0)
+            updated = re.sub(
+                r"</p>\s*$",
+                ("، " if re.search(r"<a\b", paragraph, re.I) else " ")
+                + addition_text
+                + "</p>",
+                paragraph,
+                flags=re.I,
+            )
+            body = body[:related.start()] + updated + body[related.end():]
+        else:
+            body += "\n<p><strong>مطالب مرتبط:</strong> " + addition_text + "</p>"
     return body
 
 
