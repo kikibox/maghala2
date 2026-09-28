@@ -69,7 +69,21 @@ class GeneratedTranslationTests(unittest.TestCase):
         self.assertIn("_navar_inherited_thumbnail", create)
         self.assertIn("'_thumbnail_id'", create)
         self.assertIn("source_thumb.post_id=@source_post_id", create)
+        self.assertIn("t.slug='en'", create)
         self.assertNotIn("@slug_conflict IS NULL,LAST_INSERT_ID()", create)
+
+    def test_translations_use_article_archive_categories_not_language_roots(self):
+        item = {"id": "crop-001", "slug": "source-slug"}
+        arabic, _ = translations.build_sql(
+            item, self.sample_translation(), "ar-IQ"
+        )
+        tajik, _ = translations.build_sql(
+            item, self.sample_translation(), "tg-TJ"
+        )
+        self.assertIn("t.slug='maqalat-al-ray'", arabic)
+        self.assertNotIn("t.slug='iraq'", arabic)
+        self.assertIn("t.slug='maqolahoi-obyor'", tajik)
+        self.assertNotIn("t.slug='tj'", tajik)
 
     def test_changed_generator_refreshes_existing_sql_artifact(self):
         with tempfile.TemporaryDirectory() as tmp:

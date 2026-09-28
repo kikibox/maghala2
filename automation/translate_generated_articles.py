@@ -22,7 +22,11 @@ SQL = OUT / "translation-sql"
 ROLLBACK = OUT / "translation-rollback"
 STATUS = OUT / "translation-status.json"
 LANGUAGES = ("ar-IQ", "tg-TJ", "en-US")
-PREFIX = {"ar-IQ": "iraq", "tg-TJ": "tj", "en-US": "en"}
+LANGUAGE_CATEGORY_SLUG = {
+    "ar-IQ": "maqalat-al-ray",
+    "tg-TJ": "maqolahoi-obyor",
+    "en-US": "en",
+}
 BATCH = max(1, int(os.getenv("GENERATED_TRANSLATION_BATCH_SIZE", "4")))
 MAX_BACKLOG_SOURCES = max(1, int(os.getenv("MAX_TRANSLATION_BACKLOG_SOURCES", "4")))
 TRANSLATION_WORKERS = max(1, int(os.getenv("TRANSLATION_WORKERS", "1")))
@@ -88,11 +92,11 @@ def build_sql(item: dict, translated: dict, lang: str) -> tuple[str, str]:
     key = f"article-translation:{item_id}:{lang}"
     source_key = f"article-content-queue:{item_id}"
     slug = bounded_slug(translated["slug"])
-    collision_suffix = f"{item_id}-{PREFIX[lang]}"
+    collision_suffix = f"{item_id}-{lang.split('-', 1)[0].lower()}"
     fallback_slug = bounded_slug(slug, collision_suffix)
     digest = hashlib.sha1(key.encode("utf-8")).hexdigest()[:8]
     final_fallback_slug = bounded_slug(slug, f"{collision_suffix}-{digest}")
-    category_slug = PREFIX[lang]
+    category_slug = LANGUAGE_CATEGORY_SLUG[lang]
     body = translated["html"]
     lines = [
         "START TRANSACTION;",
