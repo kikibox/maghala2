@@ -3,7 +3,7 @@
   "kind": 2,
   "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
@@ -154,7 +154,71 @@
       ],
       "correction_prompt": "Recompose to place the pair off-center on the right. Shrink the products so the pair occupies only 12-15% of the frame width. Ensure the two objects are separate and do not touch. Reduce the product group from 58% to 9-20% of frame width.",
       "attempt": 10
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 38,
+      "product_height_percent": 12,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: A human subject (woman) is clearly visible in the image.",
+        "Hard reject: Exactly three layflat products are visible, not the required two.",
+        "Hard reject: The product width exceeds 15% of the frame and is centered.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove all people. Show exactly two layflat products: one packaged AFP coil and one bare black woven coil. The pair must be separate and flat on the ground, occupying 12-15% of frame width in the lower third, off-center. Keep the bottom-right watermark 'AFP | 09134922013'. Reduce the product group from 38% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 48.5,
+      "product_height_percent": 31.2,
+      "product_x_center_percent": 44.0,
+      "reasons": [
+        "The pair of products is centered in the frame rather than off-center on the lower third.",
+        "The combined width of the two coils is far too wide, occupying approximately 48.5% of the frame width (limit is 15%).",
+        "The products are too large and take up too much of the lower frame.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 48.5% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with the two coils much smaller, occupying only ~15% of the frame width. Move the product pair to the bottom-right corner, off-center, at a lower scale. Keep the exact bottom-right watermark 'AFP | 09134922013' visible and untouched. Reduce the product group from 48.5% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 40,
+      "product_height_percent": 18,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Pair width is approximately 40% of the frame, exceeding the 15% limit",
+        "Products are located at the bottom edge rather than in the off-center lower third",
+        "Objects appear to float rather than lie flat on the ground",
+        "Packaged coil appears to have impossible geometry/intersection",
+        "machine-enforced bounding-box check failed: Reduce the product group from 40% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with the product pair significantly smaller (under 15% width), positioned off-center in the lower third, lying flat on the soil, with no people visible. Reduce the product group from 40% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 14.0,
+      "product_height_percent": 22.0,
+      "product_x_center_percent": 42.0,
+      "reasons": [
+        "Exactly two required layflat objects are present: a packaged AFP coil and a bare black woven coil.",
+        "The product pair occupies approximately 14% of the frame width, fitting within the 12-15% requirement.",
+        "The pair is positioned off-center on the lower third of the frame.",
+        "Both objects remain fully visible, separate, and flat on the ground without merging or distortion.",
+        "No people, human body parts, or silhouettes are visible in the frame.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and correctly formatted.",
+        "No prohibited third products, round pipes, fittings, or valves are visible in the product area."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
     }
   ],
-  "approved_image": null
+  "approved_image": "نگهداری-از-لوله-نخ-دار-90-میلیمتر-برای-عمر-مفید-بیشتر-کاربرد-عملی.webp"
 }
