@@ -1,0 +1,55 @@
+{
+  "id": "xref-026",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 11,
+      "product_height_percent": 18,
+      "product_x_center_percent": 54,
+      "reasons": [
+        "Image contains a human figure, including visible hands, arms, legs, and torso, which is a hard reject",
+        "Visible geometry of the drip tape roll is impossible",
+        "The roll is a flat cylinder, but the image shows a canister/bottle-like shape with a hole at the top, not a wide low cylindrical carton roll",
+        "The product height is 18%, which exceeds the 32% limit",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures. Generate a wide, low, cylindrical white-and-blue AFP drip tape roll placed off-center in the lower third on soil in a leafy vegetable farm. The roll should be 20-23% of frame width, max 32% height, with a 1.5-1.9:1 diameter-to-height ratio. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 13.0,
+      "product_height_percent": 17.0,
+      "product_x_center_percent": 48.5,
+      "reasons": [
+        "Geometry mismatch: Visible height exceeds visible width, violating the requirement for a wide cylindrical profile (diameter 1.5-1.9x height).",
+        "Product centered: The roll is placed directly in the center of the composition, which is a hard reject criteria."
+      ],
+      "correction_prompt": "Regenerate the image moving the drip tape roll to the lower-right third of the frame, off-center. Widen the product's visible diameter relative to its height to appear as a wide cylinder placed on the soil. Ensure the background rows of green leafy vegetables are clearly visible.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 14.5,
+      "product_height_percent": 20.5,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "Product matches specified geometry: wide low cylindrical white-and-blue drip-tape roll.",
+        "Placement correct: off-center on the lower third of the frame, resting naturally on soil.",
+        "Crop context visible (rows of young leafy greens/tomato seedlings) aligns with the 'سبزی' (leafy vegetables) requirement.",
+        "Zero people or human body parts visible in the image.",
+        "Required watermark 'AFP | 09134922013' is present and correct."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-نوار-تیپ-در-کشت-کاملینا-مزایا-کاربرد-عملی.webp"
+}

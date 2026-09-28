@@ -1,0 +1,69 @@
+{
+  "id": "xref-028",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 9,
+      "product_height_percent": 12,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Hard reject: visible person (crouching male farmer) including hands, arm, leg, and torso.",
+        "Hard reject: human silhouette/body parts present in the frame.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the crouching person and all human body parts entirely. Retain the white-and-blue cylindrical drip-tape carton roll on the soil, ensuring it is off-center and properly scaled. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 15,
+      "product_height_percent": 25,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The aspect ratio of the product bounding box (width/height) is approximately 0.6, whereas the requirement specifies the visible diameter should be 1.5 to 1.9 times the visible height. The roll appears too tall relative to its width for a 'wide' drip-tape carton roll.",
+        "The visible crop morphology does not clearly match spinach (asfanaaj); the leaves appear more consistent with a generic leafy green or potentially another crop, which risks a contradiction with the topic."
+      ],
+      "correction_prompt": "Adjust the drip-tape roll to a wider, flatter cylindrical shape (aspect ratio ~1.7:1) and ensure the surrounding crop foliage is visually consistent with spinach leaves.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 23,
+      "product_height_percent": 30,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The image contains two distinct commercial products: the required drip-tape roll and a large digital water meter (manifold/gauge hardware) next to it.",
+        "Presence of a second commercial product or large non-standard hardware unit violates the 'exactly one product' rule, even if the meter is technically infrastructure, it acts as a competing subject."
+      ],
+      "correction_prompt": "Remove the digital water meter completely. Retain only the white-and-blue AFP drip-tape roll placed on the soil. Ensure the background shows the spinach rows and the image remains free of humans.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 17,
+      "product_height_percent": 22,
+      "product_x_center_percent": 29,
+      "reasons": [
+        "Product is exactly one white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Visible diameter (~17%) is consistent with the required aspect ratio (approx. 1.5x height).",
+        "Product is off-center and naturally placed on soil.",
+        "Background with green crop rows and distant machinery matches the city/farm/irrigation context.",
+        "Contains the required bottom-right 'AFP | 09134922013' watermark.",
+        "Zero people or human body parts visible.",
+        "Zero forbidden items (bottles, cans, extra products, impossible geometry).",
+        "Text on the roll is minimal and non-contradictory."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-در-کشت-اسفناج-مقایسه-جزئیات-فنی.webp"
+}

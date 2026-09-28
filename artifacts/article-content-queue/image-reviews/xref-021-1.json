@@ -1,0 +1,56 @@
+{
+  "id": "xref-021",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 8,
+      "product_height_percent": 18,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The image contains a visible person (farmer), which is a hard reject criterion.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the human figure completely. Generate only the farm landscape and irrigation equipment without any people or body parts. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Presence of a non-human animal (bird/creature), which acts as a prohibited 'person/human-like' element or distraction in the crop context.",
+        "Product geometry fails: the foreground roll is a cylinder, not a 'wide low' carton roll (diameter is not approx 1.5-1.9 times the height).",
+        "Product height exceeds the 32% threshold (approx 40-45% of the frame height).",
+        "Presence of a second package/roll (in the background), which is a hard reject."
+      ],
+      "correction_prompt": "Remove the animal and the background roll. Regenerate a single wide, low cylindrical white-and-blue drip-tape carton roll (AFP branded) positioned in the lower-left, off-center on the soil. Ensure the roll's visible diameter is at least 1.5x its height and it occupies less than 30% of the frame width/height. Maintain the farm field context and the bottom-right AFP watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 22,
+      "product_height_percent": 15,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll present",
+        "off-center lower-left, naturally placed on soil",
+        "width ~22% (within 13-27% range), height ~15% (under 32%), diameter/height ratio ~1.47 (acceptable for a low wide roll)",
+        "zero people or body parts",
+        "bottom-right watermark 'AFP | 09134922013' present",
+        "farm field context with young crop seedlings; no clearly identifiable wrong species, agronomic drip-irrigation story clear",
+        "no forbidden extra commercial items, impossible geometry, or invented text"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-سطوحی-در-کشت-بادمجان-هزینه-بهینه-تصویر-شاخص.webp"
+}

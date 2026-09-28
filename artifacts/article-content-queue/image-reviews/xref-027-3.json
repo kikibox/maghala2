@@ -1,0 +1,94 @@
+{
+  "id": "xref-027",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 29,
+      "reasons": [
+        "Second commercial products present: multiple bottles and small canisters located to the right of the main roll",
+        "Extra commercial product present: a second small roll lying on the soil"
+      ],
+      "correction_prompt": "Regenerate the image containing exactly one AFP drip-tape carton roll. Completely remove the bottles, small canisters, and the extra roll from the foreground, keeping only the main white-and-blue roll on the soil.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 32,
+      "product_height_percent": 21,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Product width exceeds the absolute maximum limit of 27 percent of the frame (estimated at ~32 percent).",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with a significantly smaller product footprint to ensure the width is below 27 percent of the frame width. Maintain the off-center positioning on the soil and the background farm infrastructure context. Reduce the product group from 32% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 30,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: visible person (human figure) in the scene"
+      ],
+      "correction_prompt": "Regenerate image without any person; ensure zero human silhouettes and strictly hardware-focused framing.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 28,
+      "product_height_percent": 24,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product width is approximately 28% of the frame, which exceeds the hard reject threshold of 27%.",
+        "The crop visible next to the product appears to be a generic leafy green or vegetable (possibly amaranth or spinach) rather than a Cantaloupe (طالبی) plant; while crop morphology is neutral in some views, clearly non-conforming crop types can cause rejection in general farm contexts.",
+        "The product shape is slightly too wide relative to its height for the preferred 'wide low cylindrical' specification, appearing more like a standard spool than the target wide drip-tape carton.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the horizontal width of the product to approximately 20-23% of the frame. Ensure the product is off-center and secondary to the overall scene. Keep the background farm context but avoid identifiable non-cantaloupe crops if possible, or keep them neutral/distant. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "The image contains a person (a cartoon figure) in the foreground, which is a hard reject.",
+        "There are additional people in the background on a tractor, which are also hard rejects.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image removing all people (both the cartoon figure in the foreground and the figures on the tractor in the background). Ensure the focus is on the AFP drip-tape roll on the soil in a cantaloupe farm setting. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 27,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The product is a white-and-blue wide low cylindrical drip-tape carton roll.",
+        "The crop visible (cantaloupe) matches the 'طالبی' context and does not cause a hard reject.",
+        "No people or human body parts are visible in the image.",
+        "The unattended tractor and farm scene satisfy the 'hardware story' role 3 context.",
+        "The required 'AFP | 09134922013' watermark is clearly visible in the bottom-right corner.",
+        "The product is off-center in the lower third and placed naturally on soil."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-رطوبتی-در-کشت-طالبی-نکات-کلیدی-جزئیات-فنی.webp"
+}

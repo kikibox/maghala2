@@ -1,0 +1,55 @@
+{
+  "id": "xref-028",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 16,
+      "product_height_percent": 16,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Watermark text error: The required watermark is 'AFP | 09134922013', but the image displays 'AFP | 09134922015' (final digits 015 vs 013)."
+      ],
+      "correction_prompt": "Regenerate the image ensuring the bottom-right watermark reads exactly 'AFP | 09134922013' instead of '09134922015'. Keep all other elements (spinach, drip tape, layout) unchanged.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: The image contains a person (woman) crouching in the foreground, which violates the 'zero people' rule.",
+        "Hard reject: Visible human body parts including face, arms, hands, and legs are present.",
+        "Product Geometry: The drip tape roll is positioned too small (approx 12% width) and is not clearly centered in the lower third as a secondary element; it is obscured by the person's hand.",
+        "Product Shape: The roll does not clearly show the required 'cylindrical' wide shape, appearing more like a small standard hose spool.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Place a white-and-blue AFP wide cylindrical drip-tape roll on the soil in the lower-left foreground, sized to be approximately 20% of the image width. Ensure the roll is the secondary focus, with the spinach crop visible behind it, and include the watermark 'AFP | 09134922013'. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 24,
+      "reasons": [
+        "Product identified as a single AFP white-and-blue cylindrical drip-tape roll.",
+        "Product dimensions are within acceptable limits (18% width, 25% height, ~1.7 aspect ratio).",
+        "Product placement is off-center on the lower third, naturally resting on soil.",
+        "Background features dense low rosettes of smooth green foliage, consistent with spinach",
+        "Zero people, hands, or human body parts visible in the frame.",
+        "Required 'AFP | 09134922013' watermark is present in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-در-کشت-اسفناج-مقایسه-کاربرد-عملی.webp"
+}
