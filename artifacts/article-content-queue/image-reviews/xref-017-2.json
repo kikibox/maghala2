@@ -1,0 +1,69 @@
+{
+  "id": "xref-017",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Hard reject due to visible person and human body parts (the man crouching next to the product).",
+        "The product appears to be a small vertical cylindrical cartridge or small canister rather than a wide, low, horizontally-oriented drip-tape roll.",
+        "Product height exceeds width, violating the required aspect ratio of width being roughly 1.5 to 1.9 times the height.",
+        "The product is centered on the lower third, whereas it should be off-center.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image strictly without any people or human body parts. Replace the small vertical cartridge with a wide, low, cylindrical drip-tape roll lying horizontally on the soil, oriented with its long axis facing the viewer, positioned off-center to the left in the bottom third of the frame, set against the apple orchard background. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 32,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Context mismatch: The article title/crop is not 'orchards' (the background shows fruit trees) but the image role implies a specific crop that should be in the foreground. The foreground contains unrelated scattered fruits (apples/pears) which are not part of a drip-tape farm context (where irrigation lines would be visible).",
+        "Extra commercial/organic objects: The scattered fruits in the foreground are not allowed (bottle, jar, canister, bucket, fertilizer or pesticide container, second package, second roll, extra commercial product). Fruits are considered debris/extra objects in a drip tape context.",
+        "Missing irrigation evidence: The prompt requires a 'topic-specific farm context' and 'irrigation layout or root-zone evidence'. The image shows fruit trees and scattered fruit, but no drip tape lines or root-zone irrigation evidence in the soil."
+      ],
+      "correction_prompt": "Regenerate with a clear orchard background but remove all scattered fruit from the foreground. Show only a wide cylindrical AFP drip tape roll on the soil with visible drip tape lines extending into the soil (root-zone evidence). Ensure no extra objects, people, or debris.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 17,
+      "product_height_percent": 20,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: The image contains two clearly visible people (faces, hands, bodies, and legs), violating the 'zero people and zero human body parts' rule."
+      ],
+      "correction_prompt": "Regenerate the image without any people or human body parts. Keep the white-and-blue AFP drip-tape roll on the lower-left soil, maintain the orchard background, and ensure the required 'AFP | 09134922013' watermark remains in the bottom right.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "The image correctly features an AFP white-and-blue drip-tape carton roll on the lower third.",
+        "The product is placed naturally on soil and is off-center to the left.",
+        "The crop morphology (tobacco-like leaves) matches the 'article crop' requirement for the specified role.",
+        "The 'AFP | 09134922013' watermark is present and legible in the bottom right corner.",
+        "The roll dimensions (width and height) are within the preferred and acceptable ranges.",
+        "No people, body parts, or prohibited items are visible in the image."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-ارزن-مزایا-کاربرد-عملی.webp"
+}

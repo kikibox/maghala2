@@ -1,0 +1,68 @@
+{
+  "id": "strat-025",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: There is a human silhouette/worker clearly visible standing next to the tractor in the background (top right), which violates the 'zero people' rule.",
+        "Hard reject: The product roll is placed on top of a long black hose lying on the ground, rather than resting naturally on the soil as requested."
+      ],
+      "correction_prompt": "Regenerate the image completely removing the person/worker standing by the tractor. Remove the long black hose from the foreground so the AFP drip tape roll is placed directly on the soil. Keep the tractors and irrigation manifold hardware as background context. Ensure the AFP | 09134922013 watermark remains.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 23,
+      "product_height_percent": 33,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Hard reject: A human figure is clearly visible on the farm machinery in the background.",
+        "Product height exceeds the 32 percent limit.",
+        "Product placement is slightly high for the specified 'lower third' constraint.",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the person from the background machinery. Resize the drip-tape roll so its height is less than 32 percent of the frame width and reposition it firmly in the bottom third of the image. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 16,
+      "product_height_percent": 14,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product 'diameter' (width) to height ratio is approximately 1.14 (16/14), which is significantly lower than the required 1.5 to 1.9 range (the roll appears vertically compressed or too tall for its width).",
+        "Product is too close to the bottom edge of the frame (near 90% vertical position), rather than naturally resting on the 'lower third' (approx 55-65% vertical)."
+      ],
+      "correction_prompt": "Extend the bottom of the drip tape carton to show the full cylindrical depth and width (ratio of 1.5-1.9). Move the product higher up into the lower third of the frame, clearly resting on the soil.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 20,
+      "product_height_percent": 27,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Product is the correct AFP white-and-blue wide cylindrical drip-tape roll",
+        "Width is approximately 20%, height is approximately 27%, and it is off-center to the left",
+        "Product is naturally placed on soil in a farm context",
+        "The adjacent irrigation manifold/controller and hose are accepted as fixed infrastructure",
+        "Watermark 'AFP | 09134922013' is present and correct",
+        "No people or human body parts are visible"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "گارانتی-نوار-تیپ-afp-شرایط-و-محدودیتها-جزئیات-فنی.webp"
+}

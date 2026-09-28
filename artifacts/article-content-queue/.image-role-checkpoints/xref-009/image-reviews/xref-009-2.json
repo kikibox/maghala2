@@ -1,0 +1,94 @@
+{
+  "id": "xref-009",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 10,
+      "product_height_percent": 8,
+      "product_x_center_percent": 80,
+      "reasons": [
+        "Hard reject: Person and multiple human body parts (face, hands, legs) are clearly visible in the main panel.",
+        "Hard reject: Image contains a second roll of tape in the top-right inset panel, violating the 'exactly one' rule.",
+        "Hard reject: The crop depicted is a fruit tree (citrus-like), not Sainfoin (اسپرس).",
+        "The drip tape roll is too small (width 10%, height 8%), falling outside the required 13-27% width range.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to show a Sainfoin (Medicago sativa) crop field with exactly one white and blue wide low cylindrical drip-tape roll on the soil. The roll must be prominent, taking up approximately 15-20% of the frame width. Remove all people and human silhouettes. Ensure the crop matches Sainfoin and does not include any fruit trees. Place the roll in the lower third, off-center. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Crop species mismatch: The visible plants with spikes of purple flowers and opposite ovate leaves resemble Salvia (like Salvia nemorosa or similar mints/lamiaceae) or possibly Veronica, not Onobrychis viciifolia (Sainfoin/اسپرس). Sainfoin typically has odd-pinnate leaves with elliptical leaflets and racemes of red or purple pea-like flowers, which are not depicted here.",
+        "Text hallucination: The watermark number '09134922013' is an invalid Iranian mobile phone format (Iranian mobile numbers start with 9 and are 10 digits total, this has 11)."
+      ],
+      "correction_prompt": "Replace the crop with mature Sainfoin (Onobrychis viciifolia) showing distinctive pinnate leaves and racemes of red-purple flowers. Keep the white and blue drip tape roll in the foreground. Correct the phone number in the watermark to a valid 10-digit format starting with 9 (e.g., AFP | 0913492201). Ensure the roll is placed on the soil.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 20,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product is centered horizontally (x-center approx. 30%), violating the off-center requirement.",
+        "The visible crop is clearly Euphorbia (Poinsettia) or a similar ornamental flowering plant, not Sainfoin (sparsiflora). This is a 'clearly identifiable different species' which triggers a hard reject."
+      ],
+      "correction_prompt": "Replace the foreground flower with Sainfoin (Onobrychis viciifolia) foliage/leaves. Shift the drip tape roll horizontally to the left so its x-center is less than 30% of the image width. Keep the roll low and wide.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 13,
+      "product_height_percent": 15,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Hard reject: Image contains a human subject (male farmer) with visible head, face, body, and limbs.",
+        "Product bounding box width (13%) falls below the preferred 20-23% range and is below the minimum practical 13-27% range for a primary focus, making it a secondary product.",
+        "Product diameter-to-height ratio is approximately 0.9, which does not meet the requirement of 1.5 to 1.9.",
+        "Crop morphology is botanically ambiguous; the visible leaf shapes are inconsistent with mature sainfoin (Onobrychis viciifolia)."
+      ],
+      "correction_prompt": "Regenerate with zero people, removing the farmer entirely. Center the field context with an established sainfoin crop. Enlarge the AFP drip-tape carton roll to occupy 20-23% of the frame width. Ensure the roll is a wide low cylinder with a visible diameter 1.5-1.9x its height. Place the roll off-center in the lower third on soil. Maintain the exact bottom-right watermark 'AFP | 09134922013'.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 30,
+      "product_x_center_percent": 51,
+      "reasons": [
+        "The product is placed in the center of the frame rather than being off-center on the lower third.",
+        "The background shows generic young green seedlings that are not visually distinguishable as sainfoin (an article-specific crop) when mature morphology is unavailable."
+      ],
+      "correction_prompt": "Move the roll to the bottom-left or bottom-right off-center position and adjust the crop rows to show botanically specific sainfoin leaves and stems rather than generic seedlings.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 12,
+      "product_height_percent": 11,
+      "product_x_center_percent": 74,
+      "reasons": [
+        "Zero-tolerance violation: The image contains a human figure (farmer). The prompt strictly forbids any 'person, farmer, worker, face, hand, arm, leg, body part or human silhouette', even distant. The image prominently features a crouching man with visible hands and arms.",
+        "Aspect ratio violation: The required visible diameter (width) should be 1.5 to 1.9 times the visible height. In the image, the width (~12%) and height (~11%) are nearly identical (ratio ~1.09), failing the geometric requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image removing the human figure and limbs completely. Adjust the product geometry so the cylindrical roll's width is 1.5 to 1.9 times its height. Place the roll off-center in the lower third on the soil without any human interaction. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

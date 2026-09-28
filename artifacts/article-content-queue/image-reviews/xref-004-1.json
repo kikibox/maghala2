@@ -1,0 +1,55 @@
+{
+  "id": "xref-004",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Presence of a person/farmer (hard reject)",
+        "Product aspect ratio is incorrect (tall and narrow instead of wide and low)",
+        "Product is not wide enough (must be 20-23% of frame width, currently ~8%)",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the farmer entirely. Make the drip-tape carton roll significantly wider and flatter (wide low cylindrical shape). Ensure the roll spans 20-23% of the image width, is off-center on the lower third, and is placed directly on the soil. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25,
+      "product_height_percent": 31,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Crop in the field has broad, rounded leaves and distinct purple flowers, which clearly identifies it as a different species (likely lettuce or a flowering root crop) rather than the required spinach (Asfanaaj) which must have no flowers.",
+        "The presence of flowers constitutes a hard reject for the specific crop agronomic story."
+      ],
+      "correction_prompt": "Regenerate the image showing a field of spinach plants with dense low rosettes of smooth dark-green leaves and absolutely no flowers, pods, or tall stalks, maintaining the required drip-tape roll placement and AFP watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 98,
+      "product_width_percent": 15,
+      "product_height_percent": 23,
+      "product_x_center_percent": 53,
+      "reasons": [
+        "The product is a clearly identifiable AFP white and blue cylindrical drip-tape carton roll.",
+        "The crop shown is consistent with spinach (spinach-like dense rosettes of smooth dark-green oval leaves).",
+        "The product is placed naturally on the soil off-center in the lower third of the frame.",
+        "No people or human body parts are visible.",
+        "The 'AFP | 09134922013' watermark is present in the bottom right corner.",
+        "No prohibited elements such as extra packages or impossible geometry are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-اسفناج-چالشها-تصویر-شاخص.webp"
+}

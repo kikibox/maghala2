@@ -1,0 +1,69 @@
+{
+  "id": "xref-014",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 8,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Contains a person (farmer/worker) holding the product, which is a hard reject.",
+        "The product is not placed on the soil; it is being held by a human.",
+        "The product is centered relative to the person's body and action rather than naturally placed off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Place the drip-tape roll directly on the soil, off-center to the left or right on the lower third, without any human interaction or presence. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 23,
+      "product_height_percent": 35,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Product height is approximately 35% of the frame, exceeding the hard limit of 32%.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Lower the product height to less than 32% of the frame by tilting it to show more of its top surface and less of its side height, maintaining the off-center lower-third placement. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 11,
+      "product_height_percent": 14,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: image contains a person (farmer) and human body parts, violating the zero-person rule.",
+        "Product does not meet minimum width requirement (13-27%); current width is estimated at ~11%.",
+        "Product geometry (height vs. width) does not meet the 1.5-1.9 aspect ratio requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate without any people or human silhouettes. Show a single AFP white-and-blue wide low cylindrical drip-tape carton roll on the soil. Increase the roll's width to between 13-27 percent of the frame and ensure the visible diameter is 1.5-1.9 times its height. Keep the product off-center on the lower third and maintain the 'AFP | 09134922013' watermark. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 80,
+      "product_width_percent": 17,
+      "product_height_percent": 16,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "The product is a single AFP white-and-blue wide low cylindrical drip-tape carton roll, off-center on the lower third and naturally placed on soil.",
+        "The background shows a farm context with young crop rows (botanically neutral/typical for soybeans or similar article crops) and a distant barn, matching a generic article farm context.",
+        "The required watermark 'AFP | 09134922013' is clearly present in the bottom-right corner.",
+        "No human silhouettes, body parts, or unpermitted infrastructure are visible.",
+        "The crop rows are neutral young vegetation, which is allowed if the article context is clear (implied farm/soil context)."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-در-کشت-بادمجان-پیشنیازها-تصویر-شاخص.webp"
+}

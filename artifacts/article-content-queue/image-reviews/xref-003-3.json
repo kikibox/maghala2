@@ -1,0 +1,44 @@
+{
+  "id": "xref-003",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 42,
+      "product_height_percent": 18,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The product (the unrolled drip tape loop) is too wide, spanning approximately 42% of the frame width, which exceeds the 27% hard reject limit.",
+        "The product includes an unrolled flat strip of black tape rather than just the cylindrical roll, which makes the bounding box much wider than intended and creates a 'layflat' appearance that contradicts the 'cylindrical drip-tape' description.",
+        "Identifiable crops are present in the foreground and background; while not necessarily contradicting 'leafy vegetables', the 'hardware story' role implies the crop should be absent or visually neutral, and the prominent foreground plant is a strong visual element that detracts from the focus on hardware infrastructure.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 42% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image showing ONLY the cylindrical drip tape roll standing upright on the soil, removing any unrolled flat tape. The roll should be positioned on the lower-left. The foreground plant must be removed to make the crop visually neutral. Ensure the roll width is contained within 27% of the frame width. Keep the farm background and bottom-right watermark exactly as is. Reduce the product group from 42% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 14,
+      "product_height_percent": 22,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Product is a white-and-blue cylindrical drip-tape carton roll on soil.",
+        "Product is off-center in the lower third.",
+        "Product dimensions (width ~14%, height ~22%) are within the acceptable range (13-27% width, <=32% height).",
+        "Aspect ratio is approximately 0.64 (height/width), which implies width is 1.56 times height, fitting the 1.5-1.9 requirement.",
+        "Required watermark 'AFP | 09134922013' is present in bottom-right.",
+        "No people or human body parts are visible.",
+        "Background shows farm context (barn, soil).",
+        "Crop plants are visually neutral/wild, not clearly contradicting leafy vegetables."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-در-کشت-جعفری-کاربردها-جزئیات-فنی.webp"
+}

@@ -1,0 +1,82 @@
+{
+  "id": "strat-025",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 22,
+      "product_height_percent": 18,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Presence of a person: A farmer is prominently visible in the image, which is an automatic hard reject.",
+        "Presence of human body parts: The farmer's face, torso, arms, and legs are clearly visible.",
+        "Product form mismatch: The object held by the person is a small canister or bottle, not a wide low cylindrical drip-tape carton roll.",
+        "Incorrect object staging: There is a coil of black pipe on the ground instead of the required white-and-blue drip-tape roll."
+      ],
+      "correction_prompt": "Remove the person entirely. Replace the canister and black pipe coil with a white and blue cylindrical drip-tape roll sitting on the soil in the lower left third. The roll should be wide and low, roughly 20% of the frame width, and made to look naturally placed in a farm row. Retain the bottom-right 'AFP | 09134922013' watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 27,
+      "product_height_percent": 23,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Hard reject: Human body parts/figure visible in the distant background near the silo/farmhouse structure, violating the zero people rule.",
+        "Text error: Gibberish/invented text on the product package below the main 'AFP' logo.",
+        "Proportion limit: Product width is at the absolute maximum limit (27%), appearing slightly oversized relative to the practical preference of 20-23%."
+      ],
+      "correction_prompt": "Regenerate image removing the human figure in the background. Correct the small text on the carton to be legible or minimal. Slightly reduce the scale of the drip tape roll to improve depth perception.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product is centered horizontally (50%), violating the off-center requirement.",
+        "Visible product height is approximately 25%, which exceeds the maximum limit of 32% relative to the width/height ratio requirements, making it appear too tall and 'drum-like' rather than a flat cylindrical roll.",
+        "Product is placed in the foreground, appearing somewhat dominant and not clearly secondary to the agricultural context."
+      ],
+      "correction_prompt": "Move the drip-tape roll to the far left or right of the lower third, reducing its vertical height so it appears flatter and less prominent, ensuring it does not exceed 20% width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 15.0,
+      "product_height_percent": 18.0,
+      "product_x_center_percent": 82.0,
+      "reasons": [
+        "Presence of a man and a woman (hard reject on people)",
+        "Visible hands and gloves (hard reject on body parts)"
+      ],
+      "correction_prompt": "Regenerate the image without any people, faces, hands, or body parts. Show only the white and blue AFP drip tape roll placed on the soil near young crop plants, with no human presence in the frame.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 15,
+      "product_height_percent": 16,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product placement: The roll is positioned off-center on the left within the lower third of the frame, resting naturally on the soil as required.",
+        "Dimensions: The product width (15%) and height (16%) are well within the acceptable bounds (width 13-27%, height <32%), and the aspect ratio is roughly 1:1, which is consistent with the perspective of a low cylindrical roll.",
+        "Product type: The object is clearly a white carton roll of drip tape with blue accents, matching the 'AFP white-and-blue' description without including prohibited items like cans, jars, or multiple packages.",
+        "Context and Vegetation: The background shows a farm context with rows of small, neutral seedlings which is permissible when a crop is not yet at its identifiable mature stage. A drip tape line is visible extending into the soil, supporting the 'drip-tape' theme.",
+        "Watermark: The required bottom-right watermark 'AFP | 09134922013' is present."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "گارانتی-نوار-تیپ-afp-شرایط-و-محدودیتها-کاربرد-عملی.webp"
+}

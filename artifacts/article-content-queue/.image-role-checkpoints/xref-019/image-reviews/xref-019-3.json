@@ -1,0 +1,53 @@
+{
+  "id": "xref-019",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 28,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: multiple human figures (farmers/workers) are prominently visible in the scene."
+      ],
+      "correction_prompt": "Remove all human figures, workers, and body parts from the image. Replace them with unattended farm equipment like a static drip irrigation manifold or filter to fit the hardware story.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "The product is a wide cylindrical drum roll, which matches the hard reject criterion of 'tall narrow drum' (though not narrow, the drum-like staging and central framing are rejected).",
+        "The product is centered horizontally in the frame, violating the requirement that it be off-center on the lower third.",
+        "The product is not lying naturally on the soil but is staged upright in a way that looks like a commercial drum/packaging.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image showing a white-and-blue wide low cylindrical drip-tape carton roll lying off-center on the lower third of the frame, naturally placed on soil, with the product width strictly between 13 and 27 percent of the frame and height under 32 percent. The product must not be centered. Ensure the background shows a farm context (soil, distant barn or tractor) without any people. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 26,
+      "product_height_percent": 26,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Watermark 'AFP | 09134922013' is present in the bottom right corner.",
+        "The image contains zero people or human body parts.",
+        "The background matches the hardware infrastructure role (tractor and farm equipment).",
+        "Product width and height are within the 13-27% and <=32% acceptable limits.",
+        "Product is placed naturally on the soil."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-در-کشت-عدس-کاربردها-جزئیات-فنی.webp"
+}

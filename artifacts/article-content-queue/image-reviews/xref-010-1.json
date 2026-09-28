@@ -1,0 +1,43 @@
+{
+  "id": "xref-010",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 9,
+      "product_height_percent": 13,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: Image contains a full human figure (crouching man) with face, arms, legs, and torso visible; prompt requires zero people or body parts.",
+        "Hard reject: Product is too small; width is approximately 9% of frame, below the minimum 13% practical estimate.",
+        "Hard reject: Product is centered on the vertical axis (~50%), whereas the requirement specifies it must be off-center on the lower third.",
+        "The product appears to be a small container/canister held by the person rather than a wide low cylindrical roll placed naturally on the soil.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the man completely. Generate a new image featuring a wide, low cylindrical drip-tape roll placed on the soil in a maize field, positioned off-center in the lower third with a width between 20-23% of the frame. Ensure the background remains a maize farm context with no human silhouettes. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 17,
+      "product_height_percent": 25,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "The image contains exactly one AFP white-and-blue drip-tape carton roll situated in a maize crop field.",
+        "The crop is clearly identifiable as maize (ذرت) based on the tall stalks and long blade leaves.",
+        "The product is off-center (lower third) and placed naturally on the soil between the crop rows.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No people or human body parts are visible in the frame.",
+        "The product's visible diameter (width) is roughly 1.6 times its height, fitting the geometry criteria."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-در-کشت-ذرت-مزایا-تصویر-شاخص.webp"
+}

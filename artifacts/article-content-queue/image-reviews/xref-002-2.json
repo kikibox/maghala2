@@ -1,0 +1,43 @@
+{
+  "id": "xref-002",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 7,
+      "product_height_percent": 12,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Hard reject: The image contains a person (farmer), face, hands, arms, and legs.",
+        "Product geometry mismatch: The product is a small, short cylindrical box, not a wide low cylindrical drip-tape roll (diameter should be 1.5-1.9 times height).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person/farmer entirely. Replace the small box with a large, wide, low cylindrical drip-tape roll. The roll should be white and blue, have a visible diameter approx 1.7 times its height, and be placed on the soil. Keep the basil crop and farm context. Enlarge the product group from 7% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 86,
+      "product_width_percent": 21,
+      "product_height_percent": 17,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Product is a single wide cylindrical drip-tape roll (cylindrical body with flat top), white with blue branding, placed naturally on soil in the lower third.",
+        "Roll geometry matches constraints: visible width (~21%) is about 1.24x its visible height (~17%) (acceptable for a low/flat roll), within allowed 13–27% width and <32% height, and off-center (x-center ~31%).",
+        "Exactly one commercial roll present; no second roll, bottle, jar, canister, bucket, fertilizer/pesticide container, or extra commercial product visible.",
+        "Zero people and zero human body parts (no faces, hands, arms, legs, or silhouettes) in frame.",
+        "Article-specific crop is recognizably basil: young plants show opposite oval aromatic leaves on compact branching stems; agronomic story (basil rows with drip irrigation context) is clear.",
+        "Background visibly matches topic: farm field with neat crop rows and prepared soil; no fake headlines/captions/gibberish; only authentic package print visible.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right and must not be rejected.",
+        "Allowed infrastructure (ordinary irrigation hardware) does not appear as extra commercial products; none interfere with product or background constraints."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-ریحان-هزینه-در-مزرعه-کاربرد-عملی.webp"
+}

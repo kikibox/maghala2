@@ -1,0 +1,56 @@
+{
+  "id": "xref-005",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 45,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The product in the image is a vertical drip irrigation emitters or post, not the required horizontal wide low cylindrical drip-tape carton roll",
+        "The product height violates the requirement of being no more than 32 percent of the frame",
+        "The required AFP white-and-blue wide low cylindrical drip-tape carton roll is completely absent",
+        "machine-enforced bounding-box check failed: Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Replace the vertical emitter with exactly one white-and-blue wide low cylindrical drip-tape carton roll placed horizontally on the soil in the lower third of the image; the roll should be off-center, have a diameter about 1.5–1.9 times its visible height, and occupy 13–27% of the frame width and ≤32% height. Keep the leafy vegetable (سبزی) crop context, the unattended irrigation layout, the soil bed, and the exact bottom-right 'AFP | 09134922013' watermark, with zero people or body parts. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 22,
+      "product_height_percent": 30,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Missing required watermark 'AFP | 09134922013' in the bottom-right corner (hard reject).",
+        "Product is located too far to the left (37% x-center) relative to the 'lower third' preference (approx 66% x-center)."
+      ],
+      "correction_prompt": "Regenerate with the exact watermark 'AFP | 09134922013' in the bottom-right corner. Move the white and blue drip-tape carton roll to the lower-right third of the frame (closer to the bottom right corner).",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 19,
+      "product_height_percent": 26,
+      "product_x_center_percent": 64,
+      "reasons": [
+        "Product is a white-and-blue wide low cylindrical drip-tape roll.",
+        "Zero people, faces, hands, or body parts present.",
+        "Background displays recognizable leafy vegetables (سبزی) in a farm context.",
+        "Required AFP watermark is clearly visible in the bottom-right corner.",
+        "Product width is approximately 19% and height is 26%, within acceptable bounds.",
+        "Product is placed naturally on soil, off-center in the lower third of the frame.",
+        "Geometry is realistic; no hard-reject elements found."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-سبزی-مقایسه-کاربرد-عملی.webp"
+}

@@ -1,0 +1,71 @@
+{
+  "id": "xref-013",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The image contains two distinct rolls of drip tape, whereas the prompt explicitly requires exactly one.",
+        "The primary plant featured is a cotton boll (identifiable by the distinct seed-containing pods and specific leaf structure), not the requested soybean with trifoliate leaves and fuzzy pods.",
+        "Because there are two rolls, the exact bounding box percentage cannot be estimated accurately for a single unit, as they overlap in the frame composition."
+      ],
+      "correction_prompt": "Regenerate to show only a single white-and-blue drip-tape carton roll placed on soil. Change the crop to soybean (trifoliate leaves, fuzzy pods). Ensure the single roll is off-center in the lower third, 20-23% frame width, with the required bottom-right watermark 'AFP | 09134922013'. No people.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 20,
+      "product_height_percent": 20,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product width is approximately 20%, which is outside the preferred 20-23% range and near the lower bound of the 13-27% acceptable range.",
+        "The central plant's fruit morphology (broad, flattened, smooth green pods) strongly resembles eggplant or zucchini, which are hard rejects for a soybean crop; soybean pods are typically thin, fuzzy (hairy), and clustered.",
+        "Product aspect ratio (width/height) is approximately 1.0 (roughly square), which fails the requirement of 1.5 to 1.9 (wide and low cylindrical)."
+      ],
+      "correction_prompt": "Regenerate with a much wider, low-profile drip-tape roll (aspect ratio approx 1.7:1). Replace the central plant with a soybean seedling featuring trifoliate leaves and thin, fuzzy green pods. Ensure the roll is strictly off-center.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 32,
+      "product_height_percent": 45,
+      "product_x_center_percent": 51,
+      "reasons": [
+        "The central plant is growing directly out of the top of the drip-tape roll, which is physically impossible and creates a surreal/implausible geometry.",
+        "The product appears too large and centrally staged; it is not positioned in the lower third.",
+        "The text on the packaging is gibberish ('Prg Iri Lyano Tler') rather than authentic package print.",
+        "The product height is excessive relative to the frame.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 13-27% of frame width.; Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image showing the drip-tape roll resting naturally on the soil, not with plants growing out of it. Ensure the product is small, located in the lower third (not center), and the packaging text is minimal or non-existent. Reduce the product group from 32% to 13-27% of frame width. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 19,
+      "product_height_percent": 20,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The image displays a white and blue cylindrical drip-tape carton roll placed naturally on the soil.",
+        "Product dimensions are within acceptable parameters: width (19%) is in the 13-27% range, and height (20%) is below the 32% limit.",
+        "The product is off-center on the lower third (x_center ~40%), avoiding centered staging.",
+        "The background clearly shows a soybean crop field with young plants that are not clearly identifiable as a different species, satisfying the agronomic story requirement without hard reject triggers.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and correct.",
+        "Zero people or human body parts are visible in the frame."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-زیرسطحی-در-کشت-سویا-چالشها-تصویر-شاخص.webp"
+}

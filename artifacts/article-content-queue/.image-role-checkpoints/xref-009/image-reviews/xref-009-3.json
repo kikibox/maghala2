@@ -1,0 +1,43 @@
+{
+  "id": "xref-009",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 35,
+      "product_height_percent": 40,
+      "product_x_center_percent": 80,
+      "reasons": [
+        "Hard reject: Human silhouettes and people visible on the left side of the image",
+        "Hard reject: Product on the right is positioned in the upper half, not the lower third",
+        "Hard reject: Visible crop on the right is clearly stone fruit (peach/plum), which contradicts the required crop (sainfoin)",
+        "Hard reject: Product geometry and aspect ratio are inconsistent with the 1.5-1.9 width-to-height requirement for a wide roll.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 13-27% of frame width.; Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image to remove all people. Show a single white and blue AFP drip-tape roll on the soil in the lower-left or lower-right third of the frame. The roll must be wide and low, with a diameter approximately 1.5 times its height. The background should show sainfoin plants or a neutral irrigation context. Reduce the product group from 35% to 13-27% of frame width. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 23,
+      "product_height_percent": 26,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll is present.",
+        "The product is naturally placed on soil in the lower third and is off-center (left-aligned).",
+        "The geometric constraints are met: the visible diameter ratio is approximately 1.4 to 1.5, width (23%) is within the 13-27% range, and height (26%) is under the 32% limit.",
+        "No people, human silhouettes, or body parts are visible.",
+        "No hard reject elements (second packages, extra commercial products, layflat hose, or fake text) are present.",
+        "The required bottom-right watermark 'AFP | 09134922013' is visibly correct and included."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آبیاری-خرسابی-در-کشت-اسپرس-مقایسه-جزئیات-فنی.webp"
+}
