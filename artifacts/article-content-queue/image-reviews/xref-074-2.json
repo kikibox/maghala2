@@ -1,0 +1,54 @@
+{
+  "id": "xref-074",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Human body parts (legs, arms, hands) are visible in the frame.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image removing all people, hands, arms, and legs. Ensure the scene contains only the drip tape roll placed on soil in a melon farm context, keeping the AFP logo and watermark. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 27,
+      "product_height_percent": 36,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "The visible product height is approximately 36% of the frame, which exceeds the strict hard-reject limit of 32%.",
+        "The melon seedlings have a broad, rounded leaf shape that lacks the deep lobes characteristic of botanically accurate Cucumis melo (melon) foliage, risking rejection for the crop morphology.",
+        "machine-enforced bounding-box check failed: Reduce product height from 36% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the drip-tape roll size so the height is under 32% of the frame. Refine the foreground melon seedlings to have botanically accurate deeply lobed leaves. Reduce product height from 36% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 16,
+      "product_height_percent": 12,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Watermark 'AFP | 09134922013' is correctly positioned in the bottom-right corner.",
+        "Contains a single low cylindrical drip-tape roll, properly off-center on the lower third of the frame.",
+        "Product dimensions (width and height) fall within the acceptable secondary staging limits.",
+        "The crop shown is consistent with young melon seedlings (botanically appropriate at the vegetative stage), and the background farm context matches the article topic.",
+        "No people, human body parts, or prohibited objects (containers, pipes, extra rolls) are visible.",
+        "No gibberish or invented text; all markings on the roll appear authentic."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-در-کشت-ملون-هزینه-بهینه-کاربرد-عملی.webp"
+}

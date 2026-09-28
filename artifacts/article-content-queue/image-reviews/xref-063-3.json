@@ -1,0 +1,70 @@
+{
+  "id": "xref-063",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Presence of a person/farmer (human subject is explicitly forbidden).",
+        "Hard reject: Presence of a bottle/container (the man is holding a small white box/bottle, which is prohibited).",
+        "Missing required product: The image does not show the required white-and-blue wide low cylindrical drip-tape carton roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the man entirely. Place a white and blue wide low cylindrical drip-tape carton roll on the soil, off-center on the lower third. The roll should be approximately 20% of the image width and 20% of the height. Keep the background farm context (rows and barn) and the bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The crop (visible green wheat or grass sprouts) contradicts the required fava bean (باقلա) context; the soil is otherwise bare and suitable, but the green shoots fail the crop-identity check for Role 3.",
+        "Product staging looks artificially centered in the lower third rather than naturally 'off-center' on the soil."
+      ],
+      "correction_prompt": "Regenerate with bare soil and no visible crops (or neutral fava bean context). Place the single AFP white-and-blue drip-tape roll clearly off-center on the lower third of the frame; keep product width around 20–23% of frame and height under 32%. Remove all green wheat/grass sprouts. Preserve the bottom-right watermark 'AFP | 09134922013' and the red-barn farm context.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 21,
+      "product_height_percent": 28,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Product is centered horizontally (approx 44-50% x-center) instead of the required off-center on the lower third.",
+        "The background context (empty field and red barn) does not visibly match the article title/summary regarding 'باقلا' (fava bean), which is required even for Role 3 hardware stories."
+      ],
+      "correction_prompt": "Regenerate with the AFP drip-tape roll placed clearly off-center (left or right) in the lower third. Update the background to show a fava bean farm context (e.g., distinct fava plants or rows) to match the topic.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 18,
+      "product_height_percent": 17,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Contains the required bottom-right watermark 'AFP | 09134922013'",
+        "Zero people or body parts visible",
+        "Product is a white-and-blue wide low cylindrical drip-tape carton roll",
+        "Product width (18%) and height (17%) are within acceptable ranges",
+        "Product is off-center on the lower third, naturally placed on soil",
+        "Background (crop farm with barn) matches the 'city/family/farm context' role and topic",
+        "Crop rows are generic green plants, not clearly contradicting fava beans",
+        "Visible diameter is approximately 1.06 times the visible height, which is geometrically consistent with a perspective-tilted cylindrical roll"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-سطوحی-در-کشت-باقلا-راهنمای-جامع-جزئیات-فنی.webp"
+}

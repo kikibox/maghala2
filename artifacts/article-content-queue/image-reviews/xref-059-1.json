@@ -1,0 +1,68 @@
+{
+  "id": "xref-059",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 28,
+      "product_height_percent": 30,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product width exceeds the 27% hard limit due to the wide loop of tape spilling out from the roll.",
+        "Product is centered (48% x-axis) rather than off-center.",
+        "A second spool/core is visible inside the roll, which is a geometric hard reject.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the drip-tape roll positioned to the lower-left third. The width (including any unspooled tape) must be under 25% of the frame width. Ensure only a single solid roll is visible without an inner spool or double-winding. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "Hard reject due to presence of three visible people and multiple human body parts (faces, hands, arms, legs).",
+        "The rule explicitly states 'zero people and zero human body parts' and 'Hard reject any person, farmer, worker, face, hand, arm, leg, body part or human silhouette'.",
+        "The background context is a farm field, which is acceptable, but the presence of the people makes it a fail regardless of the product placement."
+      ],
+      "correction_prompt": "Remove all people, human silhouettes, and body parts from the image. Ensure the crop is a botanically neutral prepared bed or recognizable crop without human presence. Maintain the watermarked drip-tape roll in the lower-left off-center position on the soil.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 16,
+      "product_height_percent": 22,
+      "product_x_center_percent": 24,
+      "reasons": [
+        "The product is placed on the extreme left edge (approx. 24% x-axis) instead of the required off-center lower-third positioning (approx. 60-80% x-axis).",
+        "The text printed on the carton ('Ag Irliputet Tese') is gibberish; only the 'AFP' logo appears legible. Requirements specify rejecting gibberish text outside of authentic package print/watermark."
+      ],
+      "correction_prompt": "Move the product roll horizontally to the right so the x-center is approximately 70%. Replace the gibberish text on the side of the carton with legible product information or plain white/blue panels. Keep the product off-center on the lower third.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 21.7,
+      "product_height_percent": 26.6,
+      "product_x_center_percent": 52.6,
+      "reasons": [
+        "Product is the correct AFP white-and-blue drip-tape carton roll.",
+        "No human persons or body parts visible.",
+        "Watermark 'AFP | 09134922013' is present.",
+        "Crops are young seedlings; not identifiable as a specific different species, which is acceptable under neutral young vegetation criteria.",
+        "Product dimensions are within acceptable limits (Width ~21.7%, Height ~26.6%)."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-چرخشی-در-کشت-پیاز-نکات-کلیدی-تصویر-شاخص.webp"
+}

@@ -1,0 +1,94 @@
+{
+  "id": "xref-060",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Contains a second non-hardware item (lettuce head) which conflicts with the 'hardware story' role",
+        "Contains a pressure gauge next to the roll"
+      ],
+      "correction_prompt": "Remove the lettuce head and the loose pressure gauge; leave only the drip tape roll on the soil with the tractor in the background.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Image contains a human body part (human silhouette visible in the tractor cabin)",
+        "Watermark contains one digit, 'AFP | 09134922013', instead of the required 'AFP | 09134922013' with two digits '49'."
+      ],
+      "correction_prompt": "Remove all human figures or silhouettes, especially in the tractor cabin. Ensure the bottom-right watermark accurately reads 'AFP | 09134922013'.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 26,
+      "product_height_percent": 33,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "The visible crop (green leafy plant) likely contradicts 'کاهو' (lettuce) as it does not visually match lettuce morphology.",
+        "Product height is approximately 33% of the frame, which exceeds the maximum allowed height of 32%.",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image ensuring the crop is either absent or visually identifiable as lettuce (کاهو). Reduce the vertical size of the carton roll so it is no taller than 30% of the frame. Maintain the white-and-blue AFP branding, the off-center position on soil, and the required bottom-right watermark. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 10,
+      "product_height_percent": 12,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Contains a person (a farmer visible in the right foreground, including body parts and legs).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to strictly remove all human figures and body parts, keeping the farm context, irrigation hardware, and the specified product roll placement unchanged. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 13,
+      "product_height_percent": 18,
+      "product_x_center_percent": 24,
+      "reasons": [
+        "The required bottom-right watermark 'AFP | 09134922013' is missing.",
+        "The product shown is a white cylindrical box/roll, not an AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "A blue irrigation manifold/connector appears in the scene, which is not allowed unless it is part of a specific infrastructure context without people; its presence creates ambiguity with 'extra commercial product' or 'hardware story' context."
+      ],
+      "correction_prompt": "Regenerate to include the exact bottom-right watermark 'AFP | 09134922013'. Change the white box to an AFP white-and-blue wide low cylindrical drip-tape roll. Ensure the roll is off-center on the lower third and placed on soil. Remove the blue manifold/hose element unless it is clearly part of a hardware story without people. Keep the crop context neutral or lettuce-compatible.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Product is a white cylindrical drip-tape roll with blue accents, placed on soil in the lower-left quadrant.",
+        "Visible lettuce heads are present and consistent with the 'کاهو' (lettuce) topic.",
+        "Background shows a rural farm context with a distant building, matching the 'city/farm' theme without clutter.",
+        "No people or human body parts are visible.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom right.",
+        "Product dimensions are within acceptable limits: width ~21% (preferred 20-23%), height ~24% (<32%), and width is approximately 0.875x the height, consistent with a wide low cylindrical shape."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-کاهو-هزینه-بهینه-جزئیات-فنی.webp"
+}

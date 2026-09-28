@@ -1,0 +1,97 @@
+{
+  "id": "xref-064",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 18,
+      "product_height_percent": 14,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The product is centered horizontally (approx 50%), violating the requirement to be off-center",
+        "The roll has a flat pipe/drip line passing directly through the center hole, which is a hard reject (pipe through the roll/impossible geometry)",
+        "Hard reject: Watermark reads '09134922013' but the required text is '09134922013' (correct) - however, the placement and format are acceptable, the main failure is the product staging.",
+        "Wait, looking closer at the crop: The prompt mentions 'سیر' (garlic). The plants visible are general green sprouts, they do not clearly contradict garlic, so the crop itself is not the hard reject. The hard reject is the 'pipe through the roll' and the 'centered product staging'.",
+        "The drip line passes through the hole of the carton roll, creating a 'pipe through the roll' scenario which is explicitly forbidden."
+      ],
+      "correction_prompt": "Move the drip-tape roll to the left or right side of the frame (off-center), remove the pipe running through the center of the roll, and ensure it sits naturally on the soil without any pipe obstruction.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 52,
+      "product_width_percent": 25,
+      "product_height_percent": 32,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Identifiable young crop plants are visible in the immediate foreground; this is a hard reject because they visually contradict the garlic (سیر) topic and are not in a close-up of filter/flush hardware.",
+        "Product height touches the 32% maximum limit, leaving no safety margin."
+      ],
+      "correction_prompt": "Regenerate the image with an unattended irrigation manifold, filter, and gauge hardware setup placed on bare soil in the foreground, replacing the visible crop seedlings. Ensure the product roll remains wide and low (height <32%), off-center, and in the lower third of the frame.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 22,
+      "product_height_percent": 31,
+      "product_x_center_percent": 24,
+      "reasons": [
+        "The product (drip tape roll) is not cylindrical; it is wide and flat, violating the geometry requirement.",
+        "A second, prominent black and blue package/reel is positioned next to the primary product, violating the 'zero second package' rule.",
+        "The presence of loose, disconnected hardware (gauges, pipes, nozzle-like tools) in the foreground creates a cluttered 'extra commercial product' appearance rather than a clean irrigation setup.",
+        "Text on the product package appears to be gibberish or inverted, failing the 'authentic package print' requirement."
+      ],
+      "correction_prompt": "Replace the flat white package with a standard cylindrical drip tape roll. Remove the second black reel and all loose, disconnected hardware (gauges, pipes). Ensure the text on the roll is 'AFP' and legible. Keep the roll small and off-center on the soil.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 22,
+      "product_height_percent": 33,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Hard reject: Visible human figures (silhouettes/faces) are present in the background near the building and tractors, which violates the strict requirement for 'zero people and zero human body parts'.",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image ensuring that all background human figures, faces, hands, and silhouettes are completely removed from the scene. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 74,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 24,
+      "reasons": [
+        "The drip tape roll is not a wide low cylindrical object; it is tall and narrow, violating the required geometry (diameter should be 1.5-1.9 times the height).",
+        "There is a pipe/drip line passing through the roll, which is a hard reject condition."
+      ],
+      "correction_prompt": "Redraw the product as a wide low cylindrical roll where the diameter is 1.5-1.9x its height. Ensure the roll sits on the soil without any pipe, tube, or drip line passing through it. Keep the width between 20-23% of the frame.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 23,
+      "product_height_percent": 19,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Displays a single AFP white-and-blue drip tape carton roll",
+        "Rolled tape is off-center and positioned on the lower third in tilled soil",
+        "Product width and height are within preferred practical limits with correct cylindrical proportions",
+        "Background shows a farm hardware scene with unattended irrigation manifold and tractor",
+        "Required bottom-right watermark 'AFP | 09134922013' is present",
+        "Zero people or human body parts are visible"
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-گلخانهای-در-کشت-سیر-هزینه-بهینه-جزئیات-فنی.webp"
+}

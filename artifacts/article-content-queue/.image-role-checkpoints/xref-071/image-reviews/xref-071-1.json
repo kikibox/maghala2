@@ -1,0 +1,71 @@
+{
+  "id": "xref-071",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Human presence (full-body farmer/worker).",
+        "Hard reject: Human body part (hand) visible in the bottom-right inset image.",
+        "Missing product: No AFP white-and-blue wide low cylindrical drip-tape carton roll present.",
+        "Wrong crop: The background field shows wheat (characterized by awns), not rye (tall slender stems with long narrow grain heads).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Generate a farm scene with rye crop (tall slender stems, long narrow heads) and a single white-and-blue drip-tape carton roll (width 20-23%, height <32%) placed on the soil in the lower third. No people, no hands, no wheat, and include the watermark 'AFP | 09134922013'. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 15,
+      "product_height_percent": 17,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Product height and width are nearly equal, violating the required wide low cylindrical geometry (diameter ~1.5–1.9× height).",
+        "Product is positioned in the lower center rather than off-center in the lower third.",
+        "No visible watermarks or text besides the AFP watermark, but the carton does not clearly show white-and-blue color scheme with branding.",
+        "Crop background appears to be a general cereal field, not specifically rye (tall slender stems and long narrow grain heads)."
+      ],
+      "correction_prompt": "Regenerate with a wide, low cylindrical drip-tape roll (1.5–1.9× wider than tall), positioned off-center in the lower third, clearly white and blue, set in a rye field with tall slender stems and long narrow grain heads.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 22,
+      "product_height_percent": 20,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "The AFP carton roll is positioned too centrally in the lower middle of the frame (x_center 47%); the requirement mandates the product be off-center on the lower third (typically x_center < 35% or > 65%).",
+        "While the crop is recognizable as a cereal, the image context and roll positioning do not satisfy the specific 'off-center' layout requirement for the product."
+      ],
+      "correction_prompt": "Shift the white-and-blue AFP drip-tape roll to the far-left or far-right lower corner (x_center 20-25% or 75-80%) to ensure it is strictly off-center, while keeping the scale secondary and the rye crop context identical.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 20,
+      "product_height_percent": 15,
+      "product_x_center_percent": 75,
+      "reasons": [
+        "Subject is exactly one AFP white-and-blue cylindrical drip-tape roll",
+        "Correct aspect ratio (diameter ~1.7x height)",
+        "Product is off-center on the lower third and placed on soil",
+        "Zero people or human body parts",
+        "Background shows mature grain field matching the rye article topic",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-چاودار-راهنمای-جامع-تصویر-شاخص.webp"
+}

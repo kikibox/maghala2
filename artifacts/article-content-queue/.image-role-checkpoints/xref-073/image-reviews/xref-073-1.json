@@ -1,0 +1,43 @@
+{
+  "id": "xref-073",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 9,
+      "product_height_percent": 15,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: The image contains a visible person (a man crouching and holding the product).",
+        "Hard reject: The product width is approximately 9% of the frame, which is below the minimum acceptable threshold of 13%.",
+        "Hard reject: The product geometry is incorrect; it is not the specified wide low cylindrical drip-tape carton roll.",
+        "The product is being held by a person, violating the 'naturally placed on soil' requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures from the scene. Replace the product with a single wide, low, cylindrical white-and-blue drip-tape carton roll with a diameter 1.5-1.9x its height. Position the roll off-center on the soil in the lower third of the frame, occupying 13-27% of the image width. Ensure the background features small sunflower seedlings in rows without any people present. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 25,
+      "product_height_percent": 16,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Exact AFP white-and-blue wide low cylindrical drip-tape carton roll is present and legible.",
+        "Roll width is ~25% (within 20-23 preferred, acceptable 13-27) and height ~16% (well under 32% limit).",
+        "Diameter-to-height ratio (~1.56x) is correct; roll is off-center in the lower third and naturally placed on soil.",
+        "Zero people or body parts; unattended hardware like seeds/rows is acceptable background context.",
+        "Watermark 'AFP | 09134922013' is present in the correct bottom-right position.",
+        "Background shows farm context with young crops, aligning with agronomic role."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-در-کشت-بامیه-چالشها-تصویر-شاخص.webp"
+}

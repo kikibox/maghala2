@@ -1,0 +1,68 @@
+{
+  "id": "xref-063",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Image contains a human person, which is a hard reject condition.",
+        "The image is missing the required drip tape carton roll product.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people. Add a white-and-blue wide low cylindrical drip-tape carton roll placed on the soil off-center on the lower third. Ensure fava bean crop context. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 20,
+      "product_height_percent": 16,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Crop species mismatch: The article specifies fava beans (باقلا), which are characterized by thick upright stems and visible elongated pods. The image displays plants with reddish, egg-shaped fruits that clearly resemble peppers (Chili or Eggplant), not fava beans. This is a hard reject for an identifiable wrong species.",
+        "Product shape discrepancy: The drip-tape roll is depicted as a low, wide cylinder. It fails the geometric requirement of having a visible diameter that is about 1.5 to 1.9 times its height; in the image, the width is approximately 4 times the height, violating the physical consistency of the requested product."
+      ],
+      "correction_prompt": "Regenerate the crop to be fava bean plants (Vicia faba) with visible pods and broad paired leaflets instead of peppers. Change the drip-tape roll to be more squat (width only ~1.5x height) while keeping it off-center on the lower third.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 14,
+      "product_height_percent": 22,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Crop mismatch: The plants shown have broad, heart-shaped leaves typical of tobacco, whereas fava beans require thick upright stems with pinnate compound leaves and visible elongated pods.",
+        "Geometry violation: The product roll is a 'tall narrow drum' (height > width), whereas the requirement specifies a 'wide low cylindrical' roll with a visible diameter 1.5-1.9 times its height.",
+        "Placement/Geometry: The roll is standing vertically on its narrow edge, whereas the 'wide low cylindrical' description and 'naturally placed on soil' instruction imply the roll should be lying on its side."
+      ],
+      "correction_prompt": "Replace the tall standing roll with a wide low cylindrical drip-tape roll lying horizontally on the soil. Replace the broad-leafed plants with fava bean plants featuring thick upright stems, pinnate paired leaflets, and visible elongated pods. Ensure the roll is off-center on the lower third.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 22,
+      "product_height_percent": 26,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The image displays exactly one AFP-branded drip-tape carton roll placed on the soil, fulfilling the infrastructure requirement.",
+        "The 'AFP | 09134922013' watermark is present in the bottom right.",
+        "The product width (~22%) and height (~26%) are within the acceptable limits (13-27% and <32% respectively).",
+        "The product is off-center in the lower half, naturally placed on the soil.",
+        "The crop shown is a seedling stage with broad leaflets that is botanically neutral enough to pass as a young fava bean (baqila) plant without being clearly identifiable as a different species.",
+        "No people or human parts are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-سطوحی-در-کشت-باقلا-راهنمای-جامع-کاربرد-عملی.webp"
+}

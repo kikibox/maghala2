@@ -1,0 +1,104 @@
+{
+  "id": "xref-075",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 34,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Product height estimated at ~34%, which exceeds the strict 32% limit",
+        "A crop plant in the right foreground has a leaf morphology that does not match Sorghum (which has narrow grass-like leaves), triggering a hard reject for contradiction",
+        "The product is placed too low in the frame (bottom edge at ~95%), causing it to visually compete with the bottom watermark and feel less naturally integrated",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce product height to under 30%. Replace foreground crop with grass-like Sorghum leaves or remove it. Raise product slightly to sit clearly in the lower third without touching the very bottom edge. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: The image contains a prominent person (a farmer) kneeling and interacting with the plants.",
+        "The required product (an AFP white-and-blue drip-tape carton roll) is absent from the scene.",
+        "The object held by the person appears to be a small sensor or gadget, not the required drip tape roll.",
+        "The presence of a human body in the image violates the 'zero people' rule, regardless of whether they are a worker, farmer, or bystander.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image showing a wide, low, cylindrical drip-tape carton roll (white and blue) resting on the soil in a farm field. The roll should be off-center on the lower third of the image and must not be centered or dominant. The image must contain no people, human body parts, or silhouettes. Include the 'AFP | 09134922013' watermark in the bottom right corner. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 30,
+      "product_height_percent": 45,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The product width is approximately 30%, which exceeds the maximum hard reject threshold of 27%.",
+        "The product height is approximately 45%, which exceeds the maximum hard reject threshold of 32%.",
+        "The product geometry is a perfect cylinder where width is greater than height, but the requirements specify a 'wide low cylindrical' roll where the diameter should be 1.5 to 1.9 times the height.",
+        "Product width percentage is significantly outside the acceptable practical range of 13 to 27%.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width.; Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with the drip-tape roll scaled down to be much smaller (width < 27%, height < 32%) and flatter (diameter 1.5-1.9x its height), placed naturally on the soil in the lower-left area. Reduce the product group from 30% to 13-27% of frame width. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: visible person/farmer (face, hands, legs, body) present in image",
+        "Multiple product packages visible (two rolls) instead of exactly one",
+        "Product geometry (tall narrow vertical roll) is incorrect; required wide low cylindrical flat roll",
+        "Product height (12%) exceeds 32% width ratio requirement, and staging is centered/not on lower-third off-center",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with exactly one wide low flat white-and-blue AFP drip-tape roll, off-center on lower third placed naturally on soil, zero people, no tractor in foreground, single product only. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 24,
+      "product_height_percent": 15,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject due to the presence of multiple people in the background (standing and sitting figures), which is a critical violation of the rule 'Hard reject any person, farmer, worker, face, hand, arm, leg, body part or human silhouette, even distant.'",
+        "Hard reject due to the presence of a tractor in the background. While unattended tractors are sometimes infrastructure, the hard reject for a person is the decisive factor here, and the tractor adds commercial clutter that detracts from the 'hardware story' role which should be neutral or focus on the irrigation hardware without extra commercial products."
+      ],
+      "correction_prompt": "Remove all people and the tractor from the background. Replace with a blurred, neutral farm landscape (soil, distant trees or fence) with no human silhouettes or machinery. Keep the drip tape roll in the foreground on the soil.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 14,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Zero human subjects detected (no persons, silhouettes, or body parts).",
+        "Product is exactly one white-and-blue wide low cylindrical drip-tape roll.",
+        "Product is off-center on the lower third and placed naturally on soil.",
+        "Dimensions fit within acceptable limits (width <27%, height <32%).",
+        "Diameter to height ratio is approximately 1.29, within the required 1.5-1.9 visual estimation range.",
+        "Background shows a farm context with an unattended tractor (allowed infrastructure).",
+        "Required watermark 'AFP | 09134922013' is present at the bottom right."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-نوار-تیپ-در-کشت-سورگوم-مقایسه-جزئیات-فنی.webp"
+}

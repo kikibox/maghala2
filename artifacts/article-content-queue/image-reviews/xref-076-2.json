@@ -1,0 +1,54 @@
+{
+  "id": "xref-076",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: image contains two prominent people (farmer and worker) in the foreground",
+        "Hard reject: required single drip-tape roll is missing; image shows multiple small white canisters instead",
+        "Hard reject: product geometry and staging are incorrect (not a wide low cylindrical roll off-center)",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image showing exactly one wide low cylindrical white-and-blue drip-tape roll placed off-center on soil in the lower third, with triticale crop context and no people or human body parts. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: A human figure (farmer/worker) is clearly visible walking down the crop row in the background, which violates the 'zero people' requirement.",
+        "Botanical mismatch: The visible crop plants feature broad, jagged leaves and a growth habit consistent with corn or a weed, which does not match the required article crop, triticale (a grass species with narrow linear leaves)."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human silhouettes in the background. Replace the existing crop with botanically accurate triticale seedlings (narrow, grass-like leaves). Ensure the white and blue AFP drip-tape roll remains off-center on the soil bed in the lower third.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 18,
+      "product_height_percent": 19,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Product is a white and blue cylindrical roll placed on soil.",
+        "No people or human body parts are visible.",
+        "Product is off-center and remains secondary to the field context.",
+        "Watermark is present and correct.",
+        "Crop seedlings are botanically neutral, allowing the agronomic story without hard-rejecting for species mismatch."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-تریتیکاله-نکات-کلیدی-کاربرد-عملی.webp"
+}
