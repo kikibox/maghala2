@@ -1,26 +1,40 @@
 {
   "id": "prod-011",
   "kind": 1,
-  "family": "tape20",
+  "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
-      "pass": true,
-      "score": 82,
-      "product_width_percent": 18,
-      "product_height_percent": 24,
-      "product_x_center_percent": 45,
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 25,
+      "product_height_percent": 35,
+      "product_x_center_percent": 60,
       "reasons": [
-        "Product placed off-center on the lower third of the frame.",
-        "Visible diameter is approximately 1.5 to 1.9 times the visible height.",
-        "Product dimensions are within acceptable width (18%) and height (24%) thresholds.",
-        "Zero people or human body parts are visible in the image.",
-        "The specific bottom-right watermark 'AFP | 09134922013' is present and required.",
-        "Background is a botanically neutral prepared bed/young vegetation suitable for agronomic context."
+        "Fail: The image displays only one main coiled object (a flat black coil) instead of the required pair (one packaged AFP coil and one bare black woven coil).",
+        "Fail: The 'product' area (including the multi-colored drip tape/pipe visible in the foreground) is wider than the 15% limit.",
+        "Fail: Visible multi-colored lines in the foreground are identified as drip tape or hoses, which are forbidden items for this specific layflat coil pair layout.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 25% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate showing two separate coiled objects: one in an AFP branded box and one loose black coil. The pair must be small (occupying <15% width) and placed on the lower third. Remove all foreground drip tape, hoses, and pipes. Ensure the 'AFP | 09134922013' watermark is present in the bottom right. Reduce the product group from 25% to 9-20% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 14,
+      "product_height_percent": 24,
+      "product_x_center_percent": 24,
+      "reasons": [
+        "The image displays exactly two approved objects: one packaged AFP coil (white box with 'AFP' branding) and one bare black flat coil.",
+        "The product pair occupies approximately 14% of the frame width, falling within the 12-15% limit.",
+        "The items are placed off-center in the lower-left quadrant (lower third of the frame).",
+        "There are zero people or human body parts visible in the frame.",
+        "The required watermark 'AFP | 09134922013' is clearly visible in the bottom-right corner."
       ],
       "correction_prompt": "",
-      "attempt": 1
+      "attempt": 2
     }
   ],
   "approved_image": "هزینه-لوله-نخ-دار-75-میلیمتر-در-مزرعه-برآورد-تصویر-شاخص.webp"

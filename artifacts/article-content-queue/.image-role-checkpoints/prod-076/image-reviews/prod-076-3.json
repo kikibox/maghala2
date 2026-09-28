@@ -7,96 +7,62 @@
   "attempts": [
     {
       "pass": false,
-      "score": 25,
-      "product_width_percent": 42,
-      "product_height_percent": 35,
-      "product_x_center_percent": 55,
-      "reasons": [
-        "Product pair occupies approximately 42% of frame width, far exceeding the 12-15% limit.",
-        "Objects are positioned too large for the required close-up framing.",
-        "machine-enforced bounding-box check failed: Reduce the product group from 42% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height."
-      ],
-      "correction_prompt": "Regenerate with the two layflat coils much smaller, occupying less than 15% of the frame width, while keeping them in the lower third and off-center. Reduce the product group from 42% to 9-20% of frame width. Reduce product height from 35% to at most 32% of frame height.",
-      "attempt": 1
-    },
-    {
-      "pass": false,
       "score": 0,
-      "product_width_percent": 7.8,
-      "product_height_percent": 18.8,
-      "product_x_center_percent": 44.2,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
       "reasons": [
-        "Contains one person",
-        "Contains a hand touching the coil",
-        "Does not show a pair of layflat objects",
-        "Product is not off-center on the lower third",
-        "Only one layflat coil is present",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 7.8% to 9-20% of frame width."
+        "Hard reject: Presence of a person (male farmer/worker) and human body parts (hands, legs, face, arms)",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
       ],
-      "correction_prompt": "Regenerate the image with zero people or human body parts; show exactly one packaged AFP coil and one bare black woven coil lying flat and separate on the ground in the lower third; place the pair off-center occupying only 12 to 15 percent of frame width; retain the exact bottom-right watermark AFP | 09134922013. Enlarge the product group from 7.8% to 9-20% of frame width.",
-      "attempt": 2
-    },
-    {
-      "pass": false,
-      "score": 10,
-      "product_width_percent": 28,
-      "product_height_percent": 18,
-      "product_x_center_percent": 35,
-      "reasons": [
-        "Hard reject: Presence of a full human figure (kneeling worker) in the foreground.",
-        "Hard reject: Products are centered/large rather than off-center and 12-15% width.",
-        "Product pair is touching, not separate and flat as required.",
-        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 9-20% of frame width."
-      ],
-      "correction_prompt": "Regenerate the image with zero humans or animals. Place the two coils (one wrapped, one black bare) on the ground in the lower third, offset to the left. Ensure they are flat and separated. The pair of coils must occupy only 12-15% of the image width. Keep the AFP watermark. Reduce the product group from 28% to 9-20% of frame width.",
-      "attempt": 3
-    },
-    {
-      "pass": false,
-      "score": 40,
-      "product_width_percent": 28,
-      "product_height_percent": 22,
-      "product_x_center_percent": 32,
-      "reasons": [
-        "Product pair occupies approximately 28% of frame width, exceeding the 15% maximum limit",
-        "Product pair is centered horizontally instead of staying off-center on the lower third",
-        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 9-20% of frame width."
-      ],
-      "correction_prompt": "Shrink the scale of the two coils significantly to occupy 12-15% of the frame width and shift the pair to the far left or right to stay off-center. Reduce the product group from 28% to 9-20% of frame width.",
-      "attempt": 4
+      "correction_prompt": "Regenerate image without any people or human body parts. The products (one packaged AFP coil and one bare black coil) must be on the ground, in the lower third, off-center, occupying 12-15% width. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 1
     },
     {
       "pass": false,
       "score": 15,
       "product_width_percent": 30,
-      "product_height_percent": 18,
-      "product_x_center_percent": 35,
+      "product_height_percent": 20,
+      "product_x_center_percent": 40,
       "reasons": [
-        "Hard reject: Image contains a prominent human figure (male farmer/worker).",
-        "Presence of human body parts (face, hands, arms, legs, body) violates the 'zero people' constraint.",
-        "Product pair is centered and too large relative to the required 12-15% width constraint.",
-        "The layout does not follow the 'off-center on the lower third' staging requirement.",
+        "Presence of a person (crouching male)",
+        "Product pair is centered rather than off-center on the lower third",
+        "Product width exceeds the maximum 15% limit",
+        "Product pair is touching rather than separate",
+        "Package is an invented type rather than the specified AFP coil",
         "machine-enforced bounding-box check failed: Reduce the product group from 30% to 9-20% of frame width."
       ],
-      "correction_prompt": "Remove the human figure completely. Reposition the two layflat coils (one packaged, one bare) to the lower-right third of the frame. Shrink the product size to occupy only 12-15% of the frame width. Keep the coils flat on the ground and separated. Ensure the 'AFP | 09134922013' watermark remains in the bottom-right corner. Reduce the product group from 30% to 9-20% of frame width.",
-      "attempt": 5
+      "correction_prompt": "Remove the person. Place one packaged AFP coil and one bare black woven coil in the lower-right third of the frame. Ensure they are separate, flat, and occupy less than 15% of the image width. Maintain the 'AFP | 09134922013' watermark in the bottom-right corner. Reduce the product group from 30% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 30,
+      "product_height_percent": 35,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Presence of a human person (worker/farmer) kneeling next to the products is a hard reject.",
+        "Product pair width occupies approximately 30% of the frame, which significantly exceeds the 15% maximum limit.",
+        "The staged products are too large relative to the human figure and the frame requirements.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the person completely. Rescale the two irrigation coils (packaged and bare) to be much smaller so the pair occupies only 12-15% of the image width. Position the coils on the ground in the lower third, off-center, maintaining the existing 'AFP | 09134922013' watermark in the bottom right. Reduce the product group from 30% to 9-20% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 3
     },
     {
       "pass": true,
-      "score": 85,
-      "product_width_percent": 14,
-      "product_height_percent": 14,
-      "product_x_center_percent": 44,
+      "score": 88,
+      "product_width_percent": 17,
+      "product_height_percent": 11,
+      "product_x_center_percent": 38,
       "reasons": [
-        "Shows exactly two approved layflat objects: one packaged coil and one bare black woven coil.",
-        "Pair is fully visible, separate, and flat on the ground.",
-        "Zero people or human body parts visible.",
-        "Watermark is present and correct.",
-        "Product pair is positioned on the lower third and slightly off-center, avoiding centered staging.",
-        "Background infrastructure (tractor) is acceptable as it is unattended and not a commercial product conflict."
+        "Product is off-center in the lower third",
+        "Zero people or human body parts present",
+        "Required watermark 'AFP | 09134922013' is present and correctly placed in the bottom-right"
       ],
       "correction_prompt": "",
-      "attempt": 6
+      "attempt": 4
     }
   ],
   "approved_image": "نگهداری-از-لوله-نخ-دار-90-میلیمتر-برای-عمر-مفید-بیشتر-جزئیات-فنی.webp"

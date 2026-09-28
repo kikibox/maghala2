@@ -1,56 +1,40 @@
 {
   "id": "prod-067",
   "kind": 2,
-  "family": "tape20",
+  "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 20,
-      "product_width_percent": 20,
-      "product_height_percent": 15,
-      "product_x_center_percent": 25,
+      "score": 30,
+      "product_width_percent": 15.2,
+      "product_height_percent": 18.0,
+      "product_x_center_percent": 48.5,
       "reasons": [
-        "The image contains multiple humans/farmers/visibly identifiable people, violating the hard reject rule for zero people.",
-        "The image appears to be a composite/collage rather than a single coherent scene, which conflicts with the request for a specific farm context image.",
-        "The product (drip tape carton) is present but the surrounding context is heavily polluted with disallowed human elements."
+        "The image displays a single, distorted, metallic object that appears fused with the irrigation line, rather than the required pair of separate layflat coils (one packaged AFP and one bare black woven).",
+        "The required 'bare black woven coil' and the distinct 'packaged AFP coil' are missing entirely.",
+        "The product pair is positioned near the center of the frame, violating the requirement to be off-center on the lower third.",
+        "The object shown is geometrically impossible and does not represent standard coiled products."
       ],
-      "correction_prompt": "Regenerate as a single coherent image showing one white-and-blue wide low cylindrical drip-tape carton roll in a farm context, with no people or human body parts visible anywhere. Ensure the AFP watermark is visible in the bottom-right.",
+      "correction_prompt": "Regenerate the scene to show two distinct flat layflat coils (one in a white/purple package and one a loose black woven coil) placed flat on the ground on the far right side (lower third). Ensure they are fully visible, separate, and occupy less than 15% of the image width. Maintain the field background and the bottom-right watermark.",
       "attempt": 1
     },
     {
-      "pass": false,
-      "score": 35,
-      "product_width_percent": 30.0,
-      "product_height_percent": 25.0,
-      "product_x_center_percent": 47.0,
-      "reasons": [
-        "Hard reject: There is a human silhouette/person clearly visible standing in the distance on the right side of the field, violating the 'zero people' rule.",
-        "Product width exceeds the maximum limit of 27% (estimated at 30%).",
-        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width."
-      ],
-      "correction_prompt": "Remove the human figure in the background completely. Shrink the product roll slightly so its width is under 27% of the frame width. Keep the exact text visible on the package and the watermark. Reduce the product group from 30% to 13-27% of frame width.",
-      "attempt": 2
-    },
-    {
       "pass": true,
-      "score": 92,
-      "product_width_percent": 20,
-      "product_height_percent": 28,
-      "product_x_center_percent": 48,
+      "score": 95,
+      "product_width_percent": 13.5,
+      "product_height_percent": 18.2,
+      "product_x_center_percent": 48.5,
       "reasons": [
-        "The image displays exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll, matching the product specification (Family Tape20, image role 2).",
-        "The crop morphology is botanically accurate and unmistakable for Mentha piperita (Peppermint), featuring the characteristic square stems, silvery-green undersides, and serrated lanceolate leaves.",
-        "The crop (peppermint) is clearly identifiable in the foreground, while the background rows are blurred, creating a depth of field that focuses attention on the crop and the product, preventing the crop from becoming a visual distraction in the background.",
-        "The product is naturally placed on the soil in the foreground, satisfying the 'naturally placed' requirement.",
-        "The product bounding box dimensions (20% width, 28% height) are within the preferred range and the visible diameter is roughly 1.7 times its height, adhering to the geometric constraints.",
-        "The bottom-right watermark 'AFP | 09134922013' is present and authentic.",
-        "There are zero people or human body parts in the image.",
-        "Unattended infrastructure (the red barn) is present but not an extra commercial product, and the scene context (farm field) is appropriate."
+        "Strictly zero humans or body parts detected.",
+        "Product width estimated at 13.5% of frame, well within the 12-15% target range.",
+        "Staging remains on the lower third and completely off-center.",
+        "Both required objects (packaged AFP and bare black coil) are separate and flat.",
+        "Required watermark 'AFP | 09134922013' correctly present and preserved."
       ],
       "correction_prompt": "",
-      "attempt": 3
+      "attempt": 2
     }
   ],
   "approved_image": "مشخصات-فنی-لوله-نخ-دار-75-میلیمتر-راهنمای-انتخاب-کاربرد-عملی.webp"
