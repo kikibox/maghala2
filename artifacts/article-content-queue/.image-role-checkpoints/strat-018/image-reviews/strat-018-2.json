@@ -1,0 +1,97 @@
+{
+  "id": "strat-018",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 10,
+      "product_height_percent": 10,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard Reject: Presence of multiple extra commercial products. The image shows both a carton roll (left) and a spool of blue drip tape (right). The prompt strictly requires 'exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll'.",
+        "Product Staging: The requested carton roll is positioned on the left side of the lower third, rather than being 'off-center on the lower third' in a way that implies it is the primary focus or 'naturally placed' in the center of the foreground.",
+        "Product Size: The carton roll's width is estimated at ~10% of the frame, which is below the 13% minimum acceptable width range (13-27%).",
+        "Product Shape: The carton roll is not a 'wide low cylindrical' shape; it is relatively narrow and tall (aspect ratio approx 1:1), whereas the requirement specifies a visible diameter about 1.5 to 1.9 times its height.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with a single wide, low, cylindrical AFP white-and-blue drip-tape carton roll on the soil. Remove the extra blue spool of drip tape on the right. The roll should be wider (approx 13-20% of frame width) and have a low profile (height less than width/1.5). Ensure the cantaloupe vines with netted fruit are clearly visible in the background. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 88,
+      "product_width_percent": 28,
+      "product_height_percent": 28,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Cantaloupe crop is clearly identified by netted fruits and lobed vine foliage matching the 'article crop طالبی' requirement.",
+        "Product is a white-and-blue wide low cylindrical drip-tape carton roll with 'AFP' branding, placed naturally on soil.",
+        "Image contains zero people or human body parts.",
+        "Watermark 'AFP | 09134922013' is present at bottom-right as required.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 10,
+      "product_height_percent": 16,
+      "product_x_center_percent": 29,
+      "reasons": [
+        "Human presence: The image contains a visible man crouching in the frame, which triggers a hard reject condition (zero people/human body parts).",
+        "Product aspect ratio: The visible drip-tape roll is oriented vertically. Its height is roughly 1.6 times its width, but the requirement specifies the visible diameter (width) must be 1.5 to 1.9 times the height.",
+        "Product placement: The roll is placed in the bottom-left corner rather than being 'naturally placed on soil' in a way that aligns with the off-center lower-third staging preference (it is too large and blocky against the soil).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes. Replace the vertical cylindrical roll with a wide, low, horizontal cylindrical roll placed on the soil. Ensure the roll width is approximately 1.5-1.9x its height. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 20,
+      "product_height_percent": 30,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: Image contains a visible person (farmer sitting in the background). The presence of any human silhouette or body part is a mandatory rejection criteria.",
+        "Crop mismatch: The foreground vegetation does not exhibit the specific 'restrained netted fruit' or distinctive 'lobed leaves' described for the cantaloupe (طالبی) crop; the leaves appear smooth and rounded (likely sunflower or similar), conflicting with the required article-specific morphology."
+      ],
+      "correction_prompt": "Regenerate image removing the person in the background completely. Replace the foreground plant with visible young cantaloupe vines featuring distinctly lobed leaves and netted fruit attached to the stem.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22.5,
+      "product_height_percent": 21.0,
+      "product_x_center_percent": 18.0,
+      "reasons": [
+        "The visible product geometry in the lower-left corner is a flat vertical rectangle (or cylinder viewed from the side), which is geometrically inconsistent with the requirement for a 'wide low cylindrical drip-tape carton roll' lying on soil.",
+        "The central crop morphology, specifically the smooth elongated fruit and leaf structure, is clearly identifiable as a cucumber, which triggers a hard reject for a clearly identifiable different species (the required article is cantaloupe)."
+      ],
+      "correction_prompt": "Regenerate image showing a cantaloupe vine with netted fruit in a farm field. Place the AFP drip tape roll in the lower third, off-center, lying flat on the soil. Ensure the roll appears as a wide, low horizontal cylinder with a visible top surface (diameter to height ratio 1.5-1.9x) rather than a vertical slab. Keep the required AFP watermark.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 24,
+      "product_height_percent": 31,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Missing the mandatory 'AFP | 09134922013' watermark in the bottom right corner (only 'AFP' logo is present on the carton).",
+        "The cantaloupe mesh/net depicted is not 'restrained' and appears to be attached to the vine itself rather than loosely enclosing the fruit, which is botanically inaccurate for the specific 'restrained netted fruit' requirement.",
+        "The water droplet logo on the carton is stylized and potentially confusing with the irrigation product type (drip tape) which should be identifiable."
+      ],
+      "correction_prompt": "Add the specific text watermark 'AFP | 09134922013' in the bottom right corner. Adjust the cantaloupe net to be a proper loose mesh enclosing the fruit, not fused with the stem. Ensure the carton clearly represents a drip tape roll with visible tape texture or specific labeling.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

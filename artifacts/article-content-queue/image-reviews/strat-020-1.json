@@ -1,0 +1,54 @@
+{
+  "id": "strat-020",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 15,
+      "product_height_percent": 22,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Hard reject: Visible person (farmer/worker) and human body parts (face, hands, arms, legs) are present in the image, violating the zero-person rule.",
+        "The product is being held by a person rather than naturally placed on the soil.",
+        "Product geometry is incorrect: the carton appears to be a vertical cylinder (drum) rather than the required wide, low, cylindrical roll shape."
+      ],
+      "correction_prompt": "Remove the person and any human body parts. Place a wide, low, cylindrical white-and-blue AFP drip-tape roll directly on the soil in the foreground (lower third, off-center). Ensure the roll is lying horizontally or flat, not standing vertically. Keep the farm background and AFP watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 25,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product height is too dominant (20%) for the required wide cylindrical drip-tape aesthetic (typically 8-12%).",
+        "Crop in the image (young corn/maize seedlings) does not clearly match the specified article title crop (which appears to be tomatoes or similar based on the 'tape20' context)."
+      ],
+      "correction_prompt": "Reduce the roll height significantly to look flatter and wider (diameter to height ratio ~3:1). Update the crop rows to show recognizable tomato plants or transplants instead of generic green seedlings to match the article title.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The image contains exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll as specified.",
+        "The crop morphology (young broad-leaved seedlings in rows) matches the family tape20 topic (cucurbits/vegetables).",
+        "The product is placed naturally on soil and is off-center.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No people or human body parts are visible.",
+        "The product dimensions (width ~25%, height ~28%) fall within the acceptable ranges (width 13-27%, height <32%), and the aspect ratio is appropriate (wide and low)."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "محاسبه-نیاز-آبی-گیاه-بر-اساس-et0-تصویر-شاخص.webp"
+}

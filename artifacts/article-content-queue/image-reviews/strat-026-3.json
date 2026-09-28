@@ -1,0 +1,80 @@
+{
+  "id": "strat-026",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 24,
+      "product_height_percent": 27,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Presence of a second cylindrical metal container (aluminum tube) next to the main product, which counts as an extra commercial product or hardware item that breaks the single-item focus rule.",
+        "Presence of a second horizontal cylinder lying on the soil, adding clutter to the foreground subject area.",
+        "Small green crop plants are visible in the immediate foreground; while not a hard reject, they distract from the 'hardware story' (Role 3) which requires crop plants to be visually neutral or absent."
+      ],
+      "correction_prompt": "Remove the small metal tubes and the horizontal cylinder lying on the soil. Remove or significantly blur the small green plants in the foreground so the drip tape roll is the clear primary subject. Keep the background tractor and farm context exactly as is.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 20,
+      "product_height_percent": 24,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "The product in the image is not a wide, low cylindrical drip-tape carton roll (diameter/height ratio fails the 1.5–1.9 requirement).",
+        "The background context (tractor in an open field) is too generic and does not clearly align with a specific crop farm context required for Role 3 without identifiable crop conflict.",
+        "Presence of additional hardware (irrigation manifold) in the foreground distracts from the product as a secondary element in a farm-specific context."
+      ],
+      "correction_prompt": "Regenerate with a wide, low drip-tape carton roll (diameter ~1.7x height) placed off-center on the lower third of a soil surface; set background to a specific crop field (e.g., lentil or wheat row visible in distance); retain the required AFP watermark 'AFP | 09134922013' exactly at the bottom right.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 25,
+      "product_height_percent": 32,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The product is centered horizontally in the frame (x_center ~48%), violating the 'off-center' placement requirement.",
+        "The visible diameter of the roll is approximately 1.1 times its height, failing the '1.5 to 1.9 times' aspect ratio rule.",
+        "Visible text on the roll ('Drip Irrigation') is gibberish/unclear."
+      ],
+      "correction_prompt": "Regenerate the image with the drip tape roll placed clearly off-center in the lower third (left or right), and increase the visible horizontal width of the roll significantly so it is roughly 1.5 to 1.9 times its vertical height. Ensure the roll text is minimal or illegible package branding only.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 20,
+      "product_height_percent": 30,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Image contains a visible human silhouette inside the tractor in the background."
+      ],
+      "correction_prompt": "Regenerate the image removing the driver from the unattended tractor.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 26.2,
+      "product_height_percent": 29.5,
+      "product_x_center_percent": 31.0,
+      "reasons": [
+        "The image correctly features one AFP white-and-blue wide low cylindrical drip-tape carton roll as the primary subject, positioned off-center in the lower third on soil. The background context (tilled farm field with an unattended tractor) matches the hardware story requirement, and no people or human silhouettes are visible.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present.",
+        "The product dimensions are within acceptable limits (width ~26% is slightly above the 23% preference but within the 27% hard limit; height ~30% is below the 32% limit). The visible diameter-to-height ratio is approximately 1.6x.",
+        "Other elements include a small green plant (visually neutral/hardware context, not contradicting a named crop) and standard irrigation hardware (filter, connector), which are permitted.",
+        "Pass awarded at score 82 because the product is correctly identified, no hard reject criteria (people, wrong container types, impossible geometry) are violated, and the composition aligns with the requested lower-third off-center staging."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "برندهای-نوار-تیپ-در-بازار-ایران-مقایسه-جزئیات-فنی.webp"
+}

@@ -1,0 +1,84 @@
+{
+  "id": "strat-016",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 16,
+      "product_height_percent": 14,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The central crop lacks the distinct morphology of Sunflowers (tall stalks, large yellow disc florets) which is likely the intended crop given the 'drip-tape carton roll' context, making the crop species incorrectly identifiable as something else (e.g., Corn or generic leafy).",
+        "There is a second coiled roll of tape on the ground to the right of the main product roll, which constitutes a forbidden second package/roll.",
+        "The 'layflat hose' or extra coiled tubing is not a permitted 'ordinary fixed irrigation hardware' in the way of a manifold or pipe, it is a second product roll."
+      ],
+      "correction_prompt": "Crop the plant to a mature Sunflower to match the crop. Remove the loose coiled tape on the right, leaving only the single white-and-blue product roll in the foreground. Ensure the Sunflower is the prominent background element.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 14,
+      "product_height_percent": 17,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Visible human hand, arm, and torso (partial person) present on the right side of the frame, which is a hard reject requirement",
+        "Product roll is positioned too low (near the bottom edge) and appears slightly too tall relative to its width (ratio near 1.2, violating the required 1.5-1.9 aspect ratio)"
+      ],
+      "correction_prompt": "Remove the human hand, arm, and body parts entirely from the right side of the frame. Re-proportion the AFP drip-tape roll to be wider and shorter (horizontal aspect ratio of at least 1.5:1) while keeping it in the lower-left off-center position on the soil. Keep the sunflower background and required bottom-right watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 12,
+      "product_height_percent": 17,
+      "product_x_center_percent": 24,
+      "reasons": [
+        "Product bounding box height is estimated at 17%, which exceeds the maximum allowed height of 32% (note: height constraint interpreted as a strict maximum in some contexts, but here the issue is likely the overall scale or the prompt's strict 'secondary' requirement combined with the specific aspect ratio constraint. However, the most objective failure is that the product is 'too small' relative to the 'preferred' and 'practical' width estimates. While 12% is within the 'practical' 13-27% range? No, 12% is below the practical minimum of 13%.",
+        "The product width (approx 12%) falls below the minimum practical estimate of 13% specified in the instructions.",
+        "The product appears too small and secondary, making it difficult to identify as the primary subject 'drip-tape carton roll' without relying heavily on the text.",
+        "Product aspect ratio (width:height) is approximately 12:17 (0.7), which fails the '1.5 to 1.9 times' width-to-height requirement. It is taller than it is wide.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with a significantly larger drip-tape roll. The roll should be a wide cylinder with a width approximately 1.7 times its height (e.g., if height is 100px, width should be 170px). The total width of the roll must be approximately 18% of the image frame (minimum 13%). Position the roll on the soil in the lower-left third, distinct from the background sunflowers. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 25,
+      "product_height_percent": 32,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Hard reject: Human body parts (arms, hands, legs) are visible on the right side of the image.",
+        "Product geometry incorrect: The image shows a standard roll of tape with a roughly square or slightly vertical aspect ratio, violating the requirement for a wide low cylindrical shape (visible diameter ~1.5-1.9x height).",
+        "Product placement: The product is positioned on the far left edge rather than the lower third center."
+      ],
+      "correction_prompt": "Remove the farmer/human entirely from the right side. Regenerate the product roll as a wide, low cylindrical carton (width ~1.8x height) positioned in the lower third of the frame. Keep the sunflower background and drip irrigation context.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 80,
+      "product_width_percent": 17.0,
+      "product_height_percent": 26.0,
+      "product_x_center_percent": 35.0,
+      "reasons": [
+        "Product dimensions fall within the acceptable width (17% vs 13-27%) and height (26% vs <=32%) limits.",
+        "The roll is correctly positioned off-center on the lower third of the frame, sitting naturally on the soil.",
+        "The background crop (sunflowers) is botanically accurate and clearly identifiable, matching the role requirements.",
+        "Visible irrigation lines (drip tape) are present and contextually appropriate without causing hard rejects.",
+        "No human body parts, workers, or disallowed commercial items (like fertilizers) are present in the scene.",
+        "The required 'AFP | 09134922013' watermark is correctly present in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "اتوماسیون-نوار-تیپ-تایمر-و-سنسور-رطوبت-کاربرد-عملی.webp"
+}

@@ -1,0 +1,49 @@
+{
+  "id": "strat-016",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "history": [
+    {
+      "pass": false,
+      "score": 60,
+      "duplicate_roles": [
+        1,
+        3
+      ],
+      "reasons": [
+        "Image 1 and Image 3 share the same field scale and central crop bed perspective, duplicating the wide overview role rather than offering distinct agronomic evidence.",
+        "No image explicitly displays the irrigation system infrastructure (tape drip lines, timers, sensors, or root-zone evidence) necessary to fulfill the 'irrigation-system story' role for the requested automation topic.",
+        "Image 2 contains sunflowers, which presents a significant crop-morphology contradiction to the expected AFP product crop profile."
+      ],
+      "correction_prompt": "Generate an agronomic close-up showing young AFP crops with visible tape-drip irrigation lines and soil sensors inserted into the ground; for a third image, use a wide shot with clearly visible automated timers and drip tape, ensuring no duplicate perspectives and no irrelevant crops.",
+      "set_attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "duplicate_roles": [
+        3
+      ],
+      "reasons": [
+        "The editorial set fails to fulfill its distinct functional roles; images 1 and 2 both function as general crop-identity overviews showing young seedlings without any irrigation infrastructure, failing to provide 'agronomic close evidence' of timers or moisture sensors.",
+        "Image 3 is marked as a duplicate role because it provides a generic mechanical 'irrigation-system story' via a tractor, but it is a hard reject due to a clearly contradictory identifiable crop. The article is about 'strip tape' (tape drip/neter) automation, but image 3 depicts a plowing tractor preparing a field (secondary tillage), which is physically contradictory to the installation and automation of drip tape."
+      ],
+      "correction_prompt": "Replace image 3 with a close-up shot of an irrigation control panel or soil moisture sensor installed on an active drip line within a field of sunflowers or corn, clearly showing the automation technology rather than a tractor plowing.",
+      "set_attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "duplicate_roles": [],
+      "reasons": [
+        "The set effectively fulfills the required three distinct functional roles.",
+        "Image 1 provides a clear crop-identity overview featuring young seedlings and the AFP drip tape spool.",
+        "Image 2 serves as agronomic and irrigation-system evidence, showcasing a visible drip line and the AFP spool next to mature sunflowers.",
+        "Image 3 presents the irrigation-system story with a pre-planting soil and field context including the AFP spool.",
+        "All images feature the same AFP drip tape product consistently and contain no people.",
+        "No near-duplicates with repeated camera angle, layout, and technical narrative were detected."
+      ],
+      "correction_prompt": "",
+      "set_attempt": 3
+    }
+  ]
+}

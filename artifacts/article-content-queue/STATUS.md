@@ -4,17 +4,17 @@
 
 ## نمای کلی
 
-- آخرین بروزرسانی: `2026-09-28T16:55:55+00:00`
-- وضعیت صف: **آماده اجرای بعدی** (`ready`)
-- پیشرفت: **329 از 1148 (28.66٪)**
-- نمودار پیشرفت: `█████░░░░░░░░░░░░░░░`
-- تکمیل‌شده: **329**
+- آخرین بروزرسانی: `2026-09-28T17:07:30+00:00`
+- وضعیت صف: **توقف موقت برای تکمیل ترجمه‌های عقب‌مانده** (`translations_pending`)
+- پیشرفت: **345 از 1148 (30.05٪)**
+- نمودار پیشرفت: `██████░░░░░░░░░░░░░░`
+- تکمیل‌شده: **345**
 - در حال پردازش: **0**
-- در انتظار: **671**
-- ناموفق: **148**
+- در انتظار: **651**
+- ناموفق: **152**
 - مسدود مدل تصویر: **0**
-- میانگین طول مقالات تکمیل‌شده: **1293 کلمه**
-- اولویت فعلی: **تولید مقاله فارسی بعدی**
+- میانگین طول مقالات تکمیل‌شده: **1292 کلمه**
+- اولویت فعلی: **تکمیل ترجمه‌های موجود**
 
 ## تنظیمات تولید و انتشار
 
@@ -24,8 +24,8 @@
 - تعداد تصاویر هر مقاله: **3**
 - حداقل کلمات: **1050**
 - لینک داخلی مجاز: **4 تا ۷**
-- اندازه هر اجرا: **2 مقاله**
-- مدیر موازی: **2 مقاله / 4 تصویر هم‌زمان**
+- اندازه هر اجرا: **20 مقاله**
+- مدیر موازی: **20 مقاله / 40 تصویر هم‌زمان**
 - حداکثر تلاش هر مقاله: **4**
 - دسته وردپرس: **مقاله‌ها** (`35`)
 - لینک‌های داخلی شناخته‌شده: **682**
@@ -38,23 +38,23 @@
 | `crop` | 341 | 272 | 1 | 0 | 68 | 79.77٪ |
 | `irrigation` | 12 | 11 | 0 | 0 | 1 | 91.67٪ |
 | `product` | 112 | 36 | 0 | 0 | 76 | 32.14٪ |
-| `strategic` | 33 | 10 | 20 | 0 | 3 | 30.30٪ |
+| `strategic` | 33 | 26 | 0 | 0 | 7 | 78.79٪ |
 | `xref` | 650 | 0 | 650 | 0 | 0 | 0.00٪ |
 
 ## وضعیت ترجمه مقالات تولیدشده
 
-- مقالات فارسی تکمیل‌شده: **329**
-- واحدهای ترجمه تکمیل‌شده: **987 از 987**
-- واحدهای ترجمه باقی‌مانده: **0**
-- مقالات فاقد حداقل یک ترجمه: **0**
-- وضعیت صف فارسی: **فعال**
+- مقالات فارسی تکمیل‌شده: **345**
+- واحدهای ترجمه تکمیل‌شده: **987 از 1035**
+- واحدهای ترجمه باقی‌مانده: **48**
+- مقالات فاقد حداقل یک ترجمه: **16**
+- وضعیت صف فارسی: **متوقف تا تکمیل ترجمه‌ها**
 - بسته‌های ترجمه ۵۰تایی آماده: **0**
 
 | زبان | تکمیل | باقی‌مانده | مسیر |
 |---|---:|---:|---|
-| عربی عراق (`ar-IQ`) | 329 | 0 | `/iraq/` |
-| تاجیکی (`tg-TJ`) | 329 | 0 | `/tj/` |
-| انگلیسی (`en-US`) | 329 | 0 | `/en/` |
+| عربی عراق (`ar-IQ`) | 329 | 16 | `/iraq/` |
+| تاجیکی (`tg-TJ`) | 329 | 16 | `/tj/` |
+| انگلیسی (`en-US`) | 329 | 16 | `/en/` |
 
 ## وضعیت بازطراحی تصاویر
 
@@ -69,46 +69,46 @@
 
 ## مقاله بعدی صف
 
-- عنوان: **آبیاری قطره‌ای و کیفیت محصول**
-- شناسه: `strat-014`
+- عنوان: **گارانتی نوار تیپ AFP: شرایط و محدودیت‌ها**
+- شناسه: `strat-025`
 - گروه: `strategic`
-- تعداد تلاش قبلی: **0**
+- تعداد تلاش قبلی: **1**
 
 ## آخرین مقالات تکمیل‌شده
 
+- **نوار تیپ پلاکدار یا بغل‌دوخت: کدام برای من؟** — `strat-023` — `strategic` — 1351 کلمه — تحویل: `SQL package` — `2026-09-28T17:04:44+00:00`
+- **کاهش استرس آبی در مزارع با نوار تیپ** — `strat-019` — `strategic` — 1208 کلمه — تحویل: `SQL package` — `2026-09-28T17:03:48+00:00`
+- **اتوماسیون نوار تیپ: تایمر و سنسور رطوبت** — `strat-016` — `strategic` — 1153 کلمه — تحویل: `SQL package` — `2026-09-28T17:03:41+00:00`
+- **بهینه‌سازی سیستم آبیاری بر اساس شیب مزرعه** — `strat-033` — `strategic` — 1565 کلمه — تحویل: `SQL package` — `2026-09-28T17:03:28+00:00`
+- **احیای خاک کشاورزی خسته با آبیاری قطره‌ای** — `strat-017` — `strategic` — 1147 کلمه — تحویل: `SQL package` — `2026-09-28T17:03:26+00:00`
+- **انتخاب قطره‌چکان بر اساس فاصله ردیف‌ها** — `strat-030` — `strategic` — 1434 کلمه — تحویل: `SQL package` — `2026-09-28T17:03:18+00:00`
+- **هزینه نوار تیپ ۱ هکتار: برآورد ۱۴۰۵** — `strat-024` — `strategic` — 1057 کلمه — تحویل: `SQL package` — `2026-09-28T17:02:39+00:00`
+- **محاسبه دبی قطره‌چکان برای هر محصول** — `strat-031` — `strategic` — 1083 کلمه — تحویل: `SQL package` — `2026-09-28T17:01:52+00:00`
+- **آبیاری قطره‌ای و کیفیت محصول** — `strat-014` — `strategic` — 1186 کلمه — تحویل: `SQL package` — `2026-09-28T17:01:50+00:00`
+- **برندهای نوار تیپ در بازار ایران: مقایسه** — `strat-026` — `strategic` — 1397 کلمه — تحویل: `SQL package` — `2026-09-28T17:01:47+00:00`
+- **محاسبه نیاز آبی گیاه بر اساس ET0** — `strat-020` — `strategic` — 1241 کلمه — تحویل: `SQL package` — `2026-09-28T17:01:14+00:00`
+- **هوشمندسازی سیستم آبیاری قطره‌ای با PLC** — `strat-015` — `strategic` — 1142 کلمه — تحویل: `SQL package` — `2026-09-28T17:00:29+00:00`
+- **آینده آبیاری قطره‌ای در کشاورزی ایران** — `strat-028` — `strategic` — 1256 کلمه — تحویل: `SQL package` — `2026-09-28T17:00:25+00:00`
+- **خدمات پس از فروش نوار تیپ: راهنمای جامع** — `strat-029` — `strategic` — 1521 کلمه — تحویل: `SQL package` — `2026-09-28T16:59:47+00:00`
+- **بازار آبیاری قطره‌ای ایران: روندهای ۱۴۰۵** — `strat-027` — `strategic` — 1306 کلمه — تحویل: `SQL package` — `2026-09-28T16:59:16+00:00`
+- **راهنمای خرید نوار تیپ: ۷ معیار انتخاب** — `strat-022` — `strategic` — 1349 کلمه — تحویل: `SQL package` — `2026-09-28T16:58:39+00:00`
 - **آبیاری قطره‌ای و مدیریت خاک** — `strat-013` — `strategic` — 1333 کلمه — تحویل: `SQL package` — `2026-09-28T16:26:35+00:00`
 - **مقایسه اقتصادی آبیاری قطره‌ای و بارانی در ۱۰ سال** — `strat-002` — `strategic` — 1360 کلمه — تحویل: `SQL package` — `2026-09-28T16:26:13+00:00`
 - **مراحل نصب نوار تیپ پلاکدار در سیستم آبیاری** — `prod-111` — `product` — 1096 کلمه — تحویل: `SQL package` — `2026-09-28T16:24:16+00:00`
 - **کاهش تبخیر با آبیاری قطره‌ای** — `strat-012` — `strategic` — 1181 کلمه — تحویل: `SQL package` — `2026-09-28T16:22:45+00:00`
-- **راهنمای جامع انتخاب سیستم آبیاری برای مزرعه** — `strat-001` — `strategic` — 1157 کلمه — تحویل: `SQL package` — `2026-09-28T16:22:09+00:00`
-- **تطبیق سیستم آبیاری با اقلیم ایران** — `strat-005` — `strategic` — 1116 کلمه — تحویل: `SQL package` — `2026-09-28T16:21:48+00:00`
-- **انتخاب فیلتر مناسب برای آبیاری قطره‌ای** — `strat-006` — `strategic` — 1154 کلمه — تحویل: `SQL package` — `2026-09-28T16:21:38+00:00`
-- **افزایش بازدهی آبیاری قطره‌ای در مزارع بزرگ** — `strat-010` — `strategic` — 1099 کلمه — تحویل: `SQL package` — `2026-09-28T16:21:03+00:00`
-- **هزینه لوله نخ دار 90 میلیمتر در مزرعه: برآورد** — `prod-110` — `product` — 1336 کلمه — تحویل: `SQL package` — `2026-09-28T16:20:59+00:00`
-- **توافق لوله نخ دار 75 میلیمتر با نوار تیپ و قطره‌چکان** — `prod-112` — `product` — 1191 کلمه — تحویل: `SQL package` — `2026-09-28T16:20:33+00:00`
-- **عیب‌یابی رایج سیستم‌های آبیاری قطره‌ای** — `strat-009` — `strategic` — 1060 کلمه — تحویل: `SQL package` — `2026-09-28T16:20:31+00:00`
-- **آبیاری قطره‌ای در مناطق کم‌آب** — `strat-011` — `strategic` — 1256 کلمه — تحویل: `SQL package` — `2026-09-28T16:19:57+00:00`
-- **محاسبه هزینه آبیاری قطره‌ای بر اساس هکتار** — `strat-004` — `strategic` — 1663 کلمه — تحویل: `SQL package` — `2026-09-28T16:19:41+00:00`
-- **نگهداری از نوار تیپ 20 سانتی رول 1000 متری برای عمر مفید بیشتر** — `prod-108` — `product` — 1181 کلمه — تحویل: `SQL package` — `2026-09-28T16:13:17+00:00`
-- **مشخصات فنی لوله نخدار 125 میلیمتر: راهنمای انتخاب** — `prod-082` — `product` — 1081 کلمه — تحویل: `SQL package` — `2026-09-28T16:09:41+00:00`
-- **راهنمای جامع خرید لوله نخدار 110 میلیمتر: نکات انتخاب و قیمت** — `prod-103` — `product` — 1562 کلمه — تحویل: `SQL package` — `2026-09-28T16:06:06+00:00`
-- **نگهداری از نوار تیپ پلاکدار برای عمر مفید بیشتر** — `prod-095` — `product` — 1392 کلمه — تحویل: `SQL package` — `2026-09-28T15:47:03+00:00`
-- **راهنمای جامع خرید لوله نخ دار 90 میلیمتر: نکات انتخاب و قیمت** — `prod-083` — `product` — 1232 کلمه — تحویل: `SQL package` — `2026-09-28T15:45:46+00:00`
-- **مقایسه لوله نخ دار 75 میلیمتر با سایر برندها** — `prod-091` — `product` — 1207 کلمه — تحویل: `SQL package` — `2026-09-28T15:42:22+00:00`
-- **مقایسه لوله نخدار 160 میلیمتر با سایر برندها** — `prod-089` — `product` — 1191 کلمه — تحویل: `SQL package` — `2026-09-28T15:41:57+00:00`
 
 ## خطاهای اخیر
 
+- **مدیریت آب‌پس‌فصل در مزارع** — `strat-018` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ["Missing the mandatory 'AFP | 09134922013' watermark in the bottom right corner (only 'AFP' logo is present on the carton).", "The cantaloupe mesh/net depicted is not 'restrained' and appears to be attached to the vine itself rather than loosely enclosing the fruit, which is botanically inaccurate for the specific 'restrained netted fruit' requirement.", 'The water droplet logo on the carton is stylized and potentially confusing with the irrig`
+- **آزمایش کیفیت آب آبیاری: راهنمای عملی** — `strat-032` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ["The visible text on the packaging is gibberish (e.g., 'stwp', 'irg...') which violates the rule against invented writing outside authentic package print.", 'The crop is not clearly recognizable as leek (تره); it looks more like a generic seedling or possibly corn, failing the requirement for botanical accuracy or clear agronomic story for the specific article.']`
+- **برنامه‌ریزی آبیاری بر اساس بارندگی** — `strat-021` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Hard reject: Visible person/farmer (human silhouette and body parts present).', 'Hard reject: Product is being manually held/placed rather than naturally placed on soil.', 'Fail: Product geometry is a vertical cylinder (standard tape reel) rather than the required wide low drip-tape carton roll.', 'Fail: Product width is too small (11% vs 13-27% target) and height ratio is off (approx 1:1 instead of 1.5-1.9:1).', 'Fail: Product is not located`
+- **گارانتی نوار تیپ AFP: شرایط و محدودیت‌ها** — `strat-025` — مرحله: `image` — تلاش: **1/4** — `article_image_generation unavailable after 4 retries: RuntimeError`
 - **طراحی شبکه آبیاری قطره‌ای از صفر تا صد** — `strat-008` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
 - **بهینه‌سازی مصرف آب در کشاورزی: ۳۰٪ صرفه‌جویی** — `strat-003` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ["Missing required 'white-and-blue drip-tape' material description and branding", 'Product roll is too tall (approx 36% height), violating the 32% height limit', 'Background crops appear to be corn/mint rather than the context-specific leek (تره) or generic hardware focus', "Required bottom-right watermark 'AFP | 09134922013' is missing", 'machine-enforced bounding-box check failed: Reduce product height from 36% to at most 32% of frame height.`
 - **رگولاتور فشار: نقش در سیستم آبیاری قطره‌ای** — `strat-007` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ['The product is too large: its width (~30%) and height (~38%) exceed the acceptable maximums of 27% and 32%, respectively.', "The roll's aspect ratio (width/height ≈ 0.79) violates the requirement that the visible diameter should be 1.5 to 1.9 times the height.", 'machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width.; Reduce product height from 38% to at most 32% of frame height.']`
 - **هزینه لوله نخدار 110 میلیمتر در مزرعه: برآورد** — `prod-085` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
 - **مراحل نصب لوله نخدار 160 میلیمتر در سیستم آبیاری** — `prod-101` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Contains required exact bottom-right watermark', 'Clearly identifiable as one AFP white-and-blue wide low cylindrical drip-tape roll', 'Product is off-center in the lower third and naturally placed on soil', 'Zero people or body parts visible', 'Background crop field and barn match family topic and farm context', 'No banned containers, extra packages, or fake text present', 'machine-enforced bounding-box check failed: Reduce the product group`
 - **مقایسه لوله تاشو 90 میلیمتر با سایر برندها** — `prod-098` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Product pair is far too large, occupying about 55% of frame width instead of the required 12 to 15%', 'Product pair is centered in the frame instead of being positioned on the lower third off-center', 'The products appear to be slightly overlapping rather than fully separate', 'The bare black coil has an inconsistent appearance with what looks like a floating/merged object intersecting it', 'machine-enforced bounding-box check failed: Reduce `
-- **هزینه نوار تیپ 20 سانتی رول 1000 متری در مزرعه: برآورد** — `prod-109` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ['Product is exactly one AFP white-and-blue drip-tape carton roll', 'Product is naturally placed on soil in a farm context with an unattended tractor', 'No people or human body parts are visible', "Required bottom-right watermark 'AFP | 09134922013' is present", 'Image fits a hardware-story role where the crop is visually neutral/absent', 'machine-enforced bounding-box check failed: Reduce the product group from 34% to 13-27% of frame width.']`
-- **هزینه لوله تاشو 90 میلیمتر در مزرعه: برآورد** — `prod-107` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['The pair of products occupies significantly more than 15% of the frame width', 'The products are not located on the lower third; the large coil on the right is centered vertically', 'The large coil on the right is standing upright/tilted, not flat on the ground', 'There is a third product (a small wrapped coil) in the foreground that is not approved', 'machine-enforced bounding-box check failed: Reduce the product group from 60% to 9-20% of f`
-- **هزینه لوله تاشو 2 اینچ 63 میلیمتر در مزرعه: برآورد** — `prod-106` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Hard reject: Presence of a person (farmer/worker) in the frame.', "Hard reject: Person's body parts (face, hands, legs) are clearly visible.", 'Hard reject: Products occupy significantly more than 15% of the frame width.', 'Hard reject: Products are centered rather than off-center on the lower third.', 'machine-enforced bounding-box check failed: Reduce the product group from 60% to 9-20% of frame width.; Reduce product height from 40% to at `
-- **اندازه‌گیری لوله تاشو 3 اینچ 75 میلیمتر برای مزرعه** — `prod-100` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ["Image contains a prominent human figure (woman) which violates the 'zero people' rule.", "The product pair is not staged 'off-center' on the lower third; it is large and central in the foreground.", 'The product dimensions appear significantly larger than the requested 12-15% of frame width.', 'The image shows a woman handling the product, which is explicitly forbidden.', 'machine-enforced bounding-box check failed: Reduce the product group f`
 
 ## بسته‌های ۵۰تایی آماده
 
@@ -121,10 +121,10 @@
 
 ## خروجی‌های تولیدشده
 
-- فایل JSON مقاله‌ها: **329**
-- تصاویر تولیدشده: **987**
-- فایل‌های SQL: **329**
-- فایل‌های Rollback: **329**
+- فایل JSON مقاله‌ها: **345**
+- تصاویر تولیدشده: **1035**
+- فایل‌های SQL: **345**
+- فایل‌های Rollback: **345**
 
 ## فایل‌های مدیریتی
 

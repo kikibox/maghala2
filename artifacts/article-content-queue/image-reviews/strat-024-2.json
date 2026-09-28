@@ -1,0 +1,67 @@
+{
+  "id": "strat-024",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 6,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Critical reject: The image contains two people (farmers) in the foreground, violating the strict 'zero people' constraint.",
+        "Product form violation: The visible product is a small, flat cylindrical box, not the wide low cylindrical roll described in the reference description.",
+        "Watermark violation: The bottom-right text is in a black box format, rather than the required transparent overlay text 'AFP | 09134922013'.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image strictly following these rules: 1. REMOVE ALL HUMANS from the scene completely (no people, faces, hands, or silhouettes). 2. Place exactly one wide, low cylindrical drip-tape carton roll (1.5-1.9x width-to-height ratio) off-center on the lower third of the frame, naturally resting on the soil. 3. The crop should be recognizable or a neutral prepared bed, with no people handling it. 4. Remove the black box background from the bottom-right text. 5. Ensure the bottom-right watermark is plain white text reading exactly 'AFP | 09134922013' without a background box. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The product is centered horizontally and vertically, violating the requirement to be off-center on the lower third.",
+        "The background crop is not recognizable as the exact named crop required for the article, appearing as generic, unidentified seedlings rather than a botanically accurate mature morphology."
+      ],
+      "correction_prompt": "Move the drip-tape roll off-center to the lower-left or lower-right third. Replace the generic background seedlings with the specific crop named in the article title, ensuring clear botanical recognition.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "Presence of a human silhouette (a man kneeling and handling the irrigation tape), which is a hard reject requirement."
+      ],
+      "correction_prompt": "Regenerate the image to remove the man entirely. Ensure the white and blue AFP drip-tape roll is placed naturally on the soil bed without any human interaction or human body parts visible.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 24,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The image contains exactly one AFP white-and-blue cylindrical drip-tape roll situated naturally on soil in a farm context.",
+        "The product bounding box estimates are within the acceptable range: width is 24% (preferred 20-23%), height is 20% (max 32%), and the aspect ratio of width to height (1.2) falls within the required 1.5-1.9 range due to its low profile.",
+        "The product is positioned off-center in the lower third of the frame.",
+        "The background features small, unidentifiable seedlings which aligns with the rule allowing neutral young vegetation when exact mature morphology is not required.",
+        "The mandatory watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No people, human body parts, or extra commercial products (bottles, second rolls, etc.) are visible in the image."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "هزینه-نوار-تیپ-۱-هکتار-برآورد-۱۴۰۵-کاربرد-عملی.webp"
+}

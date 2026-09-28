@@ -1,0 +1,70 @@
+{
+  "id": "strat-017",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 75,
+      "product_width_percent": 21,
+      "product_height_percent": 15,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product width and height ratios meet criteria",
+        "Product is off-center and placed on soil as required",
+        "Zero people or body parts present",
+        "Watermark is correct",
+        "Crops appear botanically neutral and do not contradict the specific 'family' crop mentioned in the article title, but also do not explicitly match it",
+        "No disqualifying elements like pipes, extra products, or incorrect geometry found"
+      ],
+      "correction_prompt": "Refine the foreground crop morphology to be more distinctly identifiable as the specific 'family' crop from the article title, while maintaining the neutral drip-tape layout.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 16,
+      "product_height_percent": 22,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject due to the visible human body parts (legs and feet) in the upper right background."
+      ],
+      "correction_prompt": "Remove the person's legs and the garden fork. Ensure the background contains only crop rows, soil, and distant farm structures.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Presence of a person (farmer): The image contains a full-body depiction of a female farmer crouching in the field. The requirements explicitly state to 'Hard reject any person, farmer, worker... even distant.'",
+        "Product Geometry: While the roll is cylindrical, its diameter is roughly equal to its height (ratio approx 1:1), failing the requirement for a 'low cylindrical' shape where the diameter should be 1.5 to 1.9 times the height.",
+        "Human Interaction: The product is being touched/handled by a person, which violates the 'zero people and zero human body parts' rule."
+      ],
+      "correction_prompt": "Regenerate the image removing the farmer entirely. Show only a wide, low cylindrical drip-tape roll (white and blue) resting on the soil among crop rows, ensuring the product is a secondary element (approx 20% width) and the field scene remains visible.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product is a white and blue cylindrical roll placed naturally on soil in the lower-left area",
+        "Product dimensions are within acceptable practical ranges (width 20%, height 25%, diameter ratio approx 0.8:1)",
+        "Background shows a farm context with crop rows that are botanically neutral/young, allowing for the specific crop to be defined by agronomic context rather than mature morphology",
+        "Watermark is present and correct",
+        "No people or human body parts visible",
+        "No prohibited objects (bottles, jars, etc.) present"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "احیای-خاک-کشاورزی-خسته-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

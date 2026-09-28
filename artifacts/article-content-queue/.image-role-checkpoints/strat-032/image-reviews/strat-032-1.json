@@ -1,0 +1,90 @@
+{
+  "id": "strat-032",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Presence of a human figure (crouching male farmer) and body parts, violating the 'zero people' constraint."
+      ],
+      "correction_prompt": "Regenerate the image with the crop field and drip tape roll, but completely remove all people, hands, and workers from the scene. Ensure the AFP white-and-blue wide cylindrical drip-tape carton roll is present, off-center on the lower third, and clearly placed on the soil. Ensure the 'AFP | 09134922013' watermark remains in the bottom-right corner.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 16,
+      "product_height_percent": 20,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The crop is clearly identifiable as corn/maize seedlings, which is a hard reject for a leek article",
+        "The product is centered on the vertical axis (x-center ~45%), violating the 'off-center' requirement",
+        "The product bounding box dimensions are inverted relative to the specification (width < height)"
+      ],
+      "correction_prompt": "Regenerate the image with the crop changed to young leek seedlings or a neutral bed. Move the product roll to the left or right third of the frame to be off-center, and ensure the roll's width is visibly larger than its height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 21.8,
+      "product_height_percent": 26.0,
+      "product_x_center_percent": 71.5,
+      "reasons": [
+        "Watermark text '09134922013' is an invalid phone number (9 digits instead of the required 10).",
+        "Crop morphology (long, flat, grass-like leaves) is not botanically specific to leek (which should have broad, thick leaves/stems); it is a clearly identifiable different species."
+      ],
+      "correction_prompt": "Replace the watermark phone number with '091349220134'. Replace the field crops with botanically accurate leek seedlings (wide, upright leaves) or a neutral soil bed to match the article topic.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: A person/farmer is prominently visible in the image.",
+        "Hard reject: The crop shown appears to be corn/maize, not leeks.",
+        "Hard reject: The product is a container or canister, not a cylindrical drip-tape roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person. Replace the crop with leek seedlings. Replace the canister with a white and blue cylindrical drip tape roll placed on the soil in the lower third. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Species mismatch: The crop visible in the foreground clearly resembles corn or maize seedlings, not leeks (trah) which have broad, flat leaves.",
+        "Centering/Placement: While slightly off-center, the product is positioned too low in the bottom-left quadrant relative to the preferred 'lower third' framing; however, the primary fail is the crop mismatch."
+      ],
+      "correction_prompt": "Regenerate image showing a wide low cylindrical white and blue AFP drip-tape carton roll placed on the soil in a leek field. The crop must clearly show young leek plants with broad, flat, sword-like leaves, not corn. Ensure the roll is off-center on the lower third.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The visible text on the packaging is gibberish (e.g., 'stwp', 'irg...') which violates the rule against invented writing outside authentic package print.",
+        "The crop is not clearly recognizable as leek (تره); it looks more like a generic seedling or possibly corn, failing the requirement for botanical accuracy or clear agronomic story for the specific article."
+      ],
+      "correction_prompt": "Regenerate with legible 'AFP' branding only (no gibberish text) and clearly depict young leek seedlings (broad, flat leaves) or a soil bed specifically prepared for leeks.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

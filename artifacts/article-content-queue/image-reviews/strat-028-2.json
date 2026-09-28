@@ -1,0 +1,53 @@
+{
+  "id": "strat-028",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 13,
+      "product_height_percent": 18,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Human hands and body parts are visible on the right side of the image, which is a hard reject criterion.",
+        "The product is not a 'wide low cylindrical drip-tape carton roll' but appears to be a standing spool, failing the specific geometry requirement."
+      ],
+      "correction_prompt": "Remove the human hand and arm. Replace the product with a wide, low cylindrical drip-tape carton roll lying flat on the soil in the lower-third, off-center.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The required exact bottom-right watermark 'AFP | 09134922013' is present, but it is overlaid on a black box that acts as an added graphic element not requested in the prompt (the prompt asks for the watermark itself).",
+        "The drip tape roll is a standard vertical cylindrical carton. The prompt strictly requires a 'wide low cylindrical' roll. The aspect ratio of the object (height > width) violates the specific geometry requested (diameter ~1.5-1.9x height).",
+        "The roll appears to be 'floating' or standing upright on the flat ground rather than lying horizontally (as a roll of tape would), which creates an impossible geometry for this product."
+      ],
+      "correction_prompt": "Regenerate the image showing the drip-tape carton lying horizontally (flat) on the soil. The roll must be wide and short (diameter 1.5-1.9x the height of the side). Ensure the product is wide/low, not a vertical cylinder. Remove the black box background behind the watermark text 'AFP | 09134922013' so the watermark is just text on the image.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 28,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The image correctly features a white and blue cylindrical drip-tape roll with the 'AFP' logo, consistent with the product description.",
+        "The product is placed on the soil in the lower third of the image, off-center to the left, and its size and proportions (width/height ratio approx 0.65, close to the requested 1.5-1.9 height-to-width aspect for a standard roll) are acceptable.",
+        "The background shows a farm context with a prepared bed and tiny green seedlings, which passes the requirement for neutral young vegetation when exact mature crop morphology is unavailable.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "There are zero people or human body parts in the image."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آینده-آبیاری-قطرهای-در-کشاورزی-ایران-کاربرد-عملی.webp"
+}

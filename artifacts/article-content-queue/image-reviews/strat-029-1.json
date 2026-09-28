@@ -1,0 +1,51 @@
+{
+  "id": "strat-029",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Presence of a person (male farmer) and visible human body parts (face, hands, legs) triggers a hard reject.",
+        "The product in hand is a container/box, not the required wide low cylindrical drip-tape carton roll.",
+        "The crop shown is garlic or green onions, which is a clearly identifiable different species from the required article (leek).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any people or human body parts. Replace the object in the hand with a wide low cylindrical drip-tape carton roll (approx 20-23% of frame width, aspect ratio 1.5:1) placed on the soil. Change the crop to be botanically accurate leeks (trah). Ensure the bottom-right watermark 'AFP | 09134922013' is present. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 26,
+      "product_height_percent": 32,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "Watermark error: The image contains 'AFP | 09134922013', but the required string is 'AFP | 09134922011'. The last digit is incorrect.",
+        "Article crop identification: The central plant has a closed pink flower bud and lacks the characteristic thick white stem (flesh) of a leek, making it botanically incorrect for the specified article 'leek'.",
+        "Product geometry: The roll is positioned at the bottom-left corner rather than the specified 'lower third' (off-center), making the placement slightly awkward for the composition."
+      ],
+      "correction_prompt": "Change the central plant to a young leek with a visible thick white stem and no flower bud. Correct the bottom-right watermark to exactly 'AFP | 09134922011'. Move the product roll slightly up and to the right so it sits more clearly in the lower third rather than the corner.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 14,
+      "product_height_percent": 20,
+      "product_x_center_percent": 62,
+      "reasons": [
+        "The image shows exactly one white and blue wide low cylindrical drip-tape carton roll."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "خدمات-پس-از-فروش-نوار-تیپ-راهنمای-جامع-تصویر-شاخص.webp"
+}
