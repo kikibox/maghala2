@@ -1,0 +1,89 @@
+{
+  "id": "prod-044",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 8,
+      "product_height_percent": 14,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: The image clearly contains two people (farmers/workers), which violates the 'zero people' rule.",
+        "Hard reject: The product shown is a small container or canister being held by a person, not the required 'AFP white-and-blue wide low cylindrical drip-tape carton roll' lying on the soil.",
+        "Hard reject: The product is centered and staged in the hands, failing the 'off-center on the lower third and naturally placed on soil' requirement.",
+        "Hard reject: The product size is significantly too small, failing the 'preferred product width is 20 to 23 percent' metric.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to show exactly one wide, low, cylindrical drip-tape carton roll lying naturally on the soil in a farm field. The roll must be white and blue, positioned off-center on the lower third. The background should show the relevant crop context but absolutely NO people, workers, or human body parts. Include the 'AFP | 09134922013' watermark in the bottom right. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 25,
+      "product_height_percent": 36,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product height is 36% of frame, exceeding the 32% maximum limit",
+        "Product is centered (48% x-center), not placed off-center on the lower third as required",
+        "Gibberish text visible on the bottom band of the roll (invented writing outside package print)",
+        "Crop morphology appears to be corn (maize) rather than the exact specified article crop",
+        "Product is visually dominant, failing the secondary requirement",
+        "machine-enforced bounding-box check failed: Reduce product height from 36% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with: product height no more than 24% of frame, product width no more than 20% of frame, x-center at 25% (left third), placed naturally on soil; correct the crop to match the exact article title crop; clean all side text on the roll to leave only 'AFP' and water-drop logo Reduce product height from 36% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 28,
+      "product_height_percent": 34,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "The product roll exceeds the hard rejection limit for width (>27% of the frame) and height (>32% of the frame).",
+        "The product is staged centered rather than off-center on the lower third.",
+        "The visible morphology of the crop in the image is indistinct and does not clearly match a specific named crop from a potential article title.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width.; Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the crop roll size to approximately 20% of the frame width. Move the product off-center to the lower third (x-axis 25-35%). The roll must have a wider low cylindrical aspect ratio (diameter ~1.5x height) with the white and blue AFP branding clearly visible. Use a more recognizable crop context. Reduce the product group from 28% to 13-27% of frame width. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 17,
+      "product_height_percent": 19,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Hard reject: A human (farmer/worker) is clearly present in the image, crouching and tending to the crop.",
+        "Hard reject: Multiple body parts (head, face, arms, hands, legs) are visible.",
+        "The article title/crop context is generic here; the human presence completely invalidates the image per the strict zero-person rule."
+      ],
+      "correction_prompt": "Remove the human farmer entirely. Keep only the empty farm field with crop rows and the AFP drip-tape carton roll placed on the soil. Ensure no people, hands, or body parts are visible.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 17.0,
+      "product_height_percent": 17.0,
+      "product_x_center_percent": 49.0,
+      "reasons": [
+        "The image displays exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "The bounding box is approximately 17% of the frame width, which falls within the accepted practical range of 13-27%.",
+        "The product is positioned naturally on the soil in the lower third of the frame.",
+        "The background consists of neutral young seedlings and irrigation row layouts, consistent with the article's agronomic context.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present.",
+        "Zero people or human body parts are visible in the frame."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "راهنمای-جامع-خرید-لوله-تاشو-3-اینچ-75-میلیمتر-نکات-انتخاب-و-قیمت-کاربرد-عملی.webp"
+}

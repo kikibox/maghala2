@@ -1,0 +1,73 @@
+{
+  "id": "prod-047",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: Image contains a visible person (farmer).",
+        "Hard reject: Human body parts (face, arms, legs) are present.",
+        "Centered staging: The product is positioned centrally in the lower half rather than off-center on the lower third.",
+        "Proportion mismatch: The roll's diameter (width) is roughly equal to its height, failing the 1.5-1.9x width-to-height requirement for a wide, low cylindrical carton."
+      ],
+      "correction_prompt": "Remove the person entirely. Reposition the wide white-and-blue drip tape roll to the lower-left or lower-right third. Increase the roll's width relative to its height to match a wide cylindrical carton shape. Keep the tractor and tilled soil context.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 25,
+      "product_height_percent": 26,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The product is not the required 'wide low cylindrical drip-tape carton'; it is a tall, narrow vertical cylinder that fails the specified diameter/height ratio.",
+        "The product's vertical height is roughly equal to its width, rather than the required wide, low profile.",
+        "The product does not appear to be placed naturally on the soil due to its vertical orientation."
+      ],
+      "correction_prompt": "Regenerate the foreground product as a wide, low, cylindrical drip-tape carton placed horizontally on the soil. Ensure the diameter is significantly larger than the height (approx 1.5-1.9x ratio) and keep it in the lower-left off-center position. Remove the vertical cylinder shape.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 24,
+      "product_height_percent": 36,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The image contains two visible human figures (farmers/workers), which triggers a hard reject based on the requirement for zero people.",
+        "The product (roll) violates the height constraint by being taller than 32 percent of the frame.",
+        "machine-enforced bounding-box check failed: Reduce product height from 36% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove all people from the scene. Keep the white and blue drip-tape roll on the soil but ensure it is secondary (width 20-23 percent, height under 32 percent). Reduce product height from 36% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 21,
+      "product_height_percent": 16,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Required bottom-right watermark 'AFP | 09134922013' is present.",
+        "Image contains exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product is naturally placed on soil in a farm context.",
+        "Product is off-center on the lower third of the frame.",
+        "Product dimensions (width approx 21%, height approx 16%) fall within accepted practical ranges.",
+        "Diameter-to-height ratio of the visible roll is approx 1.3. While slightly below the ideal 1.5 range, the cylinder is clearly visible, natural, and lacks 'impossible geometry' or 'giant roll' issues.",
+        "Background shows crop rows (corn) and a barn, consistent with a farm context.",
+        "Zero people or human body parts are visible.",
+        "No prohibited extra commercial products, bottles, or cans."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "مراحل-نصب-لوله-نخ-دار-75-میلیمتر-در-سیستم-آبیاری-جزئیات-فنی.webp"
+}

@@ -1,0 +1,102 @@
+{
+  "id": "prod-039",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 88,
+      "product_width_percent": 26,
+      "product_height_percent": 33,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The image displays exactly one white-and-blue wide low cylindrical drip-tape carton roll, consistent with the requested product type.",
+        "The product is off-center, placed on soil, and the background shows farm rows and seedlings, matching a farm context.",
+        "The product is secondary to the field scene, with a visible diameter-to-height ratio that is practical and acceptable.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner and is correctly displayed.",
+        "The visible seedlings are neutral and agronomically acceptable; no clear mismatch with the crop context is detected.",
+        "No human elements, extra commercial products, or prohibited features are present.",
+        "The product height is within the allowable practical range.",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 15,
+      "product_height_percent": 22,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: Image contains a person (farmer crouching in the field), which is explicitly prohibited.",
+        "Product geometry: The carton roll appears taller relative to its width than the recommended 1.5-1.9 aspect ratio.",
+        "Staging: The product is being held/handled by the person rather than naturally placed on the soil independently.",
+        "Composition: The presence of the human figure dominates the frame, making it impossible to assess the crop context as a neutral agronomic story."
+      ],
+      "correction_prompt": "Regenerate without any people. Show a single AFP white-and-blue drip-tape roll sitting naturally on the soil in a farm field. The roll must be off-center on the lower third, with a width of roughly 20% of the frame and a height of about 12% (maintaining a wide cylindrical shape). The background must feature the specific crop rows from the article. Ensure the 'AFP | 09134922013' watermark remains in the bottom right.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "The product shown is a roll of drip tape material, not the required white-and-blue wide low cylindrical drip-tape carton roll (it lacks the carton box structure specified in the prompt).",
+        "The image contains gibberish/illegible text on the product roll, which is a hard reject factor.",
+        "The product is too small relative to the frame (width is estimated at roughly 18% of the image, which is on the lower end of the acceptable range, but the product form is incorrect).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to feature a white-and-blue cardboard carton roll of drip tape, not a loose roll of plastic tubing. Ensure the product is clearly a wide, low cylindrical carton. Remove the gibberish text on the roll. Ensure the crop in the background matches the specific crop from the article title (currently showing generic seedlings). Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 24,
+      "product_height_percent": 26,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "The visible diameter of the roll is nearly identical to its height, violating the requirement that the diameter must be 1.5 to 1.9 times the visible height.",
+        "The roll is depicted as a very short, squat cylinder rather than a wide, low cylindrical drip-tape carton."
+      ],
+      "correction_prompt": "Reposition the drip-tape roll so its visible width is approximately 1.5 to 1.9 times its height, ensuring it is clearly wider than it is tall.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 20,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The image contains a clearly visible person (farmer/worker) crouching and interacting with the product, which is a hard reject criterion.",
+        "The exact bottom-right watermark text is 'AFP | 09134922013' instead of the required 'AFP | 09134922013'."
+      ],
+      "correction_prompt": "Remove the farmer/worker completely from the scene. Ensure the drip-tape roll is placed unattended on the soil. Fix the watermark to read exactly 'AFP | 09134922013'.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 22,
+      "product_height_percent": 24,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Product is a single white-and-blue cylindrical roll consistent with the required shape.",
+        "Product is off-center in the lower third and naturally placed on soil.",
+        "Product dimensions (22% width, 24% height) are within acceptable ranges.",
+        "No people or human body parts are visible in the image.",
+        "Required 'AFP | 09134922013' watermark is present in the bottom right corner.",
+        "Background context (field and farm structure) is appropriate for an agricultural product."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "مراحل-نصب-لوله-نخ-دار-90-میلیمتر-در-سیستم-آبیاری-تصویر-شاخص.webp"
+}

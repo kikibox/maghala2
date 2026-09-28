@@ -1,0 +1,94 @@
+{
+  "id": "prod-047",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Image contains two people (faces, hands, and full bodies) which strictly violates the 'zero people' rule.",
+        "Hard reject: The product is being held/handled by a person rather than resting naturally on the soil.",
+        "Product is not placed on the lower third or off-center; it is in the mid-frame.",
+        "Cannot accurately estimate product dimensions due to occlusion by hands.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with zero people; remove both men. Place the AFP white-and-blue wide low cylindrical drip-tape carton roll directly on the soil in the lower third (off-center). Ensure the roll is not held by anyone. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Major reject: Human presence visible (legs, hands, and arm of a person holding the roll).",
+        "The crop in the foreground does not match the required specific crop morphology for 'article role 2' without more context, but the human presence is the primary fatal flaw."
+      ],
+      "correction_prompt": "Remove the human figure and hands completely. The carton roll must be placed standalone on the soil. Ensure the background crop is botanically specific to the article topic.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 25,
+      "product_height_percent": 38,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Product height exceeds the 32% maximum limit, appearing taller and more prominent than preferred.",
+        "The presence of a prominent vertical white drip line/pipe extending directly from the center of the roll into the crop row violates the requirement for 'impossible geometry' or 'pipe through the roll', which should be clean.",
+        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the vertical height of the roll to 25% of the frame, place it more off-center in the lower third, and remove the visible vertical drip line emerging from the roll center. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 6,
+      "product_height_percent": 8,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Clear presence of a person (farmer/worker) which is a hard reject requirement.",
+        "Hard reject rule: 'The image must contain zero people and zero human body parts'.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Place the cylindrical drip-tape carton on the soil between the rows. Ensure the product is off-center in the lower third, with a width of approximately 20% of the frame and height under 32%, maintaining the required aspect ratio. Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 15,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: The image contains visible people (a farmer and a dog) in the background, which is explicitly prohibited (zero people allowed).",
+        "Product placement: The roll is placed in the foreground on soil, but the presence of the people in the field violates the 'no human silhouette' constraint."
+      ],
+      "correction_prompt": "Regenerate the image with the exact same composition (drip tape roll in the foreground, farm rows in the background), but completely remove the person and dog from the background field. Ensure the background shows only the crop rows, sky, and barn.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 24,
+      "product_height_percent": 26,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "All strict constraints met: 1 AFP white/blue wide low cylindrical roll, zero people/parts, naturally on soil, off-center lower-left.",
+        "Background matches farm/drip-tape context.",
+        "Required AFP | 09134922013 watermark is present and intact."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "مراحل-نصب-لوله-نخ-دار-75-میلیمتر-در-سیستم-آبیاری-کاربرد-عملی.webp"
+}

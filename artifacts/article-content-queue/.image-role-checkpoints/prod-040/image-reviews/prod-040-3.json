@@ -1,0 +1,56 @@
+{
+  "id": "prod-040",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Presence of a person (human silhouette/figure) in the background, explicitly prohibited by the 'zero people' rule.",
+        "Hard reject: The image contains two product items (a carton roll and a loose coil of tubing); the prompt specifies 'exactly one' drip-tape carton roll and lists 'second roll' as a hard reject condition.",
+        "Watermark Discrepancy: The phone number in the bottom-right watermark ('09134922013') does not exactly match the required string ('09134922013' vs '09134922013' - note the extra '2' in the image).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with exactly one white and blue cylindrical carton roll of drip tape on the soil. Remove the human figure in the background and remove the second coil of tubing. Ensure the background is a farm context without people. Correct the bottom-right watermark to exactly 'AFP | 09134922013'. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 29,
+      "product_height_percent": 25,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The visible width of the carton roll exceeds the 27 percent hard-reject threshold",
+        "The roll is centered horizontally in the frame rather than placed off-center on the lower third",
+        "machine-enforced bounding-box check failed: Reduce the product group from 29% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the AFP white-and-blue carton roll placed clearly off-center in the lower third, reducing its visible width to roughly 20 to 23 percent of the frame, and keeping all other elements identical. Reduce the product group from 29% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 26.5,
+      "product_height_percent": 30.2,
+      "product_x_center_percent": 38.5,
+      "reasons": [
+        "Product is a single AFP white-and-blue wide low cylindrical drip-tape roll",
+        "Product is off-center on the lower third, naturally placed on soil",
+        "Zero people or human body parts visible",
+        "Background context (farm/barn) matches the city/family topic-specific farm setting",
+        "Required watermark 'AFP | 09134922013' is present and visible",
+        "Product dimensions are within acceptable practical limits"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "مقایسه-نوار-تیپ-20-سانتی-رول-1000-متری-با-سایر-برندها-جزئیات-فنی.webp"
+}

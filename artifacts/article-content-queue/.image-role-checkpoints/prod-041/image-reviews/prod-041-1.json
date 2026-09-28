@@ -1,0 +1,71 @@
+{
+  "id": "prod-041",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 12,
+      "product_height_percent": 10,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: The image contains a second roll of drip tape stacked on top of the main carton roll, violating the 'exactly one' and 'second roll' rules.",
+        "Product width is approximately 12%, which is below the minimum acceptable threshold of 13%.",
+        "Product height is approximately 10%, falling below the preferred 13% baseline.",
+        "The center-stacked geometry and multiple rolls violate the requirement for a single naturally placed wide low cylindrical roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the small roll stacked on top to ensure exactly one large wide low cylindrical roll. Increase the width of the single remaining roll to at least 15% of the frame width and 14% of the height to meet the minimum size requirements. Keep it on the soil in the lower third, off-center. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 28,
+      "product_height_percent": 30,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "The product is centered horizontally (approx 49%), violating the off-center requirement.",
+        "The product width (28%) exceeds the maximum 27% limit, making the roll too prominent.",
+        "Text on the side of the carton roll is gibberish, violating the 'no invented writing' rule.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Move the roll to the bottom-left third (x 30%). Reduce the roll's width to 23%. Redraw the side text to be a clean, unrecognizable blurred graphic or generic blue strip instead of gibberish characters. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 15,
+      "product_height_percent": 14,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Hard reject: Visible person (farmer/worker) in the foreground is present, which is explicitly forbidden.",
+        "Hard reject: Human body parts (hand, arm, legs, face) are visible."
+      ],
+      "correction_prompt": "Remove the person entirely. Show only the white-and-blue AFP drip-tape roll on the soil in a farm field context. Ensure no hands or human silhouettes are present.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 22,
+      "product_height_percent": 24,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product is an AFP white-and-blue wide low cylindrical drip-tape roll, correctly placed on soil in the lower-left quadrant (off-center).",
+        "Background matches the general farm context with a prepared bed and visible crop rows; vegetation is in an early growth stage which is acceptable.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Zero people or human body parts visible.",
+        "Product dimensions are within the preferred 20-23% width range and acceptable height range (<32%).",
+        "Geometry is plausible and consistent with the requested product type."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "راهنمای-جامع-خرید-لوله-نخدار-125-میلیمتر-نکات-انتخاب-و-قیمت-تصویر-شاخص.webp"
+}

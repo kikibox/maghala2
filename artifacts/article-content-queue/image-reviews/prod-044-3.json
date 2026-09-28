@@ -1,0 +1,57 @@
+{
+  "id": "prod-044",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 9,
+      "product_height_percent": 15,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Contains a visible person (farmer/worker) violating the zero people requirement.",
+        "Product is far too small and not positioned in the lower third.",
+        "Product is centered rather than off-center.",
+        "Product proportions do not match the required wide low cylindrical shape (height is greater than width).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and faces completely. Show a single, wide, low, cylindrical white and blue drip-tape carton roll on the soil. The roll should be located in the lower third, off-center, and occupy 20-23 percent of the image width. The roll must be physically wider than it is tall (approx 1.5:1 ratio). Keep the 'AFP | 09134922013' watermark. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Cow visible in the background on the left side, which is an animal not present in the city/farm context for a generic drip tape hardware story.",
+        "Cow visible in the background on the right side near the barn, which is an animal not present in the city/farm context for a generic drip tape hardware story.",
+        "Tractor driver (silhouette/figure) visible in the background tractor on the left, which is a hard reject for human presence."
+      ],
+      "correction_prompt": "Remove the cows and the tractor driver. Show an empty field or a static irrigation setup. Ensure the central roll is clearly off-center to the right or left, not in the middle.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 16.7,
+      "product_height_percent": 16.7,
+      "product_x_center_percent": 41.7,
+      "reasons": [
+        "One clearly visible AFP white-and-blue wide, low cylindrical drip-tape roll placed naturally on soil",
+        "Zero people or human body parts visible",
+        "Unattended tractor and ordinary irrigation lines in the background are permitted as infrastructure/hardware and are not extra commercial products",
+        "Product bounding box estimates: width ~16.7% of frame (within the preferred 20–23% band but acceptable range), height ~16.7% (≤32%), x-center ~41.7% off-center in the lower third",
+        "Background farm context (cultivated soil, farm buildings, irrigation infrastructure) is topic-appropriate; crop absence/neutral treatment is acceptable for a hardware story",
+        "Required bottom-right watermark 'AFP | 09134922013' present and authentic-looking"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "راهنمای-جامع-خرید-لوله-تاشو-3-اینچ-75-میلیمتر-نکات-انتخاب-و-قیمت-جزئیات-فنی.webp"
+}

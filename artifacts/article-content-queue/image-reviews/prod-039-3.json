@@ -1,0 +1,78 @@
+{
+  "id": "prod-039",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Presence of a person/farmer/worker: The image clearly shows a man crouching next to the product, which violates the hard reject rule for any human body parts or silhouettes.",
+        "Second commercial product: A second roll of black hose or tubing is visible on the ground to the right, violating the requirement for exactly one product package."
+      ],
+      "correction_prompt": "Regenerate image showing only a white-and-blue wide low cylindrical drip-tape carton roll on farm soil in a farm context. Remove all people, workers, farmers, and human silhouettes. Remove the second black hose roll. Keep the roll off-center on the lower third, naturally placed on soil, and ensure the 'AFP | 09134922013' watermark remains in the bottom right.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 30,
+      "product_height_percent": 32,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "The product width is approximately 30% of the frame, which exceeds the maximum acceptable width of 27%.",
+        "The product is positioned on the horizontal center line (47%), but the role specification requires it to be off-center on the lower third.",
+        "The visible diameter-to-height ratio is nearly 1:1, which does not match the required proportion of 1.5 to 1.9 times its height.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Shrink the roll to 24% of the frame width and increase its circular profile to ensure the diameter is 1.6 times the height. Move the product's center to the 25% horizontal position to clearly establish an off-center placement while keeping it naturally on the soil. Reduce the product group from 30% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Hard reject: A human figure (farmer/worker) is clearly visible in the background next to the tractor, which violates the zero-person rule."
+      ],
+      "correction_prompt": "Remove the person in the background; keep the tractor and soil scene; keep the AFP roll in the lower-left foreground with the required watermark.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 18,
+      "reasons": [
+        "Hard reject: multiple people are visible (a man crouching and another on the tractor), which is strictly prohibited."
+      ],
+      "correction_prompt": "Remove all human figures, faces, hands, and body parts from the scene. Keep the tractor and drip tape roll (on the soil) as unattended infrastructure and product.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Single white and blue AFP drip tape roll with correct branding and required bottom-right watermark",
+        "Roll is off-center in the lower left, naturally placed on soil, and remains the secondary subject compared to the background scene",
+        "No people or human body parts visible",
+        "Background shows farm hardware with an unattended tractor, which is permitted infrastructure",
+        "No forbidden objects like extra containers, fake text, or impossible geometry detected"
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "مراحل-نصب-لوله-نخ-دار-90-میلیمتر-در-سیستم-آبیاری-جزئیات-فنی.webp"
+}

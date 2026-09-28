@@ -1,0 +1,70 @@
+{
+  "id": "prod-041",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Second package and second roll present",
+        "Tall narrow roll present",
+        "Two product instances instead of one",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate to show a single wide, low cylindrical drip-tape roll on the soil. Remove the narrow canister and the second small roll. Ensure the remaining product is the only visible commercial item and meets the required dimensional constraints. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 25,
+      "product_height_percent": 25,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Background scene depicts a dairy/farm with cows, a tractor, and a barn, which is not a specific crop context suitable for a drip-tape close-up story.",
+        "The product appears centered rather than being naturally placed on the off-center lower third of the frame.",
+        "Gibberish text is visible on the package, failing the 'authentic package print' requirement."
+      ],
+      "correction_prompt": "Regenerate the image to focus on a specific crop context with drip tape as a secondary element. Place the drip-tape roll off-center in the lower third on the soil. Ensure all packaging text is clean, legible, and specific to the product name.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 26,
+      "product_height_percent": 31,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "The product is positioned in the horizontal center of the frame (x_center ~49%), violating the 'off-center' and 'no centered product staging' requirement.",
+        "The roll's geometry appears too short and wide relative to its diameter; the width is at the maximum acceptable limit and the visible height is nearly at the rejection threshold, failing to meet the 1.5-1.9 aspect ratio preference."
+      ],
+      "correction_prompt": "Shift the roll to the lower-left or lower-right third of the frame to remove centered staging. Adjust the roll's vertical perspective to show a taller cylinder (increasing visible height relative to width) and ensure it remains grounded on the soil.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 23,
+      "product_height_percent": 28,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product is a single white-and-blue AFP wide low cylindrical drip-tape carton roll.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No people, human body parts, or silhouettes are visible.",
+        "No forbidden containers (bottles, jars, buckets, etc.) or extra commercial products.",
+        "Product dimensions are within the acceptable range: width is ~23% (within the 13-27% window) and height is ~28% (below the 32% limit).",
+        "Product is off-center in the lower-left quadrant, placed naturally on the soil.",
+        "Background (tilled field with distant crop rows) aligns with the farm/irrigation context."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "راهنمای-جامع-خرید-لوله-نخدار-125-میلیمتر-نکات-انتخاب-و-قیمت-جزئیات-فنی.webp"
+}
