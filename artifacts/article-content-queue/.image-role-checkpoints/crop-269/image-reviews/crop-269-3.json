@@ -1,0 +1,95 @@
+{
+  "id": "crop-269",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 10,
+      "product_height_percent": 8,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: Image contains a person (farmer/worker), face, and hands.",
+        "Layout error: The image is a composite/multi-panel collage (three distinct sections), but the requirement is for a single image showing exactly one roll.",
+        "Watermark position: The watermark 'AFP | 09134922013' appears only in the bottom-right panel and does not span the entire image, failing the 'exact bottom-right watermark' condition for the whole frame.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Generate a single wide landscape image, not a collage, showing exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll on farm soil in a farm context. The roll must be off-center (lower third), secondary in size (approx 20-23% frame width, <32% height), with a visible diameter 1.5-1.9x its height. Include zero people, zero human silhouettes, and zero body parts. Add the watermark 'AFP | 09134922013' in the bottom-right corner of the entire image. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 31,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Presence of a person (farmer) in the background",
+        "Product is not clearly positioned off-center on the lower third (it is nearly centered horizontally)"
+      ],
+      "correction_prompt": "Remove the person/farmer from the background. Shift the drip tape roll horizontally to the left or right so it is clearly off-center on the lower third.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Person (farmer) visible in the distant background on the left.",
+        "Hard reject: Second package/extra commercial product (black spool/drum) present in the frame.",
+        "The product (drip tape carton) is positioned too centrally; it should be clearly off-center in the lower third.",
+        "Background includes a large tractor which is not strictly 'ordinary fixed irrigation hardware', but the disqualifying factors are the person and the extra spool."
+      ],
+      "correction_prompt": "Regenerate without any people or human silhouettes. Remove the black spool wheel from the soil, leaving only the white-and-blue AFP drip-tape carton roll. Move the carton roll further to the left or right so it is clearly off-center in the lower third. Keep the unattended tractor in the background.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 23,
+      "product_height_percent": 31,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "The crop is a hard reject due to the driver silhouette clearly visible inside the tractor cab, violating the 'zero people' rule.",
+        "The image lacks the mandatory 'AFP | 09134922013' watermark at the bottom-right; it incorrectly displays 'TAP 09134922013' instead."
+      ],
+      "correction_prompt": "Remove the driver silhouette from the tractor cab. Replace the incorrect 'TAP' label with the specific 'AFP | 09134922013' watermark at the bottom right.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Contains a second roll (the large multicolored spool on the right), which is a hard reject under the 'single roll' rule.",
+        "Contains a green toy tractor, which is hard reject (extra commercial object not permitted in hardware story).",
+        "Second package / second roll violates the 'exactly one roll' requirement.",
+        "Product is not a drip-tape roll (it is a standard tube spool, not wide cylindrical drip-tape carton roll as required)."
+      ],
+      "correction_prompt": "Remove the second roll and the toy tractor; show a single white-and-blue wide low cylindrical drip-tape carton roll off-center on the lower third on soil, with the required AFP watermark and no extra objects.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 22,
+      "product_height_percent": 34,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Product height exceeds the maximum limit of 32 percent (estimated 34%).",
+        "Product geometry is a tall, narrow drum (height is close to its width), failing the requirement to be a wide low cylindrical roll with a diameter 1.5 to 1.9 times its height.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the roll as a wide, low flat cylinder (diameter ~1.8x height) with its height reduced to under 32 percent of the frame. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

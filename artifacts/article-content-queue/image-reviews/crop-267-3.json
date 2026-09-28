@@ -1,0 +1,53 @@
+{
+  "id": "crop-267",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22.5,
+      "product_height_percent": 28.0,
+      "product_x_center_percent": 36.0,
+      "reasons": [
+        "Extra commercial product present: a smaller roll of tape is included in the scene, violating the single roll constraint.",
+        "A pipe is threading through the center of the main tape roll, violating the 'no pipe through the roll' geometry rule.",
+        "The 'AFP' text on the roll appears to be a generic placeholder for a 'drip tape' label rather than a specific brand, which looks like invented text."
+      ],
+      "correction_prompt": "Remove the second small tape roll and the pipe passing through the center of the main roll. Ensure the main roll is a single, clean, unobstructed tape spool with authentic packaging that does not feature a prominent 'AFP' brand name on the body.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Presence of a person in the image (right side), including hands, arms, and legs.",
+        "Role 3 requires a hardware story context without people; the human presence in this image is a hard reject condition."
+      ],
+      "correction_prompt": "Remove the person entirely from the scene. Keep the AFP drip-tape carton roll positioned off-center in the lower third on the soil. Ensure the background remains a farm context without any human silhouettes or body parts.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 20,
+      "product_height_percent": 18,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product is a single wide low cylindrical drip-tape carton roll with white and blue branding, positioned on soil in the lower third, off-center to the left.",
+        "Visible diameter (width) is approximately 1.11 times the height, which is geometrically plausible for a wide roll and within the 'secondary product' acceptable range.",
+        "Zero people or human body parts are visible; the background infrastructure (tractor, barn) is consistent with a hardware/farm context without contradicting a crop-agnostic role.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom right corner.",
+        "No hard reject triggers such as secondary packages, bottles, or impossible geometry are observed."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "نگهداری-جعفری-با-نوار-تیپ-نکات-کلیدی-جزئیات-فنی.webp"
+}

@@ -1,0 +1,55 @@
+{
+  "id": "crop-278",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "The image contains a human-like crop (a large green plant resembling a hemp/chanvre shoot) in the right foreground which is not neutral and may be inconsistent with the general hardware role; more critically, the inclusion of a crop plant in a 'hardware story' role where crop plants are 'absent or visually neutral' violates the rule against identifying a crop that is not the specified canola.",
+        "The plant is clearly not canola (rapeseed) morphology, it is a broad-leafed plant that looks like hemp/chanvre or another herb, failing the constraint that 'if an identifiable crop appears, hard reject only when it clearly contradicts canola'."
+      ],
+      "correction_prompt": "Remove the large green plant on the right. Ensure the background contains only soil and hardware (pressure gauge/manifold). Do not include any broad-leafed plants that are not canola/rapeseed morphology.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 25,
+      "product_height_percent": 35,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product is not off-center; it is positioned in the bottom-left quadrant rather than along the lower-third vertical axis",
+        "Product height exceeds the 32 percent maximum limit",
+        "The crop in the background appears to be row crops (likely corn), which clearly contradicts the specified 'canola (rapeseed)' or neutral hardware context requirement",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Move the drip tape roll to the bottom-right off-center position. Shrink the roll slightly so its height is under 32% and width is 20-23% of the frame. Replace the background crop with blurred canola (rapeseed) field or neutral soil texture. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 19,
+      "product_height_percent": 22,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "The product is a single wide cylindrical drip-tape roll, meeting the shape requirements.",
+        "The roll is white with a blue band, consistent with the specified branding.",
+        "The product is placed on soil in a farm context without identifiable canola crops, adhering to Role 3 requirements.",
+        "No people or human body parts are visible in the image.",
+        "The product dimensions (approx. 19% width and 22% height) fall within the acceptable secondary product ranges.",
+        "The required watermark 'AFP | 09134922013' is present and visible in the bottom right."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "مقدار-بذر-کلزا-در-هکتار-راهنمای-جامع-جزئیات-فنی.webp"
+}

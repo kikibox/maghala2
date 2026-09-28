@@ -1,0 +1,95 @@
+{
+  "id": "crop-275",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Two humans are clearly visible in the foreground and background",
+        "Human hands, faces, and body parts are present",
+        "The required drip-tape carton roll is completely missing",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts. Generate a realistic agricultural scene featuring exactly one white and blue wide low cylindrical drip-tape carton roll positioned naturally on the soil in the lower third. The crop must be identifiable as the specific article crop with botanically accurate morphology. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 26,
+      "product_height_percent": 33,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Product height exceeds the maximum limit of 32% (estimated at 33% of the image height).",
+        "The crop in the foreground is botanically distinct (resembling *Hibiscus rosa-sinensis* with lobed leaves and large buds) which risks 'hard reject' if the article title implies a different common crop (like *Abelmoschus esculentus* okra or *Malva* mallow) where leaf morphology differs.",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce product height to a maximum of 30% of the image height while maintaining width under 27%. Ensure the foreground crop has indeterminate or botanically generic foliage to avoid specific species misidentification. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 6,
+      "product_height_percent": 8,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Presence of a person (farmer) is a hard reject violation.",
+        "The product (roll) is excessively small (<13% width), falling below the acceptable range.",
+        "The crop shown (cotton) does not match the specified topic (family tape/irrigation general or missing specific crop context in prompt, but cotton is usually row crop not 'family tape' context unless specified). More critically, the presence of the person invalidates the image immediately.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and body parts. Show a close-up of a wide low cylindrical AFP white-and-blue drip-tape roll (20% width) on soil in a farm context without humans. Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard Reject: Gibberish/Invented text on package. The product features the AFP logo and nonsensical writing instead of authentic 'family tape20' or standard drip-tape labeling. This matches the 'fake headline... or invented writing' rule."
+      ],
+      "correction_prompt": "Replace the gibberish text on the carton with clear, authentic '20mm Drip Tape' label and brand markings. Keep the white and blue color scheme and AFP phone watermark.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Human body parts (legs and feet) are clearly visible on the right side of the image.",
+        "Product size violation: The visible width of the roll is approximately 12% of the frame, which is below the minimum practical threshold of 13%.",
+        "Product height violation: The visible height of the roll is approximately 18% of the frame, significantly exceeding the maximum limit of 32% (the object is too tall relative to its width).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image removing all human figures and body parts. Re-center the crop in the farm context. Rescale the AFP drip-tape roll to be wider (approx 20% of frame width) and shorter, with a visible diameter roughly 1.5 times its visible height, placed naturally on the soil in the lower third. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 21,
+      "product_height_percent": 27,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "The required 'white-and-blue' drip-tape carton is missing; the current image displays a white box with blue logos but lacks the characteristic appearance of a drip-tape roll.",
+        "The 'wide low cylindrical drip-tape roll' geometry is not present; instead, there is a generic square-shaped box on the ground.",
+        "The text 'Drip Irrigation Tool' is clearly visible on the product, violating the rule against fake headlines or invented writing outside of authentic package print."
+      ],
+      "correction_prompt": "Replace the white box with a white-and-blue wide low cylindrical drip-tape carton roll. Ensure it is off-center in the lower third and naturally placed on the soil. Remove all extra text from the package to maintain a clean, authentic look. Keep the required AFP watermark.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

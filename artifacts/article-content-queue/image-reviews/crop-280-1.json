@@ -1,0 +1,82 @@
+{
+  "id": "crop-280",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 6,
+      "product_height_percent": 8,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: Image contains a visible person (male farmer), which is strictly prohibited by the rules (zero people and zero human body parts).",
+        "Product size is below the acceptable practical range (13-27% width); it is currently too small to be the secondary focal point.",
+        "The product is not in a 'low cylindrical carton roll' state clearly distinguished from the person's interaction; the human presence makes the scene invalid regardless of the crop context.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without the person or farmer. Ensure the drip-tape carton roll is clearly visible, wider (approx 20% of frame), and placed on the soil in the lower third off-center. Keep the farm context (crop rows) and the specific watermark 'AFP | 09134922013' intact. No people or body parts. Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 25,
+      "product_height_percent": 18,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject: A prominent male farmer is crouching next to the product in the right foreground. The instructions explicitly require zero people or human body parts in the image.",
+        "Product staging: The product is placed on the soil in the foreground, but it is not off-center (too close to the middle), and it is being touched/interacted with by the farmer."
+      ],
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 9,
+      "product_height_percent": 17,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Image contains a person (human body parts present, violating zero people rule).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and regenerate to show only the crop and hardware. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 14,
+      "product_height_percent": 20,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: Image contains two clearly visible people (an adult and a child) in direct violation of the strict zero-person policy.",
+        "Hard reject: Human body parts including faces, hands, arms, and legs are prominently visible and interacting with the environment.",
+        "The product is not in a neutral farm context; it is part of a staged scene with human subjects.",
+        "The product's bounding box does not meet the preferred width (13-27% range) but the hard rejects due to human presence take precedence."
+      ],
+      "correction_prompt": "Remove all people, faces, and human body parts entirely. Generate an empty farm field scene with the drip-tape roll placed naturally on the soil off-center on the lower third. Ensure the crop and background match the article title without any human silhouettes.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 14,
+      "product_height_percent": 19,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Exactly one white-and-blue AFP drip-tape carton roll is visible",
+        "Product is off-center (left-of-center x) and placed naturally on soil",
+        "Zero people or human body parts visible",
+        "Farm context (prepared field with tiny seedlings, red barn, open sky) matches generic drip-irrigation article context; crop not specific/contradictory (no hard reject trigger)",
+        "Width ~14% (within 13–27 practical), height ~19% (<32% limit), roll proportions acceptable",
+        "Watermark 'AFP | 09134922013' present bottom-right and intact"
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "فاصله-نوار-تیپ-در-کشت-کینوا-استانداردهای-توصیهشده-تصویر-شاخص.webp"
+}

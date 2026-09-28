@@ -1,0 +1,73 @@
+{
+  "id": "crop-271",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 21,
+      "product_height_percent": 29,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: human body parts (legs/shoes) and farmer silhouette are visible on the right edge of the frame",
+        "Hard reject: extra commercial product (gray manifold/valve) is present next to the roll",
+        "Hard reject: extra commercial product (coiled pipe/hose) is wrapped around the base of the roll"
+      ],
+      "correction_prompt": "Remove the person on the right side of the frame, the gray manifold, and the coiled pipe. Regenerate the image to show only the standalone drip tape roll placed on the soil, with no human silhouettes or body parts visible.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 32,
+      "product_height_percent": 38,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product width is 32%, which exceeds the 27% hard reject threshold.",
+        "Product height is 38%, which exceeds the 32% hard reject threshold.",
+        "The product appears nearly centered (48% x-axis) rather than positioned in the lower third/off-center as required.",
+        "The product size makes it the dominant focus of the image, whereas it must be secondary.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 13-27% of frame width.; Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the roll's scale significantly to make it a secondary element (max 25% width). Shift it off-center to the lower third and place it on the soil so the farm background and crop rows dominate the frame. Reduce the product group from 32% to 13-27% of frame width. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 14,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Hard reject: A male figure is prominently visible in the foreground interacting with the product.",
+        "Hard reject: Human hands are visible and touching the carton roll.",
+        "Hard reject: Face and upper body are clearly visible.",
+        "The required bottom-right watermark text is incorrect (displays '09134922013' instead of the required '09134922013', and lacks the pipe separator 'AFP |').",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts from the image. Retain only the white and blue AFP drip-tape carton roll placed on the soil. Ensure the background shows the farm field. Correct the watermark text to exactly 'AFP | 09134922013'. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 24,
+      "product_height_percent": 22,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Product width (24%) and height (22%) are within acceptable practical ranges.",
+        "Product placement is off-center (33% x-center) and positioned in the lower third.",
+        "The roll's diameter-to-height ratio (~1.5:1) is natural for a wide drip-tape carton.",
+        "Background (soil, young crop row, farm barn) matches a drip-tape in-field story without contradicting a named crop (young plants are visually neutral/non-specific).",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Zero people, animal silhouettes, or hard-reject items (containers, second rolls, text) are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "میزان-برداشت-پنبه-در-هکتار-با-نوار-تیپ-جزئیات-فنی.webp"
+}

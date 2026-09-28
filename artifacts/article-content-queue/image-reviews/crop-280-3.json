@@ -1,0 +1,84 @@
+{
+  "id": "crop-280",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 14,
+      "product_height_percent": 14,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Hard reject: Image contains a person (woman) prominently featured, violating the 'zero people' rule.",
+        "Product staging: The drip tape roll is being handled by a hand, which is explicitly forbidden.",
+        "Product size: The product width (approx. 14%) is at the lower limit of the acceptable range but the primary rejection is the human figure."
+      ],
+      "correction_prompt": "Remove the woman and the hand completely. Place the single white and blue drip tape roll naturally on the soil in the lower-left or lower-right third. Keep the tractor in the background. Ensure the product is unattended and there are no human silhouettes in the frame. Maintain the 'AFP | 09134922013' watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 88,
+      "product_width_percent": 11,
+      "product_height_percent": 13,
+      "product_x_center_percent": 39,
+      "reasons": [
+        "The image contains zero people or human body parts.",
+        "The background is a farm context with an unattended tractor and soil, which is acceptable for a hardware/infrastructure story.",
+        "The product is correctly placed on the soil and is off-center in the lower third.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom right.",
+        "The product is a white and blue cylindrical carton roll consistent with drip tape.",
+        "The product width is slightly below the preferred 13% minimum, but remains visually acceptable and secondary to the scene.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 15,
+      "product_height_percent": 22,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Contains a visible person (farmer/worker) which is a hard reject condition."
+      ],
+      "correction_prompt": "Regenerate the image strictly without any human figures or body parts. Keep the AFP drip-tape roll on the soil in the lower third, off-center, with the farm background and required watermark 'AFP | 09134922013'.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 35,
+      "product_height_percent": 18,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product including the unrolled tape section extends to the right, making the total visual bounding box approximately 35% of the frame width, which exceeds the 27% maximum limit.",
+        "Product bounding box is centered horizontally (around 45-50%) rather than being clearly off-center on the lower third.",
+        "Product visual weight is too high due to the wide tape tail, making it the primary subject rather than secondary.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the visual footprint of the product by keeping the tape tightly wound without a long unrolled section. Move the roll further to the right and ensure its total width stays under 20% of the frame while maintaining a wider-than-tall aspect ratio. Reduce the product group from 35% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 16,
+      "product_height_percent": 17,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Single white-and-blue AFP wide low cylindrical drip-tape roll present",
+        "Product is off-center on the lower third and placed naturally on soil",
+        "Zero people or human body parts visible in the frame",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner as required"
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "فاصله-نوار-تیپ-در-کشت-کینوا-استانداردهای-توصیهشده-جزئیات-فنی.webp"
+}

@@ -1,0 +1,99 @@
+{
+  "id": "crop-262",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 4,
+      "product_height_percent": 4,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Hard reject: Two people (farmers/workers) are clearly visible in the foreground, violating the 'zero people and zero human body parts' rule.",
+        "Product misidentification: The item on the ground is a small pail/container, not the required 'wide low cylindrical drip-tape carton roll'.",
+        "Product size: The object is far too small to meet the minimum 13% width requirement.",
+        "Product shape: The object is a bucket/canister shape, which is a hard reject condition.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image to remove all human figures and body parts. Replace the small bucket with a large, wide, low, cylindrical drip-tape roll in white and blue packaging. The roll should be the main product, occupying 20-23% of the frame width, placed off-center on the lower third of the image on the soil. Maintain the farm context and the bottom-right AFP watermark. Enlarge the product group from 4% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 28,
+      "product_height_percent": 38,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The product is centered in the frame rather than being off-center on the lower third.",
+        "The product width is too large relative to the frame, dominating the scene instead of remaining secondary.",
+        "The product height exceeds the maximum allowed threshold.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width.; Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reposition the white and blue cylindrical roll to the lower third of the frame, ensuring it is off-center. Reduce its scale significantly so it is secondary to the surrounding farm context, keeping the width below 25 percent of the frame and the height below 32 percent. Reduce the product group from 28% to 13-27% of frame width. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: The image contains two prominent people (a man and a woman) interacting with the product. The rules explicitly forbid any people or body parts in the scene.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to remove all human figures. Show the single AFP drip-tape roll sitting naturally on the soil in the farm environment with no people present. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 58,
+      "product_width_percent": 28.5,
+      "product_height_percent": 33,
+      "product_x_center_percent": 50.5,
+      "reasons": [
+        "The product's vertical height occupies approximately 33-34% of the frame, which exceeds the hard reject threshold of 32%.",
+        "The product's width exceeds the 27% upper limit for acceptable framing.",
+        "The product is placed at the center of the image (x_center 50.5%), which violates the requirement for off-center placement on the lower third.",
+        "The text printed on the front of the carton (specifically '11611') is gibberish, violating the rule against invented writing outside authentic package print.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28.5% to 13-27% of frame width.; Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the product height to less than 32% and width to less than 27% of the frame. Move the product off-center to the left or right (lower third rule) to create better composition. Correct the gibberish text on the carton to be legible or remove it in favor of the blue/white branding. Reduce the product group from 28.5% to 13-27% of frame width. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 15,
+      "product_height_percent": 22,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: Presence of a person/farmer crouching in the foreground (visible head, torso, arms, and legs).",
+        "Hard reject: Human silhouette dominates the right half of the frame."
+      ],
+      "correction_prompt": "Regenerate without any people. Show a single AFP white-and-blue drip tape roll sitting on the straw mulch in the left-foreground, with the farm and crop rows in the background. Keep the roll off-center and secondary to the scene.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 80,
+      "product_width_percent": 23,
+      "product_height_percent": 20,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Zero people and human body parts detected, maintaining the required focus on the hardware product.",
+        "The required watermark \"AFP | 09134922013\" is present and correctly formatted in the bottom-right corner.",
+        "The product is correctly positioned in the lower third and off-center on the left side.",
+        "Product dimensions are within acceptable ranges (width ~23%, height ~20% with an aspect ratio of roughly 1.5:1).",
+        "The background (irrigated field with a farm structure) is a valid context for a drip-tape carton roll, and no conflicting crop morphologies or prohibited containers are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "مقدار-بذر-شوید-در-هکتار-راهنمای-جامع-جزئیات-فنی.webp"
+}

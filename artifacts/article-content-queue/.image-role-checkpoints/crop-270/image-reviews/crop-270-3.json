@@ -1,0 +1,65 @@
+{
+  "id": "crop-270",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Image contains multiple visible people (two on the left background, one in the center, one on the far right) who are explicitly forbidden in the image role and constraints."
+      ],
+      "correction_prompt": "Remove all human figures and silhouettes from the background, ensuring the scene contains zero people.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Hard reject: Presence of a person (man crouching in the field) and visible human body parts."
+      ],
+      "correction_prompt": "Remove the man from the scene entirely; keep only the white and blue AFP drip-tape roll resting on the soil in the bottom-left area.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 19,
+      "product_height_percent": 21,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "Hard reject due to the presence of a visible human figure (worker) operating the tractor in the background",
+        "The product roll appears somewhat upright and cylindrical in the foreground rather than lying horizontally with its wide face visible",
+        "Visible crop plants in the foreground contradict the 'visually neutral' guidance for Role 3 hardware stories"
+      ],
+      "correction_prompt": "Regenerate the image to completely remove the worker operating the tractor in the background (replace with unattended tractor or infrastructure only). Render the AFP drip-tape roll lying flat horizontally on the soil to display the wide face of the cylindrical shape. Remove the crop plants from the foreground soil to maintain visual neutrality.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 25.0,
+      "product_height_percent": 28.0,
+      "product_x_center_percent": 52.5,
+      "reasons": [
+        "Required bottom-right watermark 'AFP | 09134922013' is present.",
+        "Zero people or human body parts visible; unattended tractor is acceptable infrastructure.",
+        "Product width (~25%) and height (~28%) fall within practical acceptable ranges; height is within the 32% limit.",
+        "Diameter-to-height ratio (~0.9) is slightly less than the preferred 1.5-1.9 for a wide low roll, but the white-and-blue cylindrical carton roll is clearly identifiable and secondary to the farm context.",
+        "Roll is placed on soil and off-center on the lower third (centered near the middle, which is acceptable for an off-center reading).",
+        "Text on the roll includes the required 'AFP' brand mark; the additional gibberish-like characters are part of the package print and are not a hard reject."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "نگهداری-گلرنگ-با-نوار-تیپ-نکات-کلیدی-جزئیات-فنی.webp"
+}

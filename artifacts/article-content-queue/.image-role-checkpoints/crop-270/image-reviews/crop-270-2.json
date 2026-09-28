@@ -1,0 +1,95 @@
+{
+  "id": "crop-270",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 10,
+      "product_height_percent": 18,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: Presence of two people (farmers/workers) in the image, including faces and body parts, which is strictly prohibited.",
+        "Hard reject: Product is a small white container (jar/canister) held by a person, not the required 'wide low cylindrical drip-tape carton roll'.",
+        "Product staging violation: The product is centered and elevated in a hand rather than naturally placed on soil in the lower third off-center.",
+        "Missing geometry: The object does not match the required low cylindrical roll shape (diameter 1.5-1.9x height).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate without any people or human silhouettes. Replace the small white container with a wide, low cylindrical drip-tape carton roll (white and blue) sitting directly on the soil in the lower-left third of the frame. The roll must be 1.5 to 1.9 times wider than it is tall. Keep the 'AFP | 09134922013' watermark in the bottom-right corner. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 20,
+      "reasons": [
+        "Hard reject: The image contains a prominent human figure (crouching worker) interacting with the crop, which violates the 'zero people and zero human body parts' rule."
+      ],
+      "correction_prompt": "Remove the crouching man entirely. Show the AFP drip-tape roll placed naturally on the soil in the foreground, with only the farm, tractor, and crop rows in the background. Ensure no people or body parts are visible.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Hard reject: visible person/silhouette in the driver's seat of the primary tractor in the background."
+      ],
+      "correction_prompt": "Remove all human silhouettes or figures from the tractor cabs in the background to ensure the scene is completely empty of people.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 18,
+      "product_height_percent": 14,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "The image contains two visible people (farmers/workers), which is a hard reject violation.",
+        "The product is being held by a person rather than naturally placed on the soil.",
+        "The product shape is a standard cylindrical spool rather than the required wide, low cylindrical carton roll.",
+        "The scene involves active planting/installation with workers, violating the requirement for zero people and zero body parts."
+      ],
+      "correction_prompt": "Regenerate the image to show zero people or human parts. Place exactly one wide, low, cylindrical white-and-blue drip-tape roll naturally on the soil in the lower third. The crop must be clearly identifiable. Remove all farmers.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 32,
+      "product_height_percent": 28,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product width exceeds the maximum practical limit of 27% of the frame width, violating the constraint that the product should remain secondary and not overly dominant.",
+        "Product height exceeds the maximum limit of 32% of the frame height.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the width of the white-and-blue drip-tape roll to less than 27% of the frame width and its height to less than 32% of the frame height while keeping it off-center on the lower third and naturally placed on the soil. Reduce the product group from 32% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 10,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Image contains two human figures (farmers/workers), which is strictly prohibited.",
+        "Product size violation: The product bounding box is too small (approx. 8% width), falling below the minimum 13% acceptable range.",
+        "Product shape violation: The roll is too tall/narrow (height > width), violating the required 1.5x-1.9x diameter-to-height ratio.",
+        "Product placement: The product is not off-center in the lower third as required; it is held centrally by the figures.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with zero people. Remove all human figures and faces. Show exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll on the soil, off-center in the lower third. The roll must be significantly larger, occupying 15-20% of the frame width, with a visible diameter 1.7x its height. Keep the farm context and crop rows. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

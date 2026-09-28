@@ -1,0 +1,69 @@
+{
+  "id": "crop-268",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: The image contains a second roll of drip tape on the ground to the right of the main carton roll.",
+        "Hard reject: The required bottom-right watermark 'AFP | 09134922013' is missing; the visible text is 'AFP | 09134922013' (extra zero inserted) and 'AFP | 09134922013' (typo in provided text vs requirement 'AFP | 09134922013' - wait, the requirement is 'AFP | 09134922013', image has 'AFP | 09134922013'. Actually looking closer at the image text: it says 'AFP | 09134922013' with an extra '2' at the end. The requirement is 'AFP | 09134922013'. Therefore, it fails the watermark check."
+      ],
+      "correction_prompt": "Regenerate with exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll. Remove the second roll of tape on the ground. Ensure the bottom-right watermark reads exactly 'AFP | 09134922013'.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The watermark in the bottom right reads 'AFP | 09134922013', which contains one extra '2' compared to the required text 'AFP | 09134922013' (the prompt specifies the required text with two '2's before the final '013', and the image has three '2's, meaning it is technically a different/invalid number).",
+        "However, even if the watermark is deemed 'close enough', the image contains a tractor in the background. The prompt states 'Unattended tractors... are allowed'.",
+        "Wait, looking closer at the crop rows, the plants look like corn or generic small sprouts, not clearly sorghum. The prompt says 'Hard reject only when it clearly contradicts sorghum'. The sprouts are generic enough to pass as 'visually neutral' or non-contradictory for a close-up on the roll.",
+        "The most critical failure is the watermark text mismatch. The prompt requires exactly 'AFP | 09134922013'. The image shows 'AFP | 09134922013'. I will assume a typo in my initial analysis or strictness. Let's look at the product again. It is centered. The prompt says 'off-center'. The prompt says 'do not require... in a filter, manifold or flush-point close view' but this is a generic field shot. The product is centered. The prompt says 'off-center on the lower third'. This is a hard layout fail.",
+        "Also, the text on the roll is gibberish/fake (Arabic-looking text that doesn't spell anything real), which is technically allowed if it's 'authentic package print', but the gibberish rule applies to 'invented writing outside authentic package print'. The text on the roll is likely gibberish AI text."
+      ],
+      "correction_prompt": "Move the drip tape roll to the left (20-30% from left edge). Remove the gibberish text on the roll. Ensure the bottom-right watermark exactly matches 'AFP | 09134922013'.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "Hard reject: Presence of a human figure (male farmer) interacting with the scene, which violates the zero-person policy.",
+        "Hard reject: Presence of human body parts (face, hands, legs, torso).",
+        "Hard reject: The product is not placed naturally on soil; it is being held/managed by a person rather than sitting independently."
+      ],
+      "correction_prompt": "Remove the man entirely. Place the AFP drip-tape roll on the soil on the left side. Ensure the background remains a farm field with soil rows, with no people visible.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 21,
+      "product_height_percent": 14,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "Product correctly identified as an AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Background shows an unattended tractor and tilled soil, matching the hardware/farm context without visible human subjects.",
+        "Product dimensions and off-center placement in the lower third conform to the specified visual requirements.",
+        "Required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "No hard rejects detected (no people, no extra commercial items, no contradictory crop morphology)."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "هزینه-کشت-سورگوم-با-نوار-تیپ-در-هکتار-جزئیات-فنی.webp"
+}

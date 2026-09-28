@@ -1,0 +1,49 @@
+{
+  "id": "crop-279",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 28,
+      "product_height_percent": 22,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The product is located almost exactly in the center of the image (50%), violating the requirement to be off-center on the lower third.",
+        "The product's width is approximately 28% of the frame, which exceeds the maximum practical limit of 27%.",
+        "The crop in the background appears to be wheat or a similar cereal, not the specified rye (چاودار), though the visual difference in this stage makes it a borderline reject for 'clearly identifiable different species'.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reposition the white-and-blue roll to the lower right or lower left third of the frame (x_center 25% or 75%). Reduce the roll's width to exactly 22% of the frame. Ensure the background crop is clearly identifiable as rye. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 23,
+      "product_height_percent": 25,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "The crop morphology in the background, specifically the bearded grain heads, is clearly identifiable as Barley rather than Rye, triggering a hard reject for a different species.",
+        "The product is centered horizontally (x=26%) rather than being off-center on the lower third.",
+        "The roll height is too tall relative to its width, failing the 1.5 to 1.9 aspect ratio requirement (approx 0.9 ratio)."
+      ],
+      "correction_prompt": "Regenerate the crop background to show Rye with tall slender stems and long narrow grain heads (no bearded barley). Reposition the drip-tape roll to be clearly off-center to the right. Make the roll much wider relative to its height (1.5-1.9x) so it looks like a wide, low cylinder.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 70,
+      "reasons": [],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "نگهداری-چاودار-با-نوار-تیپ-نکات-کلیدی-تصویر-شاخص.webp"
+}
