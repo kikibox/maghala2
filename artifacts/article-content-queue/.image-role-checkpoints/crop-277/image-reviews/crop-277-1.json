@@ -1,0 +1,56 @@
+{
+  "id": "crop-277",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 8,
+      "product_height_percent": 10,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "The product (carton roll) is significantly undersized, with a visible width of only ~8%, which is far below the accepted 13-27% range. Even though it's secondary in the composition, its small size makes it difficult to identify clearly as a wide drip-tape carton roll.",
+        "The product is centered horizontally (at 49% width), which conflicts with the requirement to be placed off-center on the lower third of the frame.",
+        "While the crop (alfalfa) is recognizable in rows, the soil between the rows appears bare and compacted, which may not strongly convey the 'drip-tape applied to soil' agronomic context needed for image role 1.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with a single wide white-and-blue AFP drip-tape carton roll placed off-center in the lower third of the frame, visibly larger at approximately 18-20% of frame width and 10-12% height, sitting on soil between rows of young alfalfa. Maintain the red barn background and zero people. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 16,
+      "product_height_percent": 16,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "The background crop shows broad-leafed seedlings rather than the fine trifoliate leaves of alfalfa, failing the 'recognizable crop' requirement.",
+        "The product geometry is incorrect: the visible height of the roll exceeds 15% (roughly equal to its width), violating the 1.5-1.9 width-to-height ratio rule.",
+        "Fake/gibberish text appears on the bottom of the carton roll ('Drip Dripdop Bot...'), which is not part of authentic package printing."
+      ],
+      "correction_prompt": "Regenerate the background with rows of identifiable alfalfa seedlings (dense trifoliate leaves) instead of broad-leafed plants. Adjust the product roll to be a 'wide, low' cylinder with a height of roughly 60% of its width. Remove all gibberish text and replace with clean, professional AFP drip-tape packaging.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 20,
+      "product_height_percent": 32,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product is exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product is placed naturally on soil in the lower third of the frame.",
+        "Visible dimensions meet the requirements (width ~20%, height ~32%, off-center).",
+        "Background shows dense young crop rows consistent with the 'alfalfa' context, allowing neutral young vegetation.",
+        "Watermark 'AFP | 09134922013' is visible in the bottom right corner.",
+        "No people, human silhouettes, or forbidden objects are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-یونجه-با-آبیاری-قطرهای-تصویر-شاخص.webp"
+}

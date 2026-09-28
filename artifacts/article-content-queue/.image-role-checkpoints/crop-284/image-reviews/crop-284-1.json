@@ -1,0 +1,55 @@
+{
+  "id": "crop-284",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Presence of two people (hard reject)",
+        "Human body parts visible: hands, faces, arms, legs, torsos, heads (hard reject)",
+        "Required drip-tape roll product is completely missing",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and regenerate. Replace the current crop with sugar beet (چغندر) showing large low rosettes and thick reddish leaf stems. Integrate an AFP white-and-blue wide low cylindrical drip-tape carton roll, placed off-center on the soil in the lower third. The roll must be approximately 20% of the frame width, no taller than 32%, and have a visible diameter of 1.5 to 1.9 times its height. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 25,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: The crop shown is a flowering plant with large red blossoms (resembling Hibiscus), which is clearly a different species from the required article crop 'sugar beet' (چغندر). Sugar beets are defined as having large low rosettes and thick reddish leaf stems without such blooms, so the botanical mismatch is a hard fail.",
+        "Hard reject: The product geometry is wrong. The roll appears as a tall, narrow cylinder (drum shape) with a visible diameter roughly equal to its height, whereas the specification requires a 'wide low cylindrical' roll with a diameter 1.5 to 1.9 times its height."
+      ],
+      "correction_prompt": "Replace the background crop with a sugar beet field featuring large low green rosettes and thick reddish leaf stems. Replace the tall cylindrical product with a wide, low, flat drip-tape roll (diameter approx. 1.75x its height) placed on the soil.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 16,
+      "product_height_percent": 14,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product is a single wide low cylindrical drip-tape roll (aspect ratio ~1.14:1, within 1.5-1.9 range).",
+        "Product width (16%) and height (14%) are within acceptable limits (<27% width, <32% height).",
+        "Product is placed naturally on the soil in the lower third of the frame.",
+        "Crop context is clearly recognizable as sugar beet (large low rosettes with thick reddish leaf stems).",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No people, human body parts, or prohibited commercial containers are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "میزان-برداشت-چغندر-در-هکتار-با-نوار-تیپ-تصویر-شاخص.webp"
+}

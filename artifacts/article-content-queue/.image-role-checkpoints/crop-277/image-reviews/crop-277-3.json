@@ -1,0 +1,66 @@
+{
+  "id": "crop-277",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 78,
+      "product_width_percent": 20,
+      "product_height_percent": 14,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: A loose coil of drip tape extends from the carton roll into the field, violating the constraint to show exactly one carton roll and the prohibition on pipes/hoses/large extraneous tape elements."
+      ],
+      "correction_prompt": "Remove the loose coiled drip tape extending into the field; the scene must contain only the single white-and-blue AFP drip-tape carton roll sitting on the soil without unspooled tape.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: image contains a person (farmer) crouching in the foreground, which is explicitly forbidden.",
+        "The product is not off-center on the lower third; it is on the lower left, but the primary violation is the presence of the person."
+      ],
+      "correction_prompt": "Regenerate the image removing the person entirely. Show only the AFP white-and-blue drip-tape carton roll on the soil, keeping it off-center in the lower third of the frame.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 22,
+      "product_height_percent": 26,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Presence of a human silhouette in the background violates the hard reject criteria for 'zero people or human body parts', including distant figures.",
+        "Product height proportion (26%) relative to its width (22%) falls outside the preferred geometry where diameter should be 1.5-1.9x the height.",
+        "The crop morphology appears to be grass or corn, which creates a hard reject conflict with the required 'یونجه' (alfalfa) crop context."
+      ],
+      "correction_prompt": "Remove all human silhouettes from the scene. Replace the visible grass/corn seedlings with alfalfa crops. Reshape the drip tape roll to be more cylindrical and flatter, with a visible diameter clearly larger than its vertical height.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 15.0,
+      "product_height_percent": 12.0,
+      "product_x_center_percent": 50.0,
+      "reasons": [
+        "Required AFP | 09134922013 watermark is present in the bottom-right corner.",
+        "The image shows a single white and blue cylindrical drip-tape roll on soil.",
+        "The crop is visually neutral and does not contradict alfalfa (younj).",
+        "Zero people or body parts are visible.",
+        "Unattended truck in the background is acceptable infrastructure/context.",
+        "Product dimensions and position meet the acceptable bounds (width 13-27%, height <= 32%, off-center/lower third)."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-یونجه-با-آبیاری-قطرهای-جزئیات-فنی.webp"
+}

@@ -1,0 +1,84 @@
+{
+  "id": "crop-292",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 10,
+      "product_height_percent": 12,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: Image contains a visible person (farmer), face, hands, and full body, which violates the 'zero people' rule.",
+        "Product is too small: The roll width is estimated at 10%, which is below the required 13-27% acceptable range.",
+        "Wrong shape: The product appears as a small bucket or container rather than a wide low cylindrical roll (required aspect ratio ~1.5:1).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image completely removing the person. Create a first-person POV shot of a large white and blue cylindrical drip tape roll (20% of frame width) placed on the ground in a leek field, with zero human body parts visible. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 24,
+      "product_height_percent": 22,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The background shows a crop with small, branching, multi-leaf seedlings (resembling corn or broadleaf vegetables) rather than leek (تره), which requires long, flat, strap-like leaves. This is a clearly identifiable different species.",
+        "The crop lacks the specific linear, parallel growth habit of leeks."
+      ],
+      "correction_prompt": "Regenerate the image with rows of young leek (تره) seedlings; replace the current small leafy crops with distinct, flat, green strap-like leaves growing vertically. Ensure the drip tape roll remains white and blue with AFP branding and the phone number watermark is visible.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 35,
+      "product_height_percent": 35,
+      "product_x_center_percent": 70,
+      "reasons": [
+        "Product width exceeds the 27% hard reject limit (estimated at 35%).",
+        "Product height exceeds the 32% limit (estimated at 35%).",
+        "Visible diameter-to-height ratio is approximately 1:1, failing the required 1.5-1.9x cylindrical proportion.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 13-27% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the drip tape roll to 18% of frame width and ensure its diameter is at least 1.5x its height. Make it low-profile and wide cylindrical. Keep it on the soil in the lower third, off-center. Keep the leek background context and the exact AFP watermark. Reduce the product group from 35% to 13-27% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 14,
+      "product_height_percent": 24,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Presence of a person and human body parts (arm, hand, legs) constitutes a hard reject.",
+        "The crop shown appears to be corn (maize) seedlings, which is a clearly identifiable different species from the required leek (تره)."
+      ],
+      "correction_prompt": "Remove the person from the frame. Regenerate the crop field to feature rows of leeks (bulb, long flat green leaves) instead of corn. Ensure the white and blue drip tape roll remains in the foreground, off-center and placed on the soil.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 20,
+      "product_height_percent": 18,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product is a white and blue cylindrical drip-tape carton roll, matching the required AFP branding and shape.",
+        "The crop visible in the image is consistent with leek (تره) seedlings, featuring the correct strap-leaf growth habit and botanically accurate structure for the stage shown.",
+        "Product dimensions are within the acceptable range (width 20%, height 18%) and the diameter-to-height ratio is correct.",
+        "Product is off-center in the lower third and placed naturally on the soil bed.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and correct.",
+        "The image contains zero people or human body parts.",
+        "The background is a farm context with visible crop rows that aligns with the article topic."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "فاصله-نوار-تیپ-در-کشت-ملون-استانداردهای-توصیهشده-کاربرد-عملی.webp"
+}

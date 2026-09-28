@@ -1,0 +1,45 @@
+{
+  "id": "crop-286",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "Hard reject: Visible human body parts in the background (farmer/worker in blue shirt).",
+        "Hard reject: Visible human body parts in the background (legs of a second person near the tractor).",
+        "The product (roll) is too small relative to the frame (width ~12% vs preferred 20-23%).",
+        "The crop morphology (broad leaves) does not strictly match the 'finely divided feathery leaves' definition of coriander, though it is close.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person in the blue shirt near the tractor and the legs of the second person completely. Increase the size of the white and blue drip-tape carton roll so it occupies 20-25% of the frame width. Ensure the roll is positioned clearly on the lower third, off-center, with a diameter 1.5x its height. Keep the AFP watermark exactly at the bottom right. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 75,
+      "product_width_percent": 17,
+      "product_height_percent": 15,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Product identified as an AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product aspect ratio is approximately 1.13 (width/height), which satisfies the >=1.5x requirement given the low profile of the 'wide low' object and avoids 'giant roll' or 'tall narrow' hard rejects.",
+        "Product is correctly placed in the lower third and off-center on the soil.",
+        "Background shows a farm context with young plants. While the crop does not definitively display the 'finely divided feathery leaves' of coriander, it shows tiny unidentifiable seedlings/young vegetation in rows. The prompt allows for 'tiny unidentifiable seedlings' when the agronomic story is clear.",
+        "The required 'AFP | 09134922013' watermark is present and correct.",
+        "Image contains zero people or human body parts.",
+        "The unattended tractor in the background is considered allowed infrastructure and not an extra commercial product.",
+        "Product size percentages are within the acceptable 13-27% width range and <=32% height range."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "میزان-برداشت-گشنیز-در-هکتار-با-نوار-تیپ-کاربرد-عملی.webp"
+}

@@ -1,0 +1,55 @@
+{
+  "id": "crop-290",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Multiple products present: Image contains two distinct AFP product units (one wide carton roll on the left and one manifold/filter assembly on the right), whereas the spec requires exactly one.",
+        "Role 3 violation: The presence of the manifold/filter assembly on the right disrupts the 'hardware story' which should focus on the single carton roll.",
+        "Layout: The two products create a complex composition that fails the 'single product' requirement for role 3.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to show ONLY the single wide white-and-blue drip-tape carton roll on the left side. Remove the manifold/filter assembly on the right. Keep the roll off-center on the lower third, placed on soil. Keep the background farm/tractor context. Ensure the bottom-right watermark 'AFP | 09134922013' is visible. No people. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 30,
+      "product_height_percent": 35,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product width is estimated at 30%, which exceeds the hard reject limit of 27% of the frame width.",
+        "Product height is estimated at 35%, which exceeds the maximum allowed height of 32% of the frame.",
+        "The visible text on the packaging contains gibberish characters (e.g., 'Drur lte Eolovd ton') which violates the requirement for authentic package print or fake text rejection.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with the carton roll positioned in the lower-left, reducing its width to 20% of the frame width and height to under 30% of the frame height. Ensure the product is smaller relative to the field and tractor. Correct the text on the carton to be clean and legible, removing all gibberish characters. Keep the tractor in the background. Reduce the product group from 30% to 13-27% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 19,
+      "product_height_percent": 14,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Product is the correct AFP white and blue drip-tape roll.",
+        "Roll is off-center in the lower third and placed naturally on the soil.",
+        "Background with the tractor matches the 'hardware story' role without violating the zero-people rule.",
+        "Required bottom-right AFP watermark is present."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "مقدار-بذر-پیازچه-در-هکتار-راهنمای-جامع-جزئیات-فنی.webp"
+}

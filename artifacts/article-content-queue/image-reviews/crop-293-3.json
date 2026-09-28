@@ -1,0 +1,69 @@
+{
+  "id": "crop-293",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 19,
+      "product_height_percent": 32,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product height is too tall (approx. 32%), violating the strict maximum height requirement for a cylindrical carton.",
+        "Visible geometry is incorrect: the roll is standing on its edge like a vertical can rather than laying flat on the soil."
+      ],
+      "correction_prompt": "Rotate the roll 90 degrees so the cylindrical face is vertical and the height is the roll width; the roll must lay flat horizontally on the soil surface.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The required bottom-right watermark 'AFP | 09134922013' is missing (a non-matching watermark is present instead)",
+        "The crop morphology visible in the field is unclear and may contradict the specified topic (leek), which is grounds for rejection"
+      ],
+      "correction_prompt": "Regenerate to include the exact bottom-right watermark 'AFP | 09134922013' and adjust the visible crop morphology to clearly match the leek topic.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 10,
+      "product_height_percent": 13,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "The image contains two people (human faces, bodies, hands) which triggers an immediate hard reject as per the requirement for zero people.",
+        "The product is centered rather than placed on the lower third off-center as required.",
+        "The product width (approx. 10%) and height (approx. 13%) fall outside the acceptable ranges (13-27% and up to 32% respectively).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people from the scene. Re-center the shot to the left or right so the AFP drip-tape roll is off-center on the lower third, placed naturally on the soil without human presence. Enlarge the roll slightly to fit the 15-20% width range. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Product width is approximately 18% (within 13-27% range)",
+        "Product height is approximately 22% (below 32% limit)",
+        "Product is centered at 47% x-coordinate (off-center, lower third placement)",
+        "No persons or human silhouettes detected",
+        "Visible crop morphology is neutral (generic seedlings) and does not contradict leek context",
+        "Watermark 'AFP | 09134922013' is present as required",
+        "Farm context is appropriate and visible"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-تره-با-آبیاری-قطرهای-جزئیات-فنی.webp"
+}
