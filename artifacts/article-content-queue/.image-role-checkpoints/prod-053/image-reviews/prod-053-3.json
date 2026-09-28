@@ -1,0 +1,97 @@
+{
+  "id": "prod-053",
+  "kind": 3,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 30,
+      "product_height_percent": 40,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Image contains a person (woman) crouching next to the products, violating the 'zero people' requirement.",
+        "Products are not positioned on the lower third off-center; they are large and interact directly with the person.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 9-20% of frame width.; Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate image with absolutely no people, farmers, or hands. Show only two separate layflat coils (one packaged, one bare black) resting flat on the ground. The pair must be small (approx 12-15% width), positioned in the lower third but off-center to the left, with no other objects. Keep the bottom-right watermark 'AFP | 09134922013'. Reduce the product group from 30% to 9-20% of frame width. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 20,
+      "product_height_percent": 30,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: Two human figures are clearly visible in the image (a man and a woman). The prompt strictly requires zero people, faces, hands, or body parts."
+      ],
+      "correction_prompt": "Regenerate the image to strictly remove all people and human silhouettes. The frame must contain only the soil, distant crop rows, and the two specific products: one packaged AFP coil and one bare black woven coil. Position the pair on the ground in the lower third, off-center. Ensure the pair occupies approximately 12% to 15% of the frame width and remains clearly separated. Keep the bottom-right watermark 'AFP | 09134922013' exactly as specified.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 20,
+      "product_height_percent": 30,
+      "product_x_center_percent": 60,
+      "reasons": [
+        "Hard reject: two visible people (farmer/worker) are present in the image.",
+        "Hard reject: one of the two required layflat objects (packaged AFP coil) is missing.",
+        "Hard reject: the visible coil is not resting flat on the ground but is being held in the air.",
+        "Hard reject: product width is too large (approx 20% of frame) and is not positioned on the lower third off-center."
+      ],
+      "correction_prompt": "Generate an image with no people. Show one packaged AFP coil and one bare black woven coil lying flat on the ground. The pair must be small (approx 12-15% of frame width) and located in the lower off-center third. Ensure the watermark 'AFP | 09134922013' is present in the bottom right corner.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 45,
+      "product_height_percent": 38,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: image contains multiple people (woman crouching in foreground) and human body parts (face, arms, legs, hands).",
+        "Hard reject: pair of products is wider than 15 percent of the frame (estimated 45 percent).",
+        "Hard reject: products are not separated and flat on the ground; the packaged item is being held by the person and not staged correctly.",
+        "Hard reject: products are centered and not positioned on the lower third as required.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width.; Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate image with zero people or body parts, place exactly two layflat coils (one bare black, one packaged AFP) fully visible and separate on the ground, off-center on lower third, with pair occupying 12-15 percent frame width. Reduce the product group from 45% to 9-20% of frame width. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Contains multiple visible people (a man and two girls) interacting with the product",
+        "Product occupies a significantly larger portion of the frame than the 12-15% requirement",
+        "Staging is not centered on the lower third as requested",
+        "Product does not appear as a flat lay as specified",
+        "Includes hands and faces which are hard rejects in this context",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to remove all people and faces; show only a packaged AFP coil and a bare black woven coil laid flat on the soil, off-center in the lower third, occupying approximately 12-15% of the frame width; keep the 'AFP | 09134922013' watermark in the bottom right corner. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 40,
+      "product_height_percent": 25,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject: A person is visible in the image (crouching female subject), which violates the 'zero people' requirement.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 40% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the person and all body parts entirely. Keep only the two coils (one packaged, one bare black) flat on the ground in the lower third, occupying approximately 12-15% of frame width, off-center, and fully visible. Retain the bottom-right watermark. Reduce the product group from 40% to 9-20% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

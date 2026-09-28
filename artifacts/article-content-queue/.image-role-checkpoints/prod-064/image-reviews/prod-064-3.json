@@ -1,0 +1,35 @@
+{
+  "id": "prod-064",
+  "kind": 3,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 25,
+      "product_height_percent": 20,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: A person is clearly visible in the image.",
+        "Hard reject: The product pair is not positioned off-center on the lower third; the person is occupying the right side of the frame.",
+        "The product does not meet the 'no human body parts' requirement.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 25% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to remove the man completely. Ensure only the two layflat coils (one packaged, one bare) are visible on the ground. The coils must be small (12-15% width), positioned on the lower-left or lower-right, with no people or body parts. Reduce the product group from 25% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "review_unavailable": true,
+      "reasons": [
+        "article_image_review unavailable after 4 retries: TimeoutError"
+      ],
+      "correction_prompt": "Retry strict visual review of the preserved candidate without regenerating it.",
+      "attempt": 2
+    }
+  ],
+  "approved_image": null
+}

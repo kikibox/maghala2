@@ -1,0 +1,83 @@
+{
+  "id": "prod-055",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 11,
+      "product_height_percent": 9,
+      "product_x_center_percent": 66,
+      "reasons": [
+        "Hard reject: Human body parts (legs, hands, arms) and a farmer are visible in the background.",
+        "Hard reject: Product roll does not meet the required 'off-center on the lower third' rule (it is located in the bottom-right/mid-right rather than the lower third).",
+        "Hard reject: Product bounding box (11% width) is slightly below the ideal 13-27% range.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures and body parts. Reposition the drip-tape roll to the lower left third of the frame (bottom-left area) and increase the roll's visible width to approximately 15-20% of the frame while maintaining the required AFP watermark and farm context. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 22,
+      "product_width_percent": 19,
+      "product_height_percent": 16,
+      "product_x_center_percent": 17,
+      "reasons": [
+        "Hard reject: The image prominently features a human male, violating the strict 'zero people' requirement.",
+        "The human figure constitutes the main focal point and largest object, which contradicts the requirement for the drip-tape to be a secondary presence.",
+        "The product is not the dominant element, failing the visual balance required for the city/family context role."
+      ],
+      "correction_prompt": "Regenerate the scene with zero humans, zero animals, and zero body parts visible. Focus on the farm context with a botanically accurate crop bed and the AFP drip-tape roll as the sole subject on the soil.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 75,
+      "product_width_percent": 16,
+      "product_height_percent": 23,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product is centered horizontally (product_x_center_percent ~50), failing the 'off-center on the lower third' requirement.",
+        "Product height (~23%) is too large relative to its width; the aspect ratio (width/height) is approximately 0.7, which does not meet the required 1.5 to 1.9 range for a wide, low cylindrical roll."
+      ],
+      "correction_prompt": "Shift the drip-tape roll significantly to the right (or left) so it is off-center in the lower third of the frame. Compress the roll vertically to make it appear wider and lower (aspect ratio 1.5-1.9:1) while maintaining the white-and-blue AFP branding and the bottom-right watermark.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 11,
+      "product_height_percent": 18,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Human figure is visible (farmer/worker).",
+        "Product is a cylindrical container, not a wide low cylindrical drip-tape carton roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human elements. Feature a wide, low cylindrical drip-tape carton roll (white and blue) on the soil surface, off-center on the lower third. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 86,
+      "product_width_percent": 17,
+      "product_height_percent": 22,
+      "product_x_center_percent": 29,
+      "reasons": [
+        "Product accurately matches the description: single white and blue cylindrical drip-tape carton roll with 'AFP' branding",
+        "Placement is correct: off-center in the lower third of the frame and naturally placed on the soil",
+        "Proportions are acceptable: product width is approximately 17% and height is 22% of the frame (height <= 32%, width <= 27%)",
+        "No people, body parts, or extra commercial products (bottles, second rolls, etc.) are present",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner",
+        "The background (crop rows and farm context) matches the requested topic-specific farm context"
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "مشخصات-فنی-لوله-نخدار-110-میلیمتر-راهنمای-انتخاب-کاربرد-عملی.webp"
+}

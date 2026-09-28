@@ -1,0 +1,82 @@
+{
+  "id": "prod-052",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 25,
+      "product_height_percent": 20,
+      "product_x_center_percent": 16,
+      "reasons": [
+        "Presence of a person (hard reject)",
+        "Human hands visible touching the tape (hard reject)"
+      ],
+      "correction_prompt": "Remove all human figures, faces, and body parts from the image. Retain the product roll and the field context.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 25,
+      "product_height_percent": 32,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "A second package/roll is present next to the main product, violating the 'exactly one roll' requirement",
+        "A small crop plant (green sprout) is visibly growing through the second hardware object",
+        "The presence of the second hardware object/clump makes the product composition cluttered and inconsistent with 'secondary' product display"
+      ],
+      "correction_prompt": "Remove the secondary hardware object and crop plant from the scene, leaving only the single AFP drip-tape roll centered on the lower-left side.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 22,
+      "product_height_percent": 25,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "The image contains a person, which is a hard reject under the 'zero people' constraint for Role 3."
+      ],
+      "correction_prompt": "Remove the woman and show only the unattended drip-tape roll and the farm context (tractor, soil).",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 16,
+      "product_height_percent": 16,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Presence of a second package/roll (dripline) next to the main carton, which is a hard reject item",
+        "Product height (16%) exceeds the preferred 12% to 15% range",
+        "The required exact watermark format 'AFP | 09134922013' is missing; the image only shows the number '09134922013'"
+      ],
+      "correction_prompt": "Regenerate the image to show exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll on soil. Remove the additional unspooled roll and metal manifold hardware. Add the exact watermark text 'AFP | 09134922013' in the bottom-right corner. Keep the unattended tractor in the background.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Exactly one AFP white-and-blue drip tape roll identified in the foreground.",
+        "Product width (24%) and height (28%) fall within the acceptable 13-27% and <32% ranges.",
+        "The roll's visible diameter is approximately 1.7x its height, matching the 1.5-1.9x requirement.",
+        "Product is off-center on the lower third and naturally placed on soil.",
+        "Zero people or human body parts are present.",
+        "Background features an unattended tractor, which is allowed as irrigation/field infrastructure.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and correctly formatted.",
+        "No hard reject elements such as extra products, bottles, or impossible geometry are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "مشخصات-فنی-نوار-تیپ-پلاکدار-راهنمای-انتخاب-جزئیات-فنی.webp"
+}

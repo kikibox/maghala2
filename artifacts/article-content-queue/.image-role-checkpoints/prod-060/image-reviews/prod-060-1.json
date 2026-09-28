@@ -1,0 +1,52 @@
+{
+  "id": "prod-060",
+  "kind": 1,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 60,
+      "product_height_percent": 30,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Presence of a human figure (worker/farmer) crouching in the foreground",
+        "Human body parts (arms, hands, legs) visible and interacting with the product",
+        "Product pair is centered rather than off-center",
+        "Product pair occupies approx 60% of frame width (exceeds 15% limit)",
+        "Object to the right appears to be a round canister rather than a packaged AFP coil",
+        "machine-enforced bounding-box check failed: Reduce the product group from 60% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people. Show one packaged AFP coil and one bare black coil on the ground. Ensure the pair is small, occupying only 12-15% of the frame width, positioned in the lower third and off-center. Remove the canister and any centered staging. Reduce the product group from 60% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 45,
+      "product_height_percent": 30,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: Image contains a person (farmer/worker) and human body parts (face, hands, arms, legs).",
+        "Hard reject: Pair is not separate and flat on the ground; products are being handled and staged by a person.",
+        "Hard reject: Pair is not off-center on the lower third; it is positioned centrally-right due to the human presence.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate without any people or human body parts. Show one packaged coil and one bare coil separated, flat on the ground. Keep the pair small (12-15% width) and off-center in the lower third. Reduce the product group from 45% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "review_unavailable": true,
+      "reasons": [
+        "article_image_review unavailable after 4 retries: TimeoutError"
+      ],
+      "correction_prompt": "Retry strict visual review of the preserved candidate without regenerating it.",
+      "attempt": 3
+    }
+  ],
+  "approved_image": null
+}

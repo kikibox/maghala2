@@ -1,0 +1,69 @@
+{
+  "id": "prod-055",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 68,
+      "product_width_percent": 24,
+      "product_height_percent": 33,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "The visible product height exceeds the 32% limit (estimated ~33%), making the roll slightly too tall/dominant.",
+        "The text on the packaging below the 'AFP' logo appears as gibberish ('DWB TRBOWS TAPE') rather than authentic professional print, which is a hard reject condition.",
+        "Secondary 'crop' elements (the small green plants in the seedling trays next to the gauge) are visually inconsistent with the wide, mature farmland background and look artificial; Role 3 permits their absence.",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the roll's height to under 32% of the frame width and scale. Replace the gibberish text on the carton with clean, authentic professional labeling. Remove the small seedling tray to maintain a purely hardware-focused farm infrastructure context. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 35,
+      "product_height_percent": 45,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: A human is clearly visible in the image, which violates the requirement for zero people and zero human body parts.",
+        "Hard reject: The image contains a second roll of tape stacked on the ground, violating the 'exactly one roll' requirement.",
+        "Hard reject: The product is centered and staged, rather than being off-center on the lower third.",
+        "Hard reject: The product dimensions are too large (width ~35% and height ~45%) and violate the aspect ratio constraint (diameter should be 1.5-1.9 times the height).",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 13-27% of frame width.; Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with zero people. Show exactly one white and blue drip-tape roll. The roll must be small (15-20% frame width), off-center in the lower third, and naturally placed on soil. No stacked rolls, no centered staging. Reduce the product group from 35% to 13-27% of frame width. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 20.5,
+      "product_height_percent": 26.0,
+      "product_x_center_percent": 48.0,
+      "reasons": [
+        "Hard reject: multiple people visible in the background and mid-ground."
+      ],
+      "correction_prompt": "Remove all human figures, silhouettes, and workers from the farm background to leave only the tilled soil, hardware, and the single drip tape roll.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Product is a white-and-blue wide low cylindrical roll, positioned in the lower third and off-center.",
+        "Product is placed naturally on soil.",
+        "Background shows a farm context with an unattended tractor in the distance, consistent with a hardware story.",
+        "No people or human body parts are visible.",
+        "Watermark 'AFP | 09134922013' is present at the bottom right."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "مشخصات-فنی-لوله-نخدار-110-میلیمتر-راهنمای-انتخاب-جزئیات-فنی.webp"
+}

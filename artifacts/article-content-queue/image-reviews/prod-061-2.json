@@ -1,0 +1,67 @@
+{
+  "id": "prod-061",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 21.0,
+      "product_height_percent": 20.0,
+      "product_x_center_percent": 58.0,
+      "reasons": [
+        "Clear hard reject: a person (farmer/worker) and human body parts (face, hands, arms, legs) are prominently visible in the image, violating the zero-person requirement."
+      ],
+      "correction_prompt": "Remove all people and human body parts from the image while keeping the farm context, crop rows, and the AFP drip-tape carton roll exactly as positioned.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 26,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: The image contains a clearly identifiable person (woman crouching in the field).",
+        "Human presence is strictly prohibited by the prompt requirements."
+      ],
+      "correction_prompt": "Regenerate the image strictly with zero people or human body parts. The scene must show the farm context with the crop rows and the AFP drip-tape roll placed naturally on the soil in the lower third, without any farmer present.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 20,
+      "product_height_percent": 26,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product is centered horizontally (x_center ~50%), violating the 'off-center' requirement.",
+        "Product height (26%) is too close to its width (20%), failing the 'wide low cylindrical' ratio requirement (1.5x-1.9x).",
+        "Product appears staged and centered on the crop row rather than naturally placed in soil.",
+        "Missing required bottom-right watermark."
+      ],
+      "correction_prompt": "Move the drip tape roll off-center to the left (around 20-30% of the width), flatten the aspect ratio significantly so it is much wider than it is tall, and place it more naturally on the soil. Add the bottom-right watermark text 'AFP | 09134922013'.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 75,
+      "product_width_percent": 22,
+      "product_height_percent": 30,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Exactly one AFP-branded wide cylindrical drip-tape roll with white-and-blue packaging sits naturally on prepared soil",
+        "Crop row morphology (broad-leafed, corn-like seedlings) is agronomically consistent with a common drip-irrigation application; neutral young vegetation is acceptable under the stated criteria",
+        "Roll dimensions and placement are within limits (off-center, lower third, width ~22%, height ~30%)",
+        "Zero people or human body parts visible; unattended farm structures and infrastructure are permitted",
+        "Required bottom-right watermark “AFP | 09134922013” is present",
+        "No disallowed hard-reject elements (no second package, hose, pipe, container, text artifacts, or impossible geometry)"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "اندازهگیری-لوله-نخدار-160-میلیمتر-برای-مزرعه-کاربرد-عملی.webp"
+}

@@ -1,0 +1,99 @@
+{
+  "id": "prod-057",
+  "kind": 3,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 35,
+      "product_height_percent": 28,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: A person (worker) is present in the image holding a small component.",
+        "Hard reject: The product pair (coils) is centered in the lower-left/center rather than staying off-center on the lower third.",
+        "Hard reject: Product width occupies roughly 35% of the frame, significantly exceeding the 15% maximum limit.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image removing the man entirely. Reduce the size of the two coils to fit within 15% of the frame width. Move the coils off-center to the bottom right or bottom left. Ensure the coils are flat on the ground and separate from each other. Reduce the product group from 35% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 45,
+      "product_height_percent": 30,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Product pair is too wide (estimated ~45% of frame width) and exceeds the maximum 15% limit.",
+        "The two objects are positioned nearly centered horizontally rather than staying off-center on the lower third.",
+        "The packaged coil appears to float slightly above the ground surface, lacking a grounded contact point.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the size of the two coils so the combined pair occupies only ~12-15% of frame width, position them off-center in the lower third, and ensure both sit flat on the soil with clear ground contact. Reduce the product group from 45% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 48,
+      "product_height_percent": 24,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: Image contains a human (farmer/worker) squatting on the right side, which violates the 'zero people' requirement.",
+        "Hard reject: The pair of products occupies approximately 48% of the frame width, which far exceeds the maximum allowed limit of 15%.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 48% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate image without any people. Move and scale down the two coils (one packaged AFP, one black woven) to the lower right off-center position so they occupy less than 15% of the frame width. Ensure the 'AFP | 09134922013' watermark is visible in the bottom right corner. Reduce the product group from 48% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 52,
+      "product_height_percent": 35,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The product pair is significantly wider than the 15% maximum limit, occupying approximately 52% of the frame width.",
+        "The product staging is centered horizontally rather than being off-center on the lower third as required.",
+        "The objects are excessively large relative to the frame, failing to appear as the small 12-15% width elements specified.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 52% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the layflat coil pair to occupy only 12-15% of frame width, position them distinctly off-center on the lower third, and maintain the watermark 'AFP | 09134922013' in the bottom-right corner. Reduce the product group from 52% to 9-20% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 32,
+      "product_height_percent": 38,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Two humans are present (a standing man and a crouching woman), which triggers an automatic hard reject.",
+        "Only one layflat coil is visible; the required paired object (the packaged AFP coil) is missing.",
+        "The visible coil is excessively large (approx 32% width) and is positioned in the center-lower area, violating the 12-15% width and 'off-center lower third' requirements.",
+        "The existing coil is obstructed/overlapped by the crouching person.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 9-20% of frame width.; Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes. Generate exactly two layflat objects: one bare black woven coil and one packaged AFP coil. The pair must be small (12-15% of frame width), located on the ground in the lower third and clearly off-center. Keep the bottom-right watermark 'AFP | 09134922013'. Reduce the product group from 32% to 9-20% of frame width. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 32,
+      "product_height_percent": 16,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The combined width of the product pair (bare coil and packaged coil) occupies roughly 32% of the frame, significantly exceeding the 15% maximum limit.",
+        "The product staging is located near the center horizontally, violating the requirement to stay off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Shrink the two coils by 60% so the combined width is less than 15% of the frame width. Reposition the pair horizontally to the left, strictly within the lower third of the image to ensure they are off-center. Reduce the product group from 32% to 9-20% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

@@ -1,0 +1,98 @@
+{
+  "id": "prod-052",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 27,
+      "product_height_percent": 32,
+      "product_x_center_percent": 18,
+      "reasons": [
+        "Hard reject: presence of a person/farmer in the image (head, torso, hands, and legs are clearly visible).",
+        "Product size exceeds the maximum width limit of 27 percent."
+      ],
+      "correction_prompt": "Remove the farmer and ensure the drip-tape roll is positioned off-center in the lower-left third with a width under 27% and height under 32% of the frame.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 15,
+      "product_height_percent": 30,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Gibberish/hallucinated text on the product packaging (the text under 'AFP' is not coherent English or brand standard).",
+        "Gibberish/invented writing on the visible drip tape (the text on the tape is illegible and nonsensical).",
+        "Gibberish/invented text on the white ribbon in the bottom right (text reads 'IR BAD NE' which is nonsensical).",
+        "The visible diameter of the cylindrical roll is too small relative to its height, failing the 1.5-1.9x ratio requirement."
+      ],
+      "correction_prompt": "Regenerate with clean, legible packaging text and realistic product text. The drip tape must be plain or have realistic 'Drip Irrigation' text, not gibberish. Adjust the roll proportions so the diameter is visibly larger relative to the height (1.5:1 to 1.9:1 aspect ratio). Remove the text on the white ribbon in the bottom right, leaving only the 'AFP | 09134922013' watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 13,
+      "product_height_percent": 19,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Presence of a person/farmer: The image shows a man crouching and holding the product, which is a hard reject violation (zero people allowed).",
+        "Human body parts: Face, hands, arms, legs, and boots are clearly visible, which are strictly prohibited.",
+        "Product placement: The product is being held by the person rather than naturally placed on the soil independently."
+      ],
+      "correction_prompt": "Regenerate the image removing all people and human silhouettes. Place the single white-and-blue cylindrical drip-tape roll directly on the soil in the farm context. Ensure no hands or body parts are present. Keep the 'AFP | 09134922013' watermark in the bottom right corner.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 28,
+      "product_height_percent": 30,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The product roll is visually centered in the frame, violating the 'off-center' requirement.",
+        "The product width is estimated at 28%, which exceeds the hard rejection limit of 27%.",
+        "The drip tape is depicted as a loose, decorative string rather than a functional line following crop rows, resulting in impossible geometry.",
+        "The crop shown has indeterminate morphology, failing to provide botanically accurate, unmistakable features for the named crop.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Move the white and blue drip-tape roll off-center to the lower third. Shrink the roll so its width is no more than 25% of the frame width. Extend the blue drip-tape line along the visible crop row. Replace the generic seedlings with a clearly identifiable specific crop (e.g., tomatoes or peppers) to satisfy the morphological requirement. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 14,
+      "product_height_percent": 14,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Hard reject: Image contains multiple human body parts (face, arms, legs, feet, hands)."
+      ],
+      "correction_prompt": "Regenerate the image without any people or human body parts. Keep the AFP drip tape roll on the soil in the lower third. Ensure the background shows a farm context with the specific crop rows.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 82,
+      "product_width_percent": 31,
+      "product_height_percent": 21,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "The product is correctly positioned off-center in the lower third, naturally resting on the soil.",
+        "The crop is visible as young seedlings and irrigation layout, which aligns with the requirements for a botanically neutral prepared bed when exact mature morphology is unavailable.",
+        "There are zero people, hands, or human body parts in the image.",
+        "The AFP watermark is present and correct in the bottom right.",
+        "The product width (31%) and height (21%) are slightly outside the preferred ranges (13-27% width, max 32% height), but the product remains secondary to the background crop and field context.",
+        "The background (farm context with crop rows and distant tractor/hardware) is authentic and appropriate for the drip-tape product.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 31% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 31% to 13-27% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

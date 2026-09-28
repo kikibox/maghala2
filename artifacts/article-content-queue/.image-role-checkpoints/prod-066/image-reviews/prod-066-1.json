@@ -1,0 +1,102 @@
+{
+  "id": "prod-066",
+  "kind": 1,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 24,
+      "product_height_percent": 24,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Contains a visible person (farmer crouching next to the coil).",
+        "Only one layflat object is visible (the black coil). The required packaged AFP coil is missing.",
+        "The pair of products is not present; the image fails the 'exactly two approved layflat objects' requirement.",
+        "The visible coil is too large (occupying roughly 24% width) compared to the 12-15% limit.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 24% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the scene without any people. Show exactly two coiled products on the lower right side: one packaged AFP coil and one bare black woven coil. Ensure both are small (occupying 12-15% of the frame width) and flat on the ground. Retain the 'AFP | 09134922013' watermark in the bottom-right corner. Reduce the product group from 24% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 68,
+      "product_height_percent": 72,
+      "product_x_center_percent": 62,
+      "reasons": [
+        "Pair width is approximately 68% of the frame, which is significantly wider than the 12-15% limit.",
+        "Only one bare woven coil is clearly visible; the required packaged AFP coil is missing.",
+        "The products are not flat on the ground; the large coil is standing vertically on its edge.",
+        "Product staging is far too large relative to the frame.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 68% to 9-20% of frame width.; Reduce product height from 72% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shrink the product pair to occupy only 12-15% of the frame width. Place them on the lower third, slightly off-center, lying flat on the ground. Ensure two objects are visible: one packaged AFP coil and one bare black woven coil. Reduce the product group from 68% to 9-20% of frame width. Reduce product height from 72% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 55,
+      "product_height_percent": 60,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Pair width exceeds 15 percent limit",
+        "Products are not flat on the ground",
+        "One coil is standing upright",
+        "machine-enforced bounding-box check failed: Reduce the product group from 55% to 9-20% of frame width.; Reduce product height from 60% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reshoot with both coils flat on the ground and the pair occupying only 15 percent of frame width in the lower third Reduce the product group from 55% to 9-20% of frame width. Reduce product height from 60% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 60,
+      "product_height_percent": 65,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Product pair is centered",
+        "Product pair occupies significantly more than 15 percent of frame width",
+        "Packaged coil appears physically unnatural and possibly distorted",
+        "machine-enforced bounding-box check failed: Reduce the product group from 60% to 9-20% of frame width.; Reduce product height from 65% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reframe image to show pair only on lower third off-center, reducing total width to 12-15% of frame. Ensure the packaged coil is flat on ground with correct proportions, no distortion, and no centered staging. Reduce the product group from 60% to 9-20% of frame width. Reduce product height from 65% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 58,
+      "product_height_percent": 33,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Image contains a person, which is a hard reject criterion.",
+        "The product pair is centered in the frame rather than off-center on the lower third.",
+        "The total product width exceeds the 15 percent limit (estimated at ~58 percent).",
+        "machine-enforced bounding-box check failed: Reduce the product group from 58% to 9-20% of frame width.; Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human body parts. Position exactly two layflat objects (one packaged AFP coil, one bare black coil) flat on the ground in the lower-left third of the frame. Ensure the combined product width occupies only 12-15 percent of the total image width. Reduce the product group from 58% to 9-20% of frame width. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 22,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Human presence detected (farmer/worker, face, hands, and body parts are visible).",
+        "Hard reject: The product pair occupies approximately 22% of the frame width, which exceeds the 15% maximum limit.",
+        "The product pair is not sufficiently small or off-center to meet the 12-15% width constraint.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 22% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Reposition the packaged AFP coil and the bare black woven coil to occupy only 12-15% of the frame width, keeping them on the lower third, off-center, and fully flat on the ground without any human interaction. Reduce the product group from 22% to 9-20% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}
