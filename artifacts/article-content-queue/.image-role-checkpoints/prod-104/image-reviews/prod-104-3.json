@@ -1,0 +1,64 @@
+{
+  "id": "prod-104",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 13,
+      "product_height_percent": 22,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Hard reject: The image contains a person (a man in a blue shirt) crouching behind the product. The requirements explicitly state to hard reject any person, farmer, worker, or human body part."
+      ],
+      "correction_prompt": "Remove the man entirely from the image. Keep the AFP drip-tape roll in the same off-center position on the soil, maintaining the farm background without any human presence.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 20,
+      "product_height_percent": 18,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "A human figure is present in the image, which is a hard reject criterion for this role."
+      ],
+      "correction_prompt": "Remove the person and any human silhouettes from the image, keeping the product, setting, and lighting.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 18,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: A person is clearly visible in the image.",
+        "The product is not placed on the soil; it is held/touched by a person."
+      ],
+      "correction_prompt": "Regenerate the image with zero people and no human body parts. The AFP white-and-blue wide low cylindrical drip-tape carton roll must be resting directly on the soil in a farm context, off-center on the lower third, without any human presence.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 26,
+      "product_height_percent": 25,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Product matches description: white and blue wide low cylindrical drip-tape carton roll",
+        "No people or human parts visible",
+        "Background is a farm context with distant buildings and soil, matching role 3",
+        "Required watermark 'AFP | 09134922013' is present in bottom-right",
+        "Product is placed on soil and secondary to the environment",
+        "No forbidden items (bottles, extra packages, pipes through roll, etc.) are present"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "نگهداری-از-لوله-نخدار-110-میلیمتر-برای-عمر-مفید-بیشتر-جزئیات-فنی.webp"
+}

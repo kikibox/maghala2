@@ -1,0 +1,102 @@
+{
+  "id": "prod-098",
+  "kind": 2,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 10,
+      "product_height_percent": 8,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Contains a visible person (farmer/worker)",
+        "Contains human body parts (face, arms, legs)",
+        "Only one coil is visible instead of the required pair (packaged + bare)",
+        "Product is being held/touched by a person rather than flat on the ground"
+      ],
+      "correction_prompt": "Regenerate the image with zero people. Show exactly two distinct layflat coils (one packaged, one black woven) lying flat on the ground in the lower third, off-center, occupying only 12-15% of the frame width. Ensure they are separate and fully visible.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 45,
+      "product_height_percent": 40,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "The product pair is centered in the frame rather than off-center on the lower third.",
+        "The pair width (approx 45%) significantly exceeds the required 12-15% range.",
+        "The pair width exceeds the hard reject limit of 15% frame width.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width.; Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Move the product pair to the far right or left edge of the frame to be off-center, and drastically reduce the scale of the coils so they occupy only 12-15% of the total frame width. Reduce the product group from 45% to 9-20% of frame width. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 70,
+      "product_height_percent": 35,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Product pair is centered rather than off-center on the lower third.",
+        "Product pair occupies approximately 70% of frame width, vastly exceeding the hard limit of 15%.",
+        "Bare black coil is a flat ring rather than a dense layflat coil, presenting a distorted dimension.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 70% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with the two coils (packaged and bare) positioned in the bottom-left corner, occupying less than 15% of the total image width. Ensure the bare black coil is a flat rectangular strip roll, not a ring. Keep the AFP | 09134922013 watermark intact. Reduce the product group from 70% to 9-20% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Presence of a full human figure (worker/farmer) violating the zero-person rule.",
+        "Presence of human hands, face, and body parts touching or near the product.",
+        "The product pair is too large in the frame (exceeds the 12-15% width constraint).",
+        "Product staging is in the center rather than the required lower third off-center position.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 25% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the scene with zero people, faces, hands, or human silhouettes. The two coils (one packaged, one bare) must be small (12-15% width), separate, and placed flat on the ground at the lower-left or lower-right corner. The scene should show only the crop field and agricultural infrastructure. Keep the 'AFP | 09134922013' watermark in the bottom right corner. Reduce the product group from 25% to 9-20% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 35,
+      "product_height_percent": 40,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Image contains a visible person (farmer) which is a hard reject condition",
+        "Person is not sitting off-center on the lower third as requested, but dominating the right side",
+        "Product width is significantly larger than the required 12-15% frame width limit",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 9-20% of frame width.; Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate image without any humans, keep the products (packaged AFP coil and bare black woven coil) separate and flat on the ground, positioned in the lower third, and ensure the product pair occupies only 12-15% of the frame width Reduce the product group from 35% to 9-20% of frame width. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 55,
+      "product_height_percent": 50,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product pair is far too large, occupying about 55% of frame width instead of the required 12 to 15%",
+        "Product pair is centered in the frame instead of being positioned on the lower third off-center",
+        "The products appear to be slightly overlapping rather than fully separate",
+        "The bare black coil has an inconsistent appearance with what looks like a floating/merged object intersecting it",
+        "machine-enforced bounding-box check failed: Reduce the product group from 55% to 9-20% of frame width.; Reduce product height from 50% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shrink the product pair to occupy only 12-15 percent of frame width. Move the pair off-center to the lower third of the frame. Ensure the packaged AFP coil and bare black woven coil are completely separate, do not overlap, and remain flat on the ground. Remove any visual intersections or merged elements between the coils. Maintain zero people. Reduce the product group from 55% to 9-20% of frame width. Reduce product height from 50% to at most 32% of frame height.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

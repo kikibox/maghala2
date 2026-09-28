@@ -1,0 +1,105 @@
+{
+  "id": "prod-105",
+  "kind": 3,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 45,
+      "product_height_percent": 30,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject triggered: A person (farmer/worker) is present in the image.",
+        "Human body parts (head, face, torso, arms, legs) are clearly visible in the right half of the frame.",
+        "The product pair is too large, occupying approximately 45% of the frame width instead of the required 12-15%.",
+        "The objects are not positioned in the lower third; the packaging on the right is being touched by a hand.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human body parts. Show only the two layflat coils (one packaged, one black woven) placed on the soil. The pair must be small (approx 12-15% width) and positioned in the lower-left third of the frame. Reduce the product group from 45% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 25,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Image contains a person.",
+        "Hard reject: Product pair is centered/wide instead of 12-15% width off-center.",
+        "Only one coil is visible, not a pair.",
+        "Coil is too large for the required frame percentage.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 25% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image showing only two small layflat coils (one packaged, one bare) occupying 12-15% of the width, positioned in the lower third. Remove the man entirely. Keep the 'AFP | 09134922013' watermark in the bottom right. Reduce the product group from 25% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 32,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Person visible (male farmer), face, hands, legs, and body parts are present in the frame.",
+        "Product pair occupies approximately 30-35% of the frame width, exceeding the 15% maximum limit.",
+        "Product staging is not positioned in the lower third off-center as required; the man is also occupying a significant portion of the frame.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with no people or human silhouettes. Reduce the combined width of the packaged coil and bare coil to strictly 12-15 percent of the image width. Position the two coils flat on the ground in the lower third, offset from the center, and ensure the 'AFP | 09134922013' watermark is in the bottom-right corner. Reduce the product group from 32% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 45,
+      "product_height_percent": 30,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Product pair occupies approx 45% of frame width, significantly exceeding the 12-15% requirement.",
+        "Product staging is centered/right-heavy rather than strictly off-center on the lower third as requested.",
+        "Products are too large relative to the frame for a 'layflat' macro-style detail shot.",
+        "Watermark present and correct ('AFP | 09134922013').",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with the coil pair occupying only 12-15% of the frame width, positioned in the bottom-right corner, zoomed out to show them as small objects on the ground. Ensure zero people are visible. Keep the 'AFP | 09134922013' watermark. Reduce the product group from 45% to 9-20% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 38,
+      "product_height_percent": 30,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "Product width 38% exceeds 15% limit",
+        "Staging not in lower third",
+        "Bare coil is flat",
+        "Packaged coil is upright",
+        "Products not separate flat on ground",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate with both coils lying flat on soil, occupying ≤15% width, positioned off-center in lower third, fully visible. Reduce the product group from 38% to 9-20% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 42,
+      "product_height_percent": 68,
+      "product_x_center_percent": 62,
+      "reasons": [
+        "Product pair occupies significantly more than the required 15 percent of the frame width",
+        "The larger coil is upright, violating the requirement that all layflat objects be flat on the ground",
+        "The coiled product appears to be a flat hose rather than a woven drip tape",
+        "machine-enforced bounding-box check failed: Reduce the product group from 42% to 9-20% of frame width.; Reduce product height from 68% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with both layflat coils in a horizontal, stacked flat position on the ground. The complete pair must be small, occupying less than 15 percent of the frame width, and positioned off-center in the lower third of the image. Reduce the product group from 42% to 9-20% of frame width. Reduce product height from 68% to at most 32% of frame height.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

@@ -1,0 +1,54 @@
+{
+  "id": "prod-101",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 15,
+      "reasons": [
+        "Hard reject: The image contains a farmer crouching in the center, which violates the 'zero people' requirement.",
+        "Hard reject: There is a hand visible in the bottom-left corner.",
+        "The 'white-and-blue wide low cylindrical drip-tape carton roll' is missing; instead, the object in the foreground appears to be a tall narrow drum and the object in the hand looks like a metallic coil or pipe rather than the specific carton roll.",
+        "Presence of multiple product representations instead of exactly one."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or body parts. Show a single AFP white-and-blue wide low cylindrical carton roll of drip tape resting naturally on soil in the lower third, off-center. Ensure the background matches the crop context without using human models.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 33,
+      "product_height_percent": 31,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The product width is approximately 33% of the frame, which exceeds the hard rejection threshold of 27%.",
+        "The product is placed too prominently (not secondary) relative to the background context.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 33% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with the drip-tape carton roll significantly smaller (width less than 25% of the frame) to ensure it remains a secondary element in the composition. Reduce the product group from 33% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 19,
+      "product_height_percent": 15,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is a single white-and-blue cylindrical drip-tape roll placed on soil",
+        "Background matches 'family' farm context with young crops and a barn",
+        "Zero people or human body parts visible",
+        "Product size and position are within acceptable secondary framing parameters"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "مراحل-نصب-لوله-نخدار-160-میلیمتر-در-سیستم-آبیاری-تصویر-شاخص.webp"
+}

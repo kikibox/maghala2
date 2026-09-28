@@ -1,0 +1,61 @@
+{
+  "id": "prod-103",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 16,
+      "product_height_percent": 27,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Bottle present (small container with yellow lid on the right of the roll)",
+        "Hard reject: Layflat hose/spool present (coiled blue hose and white spools are visible)",
+        "Hard reject: Second package/product present (the spool/hardware is counted as an extra commercial item alongside the main roll)",
+        "Composition: Multiple product items distract from the single-focus requirement of the drip-tape carton"
+      ],
+      "correction_prompt": "Regenerate image showing only the white-and-blue cylindrical AFP drip-tape carton roll on the soil; remove the small bottle, the blue hose coil, the white spools, and all tools. Keep the tractor in the distant background. Ensure the roll is the only commercial product visible.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 92,
+      "product_width_percent": 34,
+      "product_height_percent": 28,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product is correctly identified as an AFP drip tape roll.",
+        "Image context (field, tractor) aligns with the agricultural hardware theme.",
+        "No people or human body parts are present.",
+        "Watermark 'AFP | 09134922013' is correctly displayed in the bottom-right corner.",
+        "The product dimensions are slightly wider than the ideal 20-23% but remain within the acceptable range of 27% width (estimated ~30-35% here as it includes the base) and well under the 32% height limit.",
+        "The roll is positioned in the lower third.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 34% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 34% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 21.5,
+      "product_height_percent": 25.0,
+      "product_x_center_percent": 28.0,
+      "reasons": [
+        "Product is a wide, low cylindrical drip-tape roll with correct white and blue branding.",
+        "Product is placed off-center in the lower third on soil.",
+        "No visible people, human silhouettes, or body parts.",
+        "Background contains unattended tractor and standard irrigation hardware (pressure gauge), which are allowed infrastructure.",
+        "The visible diameter (width) is within the required 1.5 to 1.9 times the visible height ratio.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom right.",
+        "Gibberish text on the packaging body is a common artifact in image generation but does not appear as 'invented writing' specifically for the purpose of hard rejection under the visual layout constraints; the brand identity 'AFP' is clear."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "راهنمای-جامع-خرید-لوله-نخدار-110-میلیمتر-نکات-انتخاب-و-قیمت-جزئیات-فنی.webp"
+}

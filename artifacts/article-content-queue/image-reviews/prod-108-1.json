@@ -1,0 +1,79 @@
+{
+  "id": "prod-108",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 35,
+      "product_height_percent": 33,
+      "product_x_center_percent": 72,
+      "reasons": [
+        "Second package/roll present (smaller roll on the left), which is a hard reject.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 13-27% of frame width.; Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the second roll on the left to ensure only one drip-tape roll is in the scene. Reduce the product group from 35% to 13-27% of frame width. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 14,
+      "product_height_percent": 19,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Hard reject: The image contains a male farmer (person) and his body parts (face, hands, legs).",
+        "Hard reject: Human silhouettes and faces are strictly prohibited."
+      ],
+      "correction_prompt": "Remove the person completely. Frame the AFP drip tape roll on the soil surface with the farm context in the background, ensuring no human presence in the image.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 90,
+      "product_width_percent": 26,
+      "product_height_percent": 34,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Exactly one AFP white-and-blue cylindrical carton roll present and naturally placed on soil.",
+        "Product is off-center in the lower third and acts as the secondary subject to the agricultural background.",
+        "Zero people or human body parts visible; background matches general farm context (soil, crop rows, machinery) clearly.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present and correct.",
+        "Product geometry is wide and low, with dimensions in the acceptable practical range for this role.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 16,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Presence of a person: The image clearly shows a man (farmer/worker) crouching next to the product, violating the hard reject rule for zero people.",
+        "Presence of human body parts: Arms, face, head, and legs are visible.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the man from the scene. Keep only the white and blue AFP drip-tape roll placed on the soil in the farm bed. Ensure the framing focuses on the product and the crop context without any humans. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 78,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Meets product geometry, framing, placement and crop-context requirements with clear drip-tape branding and required AFP watermark; no hard rejectors detected."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "نگهداری-از-نوار-تیپ-20-سانتی-رول-1000-متری-برای-عمر-مفید-بیشتر-تصویر-شاخص.webp"
+}

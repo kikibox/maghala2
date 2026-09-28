@@ -4,30 +4,46 @@
   "history": [
     {
       "pass": false,
-      "score": 50,
-      "duplicate_roles": [],
-      "reasons": [
-        "Zero-people policy violation: The red tractor in the background of Image 3 contains a visible driver, which is a hard reject.",
-        "Product identity mismatch: The images depict rolls of tubing (consistent with drip tape) rather than the 125mm threaded pipe specified in the article title."
+      "score": 35,
+      "duplicate_roles": [
+        1,
+        2
       ],
-      "correction_prompt": "Regenerate Image 3 with an empty tractor cab and replace the small-diameter tubing rolls in all three images with 125mm threaded PE pipes to accurately reflect the article topic.",
+      "reasons": [
+        "Role Overlap: The three images were supposed to represent an overview, agronomic close evidence, and a system story. However, images 1 and 2 are essentially the same visual concept: a medium-wide landscape shot of young crops with the product roll as the sole foreground subject. Neither image provides a macro close-up of technical details (like tape texture or pipe cross-section) required for the 'agronomic close evidence' role.",
+        "Visual Redundancy: Images 1 and 2 both show 'product + field + barn' from a low angle. While the crop morphology (corn vs. soybean) differs, the compositional layout is nearly identical, making them feel like minor variations rather than a distinct multi-view editorial set."
+      ],
+      "correction_prompt": "Replace the second image (current close-evidence role) with a macro close-up showing the texture of the irrigation tape or a cross-section of the pipe material, focusing on technical specs rather than a wide field view.",
       "set_attempt": 1
     },
     {
       "pass": false,
-      "score": 75,
+      "score": 45,
       "duplicate_roles": [
         1,
-        2,
-        3
+        2
       ],
       "reasons": [
-        "All three images feature the same AFP drip tape product sitting in the foreground of a young crop field, failing to provide distinct visual narratives for crop-identity, agronomic close-up, or irrigation-system story.",
-        "The product label details on the AFP drip tape are illegible (AI-generated gibberish) in all three images, preventing any clear communication of the 125mm threaded pipe specifications mentioned in the article title.",
-        "The images are near-duplicates in their layout (product in soil, rows of crops extending into the distance), making it difficult to distinguish the specific functional roles required for a varied editorial set."
+        "Image 1 and Image 2 are near-duplicates that repeat substantially the same visual narrative (wide-field view with young crops and product placement in the foreground), failing to provide distinct agronomic close-up evidence vs. crop-identity overview.",
+        "All three images use generic young crops that do not clearly match the article's specific focus on 'vegetable and grain farms' (مزارع سبزیجات و دانه‌ای) with 125mm threaded hose context, and none provide root-zone or irrigation layout evidence specifically related to the technical specification of the hose mentioned in the text.",
+        "Zero people requirement is met, but the agronomic relevance to the 125mm threaded pipe selection guide is weak."
       ],
-      "correction_prompt": "Replace all three with: 1) A clear close-up photograph of a 125mm threaded PE pipe fitting showing the male thread profile and a size comparison against a standard ruler. 2) A technical diagram or schematic illustration of a mainline irrigation network showing the placement of 125mm pipes versus sub-lines. 3) An aerial drone view of an established drip irrigation system in a mature field, clearly showing the mainline and lateral lines without any product packaging in the foreground.",
+      "correction_prompt": "Replace with a close-up shot of 125mm threaded hose installation at the root-zone of a specific grain or vegetable crop (e.g., corn or tomato) showing thread fitting and drip tape distance markers, emphasizing technical specifications.",
       "set_attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 78,
+      "duplicate_roles": [],
+      "reasons": [
+        "Zero people present in all three images.",
+        "The AFP product appears consistently in the foreground across the set, maintaining product identity without excessive duplication.",
+        "Image 1 serves as a broad overview of the crop rows (Identity Overview).",
+        "Image 2 provides a closer perspective focusing on the crop and soil (Agronomic Evidence).",
+        "Image 3 introduces context with farm equipment and tools (Irrigation/Management Story)."
+      ],
+      "correction_prompt": "N/A",
+      "set_attempt": 3
     }
   ]
 }

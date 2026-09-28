@@ -1,0 +1,99 @@
+{
+  "id": "prod-106",
+  "kind": 2,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 20,
+      "product_height_percent": 12,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer) and human body parts (face, hands, legs, torso) in the image.",
+        "Rule violation: The packaged coil is being held by the person and is not placed flat on the ground.",
+        "Layout violation: The product pair (coil + package) is too wide and not isolated as requested; the package overlaps the coil."
+      ],
+      "correction_prompt": "Remove all people and human body parts from the scene. Place the black woven coil and the packaged AFP coil side-by-side on the soil, keeping them flat and separate. Reduce the visual footprint of the pair to 12-15% of the frame width and shift the composition to the lower third, off-center. Maintain the 'AFP | 09134922013' watermark in the bottom right.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 45,
+      "product_height_percent": 25,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Product pair occupies approximately 45% of frame width, exceeding the hard limit of 15%.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Generate a new image where the packaged AFP coil and bare black woven coil are extremely small, occupying only 12-15% of the total frame width. Position the pair strictly in the lower third, offset to the left or right, ensuring the background scenery fills the rest of the frame to make the products appear distant. Reduce the product group from 45% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 60,
+      "product_height_percent": 50,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "Product pair occupies approximately 60% of frame width, far exceeding the 15% maximum.",
+        "The pair is centered rather than positioned on the lower third off-center.",
+        "The bare black woven coil is standing upright instead of lying flat on the ground.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 60% to 9-20% of frame width.; Reduce product height from 50% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Scale down both coils to occupy a combined 12-15% of frame width. Place them off-center on the lower third, ensuring the bare coil is lying flat on the ground rather than standing upright. Reduce the product group from 60% to 9-20% of frame width. Reduce product height from 50% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 42,
+      "product_height_percent": 22,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Contains a full human figure (farmer/worker) which is a hard reject factor.",
+        "Product pair is centered rather than on the lower third off-center.",
+        "Bare black woven coil appears to be a round hose/reel rather than a flat layflat.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 42% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with zero people, remove the human figure entirely. Ensure the pair is a flat layflat coil and a packaged AFP coil, positioned off-center in the lower third (12-15% width) and retain the bottom-right watermark. Reduce the product group from 42% to 9-20% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 50,
+      "product_height_percent": 45,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "Product pair is too wide (over 15% frame width)",
+        "Product staging is not off-center on the lower third",
+        "Layflat coils are not lying flat on the ground (one is upright)",
+        "Product pair is merged together rather than separate",
+        "machine-enforced bounding-box check failed: Reduce the product group from 50% to 9-20% of frame width.; Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image showing exactly one packaged AFP coil and one bare black woven layflat coil. The pair must be lying flat on the ground, separate, fully visible, and occupy only 12 to 15 percent of the frame width. Position the pair off-center in the lower third of the frame. Ensure zero people, human body parts, or silhouettes are visible. Reduce the product group from 50% to 9-20% of frame width. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 60,
+      "product_height_percent": 40,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer/worker) in the frame.",
+        "Hard reject: Person's body parts (face, hands, legs) are clearly visible.",
+        "Hard reject: Products occupy significantly more than 15% of the frame width.",
+        "Hard reject: Products are centered rather than off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 60% to 9-20% of frame width.; Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human body parts. The two layflat coils (one packaged, one bare) must be very small, occupying 12-15% of the frame width, positioned off-center on the lower third, and lying flat on the ground. Reduce the product group from 60% to 9-20% of frame width. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}
