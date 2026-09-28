@@ -85,6 +85,32 @@ class GeneratedTranslationTests(unittest.TestCase):
         self.assertIn("t.slug='maqolahoi-obyor'", tajik)
         self.assertNotIn("t.slug='tj'", tajik)
 
+    def test_tail_cleanup_removes_duplicate_related_block_without_ai(self):
+        broken = (
+            "<h2>الخلاصة</h2><p>نهاية المقال.</p>"
+            "<p><strong>مواضيع ذات صلة:</strong> "
+            "D986DAAFD987D8AFD8A7D8B1D98A</p>"
+            "<p><strong>مواضيع ذات صلة:</strong> "
+            '<a href="https://navar-abyari.ir/x/">'
+            "D986DAAFD987D8AFD8A7D8B1D98A</a></p>"
+        )
+        cleaned = translations.cleanup_translation_html(broken, "ar-IQ")
+        self.assertEqual(cleaned.count("مواضيع ذات صلة"), 1)
+        self.assertNotRegex(cleaned, r"\b(?:[0-9A-F]{2}){6,}\b")
+        self.assertIn("مقالة ذات صلة", cleaned)
+        self.assertIn('href="https://navar-abyari.ir/x/"', cleaned)
+
+    def test_existing_translation_sql_updates_cleaned_post_content(self):
+        item = {"id": "crop-001", "slug": "source-slug"}
+        payload = self.sample_translation()
+        payload["html"] = (
+            "<p><strong>Related articles:</strong> D986DAAFD987D8A7</p>"
+        )
+        create, _ = translations.build_sql(item, payload, "en-US")
+        self.assertIn("UPDATE `ha_posts` SET post_content=", create)
+        self.assertIn("Related article", create)
+        self.assertNotIn("D986DAAFD987D8A7", create)
+
     def test_changed_generator_refreshes_existing_sql_artifact(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

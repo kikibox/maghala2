@@ -30,6 +30,19 @@ LANGUAGE_CATEGORY_SLUG = {
 BATCH = max(1, int(os.getenv("GENERATED_TRANSLATION_BATCH_SIZE", "4")))
 MAX_BACKLOG_SOURCES = max(1, int(os.getenv("MAX_TRANSLATION_BACKLOG_SOURCES", "4")))
 TRANSLATION_WORKERS = max(1, int(os.getenv("TRANSLATION_WORKERS", "1")))
+HEX_TEXT = re.compile(r"\b(?:[0-9A-Fa-f]{2}){6,}\b")
+RELATED_LABEL = re.compile(
+    r"موضوعات مرتبط|مواضيع ذات صلة|مواد ذات صلة|"
+    r"Мавзӯъҳои алоқаманд|Маводи робита|маҳсулҳои муталлиқ|"
+    r"Related (?:topics|posts|articles)",
+    re.IGNORECASE,
+)
+PARAGRAPH = re.compile(r"<p\b[^>]*>.*?</p>", re.IGNORECASE | re.DOTALL)
+GENERIC_RELATED_LABEL = {
+    "ar-IQ": "مقالة ذات صلة",
+    "tg-TJ": "Мақолаи марбут",
+    "en-US": "Related article",
+}
 
 
 def now() -> str:
@@ -56,6 +69,42 @@ def bounded_slug(value: str, suffix: str = "") -> str:
                 raw = raw[:-1]
         slug = slug.rstrip("-")
     return f"{slug}-{suffix}" if suffix else slug
+
+
+def repair_hex_text(html: str, lang: str) -> str:
+    replacement = GENERIC_RELATED_LABEL.get(lang, "Related article")
+    parts = re.split(r"(<[^>]+>)", str(html or ""))
+    for index in range(0, len(parts), 2):
+        parts[index] = HEX_TEXT.sub(replacement, parts[index])
+    return "".join(parts)
+
+
+def cleanup_translation_html(html: str, lang: str) -> str:
+    """Repair cheap deterministic tail defects without another model call."""
+    html = repair_hex_text(html, lang)
+    related = [
+        match
+        for match in PARAGRAPH.finditer(html)
+        if RELATED_LABEL.search(re.sub(r"<[^>]+>", " ", match.group(0)))
+    ]
+    if len(related) <= 1:
+        return html
+    keep = max(
+        related,
+        key=lambda match: (
+            len(re.findall(r"<a\b", match.group(0), re.IGNORECASE)),
+            len(re.sub(r"<[^>]+>", "", match.group(0))),
+        ),
+    )
+    pieces = []
+    cursor = 0
+    for match in related:
+        pieces.append(html[cursor:match.start()])
+        if match.start() == keep.start():
+            pieces.append(match.group(0))
+        cursor = match.end()
+    pieces.append(html[cursor:])
+    return "".join(pieces)
 
 
 def completed_sources():
@@ -97,7 +146,7 @@ def build_sql(item: dict, translated: dict, lang: str) -> tuple[str, str]:
     digest = hashlib.sha1(key.encode("utf-8")).hexdigest()[:8]
     final_fallback_slug = bounded_slug(slug, f"{collision_suffix}-{digest}")
     category_slug = LANGUAGE_CATEGORY_SLUG[lang]
-    body = translated["html"]
+    body = cleanup_translation_html(translated["html"], lang)
     lines = [
         "START TRANSACTION;",
         f"SET @source_post_id=(SELECT post_id FROM `ha_postmeta` WHERE meta_key='_navar_queue_item_id' AND meta_value='{esc(source_key)}' LIMIT 1);",
@@ -109,6 +158,7 @@ def build_sql(item: dict, translated: dict, lang: str) -> tuple[str, str]:
         "SET @resolved_conflict=(SELECT ID FROM `ha_posts` WHERE post_name=@resolved_slug AND post_type='post' AND (@translation_id IS NULL OR ID<>@translation_id) LIMIT 1);",
         f"INSERT INTO `ha_posts` (`post_author`,`post_date`,`post_date_gmt`,`post_content`,`post_title`,`post_excerpt`,`post_status`,`comment_status`,`ping_status`,`post_name`,`post_modified`,`post_modified_gmt`,`post_parent`,`guid`,`menu_order`,`post_type`,`post_mime_type`,`comment_count`) SELECT 1,NOW(),UTC_TIMESTAMP(),'{esc(body)}','{esc(translated['title'])}','{esc(translated.get('excerpt',''))}','publish','closed','closed',@resolved_slug,NOW(),UTC_TIMESTAMP(),0,'',0,'post','',0 WHERE @source_post_id IS NOT NULL AND @translation_id IS NULL AND @resolved_conflict IS NULL;",
         "SET @translation_id=COALESCE(@translation_id,IF(@source_post_id IS NOT NULL AND @resolved_conflict IS NULL,LAST_INSERT_ID(),NULL));",
+        f"UPDATE `ha_posts` SET post_content='{esc(body)}',post_title='{esc(translated['title'])}',post_excerpt='{esc(translated.get('excerpt',''))}',post_status='publish',post_modified=NOW(),post_modified_gmt=UTC_TIMESTAMP() WHERE ID=@translation_id;",
     ]
     metadata = [
         ("_navar_translation_queue_key", key),
@@ -153,10 +203,21 @@ def ensure_translation_artifacts(sources=None):
             if not meta_path.exists():
                 continue
             translated = json.loads(meta_path.read_text(encoding="utf-8"))
+            cleaned_html = cleanup_translation_html(translated.get("html", ""), lang)
+            if cleaned_html != translated.get("html", ""):
+                translated["html"] = cleaned_html
+                meta_path.write_text(
+                    json.dumps(translated, ensure_ascii=False, indent=2),
+                    encoding="utf-8",
+                )
+                repaired += 1
             html_path = folder / f"{lang}.html"
             sql_path = SQL / f"{item_id}-{lang}.sql"
             rollback_path = ROLLBACK / f"{item_id}-{lang}.sql"
-            if not html_path.exists():
+            if (
+                not html_path.exists()
+                or html_path.read_text(encoding="utf-8") != translated["html"]
+            ):
                 html_path.write_text(translated["html"], encoding="utf-8")
                 repaired += 1
             create_sql, rollback_sql = build_sql(item, translated, lang)
@@ -264,6 +325,7 @@ def translate_source(item: dict, data: dict) -> str:
         result["focus_keyword"] = result["title"]
         result["meta_title"] = result.pop("seo_title")
         result["meta_description"] = result.pop("seo_description")
+        result["html"] = cleanup_translation_html(result["html"], lang)
         result.update({
             "source_id": item_id,
             "language": lang,
