@@ -1,0 +1,57 @@
+{
+  "id": "crop-219",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Image contains a clearly visible person (man crouching).",
+        "Crop type mismatch: Background shows corn (maize) leaves, not sorghum.",
+        "Product size: The roll is too small relative to the frame (8% width vs 13-27% acceptable range).",
+        "Product staging: The product is being held/handled by the person rather than resting naturally on the soil.",
+        "Watermark error: The phone number in the bottom-right watermark is '09134922013' instead of the required '09134922013' (the last digit differs).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the human subject entirely. Replace the corn background with a sorghum field. Ensure the sorghum plants have the correct leaf shape and growth habit. Place the AFP white-and-blue drip-tape roll on the soil on the lower left third. Enlarge the roll so it occupies approximately 15-20% of the frame width. Correct the watermark phone number to 09134922013. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 16,
+      "product_height_percent": 28,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "The crop shown is maize (corn), identifiable by the broad leaves and tassels at the top, which does not match the required article crop of sorghum.",
+        "According to the prompt rules, clearly identifiable different species results in a hard reject, even if the other image requirements (product size, position, and watermark) are met."
+      ],
+      "correction_prompt": "Replace the maize field with a field of sorghum plants showing distinct sorghum panicles and leaves. Ensure the crop is visibly in an appropriate harvest stage.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 15,
+      "product_height_percent": 15,
+      "product_x_center_percent": 51,
+      "reasons": [
+        "Product (AFP white-and-blue cylindrical drip-tape carton roll) is present, correctly placed on soil, and secondary to the crop context.",
+        "Image shows exactly one drip-tape roll with correct geometry (wide/low cylindrical), estimated aspect ratio ~1.5:1.",
+        "Sorghum crop is visible in background (botanically accurate leaves and panicles) matching article context.",
+        "No people, body parts, or human silhouettes detected.",
+        "Required AFP watermark is present in the bottom right.",
+        "Product dimensions and off-center placement on the lower third satisfy practical QA limits (width 15%, height 15%)."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-سورگوم-با-آبیاری-قطرهای-تصویر-شاخص.webp"
+}

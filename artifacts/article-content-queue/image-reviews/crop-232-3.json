@@ -1,0 +1,79 @@
+{
+  "id": "crop-232",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 30,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "The required white-and-blue wide low cylindrical drip-tape carton roll is missing; instead, a tall cylindrical canister is shown, which triggers a hard reject for 'canister' or 'tall narrow drum'.",
+        "The required watermark 'AFP | 09134922013' is not visible in the image (the image in the prompt contains a different or missing watermark, and the specific required string is absent)."
+      ],
+      "correction_prompt": "Replace the tall canister with a wide, low cylindrical drip-tape roll (white and blue) placed on the soil in the lower-left third. Ensure the roll width is roughly 20-23% of the frame width. Overlay the required watermark 'AFP | 09134922013' in the bottom-right corner.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 15,
+      "product_height_percent": 25,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "Hard reject: A human figure (farmer) is clearly visible in the image. The specification requires zero people or human body parts."
+      ],
+      "correction_prompt": "Remove the man crouching in the field. The image must contain only the drip tape roll on the soil with tractors and crop rows in the background, but no human presence.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 35,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product height exceeds the 32% limit (approx 35%)",
+        "Product aspect ratio is too cylindrical; width-to-height ratio is roughly 1:1 instead of the required 1.5-1.9 range (wide low/flat roll)",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reshape the AFP white-and-blue roll to be significantly wider and flatter (a low profile carton) with a width-to-height ratio of 1.7:1, reducing its total height to under 30% of the frame while maintaining the off-center placement on the lower third. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 15,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The image contains a prominent human figure (a man), which is a hard reject based on the requirement for zero people.",
+        "The product (the carton roll) is white with blue markings, which loosely matches the description but is significantly obstructed and composed alongside the hard-reject element (the person)."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove the man. Show only the AFP white-and-blue drip-tape carton roll placed on the soil in a farm context, with no human figures, body parts, or silhouettes visible.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 80,
+      "product_width_percent": 23.3,
+      "product_height_percent": 27.6,
+      "product_x_center_percent": 31.7,
+      "reasons": [
+        "Product is a single white-and-blue AFP drip-tape carton roll, wide and low profile.",
+        "Product is positioned on the lower-left, off-center on the lower third of the frame, sitting naturally on soil.",
+        "No persons or human body parts are visible in the image.",
+        "The garlic bulb is present but visually neutral and does not contradict the hardware focus of Role 3.",
+        "The bottom-right watermark 'AFP | 09134922013' is present exactly as required.",
+        "Loose tape segments in the background are treated as part of the product installation context rather than a rejected second commercial package."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "فاصله-نوار-تیپ-در-کشت-موسیر-استانداردهای-توصیهشده-جزئیات-فنی.webp"
+}

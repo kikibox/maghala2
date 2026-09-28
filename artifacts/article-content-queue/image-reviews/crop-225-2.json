@@ -1,0 +1,71 @@
+{
+  "id": "crop-225",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 20,
+      "product_x_center_percent": 18,
+      "reasons": [
+        "The image features a large, mature onion bulb and plant in the center, which acts as the primary subject and violates the requirement for the product to be secondary.",
+        "The product width estimate (~22%) is at the absolute upper limit of the acceptable range (13-27%), and its proximity to the large central onion makes the visual balance incorrect.",
+        "The background crop is a fully mature onion, whereas a farm-context image for a drip-tape article typically implies a crop in the irrigation/growth stage (young seedlings); the mature onion distracts from the product's utility."
+      ],
+      "correction_prompt": "Reduce the size of the onion plant so the product is clearly the secondary but prominent element, or replace the large onion bulb with a smaller young seedling to better match the drip-tape application context.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 10,
+      "product_height_percent": 15,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "Presence of human body parts: The image clearly shows a person's torso, hands, and legs, which violates the strict prohibition against showing any people or human body parts.",
+        "Product visibility/geometry: While a drip tape roll is present, the severe violation regarding the person necessitates a hard reject.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any humans or body parts. Show only the farm field, the wooden planter box, the crop (onion), and the drip tape roll. Remove the person entirely while maintaining the background and objects. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 11,
+      "product_height_percent": 15,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product is a spool/reel of tape, not the required 'wide low cylindrical drip-tape carton roll'.",
+        "The required product is missing; instead, two onions and plants are prominently featured, violating the crop-specific article requirements.",
+        "Hard reject: Presence of extra commercial products or items not aligned with the core subject (the specific drip tape roll).",
+        "Hard reject: The product width (estimated ~11%) is below the acceptable practical range of 13%.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Replace the wooden box containing plants and two large onions with a single wide, low, cylindrical white-and-blue drip tape carton roll sitting naturally on the soil. Ensure the roll is off-center in the lower third and the width is between 20-23% of the image frame. Keep the farm background and watermarked text 'AFP | 09134922013'. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 25,
+      "product_height_percent": 18,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Image clearly shows a single AFP white-and-blue drip-tape roll on a prepared farm bed.",
+        "The crop morphology (grass-like seedlings) is consistent with corn/maize establishment, making the crop identifiable and botanically accurate.",
+        "The product is correctly placed in the lower-third, off-center, and sits naturally on the soil.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No people, human body parts, or extra commercial products are visible.",
+        "The background infrastructure (trucks, pump) and crop rows match the farm context."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "میزان-برداشت-پیازچه-در-هکتار-با-نوار-تیپ-کاربرد-عملی.webp"
+}

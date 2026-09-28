@@ -1,0 +1,53 @@
+{
+  "id": "crop-228",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "The crop visible in the image is not clover; the plants show broad, singular leaf structures characteristic of different low-lying crops like cucurbits or beans, violating the strict requirement for clover with 'unmistakable three-leaflet leaves'.",
+        "While the 'three-leaflet' morphology is not present, the crop row layout and general farm context are appropriate for drip-tape infrastructure."
+      ],
+      "correction_prompt": "Regenerate with the crop field clearly showing clover with three-leaflet leaves in a dense canopy, ensuring the crop matches the specified 'clover' requirement.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 11,
+      "product_height_percent": 16,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: The image contains a person (a female farmer), and specifically shows a face, torso, arms, legs, and hands. The rule explicitly states 'Hard reject any person... even distant' and 'zero human body parts'.",
+        "Product staging: The roll is being handled/touched by a person and is centrally located on the lower line rather than off-center lower third.",
+        "Geometry: The visible height of the roll is roughly equivalent to its width (approx 1:1 aspect ratio), whereas the requirement specifies a width-to-height ratio of 1.5 to 1.9.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with zero humans or body parts. Show a single AFP white-and-blue drip-tape carton roll placed on the soil, off-center on the lower third. Ensure the roll has a wide cylindrical shape (width 1.5x height) and make the product smaller relative to the frame (width ~20%). Keep the bottom-right watermark. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 78,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Product is a single white cylindrical carton roll positioned naturally on the soil",
+        "Placement is off-center in the lower third, consistent with staging requirements",
+        "Product dimensions are within the acceptable width (18%) and height (22%) limits",
+        "Background shows a farm field with low-lying crops, consistent with the clover article topic"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "میزان-برداشت-شبدر-در-هکتار-با-نوار-تیپ-تصویر-شاخص.webp"
+}

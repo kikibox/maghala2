@@ -1,0 +1,83 @@
+{
+  "id": "crop-229",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 19.5,
+      "product_height_percent": 18.0,
+      "product_x_center_percent": 32.5,
+      "reasons": [
+        "Hard reject: The image contains a visible human silhouette (the driver in the tractor) in the background, which is strictly forbidden by the 'zero people' rule.",
+        "The product roll appears slightly more cylindrical (depth is large relative to height) than the specified 'wide low' profile, though the 1.8:1 ratio is borderline acceptable.",
+        "The two pressure gauges on the right are borderline; they look like small standalone commercial units rather than 'ordinary fixed infrastructure' without a visible main system context, contributing to visual clutter."
+      ],
+      "correction_prompt": "Remove the tractor driver entirely (tractor must be unattended). Ensure the drip tape roll is visibly flatter (wider diameter relative to height). Remove the standalone pressure gauges or integrate them into a visible manifold to look like infrastructure. Keep the AFP watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 52,
+      "product_width_percent": 36,
+      "product_height_percent": 33,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product width exceeds the maximum 27% threshold (estimated at 36%)",
+        "Product height exceeds the maximum 32% threshold (estimated at 33%)",
+        "machine-enforced bounding-box check failed: Reduce the product group from 36% to 13-27% of frame width.; Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the drip-tape roll to approximately 20% width and 28% height, moving it further left to maintain its off-center position on the soil without dominating the frame. Reduce the product group from 36% to 13-27% of frame width. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 12,
+      "product_height_percent": 22,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "A person (worker/farmer) with clearly visible hands, arms, legs, and torso is present in the image, which is a hard reject condition.",
+        "The product roll is positioned in the lower-left quadrant, failing the requirement to be 'off-center on the lower third' (typically implies a balanced composition near the bottom-third horizontal lines, not tucked in the corner).",
+        "The product height (22%) is significantly higher relative to its width (12%), violating the requirement that the diameter should be 1.5 to 1.9 times its height.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures and body parts; keep only the unattended drip tape roll. Regenerate with the roll placed off-center in the lower third, ensuring the visible diameter is 1.5x to 1.9x its height. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Presence of three people sitting on the ground in the background (left-center).",
+        "Human body parts (heads, torsos, legs) are visible, violating the strict zero-person rule."
+      ],
+      "correction_prompt": "Remove the three people sitting on the ground in the background. Ensure the scene contains no humans or human body parts. Keep the drip tape roll, soil, crops, tractor, and barn exactly as they are.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 24.0,
+      "product_height_percent": 29.0,
+      "product_x_center_percent": 32.0,
+      "reasons": [
+        "Required bottom-right watermark 'AFP | 09134922013' is present.",
+        "No people, human body parts, or silhouettes are visible; the tractor is unattended infrastructure.",
+        "Product is a single white-and-blue wide cylindrical drip-tape roll, off-center in the lower third, naturally placed on soil.",
+        "Product dimensions are within the specified width (13-27%) and height (0-32%) limits.",
+        "Product visible diameter (approx 24%) is approximately 1.65 times its visible height (approx 14.5%), matching the required 1.5-1.9 ratio.",
+        "Leafy vegetables are visible in the context and do not contradict the 'سبزی' topic."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "نگهداری-سبزی-با-نوار-تیپ-نکات-کلیدی-جزئیات-فنی.webp"
+}

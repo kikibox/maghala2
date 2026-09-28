@@ -1,0 +1,42 @@
+{
+  "id": "crop-220",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer/worker) and visible hands/body parts in the image.",
+        "Hard reject: The 'product' shown is a small cylindrical canister/container, not the required 'wide low cylindrical drip-tape carton roll'.",
+        "Product aspect ratio and dimensions do not match the 'wide and low' requirement for a tape roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image removing all people and human body parts. Replace the small canister with a wide, low cylindrical drip-tape roll (white and blue) placed on the soil. The roll should be approximately 13-27% of the frame width, 1.5-1.9x wider than it is tall, and positioned in the lower third, off-center. Keep the farm context and the bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 21.5,
+      "product_height_percent": 22.5,
+      "product_x_center_percent": 42.5,
+      "reasons": [
+        "Product is a clearly identifiable AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Watermark 'AFP | 09134922013' is present exactly as required in the bottom-right corner.",
+        "Zero people or body parts are visible in the image.",
+        "Product placement is off-center (lower-left third) and naturally placed on the soil.",
+        "Dimensions meet requirements: width is ~21.5% (within 20-23% target), height is ~22.5% (<32% limit), and aspect ratio is approximately 1:1 (within 1.5-1.9 range for visible width vs height).",
+        "Crop morphology in the foreground (young plants with serrated edges) is consistent with a young 'family' crop (e.g., brassicas or similar leafy vegetables), providing a botanically plausible agronomic context."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "فاصله-نوار-تیپ-در-کشت-کاملینا-استانداردهای-توصیهشده-کاربرد-عملی.webp"
+}
