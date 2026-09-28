@@ -1,26 +1,87 @@
 {
   "id": "prod-091",
   "kind": 3,
-  "family": "tape20",
+  "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
-      "pass": true,
-      "score": 88,
-      "product_width_percent": 23,
-      "product_height_percent": 25,
-      "product_x_center_percent": 30,
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
       "reasons": [
-        "Product is exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll, matching the topic-specific farm context with irrigation hardware.",
-        "Watermark 'AFP | 09134922013' is present in the bottom right corner as required.",
-        "No people or human body parts are visible in the image.",
-        "The product is off-center on the lower third and naturally placed on soil.",
-        "The visible diameter of the roll is approximately 1.5 to 1.9 times its visible height, and its width and height are within the acceptable bounds.",
-        "The background shows a farm context with a tractor and fields, matching the hardware story role."
+        "Product pair width is approximately 45% of frame width, exceeding the hard reject limit of 15%.",
+        "Staging is centered in the lower third rather than off-center as required.",
+        "A third product (pressure gauge) is visible next to the coils, violating the 'exactly two objects' constraint.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to ensure the two layflat coils are small (12-15% frame width), placed off-center in the lower third. Completely remove the pressure gauge on the right. Keep the tractors and watermark. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 25,
+      "product_height_percent": 20,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Product pair occupies too much frame width (>15% required, ~25% estimated)",
+        "Product placement is centered in the lower section rather than off-center",
+        "Product objects appear too large relative to the scene depth",
+        "machine-enforced bounding-box check failed: Reduce the product group from 25% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Shrink the two hose coils to occupy only 12-15% of frame width and move them off-center to the lower-left or lower-right third of the frame. Reduce the product group from 25% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: Presence of two people (workers/farmers) in the frame.",
+        "Hard reject: Human body parts (faces, hands, arms, legs) are clearly visible.",
+        "Layout violation: The product pair is not positioned in the lower third; instead, the subjects occupy the center-right area.",
+        "Context violation: The image contains human silhouettes/figures which are strictly prohibited.",
+        "Staging violation: The products are being handled or staged near a human subject rather than remaining separate and flat on the ground as a distinct pair."
+      ],
+      "correction_prompt": "Regenerate the image containing only the AFP packaged coil and the bare black woven coil on the ground. Remove all people, hands, and human silhouettes. Place the two coils separately in the lower third, off-center, occupying 12-15% of the frame width. Maintain the required bottom-right watermark.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 48,
+      "product_height_percent": 25,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product pair occupies approximately 48% of frame width, significantly exceeding the maximum 15% limit.",
+        "Product staging is centered horizontally, violating the requirement to be off-center.",
+        "The packaged AFP coil on the left has impossible geometry (impossible intersection/merged packaging) and appears to float slightly rather than resting flat.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 48% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image. Scale the products down so the pair width is only 12-15% of the frame. Move the products to the lower-left or lower-right third (off-center). Ensure the packaging looks physically solid and flat on the ground, not intersecting or floating. Reduce the product group from 48% to 9-20% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 98,
+      "product_width_percent": 18,
+      "product_height_percent": 15,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The complete pair of approved layflat objects (packaged AFP coil and bare black woven coil) is visible.",
+        "Both products are separate, flat on the ground, and fully visible.",
+        "The products occupy the lower-left portion of the frame, staying off-center as required.",
+        "The frame contains zero people or human body parts.",
+        "The required bottom-right watermark is present.",
+        "The image only contains permitted infrastructure (tractor) and no forbidden hardware or extra products."
       ],
       "correction_prompt": "",
-      "attempt": 1
+      "attempt": 5
     }
   ],
   "approved_image": "مقایسه-لوله-نخ-دار-75-میلیمتر-با-سایر-برندها-جزئیات-فنی.webp"

@@ -1,0 +1,105 @@
+{
+  "id": "prod-039",
+  "kind": 1,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 5,
+      "product_height_percent": 8,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: The image contains a person (farmer/worker) kneeling in the foreground",
+        "Hard reject: Human body parts (head, face, arms, legs) are clearly visible",
+        "Hard reject: The required pair of two large layflat coils (packaged and bare) is missing; only a small tool or part is visible in hand",
+        "The main subject violates the 'zero people' requirement",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the person completely. Place a packaged AFP coil and a bare black woven coil on the soil in the lower third, off-center. They should be separate, flat on the ground, and occupy 12-15% of the frame width. Enlarge the product group from 5% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 24,
+      "product_height_percent": 18,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The pair of objects is too wide, occupying approximately 24% of the frame width instead of the required 12-15%.",
+        "The products are positioned too close to the bottom edge, risking cropping and failing to stay fully visible on the ground with adequate margin.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 24% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Scale down the coils to occupy 12-15% of frame width and shift the pair slightly up to ensure they are fully visible on the soil with margin from the bottom edge. Reduce the product group from 24% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Presence of two human figures (farmers/workers) in the frame",
+        "Product pair is centered rather than off-center on the lower third",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image strictly without any people or human body parts. The scene should show only the field, the packaged AFP coil, and the bare black woven coil flat on the ground. The coils must occupy approximately 12-15% of the frame width and be positioned off-center on the lower third. The watermark 'AFP | 09134922013' must remain in the bottom-right corner. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 46,
+      "product_height_percent": 16,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The pair of products occupies approximately 46% of the frame width, which exceeds the mandatory limit of 15%.",
+        "The products are located in the lower center rather than 'off-center' on the lower third.",
+        "The packaged AFP coil appears geometrically distorted and lacks the flat, cylindrical profile of a standard coil.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 46% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Shrink the pair of coils to occupy only 12-15% of the frame width. Shift them to the lower right off-center area. Correct the geometry of the white package to be a flat cylinder. Reduce the product group from 46% to 9-20% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 42.5,
+      "product_height_percent": 15.2,
+      "product_x_center_percent": 56,
+      "reasons": [
+        "Pair of layflat objects is too wide, spanning ~42.5% of frame width (exceeds 15% hard limit).",
+        "Objects are not positioned off-center on the lower third; they sit near the bottom-center line.",
+        "Watermark 'AFP | 09134922013' is present and required — not a rejection reason.",
+        "No people, body parts, or human silhouettes detected — compliant.",
+        "Two approved objects visible: one packaged AFP coil (left) and one bare black woven coil (right) — object count correct.",
+        "Objects appear flat and separate on ground — acceptable staging except for size and position.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 42.5% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate with pair reduced to ≤15% of frame width, positioned off-center on lower third (e.g., x-center at 25% or 75%), maintaining two distinct coils (one packaged, one bare) and required watermark. Reduce the product group from 42.5% to 9-20% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Required two approved layflat objects are present: one packaged AFP coil and one bare black woven coil.",
+        "Both objects are fully visible, separate, and flat on the ground.",
+        "The pair is positioned off-center in the lower third of the frame.",
+        "The combined pair width is approximately 15% of the image, within the 12-15% limit.",
+        "No people, body parts, or human silhouettes are present.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present.",
+        "No prohibited third products or hardware intersections."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "مراحل-نصب-لوله-نخ-دار-90-میلیمتر-در-سیستم-آبیاری-تصویر-شاخص.webp"
+}
