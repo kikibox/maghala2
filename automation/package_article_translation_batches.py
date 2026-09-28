@@ -15,15 +15,15 @@ def healthy(path,name,ids):
  try:
   with zipfile.ZipFile(path) as z:
    if z.testzip() is not None:return None
-   names=set(z.namelist());m=json.loads(z.read('manifest.json').decode('utf-8'));sql=z.read('sql/create-batch.sql').decode('utf-8')
+   names=set(z.namelist());m=json.loads(z.read('manifest.json').decode('utf-8'));create_name=f'sql/create-{name}.sql' if f'sql/create-{name}.sql' in names else 'sql/create-batch.sql';rollback_name=f'sql/rollback-{name}.sql' if f'sql/rollback-{name}.sql' in names else 'sql/rollback-batch.sql';sql=z.read(create_name).decode('utf-8')
    if m.get('batch_name')!=name or set(m.get('source_ids',[]))!=set(ids) or f'USE `{DB_NAME}`;' not in sql[:500]:return None
-   if not {'sql/create-batch.sql','sql/rollback-batch.sql','README-fa.txt'}<=names:return None
+   if not {create_name,rollback_name,'README-fa.txt'}<=names:return None
    m.update(zip=path.name,bytes=path.stat().st_size,sha256=digest(path));return m
  except (OSError,ValueError,KeyError,TypeError,zipfile.BadZipFile,json.JSONDecodeError):return None
 def build(rows,index,name):
  work=PACKAGES/name
  if work.exists():shutil.rmtree(work)
- (work/'sql').mkdir(parents=True);(work/'translations').mkdir();preamble=['SET NAMES utf8mb4;',f'USE `{DB_NAME}`;'];create=[f'-- Create multilingual translation batch {name}',*preamble];rollback=[f'-- Roll back multilingual translation batch {name}',*preamble];files=[];ids=[]
+ (work/'sql').mkdir(parents=True);(work/'translations').mkdir();preamble=['SET NAMES utf8mb4 COLLATE utf8mb4_unicode_520_ci;',"SET collation_connection = 'utf8mb4_unicode_520_ci';",f'USE `{DB_NAME}`;'];create=[f'-- Create multilingual translation batch {name}',*preamble];rollback=[f'-- Roll back multilingual translation batch {name}',*preamble];files=[];ids=[]
  for item in rows:
   key=str(item['id']);ids.append(key)
   for lang in LANGUAGES:
@@ -33,9 +33,9 @@ def build(rows,index,name):
    target=work/'translations'/key;target.mkdir(parents=True,exist_ok=True);shutil.copy2(html,target/html.name);shutil.copy2(meta,target/meta.name)
    files += [str((target/html.name).relative_to(work)),str((target/meta.name).relative_to(work))]
    create.append(f'\n-- translation: {key}/{lang}\n'+sql.read_text(encoding='utf-8'));rollback.insert(3,f'\n-- rollback translation: {key}/{lang}\n'+back.read_text(encoding='utf-8'))
- (work/'sql'/'create-batch.sql').write_text('\n'.join(create)+'\n',encoding='utf-8');(work/'sql'/'rollback-batch.sql').write_text('\n'.join(rollback)+'\n',encoding='utf-8')
- readme='1) از دیتابیس نسخه پشتیبان تهیه کنید.\n2) sql/create-batch.sql را یک‌بار اجرا کنید.\n3) برای حذف این ترجمه‌ها sql/rollback-batch.sql را اجرا کنید.\n'
- (work/'README-fa.txt').write_text(readme,encoding='utf-8');files+=['sql/create-batch.sql','sql/rollback-batch.sql','README-fa.txt']
+ create_name=f'create-{name}.sql';rollback_name=f'rollback-{name}.sql';(work/'sql'/create_name).write_text('\n'.join(create)+'\n',encoding='utf-8');(work/'sql'/rollback_name).write_text('\n'.join(rollback)+'\n',encoding='utf-8')
+ readme=f'1) از دیتابیس نسخه پشتیبان تهیه کنید.\n2) sql/{create_name} را یک‌بار اجرا کنید.\n3) برای حذف این ترجمه‌ها sql/{rollback_name} را اجرا کنید.\n'
+ (work/'README-fa.txt').write_text(readme,encoding='utf-8');files += [f'sql/{create_name}',f'sql/{rollback_name}','README-fa.txt']
  manifest={'batch':index,'batch_name':name,'source_article_count':len(rows),'translation_post_count':len(rows)*len(LANGUAGES),'languages':list(LANGUAGES),'source_ids':ids,'files':sorted(files)};(work/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8')
  archive=PACKAGES/f'{name}.zip'
  with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as z:

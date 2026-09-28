@@ -41,10 +41,12 @@ def healthy(path,name,batch):
    if z.testzip() is not None:return None
    names=set(z.namelist())
    manifest=json.loads(z.read('manifest.json').decode('utf-8'))
-   sql=z.read('sql/create-batch.sql').decode('utf-8')
+   create_name=f'sql/create-{name}.sql' if f'sql/create-{name}.sql' in names else 'sql/create-batch.sql'
+   rollback_name=f'sql/rollback-{name}.sql' if f'sql/rollback-{name}.sql' in names else 'sql/rollback-batch.sql'
+   sql=z.read(create_name).decode('utf-8')
    actual={str(x.get('id') or '') for x in manifest.get('posts',[])}
    if manifest.get('batch')!=name or actual!=expected or int(manifest.get('post_count',0))!=len(batch):return None
-   if 'sql/rollback-batch.sql' not in names or f'USE `{DB_NAME}`;' not in sql[:500]:return None
+   if rollback_name not in names or f'USE `{DB_NAME}`;' not in sql[:500]:return None
    if len([x for x in names if x.startswith('items/') and x.endswith('.json')])<len(batch):return None
    if not any(x.startswith('wp-content/uploads/') for x in names):return None
    manifest.update(zip=path.name,zip_sha256=sha256(path),zip_bytes=path.stat().st_size)
@@ -55,7 +57,7 @@ def build(batch,name):
  work=PACKAGES/name
  if work.exists():shutil.rmtree(work)
  (work/'sql').mkdir(parents=True);(work/'items').mkdir();image_root=work/'wp-content'/'uploads'/UPLOAD_SUBDIR;image_root.mkdir(parents=True)
- preamble=['SET NAMES utf8mb4;',f'USE `{DB_NAME}`;']
+ preamble=['SET NAMES utf8mb4 COLLATE utf8mb4_unicode_520_ci;',"SET collation_connection = 'utf8mb4_unicode_520_ci';",f'USE `{DB_NAME}`;']
  create=[f'-- Create {len(batch)} generated articles ({name})',*preamble]
  rollback=[f'-- Roll back {len(batch)} generated articles ({name})',*preamble]
  posts=[];files=[]
@@ -70,9 +72,10 @@ def build(batch,name):
    image_name=Path(image['name'] if isinstance(image,dict) else image).name;src=OUT/'images'/image_name
    if not src.exists():raise RuntimeError(f'Image missing for {key}: {image_name}')
    shutil.copy2(src,image_root/image_name);files.append(f'wp-content/uploads/{UPLOAD_SUBDIR}/{image_name}')
- (work/'sql'/'create-batch.sql').write_text('\n'.join(create)+'\n',encoding='utf-8');(work/'sql'/'rollback-batch.sql').write_text('\n'.join(rollback)+'\n',encoding='utf-8')
- readme='1) پوشه wp-content را در ریشه وردپرس آپلود کنید.\n2) پس از تهیه نسخه پشتیبان، sql/create-batch.sql را اجرا کنید.\n3) برای بازگشت، sql/rollback-batch.sql را اجرا کنید.\n'
- (work/'README-fa.txt').write_text(readme,encoding='utf-8');files+=['sql/create-batch.sql','sql/rollback-batch.sql','README-fa.txt']
+ create_name=f'create-{name}.sql';rollback_name=f'rollback-{name}.sql'
+ (work/'sql'/create_name).write_text('\n'.join(create)+'\n',encoding='utf-8');(work/'sql'/rollback_name).write_text('\n'.join(rollback)+'\n',encoding='utf-8')
+ readme=f'1) پوشه wp-content را در ریشه وردپرس آپلود کنید.\n2) پس از تهیه نسخه پشتیبان، sql/{create_name} را اجرا کنید.\n3) برای بازگشت، sql/{rollback_name} را اجرا کنید.\n'
+ (work/'README-fa.txt').write_text(readme,encoding='utf-8');files += [f'sql/{create_name}',f'sql/{rollback_name}','README-fa.txt']
  manifest={'batch':name,'post_count':len(batch),'upload_subdir':UPLOAD_SUBDIR,'posts':posts,'files':sorted(set(files))}
  (work/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8')
  archive=PACKAGES/f'{name}.zip'

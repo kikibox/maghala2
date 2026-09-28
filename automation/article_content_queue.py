@@ -966,7 +966,7 @@ def sql_for(item, obj, images):
     q = [
         "START TRANSACTION;",
         f"SET @queue_key='{esc(queue_key)}';",
-        f"SET @post_id=(SELECT post_id FROM `{META}` WHERE meta_key='_navar_queue_item_id' AND meta_value=@queue_key LIMIT 1);",
+        f"SET @post_id=(SELECT post_id FROM `{META}` WHERE meta_key='_navar_queue_item_id' AND meta_value COLLATE utf8mb4_unicode_520_ci = @queue_key COLLATE utf8mb4_unicode_520_ci LIMIT 1);",
         f"SET @slug_conflict=(SELECT ID FROM `{TABLE}` WHERE post_name='{esc(slug)}' AND post_type='{esc(pt)}' AND (@post_id IS NULL OR ID<>@post_id) LIMIT 1);",
         f"INSERT INTO `{TABLE}` (`post_author`,`post_date`,`post_date_gmt`,`post_content`,`post_title`,`post_excerpt`,`post_status`,`comment_status`,`ping_status`,`post_name`,`post_modified`,`post_modified_gmt`,`post_parent`,`guid`,`menu_order`,`post_type`,`post_mime_type`,`comment_count`) SELECT 1,NOW(),UTC_TIMESTAMP(),'{esc(body)}','{esc(title)}','{esc(excerpt)}','publish','open','open','{esc(slug)}',NOW(),UTC_TIMESTAMP(),0,'',0,'{esc(pt)}','',0 WHERE @post_id IS NULL AND @slug_conflict IS NULL;",
         "SET @post_id=COALESCE(@post_id,IF(@slug_conflict IS NULL,LAST_INSERT_ID(),NULL));",
