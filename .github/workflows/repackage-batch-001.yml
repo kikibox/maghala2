@@ -1,0 +1,104 @@
+name: Replace batch 001 with approved rebuilt images
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/repackage-batch-001.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: article-content-pipeline
+  cancel-in-progress: false
+
+env:
+  OLD_REJECTED_SHA256: f7129be9ac79bd255099066da7899e35079d0db9dc076e9da5ceacc2198bf6cc
+  TARGET_PACKAGE: batch-001-articles-0001-0050
+  APPROVED_POLICY: reference-rerender-3d-v11-no-human-no-container-full-rebuild
+
+jobs:
+  repackage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Verify approved replacement inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          root=Path('artifacts/article-content-queue')
+          package=root/'packages'/("${{ env.TARGET_PACKAGE }}"+'.zip')
+          old=hashlib.sha256(package.read_bytes()).hexdigest()
+          if old != "${{ env.OLD_REJECTED_SHA256 }}":
+              raise SystemExit(f'guard failed: expected rejected ZIP hash, found {old}')
+          manifest=json.loads((root/'packages/manifest.json').read_text(encoding='utf-8'))
+          batch=next(x for x in manifest['packages'] if x['batch']=="${{ env.TARGET_PACKAGE }}")
+          if len(batch['posts']) != 50:
+              raise SystemExit('batch 001 must contain exactly 50 articles')
+          names=[]
+          for post in batch['posts']:
+              item=json.loads((root/'items'/f"{post['id']}.json").read_text(encoding='utf-8'))
+              if item.get('image_rebuild_policy') != "${{ env.APPROVED_POLICY }}":
+                  raise SystemExit(f"{post['id']} is not rebuilt under approved v11 policy")
+              images=item.get('images') or []
+              if len(images) != 3:
+                  raise SystemExit(f"{post['id']} must have exactly three approved images")
+              for image in images:
+                  name=Path(image['name'] if isinstance(image,dict) else image).name
+                  path=root/'images'/name
+                  if not path.exists() or path.stat().st_size < 10000:
+                      raise SystemExit(f'missing approved image: {name}')
+                  names.append(name)
+          if len(names) != 150 or len(set(names)) != 150:
+              raise SystemExit('batch 001 must resolve to 150 unique approved images')
+          print('verified 50 rebuilt articles and 150 approved replacement images')
+          PY
+      - name: Delete rejected package contents and rebuild ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f "artifacts/article-content-queue/packages/$TARGET_PACKAGE.zip"
+          rm -rf "artifacts/article-content-queue/packages/$TARGET_PACKAGE"
+          PACKAGE_BATCH_SIZE=50 python automation/package_article_content_batches.py
+      - name: Validate replacement package
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json, zipfile
+          from pathlib import Path
+          path=Path('artifacts/article-content-queue/packages')/("${{ env.TARGET_PACKAGE }}"+'.zip')
+          digest=hashlib.sha256(path.read_bytes()).hexdigest()
+          if digest == "${{ env.OLD_REJECTED_SHA256 }}":
+              raise SystemExit('rejected ZIP was not replaced')
+          with zipfile.ZipFile(path) as z:
+              if z.testzip() is not None:
+                  raise SystemExit('replacement ZIP failed CRC validation')
+              manifest=json.loads(z.read('manifest.json').decode('utf-8'))
+              images=[x for x in z.namelist() if x.startswith('wp-content/uploads/') and x.endswith('.webp')]
+              if manifest.get('post_count') != 50 or len(images) != 150:
+                  raise SystemExit(f'invalid replacement contents: posts={manifest.get("post_count")} images={len(images)}')
+          print(f'replacement_sha256={digest} bytes={path.stat().st_size} posts=50 images=150')
+          PY
+      - name: Commit replacement ZIP and extracted package
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f "artifacts/article-content-queue/packages/$TARGET_PACKAGE.zip"
+          git add -f "artifacts/article-content-queue/packages/$TARGET_PACKAGE"
+          git add -f artifacts/article-content-queue/packages/manifest.json
+          git commit -m 'Replace batch 001 rejected images with approved v11 rebuild [skip ci]'
+          git push origin HEAD:main
