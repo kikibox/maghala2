@@ -2,33 +2,21 @@ name: Generate Arabic Tajik and English translations
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'automation/translate_queue.py'
-      - 'automation/translate_generated_articles.py'
-      - 'automation/repair_persian_article_text.py'
-      - 'automation/render_article_queue_status.py'
-      - 'automation/package_article_content_batches.py'
-      - 'automation/write_new_article_batch_signal.py'
-      - 'sqlbuild/build_patch.py'
-      - 'data/source_ids.txt'
 
 permissions:
   contents: write
   actions: write
 
 concurrency:
-  # Keep one serialized writer for translations, Persian generation and strict
-  # rebuilds. With generation chained below, GitHub never replaces a pending
-  # translator with a second scheduled request in this group.
-  group: article-content-pipeline
+  # Same-workflow deduplication only. Cross-workflow priority is enforced by
+  # explicit waits, so GitHub never cancels a pending translator when a rebuild starts.
+  group: article-translations-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
   translate:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 360
     env:
       AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
       AGNES_API_KEY2: ${{ secrets.AGNES_API_KEY2 }}
@@ -58,6 +46,24 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
+      - name: Wait for higher-priority image rebuilds
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 660); do
+            active="$(gh run list --workflow rebuild-all-article-images.yml --limit 30 --json status --jq '[.[] | select(.status == "queued" or .status == "in_progress" or .status == "waiting" or .status == "pending" or .status == "requested")] | length')"
+            if [ "$active" -eq 0 ]; then
+              echo "No image rebuild is active; translation owns the writer slot."
+              exit 0
+            fi
+            if [ "$attempt" -eq 1 ]; then echo "Waiting for $active image rebuild run(s); this run stays active instead of being cancelled."; fi
+            sleep 30
+          done
+          echo "::error::Image rebuild did not finish within the bounded wait."
+          exit 1
       - name: Install translation dependencies
         run: |
           python -m pip install --disable-pip-version-check pillow

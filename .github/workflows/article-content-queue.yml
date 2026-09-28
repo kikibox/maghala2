@@ -3,29 +3,15 @@ name: article-content-queue
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'automation/article_content_queue.py'
-      - 'automation/repair_persian_article_text.py'
-      - 'automation/agnes_json_client.py'
-      - 'automation/compress_article_images.py'
-      - 'tests/test_article_content_queue.py'
-  # No independent schedule here. The translation workflow dispatches this
-  # queue only after all generated-language backlogs are current. This avoids
-  # GitHub replacing the pending translation run while a long image rebuild
-  # owns the shared article-content-pipeline concurrency lock.
 
 permissions:
   contents: write
   actions: write
 
 concurrency:
-  # A skipped queue run must not acquire the production-pipeline lock first
-  # and cancel the dedicated image proof triggered by the same commit.
-  group: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[image-rebuild]') && 'article-content-pipeline-image-rebuild-skip' || 'article-content-pipeline' }}
-  # Serialize dispatched article generation with translation and rebuild work
-  # without allowing a second scheduled request to replace the pending translator.
+  # Same-workflow deduplication only. The wait step below serializes this writer
+  # behind rebuilds and translations without relying on GitHub pending-run eviction.
+  group: article-content-queue-${{ github.ref }}
   cancel-in-progress: false
 
 env:
@@ -59,9 +45,6 @@ env:
 
 jobs:
   process-next-article:
-    # Image-rebuild commits intentionally trigger the dedicated proof workflow.
-    # Do not let this queue job cancel or compete with that strict rebuild.
-    if: github.event_name != 'push' || !contains(github.event.head_commit.message, '[image-rebuild]')
     runs-on: ubuntu-latest
     timeout-minutes: 240
     steps:
@@ -82,6 +65,28 @@ jobs:
         uses: actions/setup-python@v7
         with:
           python-version: '3.11'
+      - name: Wait for rebuild and translation writers
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 660); do
+            active=0
+            for workflow in rebuild-all-article-images.yml article-translations.yml; do
+              count="$(gh run list --workflow "$workflow" --limit 30 --json status --jq '[.[] | select(.status == "queued" or .status == "in_progress" or .status == "waiting" or .status == "pending" or .status == "requested")] | length')"
+              active=$((active + count))
+            done
+            if [ "$active" -eq 0 ]; then
+              echo "No higher-priority writer is active; Persian generation may start."
+              exit 0
+            fi
+            if [ "$attempt" -eq 1 ]; then echo "Waiting for $active rebuild/translation run(s); this run stays active instead of being cancelled."; fi
+            sleep 30
+          done
+          echo "::error::Higher-priority writer did not finish within the bounded wait."
+          exit 1
 
       - name: Install image tooling
         run: python -m pip install --disable-pip-version-check pillow
