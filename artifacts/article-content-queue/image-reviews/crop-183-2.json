@@ -1,0 +1,70 @@
+{
+  "id": "crop-183",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Hard reject: clear presence of human body parts (arms, hands, legs, boots) violating the zero-person rule",
+        "Hard reject: second commercial product/package visible (small tan box held in hand) and extra tool (trowel) violating single-product rule",
+        "Centered product staging: x-center near 50% of frame violates off-center requirement",
+        "Diameter-to-height ratio incorrect: product appears as an upright short cylinder (ratio ~0.8) instead of a wide low roll with diameter 1.5-1.9x height"
+      ],
+      "correction_prompt": "Regenerate with zero people and zero body parts in frame, remove the tan box and trowel, show only a single white-and-blue AFP drip-tape roll lying flat horizontally on soil (low wide cylindrical geometry with diameter ~1.6x height), placed off-center in the lower third and secondary in scale, retaining the 'AFP | 09134922013' watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 75,
+      "product_width_percent": 25,
+      "product_height_percent": 35,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The product height exceeds the maximum 32% limit; it is estimated to be around 35-36% of the frame height.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with the drip-tape roll placed slightly further in the background (smaller in frame) so its vertical height is no more than 30% of the total image height, maintaining the same low cylindrical shape. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Presence of a person (farmer) in the foreground",
+        "Product roll is centered horizontally (violates off-center requirement)",
+        "Product geometry is cylindrical (bottle-like) rather than wide and flat/low profile",
+        "Product is being held by hand instead of resting naturally on soil",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with zero people. Place a wide, flat, low-profile AFP drip tape roll (white and blue) on the soil. The roll must be off-center (lower third) and approximately 20% of the frame width. Background should be a field of young tobacco seedlings. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 19,
+      "product_height_percent": 20,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "All hard constraints are met.",
+        "Product is off-center on the lower third and sits on soil.",
+        "Morphology of young crops (likely corn/maize) is botanically accurate and unmistakable for the stage.",
+        "Visible diameter is ~1.5x height.",
+        "Watermark is present and correct."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "نگهداری-پنبه-با-نوار-تیپ-نکات-کلیدی-کاربرد-عملی.webp"
+}

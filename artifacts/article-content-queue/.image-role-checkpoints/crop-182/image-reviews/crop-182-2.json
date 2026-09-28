@@ -1,0 +1,85 @@
+{
+  "id": "crop-182",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 6,
+      "product_height_percent": 12,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: Image contains multiple people (two farmers), which violates the 'zero people' rule.",
+        "Wrong product: The image shows a small bottle/container held by a person, not an AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product geometry: The visible item is too small and not a wide low cylindrical roll on the soil.",
+        "Text error: The watermark reads '09134922013' instead of the required '09134922013'.",
+        "Missing element: No drip-tape roll is visible in the scene.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people. Replace the small bottle with a white-and-blue wide low cylindrical drip-tape roll placed off-center on the soil in the lower third. The roll should be approximately 20% of the frame width. Ensure the background shows lentil plants (low, bushy legumes with small paired pinnate leaflets). Correct the bottom-right watermark text to 'AFP | 09134922013'. Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 19.5,
+      "product_height_percent": 15.0,
+      "product_x_center_percent": 48.5,
+      "reasons": [
+        "The visible crop foliage (broad, ovate leaves) is morphologically incorrect for lentils, which are defined in the prompt as having small paired pinnate oval leaflets and fine-textured branching stems.",
+        "The product is positioned nearly in the horizontal center of the frame (x ≈ 48.5%), conflicting with the requirement for an off-center placement on the lower third.",
+        "Background crop rows look like generic broadleaf vegetables rather than the specific fine-bushy lentil structure."
+      ],
+      "correction_prompt": "Regenerate with visible lentil plants (fine bushy stems, small paired pinnate oval leaflets) instead of broad leaves. Shift the AFP blue-and-white drip-tape roll to the left, ensuring its x-center is clearly below 40% of the frame width while maintaining the off-center lower-third soil placement.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "The crop context in the background clearly shows sunflowers and green flowering plants, which violates the hard reject rule against sunflower heads or clearly identifiable different species.",
+        "The required lentil crop (fine-textured bushy legumes) is not visible, and the dominant vegetation does not match the specified article topic."
+      ],
+      "correction_prompt": "Remove all sunflowers and background flowering plants; strictly replace the crop with low fine-textured bushy lentil plants having small paired pinnate oval leaflets; ensure the AFP drip-tape roll remains in the lower third on the soil.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 10,
+      "product_height_percent": 12,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: image contains a clearly visible person (legs, torso, arms).",
+        "The crop is not recognizable as lentils (عَدَس); it appears to be a broad-leaved plant.",
+        "The drip tape roll is positioned on the ground rather than appearing to be laid through the soil as specified for 'naturally placed on soil'.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any human body parts. The crop must be lentil plants: low, bushy legumes with thin branching stems, small paired oval leaflets, and no large leaves or sunflowers. Position the drip tape roll on the soil surface with the tape running into the rows. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 75,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product dimensions and positioning are within acceptable ranges (width < 27%, height < 32%, off-center).",
+        "The required bottom-right watermark 'AFP | 09134922013' is present.",
+        "Zero people or body parts are visible.",
+        "The background shows a neutral irrigation setup with seedlings, which is acceptable as the article's specific crop (lentil) is not in an identifiable mature state in the crop rows.",
+        "No hard reject elements (foreign species, extra products, etc.) are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "مقدار-بذر-عدس-در-هکتار-راهنمای-جامع-کاربرد-عملی.webp"
+}

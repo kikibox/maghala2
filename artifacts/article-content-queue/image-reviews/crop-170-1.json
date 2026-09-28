@@ -1,0 +1,56 @@
+{
+  "id": "crop-170",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 40,
+      "product_height_percent": 30,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Multiple human figures are visible in the image panels on the right and bottom center, violating the zero-person rule.",
+        "The main crop roll is horizontally centered (x_center ~48%), violating the off-center placement requirement.",
+        "The bounding box for the main product (approx 40% width) exceeds the hard limit of 27% for product width.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 40% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures, tractors, and text overlays. Ensure the image contains only a single AFP drip tape roll placed on soil in a farm context. The roll must be off-center (x_center 25% or 75%), and its bounding box width must be between 20-23% of the frame. Add the exact bottom-right watermark 'AFP | 09134922013'. Reduce the product group from 40% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 25,
+      "product_height_percent": 38,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product height exceeds 32% limit",
+        "Text on the carton roll below 'AFP' is gibberish",
+        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce product height to max 32% of frame width. Replace illegible gibberish text on the roll with clean, simple labels (e.g. 'Drip Tape 20mm'). Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 15,
+      "product_height_percent": 15,
+      "product_x_center_percent": 29,
+      "reasons": [
+        "Product is a wide low cylindrical drip-tape carton roll with the correct white and blue AFP branding.",
+        "The product is correctly placed in the lower-left third of the frame and sits naturally on the soil.",
+        "The crop morphology in the foreground and rows is botanically consistent with the required article crop (pepper plant seedlings).",
+        "No people, human body parts, or silhouettes are present.",
+        "The background agricultural scene (field, farm buildings, rows) matches the farm context required.",
+        "The required bottom-right watermark 'AFP | 09134922013' is clearly visible and correct."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "فاصله-نوار-تیپ-در-کشت-جعفری-استانداردهای-توصیهشده-تصویر-شاخص.webp"
+}

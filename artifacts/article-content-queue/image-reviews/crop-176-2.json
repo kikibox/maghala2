@@ -1,0 +1,58 @@
+{
+  "id": "crop-176",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "The image contains a person (farmer) which is a hard reject. ",
+        "The agricultural context is incorrect; the crop shown is a flowering weedy plant (resembling a composite with daisy-like flower heads), which strictly violates the requirement for lentils and explicitly excludes species like sunflowers or large-brassica-like plants.",
+        "The product is a very small spool or roll, not the specific wide, low, cylindrical white-and-blue carton roll described in the prompt.",
+        "There is no visible AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "The exact watermark 'AFP | 09134922013' is present but the other mandatory elements are missing or explicitly rejected.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate a wide, low cylindrical white-and-blue drip-tape carton roll (20% width) resting on soil. The context must be a clean, neutral farm bed or recognizable lentil field (no flowers). Absolutely no people or human body parts. Include the watermark 'AFP | 09134922013' in the bottom-right corner. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 31,
+      "product_height_percent": 28,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The visible product is significantly wider than the preferred 20-23% (estimated at ~31%), exceeding the 27% maximum width constraint.",
+        "The crop morphology (large, broad, simple leaves) does not strictly match the specified 'lentil' morphology (fine-textured, pinnate oval leaflets), although it passes as 'neutral young vegetation'.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 31% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image, significantly reducing the width of the drip-tape carton roll so it occupies only 20-23% of the frame width. Ensure the surrounding crop has fine-textured, pinnate leaflets to better represent lentils. Reduce the product group from 31% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 15,
+      "product_height_percent": 22,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Required AFP white-and-blue wide low cylindrical drip-tape carton roll present as secondary object",
+        "Zero people, zero body parts, no human silhouette",
+        "Required bottom-right watermark 'AFP | 09134922013' present and unaltered",
+        "Product positioned off-center in the lower third on soil, with visible diameter approximately 1.5-1.9 times its visible height",
+        "No prohibited objects (no bottle, jar, canister, bucket, fertilizer/pesticide container, second package/roll, layflat hose, pipe, impossible geometry, or invented text)",
+        "Farm context with prepared bed and low-lying crop vegetation; article-specific lentil (عدس) agronomic story is clear via low fine-textured bushy legumes with thin branching stems, small paired pinnate oval leaflets, and small flat pods, without identifiable conflicting species such as corn, sunflower, brassica, or large bean leaves"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "میزان-برداشت-عدس-در-هکتار-با-نوار-تیپ-کاربرد-عملی.webp"
+}

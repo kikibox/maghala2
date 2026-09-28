@@ -1,0 +1,70 @@
+{
+  "id": "crop-176",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer/man crouching on the right side) and visible human body parts (face, arm, hand, leg) violate the zero-person constraint."
+      ],
+      "correction_prompt": "Remove the man and all human body parts completely. Ensure the scene contains only the inorganic farm environment, soil, and hardware infrastructure.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 8,
+      "product_height_percent": 15,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: Multiple people visible in the foreground (a woman and a girl crouching)",
+        "Hard reject: Human body parts visible (hands, arms, legs, faces)",
+        "Hard reject: Product geometry is incorrect; the roll is standing vertically on its edge rather than lying horizontally on the soil",
+        "Hard reject: There appears to be a second roll/container on top of the bottom one, violating the 'exactly one roll' requirement",
+        "Hard reject: Product is not positioned in the lower third, it is positioned near the feet of the standing person",
+        "Failure: Two rolls/containers are present instead of one",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate showing a single white-and-blue drip-tape roll lying horizontally on the soil in the lower left or lower right. No people, no hands, no workers. The background should be a field or farm with a tractor or irrigation equipment. Ensure the roll is secondary in size (approx 20% width). Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "The image contains multiple visible people/farmers in the background, which is a hard reject.",
+        "The product roll is positioned somewhat centrally or towards the right, not strictly off-center on the lower third (though its position relative to the people is the main issue).",
+        "The crop visible in the background appears to be corn/maize, which likely contradicts the lentil context if a strict crop match were required, but the people are the primary cause of failure."
+      ],
+      "correction_prompt": "Regenerate the image to strictly exclude all human figures and body parts. Ensure the scene depicts only the crop and hardware. Confirm the product roll is clearly off-center on the lower third.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 14,
+      "product_height_percent": 16,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Product geometry is correct: wide, low cylindrical shape with diameter approximately 1.5-1.8x height.",
+        "Product placement is off-center in the lower third, resting naturally on soil.",
+        "Required watermark 'AFP | 09134922013' is clearly visible in the bottom right corner.",
+        "No people, faces, or human body parts are present in the frame.",
+        "No disallowed items like extra cans, bottles, or conflicting crops are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "میزان-برداشت-عدس-در-هکتار-با-نوار-تیپ-جزئیات-فنی.webp"
+}

@@ -1,0 +1,67 @@
+{
+  "id": "crop-170",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Multiple human figures visible (violates zero-people rule)",
+        "Image is a collage with multiple panels, not a single cohesive scene",
+        "Includes extra people in bottom-right panel",
+        "Violates hard reject rule for any person or human silhouette",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Generate a single-panel image with zero people showing one AFP white-and-blue drip-tape roll on soil in a farm field; roll should be off-center in the lower third, about 20% of frame width, with visible diameter 1.5–1.9 times its height. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 15,
+      "product_height_percent": 26,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product bounding box height (26%) is too high relative to width (15%), failing the geometry requirement that visible diameter is 1.5 to 1.9 times visible height.",
+        "The product appears too large and vertically stretched compared to the 'tiny unidentifiable seedlings' context, looking more like a standard roll than a wide flat drip tape carton."
+      ],
+      "correction_prompt": "Regenerate with a wider, flatter cylindrical roll geometry where height is significantly less than half the width. Maintain off-center lower third placement on soil with zero people.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Human body parts (legs and boots) are clearly visible in the frame, which is a hard reject condition.",
+        "The product appears slightly too vertically tall relative to its width (a low cylindrical roll is expected)."
+      ],
+      "correction_prompt": "Regenerate the image to remove the person's legs and boots entirely. Ensure the drip tape roll is a wide, low cylinder placed on the soil without any human presence.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 19.5,
+      "product_height_percent": 26.0,
+      "product_x_center_percent": 38.5,
+      "reasons": [
+        "Product is a single AFP white-and-blue drip-tape roll placed on soil in a farm context",
+        "Contains required AFP | 09134922013 watermark",
+        "No people or body parts present",
+        "Roll dimensions and off-center placement acceptable, remains secondary element"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "فاصله-نوار-تیپ-در-کشت-جعفری-استانداردهای-توصیهشده-کاربرد-عملی.webp"
+}

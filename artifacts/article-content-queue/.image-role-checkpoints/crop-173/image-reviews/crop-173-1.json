@@ -1,0 +1,53 @@
+{
+  "id": "crop-173",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 5,
+      "product_height_percent": 15,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: The image contains a person (a man) who is a primary subject, which is explicitly forbidden in the prompt.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any people. Focus on the farm bed and the crop, with the drip-tape roll placed naturally off-center on the soil. Enlarge the product group from 5% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 68,
+      "product_width_percent": 21,
+      "product_height_percent": 31,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "A clearly identifiable different crop species is present: the young plants in the foreground are visually identifiable as a bean crop (due to their distinct leaf structure and the large white bean seeds scattered on the soil around the base of the roll). The rules require 'neutral' young vegetation or botanically accurate morphology, and the inclusion of identifiable bean seeds forces the recognition of a specific species (fava/white beans) which likely conflicts with the generic 'family tape' or generic crop context if the article is not specifically about beans. It violates the 'neutral young vegetation' allowance due to the addition of the seeds.",
+        "The product height appears to be right at or slightly exceeding the 32% limit, though it is close."
+      ],
+      "correction_prompt": "Replace the identifiable bean seedlings and the white beans scattered on the soil with small, generic, unidentifiable green seedlings (like generic corn or wheat shoots) and standard bare soil to maintain a botanically neutral appearance.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Product is the correct AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product is secondary in the frame, sitting on soil and off-center within the lower third.",
+        "Crop morphology is botanically neutral young vegetation (consistent with a prepared bed stage), and no clearly different species is identifiable.",
+        "Zero people or human body parts are visible.",
+        "Required bottom-right watermark is present.",
+        "Background is a farm field context matching the article role, and no hard-reject objects or text are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "مقدار-بذر-پنبه-در-هکتار-راهنمای-جامع-تصویر-شاخص.webp"
+}

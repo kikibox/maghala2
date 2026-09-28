@@ -1,0 +1,97 @@
+{
+  "id": "crop-176",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 14,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Presence of a person (hard reject)",
+        "Product is not a drip-tape roll (appears to be a canister)",
+        "Background crop is incorrectly identified as zinnia/flower rather than lentil",
+        "Product is centered rather than off-center in the lower third",
+        "Product does not meet width/height ratio or percentage requirements",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person and all human body parts. Replace the product with a white-and-blue cylindrical drip-tape roll placed off-center on the lower third of the frame. Change the background crop to lentils (low, fine-textured, bushy legumes). Ensure the product is secondary to the background and matches the size constraints (13-27% width). Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 16,
+      "product_height_percent": 22,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Crop mismatch: The image shows a field of flowering succulents (resembling Sedum or similar ground cover), which clearly lacks the low fine-textured bushy legumes, thin branching stems, small paired pinnate oval leaflets, and flat pods required for the lentil (عدس) article. The visible flowers and succulent leaves trigger the hard reject for a clearly identifiable different species.",
+        "Composition error: The drip tape roll is centered horizontally in the frame rather than being off-center on the lower third as required."
+      ],
+      "correction_prompt": "Regenerate the image showing a lentil field with small pinnate oval leaflets and thin branching stems (no flowers or succulent leaves). Move the AFP drip tape roll to be off-center on the lower third of the frame.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 18,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "The crop in the image is clearly identifiable as a flowering ornamental plant (resembling Verbena or a similar weed) with distinct purple flowers and opposite leaves. This does not match the required lentil crop morphology, which should be a low, fine-textured bushy legume with small paired pinnate oval leaflets and flat pods.",
+        "The visible crop fails the 'recognizable article crop' requirement for lentils."
+      ],
+      "correction_prompt": "Regenerate the image replacing the flowering purple plants with a low-growing, fine-textured lentil crop. The plants should be bushy with small pinnate leaves and small flat pods, completely devoid of flowers. Keep the white and blue AFP drip-tape roll in the lower-left off-center position on the soil.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 21,
+      "product_height_percent": 18,
+      "product_x_center_percent": 21,
+      "reasons": [
+        "The crop in the background is clearly identifiable as Purple Heart (Petasites) due to its distinct purple flowers and broad leaves, which fails the requirement for recognizable lentil plants (fine-textured, low bushy legumes with small paired pinnate leaflets and small flat pods).",
+        "The presence of a clearly identifiable different species (brassica, corn, or generic flowering ornamental) is a hard reject condition."
+      ],
+      "correction_prompt": "Regenerate the image with a background of mature lentil plants (low bushy legumes with small oval leaflets and flat pods) instead of purple flowering plants. Ensure the lentils are recognizable as lentils.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 14,
+      "product_height_percent": 21,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Missing required exact bottom-right watermark 'AFP | 09134922013'.",
+        "Crop context shows distinct purple flowers, which conflicts with the article-specific 'lentil' narrative which requires neutral young vegetation or recognizable lentil morphology (low bushy legumes with small paired pinnate leaflets) and explicitly excludes identifiable different species or decorative elements.",
+        "Product is centered horizontally, rather than being placed off-center on the lower third."
+      ],
+      "correction_prompt": "Replace the purple-flowering plants with a field of low, bushy lentil plants (small oval leaflets, no flowers) or a neutral prepared soil bed. Add the exact bottom-right watermark 'AFP | 09134922013'. Move the AFP drip-tape roll slightly to the left or right so it is clearly off-center in the lower third.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 100,
+      "product_width_percent": 15,
+      "product_height_percent": 12,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "Image contains exactly one AFP white-and-blue cylindrical drip-tape roll in a farm context.",
+        "Product bounding box (est. width ~15%, height ~12%) meets the preferred width range (13-27%) and height limit (<32%).",
+        "The roll is positioned off-center in the lower right third and is naturally placed on soil.",
+        "No people, human body parts, or silhouettes are visible.",
+        "The required bottom-right watermark \"AFP | 09134922013\" is present.",
+        "No prohibited items such as bottles, jars, or different product types are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "میزان-برداشت-عدس-در-هکتار-با-نوار-تیپ-تصویر-شاخص.webp"
+}

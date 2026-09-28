@@ -1,0 +1,86 @@
+{
+  "id": "crop-183",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 30,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: The image contains a person (a man crouching and handling the product).",
+        "Visible human body parts including face, arms, legs, and hands are present.",
+        "Product width is approx 12% of frame width, falling below the 13% minimum practical estimate.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person completely. Increase the size of the drip tape roll to occupy approximately 20-25% of the frame width while maintaining the specified height constraints. Ensure the roll remains off-center on the lower third. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 58,
+      "product_width_percent": 19,
+      "product_height_percent": 28,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "The product is centered horizontally (approximately 46% of frame width), violating the requirement to be 'off-center'.",
+        "The crop morphology does not match the specific article title 'city family tape20' (likely a family of crops or specific type not clearly depicted), resulting in a 'neutral bed' rather than an 'unmistakable' crop recognition.",
+        "Text on the side of the roll is partially indistinct/gibberish compared to clean package printing requirements."
+      ],
+      "correction_prompt": "Regenerate to shift the roll 10% to the left or right to make it off-center. Ensure the crop morphology explicitly matches the article title rather than being generic seedlings. Clean up the side text on the roll to be legible.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 23,
+      "product_height_percent": 21,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Missing mandatory watermark 'AFP | 09134922013' in the bottom-right corner.",
+        "Product is centered horizontally (45%) instead of being off-center.",
+        "Product vertical aspect ratio is near-square (1.09) instead of the required wide cylindrical shape (1.5 to 1.9)."
+      ],
+      "correction_prompt": "Add the exact text 'AFP | 09134922013' in the bottom-right corner. Shift the drip tape roll to the left third of the frame (off-center). Flatten the roll vertically so its width is 1.6 times its height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject: The image contains two farmers (human body parts and silhouettes are clearly visible).",
+        "Hard reject: The drip tape is coming out of a white cylindrical canister/box, which violates the 'zero extra commercial products/bottles/jars' constraint.",
+        "Hard reject: The drip tape is not a 'wide low cylindrical carton roll' placed naturally on soil; it is being actively deployed from a held container.",
+        "Context violation: The requirement for 'zero people' is strictly not met."
+      ],
+      "correction_prompt": "Regenerate the image with absolutely no people, workers, or human silhouettes. The AFP drip tape must be a white-and-blue wide low cylindrical roll resting naturally on the soil in the lower third of the frame (off-center), not held or coming out of a canister. Keep the 'AFP | 09134922013' watermark in the bottom right corner.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 26,
+      "product_height_percent": 30,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The drip-tape carton roll is visibly the primary product element, placed naturally on the soil surface rather than in a sterile studio.",
+        "The 'wide' low cylindrical geometry matches the product specification, with the visible diameter appearing to be in the correct 1.5–1.9 range relative to its height.",
+        "Zero people or human body parts are visible; the unattended tractor in the background is compliant irrigation infrastructure.",
+        "The crop-specific agronomic context is clearly established by the green young seedlings in a neat row-planting layout on prepared soil, with a farm building and tractor reinforcing the topic.",
+        "The required 'AFP | 09134922013' watermark is present and correctly positioned at the bottom right.",
+        "The product width is near the top of the practical estimate range (26%), but it remains secondary to the expansive farm background.",
+        "The product is slightly toward the center rather than the strict off-center lower third, but this is a minor deviation that does not constitute a hard reject for a practical QA pass."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "نگهداری-پنبه-با-نوار-تیپ-نکات-کلیدی-تصویر-شاخص.webp"
+}

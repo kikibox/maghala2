@@ -4,17 +4,17 @@
 
 ## نمای کلی
 
-- آخرین بروزرسانی: `2026-09-28T03:12:56+00:00`
-- وضعیت صف: **آماده اجرای بعدی** (`ready`)
-- پیشرفت: **141 از 1148 (12.28٪)**
+- آخرین بروزرسانی: `2026-09-28T03:24:55+00:00`
+- وضعیت صف: **توقف موقت برای تکمیل ترجمه‌های عقب‌مانده** (`translations_pending`)
+- پیشرفت: **150 از 1148 (13.07٪)**
 - نمودار پیشرفت: `██░░░░░░░░░░░░░░░░░░`
-- تکمیل‌شده: **141**
+- تکمیل‌شده: **150**
 - در حال پردازش: **0**
-- در انتظار: **981**
-- ناموفق: **26**
+- در انتظار: **965**
+- ناموفق: **33**
 - مسدود مدل تصویر: **0**
-- میانگین طول مقالات تکمیل‌شده: **1296 کلمه**
-- اولویت فعلی: **تولید مقاله فارسی بعدی**
+- میانگین طول مقالات تکمیل‌شده: **1301 کلمه**
+- اولویت فعلی: **تکمیل ترجمه‌های موجود**
 
 ## تنظیمات تولید و انتشار
 
@@ -24,8 +24,8 @@
 - تعداد تصاویر هر مقاله: **3**
 - حداقل کلمات: **1050**
 - لینک داخلی مجاز: **4 تا ۷**
-- اندازه هر اجرا: **2 مقاله**
-- مدیر موازی: **2 مقاله / 4 تصویر هم‌زمان**
+- اندازه هر اجرا: **16 مقاله**
+- مدیر موازی: **16 مقاله / 32 تصویر هم‌زمان**
 - حداکثر تلاش هر مقاله: **4**
 - دسته وردپرس: **مقاله‌ها** (`35`)
 - لینک‌های داخلی شناخته‌شده: **682**
@@ -35,7 +35,7 @@
 
 | گروه | کل | تکمیل | در انتظار | در حال پردازش | ناموفق | پیشرفت |
 |---|---:|---:|---:|---:|---:|---:|
-| `crop` | 341 | 141 | 174 | 0 | 26 | 41.35٪ |
+| `crop` | 341 | 150 | 158 | 0 | 33 | 43.99٪ |
 | `irrigation` | 12 | 0 | 12 | 0 | 0 | 0.00٪ |
 | `product` | 112 | 0 | 112 | 0 | 0 | 0.00٪ |
 | `strategic` | 33 | 0 | 33 | 0 | 0 | 0.00٪ |
@@ -43,18 +43,18 @@
 
 ## وضعیت ترجمه مقالات تولیدشده
 
-- مقالات فارسی تکمیل‌شده: **141**
-- واحدهای ترجمه تکمیل‌شده: **423 از 423**
-- واحدهای ترجمه باقی‌مانده: **0**
-- مقالات فاقد حداقل یک ترجمه: **0**
-- وضعیت صف فارسی: **فعال**
+- مقالات فارسی تکمیل‌شده: **150**
+- واحدهای ترجمه تکمیل‌شده: **423 از 450**
+- واحدهای ترجمه باقی‌مانده: **27**
+- مقالات فاقد حداقل یک ترجمه: **9**
+- وضعیت صف فارسی: **متوقف تا تکمیل ترجمه‌ها**
 - بسته‌های ترجمه ۵۰تایی آماده: **0**
 
 | زبان | تکمیل | باقی‌مانده | مسیر |
 |---|---:|---:|---|
-| عربی عراق (`ar-IQ`) | 141 | 0 | `/iraq/` |
-| تاجیکی (`tg-TJ`) | 141 | 0 | `/tj/` |
-| انگلیسی (`en-US`) | 141 | 0 | `/en/` |
+| عربی عراق (`ar-IQ`) | 141 | 9 | `/iraq/` |
+| تاجیکی (`tg-TJ`) | 141 | 9 | `/tj/` |
+| انگلیسی (`en-US`) | 141 | 9 | `/en/` |
 
 ## وضعیت بازطراحی تصاویر
 
@@ -69,13 +69,22 @@
 
 ## مقاله بعدی صف
 
-- عنوان: **فاصله نوار تیپ در کشت جعفری: استانداردهای توصیه‌شده**
-- شناسه: `crop-170`
+- عنوان: **آفات و بیماری‌های کلزا با آبیاری قطره‌ای**
+- شناسه: `crop-186`
 - گروه: `crop`
 - تعداد تلاش قبلی: **0**
 
 ## آخرین مقالات تکمیل‌شده
 
+- **میزان برداشت یونجه در هکتار با نوار تیپ** — `crop-171` — `crop` — 1412 کلمه — تحویل: `SQL package` — `2026-09-28T03:19:16+00:00`
+- **فاصله نوار تیپ در کشت جعفری: استانداردهای توصیه‌شده** — `crop-170` — `crop` — 1180 کلمه — تحویل: `SQL package` — `2026-09-28T03:18:58+00:00`
+- **راهنمای جامع کاشت ریحان با آبیاری قطره‌ای** — `crop-180` — `crop` — 1808 کلمه — تحویل: `SQL package` — `2026-09-28T03:17:53+00:00`
+- **نگهداری باقلا با نوار تیپ: نکات کلیدی** — `crop-172` — `crop` — 1445 کلمه — تحویل: `SQL package` — `2026-09-28T03:17:36+00:00`
+- **مقدار بذر ذرت در هکتار: راهنمای جامع** — `crop-177` — `crop` — 1176 کلمه — تحویل: `SQL package` — `2026-09-28T03:17:22+00:00`
+- **نگهداری پنبه با نوار تیپ: نکات کلیدی** — `crop-183` — `crop` — 1420 کلمه — تحویل: `SQL package` — `2026-09-28T03:17:18+00:00`
+- **میزان برداشت عدس در هکتار با نوار تیپ** — `crop-176` — `crop` — 1506 کلمه — تحویل: `SQL package` — `2026-09-28T03:17:03+00:00`
+- **فاصله نوار تیپ در کشت طالبی: استانداردهای توصیه‌شده** — `crop-181` — `crop` — 1255 کلمه — تحویل: `SQL package` — `2026-09-28T03:16:07+00:00`
+- **مقدار بذر گلرنگ در هکتار: راهنمای جامع** — `crop-178` — `crop` — 1185 کلمه — تحویل: `SQL package` — `2026-09-28T03:16:00+00:00`
 - **میزان برداشت کدو در هکتار با نوار تیپ** — `crop-168` — `crop` — 1188 کلمه — تحویل: `SQL package` — `2026-09-28T02:46:43+00:00`
 - **نگهداری شنبلیله با نوار تیپ: نکات کلیدی** — `crop-166` — `crop` — 1427 کلمه — تحویل: `SQL package` — `2026-09-28T02:43:43+00:00`
 - **مقدار بذر طالبی در هکتار: راهنمای جامع** — `crop-157` — `crop` — 1510 کلمه — تحویل: `SQL package` — `2026-09-28T02:43:41+00:00`
@@ -87,40 +96,32 @@
 - **نگهداری نخود با نوار تیپ: نکات کلیدی** — `crop-164` — `crop` — 1339 کلمه — تحویل: `SQL package` — `2026-09-28T02:41:47+00:00`
 - **فاصله نوار تیپ در کشت ماش: استانداردهای توصیه‌شده** — `crop-163` — `crop` — 1374 کلمه — تحویل: `SQL package` — `2026-09-28T02:41:32+00:00`
 - **مقدار بذر سیر در هکتار: راهنمای جامع** — `crop-165` — `crop` — 1161 کلمه — تحویل: `SQL package` — `2026-09-28T02:41:26+00:00`
-- **هزینه کشت پنبه با نوار تیپ در هکتار** — `crop-153` — `crop` — 1166 کلمه — تحویل: `SQL package` — `2026-09-28T02:41:20+00:00`
-- **فاصله نوار تیپ در کشت ذرت: استانداردهای توصیه‌شده** — `crop-158` — `crop` — 1205 کلمه — تحویل: `SQL package` — `2026-09-28T02:41:11+00:00`
-- **هزینه کشت ریحان با نوار تیپ در هکتار** — `crop-151` — `crop` — 1227 کلمه — تحویل: `SQL package` — `2026-09-28T02:41:04+00:00`
-- **میزان برداشت کلزا در هکتار با نوار تیپ** — `crop-152` — `crop` — 1180 کلمه — تحویل: `SQL package` — `2026-09-28T01:43:34+00:00`
-- **راهنمای جامع کاشت شوید با آبیاری قطره‌ای** — `crop-148` — `crop` — 1694 کلمه — تحویل: `SQL package` — `2026-09-28T01:43:11+00:00`
-- **فاصله نوار تیپ در کشت پاپریکا: استانداردهای توصیه‌شده** — `crop-150` — `crop` — 1311 کلمه — تحویل: `SQL package` — `2026-09-28T01:42:18+00:00`
-- **آفات و بیماری‌های اسپرس با آبیاری قطره‌ای** — `crop-147` — `crop` — 1522 کلمه — تحویل: `SQL package` — `2026-09-28T01:41:18+00:00`
-- **هزینه کشت پیاز با نوار تیپ در هکتار** — `crop-154` — `crop` — 1245 کلمه — تحویل: `SQL package` — `2026-09-28T01:41:03+00:00`
-- **نگهداری رزماری با نوار تیپ: نکات کلیدی** — `crop-144` — `crop` — 1525 کلمه — تحویل: `SQL package` — `2026-09-28T01:40:44+00:00`
 
 ## خطاهای اخیر
 
+- **میزان برداشت کنجد در هکتار با نوار تیپ** — `crop-175` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['The product is centered horizontally (48%) and sits on the horizontal midline, violating the requirement to be off-center on the lower third.', 'The crop shown is grass-like (narrow, long leaves growing in dense rows) rather than sesame; it lacks the specific lance-shaped leaves and upright broad-leafed stems of sesame, appearing more like turf or cereals.', 'The product appears to be a rigid canister/cylinder (flat top, likely a container) r`
+- **فاصله نوار تیپ در کشت کاهو: استانداردهای توصیه‌شده** — `crop-184` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
+- **فاصله نوار تیپ در کشت کنجد: استانداردهای توصیه‌شده** — `crop-174` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['Species Mismatch: The image displays identifiable corn (maize) seedlings, which are hard-rejected in favor of the required sesame (کنجد) or a botanically neutral prepared bed.', 'Product Geometry: The bounding box width estimate is approximately 28% of the frame, exceeding the maximum allowable width of 27%.', 'machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width.']`
+- **راهنمای جامع کاشت کینوا با آبیاری قطره‌ای** — `crop-179` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
+- **آفات و بیماری‌های اسفناج با آبیاری قطره‌ای** — `crop-185` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
+- **مقدار بذر پنبه در هکتار: راهنمای جامع** — `crop-173` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['The product does not meet the diameter-to-height ratio requirement; its visible diameter is approximately 1.07 times its height, failing to meet the minimum 1.5x requirement for a wide cylindrical drip-tape carton roll.', 'The roll is too tall for a wide drip-tape carton roll and looks more like a generic cylindrical container.']`
+- **مقدار بذر عدس در هکتار: راهنمای جامع** — `crop-182` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['Reject: The central crop plant exhibits large, compound leaves and a growth habit consistent with a different species (such as weeds or young soybeans), which triggers the hard reject condition for clearly identifiable different species (hard reject: brassica or large bean leaves). It lacks the specific low, fine-textured bushy morphology and thin stems required for the article-specific lentil crop story.', "Reject: The product roll's height `
 - **آفات و بیماری‌های پیاز با آبیاری قطره‌ای** — `crop-159` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
 - **هزینه کشت باقلا با نوار تیپ در هکتار** — `crop-167` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ["Secondary commercial product present: there is a second roll of tape to the right of the primary AFP carton, which acts as an 'extra commercial product' or 'second roll' that is explicitly forbidden.", "The primary product's width (~26%) exceeds the preferred target of 20-23% and is at the upper limit of the practical acceptable range.", "Product geometry: The roll's visible diameter is approx 1.04x its height (close to a square), failing the`
 - **نگهداری بادمجان با نوار تیپ: نکات کلیدی** — `crop-149` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
-- **فاصله نوار تیپ در کشت زعفران: استانداردهای توصیه‌شده** — `crop-155` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Shows exactly one wide low cylindrical drip-tape carton roll', 'Background crop accurately depicts saffron crocus with narrow grass-like leaves and sparse purple flowers', "Watermark 'AFP | 09134922013' is present and correct", 'Zero people or body parts visible', 'Product is placed naturally on soil in the lower third', 'Product geometry is correct (wide cylindrical shape)', 'Product width (28%) is on the edge of the upper acceptable limit, `
-- **مقدار بذر باقلا در هکتار: راهنمای جامع** — `crop-135` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
-- **راهنمای جامع کاشت عدس با آبیاری قطره‌ای** — `crop-140` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Visible plants are tall, broad-leaved herbaceous stems resembling tobacco or sunflower seedlings, which violates the requirement for lentil morphology (low, fine-textured, pinnate leaflets).', 'Product shape is too tall and cylindrical (drum-like) rather than the required wide low cylindrical drip-tape roll profile.']`
-- **آفات و بیماری‌های هویج با آبیاری قطره‌ای** — `crop-129` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
-- **راهنمای جامع کاشت گشنیز با آبیاری قطره‌ای** — `crop-112` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['The crops in the image are broad-leaved and do not match the required description of coriander, which must have finely divided, feathery leaves. This constitutes a clearly identifiable different species, triggering a hard reject.']`
-- **میزان برداشت جعفری در هکتار با نوار تیپ** — `crop-127` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ['The product is centered in the lower third rather than being off-center.', "The crop morphology (large, broad leaves) resembles brassicas or cabbages, which clearly contradicts the 'سبزی' (leafy vegetables like lettuce/herbs) topic requirement and triggers a hard reject.", 'The product height is at the very limit of the 32% constraint.']`
-- **آفات و بیماری‌های لپه با آبیاری قطره‌ای** — `crop-105` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Hard reject: Presence of a person (man wearing a hat and holding a tool) violates the zero-people/zero-human-body-parts rule.', 'Hard reject: The crop shown is clearly sunflowers, which is a different species than the required yellow split-pea (لپه).', 'Product placement: The roll is centered too horizontally and lacks the required off-center/lower-third offset.']`
 
 ## بسته‌های ۵۰تایی آماده
 
 - [batch-001-articles-0001-0050.zip](./packages/batch-001-articles-0001-0050.zip) — 50 مقاله — 11515025 بایت — SHA256: `f7129be9ac79bd255099066da7899e35079d0db9dc076e9da5ceacc2198bf6cc`
 - [batch-002-articles-0051-0100.zip](./packages/batch-002-articles-0051-0100.zip) — 50 مقاله — 12139181 بایت — SHA256: `dfce70a9f1db8c2e1902b312674baa333b422eeb9a2a05f9789447518ebe47de`
+- [batch-003-articles-0101-0150.zip](./packages/batch-003-articles-0101-0150.zip) — 50 مقاله — 12466912 بایت — SHA256: `1e76eaf5d35a029ee7c0f2c3cf50d7d9df66b8a243daaba2e98295c11ca7af22`
 
 ## خروجی‌های تولیدشده
 
-- فایل JSON مقاله‌ها: **141**
-- تصاویر تولیدشده: **423**
-- فایل‌های SQL: **141**
-- فایل‌های Rollback: **141**
+- فایل JSON مقاله‌ها: **150**
+- تصاویر تولیدشده: **450**
+- فایل‌های SQL: **150**
+- فایل‌های Rollback: **150**
 
 ## فایل‌های مدیریتی
 

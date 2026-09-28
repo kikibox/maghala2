@@ -1,0 +1,69 @@
+{
+  "id": "crop-171",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Presence of two people (violates zero-person constraint)",
+        "Product is held by a hand instead of placed on the soil",
+        "Product is a small canister/bucket rather than a wide low cylindrical carton roll",
+        "The crop in the top-right inset features large broad leaves, which hard-rejects alfalfa (trifoliate leaflets are required)"
+      ],
+      "correction_prompt": "Regenerate a zero-person image showing one white-and-blue wide low cylindrical AFP drip-tape carton roll resting naturally on dry soil in the lower third. Include a clear view of alfalfa with small trifoliate leaves and a visible drip-tape line on the prepared bed. Preserve the bottom-right AFP | 09134922013 watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 19,
+      "product_height_percent": 30,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "The visible crop in the foreground and surrounding furrows does not clearly match the specific morphology of 'dense fine trifoliate leaflets' required for alfalfa. The leaves appear to be simple, rounded, or slightly serrated (resembling brassicas or generic dicots) rather than the compound pinnately trifoliate leaves of alfalfa. While not a completely wrong species, it fails the specific 'recognizable' threshold for the article crop."
+      ],
+      "correction_prompt": "Regenerate the image replacing the current green seedlings with clear, young alfalfa plants that visibly display fine trifoliate (three-leaflet) structures, keeping the same drip tape roll position and farm context.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 18,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The image contains a visible person (farmer/worker) crouching in the frame, which triggers a hard reject. Human faces, hands, and bodies are explicitly forbidden.",
+        "The product is too small and secondary to the subject; it does not meet the minimum width requirement of 13 percent.",
+        "The crop shown does not clearly identify alfalfa (trifoliate leaflets), appearing instead as generic broad-leaf seedlings.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with no humans, workers, or body parts visible. Remove the person entirely. Replace the generic crops with recognizable, dense fine trifoliate alfalfa seedlings. Increase the size of the AFP white and blue drip-tape roll so it is approximately 20 percent of the frame width. Ensure the roll is positioned on the soil in the lower third, off-center, with a barn or farm context in the background. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 21,
+      "product_height_percent": 23,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The image displays exactly one AFP drip-tape carton roll in a farm setting.",
+        "The roll meets the aspect ratio requirement (width is approx. 0.9 times height, falling within the 0.77-0.95 acceptable range for a cylinder seen from this angle).",
+        "The product is located off-center in the lower third, sitting naturally on the soil.",
+        "The crop visible is young vegetation consistent with an agronomic story, with no clearly identifiable competing species present.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "There are zero people or human body parts in the image."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "میزان-برداشت-یونجه-در-هکتار-با-نوار-تیپ-تصویر-شاخص.webp"
+}
