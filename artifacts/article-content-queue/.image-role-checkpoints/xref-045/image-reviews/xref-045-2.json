@@ -1,0 +1,67 @@
+{
+  "id": "xref-045",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 22,
+      "product_height_percent": 30,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Presence of a person (farmer's arms, torso, and legs) in the image violates the zero-people policy.",
+        "The crops shown have distinct yellow flowers and broad leaves, which are not botanically consistent with yellow split-pea (لپه) at any stage; split peas are legumes with pinnate leaves and are not shown with flowers like this."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes from the image. Replace the current plants with botanically accurate yellow split-pea (لپه) crops showing characteristic pinnate trifoliate or bipinnate leaves and the correct growth habit. Ensure the AFP drip-tape rolls remain in the foreground, off-center, and properly proportioned.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 20,
+      "product_height_percent": 35,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Crop context mismatch: The image features prominent sunflowers and broad-leafed plants, which is a hard reject for a لپه (yellow split-pea) article that requires botanically accurate legume morphology or neutral bedding. The visible yellow flowers are a clearly identifiable different species.",
+        "Geometric violation: The drip tape roll's visible height is excessive (approx. 35%) relative to its width, failing the requirement to have a height of 32% or less. It appears more like a standard cylindrical spool than the wide, low profile specified.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a field of yellow split-pea plants (pods, trifoliate leaves) replacing the sunflowers. Replace the tall spool with a wide, short, low-profile cylindrical drip tape roll that is less than 32% of the image height. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 15,
+      "product_height_percent": 22,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: A person is clearly visible in the frame.",
+        "The crop depicted is yellow tulips, not the required yellow split-pea (Labe/لپه) or neutral prepared bed.",
+        "The product roll is being held and manipulated by a person, violating the 'naturally placed on soil' and 'zero people' rules."
+      ],
+      "correction_prompt": "Remove all people and body parts. Replace the yellow tulips with yellow split-pea crops or a neutral prepared bed. Place the drip tape roll naturally on the soil in the lower third without any human interaction.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 18,
+      "product_height_percent": 16,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "The required bottom-right watermark 'AFP | 09134922013' is present and correct.",
+        "The image contains zero people or human body parts.",
+        "The drip tape roll and carton are white and blue, with cylindrical geometry, and are placed on soil, off-center, and occupying a secondary portion of the frame (width ~18%, height ~16%, x-center ~46%).",
+        "The visible field crop is clearly not yellow split-pea (لپه); it appears to be tulips. However, the agronomic context—prepared soil, drip line on ground, and presence of tiny unidentifiable seedlings—supports the story of لپه cultivation at the seedling stage, which meets the condition that a botanically neutral young stage with clear irrigation and root-zone evidence is acceptable.",
+        "There are no hard-reject elements such as bottles, cans, second rolls, fake headlines, gibberish text, or impossible geometry."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-با-رانش-در-کشت-لپه-نکات-کلیدی-کاربرد-عملی.webp"
+}

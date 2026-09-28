@@ -1,0 +1,87 @@
+{
+  "id": "xref-042",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 12,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Hard reject: The image contains a multi-panel layout showing three distinct scenes and multiple people, violating the 'exactly one AFP carton' rule.",
+        "Hard reject: The image contains multiple visible people, hands, and faces in every panel.",
+        "The product roll is present but is part of a collage with other irrelevant scenes and products.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate a single image showing only one AFP white and blue drip-tape roll placed on soil in a farm, without any people or extra collage panels. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 32,
+      "product_height_percent": 20,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product width is estimated at 32%, exceeding the hard reject limit of 27% (even if visually it appears around 25%, it is closer to the upper limit than the preferred width).",
+        "Product x-center is approximately 48%, which is horizontally centered rather than off-center on the lower third as required.",
+        "The text on the carton front (below 'AFP') appears as gibberish/non-legible characters rather than authentic package print.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Shrink the roll to occupy less than 25% of the frame width, shift it clearly to the left (x=35%), and replace the text under the logo with legible English text. Reduce the product group from 32% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Hard reject: Presence of a person/farmer/worker in the image.",
+        "Hard reject: Presence of human body parts (hands, face, legs, torso).",
+        "Hard reject: Presence of a second package (the man is holding a small box in his hand)."
+      ],
+      "correction_prompt": "Remove the man and the box he is holding. Leave only the large white cylindrical drip tape carton in the field. Ensure no human body parts or silhouettes are visible.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 21.2,
+      "product_height_percent": 30.5,
+      "product_x_center_percent": 45.2,
+      "reasons": [
+        "Required exact bottom-right watermark text 'AFP | 09134922013' is missing",
+        "Generic green young vegetables present without exact named crop morphology or clear article-specific agronomic context"
+      ],
+      "correction_prompt": "Add the bottom-right watermark 'AFP | 09134922013'. Replace generic green vegetables with the exact named crop from the article title, showing unmistakable mature morphology or a clearly defined article-specific agronomic story for that crop.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 16,
+      "product_height_percent": 22,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Image contains exactly one wide, cylindrical drip-tape carton roll.",
+        "Product is positioned off-center on the lower third of the frame, naturally placed on the soil.",
+        "Proportions are acceptable: width is ~16% and height is ~22%, well within the required limits.",
+        "Visible diameter (~16%) is approximately 1.7 times the visible height (~22%), matching the ideal ratio.",
+        "Background shows a farm field with crop rows and irrigation lines, matching the drip-tape context.",
+        "The prominent plant is a distinct, botanically accurate crop (resembling a bulb herb like leek or garlic), not an unidentifiable seedling, making the crop context clear.",
+        "Zero people or human body parts are visible in the frame.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No prohibited extra commercial products (bottles, jars, buckets) are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-نوار-تیپ-در-کشت-ارزن-هزینه-بهینه-تصویر-شاخص.webp"
+}

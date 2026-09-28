@@ -1,0 +1,77 @@
+{
+  "id": "xref-048",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 7,
+      "product_height_percent": 11,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Hard reject: The image contains a person (a male farmer/worker) which is explicitly prohibited in all roles.",
+        "The product (the small roll of tape) is centered/located in the middle ground rather than off-center on the lower third.",
+        "The product is not placed naturally on the soil but is being held/handled by the person's hand.",
+        "The product's aspect ratio is too tall/cylindrical (resembling a canister or tall drum) rather than the required wide low cylindrical shape.",
+        "The product dimensions are significantly smaller than the required width range (20-23% of the frame).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Regenerate the image showing a wide, low cylindrical white-and-blue drip-tape carton roll placed naturally on the soil in the lower third, off-center to the left or right. Ensure the roll is wide (20-23% of frame width) and has a 1.5:1 diameter-to-height ratio. Maintain the spinach field background and the bottom-right watermark. Enlarge the product group from 7% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 26,
+      "product_height_percent": 33,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product height exceeds the 32% limit",
+        "Product is centered rather than off-center in the lower third",
+        "Leaves are broad and rounded; not the specific narrow arrow-shaped leaves of spinach",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce product height to 30% and shift x-center to 40% to place off-center. Crop foliage to be lower and narrower to match spinach leaf morphology. Keep roll white and blue with AFP text. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Presence of a human figure (the core hard-reject condition).",
+        "The product is being held by hands, which violates the 'no human body parts' rule.",
+        "The product is a small, hand-held canister/roll, not the required wide low cylindrical drip-tape carton roll (aspect ratio and scale are incorrect).",
+        "The product is centered/staged rather than naturally placed on the soil in the lower off-center third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the farmer completely. Place a large, wide, low, cylindrical blue-and-white drip-tape roll directly on the soil, positioned in the lower left or right corner (not centered), with no one touching it. The roll should be significantly larger, with a width of ~20% and height of ~12% of the frame. Keep the background of young spinach plants. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 21,
+      "product_height_percent": 28,
+      "product_x_center_percent": 56,
+      "reasons": [
+        "Contains exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll",
+        "Product is placed naturally on soil in the lower third, slightly off-center",
+        "Product dimensions are within acceptable limits (width 13-27%, height <32%)",
+        "Background shows a farm context with neat crop rows and a distant barn",
+        "The crop visible is consistent with young spinach rosettes (dense, low-growing, smooth green leaves)",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and legible",
+        "No people, human body parts, or prohibited extra commercial products (bottles, jars, etc.) are visible",
+        "No gibberish or fake headlines; package text appears authentic"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-چرخشی-در-کشت-اسفناج-هزینه-بهینه-کاربرد-عملی.webp"
+}

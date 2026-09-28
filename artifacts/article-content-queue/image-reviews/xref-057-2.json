@@ -1,0 +1,57 @@
+{
+  "id": "xref-057",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 13,
+      "product_height_percent": 15,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Image contains a person (male farmer/worker) squatting and holding the product.",
+        "Hard reject: Human body parts (face, hands, arms, legs) are clearly visible.",
+        "Hard reject: Product is being physically held by hands instead of naturally resting on the soil as required.",
+        "Product width is below the preferred 20-23% range (approx. 13%), although it is within the absolute minimum pass threshold.",
+        "Product geometry does not match the 'wide low cylindrical carton roll' description; it appears too tall/cylindrical relative to its width."
+      ],
+      "correction_prompt": "Regenerate image completely removing the human figure. Place a wide, low cylindrical white-and-blue AFP drip-tape carton roll naturally on the soil in the foreground (bottom third, off-center). The roll should be wider than it is tall. Ensure the background shows maize (tall upright stalks and long blade leaves) or a prepared bed. Keep the AFP watermark. Ensure no people are visible.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 35,
+      "product_height_percent": 28,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product bounding box width is 35%, which violates the 27% hard rejection limit",
+        "Visible text on the label appears to be gibberish rather than authentic package print",
+        "The background tall plants with tassels do not clearly match the required maize morphology (long blade leaves and specific stalk structure)",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate to make the product width no more than 25% of the frame, strictly correct the label text to be authentic and legible, and replace background vegetation with clearly recognizable tall maize plants with long blade leaves. Reduce the product group from 35% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 75,
+      "product_width_percent": 21,
+      "product_height_percent": 22,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "No people or body parts present.",
+        "Maize crop is recognizable with tall stalks and long blade leaves.",
+        "Drip tape roll is cylindrical, off-center in the lower third, and placed naturally on soil.",
+        "Background matches the article context with maize farm and barn.",
+        "Exact required watermark 'AFP | 09134922013' is present at the bottom right and was not rejected."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-در-کشت-ذرت-مقایسه-کاربرد-عملی.webp"
+}
