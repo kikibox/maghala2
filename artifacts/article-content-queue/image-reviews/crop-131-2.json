@@ -1,0 +1,83 @@
+{
+  "id": "crop-131",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 26,
+      "product_height_percent": 22,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Contains visible human hands in the top-right panel",
+        "Image is a multi-panel collage rather than a single scene",
+        "Second panel shows unbranded container with gibberish text"
+      ],
+      "correction_prompt": "Generate a single wide landscape image of one AFP drip-tape roll on soil in a cornfield. No people, no hands, no text overlays, no collages. Place the roll in the lower third, off-center, with natural width. Add the AFP | 09134922013 watermark in the bottom right.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 21,
+      "product_height_percent": 26,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Extra commercial products present: multiple white connector discs/rings in the bottom right corner constitute 'second package / extra commercial product' which is a hard reject.",
+        "Product placement: The drip tape roll is centered horizontally (approx 45-50% width), failing the 'off-center on the lower third' requirement.",
+        "Geometry: The roll is positioned centrally rather than distinctly off-center left or right."
+      ],
+      "correction_prompt": "Regenerate the image removing all connector rings/discs on the right side. Move the AFP drip tape roll to the lower-left or lower-right third so it is clearly off-center horizontally. Maintain the corn field background and the required bottom-right watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 14,
+      "product_height_percent": 11,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Hard reject: Contains a clearly identifiable person, which is strictly prohibited.",
+        "Violation: The drip tape roll is not naturally placed on soil, but is staged on a hay bale which is not allowed.",
+        "Violation: The image contains text that is not the required AFP phone watermark (the 'AFP' logo and text on the packaging itself are visible, which is generally acceptable, but the main issue is the human and the hay bale)."
+      ],
+      "correction_prompt": "Remove the person and the hay bale. Place the AFP drip tape roll directly on the soil in the farm context. Ensure the background matches the article topic. Do not include any human figures, body parts, or silhouettes. Place the product on the lower third, off-center, on the soil.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 20.5,
+      "product_height_percent": 28.2,
+      "product_x_center_percent": 45.2,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer) and human body parts (face, hand, arm, leg) in the image."
+      ],
+      "correction_prompt": "Remove the woman/farmer entirely. Keep the same background (soil, barns) and the AFP drip-tape roll in its current position and scale. Ensure the scene remains a solo farm environment with no people.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 100,
+      "product_width_percent": 16,
+      "product_height_percent": 21,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product is a white-and-blue cylindrical drip-tape carton roll with AFP branding.",
+        "Product is off-center on the lower third and placed naturally on soil.",
+        "Visible diameter is approximately 1.75 times the visible height, within the required ratio.",
+        "Product width and height are within acceptable practical limits.",
+        "Zero people or human body parts visible.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present.",
+        "Background context (farm with young vegetation) aligns with a neutral agronomic story as permitted.",
+        "No extra commercial products, people, or hard reject elements found."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-کینوا-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

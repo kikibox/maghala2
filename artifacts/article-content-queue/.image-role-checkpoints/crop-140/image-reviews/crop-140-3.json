@@ -1,0 +1,66 @@
+{
+  "id": "crop-140",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 24,
+      "product_height_percent": 29,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject due to 'bottle' constraint: The small, dark cylindrical object with a spout and connector on the lower right is classified as a prohibited canister or container. This violates the 'zero people and zero human body parts' and 'no extra commercial product' rules, as it is a distinct item that is not the required AFP carton roll."
+      ],
+      "correction_prompt": "Remove the dark cylindrical container with the connector visible on the lower right of the image. Keep only the single AFP drip tape carton roll, the soil, and the background crop rows. Maintain the AFP | 09134922013 watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 20,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "The image contains identifiable crop plants (green seedlings/rows) in the foreground and background. The rules state that if an identifiable crop appears, it is a hard reject if it clearly contradicts 'lentil' (عدس). The visible plants resemble corn or generic broadleaf seedlings, which are morphologically distinct from lentils, triggering the hard reject condition for a 'hardware' role image where crop presence is not permitted if it contradicts the topic.",
+        "The product diameter-to-height ratio (approx 1.8) is acceptable, and the product is off-center on the lower third, but the crop contradiction is a disqualifying factor."
+      ],
+      "correction_prompt": "Regenerate with a hardware infrastructure focus (filters, manifolds, pressure gauges) or empty soil to avoid crop contradiction. Remove the identifiable green seedlings/rows. Keep the white-and-blue AFP drip-tape roll (width 18-22%) off-center in the lower third on soil. Ensure the watermark 'AFP | 09134922013' is present.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 13,
+      "product_height_percent": 14,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: Image contains a visible human (person crouching).",
+        "Product (drip tape roll) appears slightly off-scale and lacks the specified wide cylindrical proportion (diameter vs height)."
+      ],
+      "correction_prompt": "Remove all human figures and silhouettes from the scene. Regenerate to show an AFP white-and-blue wide cylindrical drip-tape roll placed naturally on the soil (off-center, lower third). The roll must be secondary to the environment, with a visible diameter approximately 1.5-1.9 times its visible height.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Product geometry is consistent with a wide low cylindrical roll with a width-to-height ratio of ~0.79:1 (inverse: height is ~79% of width), which matches the required proportion.",
+        "Product is correctly off-center on the lower third and naturally placed on the soil.",
+        "Product size (width 22%, height 28%) falls within all acceptable practical limits.",
+        "Zero people, human body parts, or silhouettes are visible.",
+        "Background includes a farm context with a tractor, field, and distant farm buildings, which is suitable for a 'hardware story' and contains no identifiable crop that contradicts lentil.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present.",
+        "Only one roll is shown; no extra commercial products, pipes, or impossible geometry are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-عدس-با-آبیاری-قطرهای-جزئیات-فنی.webp"
+}

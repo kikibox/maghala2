@@ -1,0 +1,43 @@
+{
+  "id": "crop-141",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: The image contains a visible person (farmer), including face, hands, arms, and body parts.",
+        "Hard reject: No drip-tape carton roll is visible; the person is holding a small bottle/container instead of the required product.",
+        "Failure: The required AFP white-and-blue wide low cylindrical drip-tape carton roll is missing from the image.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any people or human body parts. Include a white-and-blue AFP drip-tape carton roll (wide, low, cylindrical) placed naturally on the soil in the lower third, off-center. Ensure the product width is between 13-27% of the frame and height is under 32%. Keep the farm background consistent with the crop context. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 23,
+      "product_height_percent": 22,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Product is a wide, low cylindrical drip-tape roll in white and blue, placed on the soil.",
+        "Ratio of diameter to height is approximately 1.5, consistent with a typical carton roll.",
+        "Product is off-center and located in the lower third of the frame.",
+        "The background shows a farm context with crop rows and a building, matching the article topic.",
+        "The required bottom-right watermark 'AFP | 09134922013' is clearly present.",
+        "No people, human body parts, or extra commercial products (bottles, buckets, etc.) are visible.",
+        "Minor deduction: The crop is not yet at the 'mature morphology' stage of a 'tape20' (likely tomato), but the rules explicitly allow 'tiny unidentifiable seedlings' when the agronomic story is clear."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "هزینه-کشت-کاملینا-با-نوار-تیپ-در-هکتار-تصویر-شاخص.webp"
+}

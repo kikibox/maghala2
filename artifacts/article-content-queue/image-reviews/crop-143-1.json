@@ -1,0 +1,74 @@
+{
+  "id": "crop-143",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 35,
+      "product_height_percent": 25,
+      "product_x_center_percent": 20,
+      "reasons": [
+        "Image contains a person (woman crouching), which is a hard reject.",
+        "The irrigation product is not a wide cylindrical drip-tape carton roll, but rather a flat coil of tubing/drip line laid on the ground, which violates the shape requirement.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Replace the flat coil of tubing with a thick, wide, cylindrical white-and-blue drip tape roll (carton style) resting on the soil in the lower third of the image. Reduce the product group from 35% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 92,
+      "product_width_percent": 27,
+      "product_height_percent": 35,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "The image displays a single AFP white and blue wide low cylindrical drip-tape carton roll.",
+        "The product is positioned on the soil in a farm context with young crop rows.",
+        "Zero people or human body parts are visible in the frame.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and clear.",
+        "The background of young green crop rows and farmland infrastructure matches the selected image role.",
+        "Estimated product height of 35% slightly exceeds the 32% limit but is borderline acceptable given its secondary visual role and off-center placement.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 10,
+      "product_height_percent": 15,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: Image contains a person (man crouching).",
+        "Hard reject: Image contains visible human body parts (head, face, hands, arms, legs).",
+        "The product (drip-tape carton) is not white and blue cylindrical; it appears to be a small rectangular white box.",
+        "The product is not 'naturally placed' on the soil but is being actively placed by a human hand.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Generate an image of a single white and blue wide cylindrical drip-tape carton roll on the soil of a corn field. Ensure the roll is off-center on the lower third, approximately 1.5 to 1.9 times its height in diameter, and roughly 20% of the frame width. The background must show clearly visible young corn seedlings in rows. Include a black 'AFP | 09134922013' watermark at the bottom right. The scene must be completely devoid of people, hands, or any body parts. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Product geometry is compliant, with a wide low cylindrical shape and aspect ratio within the required limits.",
+        "The roll is appropriately off-center in the lower third, resting naturally on the soil.",
+        "No people, faces, or body parts are visible.",
+        "The background shows a neutral prepared bed with tiny unidentifiable seedlings, which is acceptable when exact mature morphology is unavailable.",
+        "The required bottom-right AFP watermark is present and correctly formatted."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "نگهداری-ارزن-با-نوار-تیپ-نکات-کلیدی-تصویر-شاخص.webp"
+}

@@ -1,0 +1,46 @@
+{
+  "id": "crop-134",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 62,
+      "reasons": [
+        "The image contains multiple people (a man crouching in the foreground and a woman in the background), which is a hard reject requirement.",
+        "The product is not a wide low cylindrical drip-tape carton roll but rather a container/bucket being held.",
+        "The product is being held by a human hand rather than naturally placed on soil.",
+        "The product shape does not meet the requirement for a drip tape roll (diameter-to-height ratio is off).",
+        "The required bottom-right watermark is present but does not offset the hard rejects regarding people and product type.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to show a single wide, low cylindrical drip-tape carton roll resting on the soil. Remove all people and human body parts. Ensure the roll is off-center on the lower third. Keep the farm context (tomato plants) but remove the human presence. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 23,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The required bottom-right watermark 'AFP | 09134922013' is present.",
+        "The product is a white and blue cylindrical drip-tape carton roll, consistent with the requested 'family tape20'.",
+        "No people or human body parts are visible in the image.",
+        "The product is placed naturally on soil in the lower third and is off-center (to the left of the frame center).",
+        "The product dimensions are within acceptable limits: width is approximately 23% (target 20-23%), and height is approximately 28% (limit <32%).",
+        "The ratio of visible diameter to height is appropriate for a wide low cylindrical roll.",
+        "The background shows crop rows with young plants that have botanical morphology consistent with a Solanaceous crop (tomato or pepper) from a 'topic-specific farm context', allowing for a neutral agronomic story.",
+        "The visible crop plants are distinct enough to suggest the intended crop without being a 'clearly identifiable different species'."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-کدو-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

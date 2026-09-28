@@ -1,0 +1,90 @@
+{
+  "id": "crop-140",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "The vegetation shown in the image does not match the required lentil (عدس) crop; the plants appear to be taller, less bushy, and lack the distinct small paired pinnate oval leaflets and fine branching structure specified for lentils, more resembling a generic broadleaf or potentially a prohibited species.",
+        "The product roll, while correct in size and position, is not accompanied by the specific lentil crop context required for a passing QA result."
+      ],
+      "correction_prompt": "Regenerate the image showing a drip-tape roll on the soil specifically amidst low, fine-textured bushy lentil plants with small paired pinnate oval leaflets, removing the current non-lentil vegetation.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 22,
+      "product_height_percent": 29,
+      "product_x_center_percent": 51,
+      "reasons": [
+        "The crop visible in the image consists of plants with broad, lobed leaves that are clearly identifiable as tobacco (Nicotiana tabacum). This constitutes a clearly identifiable different species, which is a hard reject condition when the article crop is defined as lentil (عدس)."
+      ],
+      "correction_prompt": "Regenerate the image with the crop replaced by low-growth, fine-textured bushy legumes with small pinnate leaves and branching stems consistent with lentil plants (Medicago sativa/Lens culinaris). Remove all broad-leafed tobacco plants. Maintain the off-center white-and-blue drip-tape roll on the soil.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: The image contains a clearly identifiable different crop species. The article specifies lentils (عدس), but the image shows sunflowers, which explicitly violates the negative constraint of 'absolutely no sunflower heads'.",
+        "Hard reject: The crop morphology does not match the definition of lentil plants (low fine-textured bushy legumes with pinnate leaflets and flat pods).",
+        "Product width and height percentages are within acceptable limits (18-22% vs 13-27% width, <32% height), but the background context is fundamentally incorrect for the article."
+      ],
+      "correction_prompt": "Replace the sunflowers with low-bushy lentil plants (fine stems, pinnate oval leaflets, small flat pods) on a neutral prepared bed; keep the white and blue cylindrical drip-tape carton roll off-center in the lower third, with the required 'AFP | 09134922013' watermark in the bottom-right corner and no human figures.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 34,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "The visible crop features large, broad, simple leaves that contradict the required lentil morphology (which must have small, paired, pinnate oval leaflets). This constitutes a clearly identifiable different species, triggering a hard reject.",
+        "The product height exceeds the maximum threshold, estimated at 34% of the frame height when the limit is 32%.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with low fine-textured bushy legumes showing small pinnate oval leaflets instead of broad simple leaves. Reduce the drip-tape carton roll to a height of 30% of the frame to meet dimensional requirements. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: Human body parts (face, torso, arms, legs) visible in the background (distant figure).",
+        "Hard reject: Product geometry is incorrect. The roll is shown as a tall, narrow drum shape, whereas it must be a wide, low cylindrical carton where the diameter is roughly 1.5 to 1.9 times the height.",
+        "Hard reject: Crop morphology does not match lentils (عدس). The plants shown have broad, ovate leaves consistent with broadleaf weeds or other species, lacking the small paired pinnate oval leaflets required."
+      ],
+      "correction_prompt": "Regenerate with a wide, low cylindrical drip-tape roll (aspect ratio ~1.7:1 width-to-height) in the lower third. Remove all people and human silhouettes. Replace the vegetation with young lentil plants featuring distinct small, paired pinnate leaflets and thin branching stems.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Visible plants are tall, broad-leaved herbaceous stems resembling tobacco or sunflower seedlings, which violates the requirement for lentil morphology (low, fine-textured, pinnate leaflets).",
+        "Product shape is too tall and cylindrical (drum-like) rather than the required wide low cylindrical drip-tape roll profile."
+      ],
+      "correction_prompt": "Replace the tall broad-leaf plants with low, fine-textured bushy lentil seedlings with small pinnate leaflets. Reshape the white and blue roll to be significantly wider and shorter (cylindrical drip tape profile) with a diameter 1.5x its height.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

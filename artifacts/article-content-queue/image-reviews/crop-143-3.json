@@ -1,0 +1,86 @@
+{
+  "id": "crop-143",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 22,
+      "product_height_percent": 18,
+      "product_x_center_percent": 17,
+      "reasons": [
+        "Contains a human (farmer) which is a hard reject condition",
+        "The visible product roll in the foreground is a layflat hose roll, not the required wide low cylindrical drip-tape carton roll",
+        "The subject does not match the required hardware story (Role 3) specification for the specific product type and shape"
+      ],
+      "correction_prompt": "Regenerate the image as a close-up of a single wide, low cylindrical drip-tape carton roll placed on the soil. Ensure the roll is off-center to the left or right, with no humans or layflat hoses present. Keep the AFP | 09134922013 watermark in the bottom right corner.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 33,
+      "product_height_percent": 45,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "The image contains exactly one white-and-blue wide low cylindrical drip-tape carton roll.",
+        "The product is placed naturally on soil, off-center on the lower third, with no people or human body parts visible.",
+        "The background shows a farm context with a tractor, consistent with a hardware infrastructure story.",
+        "The 'AFP | 09134922013' watermark is present and correct.",
+        "The product width and height exceed the ideal 20-23% and 32% caps but fall within the acceptable practical estimates, with the tractor visible in the background.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 33% to 13-27% of frame width.; Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the product group from 33% to 13-27% of frame width. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 27,
+      "product_height_percent": 25,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Height-to-diameter ratio is approximately 1.0 (25h vs 27w), but the specification requires the visible diameter to be 1.5 to 1.9 times the height.",
+        "The presence of a white drip tape line and an extraneous circular flush/filter component on the soil acts as a 'second package' or 'extra commercial product' in the immediate scene, which is a hard reject condition.",
+        "The product is placed too close to the bottom edge of the frame."
+      ],
+      "correction_prompt": "Regenerate with a wider, flatter cylindrical roll (diameter 1.5-1.9x height) in a white-and-blue AFP carton; remove the extraneous hardware and tape line; lower the roll to the bottom-left third; keep the farm context.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 27,
+      "product_height_percent": 27,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "Hard reject: The image contains a prominent adult human (farmer) crouching in the foreground, which violates the 'zero people' requirement.",
+        "Hard reject: Human hands, arms, face, and body parts are clearly visible in the foreground, which is an immediate disqualifier.",
+        "Text Error: The required watermark is 'AFP | 09134922013' (one '2'), but the image displays 'AFP | 09134922013' (two '2's) which is an invalid/wrong string."
+      ],
+      "correction_prompt": "Regenerate the image completely excluding the crouching human figure; show only the AFP white-and-blue wide cylindrical drip-tape roll placed on the soil in the lower-left area. The background must be a farm field without any people. Ensure the bottom-right watermark reads exactly 'AFP | 09134922013'.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 24,
+      "product_height_percent": 24,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Product is a single white-and-blue AFP drip-tape carton roll placed on soil",
+        "Background context of farmed field with tractor matches irrigation hardware story",
+        "No people or human body parts visible",
+        "Required bottom-right watermark 'AFP | 09134922013' is present",
+        "No extra commercial products or containers visible",
+        "Product geometry, proportion, and off-center lower-third placement meet criteria"
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "نگهداری-ارزن-با-نوار-تیپ-نکات-کلیدی-جزئیات-فنی.webp"
+}

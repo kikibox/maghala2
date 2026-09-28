@@ -1,0 +1,71 @@
+{
+  "id": "crop-139",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 12,
+      "product_height_percent": 25,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: A person (man) is clearly visible in the image, which violates the requirement for zero people or body parts.",
+        "Hard reject: The product is a canister/bottle with a blue water drop icon, not the required 'wide low cylindrical drip-tape carton roll'.",
+        "Product placement is centered in the lower half rather than off-center on the lower third.",
+        "The product geometry (tall cylindrical canister) does not match the 'wide low cylindrical' specification.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Replace the canister with a wide, low, cylindrical white-and-blue drip-tape carton roll lying on the soil. Position the roll off-center on the lower third, ensuring it is approximately 20% of the frame width and less than 32% height. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 24,
+      "product_height_percent": 19,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Required bottom-right watermark text mismatch: '09134922013' is displayed instead of the required '0913492201'.",
+        "Gibberish/invented text is visible on the side of the roll, which is a hard reject condition outside of authentic package print."
+      ],
+      "correction_prompt": "Correct the bottom-right watermark to display exactly 'AFP | 09134922013' (with the '3'). Remove the gibberish text on the side of the roll and replace it with clean, professional packaging typography.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Presence of a person (farmer) in the image",
+        "Human body parts visible (face, hands, legs, boots)",
+        "Product is being held by a person rather than placed on the soil",
+        "Product does not appear to be a wide cylindrical drip-tape carton roll (appears to be a small can/container)",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with no people or human silhouettes. Place exactly one AFP white-and-blue wide cylindrical drip-tape carton roll on the soil in the lower third, off-center. Ensure the background shows a clear maize crop context (tall stalks with long blade leaves). Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 22,
+      "product_height_percent": 24,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The image displays a single AFP white-and-blue drip-tape roll that fits the visual specification and appears naturally placed on soil.",
+        "The background features clear maize crops with tall stalks and blade leaves, matching the requested article context.",
+        "The required bottom-right watermark is present and correct.",
+        "No people, human body parts, or extraneous commercial products are visible.",
+        "The product proportions and off-center placement in the lower third are within acceptable limits."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "نگهداری-ذرت-با-نوار-تیپ-نکات-کلیدی-تصویر-شاخص.webp"
+}

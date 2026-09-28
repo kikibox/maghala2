@@ -1,0 +1,95 @@
+{
+  "id": "crop-131",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 14,
+      "product_height_percent": 15,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Hard reject: The image contains multiple clearly visible people (farmers/workers) and human body parts, which strictly violates the 'zero people' requirement.",
+        "Product staging: The roll is centered in the bottom-middle and is too small relative to the frame (width is only 14%, falling short of the preferred 20-23% range)."
+      ],
+      "correction_prompt": "Regenerate the image to show the drip-tape roll on the soil in a farm setting with absolutely NO people, hands, or human silhouettes visible anywhere in the frame. Enlarge the roll so its width occupies approximately 20-23% of the frame width, and ensure it is positioned off-center.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 24,
+      "product_height_percent": 15,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The product roll is positioned essentially in the center of the frame horizontally (~48%), which conflicts with the requirement to be off-center on the lower third.",
+        "The product appears to be staged sitting on the dirt, rather than naturally placed in a farm context, resembling a centered product shot."
+      ],
+      "correction_prompt": "Reposition the irrigation roll to the far-left or far-right side of the frame so it is distinctly off-center, maintaining the low horizontal crop composition in the farm background.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 16,
+      "product_x_center_percent": 72,
+      "reasons": [
+        "Hard reject: A person is clearly visible in the image, violating the zero-people constraint.",
+        "Hard reject: Two rolls of drip tape are present; only one is allowed.",
+        "Hard reject: The image does not match the required 'exactly one roll' criteria due to the presence of the second roll being held by the person.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person and the roll they are holding. Keep only the single roll on the ground in the field context. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 24,
+      "product_height_percent": 31,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The central text and logo print on the carton roll contain obvious gibberish or invented writing ('1798 qhios1' and a generic blue drop logo), violating the requirement that only authentic package print is allowed outside the footer watermark.",
+        "The crops in the field appear to be mature corn (maize), which conflicts with the 'tiny unidentifiable seedlings' description associated with early-stage irrigation installation typically shown with drip tape rolls."
+      ],
+      "correction_prompt": "Regenerate the carton roll with realistic, legible branding and technical specification text instead of gibberish characters. Modify the crop to resemble small, generic leafy seedlings or early-stage soybeans rather than distinct, identifiable corn plants.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Hard reject: The image clearly contains a person (a man crouching and touching the product). The guidelines explicitly state to hard reject any person, face, hand, arm, leg, or body part.",
+        "Hard reject: The product is not 'naturally placed on soil' as required; it is being actively held and staged by the person."
+      ],
+      "correction_prompt": "Remove the person entirely. Show only the crop field with a single AFP white-and-blue cylindrical drip-tape carton roll resting naturally on the soil in the lower third. Ensure no human silhouettes or body parts are visible.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 16,
+      "product_height_percent": 17,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is an AFP white-and-blue wide low cylindrical drip-tape carton roll",
+        "Off-center placement in the lower third on soil",
+        "Correctly sized and proportioned (width < height aspect)",
+        "Zero people or human body parts present",
+        "Background shows field context with a farm building, matching the role",
+        "Bottom-right watermark 'AFP | 09134922013' is present",
+        "Minor deduction due to text on the roll not being clearly legible"
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-کینوا-با-آبیاری-قطرهای-تصویر-شاخص.webp"
+}
