@@ -1,0 +1,43 @@
+{
+  "id": "crop-264",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: The image contains two clearly visible people (a man and a woman) crouching in the foreground, which is explicitly forbidden (zero people and zero human body parts required).",
+        "Hard reject: The product shown is a small cylindrical canister or jar, not the required 'wide low cylindrical drip-tape carton roll'. This triggers the hard reject for 'bottle, jar, canister, bucket, fertilizer or pesticide container, second package, second roll, extra commercial product'.",
+        "The product is completely missing from the frame in terms of the specific required item (drip tape), meaning width/height are effectively 0 or irrelevant.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people. Replace the small canister with a single wide, low cylindrical white-and-blue drip-tape carton roll lying flat on the soil in the lower third, off-center, approximately 18% frame width and under 15% height. Keep the farm context and crop layout but ensure no human silhouettes or body parts are visible anywhere. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 22,
+      "product_height_percent": 20,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product is an AFP drip-tape carton roll with white and blue branding",
+        "Product is wide and low, with a diameter-to-height ratio consistent with a flat roll (approx 1.5x)",
+        "Product is naturally placed on soil and off-center on the lower third",
+        "Product width is within the preferred 20-23% range",
+        "Zero people or human body parts visible",
+        "Required watermark 'AFP | 09134922013' is present in the bottom right",
+        "Background is a farm field which matches the agricultural context"
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "هزینه-کشت-کینوا-با-نوار-تیپ-در-هکتار-کاربرد-عملی.webp"
+}

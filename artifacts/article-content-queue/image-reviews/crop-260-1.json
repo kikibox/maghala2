@@ -1,0 +1,58 @@
+{
+  "id": "crop-260",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 10,
+      "product_height_percent": 15,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The image contains a full person (a farmer crouching in the field), which is a hard reject criteria.",
+        "The product is a small bottle or jar resting on the person's foot/knee, not a wide low cylindrical drip-tape carton roll placed on the soil.",
+        "Product width is approximately 10% of the frame, which falls below the preferred 20-23% range.",
+        "The crop is immature green wheat; while article-specific context is generally clear, the presence of the human subject is a primary reason for failure.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove the person and all human body parts. Replace the small bottle with a single wide, low cylindrical white-and-blue drip-tape carton roll placed directly on the soil. Ensure the roll is the focal product but remains secondary to the wheat crop. Place the roll off-center on the lower third with a diameter approximately 1.5-1.9 times its height. Ensure the bottom-right 'AFP | 09134922013' watermark is present. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 40,
+      "product_height_percent": 35,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The product width is estimated at 40% of the frame, exceeding the maximum allowable 27% limit for the drip-tape roll.",
+        "The roll appears to be centered in the lower third of the image, failing the 'off-center' staging requirement.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 40% to 13-27% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the scale of the drip-tape roll so its width is approximately 20-23% of the image width. Position the roll off-center (e.g., left side) in the lower third of the frame. Reduce the product group from 40% to 13-27% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 23,
+      "product_height_percent": 15,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The crop is clearly mature wheat, consistent with the required article context.",
+        "The product is a white and blue cylindrical drip tape roll with visible AFP branding, matching the specified product description.",
+        "The roll is placed naturally on the soil in the bottom-left, off-center and not centered.",
+        "Product proportions are within the acceptable range (width ~23%, height ~15%, well under 32% height limit).",
+        "Zero people or human body parts are present.",
+        "The required bottom-right watermark 'AFP | 09134922013' is clearly present.",
+        "No forbidden objects such as bottles, buckets, or second packages are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "فاصله-نوار-تیپ-در-کشت-گندم-استانداردهای-توصیهشده-تصویر-شاخص.webp"
+}

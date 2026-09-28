@@ -1,0 +1,56 @@
+{
+  "id": "crop-250",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: The image contains two people (farmers/workers), which violates the strict 'zero people' and 'zero human body parts' requirement.",
+        "Hard reject: The product being held is a small white canister or container, not the required wide, low, cylindrical drip-tape carton roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image showing a wide, low, cylindrical white-and-blue drip-tape carton roll resting on the soil in the lower third of the frame, with zero people or farmers visible; maintain the cantaloupe farm background and the bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 30,
+      "product_height_percent": 45,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Person visible in background (hard reject rule violated)",
+        "Product is centered and dominates foreground (fails off-center and secondary product requirements)",
+        "Crop context shows cantaloupe which contradicts طالبی (cantaloupe) specification",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width.; Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove person from background, position drip-tape roll in lower-left third off-center, reduce roll prominence to maintain secondary product role, ensure crop context matches طالبی (cantaloupe) without contradiction Reduce the product group from 30% to 13-27% of frame width. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 17.0,
+      "product_height_percent": 24.0,
+      "product_x_center_percent": 33.5,
+      "reasons": [
+        "Product is a wide, low cylindrical drip-tape carton roll with white and blue branding.",
+        "Product is placed on soil and positioned off-center in the lower third of the frame.",
+        "Product width and height proportions meet the requirements (approx. 1.5x ratio).",
+        "Background shows a farm field with a cantaloupe ( طالبی) and irrigation equipment, which matches the topic-specific context.",
+        "No people or human body parts are visible.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "نگهداری-طالبی-با-نوار-تیپ-نکات-کلیدی-جزئیات-فنی.webp"
+}

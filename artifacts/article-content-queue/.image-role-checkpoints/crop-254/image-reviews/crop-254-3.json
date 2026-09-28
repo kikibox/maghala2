@@ -1,0 +1,58 @@
+{
+  "id": "crop-254",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 38,
+      "product_height_percent": 42,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: The image contains multiple visible people (farmers/works) in the background.",
+        "Hard reject: Product width is estimated at 38% of the frame, significantly exceeding the maximum 27% limit.",
+        "Hard reject: Product height is estimated at 42% of the frame, exceeding the maximum 32% limit.",
+        "The aspect ratio of the product is too vertical (tall narrow drum shape) rather than the required wide low cylinder (width 1.5-1.9x height).",
+        "The product is placed in the middle-ground rather than the specific 'lower third' requirement.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 13-27% of frame width.; Reduce product height from 42% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with zero people or human silhouettes in the background. Place the wide white-and-blue drip-tape roll in the bottom-left or bottom-right foreground on the soil. The roll must be very small relative to the frame (approx 20% width) with a wide, low cylindrical shape. Keep the 'AFP | 09134922013' watermark visible in the bottom right. Reduce the product group from 38% to 13-27% of frame width. Reduce product height from 42% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 20,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The image contains a person (a farmer/worker), which is a hard reject criterion.",
+        "An identifiable crop with broad green leaves is present in the foreground. While the crop is not a hard reject if it doesn't contradict 'melon' (khurbooz), these leafy plants look more like brassicas or beans rather than melons or neutral/absent crops, making the context inconsistent with the specific hardware story role."
+      ],
+      "correction_prompt": "Regenerate the image with no people or human body parts. Remove the person from the scene. The product (white AFP drip-tape roll) should be on the soil in the foreground, off-center on the lower third, with a background of a farm field with distant crop rows, without any identifiable crop plants in the immediate foreground. Use a hardware-oriented irrigation context (filters, pressure gauges, connectors) in the background. Include the exact bottom-right watermark: 'AFP | 09134922013'.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 22,
+      "product_height_percent": 18,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Exactly one AFP white-and-blue cylindrical drip-tape carton roll is present",
+        "Product is positioned in the lower third and slightly left-of-center, naturally placed on soil",
+        "Product dimensions are well within the 13-27% width and 32% height acceptable ranges",
+        "Required watermark 'AFP | 09134922013' is present in the bottom right",
+        "Zero people or human body parts are visible",
+        "Background farm context (crop rows, barn) is neutral and does not contradict the melon topic",
+        "Hardware (irrigation connector) is visible but contains no prohibited items"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "هزینه-کشت-خربزه-با-نوار-تیپ-در-هکتار-جزئیات-فنی.webp"
+}

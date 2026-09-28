@@ -1,0 +1,60 @@
+{
+  "id": "crop-266",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 11,
+      "product_height_percent": 18,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Hard reject: The image contains a person's hand and arm holding the product, which violates the 'zero people / zero human body parts' rule.",
+        "Geometry Mismatch: The product does not meet the required geometry (width 20-23%); it is too small at ~11% width and 18% height.",
+        "Staging Error: The product is being held in the air rather than 'naturally placed on soil' as required.",
+        "Centering: The product is positioned at x=33%, which is closer to the center than the required 'lower third' off-center placement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human elements (hands, arms). Place the AFP white-and-blue drip-tape roll on the soil in the bottom-right corner (or bottom-left) of the image, making it significantly larger so the roll width is approximately 20-23% of the image frame width. Ensure the roll has a wide, low, cylindrical aspect ratio. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 24,
+      "product_height_percent": 33,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The product (drip tape roll) is not off-center on the lower third; it is placed in the middle-lower section.",
+        "The product's diameter-to-height ratio appears less than 1.5, violating the specific geometry requirement for a wide low cylindrical roll.",
+        "The visible height of the product exceeds the 32 percent threshold.",
+        "The crop morphology is borderline; while red peppers are present, the plant structure does not clearly match 'narrow oval leaves' characteristic of paprika (often broader) versus the thinner leaves potentially seen here.",
+        "Product placement is not naturally on soil but appears to be intersecting the crop row rather than sitting clearly on the soil path.",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image placing the wide low cylindrical drip tape roll clearly on the soil in the bottom-left third (off-center). Ensure the roll's diameter is at least 1.5 times its height and its height is under 32% of the frame. Keep the paprika plants with narrow oval leaves and attached elongated red peppers clearly visible in the foreground. Maintain the bottom-right watermark. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 21,
+      "product_height_percent": 22,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The image displays a farm context with paprika pepper plants visible, showing the required morphology of narrow leaves and elongated red peppers.",
+        "The AFP white-and-blue cylindrical drip-tape carton roll is present and positioned off-center on the lower third of the frame, placed naturally on the soil.",
+        "The watermark 'AFP | 09134922013' is correctly positioned in the bottom-right corner.",
+        "No people, human silhouettes, or human body parts are visible in the frame.",
+        "The product dimensions fall within the acceptable range (width ~21%, height ~22%), making it secondary to the crop as preferred.",
+        "No extra commercial products, bottles, or prohibited hardware are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "میزان-برداشت-پاپریکا-در-هکتار-با-نوار-تیپ-کاربرد-عملی.webp"
+}

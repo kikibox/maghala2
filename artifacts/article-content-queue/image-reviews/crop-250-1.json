@@ -1,0 +1,54 @@
+{
+  "id": "crop-250",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 4,
+      "product_height_percent": 8,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer/worker) interacting with the product is explicitly forbidden (zero people or human body parts allowed).",
+        "Hard reject: The product appears to be a container/tub rather than a cylindrical drip-tape roll with a visible diameter of 1.5-1.9 times its height; the geometry is incorrect.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person completely. Replace the tub with an unrolled drip-tape roll showing the specific geometry (wide, low cylinder) lying naturally on the soil in a cantaloupe field. Enlarge the product group from 4% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 21,
+      "product_height_percent": 23,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product aspect ratio is incorrect; the roll is not wide enough (requires 1.5-1.9 ratio, appears close to 1.0).",
+        "Product appears to float above the ground; the bottom of the roll is not visually grounded on the soil.",
+        "Crop context is incorrect; the vines and melons shown are watermelons, not the required cantaloupe (netted fruit)."
+      ],
+      "correction_prompt": "Regenerate the image with a drip-tape roll that is wider and flatter (aspect ratio ~1.6:1), resting flat on the soil with visible contact. Ensure the background features clearly identifiable cantaloupe vines and netted fruit instead of watermelons.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 26,
+      "product_height_percent": 22,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The image displays a cantaloupe farm with clearly identifiable vines and netted fruits on the soil.",
+        "The product is a white and blue cylindrical roll of drip tape positioned off-center on the lower third.",
+        "The 'AFP | 09134922013' watermark is present and clearly legible in the bottom-right corner.",
+        "No people or human silhouettes are visible in the frame.",
+        "The product dimensions fall within the acceptable 13-27% width range."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "نگهداری-طالبی-با-نوار-تیپ-نکات-کلیدی-تصویر-شاخص.webp"
+}

@@ -1,0 +1,103 @@
+{
+  "id": "crop-253",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 6,
+      "product_height_percent": 8,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The image contains people (two individuals), which is a hard reject condition.",
+        "The product shown is a cylindrical container or small pail, not a wide, low cylindrical drip-tape carton roll.",
+        "The product width is approximately 6%, which is far below the required range (13-27%).",
+        "The product is centered in the frame rather than being off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image showing a wide, low cylindrical drip-tape carton roll placed on the soil in a farm field, with NO people or workers visible in the frame. Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 30,
+      "product_height_percent": 34,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Product is too wide (estimated ~30% of frame, exceeds 27% limit)",
+        "Product is too tall (estimated ~34% of frame, exceeds 32% limit)",
+        "Product ratio is wrong (Diameter/Height is ~0.88, required is 1.5-1.9, meaning it looks like a standing drum rather than a flat cylinder)",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width.; Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Resize the drip tape roll to be significantly smaller (width max 20%, height max 25%) and lay it on its side so the diameter is visibly 1.5x the height. Keep it off-center on the lower third. Reduce the product group from 30% to 13-27% of frame width. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Image contains two people (farmers) with visible faces, hands, arms, legs, and silhouettes, which is explicitly forbidden.",
+        "Product mismatch: The required product is a wide, low, cylindrical drip-tape carton roll (20-23% of frame width). The image shows a small, white and blue cylindrical container (likely a seed container) that does not match the specific dimensions or product type.",
+        "Staging: The product is being held by a human and is not placed naturally on the soil as an off-center object.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with zero people. Show a single wide, low, cylindrical white-and-blue drip tape carton roll (20-23% of frame width) placed naturally on the soil, off-center in the lower third, in a farm field context. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 24,
+      "product_height_percent": 21,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "The drip tape roll is positioned almost in the exact center of the composition, violating the requirement for the product to be off-center.",
+        "The crop in the foreground and background appears to be corn/maize seedlings, which may not be the 'exact named crop' from the article title (not provided in prompt but implied to be specific), whereas the background is generally a prepared farm context.",
+        "The text on the carton label is garbled/placeholder gibberish next to the AFP logo, which violates the rule against 'gibberish text or invented writing outside authentic package print'.",
+        "Although the required watermark 'AFP | 09134922013' is correctly present, the image's central staging and gibberish text on the product fail the high-quality requirements."
+      ],
+      "correction_prompt": "Reposition the white and blue AFP drip tape roll to the bottom-left third of the frame, ensuring it is clearly off-center. Fix the gibberish text on the carton label to look like clean, professional packaging. Ensure the crop in the background is a distinct, recognizable row of the specific target crop (e.g. lettuce, tomato, or specific vegetable) rather than generic maize. Maintain the bottom-right AFP watermark.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 12,
+      "product_height_percent": 20,
+      "product_x_center_percent": 12,
+      "reasons": [
+        "Contains a prominent person (male farmer crouching and planting), which is a hard reject.",
+        "The drip-tape carton roll is not in a horizontal 'low cylindrical' orientation (it is standing upright), which is inconsistent with the requested visual appearance.",
+        "The product is not in the bottom-right third of the frame, but rather the bottom-left, conflicting with the composition requirements.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people from the image. Reorient the drip-tape carton to lie horizontally on the soil so it appears wide and low. Reposition the carton to the bottom-right corner of the image. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 23,
+      "product_height_percent": 20,
+      "product_x_center_percent": 75,
+      "reasons": [
+        "Image contains exactly one AFP white-and-blue drip-tape carton roll with the required watermark 'AFP | 09134922013' visible in the bottom-right corner.",
+        "Product dimensions are within acceptable bounds: width is approximately 23% (within preferred 20-23% range), height is 20% (well below the 32% limit), and the visible diameter-to-height ratio is correct.",
+        "Product is off-center in the lower-right third and placed naturally on the soil.",
+        "Background shows a farm field with red barns, matching a general agricultural context; the crop (young leafy seedlings) is botanically neutral and identifiable as young vegetables, which passes the agronomic criteria without hard rejection.",
+        "Zero people or human body parts are visible.",
+        "No hard rejects found (no second packages, impossible geometry, or unidentifiable text)."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "میزان-برداشت-ارزن-در-هکتار-با-نوار-تیپ-کاربرد-عملی.webp"
+}

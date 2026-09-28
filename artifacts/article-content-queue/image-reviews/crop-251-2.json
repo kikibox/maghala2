@@ -1,0 +1,56 @@
+{
+  "id": "crop-251",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 25,
+      "product_height_percent": 33,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product bounding box height is estimated at 33%, which exceeds the 32% maximum limit",
+        "Product bounding box width is estimated at 25%, which exceeds the 23% preferred upper limit",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Generate the drip-tape carton roll with a width no greater than 18% of the frame width and a height no greater than 24% of the frame height, placing it distinctly in the lower-left third while maintaining the same farm context. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Hard reject: Two people (farmers/workers) are prominently visible in the image.",
+        "Product form is vertical/canister-shaped rather than wide and low cylindrical.",
+        "Product is not positioned on the lower third off-center; it is being held by a person in the center.",
+        "Product width is too small (under 13% acceptance threshold).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people completely. Place exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll on the soil in the bottom-left or bottom-right corner (off-center). The roll should be flat against the ground, not vertical. Ensure the crop rows are visible but the humans are entirely absent. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 15,
+      "product_x_center_percent": 24,
+      "reasons": [
+        "Product is a white-and-blue wide low cylindrical drip-tape roll placed on the soil.",
+        "Product is off-center in the lower-left area.",
+        "No people or human body parts visible in the image.",
+        "Watermark 'AFP | 09134922013' is present in the bottom right.",
+        "Background shows a farm field with crop rows and a barn, fitting a farm context."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "مقدار-بذر-بامیه-در-هکتار-راهنمای-جامع-کاربرد-عملی.webp"
+}
