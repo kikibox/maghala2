@@ -16,6 +16,8 @@ permissions:
 
 concurrency:
   # No periodic watchdog: images already approved by the current policy are never rebuilt.
+  # A policy-change push deliberately retriggers this serialized repair after older
+  # generation runs have drained; downstream handoffs detect this queued workflow.
   # Strict proof runs own the real pipeline lock; queue runs marked
   # [image-rebuild] use a separate skipped-workflow lock.
   group: article-content-pipeline
