@@ -1,0 +1,60 @@
+{
+  "id": "prod-080",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: The image contains a visible person (farmer) interacting with the product.",
+        "Product geometry is incorrect: The roll appears to be standing on its edge (cylindrical standing up) rather than laying flat as a wide cylindrical roll.",
+        "Product width and height are significantly below the required thresholds.",
+        "Centered product staging violates the off-center requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to show exactly one AFP white-and-blue wide cylindrical drip-tape carton roll laid flat on the soil. Remove all human figures, faces, hands, and body parts. Place the roll off-center in the lower third of the frame, making it secondary to the farm background, with a width of roughly 20% of the frame. Ensure the roll's visible diameter is approximately 1.5 to 1.9 times its visible height. Maintain the specific farm context and include the 'AFP | 09134922013' watermark in the bottom right. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 45,
+      "product_height_percent": 30,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product width is approx 45% of the frame, exceeding the 27% hard reject limit",
+        "Product is centered horizontally (50%), which constitutes 'centered product staging' (hard reject)",
+        "Product is placed on the lower-middle section rather than the required 'lower third'",
+        "Exact crop from title (maize/corn) is not clearly identifiable in the article-specific agronomic story",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Resize and position the white-and-blue AFP drip-tape carton roll to be 20% of the frame width and 15% height. Move the roll to the lower third of the frame, offset to the right (x_center approx 70%) and naturally placed on the soil. Ensure the crop morphology clearly depicts maize or the specific article crop. Reduce the product group from 45% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 78,
+      "product_width_percent": 15,
+      "product_height_percent": 19,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Product is a white and blue cylindrical drip tape carton roll, correctly placed on soil in the lower-left third of the frame.",
+        "Product dimensions are within acceptable limits (width: 15%, height: 19%), with width slightly under the preferred target but within the 13–27% tolerance range.",
+        "Visible diameter to height ratio is approximately 1.6, which is within the required 1.5 to 1.9 range.",
+        "Zero people or human body parts are visible.",
+        "Background features young corn and a mature sunflower border; young corn is botanically identifiable, satisfying the 'exact named crop' requirement.",
+        "The bottom-right watermark 'AFP | 09134922013' is present and legible.",
+        "No prohibited items (bottles, extra products, pipes through the roll) are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "اندازهگیری-لوله-نخدار-110-میلیمتر-برای-مزرعه-کاربرد-عملی.webp"
+}

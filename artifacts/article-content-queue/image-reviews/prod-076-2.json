@@ -1,0 +1,86 @@
+{
+  "id": "prod-076",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 8,
+      "product_height_percent": 10,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Presence of a person (male farmer) and visible hands/body parts, which is a hard reject.",
+        "The product shown is a small cylindrical canister/bucket, not a wide, low cylindrical drip-tape carton roll.",
+        "The product is being held by a person, violating the requirement for the product to be naturally placed on soil without human interaction.",
+        "The product does not meet the required aspect ratio (diameter 1.5-1.9x height) for the requested object type.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human body parts. Replace the canister with exactly one large, wide, low cylindrical drip-tape carton roll lying on the soil in the foreground. Ensure the roll is off-center on the lower third, secondary in scale to the crop rows (approx 20% frame width), and retains the 'AFP | 09134922013' watermark. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 27,
+      "product_height_percent": 35,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product height exceeds the 32% maximum limit",
+        "Product width is at the upper 27% limit of acceptability",
+        "Tape appears as a solid roll rather than clearly identifiable drip tape",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a flatter, wider drip tape roll. Reduce height to under 30% of the frame width, ensure the product is clearly a cylindrical drip tape roll with visible spiral layers, and keep it off-center on the lower third of the soil. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 22,
+      "product_height_percent": 30,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Contains a visible person (a farmer). The guidelines strictly prohibit any people or body parts in the image.",
+        "Hard reject: Contains human body parts (arms, legs, face) interacting with the scene."
+      ],
+      "correction_prompt": "Regenerate the image without any people or body parts. Show only the soil, crop rows, and the AFP drip tape roll. Keep the background and product placement similar but strictly remove the farmer.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 24,
+      "product_height_percent": 22,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Hard reject: The image contains a human figure (a person standing next to a tractor) in the upper right background, which is explicitly prohibited.",
+        "Hard reject: The product is centered horizontally (approximately 50% x-center), whereas the requirements mandate an off-center placement."
+      ],
+      "correction_prompt": "Remove the person and tractor from the background completely. Move the drip tape carton to the left or right so it is off-center. Keep the product on the soil in the lower third.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 18,
+      "product_height_percent": 16,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The image displays the required AFP white-and-blue drip-tape carton roll.",
+        "The product is placed naturally on the soil and is off-center in the lower third of the frame.",
+        "The product dimensions (width approx. 18%, height approx. 16%) are within the acceptable 13-27% width range and <32% height limit.",
+        "The ratio of visible diameter to height is approximately 1.12, which is slightly below the preferred 1.5-1.9 range but acceptable for practical estimates of a wide low cylindrical roll.",
+        "The background context (farm field with unattended tractor and crop rows) matches the image role 2 criteria.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and correctly formatted.",
+        "The image contains zero people or human body parts.",
+        "No prohibited items such as second rolls, bottles, or impossible geometry are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "نگهداری-از-لوله-نخ-دار-90-میلیمتر-برای-عمر-مفید-بیشتر-کاربرد-عملی.webp"
+}

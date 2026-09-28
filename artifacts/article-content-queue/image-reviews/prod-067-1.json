@@ -1,0 +1,53 @@
+{
+  "id": "prod-067",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: The image clearly contains a person (a male farmer crouching), which is explicitly forbidden per the rules.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present, but the hard reject for the human presence overrides the pass condition."
+      ],
+      "correction_prompt": "Remove the human figure completely to leave only the white-and-blue cylindrical drip-tape roll in the farm context; ensure no people, body parts, or human silhouettes are visible.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 19,
+      "product_height_percent": 30,
+      "product_x_center_percent": 39,
+      "reasons": [
+        "Background crop morphology (tall rows, broad leaves, distinct corn stalks) does not match the article crop 'city' (which implies urban agriculture, vegetables, or strawberries); a clearly identifiable different species/background context triggers a hard reject.",
+        "The crop in the foreground (left) appears to be a different species (possibly Amaranth or wild grass) than the background corn, causing contextual mismatch.",
+        "Product width (19%) is within the practical acceptable range (13-27%), but the background contextual error is the primary rejection factor."
+      ],
+      "correction_prompt": "Regenerate the image with a background and foreground crop that strictly matches the 'city' or 'urban farm' context (e.g., rows of tomatoes, strawberries, or peppers in a community garden setting). Keep the AFP drip-tape roll on the lower-left soil. Ensure zero people.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 75,
+      "product_width_percent": 17,
+      "product_height_percent": 22,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "Product width and height are within the acceptable ranges, keeping the roll visually secondary to the crop field.",
+        "The white-and-blue AFP drip-tape roll is off-center on the lower third and rests naturally on the soil.",
+        "The exact required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No people, human body parts, or silhouettes are visible in the image.",
+        "The crop morphology and prepared bed with drip lines are botanically neutral enough to pass for the agronomic story without showing a specific named crop."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "مشخصات-فنی-لوله-نخ-دار-75-میلیمتر-راهنمای-انتخاب-تصویر-شاخص.webp"
+}

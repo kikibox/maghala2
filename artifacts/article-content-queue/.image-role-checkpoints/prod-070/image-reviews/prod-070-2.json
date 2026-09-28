@@ -1,0 +1,103 @@
+{
+  "id": "prod-070",
+  "kind": 2,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Image contains two full human bodies (people/kneeling figures).",
+        "Hard reject: Image contains visible human faces, hands, arms, and legs.",
+        "Hard reject: Product staging is not off-center on the lower third; the subjects are central.",
+        "Hard reject: The product pair does not occupy 12-15% of the frame width.",
+        "Hard reject: Only one coiled product is clearly visible, not the required pair.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate: Show only two layflat coils (one packaged, one bare black) on the ground with zero people or human parts visible. The pair must be small (12-15% width) and positioned off-center on the lower third. Maintain the bottom-right watermark. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 32,
+      "product_height_percent": 35,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Presence of a human person (farmer/worker) in the image",
+        "Human face, arms, hands, and legs visible",
+        "Only one layflat coil visible; required pair (packaged and bare) is missing",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove all people. Show exactly two layflat coils: one packaged AFP coil and one bare black woven coil. The pair must be flat on the ground, occupying only 12-15% of frame width, positioned in the lower third off-center. Ensure no third products are included. Keep the bottom-right watermark. Reduce the product group from 32% to 9-20% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 28,
+      "product_height_percent": 12,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Human present: A man is visible squatting in the frame.",
+        "Human body parts: Face, arms, hands, legs, and torso are clearly visible.",
+        "Object Count Fail: The image contains a packaged coil, a bare black coil, and a coiled rope; extra objects are not allowed.",
+        "Product Staging Fail: The products are not a flat pair; one is being held by a human hand.",
+        "Size Fail: The product pair exceeds 15% of frame width.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the human and the rope. Show only one packaged coil and one bare black coil, laid flat on the ground, separate from each other, occupying 12-15% width, located in the lower third, off-center. Reduce the product group from 28% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 40,
+      "product_height_percent": 30,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Visible human person (male worker) in the foreground.",
+        "Visible human body parts: face, hands, and legs.",
+        "Coils are not flat on the ground; one is being held/manipulated by hand.",
+        "Pair is not fully separate (one is upright/in-hand).",
+        "Pair width is significantly larger than 15 percent of frame width.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 40% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the man completely. Place both coils flat on the ground, side-by-side. The pair must be small, occupying less than 15% of the frame width in the lower third. Show one packaged AFP coil and one bare black woven coil only. Reduce the product group from 40% to 9-20% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 35,
+      "product_height_percent": 30,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: Human presence (worker visible)",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the worker and any human silhouettes. Place exactly two layflat coils on the ground, occupying 12-15% of frame width, positioned off-center in the lower third. Reduce the product group from 35% to 9-20% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 45,
+      "product_height_percent": 35,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: A person (farmer/worker) is prominently visible in the image holding one of the coils, violating the zero people rule.",
+        "The product pair is centered and takes up far more than 15% of the frame width (approx 45%).",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove all people, workers, and body parts from the scene entirely. Place exactly one packaged AFP coil and one bare black woven layflat coil on the ground. Position the pair in the lower third, off-center (left or right), with a total width of only 12-15 percent of the frame. Keep the 'AFP | 09134922013' watermark in the bottom right. Reduce the product group from 45% to 9-20% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

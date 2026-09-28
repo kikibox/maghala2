@@ -1,0 +1,71 @@
+{
+  "id": "prod-071",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 31,
+      "product_height_percent": 42,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Hard reject: Image contains a human (male farmer) with visible face, arms, hands, and legs.",
+        "Product geometry: The cylindrical roll's visible height is significantly too large (42% of frame) relative to the maximum 32% limit.",
+        "Product geometry: The product is oriented with the flat face toward the camera, failing to show the required side-profile 'wide low cylindrical' appearance where the diameter should be 1.5-1.9x the height.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 31% to 13-27% of frame width.; Reduce product height from 42% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with exactly one white-and-blue cylindrical drip-tape roll (diameter ~1.5-1.9x height) resting on soil in the lower-third, secondary scale (20-23% width). The roll must be unattended. Zero people. Background must show farm context with optional unattended tractor/infrastructure. Reduce the product group from 31% to 13-27% of frame width. Reduce product height from 42% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 28,
+      "product_height_percent": 32,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Hard reject: A person (farmer) is clearly visible in the background.",
+        "Hard reject: The product width is approximately 28% of the frame, which exceeds the maximum limit of 27%.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the farmer from the background. Reduce the scale of the drip-tape roll so that its width is 23% of the frame width. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 20,
+      "product_height_percent": 30,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: A person (human figure) is clearly visible in the background standing next to the green tractor.",
+        "Hard reject: The bottom-right watermark is missing.",
+        "Product geometry is slightly inconsistent with the preferred cylindrical drip-tape roll shape (appears more like a flat box/canister)."
+      ],
+      "correction_prompt": "Remove the person and horse in the background. Add the exact watermark 'AFP | 09134922013' in a black box at the bottom right. Ensure the product is a wide cylindrical white-and-blue drip-tape roll.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 25,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product width (25%) is within the acceptable 13-27% range, though slightly above the 20-23% preference.",
+        "Product height (20%) is below the 32% maximum limit.",
+        "The aspect ratio (1.25:1) is slightly under the preferred 1.5-1.9x width-to-height range, but the roll is clearly identifiable.",
+        "Product is off-center and placed on the soil as required.",
+        "Zero people or body parts visible.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom right.",
+        "Farm context (soil, field) matches the irrigation topic."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "اندازهگیری-لوله-نخدار-125-میلیمتر-برای-مزرعه-جزئیات-فنی.webp"
+}

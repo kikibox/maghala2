@@ -1,0 +1,95 @@
+{
+  "id": "prod-079",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Contains a visible person (male farmer kneeling).",
+        "Contains a second product (white cylindrical canister).",
+        "Contains gibberish/invented text on the main product packaging ('Drag Lajyakon Tape')."
+      ],
+      "correction_prompt": "Remove the kneeling farmer and the white canister from the scene. Remove all gibberish text from the large drip tape roll. Ensure only the single AFP drip tape roll is visible.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 18,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "There is a red human figure/silhouette visible in the background on the right side (near the tractor), which violates the strict 'zero people or silhouettes' requirement."
+      ],
+      "correction_prompt": "Regenerate the image strictly without any human figures, silhouettes, or people in the background. Keep the red tractor and the white-and-blue drip tape roll on the soil in the foreground, maintaining the farm context.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 28,
+      "product_height_percent": 34,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The product is a standard wide drum roll, not a 'low cylindrical' roll; its height is approximately 34% of the frame (over the 32% limit) and its width is approximately 28% (over the 27% limit), making it visually dominant rather than secondary.",
+        "The visible packaging has gibberish text outside the main 'AFP' logo, violating the requirement for authentic package print only.",
+        "The wide/short geometry is not met, as the roll height is roughly equal to its diameter rather than the required 1.5 to 1.9 times ratio.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width.; Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a 'wide low cylindrical' roll that has a diameter 1.5 to 1.9 times its height, a height under 30% of the frame, and only authentic text (no gibberish), placed on the lower third of the soil. Reduce the product group from 28% to 13-27% of frame width. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 30,
+      "product_height_percent": 28,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The product width is approximately 30% of the frame, exceeding the maximum allowed limit of 27% for a secondary product.",
+        "The text on the carton's front face is gibberish/unreadable ('Pug...') which violates the hard reject rule against invented writing or gibberish text.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the size of the drip-tape carton roll so it occupies less than 25% of the frame width. Replace the illegible or gibberish text on the carton with clear, realistic product labeling. Maintain the off-center positioning in the lower third on soil. Reduce the product group from 30% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18.5,
+      "product_height_percent": 22.5,
+      "product_x_center_percent": 28.0,
+      "reasons": [
+        "Hard reject: Presence of a human figure. The image clearly shows a male farmer crouching in the field with his face, head, and hands visible.",
+        "Hard reject: Presence of body parts. The hands of the person are touching the soil next to the product roll."
+      ],
+      "correction_prompt": "Remove the human figure and all body parts. Keep the white and blue drip tape roll on the soil and the farm background. Ensure the roll is the primary focus without any human presence.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is the correct AFP white-and-blue wide low cylindrical drip-tape carton roll",
+        "Product is off-center (lower-left) and naturally placed on soil",
+        "Proportions are within acceptable limits (width 22%, height 28%)",
+        "No people or human body parts are visible",
+        "Required 'AFP | 09134922013' watermark is present in the bottom right corner",
+        "Hardware (tractor) in background serves as valid topic context without being a forbidden extra commercial product"
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "هزینه-نوار-تیپ-پلاکدار-در-مزرعه-برآورد-جزئیات-فنی.webp"
+}

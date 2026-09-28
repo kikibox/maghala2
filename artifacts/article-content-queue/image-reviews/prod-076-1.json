@@ -1,0 +1,71 @@
+{
+  "id": "prod-076",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 15,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Hard reject: Human figure visible (farmer)"
+      ],
+      "correction_prompt": "Remove the human figure. Generate an image of an AFP white-and-blue wide low cylindrical drip-tape carton roll on the soil in a farm field. Ensure the background matches the crop context (e.g., corn or sunflowers). Do not include any people, farmers, or body parts.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 16.2,
+      "product_height_percent": 23.5,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Missing the required bottom-right watermark 'AFP | 09134922013'.",
+        "The background crop is clearly identifiable as sunflowers (Helianthus annuus), which is a different species than the required named crop (Tape20)."
+      ],
+      "correction_prompt": "Add the watermark 'AFP | 09134922013' to the bottom right. Replace the sunflowers in the background with the specific crop named in the article title.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 7,
+      "product_height_percent": 15,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: visible person (farmer/kneeling worker) present in the image.",
+        "Hard reject: human body parts including face, hands, arms, legs, and torso are clearly visible.",
+        "Product type mismatch: the item shown is a small canister/bucket, not a wide low cylindrical drip-tape carton roll.",
+        "Product width violation: the product is approximately 7% of the frame width, falling below the required minimum of 13%.",
+        "Product geometry violation: the item is taller than it is wide, failing the requirement that visible diameter be 1.5 to 1.9 times its visible height.",
+        "Centering violation: the product bounding box center is at approximately 48% of the image width, placing it in the center rather than the required off-center lower-third position.",
+        "No drip tape roll is visible in the image as required.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human subjects and body parts. Replace the small canister with a large, wide, low cylindrical white-and-blue AFP drip-tape carton roll. Position the roll off-center on the lower third of the frame so its width spans approximately 20% of the image and its diameter is roughly 1.5 times its height. Ensure the background shows a sunflower farm context and retain the bottom-right AFP watermark. Enlarge the product group from 7% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 26,
+      "product_height_percent": 28,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Correct product type (AFP drip-tape roll) in a farm context featuring sunflowers.",
+        "Product is positioned in the lower third and is off-center on the soil.",
+        "Zero people or body parts are visible.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "Sunflower crop morphology is botanically accurate for the selected context.",
+        "Product dimensions and aspect ratio are within the specified acceptance limits."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "نگهداری-از-لوله-نخ-دار-90-میلیمتر-برای-عمر-مفید-بیشتر-تصویر-شاخص.webp"
+}

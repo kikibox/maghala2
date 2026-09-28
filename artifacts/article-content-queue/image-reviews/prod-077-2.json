@@ -1,0 +1,88 @@
+{
+  "id": "prod-077",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 11,
+      "product_height_percent": 12,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: Human body parts (arms, legs, hands, feet) are clearly visible in the frame, which violates the 'zero people and zero human body parts' rule.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to remove all humans, body parts, and hands. Ensure the carton roll is at least 13 percent wide, placed naturally on the soil without human staging, and ensure the 'AFP | 09134922013' watermark is clearly visible in the bottom-right corner. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 88,
+      "product_width_percent": 32,
+      "product_height_percent": 38,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The exact bottom-right watermark 'AFP | 09134922013' is present.",
+        "Zero people, human silhouettes, or body parts are visible.",
+        "The product is placed naturally on soil in the lower-left area.",
+        "Only one carton roll is present with no other commercial products or containers.",
+        "The background (farm rows, barn) matches a general agricultural context.",
+        "Note: The physical dimensions of the roll in the image are slightly larger than the 'secondary' 27% width guideline, appearing nearly 32% wide and ~38% tall, which is somewhat larger than ideal, but the composition remains functional for a foreground feature shot.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 13-27% of frame width.; Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the product group from 32% to 13-27% of frame width. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Image contains a person (man crouching).",
+        "Hard reject: Human body parts (face, arms, legs, hands) are clearly visible.",
+        "Product mismatch: The object shown is a small white canister/bottle, not a wide low cylindrical drip-tape carton roll.",
+        "Product size: The canister is too small and does not meet the width/height requirements for the specified product type.",
+        "Background mismatch: The presence of the person alters the context away from a clean farm scene focused on the product.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any people. Remove the man completely. Replace the small canister with a wide, low, cylindrical white-and-blue drip-tape carton roll. The roll should be placed on the soil in the lower third, off-center, and occupy roughly 20-25% of the frame width. Maintain the farm context with soil and young crops. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 75,
+      "product_width_percent": 15.6,
+      "product_height_percent": 22.0,
+      "product_x_center_percent": 46.0,
+      "reasons": [
+        "The product bounding box height (22%) exceeds the preferred height ratio relative to width (should be ~1.5-1.9x diameter-to-height aspect). The roll is too tall relative to its width to match the specified 1.5-1.9x geometric constraint for a low cylindrical roll.",
+        "The product is positioned slightly to the left of the absolute center but is not strictly within the 'off-center on the lower third' layout instruction; it sits at the border of the center.",
+        "The crop seedlings are somewhat generic (though likely maize), which fits the 'neutral young vegetation' pass criteria, but the geometric mismatch of the product is the primary defect."
+      ],
+      "correction_prompt": "Regenerate the image ensuring the drip-tape roll has a strictly low-profile cylindrical shape where the visible diameter is clearly 1.5 to 1.9 times its visible height, and place it distinctly in the right lower third of the frame to satisfy the off-center layout requirement.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 14,
+      "product_height_percent": 22,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Product is a white and blue cylindrical drip tape roll, off-center on the lower third and placed naturally on soil.",
+        "Background features young crop seedlings in rows with a farm barn, matching a farm context.",
+        "Zero people or human body parts visible.",
+        "Required AFP watermark is present at the bottom right.",
+        "Product size is within the acceptable practical estimates for width (13-27%) and height (max 32%)."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "مقایسه-نوار-تیپ-پلاکدار-با-سایر-برندها-کاربرد-عملی.webp"
+}

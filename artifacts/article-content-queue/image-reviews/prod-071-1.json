@@ -1,0 +1,54 @@
+{
+  "id": "prod-071",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 68,
+      "product_height_percent": 12,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The product roll is too large, occupying approximately 68% of the frame width, which exceeds the 27% limit.",
+        "The product is centered on the x-axis rather than being off-center as required.",
+        "The product is not white-and-blue; it is a black coiled hose with a white cylindrical core.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 68% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the drip tape roll size to 20% of the frame width and move it to the right lower third of the image. The roll must be white with blue branding on the outside. Reduce the product group from 68% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 18,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Presence of a human (farmer) in the image, which violates the 'zero people' and 'zero human body parts' requirement."
+      ],
+      "correction_prompt": "Regenerate the image to remove the person entirely, showing only the drip-tape roll naturally placed on the soil in a farm context with no human silhouettes.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 72,
+      "product_width_percent": 24,
+      "product_height_percent": 20,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The image contains exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "The crop context (young seedlings in rows) is agronomically clear but does not show the exact mature morphology required for the specific crop in the title.",
+        "The product is correctly positioned on the soil in the lower third, slightly off-center to the left.",
+        "The 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "No people, human silhouettes, or prohibited objects are visible.",
+        "Product dimensions (width < 27%, height < 32%) are within practical estimates."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "اندازهگیری-لوله-نخدار-125-میلیمتر-برای-مزرعه-تصویر-شاخص.webp"
+}

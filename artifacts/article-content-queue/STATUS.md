@@ -4,17 +4,17 @@
 
 ## نمای کلی
 
-- آخرین بروزرسانی: `2026-09-28T14:59:58+00:00`
-- وضعیت صف: **آماده اجرای بعدی** (`ready`)
-- پیشرفت: **301 از 1148 (26.22٪)**
+- آخرین بروزرسانی: `2026-09-28T15:13:55+00:00`
+- وضعیت صف: **توقف موقت برای تکمیل ترجمه‌های عقب‌مانده** (`translations_pending`)
+- پیشرفت: **309 از 1148 (26.92٪)**
 - نمودار پیشرفت: `█████░░░░░░░░░░░░░░░`
-- تکمیل‌شده: **301**
+- تکمیل‌شده: **309**
 - در حال پردازش: **0**
-- در انتظار: **730**
-- ناموفق: **117**
+- در انتظار: **716**
+- ناموفق: **123**
 - مسدود مدل تصویر: **0**
-- میانگین طول مقالات تکمیل‌شده: **1295 کلمه**
-- اولویت فعلی: **تولید مقاله فارسی بعدی**
+- میانگین طول مقالات تکمیل‌شده: **1296 کلمه**
+- اولویت فعلی: **تکمیل ترجمه‌های موجود**
 
 ## تنظیمات تولید و انتشار
 
@@ -24,8 +24,8 @@
 - تعداد تصاویر هر مقاله: **3**
 - حداقل کلمات: **1050**
 - لینک داخلی مجاز: **4 تا ۷**
-- اندازه هر اجرا: **2 مقاله**
-- مدیر موازی: **2 مقاله / 4 تصویر هم‌زمان**
+- اندازه هر اجرا: **16 مقاله**
+- مدیر موازی: **16 مقاله / 32 تصویر هم‌زمان**
 - حداکثر تلاش هر مقاله: **4**
 - دسته وردپرس: **مقاله‌ها** (`35`)
 - لینک‌های داخلی شناخته‌شده: **682**
@@ -37,24 +37,24 @@
 |---|---:|---:|---:|---:|---:|---:|
 | `crop` | 341 | 272 | 1 | 0 | 68 | 79.77٪ |
 | `irrigation` | 12 | 11 | 0 | 0 | 1 | 91.67٪ |
-| `product` | 112 | 18 | 46 | 0 | 48 | 16.07٪ |
+| `product` | 112 | 26 | 32 | 0 | 54 | 23.21٪ |
 | `strategic` | 33 | 0 | 33 | 0 | 0 | 0.00٪ |
 | `xref` | 650 | 0 | 650 | 0 | 0 | 0.00٪ |
 
 ## وضعیت ترجمه مقالات تولیدشده
 
-- مقالات فارسی تکمیل‌شده: **301**
-- واحدهای ترجمه تکمیل‌شده: **903 از 903**
-- واحدهای ترجمه باقی‌مانده: **0**
-- مقالات فاقد حداقل یک ترجمه: **0**
-- وضعیت صف فارسی: **فعال**
+- مقالات فارسی تکمیل‌شده: **309**
+- واحدهای ترجمه تکمیل‌شده: **903 از 927**
+- واحدهای ترجمه باقی‌مانده: **24**
+- مقالات فاقد حداقل یک ترجمه: **8**
+- وضعیت صف فارسی: **متوقف تا تکمیل ترجمه‌ها**
 - بسته‌های ترجمه ۵۰تایی آماده: **0**
 
 | زبان | تکمیل | باقی‌مانده | مسیر |
 |---|---:|---:|---|
-| عربی عراق (`ar-IQ`) | 301 | 0 | `/iraq/` |
-| تاجیکی (`tg-TJ`) | 301 | 0 | `/tj/` |
-| انگلیسی (`en-US`) | 301 | 0 | `/en/` |
+| عربی عراق (`ar-IQ`) | 301 | 8 | `/iraq/` |
+| تاجیکی (`tg-TJ`) | 301 | 8 | `/tj/` |
+| انگلیسی (`en-US`) | 301 | 8 | `/en/` |
 
 ## وضعیت بازطراحی تصاویر
 
@@ -69,13 +69,21 @@
 
 ## مقاله بعدی صف
 
-- عنوان: **نگهداری از لوله نخی 2 اینچ 50 میلیمتر برای عمر مفید بیشتر**
-- شناسه: `prod-064`
+- عنوان: **اندازه‌گیری لوله نخ دار 90 میلیمتر برای مزرعه**
+- شناسه: `prod-081`
 - گروه: `product`
-- تعداد تلاش قبلی: **1**
+- تعداد تلاش قبلی: **0**
 
 ## آخرین مقالات تکمیل‌شده
 
+- **مشخصات فنی لوله نخ دار 75 میلیمتر: راهنمای انتخاب** — `prod-067` — `product` — 1717 کلمه — تحویل: `SQL package` — `2026-09-28T15:13:49+00:00`
+- **مراحل نصب لوله نخدار 110 میلیمتر در سیستم آبیاری** — `prod-075` — `product` — 1200 کلمه — تحویل: `SQL package` — `2026-09-28T15:12:11+00:00`
+- **مقایسه نوار تیپ پلاکدار با سایر برندها** — `prod-077` — `product` — 1140 کلمه — تحویل: `SQL package` — `2026-09-28T15:11:31+00:00`
+- **اندازه‌گیری لوله نخدار 125 میلیمتر برای مزرعه** — `prod-071` — `product` — 1098 کلمه — تحویل: `SQL package` — `2026-09-28T15:11:30+00:00`
+- **هزینه نوار تیپ پلاکدار در مزرعه: برآورد** — `prod-079` — `product` — 1394 کلمه — تحویل: `SQL package` — `2026-09-28T15:10:18+00:00`
+- **نگهداری از لوله نخ دار 90 میلیمتر برای عمر مفید بیشتر** — `prod-076` — `product` — 1231 کلمه — تحویل: `SQL package` — `2026-09-28T15:07:28+00:00`
+- **اندازه‌گیری لوله نخدار 110 میلیمتر برای مزرعه** — `prod-080` — `product` — 1384 کلمه — تحویل: `SQL package` — `2026-09-28T15:06:23+00:00`
+- **مقایسه لوله نخدار 110 میلیمتر با سایر برندها** — `prod-068` — `product` — 1411 کلمه — تحویل: `SQL package` — `2026-09-28T15:06:09+00:00`
 - **توافق نوار تیپ 20 سانتی رول 1000 متری با نوار تیپ و قطره‌چکان** — `prod-065` — `product` — 1276 کلمه — تحویل: `SQL package` — `2026-09-28T14:19:27+00:00`
 - **راهنمای جامع خرید نوار تیپ 20 سانتی رول 1000 متری: نکات انتخاب و قیمت** — `prod-059` — `product` — 1104 کلمه — تحویل: `SQL package` — `2026-09-28T14:17:40+00:00`
 - **مشخصات فنی لوله نخدار 110 میلیمتر: راهنمای انتخاب** — `prod-055` — `product` — 1133 کلمه — تحویل: `SQL package` — `2026-09-28T14:16:59+00:00`
@@ -88,27 +96,19 @@
 - **مقایسه لوله نخ دار 90 میلیمتر با سایر برندها** — `prod-036` — `product` — 1448 کلمه — تحویل: `SQL package` — `2026-09-28T12:18:07+00:00`
 - **اندازه‌گیری نوار تیپ 20 سانتی رول 1000 متری برای مزرعه** — `prod-026` — `product` — 1320 کلمه — تحویل: `SQL package` — `2026-09-28T12:17:19+00:00`
 - **نگهداری از لوله نخ دار 75 میلیمتر برای عمر مفید بیشتر** — `prod-025` — `product` — 1111 کلمه — تحویل: `SQL package` — `2026-09-28T12:15:16+00:00`
-- **هزینه لوله نخدار 160 میلیمتر در مزرعه: برآورد** — `prod-022` — `product` — 1304 کلمه — تحویل: `SQL package` — `2026-09-28T12:12:16+00:00`
-- **مراحل نصب لوله نخدار 125 میلیمتر در سیستم آبیاری** — `prod-018` — `product` — 1477 کلمه — تحویل: `SQL package` — `2026-09-28T11:38:58+00:00`
-- **هزینه لوله نخ دار 75 میلیمتر در مزرعه: برآورد** — `prod-011` — `product` — 1080 کلمه — تحویل: `SQL package` — `2026-09-28T11:33:28+00:00`
-- **اندازه‌گیری نوار تیپ پلاکدار برای مزرعه** — `prod-019` — `product` — 1265 کلمه — تحویل: `SQL package` — `2026-09-28T11:31:35+00:00`
-- **راهنمای جامع آبیاری رانشی** — `irr-07` — `irrigation` — 1080 کلمه — تحویل: `SQL package` — `2026-09-28T11:28:15+00:00`
-- **راهنمای جامع آبیاری بارانی** — `irr-02` — `irrigation` — 1141 کلمه — تحویل: `SQL package` — `2026-09-28T10:29:20+00:00`
-- **راهنمای جامع آبیاری گره‌ای** — `irr-05` — `irrigation` — 1915 کلمه — تحویل: `SQL package` — `2026-09-28T10:29:00+00:00`
-- **راهنمای جامع آبیاری محوری** — `irr-09` — `irrigation` — 1365 کلمه — تحویل: `SQL package` — `2026-09-28T10:28:54+00:00`
 
 ## خطاهای اخیر
 
+- **توافق لوله نخ دار 90 میلیمتر با نوار تیپ و قطره‌چکان** — `prod-072` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Hard reject: A human (worker) is visible holding the product.', 'Hard reject: Product width exceeds 15 percent of the frame.', 'Product staging is centered/active rather than flat and passive on the ground.', 'machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width.']`
+- **هزینه لوله نخدار 125 میلیمتر در مزرعه: برآورد** — `prod-078` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['A person (farmer with hoe) is clearly visible in the background.', 'A second person (driver) is clearly visible inside the tractor.']`
+- **توافق لوله تاشو 160 میلیمتر با نوار تیپ و قطره‌چکان** — `prod-069` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['Human subject (farmer) is visible in the frame', 'Presence of a human face and body parts is a hard reject', 'The pair of objects does not meet the 12-15% width requirement (currently approx 28%)', 'machine-enforced bounding-box check failed: Reduce the product group from 28% to 9-20% of frame width.; Reduce product height from 38% to at most 32% of frame height.']`
+- **نگهداری از لوله نخی 2 اینچ 50 میلیمتر برای عمر مفید بیشتر** — `prod-064` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['Hard reject: two people are visible in the image.', 'Hard reject: human hands and arms are visible.', 'Product staging is not small (not 12-15% width); the subjects are dominant in the frame.', 'machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width.']`
+- **نگهداری از لوله تاشو 110 میلیمتر برای عمر مفید بیشتر** — `prod-070` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Hard reject: A person (farmer/worker) is prominently visible in the image holding one of the coils, violating the zero people rule.', 'The product pair is centered and takes up far more than 15% of the frame width (approx 45%).', 'machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height.']`
+- **اندازه‌گیری لوله تاشو 90 میلیمتر برای مزرعه** — `prod-073` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['Image contains two people, hard reject', "People occupy the frame and interact with the product, violating the 'zero people' constraint", 'Product pair is centered in the frame rather than staying off-center on the lower third', 'Product width exceeds the 15% maximum limit', 'machine-enforced bounding-box check failed: Reduce the product group from 25% to 9-20% of frame width.']`
+- **نگهداری از لوله تاشو 2 اینچ 63 میلیمتر برای عمر مفید بیشتر** — `prod-060` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Presence of a person (human silhouette/face/hand)', 'Product pair occupies more than 15% of the frame width', 'Product pair is not off-center on the lower third', 'Third object (hay bale) present', 'machine-enforced bounding-box check failed: Reduce the product group from 35% to 9-20% of frame width.']`
+- **مراحل نصب لوله تاشو 125 میلیمتر در سیستم آبیاری** — `prod-074` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ['Image contains a person (hard reject)', 'Image contains human body parts (arm, hand, leg) (hard reject)']`
 - **مراحل نصب لوله نخ دار 75 میلیمتر در سیستم آبیاری** — `prod-047` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
 - **مشخصات فنی لوله نخ دار 90 میلیمتر: راهنمای انتخاب** — `prod-058` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Hard reject: Presence of a person (man) and human body parts (face, hands, arms, legs).', 'Product aspect ratio is incorrect; the roll appears taller than the required 1.5 to 1.9 times its visible height (diameter > height).', "Product height (approx. 24%) significantly exceeds the recommended 20-23% preferred width/height and is tall relative to the 'low cylindrical' requirement.", 'Product width is approx. 11%, which is below the acceptable`
-- **مشخصات فنی نوار تیپ پلاکدار: راهنمای انتخاب** — `prod-052` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['The product is correctly positioned off-center in the lower third, naturally resting on the soil.', 'The crop is visible as young seedlings and irrigation layout, which aligns with the requirements for a botanically neutral prepared bed when exact mature morphology is unavailable.', 'There are zero people, hands, or human body parts in the image.', 'The AFP watermark is present and correct in the bottom right.', 'The product width (31%) and h`
-- **مشخصات فنی لوله تاشو 160 میلیمتر: راهنمای انتخاب** — `prod-056` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['Product pair occupies significantly more than 15% of the frame width', 'Products are not fully in the lower third; the bare coil intrudes into the middle third', 'Products are too large relative to the required 12-15% scale constraint', 'machine-enforced bounding-box check failed: Reduce the product group from 38% to 9-20% of frame width.']`
-- **مقایسه لوله نخی 2 اینچ 50 میلیمتر با سایر برندها** — `prod-053` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ["Hard reject: A person is visible in the image (crouching female subject), which violates the 'zero people' requirement.", 'machine-enforced bounding-box check failed: Reduce the product group from 40% to 9-20% of frame width.']`
-- **توافق لوله نخی 2 اینچ 50 میلیمتر با نوار تیپ و قطره‌چکان** — `prod-057` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['The image contains two visible people, which is a hard reject condition.', 'The product pair occupies significantly more than 15% of the frame width (approx. 80%).', 'The product pair is centered in the frame rather than being off-center on the lower third.', 'The coils are being held by people rather than lying flat and separate on the ground as required.', "The presence of people makes it difficult to judge the 'flat on the ground' constrai`
-- **مراحل نصب لوله تاشو 160 میلیمتر در سیستم آبیاری** — `prod-054` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['Hard reject: Human presence (farmer/worker)', 'Hard reject: Product pair is centered and occupies significantly more than 15% of frame width', 'Hard reject: Incorrect product state (packaged coil is being held rather than lying flat on the ground)', 'machine-enforced bounding-box check failed: Reduce the product group from 38% to 9-20% of frame width.; Reduce product height from 45% to at most 32% of frame height.']`
-- **هزینه لوله تاشو 110 میلیمتر در مزرعه: برآورد** — `prod-066` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ['Exactly two approved objects: one packaged AFP coil and one bare black woven coil.', 'Both objects are fully visible, flat on the ground, and separate.', 'Objects are located on the lower third of the frame.', 'Zero people, human body parts, or silhouettes visible.', 'No rejected items such as round pipe, drip tape, or third hoses.', "Watermark 'AFP | 09134922013' is present in the bottom-right.", 'machine-enforced bounding-box check failed: `
-- **نگهداری از لوله تاشو 2 اینچ 63 میلیمتر برای عمر مفید بیشتر** — `prod-060` — مرحله: `image` — تلاش: **1/4** — `visual reviewer unavailable after retries; candidate checkpoint preserved`
-- **مشخصات فنی لوله تاشو 2 اینچ 63 میلیمتر: راهنمای انتخاب** — `prod-062` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ['Pair exceeds 15% frame width limit (currently 43%)', 'Product pair is centered rather than off-center lower third', 'machine-enforced bounding-box check failed: Reduce the product group from 43% to 9-20% of frame width.; Reduce product height from 62% to at most 32% of frame height.']`
 
 ## بسته‌های ۵۰تایی آماده
 
@@ -121,10 +121,10 @@
 
 ## خروجی‌های تولیدشده
 
-- فایل JSON مقاله‌ها: **301**
-- تصاویر تولیدشده: **903**
-- فایل‌های SQL: **301**
-- فایل‌های Rollback: **301**
+- فایل JSON مقاله‌ها: **309**
+- تصاویر تولیدشده: **927**
+- فایل‌های SQL: **309**
+- فایل‌های Rollback: **309**
 
 ## فایل‌های مدیریتی
 

@@ -1,0 +1,93 @@
+{
+  "id": "prod-074",
+  "kind": 3,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject: A human male is prominently visible in the center of the image (face, body, hands, legs).",
+        "Hard reject: The image contains only a single coil (the black drip tape) and does not show a packaged AFP coil plus a bare black woven coil.",
+        "Hard reject: The product is not off-center; the interaction with the person places it in the middle of the composition."
+      ],
+      "correction_prompt": "Regenerate the image showing only a packaged AFP coil and a bare black woven coil, with no people, no farmers, and no human body parts visible. Place the products separately on the ground, occupying 12-15% of the frame width, off-center on the lower third.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 20,
+      "product_height_percent": 18,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Presence of a person and human body parts (hands, face) violates the zero-person requirement",
+        "Missing the required packaged AFP coil, showing only a single coil",
+        "Product pair is centered rather than off-center"
+      ],
+      "correction_prompt": "Regenerate the image to remove all human figures and silhouettes. Ensure the frame contains exactly two separate flat objects: one packaged AFP coil and one bare black woven coil. Position these objects off-center in the lower third of the frame, occupying 12-15% of the total width. Ensure the watermark 'AFP | 09134922013' remains visible in the bottom-right corner.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Image contains a person and human body parts",
+        "Product pair is too large (occupies >15% width)",
+        "Product placement is not in the lower third"
+      ],
+      "correction_prompt": "Regenerate with zero people; reduce product pair to 12-15% width in the lower third, keep it off-center, separate, and flat on the ground; retain the bottom-right watermark AFP | 09134922013.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Presence of a full human body (farmer) violates the hard reject rule for zero people.",
+        "Only one bare black coil is clearly visible; the required packaged AFP coil is missing.",
+        "The product pair is not properly positioned; the single visible coil is too large (25% width vs 12-15% requirement) and incorrectly placed.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 25% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Generate two distinct coils on the soil: one packaged AFP coil and one bare black woven coil. Both must be small (15% frame width), located on the lower left, and fully visible. Keep the 'AFP | 09134922013' watermark in the bottom-right corner. Reduce the product group from 25% to 9-20% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: visible person (woman farmer/worker) interacting with products.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the person; place one packaged AFP coil and one bare black woven coil separately and flat on the ground in the lower third (off-center), occupying 12-15% of frame width, fully visible; keep the bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Image contains a person (hard reject)",
+        "Image contains human body parts (arm, hand, leg) (hard reject)"
+      ],
+      "correction_prompt": "Remove all people and human body parts completely; keep exactly one packaged coil and one bare black woven coil, flat and separate on the ground, occupying less than 15 percent of frame width, off-center on the lower third, fully visible, with no third product, and retain the bottom-right watermark 'AFP | 09134922013'.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

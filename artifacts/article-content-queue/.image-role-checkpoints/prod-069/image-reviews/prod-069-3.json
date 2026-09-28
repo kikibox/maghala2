@@ -1,0 +1,40 @@
+{
+  "id": "prod-069",
+  "kind": 3,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 25,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Image contains a human (worker)",
+        "Worker is touching the product",
+        "machine-enforced bounding-box check failed: Reduce the product group from 25% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts. Place exactly two coils (one bare, one packaged) on the lower left, occupying roughly 12% of the frame width. Reduce the product group from 25% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 10,
+      "product_height_percent": 12,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Contains exactly two approved products: a bare black woven coil and a packaged AFP coil.",
+        "No people, human body parts, or silhouettes are visible.",
+        "The pair is located in the lower third, off-center to the left.",
+        "Product width occupies approximately 10% of the frame width.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "توافق-لوله-تاشو-160-میلیمتر-با-نوار-تیپ-و-قطرهچکان-جزئیات-فنی.webp"
+}

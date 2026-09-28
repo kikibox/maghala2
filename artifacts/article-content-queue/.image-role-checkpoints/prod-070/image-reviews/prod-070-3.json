@@ -1,0 +1,99 @@
+{
+  "id": "prod-070",
+  "kind": 3,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Presence of two people (human silhouettes and full body parts visible in the frame).",
+        "Hard reject: The image does not show the required layflat coils (packaged AFP coil and bare black woven coil); instead, it shows a rectangular bag/box and a small fitting.",
+        "Hard reject: Product staging is centered/foreground with people, violating the 'lower third, off-center' and 'zero people' requirements.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate with exactly two approved layflat coils (one packaged AFP, one bare black) lying flat on the ground, positioned off-center in the lower third, occupying 12-15% of frame width. Remove all people, hands, and faces. Ensure the 'AFP | 09134922013' watermark is visible in the bottom right. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Image contains multiple people.",
+        "Hard reject: The required packaged AFP coil is missing, leaving only one of the two required layflat objects.",
+        "Hard reject: The product is not sized to the 12-15% width requirement and is not staged correctly.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate with zero people or human body parts. Show exactly two flat layflat objects (one packaged AFP coil and one bare black woven coil) totaling 12-15% of frame width, off-center on the lower third. Maintain the bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 35,
+      "product_height_percent": 20,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Presence of a person/farmer which is strictly prohibited",
+        "Products occupy a width greater than 15 percent of the frame",
+        "The staged layout appears centered or too prominent",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people. Place exactly two small products (one packaged coil, one bare black coil) on the lower third, off-center, and ensure they occupy less than 15 percent of the frame width. Reduce the product group from 35% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 20,
+      "product_height_percent": 10,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Human silhouette (farmer/worker) is present, which triggers a hard reject.",
+        "Product placement is in the lower-center instead of the required off-center lower third.",
+        "The pair of coils occupies approximately 20% of the frame width, exceeding the maximum 15% limit."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes. Reduce the size of the coil pair to occupy 12-15% of the frame width. Move the product pair to the bottom-left or bottom-right corner (off-center) while keeping them flat on the ground.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 22,
+      "product_height_percent": 30,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Visible man (face, arms, legs, body) present in image",
+        "Product pair occupies approximately 22% of frame width, exceeding the hard limit of 15%",
+        "Products are centered in the bottom-left/center rather than off-center on the lower third as requested",
+        "machine-enforced bounding-box check failed: Reduce the product group from 22% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate without any human figures or parts; reduce the size of the two product coils to 12-15% of frame width and position them off-center on the right side of the lower third. Reduce the product group from 22% to 9-20% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 25.0,
+      "product_height_percent": 28.0,
+      "product_x_center_percent": 38.0,
+      "reasons": [
+        "Presence of a person (worker) in the foreground violates the requirement for zero people or body parts",
+        "Product pair is centered in the frame rather than off-center on the lower third",
+        "Product pair width is approximately 25% of the frame width, exceeding the 15% maximum limit",
+        "machine-enforced bounding-box check failed: Reduce the product group from 25% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image completely without any human or body parts present. Stage only the two layflat coils (one packaged AFP coil and one bare black woven coil) in the lower third of the image, off-center. The two objects must be small relative to the frame, collectively occupying less than 15% of the image width. Ensure the exact bottom-right watermark 'AFP | 09134922013' is visible. Keep the rural agricultural background with crops and distant barn, but remove all human figures. Reduce the product group from 25% to 9-20% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

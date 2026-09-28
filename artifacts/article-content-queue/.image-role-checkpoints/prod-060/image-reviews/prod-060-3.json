@@ -94,6 +94,98 @@
       ],
       "correction_prompt": "Remove the person entirely. Regenerate the image showing only a small packaged AFP coil and a bare black woven coil on the ground. The pair must be flat, separate, and occupy only 12-15% of the frame width in the lower third (off-center). Maintain the watermark. Reduce the product group from 40% to 9-20% of frame width.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 8,
+      "product_height_percent": 15,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Contains multiple visible people (farmers/workers)",
+        "Product is not laid flat on the ground",
+        "Product is being handled by a person",
+        "Only one visible coil, missing the second required object",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures and replace the scene with a wide-angle shot of a farm field where one packaged AFP coil and one bare black woven coil are laid flat and separate on the soil, occupying 12-15% of the frame width in the lower third. Enlarge the product group from 8% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 45,
+      "product_height_percent": 30,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Presence of a person (farmer/worker) in the foreground.",
+        "Visible human body parts (arms, hands, legs, head, face).",
+        "Product pair width significantly exceeds the 15 percent maximum frame width limit.",
+        "Coils are partially obscured by human hands.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures. Reposition the packaged AFP coil and bare black coil to be separated, fully visible, and small (approx. 12-15 percent of image width) in the lower right quadrant. Ensure the product pair is completely unobstructed. Reduce the product group from 45% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 32,
+      "product_height_percent": 22,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: Image contains a prominent person (woman crouching).",
+        "Hard reject: Product pair is wider than the maximum allowed 15 percent of frame width.",
+        "Hard reject: The layout violates the 'off-center' constraint as the person dominates the right two-thirds of the frame.",
+        "Missing required watermark: 'AFP | 09134922013' (image contains 'AFP | 09134922013' with a different middle digit, which fails the exact match requirement).",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove all humans. Show one bare black coil and one packaged AFP coil lying flat on the ground, occupying <15% frame width, positioned in the lower third, far from center. Add the exact bottom-right watermark 'AFP | 09134922013'. Reduce the product group from 32% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 85,
+      "product_height_percent": 60,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Contains a person (farmer) which is a hard reject",
+        "Product pair is too wide and centered, violating the 12-15% width and off-center constraint",
+        "One of the coils is being held by a person",
+        "Visible human silhouette and face",
+        "machine-enforced bounding-box check failed: Reduce the product group from 85% to 9-20% of frame width.; Reduce product height from 60% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with zero people or body parts; show only one packaged AFP coil and one bare black woven coil on the ground in the lower-third off-center, occupying 12-15% of the frame width; keep the exact bottom-right watermark. Reduce the product group from 85% to 9-20% of frame width. Reduce product height from 60% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 15,
+      "product_height_percent": 5,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Contains two people (male and female) which is a hard reject trigger.",
+        "The two people are touching/holding the products, which violates the 'fully visible' and 'no human body parts' constraint."
+      ],
+      "correction_prompt": "Remove all people. Place one packaged coil and one bare black woven coil separately on the ground in the lower third. Ensure they are small (approx 12% width), off-center, and the image contains zero humans or body parts.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 10,
+      "product_height_percent": 30,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: Image contains two people (farmers/workers) and multiple human body parts (faces, hands, arms, legs).",
+        "Requirement violation: The two layflat objects are not flat on the ground; one is being held in the air and intersecting with the other.",
+        "Requirement violation: The product pair is not off-center on the lower third; it is centered in the lower-middle frame.",
+        "Requirement violation: The products do not occupy only 12-15% of the frame width relative to their height/dominance, and are staged centrally."
+      ],
+      "correction_prompt": "Regenerate scene with zero people or body parts. Place one packaged coil and one bare black coil flat on the soil in the lower third, right of center. Ensure they are separate, not intersecting, and occupy roughly 12-15% of frame width. Keep bottom-right watermark intact.",
+      "attempt": 6
     }
   ],
   "approved_image": null

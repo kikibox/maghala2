@@ -1,0 +1,70 @@
+{
+  "id": "prod-078",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 22,
+      "product_height_percent": 38,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: Multiple human figures (silhouettes) visible in the background field.",
+        "Hard reject: Extra commercial product present (additional rolls/timers on the soil to the right of the main roll).",
+        "Hard reject: Product height exceeds the 32% limit (estimated at ~38%).",
+        "Hard reject: Product bounding box extends beyond the bottom of the frame.",
+        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove all human figures and the small extra roll/timer hardware on the right. Shrink the main AFP roll so it sits fully on the soil, reducing its height to under 30% of the frame and positioning it slightly further up. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: The image contains human silhouettes in the background near the tractor and red building.",
+        "Hard reject: There are two distinct human figures standing in the distance, which violates the rule requiring zero people, farmers, or human silhouettes."
+      ],
+      "correction_prompt": "Regenerate the image, ensuring no human figures or silhouettes are visible anywhere in the background near the tractor or farm structures.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 26,
+      "product_height_percent": 24,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Hard reject: Visible human figure (farmer) standing in the background on the left",
+        "Hard reject: Second human silhouette visible in the distant background (left)",
+        "Hard reject: Visible human silhouette (driver) inside the tractor cab",
+        "Product appears wider than preferred (near hard limit of 27%)"
+      ],
+      "correction_prompt": "Remove all human figures and silhouettes from the background and tractor cab. Reduce the drip-tape roll width to approximately 20% of the frame. Ensure the crop (if visible) matches the article title strictly.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 22,
+      "product_height_percent": 21,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product is the correct AFP white-and-blue drip-tape carton roll",
+        "Off-center placement in the lower third on soil",
+        "No people or human body parts visible",
+        "Unattended tractors in the background are acceptable infrastructure",
+        "Required watermark 'AFP | 09134922013' is present in bottom-right"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "هزینه-لوله-نخدار-125-میلیمتر-در-مزرعه-برآورد-جزئیات-فنی.webp"
+}
