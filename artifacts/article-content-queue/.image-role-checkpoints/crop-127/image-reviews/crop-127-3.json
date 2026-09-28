@@ -1,0 +1,98 @@
+{
+  "id": "crop-127",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 11,
+      "product_height_percent": 15,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Presence of a visible person (farmer/worker) and human body parts (face, hands, legs, torso) triggers an immediate hard reject.",
+        "The product roll is not on-center and is placed on the ground as requested, but the human interaction (hand touching the roll) violates the 'zero people' constraint.",
+        "The roll is positioned high relative to the bottom edge (not strictly on the lower third line) and is smaller than the preferred 20-23% width target.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the man entirely from the scene. The image must feature only the AFP drip-tape roll lying naturally on the soil in the foreground (lower third, off-center). No human silhouettes or body parts are permitted. Retain the farm background and the bottom-right watermark. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Product is placed in the lower center/center-left, which is too close to the center compared to the required lower-third off-center placement.",
+        "Visible crop in the background resembles corn or tall leafy stalks, which clearly contradicts the 'سبزی' (leafy vegetables) topic."
+      ],
+      "correction_prompt": "Move the roll to the lower-left or lower-right third of the frame to be more off-center. Change the background crop to low-lying leafy vegetables like spinach or lettuce to match the 'سبزی' topic.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 11,
+      "product_height_percent": 12,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Presence of a human figure (farmer) and visible body parts (face, hands, legs) is a hard reject condition.",
+        "The product is not placed on the soil but is being held in a person's hand.",
+        "The product is not in the required 'off-center on the lower third' position.",
+        "The product is partially obscured by the human figure.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes from the image. Place the white and blue wide low cylindrical drip-tape carton roll directly on the soil in the lower third, offset to the right. Ensure the roll is not being held and the background matches the farm context without obstruction. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 28.5,
+      "product_height_percent": 24.5,
+      "product_x_center_percent": 59.5,
+      "reasons": [
+        "Product width exceeds maximum allowable limit (28.5% > 27%)",
+        "Gibberish text present on the product packaging",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28.5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with a smaller drip-tape carton roll to ensure the product width is between 13 and 27 percent of the frame width. Ensure the text on the roll is clearly legible and authentic, and retain the required bottom-right watermark 'AFP | 09134922013'. Reduce the product group from 28.5% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 3,
+      "product_height_percent": 14,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Presence of two men crouching in the foreground, which violates the strict 'zero people and zero human body parts' hard reject rule.",
+        "The product is not the required 'wide low cylindrical drip-tape carton roll' (resembling a small pail or jug instead).",
+        "The product is centered in the composition, violating the 'off-center on the lower third' requirement.",
+        "The product appears to be placed or handled on the crop row rather than 'naturally placed on soil'.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 3% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any people or workers. Feature exactly one wide, low cylindrical white-and-blue AFP drip-tape roll placed naturally on the soil. The roll must be off-center in the lower third of the frame, taking up approximately 20-23% of the width. Ensure the crop is either absent or a leafy green vegetable, and place the exact 'AFP | 09134922013' watermark in the bottom right corner. Enlarge the product group from 3% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 68,
+      "product_width_percent": 23,
+      "product_height_percent": 31,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The product is centered in the lower third rather than being off-center.",
+        "The crop morphology (large, broad leaves) resembles brassicas or cabbages, which clearly contradicts the 'سبزی' (leafy vegetables like lettuce/herbs) topic requirement and triggers a hard reject.",
+        "The product height is at the very limit of the 32% constraint."
+      ],
+      "correction_prompt": "Regenerate with the drip tape roll positioned off-center in the lower third. Replace the large-leaved brassica-type plants with small-leafed leafy vegetables like lettuce or herbs. Ensure the roll width remains 20-23% of the frame.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

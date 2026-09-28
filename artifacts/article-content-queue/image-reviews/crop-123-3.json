@@ -1,0 +1,61 @@
+{
+  "id": "crop-123",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 16,
+      "product_height_percent": 20,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: A human figure (farmer) is prominently featured, violating the zero people constraint.",
+        "The product roll is centered (x ~48%) rather than off-center on the lower third.",
+        "The product's visible diameter-to-height ratio appears greater than 2.0 (too wide/too flat), violating the 1.5–1.9 requirement.",
+        "The product is not on the lower third of the frame (y-center approx 60%)."
+      ],
+      "correction_prompt": "Remove the human figure entirely. Move the drip-tape roll to the lower left or lower right third (x < 40% or > 60%). Adjust the roll's geometry to be more cylindrical (diameter 1.5–1.9x height). Ensure the roll is placed on the soil in the foreground without a hand touching it.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 88,
+      "product_width_percent": 38,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product width (38%) exceeds the maximum 27% limit, making the roll visually dominant rather than secondary.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the apparent size of the carton roll so its width occupies no more than 20-23% of the frame width, ensuring it reads as a secondary element in the scene. Reduce the product group from 38% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 17,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Hard reject: The image contains a visible male farmer crouching in the frame, violating the strict zero-person/zero-human-body-part rule.",
+        "Hard reject: The composition is dominated by the farmer interacting with the product, which conflicts with the requirement for an unattended, hardware-focused image where infrastructure is the sole focus."
+      ],
+      "correction_prompt": "Regenerate the image to remove the person completely. Ensure the white and blue AFP drip-tape roll sits naturally on the soil in the lower-left third, with no hands, faces, or silhouettes visible in the farm context.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 22.5,
+      "product_height_percent": 16,
+      "product_x_center_percent": 28,
+      "reasons": [],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "مقدار-بذر-شبدر-در-هکتار-راهنمای-جامع-جزئیات-فنی.webp"
+}

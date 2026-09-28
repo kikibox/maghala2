@@ -1,0 +1,78 @@
+{
+  "id": "crop-122",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "review_unavailable": true,
+      "reasons": [
+        "article_image_review unavailable after 4 retries: HTTPError"
+      ],
+      "correction_prompt": "Retry strict visual review of the preserved candidate without regenerating it.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 28,
+      "product_height_percent": 31,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product width (28%) exceeds the maximum acceptable limit of 27% for a secondary product placement.",
+        "Product is placed on the left rather than being strictly off-center on the lower third as specified.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with the drip-tape roll reduced in size to be under 27% of the frame width, shifting it further off-center into the lower third, ensuring it appears secondary to the hardware. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": "checkpoint-review"
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25,
+      "product_height_percent": 35,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Second commercial product present: A coiled hose/pipe and reel are visible in the right foreground, violating the 'zero second package/roll/pipe' hard reject criteria.",
+        "Product height exceeds the 32 percent maximum limit.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image completely removing the coiled hose and reel on the right side to show only the single AFP drip-tape carton roll. Reduce the vertical height of the carton roll so it occupies no more than 32 percent of the frame height while maintaining its off-center position on the soil. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: two people (one standing, one seated) are clearly visible in the background",
+        "Product is centered horizontally rather than off-center on the lower third",
+        "Background is a generic farm field that does not clearly match a specific topic-crop context required for Role 3 hardware story"
+      ],
+      "correction_prompt": "Regenerate with zero people or human silhouettes, an off-center wide low cylindrical white-and-blue AFP drip-tape carton roll on soil in the lower third (width ~20-23%, height ~18-20%, x_center ~30% or ~70%), and a topic-specific farm hardware context matching the article title with no crops contradicting it.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 78,
+      "product_width_percent": 17,
+      "product_height_percent": 15,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Zero people or human body parts detected.",
+        "Product is off-center on the lower third and placed naturally on soil.",
+        "Product dimensions (width 17%, height 15%) and aspect ratio (~1.13) fall within acceptable ranges.",
+        "Background with tractor and barn matches the farm/hardware context of Role 3."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "مقدار-بذر-پیاز-در-هکتار-راهنمای-جامع-جزئیات-فنی.webp"
+}

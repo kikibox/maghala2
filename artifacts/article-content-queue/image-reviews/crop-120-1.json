@@ -1,0 +1,42 @@
+{
+  "id": "crop-120",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 5,
+      "product_height_percent": 6,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Contains a person (farmer/worker) and human body parts (head, face, arms, hands, legs), which is a hard reject requirement.",
+        "The product is centered and located in the bottom third, whereas it must be off-center.",
+        "The product width (approx. 5%) is significantly smaller than the minimum acceptable practical estimate of 13%.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Regenerate the scene to show only the white-and-blue AFP drip-tape roll placed off-center in the bottom third. Increase the roll's size to occupy approximately 20% of the frame width while keeping it on the soil in a farm context with young seedlings. Enlarge the product group from 5% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 86,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The roll's bounding box falls within acceptable practical limits (width ~21%, height ~24%).",
+        "The product is positioned off-center in the lower third of the frame.",
+        "The crop is identifiable as corn (matching the 'city, family' context implies typical row crop), satisfying the 'unmistakable morphology' requirement.",
+        "Zero people or human body parts are present.",
+        "The required watermark is visible at the bottom right.",
+        "No forbidden items (bottles, cans, extra products) are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-پنبه-با-آبیاری-قطرهای-تصویر-شاخص.webp"
+}
