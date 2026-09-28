@@ -1,0 +1,66 @@
+{
+  "id": "crop-310",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The image contains two people (a man and a woman) interacting with the product and surrounding area. The prompt requires zero people or human body parts.",
+        "The crop plants visible in the soil are small leafy seedlings that appear to contradict the 'alfalfa' (يونهج) crop context specified for the hardware story."
+      ],
+      "correction_prompt": "Regenerate the image without any people or human silhouettes. Ensure the crop, if identifiable, is consistent with alfalfa. Keep the irrigation product and hardware in a natural farm context with the required watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 12,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Hard reject: Image contains a person (male farmer/worker), face, arms, legs, and body parts.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Place a single wide, low, cylindrical drip-tape carton roll on the soil in a farm setting without any human presence. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 25,
+      "product_height_percent": 22,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Contains a visible person (farmer) in the background",
+        "Product is centered instead of being off-center on the lower third"
+      ],
+      "correction_prompt": "Remove all people and animals. Move the product to the lower third of the image, off-center to the left or right. Keep the farm background.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Zero people or human body parts present.",
+        "Product is a wide low cylindrical drip-tape carton roll (white and blue), naturally placed on soil.",
+        "Product is off-center on the lower third, not centered.",
+        "Dimensions are within the preferred width (20-23%) and height (<32%) ranges; diameter ratio is acceptable.",
+        "Background shows farm context (crop rows, barns, sky) with no hard-contradicting crop morphology (neutral close-up).",
+        "Watermark 'AFP | 09134922013' is present in bottom-right and intact."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "مقدار-بذر-یونجه-در-هکتار-راهنمای-جامع-جزئیات-فنی.webp"
+}

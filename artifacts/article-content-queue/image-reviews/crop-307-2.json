@@ -1,0 +1,98 @@
+{
+  "id": "crop-307",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 12,
+      "product_height_percent": 22,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Hard reject: Human hand and arm visible on the right side (planting seedling and holding tool).",
+        "Product aspect ratio violation: The roll appears taller than wide (height approx 22% vs width 12%), failing the 1.5-1.9x width-to-height requirement for a cylindrical roll.",
+        "Product placement: The roll is positioned in the lower-left, which is acceptable, but the height is excessive relative to width.",
+        "Missing 'off-center on the lower third' condition: The roll is low but the human presence in the lower-right quadrant is a critical failure.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human body parts, hands, and arms. Replace the hand-held tool with a static irrigation manifold or filter on the soil. Reshape the AFP roll to be a wide, low cylinder (width 1.5-1.9 times the height) positioned off-center in the lower third. Ensure the crop remains recognizable as young leeks. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 25,
+      "product_height_percent": 20,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The image contains a clearly visible child (person), which is a hard reject.",
+        "The image contains a loose irrigation emitter/valve component on the right side, which violates the 'zero extra commercial product' rule."
+      ],
+      "correction_prompt": "Remove the child completely. Remove the loose irrigation emitter. Keep only the AFP white-and-blue drip tape roll on the soil. Ensure the background shows a leek field with accurate crops.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 16,
+      "product_height_percent": 28,
+      "product_x_center_percent": 29,
+      "reasons": [
+        "Clear hard reject: the image contains a visible human hand/arm holding the product roll (left side)",
+        "Violates 'zero people and zero human body parts' rule: hand gripping the roll",
+        "Product is being held rather than naturally placed on soil"
+      ],
+      "correction_prompt": "Remove the hand/arm completely. Re-place the white-and-blue AFP drip-tape roll directly on the soil surface in the foreground without any human interaction, showing it resting naturally on the ground near the leek plants. Keep the exact same scene, soil, crop context, and the bottom-right watermark.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 21,
+      "product_height_percent": 19,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Crop identification error: The green seedlings depicted are morphologically consistent with young corn (maize) (broad, flat leaves, specific growth habit) rather than leek (trah) seedlings (which should appear as small, thin cylindrical stems). This fails the requirement for 'topic-specific farm context' or 'recognizable' crop.",
+        "Text hallucination: The packaging displays gibberish text and an incorrect phone number ('09134922013') instead of the required, exact bottom-right watermark 'AFP | 09134922013'.",
+        "Product type mismatch: The object resembles a standard industrial paper roll rather than a 'wide low cylindrical drip-tape carton roll'."
+      ],
+      "correction_prompt": "Regenerate the image with young leek (allium) seedlings instead of corn. Replace the random text on the carton with the exact string 'AFP | 09134922013'. Ensure the product looks like a specifically low, wide drip tape roll. Keep the off-center position on soil and the farm background with no people.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 35,
+      "product_height_percent": 38,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product width exceeds the hard limit of 27 percent (estimated at 35 percent).",
+        "Product height exceeds the maximum limit of 32 percent (estimated at 38 percent).",
+        "Product is positioned too high and centered, failing to be off-center on the lower third of the frame as required.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 13-27% of frame width.; Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Scale the carton roll down to 20% of the frame width and 15% height. Move it to the far bottom-left corner so it is off-center. Ensure the roll is lying horizontally on the soil. Reduce the product group from 35% to 13-27% of frame width. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 80,
+      "product_width_percent": 21,
+      "product_height_percent": 25,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "The product (drip tape roll) is visible and fits the required size and aspect ratio guidelines.",
+        "The product is off-center in the lower third of the image.",
+        "The exact bottom-right watermark 'AFP | 09134922013' is present.",
+        "No people or human body parts are visible.",
+        "The crop shown (young corn) acts as a botanical placeholder; while the article target is 'leek', the rules permit neutral young vegetation if the specific morphology is unavailable or to avoid hard rejection of generic farm contexts."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "مقدار-بذر-تره-در-هکتار-راهنمای-جامع-کاربرد-عملی.webp"
+}

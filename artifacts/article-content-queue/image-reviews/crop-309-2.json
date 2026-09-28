@@ -1,0 +1,41 @@
+{
+  "id": "crop-309",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "The image contains a clearly identifiable person (a farmer) sitting in the field, which triggers a hard reject condition.",
+        "The required product, a wide low cylindrical drip-tape carton roll, is not present. Instead, the person is holding a small cylindrical container, which does not match the product geometry.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person and the small container. Place a single white and blue wide low cylindrical drip-tape carton roll on the soil in the lower third, off-center. Ensure the background remains a farm context with crop rows and irrigation lines, with no humans visible. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 27,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product is a single AFP white-and-blue drip-tape carton roll",
+        "Placement is off-center on lower third, naturally on soil",
+        "No visible people or human body parts",
+        "Background shows a farm field with young rows matching agronomic story",
+        "Watermark 'AFP | 09134922013' is present and correct",
+        "Geometry and proportions within acceptable limits"
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-بامیه-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

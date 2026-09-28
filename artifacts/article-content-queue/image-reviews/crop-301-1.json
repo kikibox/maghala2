@@ -1,0 +1,84 @@
+{
+  "id": "crop-301",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 17,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Crop species mismatch: The plants shown are clearly zucchini (summer squash), identifiable by their characteristic broad, lobed leaves and the shape of the fruits, which are hard rejects as they are not cucumber (خیار).",
+        "Product geometry: The roll is cylindrical but slightly too tall, making it look closer to a drum or jar rather than a wide drip-tape carton roll.",
+        "Product shape: The top of the roll appears to have a small hole/structure that resembles a bottle cap or jar opening."
+      ],
+      "correction_prompt": "Regenerate the image showing a wide cylindrical drip-tape roll (no top opening) on the soil in a field of cucumbers (long fruits, jagged leaves) with the correct AFP watermark. Do not use zucchini or squash.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 43,
+      "product_x_center_percent": 51,
+      "reasons": [
+        "The product bounding box height is approximately 43 percent of the frame, significantly exceeding the maximum 32 percent limit.",
+        "The product is centered horizontally and vertically, which violates the requirement for the product to be off-center on the lower third of the frame.",
+        "machine-enforced bounding-box check failed: Reduce product height from 43% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with a wide, low cylindrical AFP drip-tape roll positioned low and off-center on the lower third of the frame. Ensure the roll's height is less than 32 percent of the image height. Keep the farm context and watermark intact. Reduce product height from 43% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 15,
+      "product_height_percent": 28,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "The crop context features clearly identifiable peppers and small tomatoes, which are hard rejects because the article requires cucumbers (vines with tendrils).",
+        "The product roll is centered in the lower half rather than off-center in the lower third."
+      ],
+      "correction_prompt": "Regenerate with a clear cucumber field (cucumbers on vines with tendrils) and place the roll off-center in the bottom third.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Presence of a person (farmer) violating the zero-people/zero-human-silhouette rule.",
+        "Product staging is centered rather than placed off-center on the lower third.",
+        "The product dimensions are too small relative to the preferred 20-23% width range.",
+        "The crop morphology appears to be a legume (pod-vein structure) rather than the required cucumber species, making it a hard reject.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person completely. Reposition the white-and-blue drip-tape carton to be off-center on the lower third. Increase the visible roll diameter to approximately 20-23% of the frame width. Replace the legume rows with clearly defined cucumber vines showing angular leaves and attached cucumbers. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product identified as an AFP white and blue drip-tape carton roll.",
+        "Product width and height are within acceptable practical ranges and geometric constraints.",
+        "Product is placed naturally on soil in the lower third of the frame, off-center.",
+        "The presence of the specific cucumber (خیار) crop and young vines makes the article-specific agronomic story clear.",
+        "Required bottom-right watermark is present.",
+        "No people, human body parts, or silhouettes are visible in the image."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "میزان-برداشت-خیار-در-هکتار-با-نوار-تیپ-تصویر-شاخص.webp"
+}

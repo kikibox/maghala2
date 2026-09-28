@@ -1,0 +1,54 @@
+{
+  "id": "crop-307",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 19.5,
+      "product_height_percent": 16.2,
+      "product_x_center_percent": 27.0,
+      "reasons": [
+        "Presence of a human (farmer) and human body parts (face, hands, arm, leg) in the image.",
+        "Hard reject rule triggered due to the person present in the scene."
+      ],
+      "correction_prompt": "Regenerate the image strictly without any people, faces, hands, or human silhouettes. Show only the AFP drip-tape roll on the soil in a farm field environment.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 68,
+      "product_width_percent": 26.0,
+      "product_height_percent": 23.0,
+      "product_x_center_percent": 35.0,
+      "reasons": [
+        "The crop morphology in the foreground appears to consist of corn or grassy seedlings, which visually contradicts the topic-specific crop (leek).",
+        "The package print text on the front of the roll contains gibberish characters (e.g., 'DING', 'IV...') instead of authentic legible labeling, which is a hard reject.",
+        "The product width is near the maximum 27% threshold, making the product less secondary than optimal."
+      ],
+      "correction_prompt": "Replace the foreground seedlings with small leek shoots. Ensure the package text 'Drip Tape 20mm' is sharp and legible. Reduce the roll's width to approximately 20% of the frame and shift it slightly to the right to improve off-center composition. Maintain the 'AFP | 09134922013' watermark in the bottom right.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 17,
+      "product_height_percent": 22,
+      "product_x_center_percent": 64,
+      "reasons": [
+        "Product is exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll",
+        "Required bottom-right watermark 'AFP | 09134922013' is present",
+        "Product is off-center in the lower third and placed naturally on soil",
+        "Geometry is physically plausible (no pipes, impossible shapes, or conflicting containers)",
+        "Farm context with visible crop seedlings and barn is appropriate for a hardware/infrastructure story; crops are not clearly contradicting 'leek' (تره)",
+        "Zero people or human silhouettes are visible"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "مقدار-بذر-تره-در-هکتار-راهنمای-جامع-جزئیات-فنی.webp"
+}

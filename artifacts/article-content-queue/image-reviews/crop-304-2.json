@@ -1,0 +1,71 @@
+{
+  "id": "crop-304",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Presence of humans in the image (a person is clearly visible in multiple sections).",
+        "The product shown is a loose coiled tube/drip line, not a wide, low cylindrical carton roll.",
+        "The image is a collage with multiple people and views, which violates the requirement for a single image of one product off-center.",
+        "The product is not visible or cannot be bounded in a single frame as required.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Generate a single image of one wide, low cylindrical drip tape carton roll on the soil in a cornfield. No people. The roll should be off-center on the lower third. The background should be a cornfield. Include the 'AFP | 09134922013' watermark in the bottom right. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 55,
+      "product_height_percent": 35,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The product roll is too large, occupying more than 27% of the frame width.",
+        "The product roll height exceeds the 32% limit.",
+        "The product is centered or near-center, violating the 'lower third' placement requirement.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 55% to 13-27% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Significantly reduce the size of the white and blue AFP roll so it is secondary (width 20-23% of frame), and move it to the bottom-left or bottom-right third of the image, keeping it resting naturally on the soil. Reduce the product group from 55% to 13-27% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 20,
+      "product_height_percent": 12,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Visible person in the scene (man crouching in the field).",
+        "Human body parts present (face, torso, arms, legs, hands, feet).",
+        "Human face, head, hair, and silhouette visible."
+      ],
+      "correction_prompt": "Regenerate the image removing all people and human body parts. Keep the AFP drip-tape roll and farm context only.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 15,
+      "product_height_percent": 16,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Correct product (wide low cylindrical carton roll) and required watermark are present.",
+        "Product is correctly placed in the lower third and off-center on the soil.",
+        "Product dimensions (width/height ratio and overall size) are acceptable, though the height slightly exceeds the preferred aspect ratio for a low wide cylinder.",
+        "Image contains zero people or human body parts.",
+        "Background with the barn, tractor, and crop field is consistent with a farm context and image role 2."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "میزان-برداشت-شنبلیله-در-هکتار-با-نوار-تیپ-کاربرد-عملی.webp"
+}

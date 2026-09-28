@@ -1,0 +1,56 @@
+{
+  "id": "crop-303",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: Presence of a person (female farmer) interacting with the irrigation tape. The prompt strictly requires zero people and zero human body parts.",
+        "The roll is located in the extreme bottom-left corner, which is not aligned with the 'lower third' off-center requirement (typically implies bottom-left or bottom-right center mass, but the primary failure is the person)."
+      ],
+      "correction_prompt": "Regenerate the image to remove all humans and body parts. Show only the AFP drip tape roll on the soil in a farm setting. Keep the roll in the lower third, off-center. No people allowed.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "The watermark 'AFP | 09134922013' is required to be exactly in the bottom-right corner, but the provided image has a different, non-matching phone number in the watermark.",
+        "The product roll shows gibberish text on the packaging that is not authentic package print or the AFP logo, which triggers a hard reject for invented writing.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with the exact bottom-right watermark 'AFP | 09134922013' (matching phone number), replace the gibberish packaging text with authentic AFP drip-tape labeling, and keep the white-and-blue low cylindrical roll off-center on the lower third of the frame, secondary in size, with no people or extra commercial containers. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 21.5,
+      "product_height_percent": 22.0,
+      "product_x_center_percent": 35.0,
+      "reasons": [
+        "Exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll is present in the foreground.",
+        "The product is off-center in the lower third and placed naturally on soil.",
+        "Product dimensions fall within acceptable ranges: width ~21.5% (target 20-23%), height ~22% (<32%).",
+        "Visible diameter is approximately 1.6x the visible height, consistent with the target 1.5-1.9x ratio.",
+        "Zero people or human body parts are visible; background tractors are unattended infrastructure.",
+        "Crop plants are visually neutral/small and do not clearly contradict coriander morphology in this hardware-focused close-up.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom right.",
+        "Background farm context with tilled soil and distant tractors matches the topic-specific farm setting for a hardware story."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "نگهداری-گشنیز-با-نوار-تیپ-نکات-کلیدی-جزئیات-فنی.webp"
+}

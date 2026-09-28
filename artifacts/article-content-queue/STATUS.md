@@ -4,17 +4,17 @@
 
 ## نمای کلی
 
-- آخرین بروزرسانی: `2026-09-28T07:32:06+00:00`
-- وضعیت صف: **آماده اجرای بعدی** (`ready`)
-- پیشرفت: **234 از 1148 (20.38٪)**
+- آخرین بروزرسانی: `2026-09-28T07:44:15+00:00`
+- وضعیت صف: **توقف موقت برای تکمیل ترجمه‌های عقب‌مانده** (`translations_pending`)
+- پیشرفت: **246 از 1148 (21.43٪)**
 - نمودار پیشرفت: `████░░░░░░░░░░░░░░░░`
-- تکمیل‌شده: **234**
+- تکمیل‌شده: **246**
 - در حال پردازش: **0**
-- در انتظار: **855**
-- ناموفق: **59**
+- در انتظار: **839**
+- ناموفق: **63**
 - مسدود مدل تصویر: **0**
 - میانگین طول مقالات تکمیل‌شده: **1297 کلمه**
-- اولویت فعلی: **تولید مقاله فارسی بعدی**
+- اولویت فعلی: **تکمیل ترجمه‌های موجود**
 
 ## تنظیمات تولید و انتشار
 
@@ -24,8 +24,8 @@
 - تعداد تصاویر هر مقاله: **3**
 - حداقل کلمات: **1050**
 - لینک داخلی مجاز: **4 تا ۷**
-- اندازه هر اجرا: **2 مقاله**
-- مدیر موازی: **2 مقاله / 4 تصویر هم‌زمان**
+- اندازه هر اجرا: **16 مقاله**
+- مدیر موازی: **16 مقاله / 32 تصویر هم‌زمان**
 - حداکثر تلاش هر مقاله: **4**
 - دسته وردپرس: **مقاله‌ها** (`35`)
 - لینک‌های داخلی شناخته‌شده: **682**
@@ -35,7 +35,7 @@
 
 | گروه | کل | تکمیل | در انتظار | در حال پردازش | ناموفق | پیشرفت |
 |---|---:|---:|---:|---:|---:|---:|
-| `crop` | 341 | 234 | 48 | 0 | 59 | 68.62٪ |
+| `crop` | 341 | 246 | 32 | 0 | 63 | 72.14٪ |
 | `irrigation` | 12 | 0 | 12 | 0 | 0 | 0.00٪ |
 | `product` | 112 | 0 | 112 | 0 | 0 | 0.00٪ |
 | `strategic` | 33 | 0 | 33 | 0 | 0 | 0.00٪ |
@@ -43,18 +43,18 @@
 
 ## وضعیت ترجمه مقالات تولیدشده
 
-- مقالات فارسی تکمیل‌شده: **234**
-- واحدهای ترجمه تکمیل‌شده: **702 از 702**
-- واحدهای ترجمه باقی‌مانده: **0**
-- مقالات فاقد حداقل یک ترجمه: **0**
-- وضعیت صف فارسی: **فعال**
+- مقالات فارسی تکمیل‌شده: **246**
+- واحدهای ترجمه تکمیل‌شده: **702 از 738**
+- واحدهای ترجمه باقی‌مانده: **36**
+- مقالات فاقد حداقل یک ترجمه: **12**
+- وضعیت صف فارسی: **متوقف تا تکمیل ترجمه‌ها**
 - بسته‌های ترجمه ۵۰تایی آماده: **0**
 
 | زبان | تکمیل | باقی‌مانده | مسیر |
 |---|---:|---:|---|
-| عربی عراق (`ar-IQ`) | 234 | 0 | `/iraq/` |
-| تاجیکی (`tg-TJ`) | 234 | 0 | `/tj/` |
-| انگلیسی (`en-US`) | 234 | 0 | `/en/` |
+| عربی عراق (`ar-IQ`) | 234 | 12 | `/iraq/` |
+| تاجیکی (`tg-TJ`) | 234 | 12 | `/tj/` |
+| انگلیسی (`en-US`) | 234 | 12 | `/en/` |
 
 ## وضعیت بازطراحی تصاویر
 
@@ -69,13 +69,25 @@
 
 ## مقاله بعدی صف
 
-- عنوان: **نگهداری مارچوبه با نوار تیپ: نکات کلیدی**
-- شناسه: `crop-297`
+- عنوان: **مقدار بذر لپه در هکتار: راهنمای جامع**
+- شناسه: `crop-313`
 - گروه: `crop`
 - تعداد تلاش قبلی: **0**
 
 ## آخرین مقالات تکمیل‌شده
 
+- **آفات و بیماری‌های بامیه با آبیاری قطره‌ای** — `crop-309` — `crop` — 1282 کلمه — تحویل: `SQL package` — `2026-09-28T07:43:19+00:00`
+- **میزان برداشت شنبلیله در هکتار با نوار تیپ** — `crop-304` — `crop` — 1342 کلمه — تحویل: `SQL package` — `2026-09-28T07:42:12+00:00`
+- **هزینه کشت اسفناج با نوار تیپ در هکتار** — `crop-298` — `crop` — 1433 کلمه — تحویل: `SQL package` — `2026-09-28T07:39:08+00:00`
+- **میزان برداشت کاملینا در هکتار با نوار تیپ** — `crop-305` — `crop` — 1448 کلمه — تحویل: `SQL package` — `2026-09-28T07:38:40+00:00`
+- **مقدار بذر ماش در هکتار: راهنمای جامع** — `crop-311` — `crop` — 1347 کلمه — تحویل: `SQL package` — `2026-09-28T07:38:25+00:00`
+- **میزان برداشت خیار در هکتار با نوار تیپ** — `crop-301` — `crop` — 1394 کلمه — تحویل: `SQL package` — `2026-09-28T07:38:23+00:00`
+- **نگهداری گشنیز با نوار تیپ: نکات کلیدی** — `crop-303` — `crop` — 1454 کلمه — تحویل: `SQL package` — `2026-09-28T07:38:19+00:00`
+- **راهنمای جامع کاشت مارچوبه با آبیاری قطره‌ای** — `crop-312` — `crop` — 1331 کلمه — تحویل: `SQL package` — `2026-09-28T07:38:14+00:00`
+- **مقدار بذر تره در هکتار: راهنمای جامع** — `crop-307` — `crop` — 1146 کلمه — تحویل: `SQL package` — `2026-09-28T07:37:28+00:00`
+- **هزینه کشت کاهو با نوار تیپ در هکتار** — `crop-306` — `crop` — 1100 کلمه — تحویل: `SQL package` — `2026-09-28T07:36:45+00:00`
+- **مقدار بذر یونجه در هکتار: راهنمای جامع** — `crop-310` — `crop` — 1246 کلمه — تحویل: `SQL package` — `2026-09-28T07:36:25+00:00`
+- **مقدار بذر پاپریکا در هکتار: راهنمای جامع** — `crop-302` — `crop` — 1115 کلمه — تحویل: `SQL package` — `2026-09-28T07:35:32+00:00`
 - **فاصله نوار تیپ در کشت ملون: استانداردهای توصیه‌شده** — `crop-292` — `crop` — 1142 کلمه — تحویل: `SQL package` — `2026-09-28T06:51:20+00:00`
 - **آفات و بیماری‌های تره با آبیاری قطره‌ای** — `crop-293` — `crop` — 1228 کلمه — تحویل: `SQL package` — `2026-09-28T06:48:06+00:00`
 - **مقدار بذر پیازچه در هکتار: راهنمای جامع** — `crop-290` — `crop` — 1087 کلمه — تحویل: `SQL package` — `2026-09-28T06:46:55+00:00`
@@ -84,31 +96,19 @@
 - **راهنمای جامع کاشت نخود با آبیاری قطره‌ای** — `crop-288` — `crop` — 1303 کلمه — تحویل: `SQL package` — `2026-09-28T06:45:50+00:00`
 - **راهنمای جامع کاشت چاودار با آبیاری قطره‌ای** — `crop-287` — `crop` — 1338 کلمه — تحویل: `SQL package` — `2026-09-28T06:45:35+00:00`
 - **میزان برداشت گشنیز در هکتار با نوار تیپ** — `crop-286` — `crop` — 1480 کلمه — تحویل: `SQL package` — `2026-09-28T06:45:32+00:00`
-- **مقدار بذر جعفری در هکتار: راهنمای جامع** — `crop-289` — `crop` — 1420 کلمه — تحویل: `SQL package` — `2026-09-28T06:45:28+00:00`
-- **مقدار بذر گندم در هکتار: راهنمای جامع** — `crop-282` — `crop` — 1186 کلمه — تحویل: `SQL package` — `2026-09-28T06:44:48+00:00`
-- **مقدار بذر کاهو در هکتار: راهنمای جامع** — `crop-291` — `crop` — 1201 کلمه — تحویل: `SQL package` — `2026-09-28T06:44:32+00:00`
-- **نگهداری سیر با نوار تیپ: نکات کلیدی** — `crop-283` — `crop` — 1344 کلمه — تحویل: `SQL package` — `2026-09-28T06:44:07+00:00`
-- **نگهداری جعفری با نوار تیپ: نکات کلیدی** — `crop-267` — `crop` — 1901 کلمه — تحویل: `SQL package` — `2026-09-28T06:00:33+00:00`
-- **فاصله نوار تیپ در کشت یونجه: استانداردهای توصیه‌شده** — `crop-273` — `crop` — 1551 کلمه — تحویل: `SQL package` — `2026-09-28T06:00:01+00:00`
-- **نگهداری چاودار با نوار تیپ: نکات کلیدی** — `crop-279` — `crop` — 1312 کلمه — تحویل: `SQL package` — `2026-09-28T05:59:59+00:00`
-- **مقدار بذر شوید در هکتار: راهنمای جامع** — `crop-262` — `crop` — 1522 کلمه — تحویل: `SQL package` — `2026-09-28T05:58:47+00:00`
-- **فاصله نوار تیپ در کشت کینوا: استانداردهای توصیه‌شده** — `crop-280` — `crop` — 1152 کلمه — تحویل: `SQL package` — `2026-09-28T05:58:12+00:00`
-- **فاصله نوار تیپ در کشت چغندر: استانداردهای توصیه‌شده** — `crop-274` — `crop` — 1259 کلمه — تحویل: `SQL package` — `2026-09-28T05:57:40+00:00`
-- **میزان برداشت پنبه در هکتار با نوار تیپ** — `crop-271` — `crop` — 1233 کلمه — تحویل: `SQL package` — `2026-09-28T05:57:17+00:00`
-- **هزینه کشت سورگوم با نوار تیپ در هکتار** — `crop-268` — `crop` — 1408 کلمه — تحویل: `SQL package` — `2026-09-28T05:57:12+00:00`
 
 ## خطاهای اخیر
 
+- **آفات و بیماری‌های شوید با آبیاری قطره‌ای** — `crop-299` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
+- **نگهداری مارچوبه با نوار تیپ: نکات کلیدی** — `crop-297` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Hard reject: Presence of a person (male figure in the background).', 'Hard reject: Product height exceeds the 32% limit (estimated ~38%).', 'machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height.']`
+- **نگهداری عدس با نوار تیپ: نکات کلیدی** — `crop-308` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['presence of visible human body parts (hands and arms), which violates the absolute no-person rule', 'presence of sunflower heads, which are explicitly hard-rejected species that conflict with the lentil article crop requirement', 'vegetation does not visually match the lentil morphology (small flat pods/pinnate leaves) described in the prompt']`
+- **فاصله نوار تیپ در کشت کلزا: استانداردهای توصیه‌شده** — `crop-300` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ["Background crop features red flowers in the rows, which are botanically inconsistent with canola (rapeseed) bloom that strictly features small yellow four-petal flowers. The red flowers suggest a different species (like cornflower or mallow) and violate the 'no clearly identifiable different species' rule.", "The required AFP phone watermark is missing. The image contains a generic 'AFP' logo on the carton and an unrelated black box at the bo`
 - **راهنمای جامع کاشت یونجه با آبیاری قطره‌ای** — `crop-277` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['The visible crop in the image consists of broad, simple leaves, which are clearly not alfalfa (which requires trifoliate leaflets).', "The product is shaped as a standard cylindrical package roll rather than the specific 'wide low cylindrical drip-tape' carton requested."]`
 - **میزان برداشت گلرنگ در هکتار با نوار تیپ** — `crop-285` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['Product aspect ratio fails: the drip tape roll is too tall (26% vs width 21%), violating the required 1.5 to 1.9 diameter-to-height ratio for a wide, low cylindrical roll.', "Crop specificity: While the article title does not specify a crop, the 'image role' implies a topic-specific farm context. The 'Corn' crop specified in the article title (from context of similar prompts) is recognizable here, but the roll's aspect ratio is the critical f`
 - **میزان برداشت چغندر در هکتار با نوار تیپ** — `crop-284` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ["The image features a tall, narrow cylindrical container or pump-like object at the bottom center rather than the required 'wide low cylindrical drip-tape carton roll'. The product aspect ratio (height is significantly greater than width) does not match the specified geometry (diameter ~1.5-1.9x height).", "The product is centered horizontally and vertically in the bottom staging, violating the 'off-center' and 'lower third' requirements.", "T`
 - **هزینه کشت پاپریکا با نوار تیپ در هکتار** — `crop-295` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ["The visible crop morphology (bell peppers) clearly contradicts the 'سبزی' (leafy vegetables) context required by the topic.", 'The product has a tall, narrow drum-like aspect ratio (cylindrical drum) which is explicitly listed as a hard reject item.', 'The roll geometry appears somewhat upright rather than the wide low cylindrical shape described.']`
 - **راهنمای جامع کاشت پیاز با آبیاری قطره‌ای** — `crop-281` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Product height is at the maximum limit (32%) and diameter-to-height ratio is approx 0.8:1, which is below the required 1.5:1 to 1.9:1 minimum (the roll is too vertically elongated for a standard wide drip tape carton).', 'Product x-center is at 29%, which is slightly biased toward the center rather than firmly off-center on the lower third.']`
 - **فاصله نوار تیپ در کشت پیاز: استانداردهای توصیه‌شده** — `crop-269` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ['Product height exceeds the maximum limit of 32 percent (estimated 34%).', 'Product geometry is a tall, narrow drum (height is close to its width), failing the requirement to be a wide low cylindrical roll with a diameter 1.5 to 1.9 times its height.', 'machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height.']`
-- **نگهداری گلرنگ با نوار تیپ: نکات کلیدی** — `crop-270` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Hard reject: Image contains two human figures (farmers/workers), which is strictly prohibited.', 'Product size violation: The product bounding box is too small (approx. 8% width), falling below the minimum 13% acceptable range.', 'Product shape violation: The roll is too tall/narrow (height > width), violating the required 1.5x-1.9x diameter-to-height ratio.', 'Product placement: The product is not off-center in the lower third as required; i`
-- **آفات و بیماری‌های بادمجان با آبیاری قطره‌ای** — `crop-275` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ["The required 'white-and-blue' drip-tape carton is missing; the current image displays a white box with blue logos but lacks the characteristic appearance of a drip-tape roll.", "The 'wide low cylindrical drip-tape roll' geometry is not present; instead, there is a generic square-shaped box on the ground.", "The text 'Drip Irrigation Tool' is clearly visible on the product, violating the rule against fake headlines or invented writing outside `
-- **نگهداری کاملینا با نوار تیپ: نکات کلیدی** — `crop-259` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ['The image contains a prominent person (a female worker) holding the product, which violates the strict requirement for zero people or human body parts.', 'The product is positioned in the center of the frame (holding position) rather than being naturally placed on the soil in the lower third.', "The product appears to be a standard roll of tape or paper held by a hand, lacking the specific 'wide low cylindrical drip-tape carton roll' appearan`
-- **هزینه کشت خربزه با نوار تیپ در هکتار** — `crop-254` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['Hard reject: A human figure (person/worker silhouette) is clearly visible in the top-right background.', "The crop shown does not match the required botanical morphology for 'melon' (خربزه); the visible plants resemble tomato or another different species, requiring hard rejection."]`
 
 ## بسته‌های ۵۰تایی آماده
 
@@ -119,10 +119,10 @@
 
 ## خروجی‌های تولیدشده
 
-- فایل JSON مقاله‌ها: **234**
-- تصاویر تولیدشده: **702**
-- فایل‌های SQL: **234**
-- فایل‌های Rollback: **234**
+- فایل JSON مقاله‌ها: **246**
+- تصاویر تولیدشده: **738**
+- فایل‌های SQL: **246**
+- فایل‌های Rollback: **246**
 
 ## فایل‌های مدیریتی
 

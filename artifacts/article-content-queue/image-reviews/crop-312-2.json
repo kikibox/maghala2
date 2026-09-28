@@ -1,0 +1,58 @@
+{
+  "id": "crop-312",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 31.0,
+      "product_height_percent": 40.0,
+      "product_x_center_percent": 50.0,
+      "reasons": [
+        "Product width exceeds the 27% limit",
+        "Product height exceeds the 32% limit",
+        "Product is centered rather than placed in the lower third",
+        "Product diameter-to-height ratio is approximately 1:1, failing the 1.5-1.9 requirement",
+        "machine-enforced bounding-box check failed: Reduce the product group from 31% to 13-27% of frame width.; Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Generate the image with the drip tape roll much smaller (width < 20%, height < 30%) and positioned in the lower-left or lower-right third of the frame. Ensure the roll is clearly cylindrical with a diameter roughly 1.7 times its height. Reduce the product group from 31% to 13-27% of frame width. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 5,
+      "product_height_percent": 8,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: The image contains two full human figures (farmers/inspectors) which violates the 'zero people' constraint.",
+        "Wrong product: The object shown is a small cylindrical can (likely paint, ink, or sealant) or a small canister, not a wide, low cylindrical drip-tape carton roll.",
+        "Product placement: The object is placed centrally between the crouching figures rather than being off-center in the lower third on the soil as required.",
+        "Product dimensions: The object is too small and does not match the specified width (20-23%) or diameter-to-height ratio of a drip-tape carton.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Generate an image of a wide, low cylindrical drip-tape carton roll (white and blue) resting on the soil in a farm field. The roll must be off-center in the lower third. There must be zero people in the image. Ensure the 'AFP | 09134922013' watermark is present in the bottom right corner. Enlarge the product group from 5% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 75,
+      "product_width_percent": 21,
+      "product_height_percent": 26,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "The image displays a single AFP white-and-blue cylindrical drip-tape roll of appropriate size and proportion (diameter to height ratio ~1.6), placed naturally on soil in the lower third and off-center.",
+        "The product remains secondary in the frame, occupying an acceptable percentage of the image area without dominating the scene.",
+        "The farm context features a prepared soil bed with tiny, unidentifiable seedlings, which is permissible under the rubric when the exact mature crop morphology is not visible, alongside a distant barn and unattended tractor infrastructure.",
+        "No people or human body parts are visible in the frame.",
+        "The exact bottom-right watermark \"AFP | 09134922013\" is present and legible."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-مارچوبه-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

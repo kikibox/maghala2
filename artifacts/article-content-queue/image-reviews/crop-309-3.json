@@ -1,0 +1,55 @@
+{
+  "id": "crop-309",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 8,
+      "product_height_percent": 10,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product is a tall narrow vertical carton/drum, not a wide low cylindrical drip-tape roll.",
+        "Product width (approx 8%) is far below the 13-27% acceptance threshold.",
+        "Product height (approx 10%) is well below the visible height of a standard roll, and the geometry contradicts the required aspect ratio (width 1.5-1.9x height).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Replace the tall narrow vertical box with a wide, low cylindrical drip tape roll (lying flat). The roll must be white and blue, positioned in the lower third, with a width of 15-20% of the frame. Keep the farm context and AFP watermark. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 21.0,
+      "product_height_percent": 18.0,
+      "product_x_center_percent": 30.0,
+      "reasons": [
+        "Presence of a person (farmer) is a hard reject rule",
+        "The image contains a farmer crouching and touching the roll, violating the 'zero people and zero human body parts' requirement"
+      ],
+      "correction_prompt": "Regenerate image with no people or body parts, showing only the unattended white-and-blue wide low cylindrical drip-tape carton roll on soil in the farm context.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 25,
+      "product_height_percent": 22,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Exactly one AFP white-and-blue drip-tape roll is visible",
+        "Product is off-center and placed naturally on soil",
+        "Background matches farm context with tractor and crops (unattended)",
+        "No visible people, human parts, or extra commercial products",
+        "Watermark 'AFP | 09134922013' is present in the correct bottom-right position",
+        "Product aspect ratio (width/height ~1.13) is within the acceptable wide cylindrical range"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-بامیه-با-آبیاری-قطرهای-جزئیات-فنی.webp"
+}

@@ -1,0 +1,94 @@
+{
+  "id": "crop-308",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Image contains a person (a female farmer crouching and tending plants), which violates the zero-people constraint.",
+        "Product missing: There is no white-and-blue cylindrical drip-tape carton roll visible in the image.",
+        "Botanical mismatch: The plants shown are not clearly identifiable as lentil (عدس) morphology (low fine-textured bushy legumes with small paired pinnate oval leaflets); they appear more like broad-leaved plants or weeds, lacking specific lentil characteristics.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with no people. Include a white-and-blue cylindrical drip-tape roll on the soil. Background must show rows of lentil plants (small pinnate leaves, bushy legumes) in a farm context. Place the roll off-center in the lower third. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 15,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Presence of human figures in the background, which is a hard reject condition.",
+        "Human figures clearly identifiable in the distance violate the 'zero people' requirement."
+      ],
+      "correction_prompt": "Remove all people or human silhouettes from the background. Keep the lentil crop and the drip tape carton roll on the soil in the foreground.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Crop contains clearly identifiable sunflower heads, which are explicitly forbidden for lentil (عدس) articles",
+        "Lentil plants are not recognizable; the visible plants are a mix of generic green bushy plants and sunflowers",
+        "Image role and farm context do not align with the lentil-specific agronomic requirements"
+      ],
+      "correction_prompt": "Remove all sunflowers. Replace background plants with low, fine-textured bushy lentil plants featuring thin branching stems, small paired pinnate oval leaflets, and small flat pods on a prepared soil bed.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 16,
+      "product_height_percent": 14,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Presence of human body parts (arms, hands, legs) violates the strict zero-person rule.",
+        "Product is centered rather than placed off-center on the lower third.",
+        "The product diameter-to-height ratio is approximately 1.15, which fails the required 1.5 to 1.9 ratio."
+      ],
+      "correction_prompt": "Regenerate the image removing all people and body parts. Reposition the single 20mm drip tape roll to the lower third, slightly off-center, sitting naturally on the soil. Ensure the roll appears wider (diameter 1.5 to 1.9x its height) against the background of lentil seedlings, retaining the bottom-right watermark.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 34,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Crop morphology mismatch: The image displays a crop with yellow and purple flowers and broad leaves (resembling brassicas or weeds). The required article crop is lentil (عدس), which must appear as low fine-textured bushy legumes with thin branching stems and small pinnate leaflets; the visible flowers and large leaves trigger a hard reject for a clearly identifiable different species.",
+        "Product height violation: The estimated product height is approximately 34% of the frame, which exceeds the hard limit of 32%.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a low-growing lentil crop featuring thin, bushy stems and small pinnate leaves (no flowers). Reduce the height of the white and blue cylindrical carton roll so it is less than 32% of the image height while maintaining the correct wide aspect ratio and lower-third positioning. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 24,
+      "reasons": [
+        "presence of visible human body parts (hands and arms), which violates the absolute no-person rule",
+        "presence of sunflower heads, which are explicitly hard-rejected species that conflict with the lentil article crop requirement",
+        "vegetation does not visually match the lentil morphology (small flat pods/pinnate leaves) described in the prompt"
+      ],
+      "correction_prompt": "Remove all hands, arms, and human silhouettes completely from the frame. Remove all sunflowers and large-branched plants. Replace background vegetation with tiny, fine-textured bushy lentil seedlings and thin irrigation lines on a botanically neutral bed. Ensure the white-and-blue AFP roll remains the sole commercial product, positioned off-center on the lower third and resting on the soil.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}
