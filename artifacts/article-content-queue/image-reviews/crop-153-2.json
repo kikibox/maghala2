@@ -1,0 +1,53 @@
+{
+  "id": "crop-153",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "review_unavailable": true,
+      "reasons": [
+        "article_image_review unavailable after 4 retries: HTTPError"
+      ],
+      "correction_prompt": "Retry strict visual review of the preserved candidate without regenerating it.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 14,
+      "product_height_percent": 28,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Presence of a human figure or body part (silhouette/distant person)",
+        "Gibberish/unrecognizable text on the packaging",
+        "Product width (14%) is slightly below the preferred 20-23% range",
+        "Product geometry (diameter vs height) does not match the 1.5-1.9x ratio specified"
+      ],
+      "correction_prompt": "Remove the distant human figure and silhouette completely. Redesign the carton roll to be wider (approx. 22% of frame width) and flatter (diameter approx. 1.6x height). Ensure all text on the packaging is legible, authentic English with '20mm' clearly visible. Position the roll naturally in a farm drip-tape context.",
+      "attempt": "checkpoint-review"
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 23,
+      "product_height_percent": 28,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The required 'AFP | 09134922013' watermark is present and correctly positioned in the bottom right corner.",
+        "The product is a white and blue cylindrical drip-tape carton roll that is placed naturally on the soil.",
+        "The product width (23%) is within the preferred 20-23% range and the height (28%) is below the 32% limit.",
+        "The product is off-center and located in the lower half of the frame, maintaining a secondary role relative to the farm context.",
+        "There are zero people, human silhouettes, or body parts visible in the image.",
+        "The background shows young green seedlings in prepared soil rows that match the agronomic story of drip tape installation without showing contradictory mature crop morphology.",
+        "The visible 'AFP' branding and phone number on the roll are authentic and allowed."
+      ],
+      "correction_prompt": "",
+      "attempt": 1
+    }
+  ],
+  "approved_image": "هزینه-کشت-پنبه-با-نوار-تیپ-در-هکتار-کاربرد-عملی.webp"
+}

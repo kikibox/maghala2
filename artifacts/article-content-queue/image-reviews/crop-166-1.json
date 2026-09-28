@@ -1,0 +1,56 @@
+{
+  "id": "crop-166",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 25,
+      "product_height_percent": 34,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Image contains two people (women), which is a hard reject condition (zero people allowed).",
+        "Product is centered, violating the requirement to be off-center on the lower third.",
+        "Product height exceeds the 32% limit.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove all people and human body parts from the scene. Reposition the drip-tape roll so it is off-center (left or right) in the lower third of the frame. Adjust the product scale so its width is approximately 20% and height is under 32% of the frame. Ensure the farm context remains visible without any humans. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 20,
+      "product_height_percent": 18,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "The product (drip-tape carton) has an aspect ratio of roughly 1:1 (cylindrical/short), failing the requirement that the visible diameter must be 1.5 to 1.9 times its height.",
+        "The article title crop is 'city', which is a location not a crop. The image shows young vegetable seedlings (resembling peppers or tomatoes). While allowed as neutral young vegetation, the scene is a rural farm/barn, not a 'city' environment, making the background mismatch the article title."
+      ],
+      "correction_prompt": "Regenerate the image showing a wide, flat cylindrical drip-tape roll with a diameter at least 1.5x its height. Set the scene in an urban community garden or city park (city context) instead of a rural farm.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The image shows exactly one wide low cylindrical drip-tape carton roll positioned in a suburban raised-bed farm context, consistent with the 'city, family' article topic.",
+        "The roll is constructed from white and blue material bearing the required 'AFP' branding and the exact 'AFP | 09134922013' watermark in the bottom-right corner.",
+        "The crop is identifiable as young leafy greens (likely lettuce or salad) in the raised beds, providing clear agronomic context without showing a clearly identifiable conflicting species.",
+        "The product is placed off-center in the lower third of the frame and sits naturally on the soil.",
+        "The product width is estimated at 24% (within the 20-23% preferred range) and the height at 30% (under the 32% hard limit), maintaining the required aspect ratio of approximately 1.6x.",
+        "The scene contains zero people or human body parts; the background features only infrastructure and garden elements (fences, raised beds, residential structures).",
+        "No hard reject elements such as extra commercial containers, pipes, or gibberish text are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "نگهداری-شنبلیله-با-نوار-تیپ-نکات-کلیدی-تصویر-شاخص.webp"
+}

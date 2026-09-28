@@ -1,0 +1,66 @@
+{
+  "id": "crop-151",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 11,
+      "product_height_percent": 17,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Watermark 'AFP | 0913422013' is present in the bottom-right corner.",
+        "Zero people or human body parts are visible in the image.",
+        "The visible crop is basel (ريحان), characterized by opposite oval aromatic leaves on compact stems.",
+        "The background shows a farm context with prepared soil and crop rows, matching the topic.",
+        "No secondary commercial products, bottles, or pipes are present.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "review_unavailable": true,
+      "reasons": [
+        "article_image_review unavailable after 4 retries: HTTPError"
+      ],
+      "correction_prompt": "Retry strict visual review of the preserved candidate without regenerating it.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 11,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Hard reject: The image contains visible human body parts (two women), which is explicitly forbidden (zero people, zero faces, hands, legs, etc.).",
+        "Product Geometry: The roll is not a 'wide low cylindrical' shape; it appears tall and narrow relative to its width, failing the 1.5-1.9 aspect ratio requirement."
+      ],
+      "correction_prompt": "Remove all humans. Generate a scene with a wide, low cylindrical white-and-blue AFP drip-tape roll lying on the soil in a farm field with rows of green basil plants. Ensure the roll width is approximately 20% of the frame. The bottom-right watermark must read 'AFP | 09134922013'.",
+      "attempt": "checkpoint-review"
+    },
+    {
+      "pass": true,
+      "score": 84,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product matches the required description of a wide, low cylindrical drip-tape carton roll with white and blue branding.",
+        "The 'AFP' branding and the required bottom-right watermark 'AFP | 09134922013' are clearly visible.",
+        "The scene is a neutral farm context with young vegetation that is not clearly identifiable as a wrong species, making it acceptable for a drip-irrigation agronomic story.",
+        "The product is placed naturally on the soil and is appropriately sized and positioned relative to the frame.",
+        "Zero people or human body parts are visible in the image."
+      ],
+      "correction_prompt": "",
+      "attempt": 1
+    }
+  ],
+  "approved_image": "هزینه-کشت-ریحان-با-نوار-تیپ-در-هکتار-کاربرد-عملی.webp"
+}

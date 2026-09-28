@@ -1,0 +1,91 @@
+{
+  "id": "crop-167",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 80,
+      "product_width_percent": 48,
+      "product_height_percent": 15,
+      "product_x_center_percent": 29,
+      "reasons": [
+        "The visible product bounding box includes the drip-tape coil, which extends significantly to the left of the carton. The total horizontal span from the carton to the left edge of the tape coil is approximately 48% of the frame, exceeding the 27% hard-reject threshold for product width.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 48% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the unrolled drip-tape coil. Keep only the upright carton roll on the soil, ensuring its width is approximately 20% of the frame. Reduce the product group from 48% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Hard reject: Presence of multiple human figures in the background (one crouching, two standing near a tractor) violates the 'zero people' requirement.",
+        "Hard reject: The 'AFP' text and the phone number '09134922013' are clearly misspelled and do not match the required exact string '09134922013' in the watermark or package print.",
+        "The product roll appears slightly too spherical (diameter-to-height ratio is too high) rather than the required wide low cylinder."
+      ],
+      "correction_prompt": "Remove all human figures. Correct the phone number on the roll and in the bottom-right watermark to '09134922013'. Adjust the drip tape roll to be flatter and wider (low cylindrical profile).",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 20.5,
+      "product_height_percent": 16,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: Visible human figure (standing person) in the background contradicts the strict 'zero people' and 'zero human body parts' requirement."
+      ],
+      "correction_prompt": "Regenerate the image to remove the human figure in the background. Ensure the scene contains only the irrigation roll, a tractor, and crops with absolutely no visible people or body parts.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 15,
+      "product_height_percent": 25,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Product bounding box height is estimated at 25%, which exceeds the maximum 32% threshold in the constraints.",
+        "The product diameter-to-height ratio is approximately 0.6, which is less than the required 1.5x minimum, causing it to be visually disproportionate."
+      ],
+      "correction_prompt": "Regenerate with the drip tape roll scaled down to be approximately 15-20% of the image width and proportionately smaller in height to meet the 1.5-1.9x width-to-height ratio, ensuring it remains off-center on the lower third.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 14.5,
+      "product_height_percent": 25,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Hard reject: presence of a person/farmer (arm, torso, legs visible).",
+        "Hard reject: a second package/roll (a silver reel) is visible next to the primary product.",
+        "Rule violation: product is not the required 'wide low cylindrical drip-tape carton'; the primary subject is a standard vertical spool.",
+        "Context mismatch: The image shows a general crop, whereas the rule for this specific crop context (Fava Bean) combined with Role 3 suggests a more neutral or specific hardware story view."
+      ],
+      "correction_prompt": "Regenerate the image to remove all people and the extra silver reel. Feature only a single white and blue wide, low-profile cylindrical drip tape carton placed naturally on the soil. The carton must be wide (approx 1.5 to 1.9x its height). Remove the hand holding the connector. Ensure the product is off-center in the lower third. Keep the farm background with a distant tractor.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 26,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Secondary commercial product present: there is a second roll of tape to the right of the primary AFP carton, which acts as an 'extra commercial product' or 'second roll' that is explicitly forbidden.",
+        "The primary product's width (~26%) exceeds the preferred target of 20-23% and is at the upper limit of the practical acceptable range.",
+        "Product geometry: The roll's visible diameter is approx 1.04x its height (close to a square), failing the requirement of 1.5-1.9x diameter-to-height ratio for a 'wide low' cylindrical roll."
+      ],
+      "correction_prompt": "Regenerate the image with exactly one wide, low cylindrical white-and-blue AFP drip-tape carton roll on the soil. Completely remove the second small roll to the right. Increase the width of the single roll so it is 1.5 to 1.9 times its height. Ensure the single roll is positioned in the lower third, off-center (left or right), and remains under 23% of the frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

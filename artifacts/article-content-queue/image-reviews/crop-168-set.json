@@ -1,0 +1,60 @@
+{
+  "id": "crop-168",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "history": [
+    {
+      "pass": false,
+      "score": 45,
+      "duplicate_roles": [],
+      "reasons": [
+        "Hard reject: Image 1 fails to depict the specific target crop (pumpkins/cucumber) and instead shows generic rows of unidentified vegetables.",
+        "Hard reject: Image 2 displays clearly identifiable red flowers (tulips/flowers), which constitutes a contradictory identifiable crop against the requested crop yield topic.",
+        "Moderate issue: The three images share a near-duplicate layout (low camera angle, central Afp product on foreground soil, rural farmhouse background) that lacks the distinct functional role progression requested.",
+        "Zero people constraint is met."
+      ],
+      "correction_prompt": "Regenerate the three images with distinct visual narratives: 1) A wide shot of a pumpkin field with visible melons on the ground, 2) A close-up of the soil showing a drip irrigation line connected to a young pumpkin seedling, 3) A detailed view of the crop rows with the AFP product and visible water droplets, replacing any flowers or generic vegetables.",
+      "set_attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "duplicate_roles": [
+        1,
+        2,
+        3
+      ],
+      "reasons": [
+        "Images 1 and 2 are near-duplicates that repeat the same central crop perspective, identical soil trench, and product placement, failing to distinguish a 'crop-overview' role from an 'agronomic-close-up' role.",
+        "All three images share the exact same central composition and product isolation, failing to create distinct functional narratives (e.g., Image 3 should depict the irrigation system story rather than another product-centric crop view)."
+      ],
+      "correction_prompt": "Image 2 must be a close-up technical evidence shot showing drip tape embedded in the soil root-zone, and Image 3 must depict an active irrigation installation or field-level system narrative to differentiate the editorial roles.",
+      "set_attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "duplicate_roles": [
+        2,
+        3
+      ],
+      "reasons": [
+        "Both Image 2 and Image 3 feature the same AFP product roll placed on a central field furrow with an identical vanishing-point perspective, failing to provide distinct functional angles for the editorial set.",
+        "Neither image depicts an actual irrigation system installation (drip lines or emitters); they only show the product packaging, which weakens the 'irrigation-system story' and 'agronomic evidence' roles."
+      ],
+      "correction_prompt": "Regenerate images to feature an installed drip irrigation line clearly running along the crop rows, showing the product in use rather than just a standalone roll on the dirt.",
+      "set_attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "duplicate_roles": [],
+      "reasons": [
+        "The images successfully fulfill distinct functional roles: Image 1 focuses on crop identity with clear, mature foliage, Image 2 provides a high-angle agronomic overview of the field layout, and Image 3 shows early-stage establishment with a tractor.",
+        "While Images 2 and 3 share a similar perspective down the furrow, they are not near-duplicates because they depict different crop growth stages (established vs. sprouting) and distinct lighting/seasonal cues, fulfilling different narrative points in the article.",
+        "The crop morphology is consistent with cucurbits (pumpkins/squash) in Images 1 and 2, and neutral beds in Image 3, avoiding any hard rejection criteria."
+      ],
+      "correction_prompt": "Replace Image 3 with a close-up view of the drip tape installed on the soil surface with the pumpkins' root zones visible.",
+      "set_attempt": 4
+    }
+  ]
+}

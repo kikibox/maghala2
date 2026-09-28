@@ -1,0 +1,56 @@
+{
+  "id": "crop-161",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Critical Reject: The image contains a visible person (farmer/worker) with face, hands, and body parts, which violates the zero-person constraint.",
+        "Product Shape: The object is a tall, narrow canister or drum-like cylinder, not the wide, low drip-tape carton roll required by the specification.",
+        "Geometry: The aspect ratio of the product is inverted (taller than wide) compared to the required 1.5–1.9x wider than high.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Replace the canister with a wide, low, cylindrical drip-tape roll in white and blue branding. Ensure the roll is approximately 1.6x wider than it is tall, off-center on the lower third of the frame, and resting directly on the soil. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "The AFP phone number watermark 'AFP | 09134922013' is missing from the bottom right corner of the image. The prompt strictly requires this exact text and prohibits its removal.",
+        "The center text on the product roll contains gibberish (non-English characters) rather than authentic, readable package printing.",
+        "The drip tape carton roll is not 'wide and low'; its height is too significant relative to its width (ratio approx 1.4, failing the 1.5-1.9 requirement)."
+      ],
+      "correction_prompt": "Redraw the image to include the exact text 'AFP | 09134922013' in white font at the bottom right corner. Make the carton roll significantly wider and shorter (low profile) with realistic English packaging text.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 16,
+      "product_height_percent": 24,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "One clearly identifiable wide cylindrical drip-tape roll, white and blue (AFP) on farm soil; no other roll or commercial product.",
+        "Zero people or body parts (including silhouettes).",
+        "Roll sits off-center in the lower third, naturally on soil.",
+        "Geometry is physically plausible and cylindrical (diameter to height ratio fits 1.5-1.9 range).",
+        "Required bottom-right watermark is present: AFP | 09134922013.",
+        "Context is a cultivated field with irrigation layout compatible with drip-tape use."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "هزینه-کشت-بامیه-با-نوار-تیپ-در-هکتار-تصویر-شاخص.webp"
+}

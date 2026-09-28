@@ -1,0 +1,69 @@
+{
+  "id": "crop-164",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Two people are clearly visible in the image, violating the 'zero people' and 'zero human body parts' constraint.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and hands. Generate a scene with a single AFP white-and-blue wide low cylindrical drip-tape carton roll placed on the soil in a leek field, off-center in the lower third, with no human presence. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 21,
+      "product_height_percent": 33,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Product is centered rather than placed off-center on the lower third",
+        "Product height exceeds the maximum limit of 32 percent",
+        "The crop is a neutral seedling which is acceptable for Role 2, but the centered placement of the package is a layout error that hard rejects the composition",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Move the carton to the lower left third so it is clearly off-center. Reduce the visual height of the carton to under 30 percent of the frame to meet the height constraints. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 28,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Presence of a human (farmer) in the frame, which is a hard reject",
+        "Visible human body parts (head, torso, arms, legs) are present",
+        "Product roll is positioned somewhat large and prominent, though still within the 27% width limit"
+      ],
+      "correction_prompt": "Remove the farmer and all visible human figures from the scene. Keep the white and blue AFP drip tape roll in the foreground on the soil. Ensure the background shows prepared soil and young leek seedlings or a neutral crop field without any workers.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Product is a single cylindrical drip-tape carton roll with correct white-and-blue AFP branding",
+        "Product is positioned off-center on the lower third and placed naturally on soil",
+        "Dimensions are within acceptable limits (width ~25%, height ~28%)",
+        "The required bottom-right watermark 'AFP | 09134922013' is present",
+        "No people or human body parts are visible",
+        "Background features young, narrow-leafed seedlings that align with the specified crop 'leek' without showing a clearly identifiable different species"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "نگهداری-نخود-با-نوار-تیپ-نکات-کلیدی-کاربرد-عملی.webp"
+}

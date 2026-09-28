@@ -1,0 +1,56 @@
+{
+  "id": "crop-164",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 17,
+      "product_height_percent": 19,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Presence of a person (crouching male farmer) is a hard reject requirement; the image must contain zero people or body parts.",
+        "Product is not in the required 'hardware story' state where the crop/plant is visually neutral or absent with just hardware; instead it is being manually installed by a human.",
+        "The background and context are compromised by the human figure which violates the strict 'zero people' constraint."
+      ],
+      "correction_prompt": "Regenerate image removing all people and body parts. Show only the unattended AFP drip-tape roll sitting naturally on the soil. The background should be a static farm landscape or irrigation hardware context without any human figures.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 28,
+      "product_height_percent": 27,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "The product is centered in the frame, violating the requirement for off-center staging on the lower third.",
+        "A farmer is clearly visible in the background next to the tractor, violating the hard reject rule against people or human body parts.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with the AFP drip-tape roll placed off-center on the soil (lower third), removing the human figure in the background while keeping the tractor and farm context, and ensuring the roll is the primary product focus. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 94,
+      "product_width_percent": 21,
+      "product_height_percent": 29,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product is a single AFP white-and-blue wide cylindrical drip-tape roll.",
+        "Product is naturally placed on soil in the lower third of the frame.",
+        "Background is a farm field with an unattended tractor, which acts as infrastructure and fits the 'hardware story' role 3.",
+        "No visible crop morphology (leek/lentil contradiction) is present in the immediate vicinity of the product.",
+        "Zero people or human body parts are visible in the image.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and correctly formatted.",
+        "Product aspect ratio (approx 1.5x) and dimensions (width < 27%, height < 32%) are within acceptable parameters."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "نگهداری-نخود-با-نوار-تیپ-نکات-کلیدی-جزئیات-فنی.webp"
+}

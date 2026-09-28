@@ -1,0 +1,54 @@
+{
+  "id": "crop-167",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 0.11,
+      "product_height_percent": 0.13,
+      "product_x_center_percent": 0.52,
+      "reasons": [
+        "Crop identification failure: The plants shown appear to be okra (lance-shaped leaves) or perhaps young cotton, not fava beans which are defined by paired oval leaflets and pods. This constitutes a hard reject for a clearly identifiable different species.",
+        "Product geometry and size: The product bounding box width is approximately 11% of the image, which falls below the acceptable practical range of 13% for a secondary product. The roll is also positioned near the center horizontally rather than the required off-center lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0.11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with fava bean plants (broad paired leaves and visible pods) in the background. Increase the size of the white and blue drip-tape roll to approximately 20% of the frame width. Move the roll to the bottom right or bottom left to ensure it is off-center. Keep the AFP watermark. Enlarge the product group from 0.11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 22,
+      "product_height_percent": 18,
+      "product_x_center_percent": 15,
+      "reasons": [
+        "The crop in the background is clearly identifiable as peppers (Capsicum) due to the presence of green pepper pods, which conflicts with the required article-specific crop of fava beans (broad leaves and thick upright stems).",
+        "The product is not a cylindrical roll; the aspect ratio is too tall (height > width), failing the 1.5-1.9 diameter-to-height ratio requirement."
+      ],
+      "correction_prompt": "Replace the pepper plants with fava bean plants (thick upright stems, broad leaves, and pods). Change the product shape to a wide, low cylindrical drip tape roll (wider than it is tall).",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 14,
+      "product_height_percent": 13,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The product is a single white-and-blue wide low cylindrical drip-tape carton roll, naturally placed on the soil.",
+        "Product dimensions are within the 13–27% width and 0–32% height acceptable ranges.",
+        "The product is off-center on the lower third and serves as a secondary element in the frame.",
+        "The crop context matches the fava bean (باقلا) profile: thick upright stems and broad paired leaflets are visible, and the setting is agronomically consistent.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and correct.",
+        "No people, human body parts, silhouettes, or forbidden commercial containers are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "هزینه-کشت-باقلا-با-نوار-تیپ-در-هکتار-کاربرد-عملی.webp"
+}

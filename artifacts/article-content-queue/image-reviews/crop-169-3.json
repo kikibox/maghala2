@@ -1,0 +1,56 @@
+{
+  "id": "crop-169",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Extra commercial product is present. A second drip tape roll (white) inside a black manifold/filter assembly is clearly visible next to the main AFP carton.",
+        "Hard reject: Two distinct commercial products/rolls are present in the frame instead of exactly one."
+      ],
+      "correction_prompt": "Remove the white drip tape roll inside the black manifold assembly on the right. Retain only the single large AFP white-and-blue drip-tape carton roll on the left. Keep the unattended tractor and farm background.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 6,
+      "product_height_percent": 10,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: Image contains a full person (man squatting) with visible face, body parts, and hands interacting with a cup.",
+        "Hard reject: Product shape is a cylindrical canister/tub, not the specified wide low cylindrical drip-tape roll.",
+        "Hard reject: Product size is significantly too small; width is under 13% and height is under 15% (target range: 13-27% W, <=32% H).",
+        "Hard reject: Product is centered/lower-center on the X-axis; must be off-center.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to remove all human figures and faces. The scene must feature exactly one wide, low, cylindrical drip-tape carton roll (not a can) placed on the soil in the lower-right or lower-left third. The roll must be secondary in size (width 15-20% of frame). Background should be a farm field with a tractor visible but no people. Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 23,
+      "product_height_percent": 28,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "The central product is exactly one white and blue wide low cylindrical drip-tape carton roll.",
+        "The product is placed naturally on the soil and is off-center, located on the lower left of the frame as requested.",
+        "The background clearly matches the role 3 hardware story, showing an unattended tractor and tillage equipment in a farm context.",
+        "There are zero visible people, human silhouettes, or body parts in the image.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and authentic.",
+        "The small crop plants in the foreground are visually neutral and do not clearly contradict the soybean topic requirement."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "میزان-برداشت-سویا-در-هکتار-با-نوار-تیپ-جزئیات-فنی.webp"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "crop-163",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 11,
+      "product_height_percent": 15,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Product width is too narrow (11% < 13% minimum)",
+        "The roll geometry is too tall and narrow (drum-like) rather than wide and low cylindrical",
+        "The crop shows large simple/ovate leaves typical of corn (maize) rather than the compact legume/trifoliate leaf morphology required for mung bean",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with a wide, low cylindrical drip-tape roll (diameter roughly 1.7x height) occupying 18-20% of the frame width. Ensure the crop clearly displays mung bean characteristics (small, compound, trifoliate leaves) instead of maize. Keep the roll off-center in the lower-left third. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 24,
+      "product_height_percent": 29,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "Hard reject: The image contains a person (a crouching figure with legs, boots, and hands clearly visible on the right side).",
+        "Presence of human body parts (hands, legs, boots) violates the constraint of zero people or silhouettes.",
+        "The background shows broad-leaf seedlings that do not strictly match the trifoliate leaf morphology of mung beans (legumes) described in the prompt, although the hard reject on the person is the primary failure reason."
+      ],
+      "correction_prompt": "Remove the crouching person and their hands/boots completely. Replace the vegetation with compact legumes that have trifoliate leaves and slender dark pods (mung beans). Keep the white-and-blue drip-tape carton roll in the lower-left, ensuring it is off-center.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Product is a white and blue cylindrical roll positioned naturally on the soil in the lower-left third",
+        "Product dimensions (18% width, 22% height) are within the acceptable ranges and maintain the required aspect ratio",
+        "Background shows a farm with young legume seedlings that serve as a neutral agronomic context for the article",
+        "Required watermark 'AFP | 09134922013' is present and clearly visible in the bottom right corner",
+        "No people, body parts, or silhouettes are visible in the scene",
+        "Product remains secondary to the farm context and meets the practical geometry requirements"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "فاصله-نوار-تیپ-در-کشت-ماش-استانداردهای-توصیهشده-کاربرد-عملی.webp"
+}
