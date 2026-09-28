@@ -1,0 +1,68 @@
+{
+  "id": "crop-148",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 22,
+      "product_height_percent": 24,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: Human silhouette visible (child sitting in the field in the mid-ground)",
+        "The presence of a person/farmer/worker explicitly violates the 'zero people' constraint"
+      ],
+      "correction_prompt": "Remove the child sitting in the field entirely. Ensure the scene contains only the soil, the crop, the tractor, and the water drip tape roll with no human figures or silhouettes visible anywhere in the frame.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Hard reject: A human (child) is visible in the foreground sitting next to the product.",
+        "Hard reject: Human hands are visible touching the product.",
+        "Hard reject: A person's silhouette is visible inside the tractor cab in the background."
+      ],
+      "correction_prompt": "Regenerate with a completely empty farm scene, zero people, zero silhouettes in vehicle cabs, and the AFP drip-tape roll placed naturally and unattended on the soil near the tractor.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Presence of two people (a crouching man and a standing man) constitutes a hard reject per zero people rule",
+        "The product is a white cylindrical canister/tub, not the required wide low cylindrical drip-tape carton roll"
+      ],
+      "correction_prompt": "Regenerate image with zero people or body parts. Replace the white tub with a wide low cylindrical white-and-blue drip tape roll. Place the roll on the soil at a lower-center position with a 20-23% frame width. Ensure the red tractor and farm buildings remain in the background.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 20,
+      "product_height_percent": 20,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product is exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product is naturally placed on soil in a farm context with tractors and barns.",
+        "Product dimensions (width ~20%, height ~20%) and aspect ratio (~1.0x) are acceptable for a practical QA.",
+        "Product is located in the lower half of the frame, off-center.",
+        "Zero people or human body parts visible.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No hard reject triggers found (no bottles, cans, second rolls, or impossible geometry)."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-شوید-با-آبیاری-قطرهای-جزئیات-فنی.webp"
+}

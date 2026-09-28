@@ -1,0 +1,69 @@
+{
+  "id": "crop-150",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 10,
+      "product_height_percent": 12,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The image contains two people (a woman and a man), which is a hard reject.",
+        "Watermark text is incorrect (shows '09134922013' instead of required '09134922013').",
+        "The product (drip-tape roll) is centered in the frame rather than off-center on the lower third.",
+        "The product aspect ratio is not consistent with a wide low cylindrical roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with zero people. Place exactly one wide, low, white-and-blue drip-tape roll off-center on the lower third. The roll must sit on the soil in a farm context. Ensure correct watermark 'AFP | 09134922013' in the bottom right. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 82,
+      "product_width_percent": 22,
+      "product_height_percent": 20,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Product color is incorrect: it is predominantly white with blue text, but the prompt requires 'white-and-blue' (implying a structural color mix or blue tape material visible).",
+        "Crop morphology mismatch: the 'paprika pepper' in the image displays smooth, blocky, apple-like fruits typical of sweet bell peppers, not the elongated red chilies/pods required for paprika peppers."
+      ],
+      "correction_prompt": "Regenerate with a white roll that has visibly blue tape coiled on the center/spokes. Change the hanging red peppers to be elongated and tapered (chili shape) rather than blocky bell pepper shapes to accurately depict paprika peppers.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 18,
+      "reasons": [
+        "The drip tape roll in the bottom-left appears to be a square or truncated rectangular prism (a flat sheet roll or box) rather than a wide, low cylindrical roll; the cylindrical curvature on the side is missing.",
+        "The crop morphology shows long, thin, tapering pods that resemble 'Tabasco' or hot chili peppers rather than the specified 'paprika pepper' (paprika peppers typically have broader, shorter, blockier pods that point downward)."
+      ],
+      "correction_prompt": "Change the drip tape roll in the bottom-left corner to a proper wide, low cylindrical shape with curved sides. Modify the crop plants to produce blocky, short, hanging paprika peppers (sweet peppers) instead of long thin chili peppers, keeping the red color and attached fruit.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 20,
+      "product_height_percent": 15,
+      "product_x_center_percent": 20,
+      "reasons": [
+        "Image contains exactly one AFP drip-tape roll that is white and blue and cylindrical.",
+        "Product is off-center on the lower left and naturally placed on the soil.",
+        "Product dimensions are within the acceptable 13-27% width range and <32% height range.",
+        "Background clearly depicts a paprika pepper farm with rows of red peppers and appropriate leaves.",
+        "Watermark 'AFP | 09134922013' is present and correct.",
+        "No people, human body parts, or forbidden items (containers, extra rolls) are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "فاصله-نوار-تیپ-در-کشت-پاپریکا-استانداردهای-توصیهشده-کاربرد-عملی.webp"
+}

@@ -1,0 +1,68 @@
+{
+  "id": "crop-152",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 45,
+      "product_height_percent": 30,
+      "product_x_center_percent": 75,
+      "reasons": [
+        "Hard reject: Image contains a person (farmer) and visible hands/body parts.",
+        "Background crop is sunflowers, not canola (rapeseed) as specified.",
+        "Product packaging contains gibberish/invented text instead of authentic package print.",
+        "Product geometry is incorrect and oversized relative to the frame constraints.",
+        "Composition includes a close-up second panel, violating the single-context requirement.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate as a single wide shot of a canola field showing low bluish-green rosettes. Place one AFP drip-tape roll on the soil in the bottom third, off-center, with no people or hands visible. Ensure the roll is cylindrical, white-and-blue, and correctly sized to under 27% width. Keep the required AFP watermark. Reduce the product group from 45% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 14,
+      "product_height_percent": 19,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Hard reject: image contains a person (woman crouching) and visible human body parts (head, hands, legs), which are explicitly prohibited."
+      ],
+      "correction_prompt": "Remove the person entirely. Replace with a static, unattended scene of the AFP drip-tape carton roll placed naturally on the soil within the canola field, with no human figures or silhouettes.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 21,
+      "product_height_percent": 31,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The crop in the background is clearly identifiable as sunflowers (large yellow daisy-like blooms), which is a hard reject for the canola (rapeseed) topic. Canola should show small yellow four-petal flowers on slender branching stems.",
+        "The product is centered in the frame, violating the requirement for the product to be off-center on the lower third."
+      ],
+      "correction_prompt": "Regenerate the image with a background of canola (rapeseed) fields showing slender stems with small yellow four-petal flowers. Do not include sunflowers or maize. Position the AFP drip-tape roll off-center in the lower third of the frame, not in the center. Keep the AFP | 09134922013 watermark in the bottom-right corner.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 20.0,
+      "product_height_percent": 21.0,
+      "product_x_center_percent": 48.0,
+      "reasons": [
+        "The image correctly displays a field of blooming canola with slender stems and small yellow four-petal flowers, matching the specific crop requirement.",
+        "The product is an AFP white-and-blue wide cylindrical drip-tape roll with the required bottom-right watermark 'AFP | 09134922013'.",
+        "The product is placed naturally on the soil and is off-center in the lower half of the frame, acting as a secondary element.",
+        "Product dimensions are within the acceptable range (approx 20% width, 21% height) and the diameter-to-height ratio is appropriate for a wide cylindrical roll.",
+        "No people, human body parts, or prohibited secondary containers are visible in the scene."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "میزان-برداشت-کلزا-در-هکتار-با-نوار-تیپ-کاربرد-عملی.webp"
+}

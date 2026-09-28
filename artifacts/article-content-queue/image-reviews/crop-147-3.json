@@ -1,0 +1,54 @@
+{
+  "id": "crop-147",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 23,
+      "product_height_percent": 24,
+      "product_x_center_percent": 18,
+      "reasons": [
+        "The roll's aspect ratio (width 23% vs height 24%) does not meet the 'wide cylindrical' requirement (diameter 1.5-1.9x height).",
+        "An unrolled section of purple/blue drip tape is visible on the soil, violating the rule for exactly one roll/zero extra products."
+      ],
+      "correction_prompt": "Regenerate with a wide cylindrical roll (width ~1.7x its height). Remove the unrolled tape on the ground; the roll must be the only visible drip tape product.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 10,
+      "product_height_percent": 15,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: Image contains two visible people (a man and a child), which violates the strict 'zero people' requirement.",
+        "Product geometry is incorrect: The roll is vertical/canister-shaped rather than a wide, low cylindrical roll lying on its side.",
+        "The product placement does not meet the 'off-center on the lower third' requirement as specified for a wide roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts from the image. Regenerate a single wide, low cylindrical drip-tape carton roll lying flat on soil, positioned in the lower third and off-center to the left or right. Ensure the roll's diameter is approximately 1.5 to 1.9 times its visible height. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 21,
+      "product_height_percent": 25,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product is a single white and blue AFP drip-tape roll with authentic packaging and the required 'AFP | 09134922013' watermark.",
+        "No visible people, farmers, or human body parts.",
+        "Product width (~21%) and height (~25%) are within acceptable limits; height is under 32%.",
+        "Product is placed off-center on the lower third of the frame on soil.",
+        "Background contains generic crop plants that are visually neutral and do not clearly contradict sainfoin."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-اسپرس-با-آبیاری-قطرهای-جزئیات-فنی.webp"
+}

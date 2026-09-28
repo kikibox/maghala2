@@ -1,0 +1,54 @@
+{
+  "id": "crop-145",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 6,
+      "product_height_percent": 8,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: The image contains a human subject (person crouching), which violates the requirement for zero people and zero human body parts.",
+        "The product (drip-tape roll) is centered relative to the human subject and is too small/dominant in the wrong scale.",
+        "Product x_center_percent is approximately 45%, which is centered rather than off-center.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the human subject entirely. Ensure the farm scene contains no people or body parts. Regenerate the drip-tape roll to be wider (approx. 20% of frame width) and positioned off-center on the lower third of the frame. Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The background plants are clearly identifiable as a flowering species with purple blossoms, likely Phlox or a similar ornamental/field flower, which is a different species from the required rosemary (which must have woody shrubs with needle-like leaves).",
+        "Hard reject triggered due to clearly identifiable different crop species."
+      ],
+      "correction_prompt": "Regenerate the image replacing the purple flowering bushes with woody rosemary shrubs that have distinct needle-like dark-green leaves. Keep the cylindrical drip-tape roll in the lower-left quadrant and the field context.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 18,
+      "reasons": [
+        "Image displays exactly one AFP white-and-blue drip-tape roll on soil in the foreground.",
+        "Background clearly depicts rows of woody shrubs with needle-like dark-green leaves, consistent with the rosemary crop requirement.",
+        "Product is off-center in the lower third with dimensions within the preferred range (width 18%, height 22%).",
+        "Required bottom-right watermark 'AFP | 09134922013' is present and visible.",
+        "No people, human body parts, or extraneous commercial products are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-رزماری-با-آبیاری-قطرهای-تصویر-شاخص.webp"
+}
