@@ -4,8 +4,10 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import hashlib
 import json
 import os
+import re
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
@@ -32,6 +34,24 @@ def now() -> str:
 
 def esc(value) -> str:
     return str(value or "").replace("\\", "\\\\").replace("'", "\\'").replace("\0", "\\0").replace("\n", "\\n").replace("\r", "\\r")
+
+
+def bounded_slug(value: str, suffix: str = "") -> str:
+    """Keep direct-SQL post_name values inside WordPress' 200-byte limit."""
+    slug = re.sub(r"-+", "-", str(value or "").strip().strip("-"))
+    suffix = re.sub(r"[^a-z0-9-]+", "-", suffix.lower()).strip("-")
+    budget = 200 - (len(suffix) + 1 if suffix else 0)
+    raw = slug.encode("utf-8")
+    if len(raw) > budget:
+        raw = raw[:budget]
+        while True:
+            try:
+                slug = raw.decode("utf-8")
+                break
+            except UnicodeDecodeError:
+                raw = raw[:-1]
+        slug = slug.rstrip("-")
+    return f"{slug}-{suffix}" if suffix else slug
 
 
 def completed_sources():
@@ -67,7 +87,11 @@ def build_sql(item: dict, translated: dict, lang: str) -> tuple[str, str]:
     item_id = str(item["id"])
     key = f"article-translation:{item_id}:{lang}"
     source_key = f"article-content-queue:{item_id}"
-    slug = translated["slug"]
+    slug = bounded_slug(translated["slug"])
+    collision_suffix = f"{item_id}-{PREFIX[lang]}"
+    fallback_slug = bounded_slug(slug, collision_suffix)
+    digest = hashlib.sha1(key.encode("utf-8")).hexdigest()[:8]
+    final_fallback_slug = bounded_slug(slug, f"{collision_suffix}-{digest}")
     category_slug = PREFIX[lang]
     body = translated["html"]
     lines = [
@@ -75,8 +99,12 @@ def build_sql(item: dict, translated: dict, lang: str) -> tuple[str, str]:
         f"SET @source_post_id=(SELECT post_id FROM `ha_postmeta` WHERE meta_key='_navar_queue_item_id' AND meta_value='{esc(source_key)}' LIMIT 1);",
         f"SET @translation_id=(SELECT post_id FROM `ha_postmeta` WHERE meta_key='_navar_translation_queue_key' AND meta_value='{esc(key)}' LIMIT 1);",
         f"SET @slug_conflict=(SELECT ID FROM `ha_posts` WHERE post_name='{esc(slug)}' AND post_type='post' AND (@translation_id IS NULL OR ID<>@translation_id) LIMIT 1);",
-        f"INSERT INTO `ha_posts` (`post_author`,`post_date`,`post_date_gmt`,`post_content`,`post_title`,`post_excerpt`,`post_status`,`comment_status`,`ping_status`,`post_name`,`post_modified`,`post_modified_gmt`,`post_parent`,`guid`,`menu_order`,`post_type`,`post_mime_type`,`comment_count`) SELECT 1,NOW(),UTC_TIMESTAMP(),'{esc(body)}','{esc(translated['title'])}','{esc(translated.get('excerpt',''))}','publish','closed','closed','{esc(slug)}',NOW(),UTC_TIMESTAMP(),0,'',0,'post','',0 WHERE @source_post_id IS NOT NULL AND @translation_id IS NULL AND @slug_conflict IS NULL;",
-        "SET @translation_id=COALESCE(@translation_id,IF(@source_post_id IS NOT NULL AND @slug_conflict IS NULL,LAST_INSERT_ID(),NULL));",
+        f"SET @resolved_slug=IF(@slug_conflict IS NULL,'{esc(slug)}','{esc(fallback_slug)}');",
+        "SET @resolved_conflict=(SELECT ID FROM `ha_posts` WHERE post_name=@resolved_slug AND post_type='post' AND (@translation_id IS NULL OR ID<>@translation_id) LIMIT 1);",
+        f"SET @resolved_slug=IF(@resolved_conflict IS NULL,@resolved_slug,'{esc(final_fallback_slug)}');",
+        "SET @resolved_conflict=(SELECT ID FROM `ha_posts` WHERE post_name=@resolved_slug AND post_type='post' AND (@translation_id IS NULL OR ID<>@translation_id) LIMIT 1);",
+        f"INSERT INTO `ha_posts` (`post_author`,`post_date`,`post_date_gmt`,`post_content`,`post_title`,`post_excerpt`,`post_status`,`comment_status`,`ping_status`,`post_name`,`post_modified`,`post_modified_gmt`,`post_parent`,`guid`,`menu_order`,`post_type`,`post_mime_type`,`comment_count`) SELECT 1,NOW(),UTC_TIMESTAMP(),'{esc(body)}','{esc(translated['title'])}','{esc(translated.get('excerpt',''))}','publish','closed','closed',@resolved_slug,NOW(),UTC_TIMESTAMP(),0,'',0,'post','',0 WHERE @source_post_id IS NOT NULL AND @translation_id IS NULL AND @resolved_conflict IS NULL;",
+        "SET @translation_id=COALESCE(@translation_id,IF(@source_post_id IS NOT NULL AND @resolved_conflict IS NULL,LAST_INSERT_ID(),NULL));",
     ]
     metadata = [
         ("_navar_translation_queue_key", key),
@@ -103,6 +131,34 @@ def build_sql(item: dict, translated: dict, lang: str) -> tuple[str, str]:
         "DELETE FROM `ha_posts` WHERE ID=@translation_id; COMMIT;\n"
     )
     return "\n".join(lines) + "\n", rollback
+
+
+def ensure_translation_artifacts(sources=None):
+    """Rebuild disposable delivery artifacts from committed translation JSON."""
+    sources = completed_sources() if sources is None else sources
+    SQL.mkdir(parents=True, exist_ok=True)
+    ROLLBACK.mkdir(parents=True, exist_ok=True)
+    repaired = 0
+    for item, _ in sources:
+        item_id = str(item["id"])
+        folder = TRANS / item_id
+        for lang in LANGUAGES:
+            meta_path = folder / f"{lang}.json"
+            if not meta_path.exists():
+                continue
+            translated = json.loads(meta_path.read_text(encoding="utf-8"))
+            html_path = folder / f"{lang}.html"
+            sql_path = SQL / f"{item_id}-{lang}.sql"
+            rollback_path = ROLLBACK / f"{item_id}-{lang}.sql"
+            if not html_path.exists():
+                html_path.write_text(translated["html"], encoding="utf-8")
+                repaired += 1
+            if not sql_path.exists() or not rollback_path.exists():
+                create_sql, rollback_sql = build_sql(item, translated, lang)
+                sql_path.write_text(create_sql, encoding="utf-8")
+                rollback_path.write_text(rollback_sql, encoding="utf-8")
+                repaired += 1
+    return repaired
 
 
 def rebuild_combined_sql():
@@ -142,6 +198,12 @@ def status_payload():
         "completed_translation_units": sum(row["completed"] for row in per_language.values()),
         "pending_translation_units": sum(row["pending"] for row in per_language.values()),
         "articles_missing_any_translation": backlog_sources,
+        "delivery_artifacts_complete": sum(
+            (SQL / f"{item['id']}-{lang}.sql").exists()
+            and (ROLLBACK / f"{item['id']}-{lang}.sql").exists()
+            for item, _ in sources
+            for lang in LANGUAGES
+        ),
         # A small translation tail must not starve Persian production. Pause
         # only when the backlog grows beyond the bounded safety threshold.
         "persian_queue_paused": backlog_sources >= MAX_BACKLOG_SOURCES,
@@ -211,12 +273,15 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check-backlog", action="store_true")
     args = parser.parse_args()
+    sources = completed_sources()
+    repaired = ensure_translation_artifacts(sources)
+    rebuild_combined_sql()
     initial = status_payload()
+    if repaired:
+        print(f"repaired_translation_artifacts={repaired}", flush=True)
     if args.check_backlog:
         print(initial["articles_missing_any_translation"])
         return 2 if initial["persian_queue_paused"] else 0
-    if not translator.TOKEN:
-        raise RuntimeError("AGNES_API_KEY is empty")
     TRANS.mkdir(parents=True, exist_ok=True);SQL.mkdir(parents=True, exist_ok=True);ROLLBACK.mkdir(parents=True, exist_ok=True)
     selected = []
     for item, data in completed_sources():
@@ -227,6 +292,8 @@ def main() -> int:
             break
     workers = min(TRANSLATION_WORKERS, len(selected))
     if workers:
+        if not translator.TOKEN:
+            raise RuntimeError("AGNES_API_KEY is empty")
         print(
             f"translation_batch={len(selected)} translation_workers={workers}",
             flush=True,
@@ -240,6 +307,7 @@ def main() -> int:
             }
             for future in as_completed(futures):
                 future.result()
+    ensure_translation_artifacts()
     rebuild_combined_sql()
     final = status_payload()
     print(json.dumps(final, ensure_ascii=False), flush=True)
