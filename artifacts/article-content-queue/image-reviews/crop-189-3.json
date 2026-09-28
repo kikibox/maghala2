@@ -1,0 +1,84 @@
+{
+  "id": "crop-189",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: The image contains a second, unrolled coil of drip tape on the right, which acts as a 'second roll' or 'extra commercial product'.",
+        "Hard reject: There is a blue pipe/tape extending from the main carton roll to the secondary coil, which matches the 'pipe through the roll' rejection criterion and creates impossible/redundant geometry for a packaging display.",
+        "The presence of the unrolled tape violates the 'exactly one roll' requirement and the 'zero extra commercial product' constraint."
+      ],
+      "correction_prompt": "Regenerate the image showing only a single AFP white-and-blue drip tape carton roll on the soil. Remove the unrolled coil of tape and the connecting pipe entirely. Ensure the product is off-center on the lower third and includes the exact bottom-right watermark 'AFP | 09134922013'.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 82,
+      "product_width_percent": 34,
+      "product_height_percent": 32,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product appears slightly wider (approx. 34%) than the preferred 20-23% range, but height fits the maximum 32% limit.",
+        "Visible diameter-to-height ratio is borderline at approximately 1.0x, failing the 1.5x minimum requirement, though the wide cylinder shape is present.",
+        "Product is centered horizontally (48% x-center) rather than positioned off-center in the lower third.",
+        "Required AFP watermark is present in the bottom-right corner.",
+        "Unattended tractor is visible in the background, which is permitted as infrastructure.",
+        "No human figures or body parts are present.",
+        "The white-and-blue carton roll is clearly identifiable.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 34% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 34% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 20,
+      "product_height_percent": 15,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Image contains two visible people (farmer and helper) with identifiable faces, hands, and body parts, which violates the zero-human constraint for a Role 3 hardware story."
+      ],
+      "correction_prompt": "Regenerate the image with the crop and soil context but remove all people and human silhouettes, leaving only the unattended irrigation setup and the drip-tape roll.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 14.5,
+      "product_height_percent": 18.5,
+      "product_x_center_percent": 38.5,
+      "reasons": [
+        "The product width (14.5%) falls below the strict 20-23% preferred range for this specific hardware role, which aims for a more prominent but secondary product presence.",
+        "Although the product is off-center, the placement on the far left feels slightly disconnected from the small crop in the immediate foreground on the right.",
+        "The unattended tractor in the background, while allowed as infrastructure, is positioned slightly high and centered, creating a visual imbalance with the low product placement."
+      ],
+      "correction_prompt": "Increase the diameter of the central drip-tape carton roll to approximately 20-23% of the frame width. Position the product more centrally within the lower third (45-55% x-axis) and ensure it is clearly resting on the soil. Keep the background unattended tractor and field details consistent.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 23,
+      "product_height_percent": 28,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product is a white-and-blue wide low cylindrical drip-tape roll with accurate AFP branding",
+        "Contains zero people or human body parts",
+        "Background matches the agricultural context",
+        "Watermark is present and unobstructed"
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "هزینه-کشت-گشنیز-با-نوار-تیپ-در-هکتار-جزئیات-فنی.webp"
+}

@@ -1,0 +1,53 @@
+{
+  "id": "crop-194",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 20,
+      "product_height_percent": 16,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product is centered horizontally (x-center approx 50%), failing the off-center requirement",
+        "Product is placed on the centerline of the irrigation layout rather than off to one side"
+      ],
+      "correction_prompt": "Reposition the drip tape carton roll to the far left or far right (x-center <35% or >65%) so it is clearly off-center; keep it low, secondary, and on soil. Remove the hat-basket (human-associated item) to ensure zero human context.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Image contains two rolls of drip tape instead of exactly one.",
+        "The 'AFP' branding is located on the roll packaging, but the mandatory 'AFP | 09134922013' watermark is missing from the image."
+      ],
+      "correction_prompt": "Regenerate the image to display exactly one white-and-blue drip tape roll (removing the second roll on the right). Ensure the crop in the background consists of green leafy vegetables (سبزی) and strictly matches the article, removing the flowers. Include the specific text 'AFP | 09134922013' as a watermark in the bottom-right corner. Ensure the single roll is off-center on the lower third with no people visible.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 19,
+      "product_height_percent": 21,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The product is a single wide, low cylindrical carton roll of drip tape in white and blue, matching the specified AFP branding and geometry.",
+        "The crop context shows leafy vegetables (سبزی) with visible young plants, which is a permissible neutral agronomic representation of the crop family.",
+        "The watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "There are no people, human body parts, or silhouettes in the image.",
+        "The product width (19%) and height (21%) fall within the acceptable practical estimation ranges.",
+        "The product is naturally placed on the soil in a farm context."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "فاصله-نوار-تیپ-در-کشت-مرزه-استانداردهای-توصیهشده-کاربرد-عملی.webp"
+}

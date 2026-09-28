@@ -1,0 +1,82 @@
+{
+  "id": "crop-186",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 32,
+      "product_height_percent": 38,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Product width is too wide (~32%), exceeding the 27% hard reject limit.",
+        "Product height is too tall (~38%), exceeding the 32% hard reject limit.",
+        "Product is not positioned off-center on the lower third; it is somewhat centered horizontally.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 13-27% of frame width.; Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with the carton roll significantly smaller (width under 27%, height under 32%) and positioned clearly off-center on the lower third. Keep the tractors and gauges in the background but ensure the roll is secondary. Reduce the product group from 32% to 13-27% of frame width. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 14,
+      "product_height_percent": 16,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Hard reject: Human body parts are visible (full body of a male farmer, including face, hands, legs, and feet)."
+      ],
+      "correction_prompt": "Regenerate the image removing all people completely. Keep the white and blue AFP drip tape roll in the bottom right foreground (lower third, off-center) and the green tractor on the soil. Ensure no human silhouettes or body parts are visible.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 17,
+      "product_height_percent": 23,
+      "product_x_center_percent": 63,
+      "reasons": [
+        "Product fails to meet height constraint: the roll is taller than wide (height > width), violating the requirement that the diameter should be 1.5 to 1.9 times its height.",
+        "The product is not clearly a 'wide low cylindrical' roll as specified for this role; it appears too vertical.",
+        "Background context is a generic tractor field, lacking specific hardware elements like filters, manifolds, or flush-points which are preferred for 'Role 3 hardware story' when crops are absent."
+      ],
+      "correction_prompt": "Regenerate to show a wide, low-profile drip tape roll lying horizontally on the soil next to a pressure manifold or filter system. The roll must be significantly wider than it is tall (aspect ratio ~1.5-1.9), positioned in the lower-right third, with no people visible.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 22,
+      "product_height_percent": 31,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: Contains a clearly visible person (farmer/worker).",
+        "Hard reject: Human body parts (face, head, arms, legs, hands) are present.",
+        "Product is not naturally placed on soil; it is being manually held by a person.",
+        "Visual staging violates the 'zero people' and 'zero human body parts' constraint."
+      ],
+      "correction_prompt": "Remove the man entirely. Place the white and blue AFP drip tape roll on the soil on the lower third of the frame. Ensure no human silhouettes are visible in the background or foreground.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Watermark present",
+        "Product geometry acceptable (aspect ratio ~0.875)",
+        "Off-center placement in lower third",
+        "No people or human body parts",
+        "Single roll of drip tape in farm context"
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-کلزا-با-آبیاری-قطرهای-جزئیات-فنی.webp"
+}

@@ -1,0 +1,91 @@
+{
+  "id": "crop-190",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 90,
+      "product_width_percent": 12,
+      "product_height_percent": 13,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Exact crop match: The crop is unmistakably young corn/maize, which fits the title requirements.",
+        "Product geometry: The drip-tape roll is cylindrical and white with blue accents. It is placed on the soil and appears naturally.",
+        "Placement: The product is off-center (lower third area) and not centered on the frame. It is secondary to the crop, with a width of ~12% of the frame.",
+        "Watermark: The required watermark 'AFP | 09134922013' is clearly present in the bottom-right corner.",
+        "No negative elements: Zero people or human body parts are visible.",
+        "Context: The background shows a clear field of corn with drip tape lines, providing a strong agricultural context.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 7,
+      "product_height_percent": 9,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The image contains two people (farmers/inspectors), which violates the hard rejection rule for zero people.",
+        "The product (roll) is not wide enough (approx 7% vs. 13% min) and is too tall relative to its width (giant/narrow drum shape vs. low cylindrical).",
+        "The roll appears to be a tall canister shape rather than the specified wide, low cylindrical drip-tape carton.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to remove all human figures (zero people). Display the AFP white and blue drip-tape roll as a wide, low cylindrical carton lying on the soil. The roll must be roughly 20% of the frame width (secondary element), positioned in the lower third and off-center. Ensure the background matches the farm context. Enlarge the product group from 7% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 25,
+      "product_height_percent": 33,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Crop identification fails for 'City': The foreground vegetation clearly exhibits botanically distinct morphology (opposite leaf arrangement and shape) for a broad-leafed dicot crop such as Soybean. These traits contradict the specified article crop 'City', which lacks broad-leaf morphology. The hard reject rule against 'clearly identifiable different species' has been triggered.",
+        "Minor geometry violation: The product height slightly exceeds the 32% maximum limit.",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with the specific article crop 'City' replacing the visible broad-leaf seedlings. Reduce the drip-tape roll height to strictly below 32% of the image frame while maintaining the 20-23% width and off-center lower-third positioning on the soil. Retain the AFP white-and-blue branding, farm context, and the bottom-right watermark exactly as required. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 4,
+      "product_height_percent": 8,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: Human presence (male farmer/worker) and human body parts (face, hands, arms, legs, torso) are visible in the image.",
+        "Hard reject: The product shown is a small cylindrical canister (approx. 4% width), not the required wide low cylindrical drip-tape carton roll (target 13-27% width).",
+        "Product placement error: The canister is centered in the bottom third, whereas the required roll must be off-center.",
+        "Product shape/geometry error: The visible canister is tall and narrow, failing the requirement of a wide, low cylindrical roll (diameter 1.5-1.9x height).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes. Replace the small canister with a wide, low cylindrical white-and-blue carton roll of drip tape. The roll must be off-center on the lower third (approx 1/3 from left or right), approx 20-25% of image width, sitting naturally on the soil. Maintain the farm background with green crops and barn. Keep the bottom-right watermark 'AFP | 09134922013' exactly as is. Enlarge the product group from 4% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 20.4,
+      "product_height_percent": 21.5,
+      "product_x_center_percent": 38.0,
+      "reasons": [
+        "Product appears as a single cylindrical AFP roll with white and blue branding (drip tape).",
+        "No people or human body parts visible.",
+        "Background includes crop rows (young maize or similar field crop) and a farm building (barn/shed), consistent with farm context.",
+        "Product is placed naturally on soil, off-center in lower third.",
+        "Watermark 'AFP | 09134922013' is present in bottom-right, as required.",
+        "No forbidden objects (second roll, containers, pipes, etc.).",
+        "Crop in field is young/neutral — not clearly identifiable as mature specific crop, but agronomic context is clear; not rejected per rules."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "میزان-برداشت-شوید-در-هکتار-با-نوار-تیپ-کاربرد-عملی.webp"
+}

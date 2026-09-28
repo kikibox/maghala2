@@ -1,0 +1,84 @@
+{
+  "id": "crop-189",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 12,
+      "product_height_percent": 28,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Presence of a person (farmer/worker) visible in the foreground (torso, arms, hands, legs).",
+        "Product is not wide enough (approx 12% width) relative to the frame.",
+        "Product is centered rather than off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the human figure completely. Place the drip-tape roll off-center on the lower third of the frame, sitting on soil. Increase the visible width of the roll to 13-27% of the image width. Ensure the background shows a coriander farm context without any people. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 58,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: The product is centered in the frame (x_center ~45%), violating the requirement to be off-center.",
+        "Hard reject: The visible height of the roll (28%) is nearly equal to its visible width (20%), failing the required diameter/height ratio of 1.5 to 1.9.",
+        "Strict reject: No required watermark 'AFP | 09134922013' is present in the bottom-right corner; instead, there is illegible gibberish text on the roll itself."
+      ],
+      "correction_prompt": "Regenerate the image with the AFP white-and-blue drip-tape roll moved to the lower-left third of the frame. Adjust the camera angle to make the roll appear wide and low (diameter 1.8x height). Remove all text from the roll's label and add the specific watermark 'AFP | 09134922013' in the bottom-right corner.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 24,
+      "product_height_percent": 22,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: Image contains a visible person (child).",
+        "Hard reject: Human body parts (face, hands, arms, legs, torso) are visible.",
+        "Strict rule violation: 'Zero people and zero human body parts' requirement failed."
+      ],
+      "correction_prompt": "Regenerate the image strictly excluding any human presence. Remove the child completely. Keep the single AFP drip-tape roll in the lower-left foreground on soil. Ensure the background shows a prepared field with visible coriander (finely divided feathery leaves) and irrigation lines. Maintain the 'AFP | 09134922013' watermark in the bottom right corner.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 23,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "The article crop is coriander (گشنیز), which is defined as having finely divided feathery leaves; the seedlings in the image have broad, solid leaves and are not recognizable as coriander",
+        "The product's visible diameter (width 22) and height (23) do not meet the required aspect ratio (1.5–1.9 times the height); they are nearly square",
+        "The crop morphology is a hard reject as it is a clearly identifiable different species, not neutral young vegetation"
+      ],
+      "correction_prompt": "Regenerate the image replacing the broad-leaved seedlings with coriander seedlings that have finely divided feathery leaves. Reshape the drip-tape roll so its visible width is roughly 1.5–1.9 times its visible height (e.g., width 23, height 13–15). Keep the roll off-center on the lower third, placed on soil, with the required bottom-right watermark 'AFP | 09134922013', zero people or body parts.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 19,
+      "product_height_percent": 28,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The product (drip-tape roll) is white and blue, cylindrical, and placed naturally on soil in a farm context.",
+        "Product dimensions are within acceptable limits (19% width, 28% height).",
+        "The exact required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Zero people or human body parts are visible.",
+        "Background is a farm field with young vegetation; while not explicitly mature coriander, the agronomic context of drip irrigation and prepared beds is clear.",
+        "No prohibited objects (bottles, jars, second packages, pipes through the roll) are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "هزینه-کشت-گشنیز-با-نوار-تیپ-در-هکتار-کاربرد-عملی.webp"
+}

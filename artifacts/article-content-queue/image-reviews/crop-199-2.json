@@ -1,0 +1,68 @@
+{
+  "id": "crop-199",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: The presence of a visible human arm and hand in the top-left quadrant of the frame triggers the 'zero people/zero human body parts' constraint."
+      ],
+      "correction_prompt": "Remove the human hand and arm entirely. Keep the green vegetable (zucchini/leafy stem) in place without support or have it held by another means, ensuring no body parts are visible anywhere in the frame.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Clear presence of a green zucchini squash next to the roll, which constitutes a 'different species' and 'giant roll/extra product' violation.",
+        "The roll is physically narrower than required (estimated 12% width vs. minimum 13%); while close, it is at the lower boundary and likely under the required secondary size specification.",
+        "A large green vegetable (zucchini) is present in the crop bed, which creates a 'different species' artifact that conflicts with the botanically accurate 'leafy vegetables' requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the green zucchini squash entirely from the soil next to the roll; increase the drip-tape roll width slightly to approximately 18% of the frame to ensure it falls comfortably within the 13-27% range; maintain the off-center lower third position. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 10,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Presence of a man, which violates the hard reject rule for people or body parts.",
+        "The product is being held by a person rather than naturally placed on the soil.",
+        "The product is centered on the product's own horizontal axis, whereas the rule requires it to be off-center on the lower third."
+      ],
+      "correction_prompt": "Remove the man entirely. Place the AFP white-and-blue drip-tape roll directly on the soil in the lower-right third of the frame, away from the center. Ensure the background shows a farm with leafy vegetables (sabzi) and no people are visible anywhere.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 15,
+      "product_height_percent": 17,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Product is a single white-and-blue cylindrical carton roll (drip-tape)",
+        "Product width (~15%) and height (~17%) are within acceptable limits (13-27% and <=32%)",
+        "Product is off-center in the lower third",
+        "No people or body parts visible",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner",
+        "Background shows rows of leafy green vegetables, consistent with the 'sabzi' (leafy vegetables) context"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "میزان-برداشت-بامیه-در-هکتار-با-نوار-تیپ-کاربرد-عملی.webp"
+}

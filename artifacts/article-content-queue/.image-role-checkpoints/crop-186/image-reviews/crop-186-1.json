@@ -1,0 +1,70 @@
+{
+  "id": "crop-186",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 10,
+      "product_height_percent": 15,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Human present: A man is clearly visible in the image, crouching next to the crop. This is a hard reject criterion (zero people, zero body parts).",
+        "Product shape mismatch: The object shown is a cylindrical canister or jar-like container, not a wide low cylindrical drip-tape carton roll.",
+        "Product proportion violation: The product is too small relative to the frame (approx 10% width) and is centered/staged by the person, rather than being a secondary element in the bottom third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to remove the human figure completely. Replace the canister with a wide, low cylindrical white-and-blue drip tape roll (approx 1.5-1.9x diameter to height) placed naturally on the soil in the lower foreground. Ensure the background shows the canola field without any people. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 27.5,
+      "product_height_percent": 26.5,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: The prominent yellow flowers in the background row are clearly identifiable as sunflowers (Helianthus annuus), which violates the requirement for a canola/rapeseed (Brassica) specific farm context and triggers the rule against clearly identifiable different species.",
+        "Hard reject: The product width is estimated at approximately 27.5% of the frame width, which exceeds the absolute 27% limit for the drip-tape carton.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 27.5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Replace the background sunflowers with a crop of rapeseed (canola) showing slender branching stems and small yellow four-petal flowers; reduce the visual width of the AFP drip-tape carton to be less than 27% of the frame width. Reduce the product group from 27.5% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Presence of a person (farmer) and human body parts (head, hands, legs) which triggers a hard reject.",
+        "The product shown is a small cylindrical canister or cartridge, not a wide, low drip-tape carton roll.",
+        "Product is positioned at the bottom-center rather than off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts. Replace the small canister with a large, wide, low cylindrical white-and-blue drip-tape carton roll placed off-center on the soil in the lower third of the image. Maintain the canola field background. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 19,
+      "product_height_percent": 28,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The product is an AFP white-and-blue wide low cylindrical drip-tape carton roll placed naturally on soil.",
+        "The crop is identifiable as canola (rapeseed) with broad leaves and yellow flowers.",
+        "No people or human body parts are visible.",
+        "The product dimensions and position are within acceptable limits, being off-center and on the lower third.",
+        "The watermark is correctly displayed."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-کلزا-با-آبیاری-قطرهای-تصویر-شاخص.webp"
+}

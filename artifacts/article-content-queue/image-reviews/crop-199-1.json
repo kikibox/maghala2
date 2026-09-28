@@ -1,0 +1,69 @@
+{
+  "id": "crop-199",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 14,
+      "product_height_percent": 22,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Multiple product packages visible: A standing cylindrical roll is in the foreground, but a coiled hose/layflat bundle also appears to the right, violating the 'exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll' rule.",
+        "The coiled blue-and-white item on the right resembles a layflat hose or pipe bundle, which is a hard reject feature ('layflat hose, pipe through the roll').",
+        "The background crop appears to be cucurbits (cucumbers or squash) rather than the requested 'sabzi' (leafy vegetables like spinach, lettuce, or parsley); while young vegetation is allowed, these leaves are too large and characteristic of a different species to be 'botanically neutral'."
+      ],
+      "correction_prompt": "Regenerate the image featuring a single white and blue AFP drip tape roll standing on soil. Remove the coiled blue hose on the right. The surrounding crop should be young, small leafy green vegetables (like spinach or lettuce), not large cucurbit leaves. Keep the bottom-right watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 14,
+      "product_height_percent": 15,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "The required bottom-right watermark 'AFP | 09134922013' is completely missing from the image.",
+        "The crop leaves appear visually similar to weeds or generic seedlings rather than clearly recognizable leafy vegetables (Sabzi) like lettuce or spinach."
+      ],
+      "correction_prompt": "Add a prominent black box with white text 'AFP | 09134922013' in the bottom right corner. Replace the small generic seedlings with clearly visible, vibrant green leafy vegetable plants (such as lettuce or spinach) to better match the 'Sabzi' crop context.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 11,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Presence of a human (man crouching and holding the product) is a hard reject trigger",
+        "Product width is approximately 8% of the frame, which is below the acceptable range of 13-27%",
+        "Product height is approximately 11% of the frame, which is disproportionately small relative to the width",
+        "The product is not placed naturally on the soil but is being held by a person",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person from the scene entirely. Place a single white-and-blue wide low cylindrical drip-tape carton roll directly on the soil. The roll should occupy 15-20% of the frame width and be positioned in the lower third, off-center to the left or right, maintaining natural proportions (diameter about 1.5-1.9 times its height). Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 19.0,
+      "product_height_percent": 24.5,
+      "product_x_center_percent": 34.0,
+      "reasons": [
+        "The product is a single AFP white-and-blue cylindrical drip-tape roll placed on soil, positioned in the lower third and off-center to the left.",
+        "Product dimensions are within practical acceptable limits (width ~19%, height ~25%, aspect ratio ~0.78, consistent with flat rolls standing upright or lying down depending on perspective, but appears to be standing/wide low cylindrical shape as described).",
+        "Zero people or human body parts visible.",
+        "Background shows farm context with crop rows and a distant barn, suitable for general agricultural content.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "میزان-برداشت-بامیه-در-هکتار-با-نوار-تیپ-تصویر-شاخص.webp"
+}
