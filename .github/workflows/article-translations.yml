@@ -51,11 +51,11 @@ jobs:
       AGNES_API_KEY14: ${{ secrets.AGNES_API_KEY14 }}
       AGNES_API_BASE: ${{ vars.AGNES_API_BASE || 'https://apihub.agnes-ai.com/v1' }}
       AGNES_MODEL: ${{ vars.AGNES_MODEL || 'agnes-3.0-flash' }}
-      # One run can translate the complete output of a three-article Persian batch,
-      # plus one carried-over article after a partial API failure.
-      MAX_ARTICLES: '3'
-      GENERATED_TRANSLATION_BATCH_SIZE: '3'
-      MAX_TRANSLATION_BACKLOG_SOURCES: '4'
+      # Clear half of a sixteen-article Persian batch per slice; the workflow self-chains
+      # until the bounded backlog is current, while preserving headroom for the city repository.
+      MAX_ARTICLES: '8'
+      GENERATED_TRANSLATION_BATCH_SIZE: '8'
+      MAX_TRANSLATION_BACKLOG_SOURCES: '9'
     steps:
       - uses: actions/checkout@v7
         with:
