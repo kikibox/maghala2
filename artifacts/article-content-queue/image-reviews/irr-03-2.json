@@ -1,0 +1,78 @@
+{
+  "id": "irr-03",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 8,
+      "product_height_percent": 14,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Presence of a visible hand and arm holding a tool (hard reject).",
+        "Product aspect ratio is inverted (taller than wide); the roll is roughly as tall as it is wide, failing the 1.5-1.9x width requirement.",
+        "The roll appears to be a vertical cylinder on its end, not a wide low cylindrical roll lying on the ground.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the hand and arm completely. Replace the vertical container with a wide, low-lying cylindrical drip tape carton roll (20cm wide, 12cm tall) placed horizontally on the soil off-center to the left. Ensure the roll is clearly wider than it is tall. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 22,
+      "product_height_percent": 30,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Hard reject due to visible human body parts: A person's hand, arm, leg, and foot are clearly visible in the upper right and background of the image.",
+        "Visible human silhouette and clothing (jeans) in the scene violate the 'zero people and zero human body parts' constraint."
+      ],
+      "correction_prompt": "Regenerate image completely excluding any people, human body parts, or workers. Keep the AFP white-and-blue drip tape roll on the soil in the bottom left, but ensure the background consists only of farm crops and irrigation hardware without any human presence.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 22,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "The aspect ratio of the product bounding box is approximately square (22% width vs 22% height). This fails the strict geometry check for a 'wide low cylindrical' roll, which must have a visible diameter (width) of 1.5 to 1.9 times its visible height."
+      ],
+      "correction_prompt": "Reshape the drip tape carton roll to be significantly wider and flatter (aspect ratio 1.7:1) to match the 'wide low cylindrical' requirement. Ensure the product remains secondary in scale.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 15.2,
+      "product_height_percent": 24.6,
+      "product_x_center_percent": 28.4,
+      "reasons": [
+        "Hard reject: Human body parts (arms, hands, legs, feet) are clearly visible and interacting with the product and the field, which is a critical constraint violation."
+      ],
+      "correction_prompt": "Remove all human figures and body parts (arms, hands, legs). Ensure the image contains only the drip-tape roll placed on the soil and the agricultural background context, with zero people present.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 27,
+      "product_height_percent": 30,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Contains exactly one white-and-blue cylindrical drip-tape roll placed naturally on soil in the lower-left area",
+        "Correct required bottom-right watermark 'AFP | 09134922013' is present",
+        "No people or human body parts are visible",
+        "Product proportions (width/height ~1.5-1.9 ratio) and placement (off-center, lower third) meet requirements",
+        "Farm context (soil bed, rows, seedlings, drip lines) is visible and practical"
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "راهنمای-جامع-آبیاری-زیرسطحی-کاربرد-عملی.webp"
+}

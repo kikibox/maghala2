@@ -1,0 +1,56 @@
+{
+  "id": "irr-08",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 6,
+      "product_height_percent": 7,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: The image contains multiple human figures (two men) and human body parts, which is explicitly forbidden by the requirements.",
+        "Hard reject: The product is not a wide low cylindrical drip-tape carton roll. It is a small, cylindrical white spool/tube held in a hand, which does not match the 'large roll' description.",
+        "Hard reject: The image features a person actively holding and placing the product, which is forbidden ('zero people', 'zero human body parts').",
+        "The product in the image is too small and does not match the requested 'wide low cylindrical drip-tape carton roll' description (should be 13-27% width, actual is ~6%).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Generate an image of a wide, low cylindrical drip-tape roll (AFP white-and-blue packaging) placed on the soil of a young vegetable field. The roll should be off-center on the lower third of the frame, measuring 20-23% of the frame's width. Do not include any people or human body parts. The background should show rows of young crops in a farm setting. Ensure the 'AFP | 09134922013' watermark is present in the bottom right corner. Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 72,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The product roll is centered on the x-axis (product_x_center_percent 48), failing the requirement to be off-center on the lower third.",
+        "The product is placed on top of the soil surface rather than naturally on the soil (e.g. in a furrow or recessed), failing the 'naturally placed' requirement."
+      ],
+      "correction_prompt": "Move the drip tape roll to the right or left third of the frame (x-center 30% or 70%) and sink it slightly into the soil so it sits naturally in a furrow.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 16,
+      "product_height_percent": 18,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The product is a single, correctly oriented white-and-blue cylindrical drip-tape roll.",
+        "The product is placed naturally on the soil, off-center in the lower third.",
+        "The product's bounding box dimensions (16% width, 18% height) are within the acceptable parameters, making the product secondary to the scene.",
+        "The crop is a botanically neutral young vegetable, consistent with the agronomic story of 'family tape' in a farm context, without identifiable incorrect morphology.",
+        "The required watermark 'AFP | 09134922013' is clearly visible in the bottom right.",
+        "No people, body parts, or forbidden packaging/containers are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "راهنمای-جامع-آبیاری-سطوحی-کاربرد-عملی.webp"
+}

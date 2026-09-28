@@ -1,0 +1,101 @@
+{
+  "id": "irr-12",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 92,
+      "product_width_percent": 31,
+      "product_height_percent": 33,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Product shape and branding (AFP white-and-blue roll) match the required drip-tape carton roll description.",
+        "Zero people or body parts are visible; the tractor in the background is unattended, which is permitted as infrastructure.",
+        "The product is off-center on the lower third and naturally placed on soil.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present.",
+        "The background context of a farm with a tractor and soil matches the 'city' (farming) topic and Role 3 hardware context.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 31% to 13-27% of frame width.; Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the product group from 31% to 13-27% of frame width. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 31,
+      "product_height_percent": 38,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Product width is approximately 31% of the frame, which is significantly wider than the maximum allowable threshold of 27%.",
+        "Product height is approximately 38% of the frame, which exceeds the maximum allowable threshold of 32%.",
+        "The presence of multiple stopwatch-style time pieces next to the product roll introduces unrelated visual elements that distract from the required hardware role and product focus.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 31% to 13-27% of frame width.; Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with the drip-tape carton significantly smaller (approximately 20% width and 25% height) to meet size constraints, and remove the stopwatches to keep the focus on the irrigation hardware. Reduce the product group from 31% to 13-27% of frame width. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 15,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The image contains a visible person (a farmer) crouching on the right side, which is a hard reject condition.",
+        "There is a second roll of drip tape held in the person's hand, which is a hard reject condition ('second roll')."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove the person/farmer. Ensure only the single white and blue AFP carton roll remains on the soil. Keep the farm background.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 21.0,
+      "product_height_percent": 34.0,
+      "product_x_center_percent": 33.0,
+      "reasons": [
+        "Product height exceeds the 32% maximum threshold (approx 34%).",
+        "The presence of two distinct irrigation pressure gauges constitutes extra commercial products/accessories beyond the required single carton roll.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the two pressure gauges to isolate the drip tape roll. Reduce the roll's visual height to a maximum of 30% of the frame while maintaining a wide low cylindrical aspect ratio (diameter 1.5x height). Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 16,
+      "product_height_percent": 22,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Hard reject: Image contains a person (farmer).",
+        "Hard reject: Human body parts (hands, arms, legs, head) are visible interacting with the product."
+      ],
+      "correction_prompt": "Remove the man and all human body parts completely. Show only the AFP drip-tape roll on the soil bed in the farm context. Keep the tractors and building in the background.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 80,
+      "product_width_percent": 45,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Image contains a single white and blue cylindrical carton roll with AFP branding.",
+        "The watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No people or human body parts are visible.",
+        "Background matches the farm context with a tractor and barn.",
+        "The product is placed on soil in the foreground.",
+        "Product width is wide due to the included flat tape strip, but the roll itself remains distinct and off-center.",
+        "No forbidden objects like bottles, jars, or containers are present.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 45% to 13-27% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

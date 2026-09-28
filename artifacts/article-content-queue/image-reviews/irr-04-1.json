@@ -1,0 +1,90 @@
+{
+  "id": "irr-04",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product bounding box width is 14%, which is below the acceptable minimum of 13-27% range for product prominence; specifically, the prompt requests a preferred width of 20-23% and the product appears too small relative to the frame.",
+        "Product height is 18%, which is within the limit, but the aspect ratio is inverted (height > width), failing the requirement that the visible diameter should be 1.5 to 1.9 times its visible height.",
+        "Product x-center is 45%, which is centered, failing the off-center requirement for the lower third."
+      ],
+      "correction_prompt": "Enlarge the carton roll significantly to 25% width of the frame, flatten the perspective so the width is ~1.8x the height, and move the product to the lower-left third of the image to be off-center.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 22,
+      "product_height_percent": 25,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "Hard reject: Image contains a person (farmer/worker)."
+      ],
+      "correction_prompt": "Regenerate the image without the person, showing only the drip-tape carton roll and the farm field context.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 27,
+      "product_height_percent": 27,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The product geometry fails the hard reject criteria: the roll is not a wide low cylinder with a visible diameter that is about 1.5 to 1.9 times its visible height; instead, the width and height are nearly identical (approx 1:1), indicating a non-compliant 'giant' or tall roll shape."
+      ],
+      "correction_prompt": "Regenerate the image with a clearly wide, low cylindrical drip-tape roll (aspect ratio ~1.7:1) that is much shorter than it is wide, maintaining the off-center placement on the soil.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 72,
+      "product_width_percent": 28,
+      "product_height_percent": 24,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "The roll appears centered horizontally relative to its position on the lower third of the image, failing the off-center requirement.",
+        "The roll's width (28%) slightly exceeds the acceptable practical maximum of 27%.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Shift the roll significantly to the left or right to ensure it is off-center in the lower third, and slightly reduce the roll's width to fit within 27% of the frame. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 16,
+      "product_height_percent": 25,
+      "product_x_center_percent": 39,
+      "reasons": [
+        "Impossible geometry: a plant is visibly growing out of the top of the drip-tape roll, which is physically unrealistic for an inanimate object.",
+        "Product aspect ratio is too squat: visible height (~25%) is nearly equal to width (~16%), whereas the spec requires a wide low cylinder with a visible diameter approximately 1.5–1.9 times its visible height (i.e., height should be significantly smaller relative to width)."
+      ],
+      "correction_prompt": "Regenerate showing the wide cylindrical drip-tape roll lying flat on the soil with a natural elliptical profile (visible diameter approximately 1.5 to 1.9 times its visible height); remove the plant growing from the top of the roll so the crop rows remain separate in the background.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The AFP drip-tape roll is clearly visible and correctly positioned on the soil in a farm context.",
+        "Product dimensions (24% width, 28% height) and off-center placement are within acceptable limits.",
+        "The exact required watermark 'AFP | 09134922013' is present and correctly positioned in the bottom-right corner.",
+        "The background shows a farm with young seedlings that are botanically neutral/unidentifiable, which is acceptable per the guidelines."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "راهنمای-جامع-آبیاری-خرسابی-تصویر-شاخص.webp"
+}

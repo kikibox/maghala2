@@ -1,0 +1,41 @@
+{
+  "id": "irr-11",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 22,
+      "product_height_percent": 38,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The product's vertical bounding box (including its label) exceeds the 32% height limit, appearing to be around 38% of the frame height.",
+        "A reflective, metallic object is present on the right side of the frame which functions as a disallowed 'bottle, jar, canister' or 'extra commercial product'.",
+        "The background contains a distinct, identifiable crop, which contradicts the role 3 hardware story requirement to avoid specific crop morphology in a close-up. The crop appears to be a general green sprout rather than a specific named crop from an article title, likely causing a mismatch.",
+        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the metallic object on the right. Reduce the overall height of the carton roll so it occupies no more than 30% of the frame height. Replace the distinct crop rows in the background with neutral soil texture to maintain the hardware story context. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 86,
+      "product_width_percent": 23.5,
+      "product_height_percent": 27.1,
+      "product_x_center_percent": 31.4,
+      "reasons": [
+        "Product (drip-tape roll) is white and blue, wide low cylindrical shape, secondary in frame and off-center on lower third, naturally placed on soil.",
+        "Watermark 'AFP | 09134922013' is present in bottom-right as required.",
+        "Zero people or human body parts visible; background shows an unattended farm/irrigation context (tractors, plowed field, red barn) that is appropriate for a hardware/role-3 story.",
+        "Product width (~24%) and height (~27%) are within acceptable ranges; ratio is consistent with a wide low roll.",
+        "No hard reject elements detected (no second product, layflat hose, pipe through roll, fake caption or extra text besides authentic package print and watermark)."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "راهنمای-جامع-آبیاری-گلخانهای-جزئیات-فنی.webp"
+}

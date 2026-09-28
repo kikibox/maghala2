@@ -1,0 +1,82 @@
+{
+  "id": "irr-11",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 14,
+      "product_height_percent": 12,
+      "product_x_center_percent": 72,
+      "reasons": [
+        "Hard reject: Human body parts (arms, hands, legs) and a person are clearly visible in the image, violating the zero-person rule.",
+        "Hard reject: The object being held is a small cylindrical container/canister rather than a wide, low cylindrical drip-tape carton roll.",
+        "Product geometry: The visible object does not match the required wide cylindrical shape with a 1.5-1.9 diameter-to-height ratio; it appears as a standard canister.",
+        "Scale: The object is significantly smaller than the preferred 20-23% frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human body parts. Replace the held canister with a large, wide, low cylindrical drip-tape carton roll made of white and blue cardboard. Place the roll off-center on the lower third of the frame directly on the soil. The roll should be about 20-23 percent of the frame width with a diameter roughly 1.5 times its height. Keep the farm context and the bottom-right watermark 'AFP | 09134922013'.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 28,
+      "product_height_percent": 26,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Missing mandatory 'AFP | 09134922013' watermark in the bottom-right corner.",
+        "Product width is estimated at approximately 28% of the frame, slightly exceeding the maximum acceptable limit of 27%.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate to include the exact text 'AFP | 09134922013' in the bottom-right corner. Slightly reduce the width of the drip-tape carton roll to fit within 27% of the frame width. Ensure the roll remains off-center and naturally placed on the soil. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 13,
+      "product_height_percent": 30,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Product width (13%) is at the very bottom of the acceptable range and slightly low compared to the preferred target of 20-23%.",
+        "Product is placed on the extreme lower-left, which may be too off-center or cramped against the edge.",
+        "Crop morphology is ambiguous (generic green leafy plant) rather than unmistakable."
+      ],
+      "correction_prompt": "Scale the AFP drip-tape roll to approximately 22% of the frame width. Shift the roll slightly right to be off-center but not touching the edge. Ensure the crop in the foreground is clearly identifiable as the specific target crop (or keep neutral young vegetation if exact morphology is unavailable) and maintain the AFP watermark.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 12,
+      "product_height_percent": 20,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: The image contains a person (farmer/worker) crouching on the right side of the frame, including their hand, arm, leg, and body. The rules strictly forbid any people or human body parts.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the crouching person and their body parts entirely from the right side of the frame. Keep the drip-tape roll and the farm context (soil bed and young crop rows). Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 18,
+      "product_height_percent": 27,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Exactly one white-and-blue wide low cylindrical carton roll",
+        "Product placed naturally on soil in the lower left third",
+        "Zero people or human body parts present",
+        "Watermark 'AFP | 09134922013' is present in bottom right",
+        "Crop shows young, botanically neutral vegetation consistent with drip-tape irrigation context"
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "راهنمای-جامع-آبیاری-گلخانهای-کاربرد-عملی.webp"
+}

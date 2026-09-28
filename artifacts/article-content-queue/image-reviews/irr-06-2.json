@@ -1,0 +1,82 @@
+{
+  "id": "irr-06",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 10,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject: The image contains a person (a man) who is prominent in the frame; the requirement strictly demands zero people or human body parts.",
+        "Hard reject: The product shown is a small cylindrical container (likely a fertilizer or supplement canister), not the specified wide, low cylindrical drip-tape carton roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove the person. Replace the small container with a large, wide, low-profile white-and-blue cylindrical drip-tape carton roll (approximately 20% of frame width) placed naturally on the soil in the lower third, off-center. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 21,
+      "product_height_percent": 31,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "The product is centered in the lower third of the frame, which fails the 'off-center' requirement",
+        "The crop morphology (leaf shape and growth pattern) is ambiguous and does not clearly identify the specific crop named in the article title as required for roles 1 and 2",
+        "Text on the package is gibberish/OCR-artifact (e.g. 'nra' instead of '20mm')"
+      ],
+      "correction_prompt": "Move the white and blue drip-tape roll to the lower-left or lower-right corner of the frame to create an off-center composition. Replace the generic background seedlings with a clearly identifiable crop that matches the article title. Clean up the text on the package to be readable and realistic.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 21.5,
+      "product_height_percent": 14.8,
+      "product_x_center_percent": 65.0,
+      "reasons": [
+        "The visible diameter (width) is 21.5% and the height is 14.8%, resulting in a ratio of approximately 1.45. This is slightly below the required 1.5 to 1.9 times range, making the roll appear too squat or wide.",
+        "The crop in the foreground shows a single prominent young plant with broad, serrated leaves that lacks the specific, unmistakable botanical morphology required for the 'exact named crop' of the article title. While neutral young vegetation is sometimes acceptable, the large size and specific leaf shape of this single plant create a risk of being a clearly identifiable but incorrect species."
+      ],
+      "correction_prompt": "Increase the roll's vertical height to achieve a 1.6:1 diameter-to-height ratio. Replace the large foreground plant with a row of much smaller, less distinct seedlings to emphasize the drip-tape infrastructure and avoid species misidentification.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 42,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Presence of a person (hard reject rule: zero people and zero human body parts)",
+        "Product height is estimated at 42% of the frame (hard reject limit: 32%)",
+        "machine-enforced bounding-box check failed: Reduce product height from 42% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the farmer entirely. Reduce the size of the white and blue drip-tape carton roll to ensure its height is under 32% of the frame width and width is between 20-27% (currently too tall). Place the roll off-center on the lower third on the soil without any human hands or figures. Reduce product height from 42% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 75,
+      "product_width_percent": 18,
+      "product_height_percent": 21,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Contains exactly one AFP branded drip-tape roll in the bottom-left area",
+        "Background is a farm context with crop rows matching the general topic",
+        "Zero people, body parts, or human silhouettes visible",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner",
+        "Product is off-center and placed naturally on soil",
+        "Product dimensions are within acceptable limits (width <27%, height <32%)"
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "راهنمای-جامع-آبیاری-چرخشی-کاربرد-عملی.webp"
+}

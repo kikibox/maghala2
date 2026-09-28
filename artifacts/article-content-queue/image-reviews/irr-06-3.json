@@ -1,0 +1,71 @@
+{
+  "id": "irr-06",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Presence of a man (farmer) kneeling in the image, which is an absolute hard reject per the 'zero people' constraint",
+        "Presence of hands and human body parts in the foreground"
+      ],
+      "correction_prompt": "Regenerate the image with no human or animal subjects; place the AFP drip-tape roll and a small filter/valve on the soil, leaving the background (tractor, barn, field) and watermark intact.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 90,
+      "product_width_percent": 28,
+      "product_height_percent": 30,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The image displays a single cylindrical carton roll of drip tape that is white and blue, fitting the 'AFP' branding requirement.",
+        "The product is placed on the soil in the lower third of the frame and is off-center to the left.",
+        "The background shows a farm context with a red barn and a tractor, which aligns with the hardware/farm story role.",
+        "There are no people, faces, hands, or other human body parts visible in the image.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom right corner.",
+        "No hard-reject items such as extra commercial packages or impossible geometry are present.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 17,
+      "product_height_percent": 23,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: a person (farmer) is visible crouching next to the product, which violates the zero-person rule"
+      ],
+      "correction_prompt": "Regenerate image with a drip-tape roll placed on farm soil but completely remove the man; show only the unattended product in a rural field context with no human silhouettes, hands, or body parts anywhere in frame.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 17,
+      "product_height_percent": 28,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Product is a white-and-blue cylindrical drip-tape carton roll, matching the 'city, family' (interpreted as generic farm context based on role 3 hardware story) and image role requirements.",
+        "Zero people or human body parts visible; background contains only farm infrastructure (tractor, barn) and soil.",
+        "Product width (17%) and height (28%) are within acceptable ranges.",
+        "Product is off-center (45% x-center) and naturally placed on soil.",
+        "Diameter to height ratio is consistent with a wide low cylindrical roll.",
+        "No forbidden items (bottles, pipes, extra rolls) present."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "راهنمای-جامع-آبیاری-چرخشی-جزئیات-فنی.webp"
+}

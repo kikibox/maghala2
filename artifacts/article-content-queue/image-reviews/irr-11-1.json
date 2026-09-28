@@ -1,0 +1,72 @@
+{
+  "id": "irr-11",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 19,
+      "product_height_percent": 24,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Impossible geometry and inauthentic context: The image shows a large, mature plant growing directly out of the central opening of the carton (like a houseplant in a pot), which is not how drip-tape cartons are placed in fields.",
+        "Failure to represent product shape: The object lacks the 'wide and low cylindrical' profile of a tape roll, appearing instead as a short, tall pot.",
+        "Product staging: The object is placed on top of a raised clod/soil mound rather than being naturally placed on flat soil.",
+        "Missing crop specificity: The crop in the background appears to be corn/maize, but the image role requires an identifiable crop from the article (not provided here, but 'city/family' might imply home gardens or different crops depending on the title; without the title, I cannot confirm if maize is the exact article crop, but the placement issue is the hard reject)."
+      ],
+      "correction_prompt": "Generate an image of a white and blue AFP drip-tape carton roll lying on flat brown soil in a farm field. The carton must be empty and closed (no plant growing out of it). The crop rows should be clearly visible in the background. Ensure the product is cylindrical and wider than it is tall. No people or animals.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 34,
+      "product_height_percent": 35,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Product width is approximately 34% of the frame, significantly exceeding the 27% maximum limit.",
+        "Product height is approximately 35% of the frame, exceeding the 32% maximum limit.",
+        "Product is centered horizontally rather than placed off-center in the lower third of the frame.",
+        "Product is placed on the main field surface rather than on the lower third of the frame.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 34% to 13-27% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the product size so the width is less than 25% of the frame. Move the product to the bottom-left or bottom-right of the frame to be off-center. Keep the watermelon crop context and the AFP watermark. Reduce the product group from 34% to 13-27% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 18,
+      "reasons": [
+        "Hard reject: A person/farmer is clearly visible in the image, violating the zero people rule.",
+        "Hard reject: The central object is a giant watermelon, not the AFP drip-tape carton roll which is required to be the subject.",
+        "The AFP roll is positioned in the bottom-left corner and is secondary to the person and the oversized fruit."
+      ],
+      "correction_prompt": "Remove the person/farmer completely. Remove the giant watermelon. Place a single AFP white-and-blue wide cylindrical drip-tape carton roll on the soil in the lower third, off-center, as the primary focal point. Maintain the farm background context. Keep the bottom-right watermark.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product meets all physical requirements: exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll is present.",
+        "Placement is correct: the roll is off-center on the lower third and naturally placed on soil.",
+        "Dimensions are within acceptable ranges: width is 18% (within the 13-27% range) and height is 24% (below the 32% limit).",
+        "Botanical context is appropriate: The crop in the background has indeterminate young morphology, which is acceptable as 'neutral young vegetation' since exact mature morphology is unavailable.",
+        "Hard reject checks passed: No people, body parts, extra commercial products, bottles, or gibberish text are visible.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "راهنمای-جامع-آبیاری-گلخانهای-تصویر-شاخص.webp"
+}
