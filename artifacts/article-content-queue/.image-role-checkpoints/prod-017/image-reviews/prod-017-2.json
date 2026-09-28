@@ -1,0 +1,101 @@
+{
+  "id": "prod-017",
+  "kind": 2,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 8,
+      "product_height_percent": 10,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Presence of people (hard reject)",
+        "Presence of human body parts including hands and faces (hard reject)",
+        "Product staging is centered (hard reject)",
+        "Objects are being held by workers rather than lying flat on the ground",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove all people and hands. Regenerate the image showing exactly two AFP layflat coils (one packaged, one bare black) resting flat on the ground. Position the coils off-center on the lower third, occupying approximately 12-15% of the frame width. Keep the bottom-right watermark 'AFP | 09134922013' intact. Enlarge the product group from 8% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 72,
+      "product_height_percent": 60,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product pair is centered, violating the 'off-center on the lower third' requirement",
+        "Product pair occupies approximately 72% of frame width, violating the 12-15% limit",
+        "Both coils are standing upright/vertical rather than lying flat on the ground",
+        "machine-enforced bounding-box check failed: Reduce the product group from 72% to 9-20% of frame width.; Reduce product height from 60% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image so the two coils (one wrapped, one bare) are lying completely flat on the soil and positioned off-center in the bottom third. The pair must be very small, occupying only about 12% of the total image width. Reduce the product group from 72% to 9-20% of frame width. Reduce product height from 60% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 50,
+      "product_height_percent": 40,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product pair width (approx 50% of frame width) exceeds the 12-15% constraint.",
+        "Product staging is centered rather than off-center on the lower third.",
+        "The packaged coil exhibits an impossible geometric shape (angular polygon/octagonal box) which violates the 'distorted dimensions' and 'impossible intersection' hard reject criteria.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 50% to 9-20% of frame width.; Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Resize product pair to occupy 12-15% of frame width. Move product cluster to lower-left third to be off-center. Ensure the packaged coil is a flat circular disc, not a box. Ensure products are clearly visible and distinct. Reduce the product group from 50% to 9-20% of frame width. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 25,
+      "product_height_percent": 35,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Presence of a human (farmer) in the image.",
+        "Visible human hands and face.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 25% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human body parts. Show only the packaged coil and bare black woven coil on the ground in a crop field, with no humans present. Reduce the product group from 25% to 9-20% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 90,
+      "product_width_percent": 26,
+      "product_height_percent": 22,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Product pair occupies approximately 26% of the frame width and is positioned correctly on the lower third of the image.",
+        "The watermark 'AFP | 09134922013' is clearly visible in the bottom-right corner as required.",
+        "The image contains no people or human body parts.",
+        "While the two coils are slightly larger than the recommended 12-15% ideal size, they remain fully visible, separate, and flat on the ground, making the image practically usable.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 26% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 26% to 9-20% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 45,
+      "product_height_percent": 35,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Presence of a person (worker) and human body parts (hands, face, arms, legs)",
+        "Product pair exceeds maximum allowed frame width of 15%",
+        "Product staging is centered rather than offset to the lower third",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the person entirely. Reposition the packaged AFP coil and bare black woven coil to the lower third of the frame, offset to the left or right. Shrink the pair so their combined width is under 15% of the image. Ensure they are flat on the ground and separate. Reduce the product group from 45% to 9-20% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

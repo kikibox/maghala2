@@ -1,0 +1,55 @@
+{
+  "id": "prod-019",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 7,
+      "product_height_percent": 14,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Hard reject: Image contains two people (farmers/workers) sitting in the foreground, violating the 'zero people' rule.",
+        "Product is not the correct shape: The object is a small cylinder (like a bucket or canister), not a 'wide low cylindrical' drip-tape roll.",
+        "Product size is incorrect: The product is too small (7% width) and the geometry does not match the 1.5-1.9:1 diameter-to-height ratio for a wide roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people. Replace the small cylinder with a wide, short, low-profile white and blue drip-tape roll placed directly on the soil. The roll should occupy roughly 20% of the image width and be positioned in the lower third, off-center. Enlarge the product group from 7% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Hard reject: The image contains three distinct human figures (farmers) crouching in the field, violating the rule for zero people or body parts.",
+        "The crop in the image is clearly identifiable as a corn/maize seedling. Since the article title/crop is not specified, and the rule states 'Hard reject a clearly identifiable different species', this could fail if the intended crop was something else. However, the presence of humans is the primary absolute failure."
+      ],
+      "correction_prompt": "Regenerate the image with an empty farm background showing only soil and young crops; strictly remove all people, farmers, and human figures from the scene while keeping the drip-tape carton roll and irrigation context.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 20,
+      "product_height_percent": 18,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product is a white-and-blue wide low cylindrical drip-tape roll placed off-center on soil in the lower third.",
+        "Background is a farm field with young green seedlings, consistent with a general family/crop farming context.",
+        "The young seedlings are botanically neutral (unidentifiable morphology), which is acceptable under the rules as the crop-specific agronomic story is present.",
+        "Product aspect ratio (approx 1.5:1) and proportions (width ~20%, height ~18%) fall within all acceptable bounds.",
+        "Zero people or human body parts are visible in the frame.",
+        "Required watermark 'AFP | 09134922013' is clearly visible in the bottom right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "اندازهگیری-نوار-تیپ-پلاکدار-برای-مزرعه-کاربرد-عملی.webp"
+}

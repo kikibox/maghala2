@@ -1,0 +1,43 @@
+{
+  "id": "prod-020",
+  "kind": 2,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Image contains a full human silhouette (a man kneeling), which is a hard reject.",
+        "Hard reject rule: 'Hard reject any person, farmer, worker, face, hand, arm, leg, body part or human silhouette'.",
+        "The product pair (one packaged coil and one bare coil) is partially visible on the lower right, but the presence of the human figure violates the 'zero people' constraint.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove the man/farmer. The scene must show only the two layflat coils (one packaged, one bare) on the soil with no humans or body parts visible. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 15,
+      "product_height_percent": 12,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Contains exactly two objects: one bare black woven coil and one packaged AFP coil.",
+        "No people, human body parts, or silhouettes are present.",
+        "Products are flat on the ground, separate, and fully visible.",
+        "Pair occupies approximately 12-15% of the frame width as required.",
+        "Positioning is off-center on the lower third.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No disallowed objects (valves, round pipes, drip tape, etc.) are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "راهنمای-جامع-خرید-لوله-تاشو-110-میلیمتر-نکات-انتخاب-و-قیمت-کاربرد-عملی.webp"
+}

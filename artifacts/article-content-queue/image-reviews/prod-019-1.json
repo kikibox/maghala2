@@ -1,0 +1,71 @@
+{
+  "id": "prod-019",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 10,
+      "product_height_percent": 14,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Contains a clearly identifiable human subject (a man crouching in the field).",
+        "The presence of a person is a strict hard reject.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with the exact same drip tape product and farm field background, but completely remove the person. Ensure the scene only contains the landscape, the soil, the vegetation, and the irrigation product. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 26,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: The product has a visible central core and is a standard agricultural 'reel' rather than a wide cylindrical carton roll.",
+        "Hard reject: The image contains a fake/placeholder headline and invented gibberish text ('Dry irrigates tree' and 'Irrigation tape') which violates the requirement for authentic package print only.",
+        "Hard reject: Product geometry and placement are unnatural, appearing staged on the soil rather than a natural carton roll.",
+        "The background crop is too generic and lacks the specific morphology required for the article title without being a hard reject of a different species."
+      ],
+      "correction_prompt": "Regenerate as a wide cylindrical drip-tape carton roll without a central core, featuring only authentic AFP branding and contact details without any invented headlines or gibberish text, placed naturally on soil in a farm context.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 45,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The product roll is oriented vertically (standing on its face) with a height exceeding 32% of the frame, violating the requirement for a 'wide low' cylindrical roll with a visible diameter of 1.5-1.9 times its height.",
+        "The crop shows mature tomato plants, which is contradictory to the context of 'city, family' (an urban setting) and typically not associated with drip-tape usage for tomatoes.",
+        "machine-enforced bounding-box check failed: Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with the drip-tape roll lying flat on the soil (wide, low profile) in an urban community garden or backyard context. The product must be off-center in the lower third. Ensure the visible diameter is at least 1.5x the height. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The image displays the correct product: an AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "The image accurately matches the 'family tape20' and 'city' (urban garden) context, featuring raised garden beds and young seedlings.",
+        "The product is correctly positioned on soil in the lower third of the frame and is sufficiently off-center to the left.",
+        "The exact required bottom-right watermark 'AFP | 09134922013' is present.",
+        "The scene is free of people, human body parts, and prohibited items like bottles or extra packages.",
+        "The seedlings are botanically neutral and pass as young vegetation suitable for the topic.",
+        "Product dimensions (width approx 20%, height approx 28%) fall within all acceptance thresholds."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "اندازهگیری-نوار-تیپ-پلاکدار-برای-مزرعه-تصویر-شاخص.webp"
+}

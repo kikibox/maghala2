@@ -1,0 +1,96 @@
+{
+  "id": "prod-007",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 56,
+      "reasons": [
+        "The image contains two distinct people (farmers), which is a hard rejection trigger per the instructions requiring zero people and zero human body parts.",
+        "The product (drip-tape roll) is being held by a person's hand, which implies human interaction and violates the strict 'no people' rule.",
+        "Two people are clearly visible in the frame, making the image fail the 'zero people' constraint immediately."
+      ],
+      "correction_prompt": "Regenerate the image to strictly exclude any people, human silhouettes, or body parts. Show the white-and-blue AFP drip-tape roll resting on the soil in the foreground with a leek (تره) crop context in the background, keeping the roll off-center in the lower third.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 25,
+      "product_height_percent": 20,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "The crop shown next to the product is clearly an onion (bulbous base), whereas the required crop is leek (تره) which has a solid white stem and no bulb; this constitutes a clearly identifiable different species."
+      ],
+      "correction_prompt": "Replace the onion with a leek (white stalk, flat green leaves) and keep the white-and-blue drip-tape roll on the soil bed.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Product geometry is inverted: the drip-tape roll is shown with its circular face facing the camera (frontal view), but the specification requires a side-view cylindrical appearance with a visible diameter (width) of 1.5 to 1.9 times the visible height. The current roll is taller than it is wide, which is impossible for a standard drip tape carton roll.",
+        "The crop featured prominently in the center (white thick stem with flat strap-like leaves) does not accurately depict a leek (تره). It resembles a lily or a generic monocot seedling, lacking the characteristic cylindrical, hollow, leafy sheath of a leek. This risks a 'clearly identifiable different species' hard reject."
+      ],
+      "correction_prompt": "Regenerate with the drip-tape roll lying on its side (horizontal cylinder) to show the correct diameter-to-height ratio. Modify the central crop to be a botanically accurate leek with a thick white cylindrical stem and flat strap-like green leaves. Ensure the leek is not the main focal point so the roll fits the 20-23% width preference.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "The required product (AFP white-and-blue wide low cylindrical drip-tape carton roll) is completely missing from the image.",
+        "The primary subject is a giant leek, which is not the required product.",
+        "Product detection failed: no bounding box for a drip-tape roll could be established.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Generate a low-angle shot of a white and blue cylindrical drip-tape carton roll lying on the soil in a leek field. The leeks should be visible in the background as crops, but the roll is the main focus. The roll must be wide and low, off-center, with the text 'AFP' clearly visible. Include the watermark 'AFP | 09134922013' at the bottom right. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 28,
+      "product_height_percent": 29,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Hard reject: The product is centered (x_center 47%) rather than off-center on the lower third.",
+        "Hard reject: The product width (28%) exceeds the strict maximum limit of 27%.",
+        "Hard reject: The text on the front of the carton (below the AFP logo) is gibberish.",
+        "Hard reject: The visible diameter (28) to height (29) ratio is approximately 1.0, which is far outside the required 1.5 to 1.9 range.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Move the roll to the bottom-left or bottom-right (off-center). Make the roll more cylindrical (diameter must be 1.5x-1.9x height) and slightly smaller (width under 27% of frame). Ensure the crop rows clearly represent leeks. Remove all gibberish text; only the AFP logo and authentic branding are allowed. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 15,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject: Image contains a visible person (male farmer), including full body, face, and hands, which is explicitly prohibited.",
+        "The product geometry is incorrect; it is a tall, narrow cylinder rather than the required wide, low roll shape (visible diameter must be 1.5-1.9x visible height).",
+        "The product dimensions are too small; width is approx 8% of the frame (min 13%) and height is approx 15% (exceeds low-profile requirement).",
+        "The crop in the foreground is not botanically identifiable as leek (تره) and the image staging is centered/dominant with the person rather than focusing on the product placement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to remove the human figure entirely. Replace the product with a wide, low, cylindrical drip-tape roll (diameter 1.5-1.9x height) placed on the soil off-center on the lower third. The roll must be larger (approx 20% of frame width). The background crop rows must clearly represent leek (broad, flat, parallel leaves) and include authentic AFP white-and-blue packaging. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

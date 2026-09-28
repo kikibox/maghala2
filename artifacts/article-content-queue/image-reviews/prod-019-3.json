@@ -1,0 +1,82 @@
+{
+  "id": "prod-019",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 17,
+      "product_height_percent": 22,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "A filter/fluid control device (extra commercial product) is visible and violates the rule prohibiting extra commercial products.",
+        "Product is not positioned on the lower third; it is vertically centered to high.",
+        "The crop plants are clearly identifiable, which contradicts the Role 3 'hardware story' instruction to keep crops absent or visually neutral."
+      ],
+      "correction_prompt": "Remove the filter hardware and the visible crop seedlings. Place the white and blue drip tape roll on the lower third of the frame against a neutral, empty soil background.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "The image contains a visible human silhouette (a farmer) standing next to the tractor in the background, which is a hard reject violation as people are not allowed.",
+        "Only one instance of the required bottom-right watermark 'AFP | 09134922013' is present. The prompt description for the 'AFP' carton roll implies strict package print matching, and the watermark appears somewhat detached or synthetic.",
+        "The crop in the foreground (young corn) is somewhat generic, though not necessarily a hard reject if the article doesn't contradict it, but the human presence is the definitive failure."
+      ],
+      "correction_prompt": "Remove the human silhouette from the background; strictly adhere to the 'zero people' rule. Remove the watermark text printed on the product packaging itself, keeping only the mandatory bottom-right watermark 'AFP | 09134922013'. Move the product roll slightly to the right to be more clearly off-center (lower third) and reduce the visual prominence of the foreground corn rows to focus more on the hardware context.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 18,
+      "product_height_percent": 17,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: Visible human silhouette/farmer on the yellow implement in the mid-ground violates the zero-person requirement.",
+        "Roll diameter ratio fails: Visible diameter is approximately 1.1x its height, which is outside the required 1.5 to 1.9x aspect ratio range.",
+        "Staging: Product is centered horizontally and placed on hard-packed soil between crop rows rather than a natural soil position."
+      ],
+      "correction_prompt": "Remove all people and silhouettes from the field. Increase the diameter of the white-and-blue carton roll relative to its height to achieve a 1.5-1.9x ratio. Shift the roll off-center to the lower third and place it on loose soil.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 21,
+      "product_height_percent": 29,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Hard reject: Presence of two human figures (workers/farmers) in the background, violating the strict zero-person and zero-human-body-part requirement.",
+        "Watermark rejection: The required bottom-right watermark 'AFP | 09134922013' is missing."
+      ],
+      "correction_prompt": "Remove all people, human silhouettes, and human body parts from the background. Add the specific text watermark 'AFP | 09134922013' in the bottom-right corner.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 13,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Exactly one AFP white-and-blue drip-tape carton roll is visible.",
+        "The product is off-center on the lower third and naturally placed on soil.",
+        "The background farm context (rows, soil, barn) is visible and fits the irrigation/farm topic without contradicting a crop-specific article.",
+        "No people, faces, hands, or human silhouettes are present.",
+        "The required bottom-right watermark \"AFP | 09134922013\" is present and correctly formatted.",
+        "Product dimensions are within acceptable bounds (width ~18%, height ~13%)."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "اندازهگیری-نوار-تیپ-پلاکدار-برای-مزرعه-جزئیات-فنی.webp"
+}

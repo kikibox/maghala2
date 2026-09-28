@@ -1,0 +1,97 @@
+{
+  "id": "prod-009",
+  "kind": 1,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 10,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Contains a human figure (worker/farmer)",
+        "Contains visible human body parts (arms, hands, face, legs, torso)",
+        "Coils are not flat on the ground but being handled by a person"
+      ],
+      "correction_prompt": "Regenerate the image showing the two layflat coils flat on the ground in a field with no people, no farmers, and no human body parts visible.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 72,
+      "product_height_percent": 24,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "The pair of layflat coils occupies significantly more than the required 12-15 percent of the frame width, violating the scale constraint.",
+        "The products are placed in the foreground, making them appear much larger relative to the image frame.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 72% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Significantly reduce the scale of the layflat coils so the pair occupies only 12-15% of the frame width, positioning them further back in the scene to appear smaller while maintaining the bottom-right placement. Reduce the product group from 72% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Presence of a person (kneeling man).",
+        "Hard reject: Human body parts (hands, legs) are clearly visible.",
+        "Hard reject: The bare black coil is located in the immediate foreground and occupies a significantly larger portion of the frame width than the approved 12-15% range.",
+        "Hard reject: The product pair is not off-center on the lower third as required.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the man completely. Reduce the size of the black coil and white coil to occupy only 12-15% of frame width. Reposition the coils to the lower right, completely separate and flat on the ground. Ensure zero people or body parts are visible. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 22,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Presence of a person (worker/farmer)",
+        "Only one coil visible instead of two"
+      ],
+      "correction_prompt": "Remove the person entirely. Replace with a second coil: one must be a packaged AFP coil and one must be a bare black woven coil. Ensure both coils are separate, flat on the ground, and fully visible in the lower-third region. The combined width of the two coils must remain under 15% of the frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 42,
+      "product_height_percent": 25,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Image contains exactly two approved layflat objects: one packaged AFP coil and one bare black woven coil.",
+        "The products are flat, fully visible, and separate on the ground.",
+        "No people or human body parts are visible in the image.",
+        "The exact bottom-right watermark 'AFP | 09134922013' is present and correctly formatted.",
+        "Background features ordinary farm infrastructure and soil texture, which are not cause for rejection.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 42% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 42% to 9-20% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 18,
+      "product_height_percent": 12,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Contains a person",
+        "Product pair is wider than the 15 percent frame width limit"
+      ],
+      "correction_prompt": "Remove all people and human silhouettes. Generate a packaged AFP coil and a bare black woven coil that are clearly separated and flat on the ground, positioned on the lower third, right of center, and occupying approximately 12-15 percent of the frame width. Ensure no other objects are present.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

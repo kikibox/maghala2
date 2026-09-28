@@ -1,0 +1,44 @@
+{
+  "id": "prod-018",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 33,
+      "product_height_percent": 34,
+      "product_x_center_percent": 29,
+      "reasons": [
+        "Hard reject: Person (farmer/worker) is clearly visible in the right background",
+        "Hard reject: Human body parts (arms, legs) are visible",
+        "Product (carton roll + coiled tape) is significantly wider than the 27% maximum limit",
+        "Product height exceeds the 32% maximum limit",
+        "Geometry: The coiled tape extends far to the left, making the total bounding box too large relative to the frame",
+        "machine-enforced bounding-box check failed: Reduce the product group from 33% to 13-27% of frame width.; Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the woman and all human elements completely. Reduce the width and height of the drip-tape roll and coiled tape to make it secondary; it should occupy less than 25% of the frame width and height. Keep the roll off-center on the lower third. Ensure no person is visible. Reduce the product group from 33% to 13-27% of frame width. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 15,
+      "product_height_percent": 22,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Product is a white and blue cylindrical carton roll placed on soil in a farm context",
+        "Width (~15%) and height (~22%) are within acceptable ranges",
+        "Placement is off-center and low, avoiding centered staging",
+        "Zero people or human body parts visible",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner",
+        "Background crop morphology is neutral/young, consistent with the agronomic context without triggering a hard reject for wrong species"
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "مراحل-نصب-لوله-نخدار-125-میلیمتر-در-سیستم-آبیاری-کاربرد-عملی.webp"
+}

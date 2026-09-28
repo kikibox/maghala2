@@ -1,0 +1,67 @@
+{
+  "id": "prod-012",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 15,
+      "product_height_percent": 25,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: A male person (farmer/worker) is clearly visible in the image holding a hose. The requirements explicitly state 'zero people' and 'hard reject any person, face, hand, arm, leg, body part or human silhouette'."
+      ],
+      "correction_prompt": "Regenerate the image with absolutely no people or human figures. Show only the AFP drip tape roll resting on the soil with the farm field and barn in the background.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 24,
+      "product_height_percent": 27,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product is centered in the frame, violating the 'off-center' requirement.",
+        "Required watermark format 'AFP | 09134922013' is missing the trailing '1' (shows '0913492201' instead of '09134922013').",
+        "Package text below 'AFP' is gibberish, which is a hard reject condition."
+      ],
+      "correction_prompt": "Move the carton roll to the lower right third of the image. Correct the bottom-right watermark to read exactly 'AFP | 09134922013'. Ensure all text on the carton roll is clear and legible, not gibberish.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Hard reject: Image contains a prominent human figure (farmer/man) crouching and touching the product.",
+        "Hard reject: Violates the 'zero people and zero human body parts' constraint.",
+        "Product is interacting with the person rather than sitting naturally on soil alone."
+      ],
+      "correction_prompt": "Remove the man from the image. Show only the single white-and-blue AFP drip-tape carton roll resting on the soil in the farm field, with the red barn in the background. The roll must be off-center on the lower third, with no humans or animals present.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 27,
+      "product_height_percent": 29,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The image displays exactly one white and blue cylindrical carton roll consistent with the hardware story role.",
+        "The product width is at the upper boundary of the acceptable 27% limit.",
+        "The product is naturally placed on soil in the lower third of the frame and is off-center.",
+        "Zero people or human body parts are visible in the image.",
+        "Required AFP watermark is present in the bottom right corner.",
+        "The background context of a farm field with a barn is appropriate and does not contradict the topic."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "توافق-لوله-نخدار-160-میلیمتر-با-نوار-تیپ-و-قطرهچکان-جزئیات-فنی.webp"
+}

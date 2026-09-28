@@ -1,0 +1,58 @@
+{
+  "id": "irr-07",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 20,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Contains a visible person (worker and body parts), which is a hard reject condition.",
+        "The roll is too narrow (approx 12% width), falling outside the 13-27% acceptable range.",
+        "The roll is taller than the width (height 20%, width 12%), failing the 1.5-1.9 aspect ratio requirement.",
+        "The roll is centered, whereas the requirement specifies an off-center placement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes. Increase the drip tape roll's width to 18% of the frame (making it wider than it is tall) and position it off-center in the lower third on the soil. Ensure the AFP watermark remains. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 22,
+      "product_height_percent": 30,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: Presence of two people (a man and a woman) and visible human body parts (faces, hands, arms, legs) violates the 'zero people' constraint.",
+        "Hard reject: The product is not an AFP white-and-blue cylindrical carton roll; it is styled to look like a roll of toilet paper or generic paper roll.",
+        "Hard reject: The product lacks specific drip-tape branding and the required 'AFP' packaging design."
+      ],
+      "correction_prompt": "Remove all human figures and body parts completely. Replace the toilet-paper-like roll with a professional white and blue cylindrical drip-tape carton roll labeled 'AFP' with accurate drip-tape packaging. Position the roll low and off-center on the soil in a farm context (e.g., field with crops). Ensure the AFP phone watermark '09134922013' is visible in the bottom right corner.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Exactly one AFP white-and-blue cylindrical drip-tape carton roll is present.",
+        "Product geometry matches requirements: wide low cylindrical shape with visible diameter approximately 1.5-1.9 times its height.",
+        "Placement is off-center on the lower third, naturally positioned on the soil.",
+        "Product dimensions (width 24%, height 30%) fall within the acceptable 13-27% width range and <=32% height limit.",
+        "Zero people or human body parts are visible in the scene.",
+        "Watermark 'AFP | 09134922013' is present in the bottom right as required.",
+        "Background features young vegetation in a farm context, which is acceptable as neutral young vegetation when the agronomic story is clear."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "راهنمای-جامع-آبیاری-رانشی-کاربرد-عملی.webp"
+}

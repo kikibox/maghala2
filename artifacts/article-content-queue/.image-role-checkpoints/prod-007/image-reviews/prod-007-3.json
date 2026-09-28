@@ -1,0 +1,92 @@
+{
+  "id": "prod-007",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 14,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Human silhouette (farmer) is visible in the background, which is a hard reject.",
+        "Product width is approximately 12% of the frame, which is below the minimum acceptable threshold of 13%.",
+        "Product ratio (width/height) is approximately 0.86, failing the required range of 1.5 to 1.9.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person and animals from the background. Increase the drip tape roll size to at least 15-20% of the frame width and ensure its width is 1.5 to 1.9 times its height. Keep the product off-center in the lower third on the soil. Maintain the 'AFP | 09134922013' watermark. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 31,
+      "product_height_percent": 22,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Contains human figures (persons visible in the distant field near the red barn), violating the 'zero people' requirement.",
+        "Product bounding box width is estimated at 31% of the frame, which exceeds the hard reject threshold of 27%.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 31% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image completely removing all human figures or silhouettes. Shrink the cylindrical drip-tape roll to be 20-24% of the frame width to ensure it remains clearly secondary to the farm scene. Maintain the 'AFP | 09134922013' watermark. Reduce the product group from 31% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 20,
+      "product_height_percent": 26,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product is centered horizontally (approx 50% x-center), violating the off-center staging requirement.",
+        "The crop is clearly green cannabis, which contradicts the 'leek' (تره) topic mentioned in the rejection criteria."
+      ],
+      "correction_prompt": "Move the AFP drip-tape roll to the lower-left third of the frame. Replace the cannabis plants in the foreground with small, young leek shoots.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 16,
+      "product_height_percent": 14,
+      "product_x_center_percent": 18,
+      "reasons": [
+        "A person (farmer) is prominently visible in the frame, which is a hard reject condition for all human body parts or silhouettes.",
+        "There are two product rolls visible: one unattended on the soil and one being held by the person; the specification requires exactly one roll.",
+        "The unattended roll is cut off by the left edge of the frame rather than being naturally placed and fully visible."
+      ],
+      "correction_prompt": "Remove the person entirely. Ensure only one wide white-and-blue drip-tape roll remains, sitting unattended on the soil in the lower third, fully within the frame with no cropping.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Presence of a human silhouette (driver) inside the tractor cabin, which triggers a hard reject for any human presence, even distant.",
+        "The required bottom-right watermark reads 'AFP | 09134922013', which lacks the '0' at the beginning of the phone number; the spec explicitly requires 'AFP | 09134922013'."
+      ],
+      "correction_prompt": "Regenerate the image to ensure the tractor cabin is completely empty with no visible silhouettes, drivers, or human figures. Correct the bottom-right watermark text to exactly 'AFP | 09134922013'. Maintain the off-center low placement of the white and blue cylindrical drip-tape roll on the soil in the farm setting.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Presence of a person (farmer) in the image, which is a hard reject condition.",
+        "The person is visibly interacting with the scene (holding a phone), explicitly violating the 'zero people' and 'zero human body parts' rule."
+      ],
+      "correction_prompt": "Regenerate the image without the person/farmer. The tractor should be unattended or have the driver's seat empty. Keep the product roll in the same position on the soil in the foreground. Ensure no body parts or silhouettes are visible anywhere in the frame.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}
