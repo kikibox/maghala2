@@ -1,0 +1,59 @@
+{
+  "id": "crop-317",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 92,
+      "product_width_percent": 29,
+      "product_height_percent": 24,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Watermark 'AFP | 09134922013' is present in the bottom right corner.",
+        "The product (white and blue roll) is clearly visible and the brand 'AFP' is legible.",
+        "The roll is placed naturally on the soil in a crop field context.",
+        "There are zero people or human body parts in the image.",
+        "The crop morphology (young plants in rows) is consistent with a farm context.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 29% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 29% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 12,
+      "product_height_percent": 22,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: image contains a person (crouching woman interacting with the product).",
+        "Hard reject: the product (carton/drip-tape roll) has a visible height of ~22%, which exceeds the 32% height cap combined with the 1.5-1.9 aspect ratio requirement (diameter/height must be 1.5-1.9, meaning height should be ~50-65% of width, but here height > width).",
+        "Product placement is too low in the frame and centered horizontally rather than off-center on the lower third as a natural object on soil.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with zero people and zero body parts; remove the crouching woman entirely; place the product (drip-tape roll) off-center in the lower third, sitting naturally on soil with a visible width of 15-20% of the frame and height < 32%; ensure aspect ratio is wide/low cylindrical. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product is a wide low cylindrical roll, white and blue, positioned on the soil.",
+        "Product dimensions (18% width, 22% height) and ratio (~0.82) are within acceptable or preferred ranges.",
+        "Crop shows botanically accurate maize morphology.",
+        "Background (field with barn) is appropriate for a farm context.",
+        "Zero people or human body parts are visible.",
+        "Required watermark 'AFP | 09134922013' is present and legible."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "نگهداری-شوید-با-نوار-تیپ-نکات-کلیدی-تصویر-شاخص.webp"
+}

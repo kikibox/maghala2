@@ -1,0 +1,69 @@
+{
+  "id": "crop-326",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 40,
+      "product_height_percent": 60,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: Presence of two men (farmers/workers) in the frame violates the requirement for zero people or human body parts.",
+        "Hard reject: The product shape is a tall narrow container/jar rather than a wide, low cylindrical roll. The aspect ratio (width vs height) is incorrect.",
+        "The product is centered and prominent, rather than being secondary and off-center on the lower third.",
+        "The product is being held by a human hand, which is explicitly forbidden.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 40% to 13-27% of frame width.; Reduce product height from 60% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove all people. Show a wide, low, cylindrical white and blue drip-tape carton roll resting on the soil in the lower third, off-center. The roll should be 13-23% of the image width. Keep the farm background and AFP watermark. Reduce the product group from 40% to 13-27% of frame width. Reduce product height from 60% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 30,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The central object is clearly a tall, narrow drum (a roll of paper or towel) rather than a wide, low cylindrical drip-tape carton roll; it fails the aspect ratio requirement (visible diameter must be 1.5-1.9x height, but it is a tall cylinder).",
+        "The crop (maize/corn) shows identifiable mature leaf morphology, which is botanically different from the 'family' crop specified in the article title, triggering a hard reject for a clearly identifiable different species."
+      ],
+      "correction_prompt": "Replace the tall paper roll with a wide, flat cylindrical white drip-tape carton roll with a blue label (AFP branding) that is significantly wider than it is tall (diameter 1.5x height). Change the crop rows to small, indeterminate neutral seedlings. Keep the farm background and bottom-right AFP watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: Multiple people (two men) are visible in the image; the image must contain zero people and zero body parts.",
+        "Product placement: The roll is held by hands and is centered in the frame rather than placed naturally on soil in the lower third.",
+        "Staging: The presence of people violates the 'unattended hardware' constraint and makes the scene look like a staged commercial portrait rather than a documentary farm shot."
+      ],
+      "correction_prompt": "Remove all people from the scene. Place the white-and-blue drip-tape roll horizontally on the soil in the lower third of the frame, slightly off-center to the right. Show a farm context with visible drip irrigation lines and crop rows (e.g., tomatoes or corn seedlings). Keep the AFP watermark in the bottom right.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 15,
+      "product_height_percent": 12,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Exact required bottom-right watermark present",
+        "No people or human body parts visible",
+        "Product is off-center in the lower third",
+        "Product aspect ratio and size are within acceptable parameters",
+        "Background context (young field rows) aligns with irrigation crop theme"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "فاصله-نوار-تیپ-در-کشت-ارزن-استانداردهای-توصیهشده-کاربرد-عملی.webp"
+}

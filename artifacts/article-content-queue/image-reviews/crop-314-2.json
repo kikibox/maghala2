@@ -1,0 +1,75 @@
+{
+  "id": "crop-314",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 9,
+      "product_height_percent": 10,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: Image contains a visible person (farmer/worker) and human body parts.",
+        "Hard reject: Product is not naturally placed on the soil (held by a person).",
+        "Hard reject: Product is centered relative to the frame, failing the off-center requirement.",
+        "The crop in the image appears to be wheat/grain, not the specified garlic (narrow flat blue-green leaves).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image showing a white-and-blue AFP drip tape roll placed on soil in the lower-left or lower-right third of a garlic field. Remove all people and human body parts. Ensure the crop is identifiable as garlic (narrow blue-green leaves). Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 31,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The product is positioned too high vertically (center ~70% from top), failing the required 'lower third' off-center staging.",
+        "The crop morphology is ambiguous; the leaves are long and broad, which could be mistaken for onion or wheat, rather than the required 'narrow flat blue-green leaves emerging in upright clusters' of garlic.",
+        "The text on the carton is illegible gibberish ('Strt', etc.) rather than a clean white-and-blue AFP brand design."
+      ],
+      "correction_prompt": "Move the roll lower so its center is in the bottom 20% of the frame. Ensure crop leaves are thinner and blue-green to clearly identify garlic. Clean up carton text to show clear 'AFP' branding.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: Presence of people (an adult male and a child).",
+        "Hard reject: Human body parts (hands, faces, legs, etc.) are clearly visible.",
+        "Product geometry: The roll is too tall relative to its width (height ~18% vs width ~12%), violating the 1.5-1.9 width-to-height ratio requirement.",
+        "Product placement: The product is not off-center in the lower third; it is positioned centrally and partially obscured by the human subject.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image without any people, human body parts, or silhouettes. Place the white-and-blue AFP drip-tape roll on the garlic field soil, off-center in the lower third. Ensure the roll has a wide, low cylindrical shape where the diameter is approximately 1.5 to 1.9 times the height. Maintain the 'AFP | 09134922013' watermark. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 21,
+      "product_height_percent": 22,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The product is a single AFP white-and-blue wide low cylindrical drip-tape carton roll, placed naturally on the soil.",
+        "The product width is approximately 21% and height 22% of the frame, fitting within the preferred and acceptable ranges.",
+        "The product's visible diameter is approximately 1.6 times its visible height, meeting the aspect ratio requirement.",
+        "The product is positioned off-center in the lower third of the frame.",
+        "The background clearly depicts crop rows with narrow flat blue-green leaves emerging in upright clusters, consistent with the article crop garlic.",
+        "The required watermark 'AFP | 09134922013' is present and correct in the bottom-right corner.",
+        "No people, human body parts, or hard reject elements such as extra packages, containers, or impossible geometry are visible.",
+        "The image aligns with the topic-specific farm context and the specified image role."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "میزان-برداشت-سیر-در-هکتار-با-نوار-تیپ-کاربرد-عملی.webp"
+}

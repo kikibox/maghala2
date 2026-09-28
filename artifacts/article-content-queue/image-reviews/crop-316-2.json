@@ -1,0 +1,55 @@
+{
+  "id": "crop-316",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 13,
+      "product_height_percent": 15,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Product width is approx 13%, which is below the preferred 20-23% range (hard minimum 13%)",
+        "Product height is approx 15%, violating the rule that the height must be no more than 32% of the frame width (15% h vs 13% w is too tall/thick compared to the low cylindrical requirement)",
+        "Placement is too centered horizontally (52% x-center), whereas the product must be off-center on the lower third",
+        "Only one roll is visible, but the geometry is not that of a 'wide low' cylindrical carton; it appears too tall/narrow and not wide enough"
+      ],
+      "correction_prompt": "Generate a low, wide cylindrical drip-tape carton roll (height <32% of width) that occupies 20-23% of the frame width. Place it off-center in the bottom-left or bottom-right third on the soil. Do not allow a tall/drum-like roll; keep it short and wide.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 16,
+      "product_height_percent": 18,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Hard reject due to the presence of a person (woman) and visible human body parts (face, hands, arms, legs) in the image",
+        "Product dimensions are within acceptable ranges (width 16%, height 18%) and correctly off-center, but the presence of people disqualifies the image immediately"
+      ],
+      "correction_prompt": "Regenerate the image without any people, faces, or body parts. Keep the AFP drip-tape roll in the same position (lower-left, off-center on soil) with the same dimensions. Remove the woman completely, keeping only the farm field, leafy vegetables, and drip tape product.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 15,
+      "product_height_percent": 23,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "Product shows the correct white-and-blue cylindrical roll shape with a central hub visible.",
+        "Product placement is off-center on the lower third and rests naturally on the soil.",
+        "Dimensions (width 15%, height 23%) fall within the acceptable 13-27% and <32% limits.",
+        "Zero people or human body parts are visible.",
+        "The watermark 'AFP | 09134922013' is correctly present in the bottom-right corner.",
+        "The farm context with prepared soil and leafy green seedlings aligns with the 'leafy vegetables' (سبزی) article."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "میزان-برداشت-سبزی-در-هکتار-با-نوار-تیپ-کاربرد-عملی.webp"
+}

@@ -1,0 +1,55 @@
+{
+  "id": "crop-315",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 19,
+      "product_height_percent": 22,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Hard reject: Visible human body parts including a full arm and hand touching the product, violating the 'zero people/human body parts' constraint."
+      ],
+      "correction_prompt": "Remove the person and hand touching the drip tape roll entirely; ensure the product rests naturally on the soil with no human presence.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "The requirement explicitly states the image must show 'exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll'.",
+        "The provided image contains two distinct cylindrical packages/rolls (one on the left, one on the right fitted with gauges).",
+        "The prompt hard rejects 'second roll' and 'extra commercial product'.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to feature exactly one AFP drip-tape roll placed on the soil. Remove the second roll and the manifold/gauge assembly so that only the single package is visible. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 23,
+      "product_height_percent": 27,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Watermark 'AFP | 09134922013' present in bottom-right corner.",
+        "Product is a white and blue drip-tape carton roll placed on soil.",
+        "No people, human body parts, or human silhouettes are visible.",
+        "Product dimensions (width ~23%, height ~27%) are within the acceptable 13-27% width range and <32% height limit.",
+        "Product is off-center in the lower third.",
+        "Hardware context (pressure gauge/strainer) is appropriate for Role 3.",
+        "Background crop (maize/corn) does not clearly contradict the 'melon' topic in a way that triggers a hard reject per rules."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-ملون-با-آبیاری-قطرهای-جزئیات-فنی.webp"
+}

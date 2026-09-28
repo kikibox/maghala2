@@ -1,0 +1,72 @@
+{
+  "id": "crop-325",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 20,
+      "product_height_percent": 35,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Product height exceeds the maximum allowed limit of 32 percent",
+        "Product is placed on the lower-left, not the bottom-right where the required watermark is located",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shrink the vertical height of the drip-tape roll to under 32 percent of the frame. Move the roll and the bottom-right watermark 'AFP | 09134922013' to the bottom-right corner, or regenerate with the roll correctly placed on the bottom-right as specified. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 15,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Hard reject: Contains a person (male figure) and human body parts (head, face, arms, hands, legs, feet).",
+        "Hard reject: Product geometry is incorrect; it shows a narrow canister rather than a wide, low cylindrical carton roll.",
+        "Product aspect ratio is inverted (visible height is greater than width) instead of the required wide roll shape (diameter 1.5-1.9x height).",
+        "Product is not positioned in the lower third; it is centered vertically.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image removing the man entirely. Replace the canister with a wide, low, cylindrical white and blue drip tape carton roll lying flat on the soil in the lower-left corner. The roll width should be 20% of the frame. Keep the farm background and tractor context. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 23,
+      "product_height_percent": 21,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Hard reject: Human silhouette/face visible inside the tractor cab in the background.",
+        "Hard reject: Gibberish text on the carton ('Dxig', 'frzaption', 'tayts') instead of authentic package print.",
+        "Product geometry fails: The visible diameter (width) is less than twice the height, failing the 1.5-1.9x aspect ratio requirement for a wide low roll.",
+        "Product aspect ratio: The roll appears too tall relative to its width for the 'wide low cylindrical' description."
+      ],
+      "correction_prompt": "Remove the human operator from the tractor cab (empty). Fix text on the roll to be legible professional branding. Increase roll diameter to 1.8x its height. Keep the unattended tractor and soil rows.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 14,
+      "product_height_percent": 12,
+      "product_x_center_percent": 21,
+      "reasons": [
+        "The product is the correct AFP wide low cylindrical drip-tape carton roll.",
+        "The image contains zero people or human body parts.",
+        "The product is placed off-center on the lower third of the image on soil.",
+        "The exact required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "The background features a tractor and farm field, which aligns with a hardware story context where crops may be neutral.",
+        "The product's visible width (approx 14%) and height (approx 12%) are within acceptable ranges and it remains secondary to the scene."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "نگهداری-کینوا-با-نوار-تیپ-نکات-کلیدی-جزئیات-فنی.webp"
+}

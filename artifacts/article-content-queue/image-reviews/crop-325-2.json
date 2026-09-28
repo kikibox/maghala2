@@ -1,0 +1,98 @@
+{
+  "id": "crop-325",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 15,
+      "product_height_percent": 30,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Hard reject: The product is displayed as a cylindrical bucket/canister with a plant growing out of the top, which violates the negative constraints for bottle, jar, canister, bucket, or fertilizer container.",
+        "Product geometry error: The required drip tape is a low wide cylindrical roll (1.5-1.9 aspect ratio), but the image shows a tall vertical container.",
+        "Missing required feature: The actual drip tape roll (the required wide/low product) is not present in the scene, only a fake canister substitute."
+      ],
+      "correction_prompt": "Replace the canister with a single AFP white-and-blue wide low cylindrical drip-tape carton roll (diameter approx 1.7x height) sitting on the soil. Ensure the roll is off-center on the lower third. Remove the vertical container and the plant growing out of it.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 30,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: A human figure (farmer bending over) is clearly visible in the background.",
+        "Hard reject: A plant stem is visible inside the core of the drip-tape roll, creating an impossible geometry.",
+        "Product geometry: The roll appears slightly tall relative to its diameter (height is ~50% of width, whereas it should be ~52-66% of width)."
+      ],
+      "correction_prompt": "Remove the human figure in the background entirely. Remove the plant stem sticking out of the tape roll core. Flatten the roll slightly to match the required wide cylindrical aspect ratio.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "The crop in the background is clearly identifiable as mature corn (maize), which is a specific different species rather than the 'botanically neutral prepared bed' or 'tiny unidentifiable seedlings' required for the agronomic story.",
+        "The product is centered horizontally (46%), whereas the guidelines require it to be off-center on the lower third."
+      ],
+      "correction_prompt": "Regenerate with a botanically neutral field of small, unidentifiable seedlings to avoid showing a specific crop like corn. Move the drip tape roll to the lower-left or lower-right off-center position so it is not in the middle of the frame.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 9,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Hard reject: Image contains a visible person (farmer) and body parts, violating the 'zero people' rule.",
+        "The product (drip tape roll) is too small relative to the frame; it occupies only about 8% width and 9% height, far below the preferred 20-23% range and the acceptable 13-27% limit.",
+        "The product is centered rather than off-center on the lower third as required.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate without any people. Make the drip tape roll significantly larger, occupying roughly 25% of the image width, and position it off-center in the lower third on the soil. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 21,
+      "product_height_percent": 22,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Hard reject: Human body parts (hands, legs, torso) are visible in the foreground.",
+        "Hard reject: The tape is being pulled into a layflat configuration rather than remaining a compact roll.",
+        "The image shows a person actively handling the product, violating the 'zero people' rule."
+      ],
+      "correction_prompt": "Remove all people and human body parts. Ensure the roll remains a single, unhandled compact cylindrical unit on the soil. No tape should be pulled out or extended.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 19,
+      "product_height_percent": 16,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Image contains exactly one AFP white-and-blue drip tape roll, consistent with requested product",
+        "Watermark 'AFP | 09134922013' is present in bottom-right as required",
+        "Product is placed naturally on soil and positioned off-center within the lower third",
+        "Product dimensions are within acceptable bounds: width approx. 19% and height approx. 16% of frame, aspect ratio approx. 1.19 (height slightly taller than ideal 1.5-1.9x ratio, but acceptable as secondary)",
+        "No people, hands, faces, or body parts visible in the image",
+        "Background shows a young crop (neuter/seedling stage) with drip tape laid on the bed, which is consistent with the article's irrigation theme; the crop morphology is not an obviously different species",
+        "No forbidden items (bottles, canisters, second packages, tall drums, etc.) are present"
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "نگهداری-کینوا-با-نوار-تیپ-نکات-کلیدی-کاربرد-عملی.webp"
+}

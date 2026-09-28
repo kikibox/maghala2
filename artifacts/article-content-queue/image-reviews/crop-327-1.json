@@ -1,0 +1,68 @@
+{
+  "id": "crop-327",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 68,
+      "product_width_percent": 8.8,
+      "product_height_percent": 8.5,
+      "product_x_center_percent": 51,
+      "reasons": [
+        "Product width is 8.8%, below the practical minimum threshold of 13%",
+        "Product is centered horizontally at 51%, violating the off-center placement requirement",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8.8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Move the white and blue carton roll to the far bottom-left or bottom-right corner and slightly enlarge it to make up approximately 15% of the frame width. Enlarge the product group from 8.8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "The product (drip-tape carton roll) is completely missing from the image.",
+        "The image shows soybeans, not drip tape.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Add an AFP white-and-blue wide low cylindrical drip-tape carton roll in the lower-left third of the frame, placed naturally on the soil. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 21.5,
+      "product_height_percent": 33.5,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "The article crop (soybean) has clearly identifiable compound pinnate leaves rather than the required trifoliate morphology, which is a hard reject",
+        "The product roll height (33.5%) exceeds the hard limit of 32 percent",
+        "machine-enforced bounding-box check failed: Reduce product height from 33.5% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with soybean plants that have trifoliate (three-leaflet) leaves instead of the current compound pinnate leaves. Reduce the vertical height of the product roll to ensure it occupies less than 32% of the frame height. Keep the roll as a wide, low cylindrical carton in the lower-left area on the soil. Reduce product height from 33.5% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 21,
+      "product_height_percent": 14,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "The central crop exhibits a clear trifoliate leaf structure (three leaflets), which matches the defining characteristic of soybean plants, whereas the background rows show simple leaves that could be another crop.",
+        "The product is a white cylindrical drip-tape roll with blue branding, clearly visible on the soil at the lower-left.",
+        "The crop is off-center and secondary, with dimensions well within the acceptable 13-27% width range.",
+        "The exact watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "The scene is free of any human body parts or silhouettes."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "مقدار-بذر-سویا-در-هکتار-راهنمای-جامع-تصویر-شاخص.webp"
+}

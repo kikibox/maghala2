@@ -1,0 +1,95 @@
+{
+  "id": "crop-321",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 24.0,
+      "product_height_percent": 32.0,
+      "product_x_center_percent": 22.0,
+      "reasons": [
+        "Product height exceeds the limit (estimated 32% vs max 32%, with low aspect ratio suggesting it's too tall for the 1.5-1.9 width ratio preference).",
+        "Product diameter/height ratio is too low (estimated ~0.75), failing the requirement of 1.5-1.9."
+      ],
+      "correction_prompt": "Shrink the drip tape roll height to ~18-20% and increase width to ~30-35% to meet the 1.5-1.9 aspect ratio, keeping it low-profile and off-center left.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer) in the image.",
+        "Hard reject: Visible human body parts (head, torso, arms, legs, hands, feet).",
+        "Product aspect ratio: The roll is not the required 'wide low cylindrical' shape; it is too tall relative to its width.",
+        "Product height: The visible height of the roll exceeds the 32% limit relative to the frame.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts completely. Replace the product with a wide, low, cylindrical drip-tape roll (1.5-1.9x diameter-to-height ratio). Position the roll off-center on the soil in the lower third of the frame. Ensure the roll width is approximately 20% of the image width. Keep the AFP watermark. Use a farm background consistent with triticale (grain/cereal field). Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product centered: The product x_center_percent is 45%, which fails the requirement to be 'off-center on the lower third'.",
+        "Impossible geometry: The cylinder's height is roughly equal to its width, violating the requirement that its visible diameter should be 1.5 to 1.9 times its visible height.",
+        "Gibberish text: The text on the front of the carton contains illegible, invented writing that does not appear to be authentic package print."
+      ],
+      "correction_prompt": "Reposition the carton roll significantly to the right or left (off-center in the lower third). The object must have a much wider, flatter aspect ratio (diameter ~1.7x height). Remove all gibberish text from the packaging, ensuring only authentic-looking brand elements remain.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 10,
+      "product_height_percent": 18,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: Image contains two distinct people (farmers/workers) crouching in the foreground.",
+        "Product geometry: The white cylindrical carton is positioned on the upper-center of the frame rather than the required off-center lower third.",
+        "Product ratio: The roll's visible diameter is less than 1.5x its height (it appears taller than wide or a squat cylinder), which is a hard reject for a 'wide low' roll.",
+        "Product size: Product width is significantly below the minimum 13% practical estimate.",
+        "Watermark: The required bottom-right watermark 'AFP | 09134922013' is missing.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with exactly one AFP white-and-blue wide low drip-tape carton roll in the lower-left third. Remove all people and human silhouettes. Ensure the crop context clearly represents early-stage triticale. Add the exact bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 16,
+      "product_height_percent": 30,
+      "product_x_center_percent": 15,
+      "reasons": [
+        "Presence of a human figure (crouching farmer/worker) violates the hard reject requirement for zero people or body parts.",
+        "The crop morphology and context are more consistent with corn (maize) than triticale."
+      ],
+      "correction_prompt": "Regenerate the image with no people or workers visible in the frame. Ensure the crop field contains triticale seedlings or a neutral prepared soil context suitable for triticale rather than corn. Keep the single AFP drip-tape roll positioned off-center in the lower third.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 17,
+      "product_height_percent": 23,
+      "product_x_center_percent": 29,
+      "reasons": [
+        "The aspect ratio of the product roll is incorrect; it is not wide enough to meet the requirement of the diameter being 1.5 to 1.9 times its visible height (currently approximately 0.74:1)."
+      ],
+      "correction_prompt": "Generate a new image where the cylindrical drip-tape roll is significantly wider relative to its height, achieving an aspect ratio of roughly 1.7:1.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}
