@@ -2,6 +2,7 @@ import json
 import sys
 import tempfile
 import unittest
+import zipfile
 from pathlib import Path
 from unittest.mock import patch
 
@@ -149,6 +150,74 @@ class GeneratedTranslationTests(unittest.TestCase):
                     content,
                 )
                 self.assertNotIn("SET NAMES utf8mb4;\n", content)
+
+    def test_article_package_contains_source_and_three_translations(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            out = root / "article-content-queue"
+            packages = out / "packages"
+            trans = out / "translations"
+            trans_sql = out / "translation-sql"
+            trans_rollback = out / "translation-rollback"
+            for path in (
+                out / "sql",
+                out / "rollback",
+                out / "items",
+                out / "images",
+                packages,
+                trans_sql,
+                trans_rollback,
+            ):
+                path.mkdir(parents=True, exist_ok=True)
+            key = "crop-001"
+            (out / "sql" / f"{key}.sql").write_text(
+                "START TRANSACTION; COMMIT;", encoding="utf-8"
+            )
+            (out / "rollback" / f"{key}.sql").write_text(
+                "START TRANSACTION; COMMIT;", encoding="utf-8"
+            )
+            (out / "items" / f"{key}.json").write_text(
+                json.dumps({"images": []}), encoding="utf-8"
+            )
+            for lang in article_packages.LANGUAGES:
+                folder = trans / key
+                folder.mkdir(parents=True, exist_ok=True)
+                (folder / f"{lang}.html").write_text("<p>x</p>", encoding="utf-8")
+                (folder / f"{lang}.json").write_text("{}", encoding="utf-8")
+                queue_key = f"article-translation:{key}:{lang}"
+                (trans_sql / f"{key}-{lang}.sql").write_text(
+                    f"SELECT '{queue_key}';", encoding="utf-8"
+                )
+                (trans_rollback / f"{key}-{lang}.sql").write_text(
+                    "SELECT 1;", encoding="utf-8"
+                )
+            item = {
+                "id": key,
+                "title": "Source",
+                "slug": "source",
+                "vertical": "crop",
+            }
+            with patch.object(article_packages, "OUT", out), patch.object(
+                article_packages, "PACKAGES", packages
+            ), patch.object(article_packages, "TRANS", trans), patch.object(
+                article_packages, "TRANS_SQL", trans_sql
+            ), patch.object(
+                article_packages, "TRANS_ROLLBACK", trans_rollback
+            ):
+                manifest = article_packages.build([item], "unit-batch")
+            self.assertEqual(manifest["source_post_count"], 1)
+            self.assertEqual(manifest["translation_post_count"], 3)
+            self.assertEqual(manifest["total_post_count"], 4)
+            archive = packages / "unit-batch.zip"
+            with zipfile.ZipFile(archive) as zipped:
+                names = set(zipped.namelist())
+                sql = zipped.read("sql/create-unit-batch.sql").decode("utf-8")
+            self.assertEqual(
+                len([name for name in names if name.endswith(".json") and name.startswith("translations/")]),
+                3,
+            )
+            for lang in article_packages.LANGUAGES:
+                self.assertIn(f"article-translation:{key}:{lang}", sql)
 
 
 if __name__ == "__main__":

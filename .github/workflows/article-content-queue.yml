@@ -136,12 +136,6 @@ jobs:
         if: always()
         run: python automation/compress_article_images.py
 
-      - name: Build completed 50-article packages
-        if: always()
-        env:
-          PACKAGE_BATCH_SIZE: '50'
-        run: python automation/package_article_content_batches.py
-
       - name: Refresh dashboard
         if: always()
         run: python automation/render_article_queue_status.py

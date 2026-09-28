@@ -8,7 +8,8 @@ on:
       - 'automation/translate_queue.py'
       - 'automation/translate_generated_articles.py'
       - 'automation/render_article_queue_status.py'
-      - 'automation/package_article_translation_batches.py'
+      - 'automation/package_article_content_batches.py'
+      - 'automation/write_new_article_batch_signal.py'
       - 'sqlbuild/build_patch.py'
       - 'data/source_ids.txt'
 
@@ -62,7 +63,7 @@ jobs:
       - name: Validate translation pipeline
         run: |
           test -n "$AGNES_API_KEY"
-          python -m py_compile automation/translate_queue.py automation/translate_generated_articles.py automation/render_article_queue_status.py automation/package_article_translation_batches.py sqlbuild/build_patch.py
+          python -m py_compile automation/translate_queue.py automation/translate_generated_articles.py automation/render_article_queue_status.py automation/package_article_content_batches.py automation/write_new_article_batch_signal.py sqlbuild/build_patch.py
       - name: Translate completed generated articles first
         id: generated
         shell: bash
@@ -73,13 +74,40 @@ jobs:
           generated_rc=${PIPESTATUS[0]}
           set -e
           echo "GENERATED_TRANSLATION_RC=$generated_rc" >> "$GITHUB_ENV"
-          # Always rebuild status and packages from any languages completed
+          # Always rebuild status and unified packages from any languages completed
           # before an API/model failure so useful progress is not discarded.
-          python automation/package_article_translation_batches.py || true
+          PACKAGE_BATCH_SIZE=50 python automation/package_article_content_batches.py || true
           python automation/render_article_queue_status.py || true
           if [ "$generated_rc" -ne 0 ]; then
             echo "::warning::Generated translation exited $generated_rc; partial progress and diagnostics will be committed before the job reports failure."
           fi
+      - name: Detect newly completed unified 50-source packages
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python automation/write_new_article_batch_signal.py
+          ready="$(python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          root=Path('artifacts/article-content-queue');signal=root/'.new-batch-signal';packages=root/'packages';state=root/'ftps-upload-state.json'
+          try: tracked=json.loads(state.read_text(encoding='utf-8')).get('files',{})
+          except Exception: tracked={}
+          pending=0
+          if signal.exists():
+            for raw in signal.read_text(encoding='utf-8').splitlines():
+              name=Path(raw.strip()).name
+              if not name: continue
+              if not name.endswith('.zip'): name+='.zip'
+              path=packages/name
+              if not path.exists(): continue
+              digest=hashlib.sha256(path.read_bytes()).hexdigest();previous=tracked.get(name,{})
+              if previous.get('sha256')!=digest or int(previous.get('size',-1))!=path.stat().st_size: pending+=1
+          print(1 if pending else 0)
+          PY
+          )"
+          echo "NEW_ARTICLE_BATCH_READY=$ready" >> "$GITHUB_ENV"
+          echo "unified_article_ftps_dispatch_ready=$ready"
       - name: Preserve API capacity for generated article pipeline
         shell: bash
         run: |
@@ -105,6 +133,7 @@ jobs:
           git add translations state docs
           git add -A artifacts/article-content-queue/translations artifacts/article-content-queue/translation-sql artifacts/article-content-queue/translation-rollback 2>/dev/null || true
           git add -f artifacts/article-content-queue/translation-status.json artifacts/article-content-queue/create-all-translations.sql artifacts/article-content-queue/rollback-all-translations.sql artifacts/article-content-queue/STATUS.md artifacts/article-content-queue/status.json 2>/dev/null || true
+          git add -f artifacts/article-content-queue/packages/*.zip artifacts/article-content-queue/packages/manifest.json artifacts/article-content-queue/.new-batch-signal 2>/dev/null || true
           git add -f artifacts/article-content-queue/translation-packages/*.zip artifacts/article-content-queue/translation-packages/manifest.json 2>/dev/null || true
           git add -f artifacts/generated-translations* artifacts/generated-english-translations* artifacts/fix-imported-translations* 2>/dev/null || true
           git add -f artifacts/article-content-queue/generated-translation-run.log artifacts/article-content-queue/legacy-translation-run.log 2>/dev/null || true
@@ -120,10 +149,19 @@ jobs:
           git add translations state docs
           git add -A artifacts/article-content-queue/translations artifacts/article-content-queue/translation-sql artifacts/article-content-queue/translation-rollback 2>/dev/null || true
           git add -f artifacts/article-content-queue/translation-status.json artifacts/article-content-queue/create-all-translations.sql artifacts/article-content-queue/rollback-all-translations.sql artifacts/article-content-queue/STATUS.md artifacts/article-content-queue/status.json artifacts/article-content-queue/generated-translation-run.log artifacts/article-content-queue/legacy-translation-run.log 2>/dev/null || true
+          git add -f artifacts/article-content-queue/packages/*.zip artifacts/article-content-queue/packages/manifest.json artifacts/article-content-queue/.new-batch-signal 2>/dev/null || true
           git add -f artifacts/article-content-queue/translation-packages/*.zip artifacts/article-content-queue/translation-packages/manifest.json 2>/dev/null || true
           git add -f artifacts/generated-translations* artifacts/generated-english-translations* artifacts/fix-imported-translations* 2>/dev/null || true
           git commit -m 'Update multilingual article translations [skip ci]'
           git push origin main
+
+      - name: Dispatch FTPS for newly rebuilt unified packages
+        if: always() && !cancelled() && env.NEW_ARTICLE_BATCH_READY == '1'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh workflow run upload-article-batches-ftps.yml --ref main
 
       - name: Resume Persian queue below bounded translation backlog
         if: always()
