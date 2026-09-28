@@ -137,9 +137,8 @@ jobs:
           PY
           )"
           if [ "$remaining" -gt 0 ] && [ "$stalled" -lt 3 ]; then
-            echo "$remaining image sets remain; dispatching the next resumable rebuild."
-            sleep 20
-            gh workflow run rebuild-all-article-images.yml --ref main
+            echo "$remaining image sets remain; yielding to translation and fresh generation before the next repair slice."
+            gh workflow run article-translations.yml --ref main
           elif [ "$remaining" -gt 0 ]; then
             echo "::warning::$remaining quarantined image sets remain after $stalled no-progress runs; preserving diagnostics and releasing the translation gate instead of deadlocking the pipeline."
             gh workflow run article-translations.yml --ref main
