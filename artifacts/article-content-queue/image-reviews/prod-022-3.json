@@ -1,35 +1,38 @@
 {
   "id": "prod-022",
   "kind": 3,
-  "family": "tape20",
+  "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 15,
-      "product_width_percent": 20,
-      "product_height_percent": 28,
-      "product_x_center_percent": 35,
+      "score": 35,
+      "product_width_percent": 45,
+      "product_height_percent": 35,
+      "product_x_center_percent": 55,
       "reasons": [
-        "Hard reject: Presence of a person (a man kneeling in the field, holding the product). The image must contain zero people or human body parts."
+        "Hard reject: Multiple people (two humans) are present in the image, violating the zero-people requirement.",
+        "Hard reject: Human body parts (arms, faces) are visible.",
+        "The products are not separate and flat; one coil is being physically manipulated by a person's hands.",
+        "The combined bounding box of the products is too wide (approx. 45% of frame), exceeding the 15% limit.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height."
       ],
-      "correction_prompt": "Regenerate the image to remove the man entirely; show only the AFP drip-tape roll on the soil in the farm context with the tractor in the background, keeping the required bottom-right watermark.",
+      "correction_prompt": "Remove all people from the image. Keep only the two layflat coils on the ground. Ensure the coils are separate, flat, and not centered. Shrink the product scale so they occupy only 12-15% of the frame width. Keep the bottom-right watermark exactly as is. Reduce the product group from 45% to 9-20% of frame width. Reduce product height from 35% to at most 32% of frame height.",
       "attempt": 1
     },
     {
       "pass": true,
-      "score": 88,
-      "product_width_percent": 24,
-      "product_height_percent": 28,
-      "product_x_center_percent": 25,
+      "score": 90,
+      "product_width_percent": 16.0,
+      "product_height_percent": 14.0,
+      "product_x_center_percent": 36.0,
       "reasons": [
-        "Product is the correct wide low cylindrical AFP white-and-blue drip-tape roll.",
-        "Product width (24%) and height (28%) are within acceptable limits.",
-        "Product is correctly placed off-center in the lower-left third.",
-        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
-        "Zero people or human body parts are visible.",
-        "Unattended tractor and farm hardware in the background are acceptable as context."
+        "Both required objects are present: a packaged AFP coil and a bare black woven coil.",
+        "Zero people, human body parts, or silhouettes are visible.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Products are separate, flat on the ground, and unobstructed.",
+        "No forbidden items (round pipes, drip tape, bottles, etc.) are present."
       ],
       "correction_prompt": "",
       "attempt": 2

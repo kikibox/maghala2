@@ -3,16 +3,18 @@
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "history": [
     {
-      "pass": true,
-      "score": 92,
-      "duplicate_roles": [],
-      "reasons": [
-        "Zero people observed in any of the three images, meeting the mandatory safety requirement.",
-        "The three images successfully fulfill distinct functional roles: Image 1 serves as the crop-identity overview with a wide field shot; Image 2 provides agronomic close-up evidence by highlighting the root zone and young vegetation; and Image 3 illustrates the irrigation-system story through the visible pipe, pressure gauge, and agricultural equipment context.",
-        "Although the same AFP product appears in all images, the camera angles, framing, and specific environmental elements (wide field vs. close-up vs. system components) are sufficiently distinct to avoid being marked as near-duplicate roles.",
-        "Minor deduction: The crop in Image 2 (young corn next to mature sunflowers) is botanically inconsistent, and the physical interaction of the pressure gauge sitting on the pipe in Image 3 is slightly unnatural, but neither constitutes a hard reject."
+      "pass": false,
+      "score": 25,
+      "duplicate_roles": [
+        1,
+        2
       ],
-      "correction_prompt": "Regenerate Image 2 with a botanically consistent crop row and regenerate Image 3 so the pressure gauge is securely attached to the irrigation pipe rather than resting loosely on top of it.",
+      "reasons": [
+        "Image 2 is a near-duplicate of Image 1, repeating the identical camera angle, crop morphology, and foreground layout of the AFP product.",
+        "The editorial set lacks a clear 'irrigation-system story' (e.g., showing the 110mm mainline or installation process), instead relying on two nearly identical close-ups of a tape/reel product that may not clearly identify the 110mm threaded pipe.",
+        "The visual evidence of the AFP product is weak and ambiguous (appears to be a black strap/reel rather than a pipe section), failing to provide strong evidence of the '110 mm threaded pipe' described in the summary."
+      ],
+      "correction_prompt": "Replace the near-duplicate close-up with a wide shot showing a 110mm grey or black mainline pipe installed across the field to demonstrate the irrigation system layout.",
       "set_attempt": 1
     }
   ]

@@ -1,19 +1,98 @@
 {
   "id": "prod-046",
   "kind": 1,
-  "family": "tape20",
+  "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
-      "pass": true,
-      "score": 100,
-      "product_width_percent": 21,
-      "product_height_percent": 24,
-      "product_x_center_percent": 23,
-      "reasons": [],
-      "correction_prompt": "",
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Contains a visible person (farmer/worker) crouching in the field, which is a hard reject.",
+        "The product pair (two coils) is wide, appearing to occupy more than the 15% frame width limit when including the gap between them.",
+        "There is an unexplained graphic artifact or inset image in the bottom-left corner."
+      ],
+      "correction_prompt": "Regenerate image showing only two small layflat coils (one packaged, one bare) on the ground with no people, no extra hoses, and no graphic artifacts. Coils must be small (approx 12-15% of frame width) and flat on the soil.",
       "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 92,
+      "product_width_percent": 38,
+      "product_height_percent": 22,
+      "product_x_center_percent": 51,
+      "reasons": [
+        "Image contains the two required layflat objects: a packaged AFP coil and a bare black woven coil.",
+        "Zero people or human body parts are visible.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom right.",
+        "Objects are separate, flat, and fully visible on the ground.",
+        "Score reflects compliance with the layout and content, though the pair's width exceeds the 12-15% ideal target.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 38% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 15,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The second object is a black coiled wire/cable, not a layflat hose or drip tape as required.",
+        "The pair of products is slightly wider than the 15% maximum allowed frame width."
+      ],
+      "correction_prompt": "Regenerate the image with two coiled layflat hoses instead of wire; reduce the product pair's width to 12-15% of the frame.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The product pair is wider than the 15% frame width limit.",
+        "The two products are overlapping/intersecting rather than remaining fully separate.",
+        "The pair is not positioned in the lower third of the frame."
+      ],
+      "correction_prompt": "Regenerate with a wider field of view or smaller objects so the total pair occupies 12-15% of the frame width. Position the pair in the bottom lower third and ensure the packaged coil and bare black coil are placed side-by-side without overlapping or touching.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 30,
+      "product_height_percent": 18,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product pair width (~30%) exceeds the hard reject limit of 15% of frame width.",
+        "The complete pair is centered horizontally (45%), violating the requirement to stay off-center on the lower third.",
+        "The products appear to be sitting slightly above the ground (floating) rather than resting flat on it.",
+        "Vertical positioning is too high; the objects should be in the lower third to occupy only 12-15% of the frame's visual mass.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Shrink the product pair significantly to fit 12-15% of frame width. Reposition the pair horizontally to the far left or far right (avoid center). Move the pair down so they rest completely flat on the soil in the bottom 10% of the frame. Reduce the product group from 30% to 9-20% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 16,
+      "product_height_percent": 20,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Contains exactly two approved objects: one packaged coil and one bare black woven coil.",
+        "No people, human body parts, or silhouettes are present.",
+        "Products are fully visible, separate, and rest flat on the ground.",
+        "Required watermark 'AFP | 09134922013' is correctly located in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
     }
   ],
   "approved_image": "راهنمای-جامع-خرید-لوله-نخ-دار-75-میلیمتر-نکات-انتخاب-و-قیمت-تصویر-شاخص.webp"

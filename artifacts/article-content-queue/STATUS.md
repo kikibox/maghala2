@@ -4,7 +4,7 @@
 
 ## نمای کلی
 
-- آخرین بروزرسانی: `2026-09-28T18:46:46+00:00`
+- آخرین بروزرسانی: `2026-09-28T19:33:34+00:00`
 - وضعیت صف: **توقف موقت برای تکمیل ترجمه‌های عقب‌مانده** (`translations_pending`)
 - پیشرفت: **358 از 1148 (31.18٪)**
 - نمودار پیشرفت: `██████░░░░░░░░░░░░░░`
@@ -112,13 +112,7 @@
 
 ## بسته‌های ۵۰تایی آماده
 
-- [batch-001-articles-0001-0050.zip](./packages/batch-001-articles-0001-0050.zip) — 50 مقاله — 12158899 بایت — SHA256: `60295479c9b423683098a8fdf7f59e632a67f5b3367c5be15558d5bdfb162479`
-- [batch-002-articles-0051-0100.zip](./packages/batch-002-articles-0051-0100.zip) — 50 مقاله — 12141123 بایت — SHA256: `27eaf011ceffe51aace1d9fc0822cef3df34e87283e8d78567dd00406ce005a0`
-- [batch-003-articles-0101-0150.zip](./packages/batch-003-articles-0101-0150.zip) — 50 مقاله — 12468875 بایت — SHA256: `03a29ba9f4465cc23efc783a7e397a7ac1b94056d584b9d83d8340921da31806`
-- [batch-004-articles-0151-0200.zip](./packages/batch-004-articles-0151-0200.zip) — 50 مقاله — 12263171 بایت — SHA256: `6685e371315b5ad124a5c12ac73a7167f678a3a970be8c79c0116ea0dee1c97f`
-- [batch-005-articles-0201-0250.zip](./packages/batch-005-articles-0201-0250.zip) — 50 مقاله — 12254945 بایت — SHA256: `8fa50cfecadf20de2f796efb80083dba55a8e4282f08a1966f730fa6e005ddc1`
-- [batch-006-articles-0251-0300.zip](./packages/batch-006-articles-0251-0300.zip) — 50 مقاله — 11955175 بایت — SHA256: `ad7cbb7af0fd22f673e3361c0f7268dbe649b9cbb46a31ff86387c441bb3bf6d`
-- [batch-007-articles-0301-0350.zip](./packages/batch-007-articles-0301-0350.zip) — 50 مقاله — 11887330 بایت — SHA256: `d3bfec3feaf5b866d1292512361af62916d78f21180f1d7fa39e542944dc51c7`
+- هنوز بسته کاملی آماده نشده است؛ پیشرفت بسته جاری: **8/50 مقاله**.
 
 ## خروجی‌های تولیدشده
 

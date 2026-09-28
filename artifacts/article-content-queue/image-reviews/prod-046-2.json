@@ -1,104 +1,131 @@
 {
   "id": "prod-046",
   "kind": 2,
-  "family": "tape20",
+  "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 25,
-      "product_width_percent": 13,
-      "product_height_percent": 22,
-      "product_x_center_percent": 47,
-      "reasons": [
-        "Contains a person and human body parts (hands, torso, legs), which is a hard reject condition.",
-        "Product staging includes human interaction (hands touching the roll), violating the 'unattended' requirement."
-      ],
-      "correction_prompt": "Remove the person and all body parts entirely. Ensure the single white-and-blue AFP drip-tape roll is placed independently on the soil in a farm bed without any human contact or silhouettes.",
-      "attempt": 1
-    },
-    {
-      "pass": false,
-      "score": 45,
-      "product_width_percent": 25,
-      "product_height_percent": 30,
-      "product_x_center_percent": 36,
-      "reasons": [
-        "Product placement is centered on the lower-left rather than clearly off-center as requested.",
-        "The visible crop morphology (young green seedlings with broad leaves) is ambiguous and lacks the specific 'article title' crop definition (which was not provided in text but implies specific botany requirements); it currently looks like generic vegetable seedlings.",
-        "The 'cylindrical drip-tape carton roll' visual is somewhat ambiguous between a roll and a stack of paper/tape; while it fits the shape, the 'wide low cylindrical' aspect is slightly compromised by the height.",
-        "Text on the product packaging below 'AFP' is illegible/gibberish, which is a minor defect compared to the required exactness of crop/role context."
-      ],
-      "correction_prompt": "Move the AFP white-and-blue drip tape roll further to the bottom right to ensure it is clearly off-center on the lower third. Sharpen the crop in the background to match a specific article crop (e.g., distinct rows of a specific vegetable) rather than generic seedlings. Ensure the roll is clearly a low cylindrical roll of tape.",
-      "attempt": 2
-    },
-    {
-      "pass": false,
-      "score": 0,
+      "score": 5,
       "product_width_percent": 0,
       "product_height_percent": 0,
       "product_x_center_percent": 0,
       "reasons": [
-        "Hard reject: Presence of a person (farmer/worker).",
-        "The product shown is a small white cylindrical pot or container, not the required white-and-blue wide low cylindrical drip-tape carton roll.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+        "Hard reject: Presence of a person/farmer/worker (the man in the image)",
+        "Hard reject: Missing the two required layflat objects (packaged AFP coil and bare black woven coil)",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
       ],
-      "correction_prompt": "Regenerate the image to show a wide, low, cylindrical white-and-blue drip-tape carton roll on the soil. Remove all people and human silhouettes from the scene. Ensure the product is off-center in the lower third, small in scale, and that no other commercial products (like the current white pot) are visible. Enlarge the product group from 0% to 13-27% of frame width.",
+      "correction_prompt": "Remove the person and all human body parts entirely. Place exactly two approved objects on the ground: one packaged AFP coil and one bare black woven coil. Position the pair off-center in the lower third of the frame, occupying approximately 12-15% of the width, ensuring they are flat, separate, and fully visible. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 100,
+      "product_width_percent": 45,
+      "product_height_percent": 26,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Image contains exactly two approved layflat objects: one packaged AFP coil and one bare black woven coil.",
+        "Both products are flat on the ground, fully visible, and separate with no merging or distortion.",
+        "No people, farmer, worker, face, hand, arm, leg, body part, or human silhouette are visible.",
+        "No unapproved products, round pipes, drip tape, or valves are present.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 45% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 15,
+      "product_height_percent": 10,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: A human person (farmer) is prominently visible in the center, including face, hands, arms, legs, and body.",
+        "Hard reject: The required 'packaged AFP coil' is missing; only a single black coil is visible.",
+        "Hard reject: The product pair is centered in the frame, violating the 'off-center on the lower third' requirement.",
+        "Hard reject: The product pair appears to occupy roughly 15% of frame width, which is at the upper limit, but is mostly disqualified by the human presence."
+      ],
+      "correction_prompt": "Regenerate to show exactly two layflat objects (one packaged AFP coil and one bare black woven coil) on the ground. No people. Keep products on the lower third, off-center, and less than 15% of frame width. Ensure clear separation and flat layout.",
       "attempt": 3
     },
     {
       "pass": false,
-      "score": 88,
-      "product_width_percent": 28,
-      "product_height_percent": 33,
-      "product_x_center_percent": 38,
+      "score": 30,
+      "product_width_percent": 48,
+      "product_height_percent": 25,
+      "product_x_center_percent": 46,
       "reasons": [
-        "Product geometry is correct (wide low cylindrical carton roll, off-center on lower third).",
-        "Product color (white and blue) matches the AFP description.",
-        "The correct 'AFP | 09134922013' watermark is present and legible in the bottom-right corner.",
-        "No people, human body parts, or silhouettes are visible.",
-        "Background matches the image role: a young crop field (corn seedlings) with a distant barn, which aligns with a farm context.",
-        "No prohibited items (bottles, buckets, second packages, pipes through the roll) are visible.",
-        "Although the product's estimated width and height slightly exceed the preferred maximums (28% vs 27% width; 33% vs 32% height), the visual balance is acceptable and the product remains clearly secondary to the farm scene, meeting the practical QA threshold.",
-        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width.; Reduce product height from 33% to at most 32% of frame height."
+        "Product pair is significantly wider than the 15% maximum limit (approx 48% frame width).",
+        "The object on the right appears to be a thick braided hose rather than a thin black woven layflat.",
+        "The object on the left is not a standard coiled layflat product but an irregular wrapped bundle or package.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 48% to 9-20% of frame width."
       ],
-      "correction_prompt": "Reduce the product group from 28% to 13-27% of frame width. Reduce product height from 33% to at most 32% of frame height.",
-      "attempt": 4
+      "correction_prompt": "Reduce the size of the two layflat coils to take up only 10-15% of the frame width. Make both objects thin, flat layflat hoses coiled into flat discs. Move the pair to the lower third, off-center. Ensure the right coil is a thin black woven layflat. Reduce the product group from 48% to 9-20% of frame width.",
+      "attempt": 1
     },
     {
       "pass": false,
-      "score": 5,
-      "product_width_percent": 8,
-      "product_height_percent": 9,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 12,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Missing the required second layflat object (packaged AFP coil); only one bare black woven coil is present",
+        "The single visible coil is centered rather than positioned on the lower third",
+        "The visible coil is wider than the maximum 15 percent frame width limit",
+        "machine-enforced bounding-box check failed: Reduce the product group from 22% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to include exactly two layflat coils placed off-center on the lower third: one packaged AFP coil and one bare black woven coil. The complete pair must be small (12-15% of frame width), remain separate and flat on the ground, and contain no people or extra hoses. Reduce the product group from 22% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 95,
+      "product_width_percent": 46,
+      "product_height_percent": 38,
       "product_x_center_percent": 48,
       "reasons": [
-        "Presence of a person (farmer) violating the zero people and zero human body parts constraint.",
-        "The product is a small upright canister, not a wide low cylindrical drip-tape carton roll.",
-        "The product is centered and held by a hand, failing the off-center, on-soil placement requirement.",
-        "The product width and height are significantly below the preferred percentages.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+        "Scene shows exactly two required objects: one packaged AFP-style coil and one bare black woven coil",
+        "No people, hands, legs, or silhouettes present",
+        "Coils are separate, flat on the ground, and fully visible",
+        "Required bottom-right watermark 'AFP | 09134922013' is present and unchanged",
+        "machine-enforced bounding-box check failed: Reduce the product group from 46% to 9-20% of frame width.; Reduce product height from 38% to at most 32% of frame height."
       ],
-      "correction_prompt": "Remove the person entirely. Show a wide, low, cylindrical AFP white-and-blue drip-tape carton roll placed on the soil in the lower third, offset to the left or right, with no people or body parts visible. Enlarge the product group from 8% to 13-27% of frame width.",
-      "attempt": 5
+      "correction_prompt": "Reduce the product group from 46% to 9-20% of frame width. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 20,
+      "product_height_percent": 15,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Image contains a person (a man crouching in the field)",
+        "Product pair is wider than 15% of the frame width",
+        "Product pair is not off-center on the lower third"
+      ],
+      "correction_prompt": "Remove the man. Regenerate the image to show exactly two layflat coils (one packaged AFP, one bare black woven) occupying 12-15% of frame width, placed off-center on the lower third, flat on the ground, with no people or human body parts visible.",
+      "attempt": 4
     },
     {
       "pass": true,
       "score": 85,
-      "product_width_percent": 24,
-      "product_height_percent": 22,
-      "product_x_center_percent": 33,
+      "product_width_percent": 14,
+      "product_height_percent": 13,
+      "product_x_center_percent": 55,
       "reasons": [
-        "Product morphology is correct: wide low cylindrical drip-tape carton roll",
-        "Color scheme matches (white and blue)",
-        "Watermark is correct and legible",
-        "Product is off-center and placed naturally on soil",
-        "No people or human body parts visible",
-        "Background context (farm field, rows, barn) is coherent",
-        "Vegetation is neutral (young seedlings), which is permitted"
+        "Image shows exactly two approved layflat objects: one packaged AFP coil and one bare black woven coil.",
+        "Pair is off-center in the lower third and remains fully visible, separate, and flat on the ground.",
+        "Zero people, human body parts, or human silhouettes are present.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present.",
+        "Background contains only allowed infrastructure and no prohibited extra commercial products or hard-reject elements."
       ],
       "correction_prompt": "",
-      "attempt": 6
+      "attempt": 5
     }
   ],
   "approved_image": "راهنمای-جامع-خرید-لوله-نخ-دار-75-میلیمتر-نکات-انتخاب-و-قیمت-کاربرد-عملی.webp"

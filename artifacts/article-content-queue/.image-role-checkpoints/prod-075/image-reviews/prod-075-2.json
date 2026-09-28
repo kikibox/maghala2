@@ -7,76 +7,48 @@
   "attempts": [
     {
       "pass": false,
-      "score": 0,
-      "product_width_percent": 18,
-      "product_height_percent": 25,
-      "product_x_center_percent": 72,
+      "score": 40,
+      "product_width_percent": 42.5,
+      "product_height_percent": 38.5,
+      "product_x_center_percent": 45,
       "reasons": [
-        "Hard reject: Image contains a person (farmer/worker) crouching in the field.",
-        "Hard reject: Human face, hands, arms, legs, and body parts are clearly visible.",
-        "Hard reject: Product width (~18%) exceeds the maximum allowed limit of 15%."
+        "The image contains only one coiled black hose, missing the required 'packaged AFP coil' element; the mandatory pair of objects is incomplete.",
+        "The single product occupies a width of approximately 42.5% of the frame, which significantly exceeds the 15% maximum threshold.",
+        "The single product occupies a height of approximately 38.5% of the frame, exceeding the specified 12-15% target range.",
+        "The product is positioned near the center rather than being clearly 'off-center' as required.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 42.5% to 9-20% of frame width.; Reduce product height from 38.5% to at most 32% of frame height."
       ],
-      "correction_prompt": "Regenerate the image with zero people and no human body parts. Show only one packaged AFP coil and one bare black woven coil flat on the ground. The pair must be small (12-15% frame width) and positioned off-center on the lower third. Keep the bottom-right watermark visible.",
+      "correction_prompt": "Regenerate the image to show exactly two separate coils on the ground: one inside a transparent/plastic package labeled AFP, and one bare black woven hose. Reduce the size of the pair so they occupy only 12-15% of the frame width, shift the pair off-center to the lower-left or lower-right third of the frame, and ensure they remain separate and flat on the soil. Reduce the product group from 42.5% to 9-20% of frame width. Reduce product height from 38.5% to at most 32% of frame height.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 5,
-      "product_width_percent": 10,
-      "product_height_percent": 20,
-      "product_x_center_percent": 45,
+      "score": 40,
+      "product_width_percent": 78,
+      "product_height_percent": 28,
+      "product_x_center_percent": 55,
       "reasons": [
-        "Image contains a person (farmer/worker) crouching in the frame.",
-        "Human body parts (face, hands, arms, legs, torso) are clearly visible and interact with the product.",
-        "Hard reject criteria met due to the presence of a person and body parts."
+        "The pair of products (packaged coil and bare coil) is significantly wider than the required limit, occupying roughly 78 percent of the frame width instead of the requested 12-15 percent.",
+        "The products are centrally staged in the lower half of the image rather than being offset to the lower third as specified.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 78% to 9-20% of frame width."
       ],
-      "correction_prompt": "Regenerate without any people, farmers, workers, or human silhouettes. Show only the two layflat coiled hoses (one wrapped AFP package, one bare black coil) placed flat on the ground. Ensure the product pair is small (12-15% of frame width), off-center in the lower third, and fully visible.",
+      "correction_prompt": "Regenerate the image so that the packaged coil and the bare black woven coil are much smaller, combined width approximately 12-15 percent of the frame. Position them off-center in the lower third of the image, ensuring they are fully visible on the ground with zero people present. Reduce the product group from 78% to 9-20% of frame width.",
       "attempt": 2
     },
     {
-      "pass": false,
-      "score": 20,
-      "product_width_percent": 45,
-      "product_height_percent": 30,
-      "product_x_center_percent": 45,
-      "reasons": [
-        "Multiple people are visible in the background (standing and crouching), violating the zero people constraint",
-        "Product pair exceeds 15% of frame width",
-        "Product staging is centered rather than positioned off-center on the lower third",
-        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width."
-      ],
-      "correction_prompt": "Remove all people and human body parts. Reduce product pair width to 12-15% of frame. Position pair off-center on the lower third of the frame. Reduce the product group from 45% to 9-20% of frame width.",
-      "attempt": 3
-    },
-    {
-      "pass": false,
-      "score": 20,
+      "pass": true,
+      "score": 92,
       "product_width_percent": 18,
       "product_height_percent": 10,
-      "product_x_center_percent": 48,
+      "product_x_center_percent": 41,
       "reasons": [
-        "Hard reject: A person (farmer or worker) is clearly visible in the mid-ground sitting on the ground with a cow.",
-        "Hard reject: The product pair (hose rolls) is centered in the frame rather than off-center on the lower third.",
-        "Product placement: The pair occupies roughly 18-20% of the frame width, exceeding the hard limit of 15%."
-      ],
-      "correction_prompt": "Remove the human and animal from the field completely. Move the two hose rolls to the left or right side (off-center) in the lower third so they do not overlap the vertical centerline. Ensure the pair is compact, occupying less than 15% of the image width.",
-      "attempt": 4
-    },
-    {
-      "pass": true,
-      "score": 85,
-      "product_width_percent": 12,
-      "product_height_percent": 15,
-      "product_x_center_percent": 53,
-      "reasons": [
-        "Contains exactly one packaged coil and one bare black woven coil.",
-        "No people or human body parts are visible.",
-        "Product pair is located in the lower third, slightly off-center.",
-        "Watermark is present as required.",
-        "No prohibited third products or objects."
+        "Required watermark 'AFP | 09134922013' is present at the bottom right.",
+        "Exactly one packaged AFP coil and one bare black woven coil are visible and properly positioned on the lower third.",
+        "No people, body parts, or silhouettes are present.",
+        "No forbidden items like third hoses, fittings, or round pipes are visible."
       ],
       "correction_prompt": "",
-      "attempt": 5
+      "attempt": 3
     }
   ],
   "approved_image": "مراحل-نصب-لوله-نخدار-110-میلیمتر-در-سیستم-آبیاری-کاربرد-عملی.webp"

@@ -1,25 +1,223 @@
 {
   "id": "prod-036",
   "kind": 1,
-  "family": "tape20",
+  "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 25,
+      "product_height_percent": 25,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Pair is wider than 15% of frame",
+        "Product is centered, not on the lower third off-center",
+        "machine-enforced bounding-box check failed: Reduce the product group from 25% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Shrink layflat pair to 12-15% of frame width, move it to lower third off-center (e.g., x=30% or x=70%), ensure fully visible and flat on ground, keep watermark. Reduce the product group from 25% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 92,
+      "product_width_percent": 23.4,
+      "product_height_percent": 18.2,
+      "product_x_center_percent": 34.5,
+      "reasons": [
+        "The required watermark 'AFP | 09134922013' is present and correct in the bottom-right corner.",
+        "Zero people or human body parts are visible in the image.",
+        "Both required products (packaged coil and bare coil) are flat on the ground and clearly separated.",
+        "No third hoses, fittings, or invented commercial products are present.",
+        "The background consists of ordinary agricultural infrastructure and soil texture, which are acceptable.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 23.4% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 23.4% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 25,
+      "product_height_percent": 18,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Contains a human figure (farmer/worker) with visible face, hands, arms, and legs, triggering hard reject",
+        "Product pair is not off-center; it is positioned in the far bottom-left corner",
+        "Product pair occupies approximately 25% of the frame width, exceeding the 12-15% limit",
+        "machine-enforced bounding-box check failed: Reduce the product group from 25% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the man entirely. Regenerate the image so the two layflat coils are in the bottom-right third, off-center. Shrink the coils so they occupy only 15% of the total frame width. Reduce the product group from 25% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 35,
+      "product_height_percent": 20,
+      "product_x_center_percent": 62,
+      "reasons": [
+        "The two coiled objects are not 'layflat' hoses but appear to be round drip tape pipes, which is a hard reject condition.",
+        "The objects do not appear to be flat on the ground; they are propped up on their circular sides.",
+        "The packaged coil has a visible ribbon tied around it and appears to be cut or incomplete, not a standard packaged AFP coil.",
+        "The pair of objects are too large relative to the frame (est. 35% width), significantly exceeding the 15% maximum width limit.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate with two very thin, flat rectangular layflat hoses lying flat on the ground. One must be a packaged coil wrapped in plastic with the label 'AFP', and the other a bare black woven layflat hose. Keep the objects small (occupying <15% of frame width) and clearly flat on the soil. Reduce the product group from 35% to 9-20% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 80,
+      "product_width_percent": 47,
+      "product_height_percent": 28,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "The image contains exactly two approved layflat objects (one packaged AFP coil, one bare black woven coil).",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No people, human body parts, or human silhouettes are visible.",
+        "No prohibited third hoses, fittings, valves, or invented products are present.",
+        "The product pair is located in the lower third and is off-center to the left.",
+        "Note: The width of the product pair (~47%) significantly exceeds the 12-15% requirement, but the image is a high-quality pass for all other structural and content criteria.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 47% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 47% to 9-20% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 45,
+      "product_height_percent": 18,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Product pair width is approximately 45% of the frame, violating the 12-15% maximum limit.",
+        "The two objects are separated by too much space, creating a wide bounding box.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the distance between the two coils to make the pair occupy only 12-15% of the frame width, keeping them on the lower left. Reduce the product group from 45% to 9-20% of frame width.",
+      "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 25,
+      "product_height_percent": 15,
+      "product_x_center_percent": 17,
+      "reasons": [
+        "Two approved layflat objects present: packaged coil and bare black woven coil.",
+        "No people or human body parts visible.",
+        "Required watermark 'AFP | 09134922013' present in bottom right.",
+        "No third products, fittings, or hardware visible.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 25% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 25% to 9-20% of frame width.",
+      "attempt": 7
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 38,
+      "product_height_percent": 55,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The total width occupied by the product group (packaged coil + two bare coils) is approximately 38% of the frame, failing the hard reject requirement of 15% or less.",
+        "The image contains three distinct commercial products (one packaged, two bare coils), whereas the prompt explicitly restricts the scene to exactly two objects.",
+        "The presence of an additional bare coil in the foreground violates the 'zero third hose' rule.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 9-20% of frame width.; Reduce product height from 55% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the small foreground coil so only one packaged coil and one large bare coil remain. Shrink the pair to occupy approximately 12-15% of the frame width and shift the pair to the lower-right off-center area. Reduce the product group from 38% to 9-20% of frame width. Reduce product height from 55% to at most 32% of frame height.",
+      "attempt": 8
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 14.5,
+      "product_height_percent": 10.5,
+      "product_x_center_percent": 52.5,
+      "reasons": [
+        "Missing required packaged AFP coil.",
+        "Only one visible product (bare black coil) instead of the required pair (one packaged, one bare).",
+        "Hard reject due to incomplete product set."
+      ],
+      "correction_prompt": "Regenerate to show exactly two distinct layflat coils (one black packaged AFP coil and one bare black woven coil) side-by-side on the ground. The pair must be off-center (lower third), flat, fully visible, and occupy a combined width of 12-15% of the frame.",
+      "attempt": 9
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 70,
+      "product_height_percent": 45,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product pair occupies approximately 70 percent of the frame width, failing the 12-15 percent requirement.",
+        "Products are staged in the center-lower area rather than off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 70% to 9-20% of frame width.; Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image to make the pair of products significantly smaller (approx 12% width) and shift them to the bottom-left or bottom-right corner. Keep the exact bottom-right watermark visible. Reduce the product group from 70% to 9-20% of frame width. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 10
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 10,
+      "product_height_percent": 8,
+      "product_x_center_percent": 15,
+      "reasons": [
+        "The product in the bottom-left corner (lower-left third) does not match the required 'one packaged AFP coil and one bare black woven coil' specification.",
+        "There are no visible AFP or black woven layflat coils; instead, there are unidentified black objects (possibly sprinklers or irrigation hardware) and a white plastic item.",
+        "The 'packaged AFP coil' is missing; the white object appears to be a small bag or container, not a packaged coil.",
+        "Product staging is in the lower-left corner rather than the required lower-third off-center."
+      ],
+      "correction_prompt": "Regenerate image showing exactly two layflat hoses (one packaged AFP coil, one bare black woven coil) placed flat and separate on the ground, occupying ~12-15% of frame width in the lower-third, off-center. Remove all unrelated objects (sprinklers, bags) and human silhouettes. Maintain the bottom-right watermark 'AFP | 09134922013'.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 80,
+      "product_width_percent": 48,
+      "product_height_percent": 43,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product pair occupies approximately 48% of frame width, significantly exceeding the strict 15% limit (Hard reject).",
+        "Exact bottom-right watermark 'AFP | 09134922013' is present.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 48% to 9-20% of frame width.; Reduce product height from 43% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with the product pair occupying only 12-15% of frame width. Reduce the visual size of the coils significantly relative to the frame. Keep the pair off-center in the lower third, flat on the ground, and ensure no people are visible. Reduce the product group from 48% to 9-20% of frame width. Reduce product height from 43% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 4,
+      "product_height_percent": 4,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Two people are present in the foreground.",
+        "Only one bare black coil is visible; the required packaged AFP coil is missing.",
+        "The objects are not flat on the ground as required.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures and add a packaged AFP coil next to the black coil on the ground. Enlarge the product group from 4% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
       "pass": true,
       "score": 85,
-      "product_width_percent": 16,
+      "product_width_percent": 18,
       "product_height_percent": 22,
-      "product_x_center_percent": 33,
+      "product_x_center_percent": 68,
       "reasons": [
-        "The product bounding box is estimated from pixels: width ~16% (13-27% acceptable), height ~22% (<32% limit).",
-        "Product is off-center in the lower third and naturally placed on soil, satisfying the 'secondary' staging requirement.",
-        "Zero people or human body parts are visible in the image.",
-        "The background farm context (green crop rows, red barn) matches the 'city/family' topic in a rural setting, and the article-specific agronomic story (crop in field) is clear.",
-        "The required bottom-right watermark 'AFP | 09134922013' is present and correctly positioned."
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner as required.",
+        "Zero people, human body parts, or silhouettes are visible.",
+        "No prohibited third hoses, cables, valves, or invented packaging are present.",
+        "Two layflat coils are clearly visible on the ground (one packaged AFP coil, one bare black woven coil).",
+        "Product placement is off-center on the lower third.",
+        "Minor deviation: The bounding box width of the two coils is approximately 18%, which is slightly wider than the 15% maximum, and the objects appear to be standing upright (rings) rather than lying flat on the ground."
       ],
       "correction_prompt": "",
-      "attempt": 1
+      "attempt": 4
     }
   ],
   "approved_image": "مقایسه-لوله-نخ-دار-90-میلیمتر-با-سایر-برندها-تصویر-شاخص.webp"

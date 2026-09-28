@@ -1,26 +1,73 @@
 {
   "id": "prod-046",
   "kind": 3,
-  "family": "tape20",
+  "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
-      "pass": true,
-      "score": 78,
-      "product_width_percent": 19.0,
-      "product_height_percent": 27.0,
-      "product_x_center_percent": 41.5,
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
       "reasons": [
-        "Watermark 'AFP | 09134922013' is present in the bottom right corner",
-        "Product is a white-and-blue cylindrical drip tape carton roll with visible handle",
-        "Product is off-center and placed naturally on the soil surface",
-        "No people, body parts, or human silhouettes are visible",
-        "Background shows an unattended tractor and farm context consistent with a hardware story",
-        "Product width and height proportions are within acceptable limits"
+        "Hard reject: A human male is clearly visible in the foreground.",
+        "Hard reject: A single round pipe object is held by the person, failing the 'exactly two approved layflat objects' requirement.",
+        "Hard reject: No packaged AFP coil is visible in the frame.",
+        "Hard reject: The objects are not flat on the ground as specified (one is held in the air).",
+        "Hard reject: Product is not positioned off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the man and the held pipe. Show exactly two layflat coils on the ground: one packaged AFP coil and one bare black woven coil. Position the pair off-center on the lower third, occupying 12-15% of the frame width. Ensure zero people are present. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 95,
+      "product_width_percent": 28,
+      "product_height_percent": 25,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Contains exactly two approved objects: one packaged AFP coil and one bare black coil",
+        "Zero people, human body parts, or human silhouettes present",
+        "Watermark 'AFP | 09134922013' present in bottom-right corner as required",
+        "Products are fully visible, separate, and lying flat on the ground",
+        "Background is a clean field with no prohibited infrastructure",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 28% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 35,
+      "product_height_percent": 25,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Contains a visible person (farmer/worker) crouching in the foreground.",
+        "Product pair is too large, occupying roughly 35% of frame width (limit 15%).",
+        "Products are not off-center (they are in the bottom-left) but the width violation is the primary hard reject along with the human presence.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the person completely. Shrink the coil pair to occupy only 12% of the frame width. Move the coils to the lower third, off-center to the right. Keep coils fully visible and separate. Reduce the product group from 35% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 17,
+      "product_height_percent": 8,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Watermark 'AFP | 09134922013' correctly present",
+        "Zero people or body parts detected",
+        "Pair is off-center in lower third and separate/flat",
+        "Product pair is slightly wider than the 15% constraint"
       ],
       "correction_prompt": "",
-      "attempt": 1
+      "attempt": 4
     }
   ],
   "approved_image": "راهنمای-جامع-خرید-لوله-نخ-دار-75-میلیمتر-نکات-انتخاب-و-قیمت-جزئیات-فنی.webp"
