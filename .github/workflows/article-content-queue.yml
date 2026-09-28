@@ -241,12 +241,23 @@ jobs:
           print(int(json.loads(path.read_text(encoding='utf-8')).get('pending', 0)) if path.exists() else 0)
           PY
           )"
+          read -r rebuild_remaining rebuild_stalled <<<"$(python - <<'PY'
+          import json
+          from pathlib import Path
+          path=Path('artifacts/article-content-queue/image-rebuild-reference-rerender-3d-v12-family-aware-layflat-repair.json')
+          data=json.loads(path.read_text(encoding='utf-8')) if path.exists() else {}
+          print(int(data.get('remaining_candidates',0)), int(data.get('consecutive_no_progress_runs',0)))
+          PY
+          )"
           rebuild_active="$(gh run list --workflow rebuild-all-article-images.yml --limit 20 --json status --jq '[.[] | select(.status == "queued" or .status == "in_progress" or .status == "waiting" or .status == "pending" or .status == "requested")] | length')"
           if [ "$rebuild_active" -gt 0 ]; then
             echo "An image-family rebuild is active or queued; leaving the pipeline handoff to it."
           elif [ "${{ steps.translation_backlog.outputs.pending }}" = "1" ]; then
             echo "Translation backlog reached its bound; dispatching the translator before more Persian generation."
             gh workflow run article-translations.yml --ref main
+          elif [ "$rebuild_remaining" -gt 0 ] && [ "$rebuild_stalled" -lt 3 ] && [ "${{ steps.queue.outcome }}" != "skipped" ]; then
+            echo "Fresh generation advanced; dispatching one bounded image-repair slice before the next content batch."
+            gh workflow run rebuild-all-article-images.yml --ref main
           elif [ "$pending" -gt 0 ] && [ "${{ steps.queue.outcome }}" != "skipped" ]; then
             echo "Queue has $pending pending articles; cooling down before the next batch."
             sleep 60
