@@ -1,0 +1,83 @@
+{
+  "id": "strat-012",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 24,
+      "product_height_percent": 31,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Hard reject: second package/object (small white container) visible in the mid-ground soil."
+      ],
+      "correction_prompt": "Remove the small white container from the soil in the background, keeping only the AFP carton roll and the pressure gauge.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 12,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: The image contains a clearly identifiable person (a man crouching in the field), violating the 'zero people and zero human body parts' rule.",
+        "Hard reject: The image contains visible human body parts (arms, legs, face) that are prohibited.",
+        "Product sizing: The drip-tape roll width is approximately 12% of the frame, which is below the minimum 13% requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with no people or human parts present. Remove the crouching man entirely. Ensure the AFP drip-tape roll is centered horizontally in the lower-left third, is visibly wider (approx 15-20% of frame width), and sits naturally on the soil. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 31,
+      "product_height_percent": 33,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product width is approximately 31% of the frame, exceeding the maximum 27% limit and failing the 'secondary product' requirement.",
+        "The article topic is 'city', but the image background displays a large rural farm field, violating the background match requirement.",
+        "The visible crop morphology in the soil is botanically indistinct/generic and does not clearly identify the 'family tape20' (potentially 'family') article crop.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 31% to 13-27% of frame width.; Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the drip-tape carton roll size to 20-23% of the frame width. Replace the rural farm field background with an urban or peri-urban city farm context that matches the 'city' article topic. Reduce the product group from 31% to 13-27% of frame width. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: The product shown is an upright cylinder (bucket/canister) rather than a wide, low cylindrical drip-tape carton roll.",
+        "The product height-to-width ratio is roughly 1:1, failing the requirement for a ratio of 1.5 to 1.9 (width:height).",
+        "The product does not meet the 'low' geometry requirement specified for the role.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to show a wide, low cylindrical drip-tape carton roll (pancake shape) lying horizontally on the soil. The diameter should be 1.5 to 1.9 times the height. Remove the upright bucket-like shape. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Image contains one AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product dimensions and placement align with specified constraints (width 13-27%, height <32%, off-center lower third).",
+        "Required AFP phone number watermark is present in the bottom-right corner.",
+        "No visible people, human body parts, or disqualifying extra commercial products.",
+        "The soil and crop bed context provides a practical, botanically neutral agronomic story without a clearly identifiable different species."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "کاهش-تبخیر-با-آبیاری-قطرهای-تصویر-شاخص.webp"
+}

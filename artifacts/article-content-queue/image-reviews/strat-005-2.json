@@ -1,0 +1,43 @@
+{
+  "id": "strat-005",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 15,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Presence of a human worker (farmer) in the foreground",
+        "Visible human hands, face, and torso violate the 'zero people' requirement",
+        "Product is too small relative to the frame (width ~8%, height ~15%)",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the farmer entirely; the image must show only the drip tape roll in the field with zero people or body parts visible Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 98,
+      "product_width_percent": 22,
+      "product_height_percent": 27,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Product is exactly one AFP white-and-blue drip tape carton roll",
+        "Product is off-center in the lower third and placed naturally on soil",
+        "Dimensions conform to preferred width (22%) and height (27%) limits",
+        "Width-to-height ratio is correct",
+        "Watermark 'AFP | 09134922013' is present in bottom right",
+        "No people or human silhouettes visible",
+        "Background (field, farm context) is agronomic and suitable"
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "تطبیق-سیستم-آبیاری-با-اقلیم-ایران-کاربرد-عملی.webp"
+}

@@ -1,0 +1,46 @@
+{
+  "id": "strat-013",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 33,
+      "product_height_percent": 62,
+      "product_x_center_percent": 71,
+      "reasons": [
+        "The product aspect ratio is incorrect; it is taller than it is wide instead of the required wide, low cylindrical shape.",
+        "The roll is unacceptably large relative to the frame, violating the maximum width and height constraints.",
+        "The physical logic is impossible because the main roll is emitting a thick, open stream of water from its center rather than drip tape exiting the package.",
+        "Water is shown accumulating and pooling at the base of the crop, which contradicts the dry-looking soil texture.",
+        "The center pipe protrudes in a way that resembles a rigid pipe or hose rather than flexible drip tape.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 33% to 13-27% of frame width.; Reduce product height from 62% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image showing a wide, low cylindrical drip-tape roll lying flat on the soil in the lower-right corner. The roll must be significantly smaller (width 20% of frame). A thin white drip tape should exit the center of the roll to the side. Ensure the crop is a mature maize plant in the foreground and remove all free-flowing water streams or puddles to maintain a dry soil appearance. Reduce the product group from 33% to 13-27% of frame width. Reduce product height from 62% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 18,
+      "product_height_percent": 20,
+      "product_x_center_percent": 64,
+      "reasons": [
+        "The image contains exactly one AFP drip-tape roll, white and blue, cylindrical, on the soil.",
+        "The product is off-center, located in the lower right quadrant, and appears naturally placed on the ground.",
+        "The product dimensions are within the acceptable thresholds: width ~18% (ideal range 20-23%, acceptable 13-27%) and height ~20% (limit 32%).",
+        "The crop visible is corn (maize), which is the specific crop named in the article title/role, and is botanically accurate.",
+        "The background context (farm, red barn, open fields) matches the city/family farm article theme.",
+        "The required watermark 'AFP | 09134922013' is present and clear in the bottom-right corner.",
+        "Zero people or human body parts are visible in the frame.",
+        "The roll's diameter is proportional to its height (~1.6:1), consistent with a realistic drip tape package."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-و-مدیریت-خاک-تصویر-شاخص.webp"
+}

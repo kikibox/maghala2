@@ -1,0 +1,67 @@
+{
+  "id": "prod-112",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 31,
+      "product_height_percent": 32,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Product width estimate (31%) exceeds the maximum acceptable limit of 27%.",
+        "A separate, unbranded flat drip-tape coil is visible next to the primary carton, acting as a second package/extra commercial product or layflat hose, which is a hard reject condition.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 31% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the extra blue flat tape coil on the ground and reduce the width of the primary carton roll to approximately 20% of the frame, keeping it off-center on the lower left on the soil. Reduce the product group from 31% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 14,
+      "product_height_percent": 22,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: Presence of a person (male farmer) kneeling in the foreground, including visible face, body, arms, and hands. The strict requirement is zero people and zero human body parts."
+      ],
+      "correction_prompt": "Regenerate without any people or human body parts. Show only the white and blue drip-tape roll on the soil. Keep the farm context (tractor, barn, soil) and ensure the product is off-center to the left.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 23,
+      "product_height_percent": 32,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Image contains a person (male farmer crouching), which is a hard reject.",
+        "Additional commercial product (multi-colored hose/filter object) in the bottom right is present, which is a hard reject."
+      ],
+      "correction_prompt": "Remove the crouching farmer and the additional multi-colored filtration device; leave only the white AFP drip-tape roll on the soil.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 19.0,
+      "product_height_percent": 26.0,
+      "product_x_center_percent": 36.0,
+      "reasons": [
+        "Product width (19%) falls within the acceptable practical estimate range of 13-27%.",
+        "Product height (26%) is below the 32% hard limit.",
+        "Product is correctly positioned off-center on the lower third of the frame.",
+        "The bottom-right watermark \"AFP | 09134922013\" is clearly visible and preserved.",
+        "Zero people or human body parts are visible in the scene.",
+        "The unattended tractor in the background is permitted infrastructure and does not trigger a hard reject.",
+        "The hardware context (drip tape and valve) fits the 'hardware story' role 3 requirements."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "توافق-لوله-نخ-دار-75-میلیمتر-با-نوار-تیپ-و-قطرهچکان-جزئیات-فنی.webp"
+}

@@ -1,0 +1,69 @@
+{
+  "id": "strat-009",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 12,
+      "product_height_percent": 16,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: Contains two people (farmers) and human body parts, which are strictly prohibited.",
+        "Product geometry: The roll is roughly as tall as it is wide (cylindrical standing up), but must be a wide, low shape with a diameter 1.5-1.9x the height.",
+        "Product Size: The roll is currently 12% wide and 16% tall. It is taller than it is wide, violating the 'wide low cylindrical' description and aspect ratio requirements.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove both men completely. Make the single white AFP drip-tape carton roll significantly wider and lower (flat on the soil), with a diameter approximately 1.6 times its height. Position the roll off-center on the lower third. Maintain the farm context and the bottom-right watermark. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Person and human body parts are present (crouching man), which is a hard reject condition",
+        "The product is not positioned in the lower third of the image (it's centered vertically in the foreground)",
+        "Crop morphology doesn't clearly match 'city' context from article title",
+        "Background context is generic farmland rather than city-specific urban agriculture"
+      ],
+      "correction_prompt": "Regenerate image showing: (1) NO people or human body parts visible at all; (2) urban/city agriculture context with visible city elements (buildings, urban infrastructure, or city street visible in background); (3) drip tape roll positioned in lower third of frame, off-center left; (4) recognizable crop matching the specific named crop from article title; (5) maintain AFP watermark bottom-right",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 13,
+      "product_height_percent": 14,
+      "product_x_center_percent": 15,
+      "reasons": [
+        "Contains a large foreground human figure and multiple background people, which are hard rejects."
+      ],
+      "correction_prompt": "Regenerate the image without any people, removing the crouching man and background figures. Keep the low urban farm context with green crop rows, drip tape on soil, and the small white and blue drip tape roll (labeled AFP) resting on the ground at the lower left.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 16,
+      "product_height_percent": 22,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "Product is the correct wide low cylindrical drip-tape carton roll, off-center in the lower third.",
+        "Dimensions are within acceptable limits: width 16% (within 13-27%), height 22% (within 32% limit).",
+        "Ratio of diameter to height is approximately 1.45, which is close to the required 1.5-1.9 range.",
+        "Zero people or human body parts are visible.",
+        "Watermark 'AFP | 09134922013' is present in the bottom right corner as required.",
+        "Crop context shows rows of small green seedlings with irrigation lines, which is appropriate for a drip-tape context (neutral young vegetation is acceptable when exact mature morphology is unavailable)."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "عیبیابی-رایج-سیستمهای-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

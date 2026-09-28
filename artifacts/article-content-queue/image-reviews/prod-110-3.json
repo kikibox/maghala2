@@ -1,0 +1,65 @@
+{
+  "id": "prod-110",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 25,
+      "product_height_percent": 32,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product height is at the absolute maximum limit of 32%, failing the 'no more than 32%' rule due to visual estimation error.",
+        "Product is centered on the vertical axis (X=38%) rather than off-center on the lower third as required.",
+        "Second package or commercial product (sprinkler component) is visible next to the main roll, violating the 'zero second package/product' rule."
+      ],
+      "correction_prompt": "Reduce the vertical height of the drip tape roll to under 30%, shift the product position to the right into the bottom-right quadrant, and completely remove the black sprinkler part from the foreground.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 19,
+      "product_height_percent": 23,
+      "product_x_center_percent": 73,
+      "reasons": [
+        "The product is positioned in the center-right of the frame; the prompt requires it to be off-center on the lower third."
+      ],
+      "correction_prompt": "Move the white and blue drip-tape roll to the far left side of the lower third of the frame to achieve an off-center composition.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 20,
+      "product_height_percent": 23,
+      "product_x_center_percent": 20,
+      "reasons": [
+        "Hard reject: presence of two men (farmers/workers) and visible human body parts violates the zero-person constraint."
+      ],
+      "correction_prompt": "Remove the two men and all visible human body parts. Ensure the scene contains only the AFP drip tape roll on the soil and inanimate farm background elements (tractor, barn, crop rows) without any people.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 26,
+      "product_height_percent": 22,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product is the specified white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Zero people or human body parts visible.",
+        "Product is off-center on the lower third, placed naturally on soil.",
+        "Background (farm field, barn, unattended tractor) matches the hardware story context.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right.",
+        "Product width is at the upper limit of the acceptable range (26%)."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "هزینه-لوله-نخ-دار-90-میلیمتر-در-مزرعه-برآورد-جزئیات-فنی.webp"
+}

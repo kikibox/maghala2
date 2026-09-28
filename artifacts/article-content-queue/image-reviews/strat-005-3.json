@@ -1,0 +1,53 @@
+{
+  "id": "strat-005",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 80,
+      "product_width_percent": 28,
+      "product_height_percent": 31,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "The product is wider than the hard-reject threshold of 27 percent of the frame width, causing it to fail the sizing constraints despite an accurate height and acceptable positioning.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with the drip-tape roll scaled down to approximately 23-25 percent of the total image width while maintaining its aspect ratio and position on the soil. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 17,
+      "product_height_percent": 16,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "The image contains human body parts (hands, forearms, and legs/knees of a person) visible on the right side, which is a strict hard reject condition requiring zero people or human silhouettes.",
+        "Additional commercial hardware item (a small spool) is being held in the person's hand, which could conflict with the 'no extra commercial product' rule."
+      ],
+      "correction_prompt": "Remove the person, hands, and legs from the right side of the image entirely. Keep only the white and blue drip-tape roll on the soil, the small crop plant, the soil texture, and the distant tractors.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 18,
+      "product_height_percent": 20,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Product width (18%) and height (20%) fall within acceptable 13-27% and <32% limits, keeping the product secondary to the scene.",
+        "Diameter-to-height ratio is approximately 1.8, consistent with the required 1.5-1.9 range.",
+        "The roll is correctly positioned off-center on the lower third and placed naturally on the soil.",
+        "The background contains zero visible people or human body parts, with unattended tractors acting as permissible hardware infrastructure.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "Visible crop is a generic young plant/seedling, which does not clearly contradict the article title under the 'visually neutral' role 3 hardware story criteria."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "تطبیق-سیستم-آبیاری-با-اقلیم-ایران-جزئیات-فنی.webp"
+}

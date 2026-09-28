@@ -1,0 +1,59 @@
+{
+  "id": "prod-110",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 18,
+      "product_height_percent": 17,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: The image contains two clearly visible people (a man and a woman).",
+        "Violation of the 'zero people' constraint which explicitly hard-rejects any human body parts, faces, or individuals.",
+        "The product (the carton roll) is positioned in front of the subjects rather than naturally placed off-center on the soil as the focal point without human interaction.",
+        "Although the geometry of the roll (approx 1.6x aspect ratio) and size (18% width) are acceptable, the human presence is an automatic disqualification."
+      ],
+      "correction_prompt": "Remove all people and hands from the image. Ensure the AFP drip-tape carton roll is the only focal point, resting naturally on the soil in a farm context without any human presence or silhouettes.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 86,
+      "product_width_percent": 28.0,
+      "product_height_percent": 15.2,
+      "product_x_center_percent": 36.0,
+      "reasons": [
+        "Image contains zero humans or body parts",
+        "Watermark is correct",
+        "Geometry and shape are correct",
+        "However, product width is estimated at 28% which slightly exceeds the 27% hard reject limit, though practical 20-23% is preferred",
+        "Product bounding box is accurate",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 19,
+      "product_height_percent": 22,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "The image successfully displays a white and blue wide low cylindrical drip-tape carton roll.",
+        "The product is positioned off-center on the soil within the lower third of the image.",
+        "The background shows a farm context with crops consistent with the general irrigation application.",
+        "The product dimensions fall within the 13-27% width and <32% height requirements.",
+        "There are no people or human body parts visible in the image.",
+        "The required 'AFP | 09134922013' watermark is clearly visible in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "هزینه-لوله-نخ-دار-90-میلیمتر-در-مزرعه-برآورد-تصویر-شاخص.webp"
+}

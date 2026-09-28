@@ -1,0 +1,70 @@
+{
+  "id": "strat-013",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 70,
+      "product_width_percent": 30,
+      "product_height_percent": 42,
+      "product_x_center_percent": 70,
+      "reasons": [
+        "Product bounding box width is approximately 30% of the image width, exceeding the 27% hard-reject limit.",
+        "Product bounding box height is approximately 42% of the image height, exceeding the 32% hard-reject limit.",
+        "Product is not on the lower third, extending into the upper half of the frame vertically.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width.; Reduce product height from 42% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Resize the drip tape roll to 20% frame width, reduce its height to 30%, and move the object lower so it rests in the bottom third of the frame. Reduce the product group from 30% to 13-27% of frame width. Reduce product height from 42% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: Image contains multiple people and visible human body parts.",
+        "Hard reject: Presence of human figures violates the 'zero people' constraint."
+      ],
+      "correction_prompt": "Regenerate the image excluding all people. Focus on a wide low cylindrical drip-tape roll placed on soil in a farm context without any human figures.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 30,
+      "product_height_percent": 32,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Product is centered in the frame; it must be off-center on the lower third.",
+        "Product width is too large (~30%), exceeding the 27% limit.",
+        "Product height is at the 32% limit, borderline acceptable but combined with width issues fails composition.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Move the roll to the right-side lower third (off-center), shrink the roll size so width is under 25%, and keep it resting naturally on the soil. Reduce the product group from 30% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Watermark 'AFP | 09134922013' is present in the bottom right corner.",
+        "Product is a white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product is correctly sized and centered (approx 20% width), satisfying the 'secondary' and centered staging requirements.",
+        "Zero people or human body parts are visible.",
+        "Background shows a farm context with soil and agricultural infrastructure.",
+        "No forbidden items such as bottles, extra packaging, or second rolls are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-و-مدیریت-خاک-جزئیات-فنی.webp"
+}

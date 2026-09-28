@@ -1,0 +1,73 @@
+{
+  "id": "prod-111",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 24,
+      "product_height_percent": 36,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Product height (approx. 36%) exceeds the 32% limit.",
+        "Diameter-to-height ratio (approx. 0.65:1) is inverted; it must be roughly 1.5-1.9:1.",
+        "The product is staged too close to the foreground, creating an impossible scale relative to the surrounding soil rows and crop plants.",
+        "The background crop rows are green and appear to be maize/corn, which contradicts the 'Lentil Crop' theme.",
+        "machine-enforced bounding-box check failed: Reduce product height from 36% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reshape the product into a wide, low cylindrical roll with a diameter roughly 1.7 times its height. Reduce the product's overall height to less than 30% of the frame. Ensure the crop plants in the background match the lens article title. Reduce product height from 36% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 22,
+      "product_width_percent": 23,
+      "product_height_percent": 19,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "The visible product is a standard white and blue flat-pack tape roll, not the 'wide low cylindrical' geometry requested.",
+        "The aspect ratio of the product (width/height) is approximately 1.2, failing the mandatory 1.5-1.9 requirement.",
+        "The product is positioned near the bottom-left rather than the specified 'lower-third' band.",
+        "The foreground crop is highly identifiable as corn/maize, which contradicts the specific crop focus implied by the 'lentil' reference and hardware-centric requirements."
+      ],
+      "correction_prompt": "Regenerate with a wide, low-profile cylindrical drip tape roll (aspect ratio ~1.7:1) positioned in the lower-third. Use a hardware-focused background (soil and manifold hardware) to avoid showing identifiable crop morphology. Ensure the roll is off-center and no larger than 23% of the frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 30,
+      "product_height_percent": 33,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "The product height is approximately 33% of the frame, slightly exceeding the hard limit of 32%.",
+        "The product is positioned too high in the frame; it is not properly resting on the lower third of the image.",
+        "The surrounding irrigation hardware (manifolds, valves) forms a chaotic cluster that detracts from the specified 'lower third' placement.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width.; Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image so the drip tape roll is placed distinctly lower in the frame (bottom third) to ensure its vertical dimension is less than 30% of the total height, and clean up the background hardware to provide a clear, uncluttered foreground. Reduce the product group from 30% to 13-27% of frame width. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 17,
+      "product_height_percent": 18,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Required bottom-right watermark 'AFP | 09134922013' is present and legible.",
+        "The image contains exactly one AFP white-and-blue drip-tape roll placed naturally on soil.",
+        "The roll is off-center and located in the lower third of the frame.",
+        "The background matches the farm context with visible crop rows and a barn structure.",
+        "Zero people or human body parts are visible in the image.",
+        "Product dimensions (width ~17%, height ~18%) fall within acceptable practical limits for a secondary product display."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "مراحل-نصب-نوار-تیپ-پلاکدار-در-سیستم-آبیاری-جزئیات-فنی.webp"
+}
