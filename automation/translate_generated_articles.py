@@ -6,6 +6,7 @@ import argparse
 import datetime as dt
 import json
 import os
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 import translate_queue as translator
@@ -22,6 +23,7 @@ LANGUAGES = ("ar-IQ", "tg-TJ", "en-US")
 PREFIX = {"ar-IQ": "iraq", "tg-TJ": "tj", "en-US": "en"}
 BATCH = max(1, int(os.getenv("GENERATED_TRANSLATION_BATCH_SIZE", "4")))
 MAX_BACKLOG_SOURCES = max(1, int(os.getenv("MAX_TRANSLATION_BACKLOG_SOURCES", "4")))
+TRANSLATION_WORKERS = max(1, int(os.getenv("TRANSLATION_WORKERS", "1")))
 
 
 def now() -> str:
@@ -165,6 +167,46 @@ def status_payload():
     return payload
 
 
+def translate_source(item: dict, data: dict) -> str:
+    item_id = str(item["id"])
+    missing = missing_languages(item_id)
+    if not missing:
+        return item_id
+    source = {
+        "id": item_id,
+        "title": data.get("title") or item.get("title"),
+        "slug": item.get("slug", ""),
+        "date": item.get("completed_at", ""),
+        "content": data.get("html", ""),
+    }
+    folder = TRANS / item_id
+    folder.mkdir(parents=True, exist_ok=True)
+    for lang in missing:
+        result = translator.translate_validated(source, lang)
+        result["excerpt"] = translate_small_text(data.get("excerpt", ""), lang)
+        result["focus_keyword"] = result["title"]
+        result["meta_title"] = result.pop("seo_title")
+        result["meta_description"] = result.pop("seo_description")
+        result.update({
+            "source_id": item_id,
+            "language": lang,
+            "source_title": source["title"],
+            "source_slug": source["slug"],
+            "validated": True,
+            "provider": "Agnes AI",
+            "model": translator.MODEL,
+        })
+        (folder / f"{lang}.html").write_text(result["html"], encoding="utf-8")
+        (folder / f"{lang}.json").write_text(
+            json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
+        create_sql, rollback_sql = build_sql(item, result, lang)
+        (SQL / f"{item_id}-{lang}.sql").write_text(create_sql, encoding="utf-8")
+        (ROLLBACK / f"{item_id}-{lang}.sql").write_text(rollback_sql, encoding="utf-8")
+        print(f"generated_translation source={item_id} language={lang}", flush=True)
+    return item_id
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check-backlog", action="store_true")
@@ -176,44 +218,28 @@ def main() -> int:
     if not translator.TOKEN:
         raise RuntimeError("AGNES_API_KEY is empty")
     TRANS.mkdir(parents=True, exist_ok=True);SQL.mkdir(parents=True, exist_ok=True);ROLLBACK.mkdir(parents=True, exist_ok=True)
-    processed_sources = 0
+    selected = []
     for item, data in completed_sources():
-        item_id = str(item["id"])
-        missing = missing_languages(item_id)
-        if not missing:
+        if not missing_languages(str(item["id"])):
             continue
-        source = {
-            "id": item_id,
-            "title": data.get("title") or item.get("title"),
-            "slug": item.get("slug", ""),
-            "date": item.get("completed_at", ""),
-            "content": data.get("html", ""),
-        }
-        folder = TRANS / item_id;folder.mkdir(parents=True, exist_ok=True)
-        for lang in missing:
-            result = translator.translate_validated(source, lang)
-            result["excerpt"] = translate_small_text(data.get("excerpt", ""), lang)
-            result["focus_keyword"] = result["title"]
-            result["meta_title"] = result.pop("seo_title")
-            result["meta_description"] = result.pop("seo_description")
-            result.update({
-                "source_id": item_id,
-                "language": lang,
-                "source_title": source["title"],
-                "source_slug": source["slug"],
-                "validated": True,
-                "provider": "Agnes AI",
-                "model": translator.MODEL,
-            })
-            (folder / f"{lang}.html").write_text(result["html"], encoding="utf-8")
-            (folder / f"{lang}.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
-            create_sql, rollback_sql = build_sql(item, result, lang)
-            (SQL / f"{item_id}-{lang}.sql").write_text(create_sql, encoding="utf-8")
-            (ROLLBACK / f"{item_id}-{lang}.sql").write_text(rollback_sql, encoding="utf-8")
-            print(f"generated_translation source={item_id} language={lang}", flush=True)
-        processed_sources += 1
-        if processed_sources >= BATCH:
+        selected.append((item, data))
+        if len(selected) >= BATCH:
             break
+    workers = min(TRANSLATION_WORKERS, len(selected))
+    if workers:
+        print(
+            f"translation_batch={len(selected)} translation_workers={workers}",
+            flush=True,
+        )
+        with ThreadPoolExecutor(
+            max_workers=workers, thread_name_prefix="generated-translation"
+        ) as pool:
+            futures = {
+                pool.submit(translate_source, item, data): str(item["id"])
+                for item, data in selected
+            }
+            for future in as_completed(futures):
+                future.result()
     rebuild_combined_sql()
     final = status_payload()
     print(json.dumps(final, ensure_ascii=False), flush=True)

@@ -51,11 +51,12 @@ jobs:
       AGNES_API_KEY14: ${{ secrets.AGNES_API_KEY14 }}
       AGNES_API_BASE: ${{ vars.AGNES_API_BASE || 'https://apihub.agnes-ai.com/v1' }}
       AGNES_MODEL: ${{ vars.AGNES_MODEL || 'agnes-3.0-flash' }}
-      # Clear half of a sixteen-article Persian batch per slice; the workflow self-chains
-      # until the bounded backlog is current, while preserving headroom for the city repository.
-      MAX_ARTICLES: '8'
-      GENERATED_TRANSLATION_BATCH_SIZE: '8'
-      MAX_TRANSLATION_BACKLOG_SOURCES: '9'
+      # Clear one sixteen-article Persian batch per slice with four source-level workers.
+      # This uses only a controlled share of the fourteen-key pool and preserves city headroom.
+      MAX_ARTICLES: '16'
+      GENERATED_TRANSLATION_BATCH_SIZE: '16'
+      MAX_TRANSLATION_BACKLOG_SOURCES: '17'
+      TRANSLATION_WORKERS: '4'
     steps:
       - uses: actions/checkout@v7
         with:
