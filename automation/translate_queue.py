@@ -7,7 +7,7 @@ from agnes_json_client import parse_object
 ROOT=Path(__file__).resolve().parents[1]
 BASE=os.getenv('AGNES_API_BASE','https://apihub.agnes-ai.com/v1').rstrip('/')
 TOKENS=[]
-for _name in ['AGNES_API_KEY',*[f'AGNES_API_KEY{i}' for i in range(2,9)]]:
+for _name in ['AGNES_API_KEY',*[f'AGNES_API_KEY{i}' for i in range(2,15)]]:
     _value=os.environ.get(_name,'').strip()
     if _value and _value not in TOKENS:TOKENS.append(_value)
 TOKEN=TOKENS[0] if TOKENS else ''
