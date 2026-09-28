@@ -1,0 +1,66 @@
+{
+  "id": "crop-208",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Critical violation: Image contains a person (arms, hands, legs, jeans, boots) which is strictly prohibited.",
+        "The required bottom-right watermark 'AFP | 09134922013' is missing from the image.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate without any humans, body parts, or people. Remove the person entirely. Add the exact text 'AFP | 09134922013' in the bottom-right corner. Ensure the crop is botanically accurate for Sainfoin (سایفۆین) and the drip tape roll is off-center on the lower third. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 19,
+      "product_height_percent": 26,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Crop species mismatch: The prominent foreground plant has purple flowers and morphology consistent with Lupine, whereas the article requires Sainfoin (Onobrychis viciifolia), which is a hard reject for a clearly identifiable different species.",
+        "Product geometry failure: The visible diameter (width) of the roll is only about 0.75 times its height, violating the requirement for a wide low cylindrical shape where the diameter should be 1.5 to 1.9 times the height."
+      ],
+      "correction_prompt": "Replace the purple-flowering lupine with botanically accurate Sainfoin (spiny-headed trefoil) showing correct leaves and flowering heads. Reshape the drip tape roll to be significantly wider than it is tall (low cylindrical profile, width roughly 1.5-1.8x the height) while maintaining the same position and scale relative to the crop.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 21,
+      "product_height_percent": 18,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: The image clearly contains a person (arms, hands, legs, and boots) handling the product, which is strictly prohibited.",
+        "Botanical Mismatch: The prominent crop is identifiable as Lavender (Lavandula) or a similar spurge, not Sainfoin (Onobrychis viciifolia). Sainfoin is a legume with pinnately compound leaves and terminal red flower spikes, which are not present here."
+      ],
+      "correction_prompt": "Remove all human body parts and people. Replace the lavender with distinct Sainfoin plants (showing pinnate leaves and small flowers), or switch to a neutral soil bed with drip tape. Keep the white-and-blue AFP drip tape roll on the lower third, maintaining the 'AFP | 09134922013' watermark.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 84,
+      "product_width_percent": 13,
+      "product_height_percent": 13,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Product width is 13% of frame, which is at the lower limit of the acceptable range (13-27%)",
+        "Product is off-center and placed on soil in the lower third as required",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner",
+        "No people or human body parts visible",
+        "Roll appears to be a cylindrical carton consistent with drip-tape product form"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "میزان-برداشت-اسپرس-در-هکتار-با-نوار-تیپ-کاربرد-عملی.webp"
+}

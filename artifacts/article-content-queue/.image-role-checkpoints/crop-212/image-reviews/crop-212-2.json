@@ -1,0 +1,90 @@
+{
+  "id": "crop-212",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 12,
+      "product_height_percent": 20,
+      "product_x_center_percent": 59,
+      "reasons": [
+        "Product width is only ~12% of the frame, which falls below the acceptable 13-27% range. The roll is too small relative to the image.",
+        "The drip tape roll is too narrow in visible width, failing the minimum 13% threshold even in practical estimates.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the AFP white-and-blue drip-tape roll slightly larger (width ~18-20% of frame) while keeping it off-center in the lower third, on the soil, with the same farm context and required AFP watermark bottom-right. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 15,
+      "product_height_percent": 13,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: Visible human body parts (legs and boots) are present in the frame on the right side.",
+        "Hard reject: The image contains a farmer/human figure, violating the zero-person and zero-human-body-part constraint."
+      ],
+      "correction_prompt": "Remove the human figure/legs on the right side and replace them with a static soil background or distant crop rows to maintain a people-free scene.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 16,
+      "product_height_percent": 18,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Product shape is a short drum/container rather than a wide low cylindrical roll",
+        "Product shape violates the aspect ratio requirement (diameter should be 1.5-1.9x height)",
+        "Product is located at the vertical center rather than the lower third"
+      ],
+      "correction_prompt": "Regenerate the image replacing the short white drum with a wide, low cylindrical drip-tape carton roll. The roll must have a diameter roughly 1.8 times its height, and be placed on the soil in the lower third of the frame to maintain proper perspective.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 17.5,
+      "product_height_percent": 18.0,
+      "product_x_center_percent": 46.0,
+      "reasons": [
+        "Aspect ratio violation: The visible diameter (width) of the roll is roughly equal to its height (estimated 17.5% width vs 18% height), failing the requirement that the diameter be 1.5 to 1.9 times the visible height.",
+        "Background mismatch: The field contains clearly identifiable mature crops with broad leaves (resembling cabbage, mustard, or soybean), whereas the article title specifies 'Carrot'. While the instructions allow neutral beds, identifying a specific, different species constitutes a hard reject."
+      ],
+      "correction_prompt": "Regenerate with a wide, low cylindrical drip-tape roll (diameter approx 1.8x height) and strictly neutral, indistinguishable seedlings or bare soil rows to avoid mismatch with the carrot topic.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 16,
+      "product_height_percent": 20,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Presence of a male person, farmer, worker, face, hand, arm, leg, and full human body (Hard reject)",
+        "Product has been rotated 90 degrees (axis vertical) and is standing upright like a bucket, violating the 'wide low cylindrical' orientation"
+      ],
+      "correction_prompt": "Remove the person entirely. Place the wide cylindrical drip-tape carton roll lying flat on its side on the soil. Ensure the roll's diameter is roughly 1.7 times its height. Ensure the image contains no human elements.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 22,
+      "product_height_percent": 30,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The drip-tape roll is centered along the vertical axis rather than being off-center on the lower third of the frame.",
+        "Botanical morphology is incorrect: the crops shown are identified as potato (broad leaves, bushy growth) rather than the named 'city family' crop (typical of corn/maize in this context, requiring distinct morphology or neutral bedding)."
+      ],
+      "correction_prompt": "Move the drip-tape roll to the right third of the frame in the lower section. Change the crop rows to standard corn/maize plants or replace with a neutral, bare soil prepared bed to avoid botanical mismatch with the 'family' (maize) article topic.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

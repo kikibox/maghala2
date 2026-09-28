@@ -1,0 +1,88 @@
+{
+  "id": "crop-207",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 20,
+      "product_height_percent": 20,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The drip tape roll appears to be standing vertically upright rather than lying flat horizontally.",
+        "The crop shown is visually more consistent with a striped melon (cucurbit) rather than a cantaloupe, which typically features a netted (webbed) texture.",
+        "The fruit is attached to the vertical vine in a way that suggests a climbing habit rather than the characteristic prostrate trailing vines of cantaloupe."
+      ],
+      "correction_prompt": "Regenerate the image to show the drip tape roll lying flat on the soil with a clear horizontal aspect ratio. Change the crop to specifically feature a cantaloupe vine with lobed leaves and netted (webbed) fruit attached to the ground, removing the striped melon characteristics.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 58,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: The image contains a prominent, clearly identifiable watermelon (blackish-green striped rind) next to the product. The requirements specify that 'a clearly identifiable different species' must be hard rejected, and the article crop is explicitly defined as cantaloupe.",
+        "Article Crop Mismatch: The background/crop shown is not consistent with 'cantaloupe' (which has netted fruit and lobed leaves, or neutral seedlings). The visible fruit is a distinct species (watermelon) which creates a conflict with the specific article title/summary.",
+        "Product Geometry: The roll is approximately 22% width and 28% height, with an aspect ratio of ~1.5:1. This is within the acceptable bounds for dimensions.",
+        "Product Positioning: The product is off-center in the lower-left third, placed on soil, and clearly secondary to the foreground crop. This is acceptable."
+      ],
+      "correction_prompt": "Remove the watermelon. Replace the background crop with visible cantaloupe vines showing lobed leaves and netted fruit, or replace with a neutral prepared soil bed with tiny unidentifiable seedlings and drip tape layout. Do not show watermelons or clearly distinct non-cantaloupe species.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 12,
+      "product_height_percent": 14,
+      "product_x_center_percent": 23,
+      "reasons": [
+        "The product is too small, measuring only ~12% width, which is below the minimum practical estimate threshold of 13%.",
+        "The product's height (~14%) is nearly equal to its width (~12%), failing the requirement that the diameter must be 1.5 to 1.9 times the height (it appears to be standing vertically or is a short cylinder rather than a wide roll).",
+        "The crop is identifiable as watermelon (distinct dark stripes), which is a clearly identifiable different species from cantaloupe. Cantaloupe fruit typically has netting or is tan/green without such strong stripes, and while vines are similar, the fruit morphology is a hard reject.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Resize the drip tape roll to be larger (approx 20% width) and flatter (diameter at least 1.5x height). Replace the striped watermelon fruit with a netted cantaloupe melon. Ensure the product remains off-center in the lower third. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 17,
+      "product_height_percent": 21,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "The image contains a clearly visible person (farmer/worker) in the background, which triggers a hard reject per the constraint requiring zero people or human body parts.",
+        "The drip-tape roll in the foreground is not 'wide and low' as specified; its visible height exceeds 20% of the frame, failing the 'no more than 32 percent height' rule for this specific wide/low aspect ratio requirement (width should be ~1.5-1.9x height).",
+        "There is an additional large, netted melon sitting next to the roll, which constitutes 'extra commercial product' or an object that distracts from the primary subject, violating the 'exactly one' roll instruction contextually."
+      ],
+      "correction_prompt": "Remove the person in the background entirely. Delete the large netted melon. Generate a wide, flat, low-profile white and blue drip tape roll (height strictly less than 20% of the frame) placed naturally on the soil in the cantaloupe field, ensuring no other large objects or people are visible.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 19,
+      "product_height_percent": 26,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Product is a white and blue cylindrical drip tape roll (or similar irrigation product) placed naturally on the soil.",
+        "Product width (19%) is within the preferred range (20-23%).",
+        "Product height (26%) is within the maximum limit (32%).",
+        "Product is off-center on the lower third (x_center 34%).",
+        "Required watermark 'AFP | 09134922013' is visible in the bottom right.",
+        "No people or human body parts are visible.",
+        "The crop in the foreground has lobed leaves consistent with cantaloupe/melon vines.",
+        "Background shows a farm context with distant rows and a structure.",
+        "Minor deduction: 'Drip-tape' is not explicitly visible as a coiled tube emerging from the roll; the packaging label is generic 'AFP', which is acceptable but less specific than requested."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "هزینه-کشت-طالبی-با-نوار-تیپ-در-هکتار-کاربرد-عملی.webp"
+}

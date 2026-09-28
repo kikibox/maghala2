@@ -1,0 +1,100 @@
+{
+  "id": "crop-205",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 24,
+      "product_height_percent": 36,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The product roll is too tall (36%), exceeding the strict 32% maximum height constraint.",
+        "A second commercial product/connector (silver manifold) is visible to the right of the roll, causing a hard reject for extra packaging/hardware.",
+        "The crop plants are clearly visible and appear to be mint (serrated, square stem) rather than coriander, creating a hard conflict with the topic-specific crop requirement.",
+        "machine-enforced bounding-box check failed: Reduce product height from 36% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with the drip-tape roll shorter (less than 32% height). Remove the silver connector next to the roll. Ensure the small green seedlings are clearly identifiable as coriander (dill-like leaf structure) rather than mint or broadleaf weeds. Reduce product height from 36% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 15,
+      "product_height_percent": 15,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Watermark text is incorrect: image shows '09134922013' instead of the required '09134922013'.",
+        "Product geometry is incorrect: the roll is cylindrical/boxy (height ~equals width) instead of a wide low profile (width must be 1.5 to 1.9x height).",
+        "Product width estimate (approx 15%) is below the preferred 20-23% range."
+      ],
+      "correction_prompt": "Regenerate the image showing a wide, low cylindrical drip tape roll lying on the soil. Ensure the roll's diameter is roughly 1.7 times its height. The product must be white and blue with 'AFP' printed on it. The bottom-right watermark must explicitly read 'AFP | 09134922013'. Keep the unattended tractor in the background and crop plants visible but not distracting. Do not include any human body parts or people.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 31,
+      "product_height_percent": 24,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "The product width (31%) significantly exceeds the practical maximum limit of 27%.",
+        "The product is not positioned in the lower third (center is too high at ~43% vertically, although x is close to the lower third).",
+        "Visible text on the side of the carton below the logo appears to be gibberish/AI-generated, which triggers a hard reject.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 31% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Shrink the white cylindrical drip-tape roll to ~20% of frame width. Place it clearly in the bottom third of the image. Ensure all text on the package is sharp and legible or remove non-essential text. Keep the background tractor and crop rows unchanged. Reduce the product group from 31% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 14,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Hard reject: A male person (farmer/worker) is prominently visible crouching next to the product.",
+        "Hard reject: The presence of a human silhouette directly violates the 'zero people' constraint.",
+        "The product is partially obscured by the person's arm and body.",
+        "The product is centered and too small relative to the preferred width range.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the man crouching by the product. Regenerate the scene to show only the white and blue drip tape carton on the soil without any people, maintaining the farm context with the unattended tractor in the background. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 28,
+      "product_height_percent": 32,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product is too wide: the roll spans roughly 28 percent of the frame width, exceeding the maximum 27 percent hard reject limit.",
+        "Product is centered/foreground: the roll is positioned in the immediate foreground and centered horizontally, violating the requirement to be off-center on the lower third.",
+        "Unidentifiable crop: the green plant next to the roll has a broad-leaf morphology that does not clearly match coriander (گشنیز); in a hardware story, non-neutral identifiable crops risk hard rejection.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image: Move the drip-tape roll to the far left or far right of the bottom third. Reduce the roll's visual width to under 20 percent of the frame. Remove the broad-leaf plant or replace it with a neutral soil context to avoid crop contradiction. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 30,
+      "product_height_percent": 26,
+      "product_x_center_percent": 68,
+      "reasons": [
+        "Product width exceeds the 27 percent maximum limit",
+        "Product is too prominent for a Role 3 hardware story; it should be secondary",
+        "Visible crop plant (possibly mint) contradicts the specified coriander crop",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with the drip tape roll smaller (approx. 20% frame width) to act as a secondary element. Ensure the visible crop plants match coriander morphology (feathery leaves) or remove identifiable crops to keep the focus on the hardware. Maintain the lower-right watermark. Reduce the product group from 30% to 13-27% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

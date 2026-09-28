@@ -1,0 +1,86 @@
+{
+  "id": "crop-216",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "The plant shown in the foreground is clearly a tomato seedling with characteristic leaves and stem hairs, not مرزه (summer savory), which has very small, linear, opposite leaves and a woody, branched stem",
+        "The background crop rows do not visually confirm the article crop مرزه (summer savory)"
+      ],
+      "correction_prompt": "Replace the foreground plant and background crop with visible, identifiable summer savory (مرزه) plants showing small, linear leaves and woody stems in a farm drip-tape context. Keep the white-and-blue AFP drip-tape roll on the soil in the lower-left third, zero people, and preserve the bottom-right 'AFP | 09134922013' watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 26,
+      "product_height_percent": 33,
+      "product_x_center_percent": 24,
+      "reasons": [
+        "Hard reject: Image contains multiple visible people (farmers/workers) in the background, including full bodies and silhouettes.",
+        "Hard reject: The visible product height exceeds the maximum limit of 32%.",
+        "Failure: The image lacks the required 'AFP | 09134922013' watermark in the bottom-right corner (currently shows a different number).",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with zero people or human silhouettes. Reduce the drip tape roll size so its height is under 32% of the frame and width is under 27%. Ensure the roll is off-center on the lower third. Replace the watermark text to read exactly 'AFP | 09134922013'. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 11,
+      "product_height_percent": 10,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: A person (farmer) is clearly visible crouching in the frame, which is a strict violation of the 'zero people' rule.",
+        "Product size is too small: The drip tape roll is only about 11% of the frame width, well below the 13% minimum threshold for acceptance.",
+        "Product geometry: The roll is not wide/low cylindrical; it appears too small relative to the requirements.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human silhouettes. Increase the size of the white and blue AFP drip tape roll so it occupies 20-23% of the frame width and is positioned off-center in the lower third. Keep the background of young summer savory crops and farm context. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The foreground plant is clearly identifiable as a different species (likely a flowering herb like Basil or a similar aster/borage relative) rather than Summer Savory (Satureja). Summer Savory has a distinct narrow, elongated, slightly serrated leaf shape with a rougher texture, whereas the plant shown has broader, heart-shaped (cordate) leaves and wide purple flowers which are not characteristic of Satureja.",
+        "Hard reject due to clearly identifiable different species in the focal crop area."
+      ],
+      "correction_prompt": "Regenerate image showing a wide, low cylindrical white and blue drip tape roll on the soil. The plant must be Satureja (Summer Savory), featuring narrow, oblong leaves with slightly serrated edges and small white or pink flowers in spikes, not broad-leafed or large purple blooms. Ensure the crop rows in the background match this morphology.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 22,
+      "product_height_percent": 30,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Product is a white-and-blue wide low cylindrical drip-tape carton roll placed naturally on the soil.",
+        "Product dimensions are within acceptable bounds (width ~22%, height ~30%).",
+        "Product is off-center and located in the lower third of the frame.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Zero people or human body parts are visible.",
+        "Background shows a farm context with a prepared soil bed and a central herbaceous plant.",
+        "The central plant is botanically recognizable as a Mediterranean herb (summer savory or similar Lamiaceae) with appropriate vertical flower spikes, consistent with the required article crop.",
+        "Irrigation drip lines are visible in the soil, supporting the drip-tape topic.",
+        "No prohibited items such as extra commercial products, containers, or human silhouettes are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-مرزه-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

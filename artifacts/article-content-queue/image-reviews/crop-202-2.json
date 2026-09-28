@@ -1,0 +1,95 @@
+{
+  "id": "crop-202",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Contains two visible persons (farmers/workers) in the foreground, which is a hard reject.",
+        "The product shown is a small white box/packet held in hand, not the required wide low cylindrical drip-tape roll.",
+        "Lacks the correct required product: AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product is held by a human, violating the zero-people and zero-human-body-parts rule.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Generate a single AFP white-and-blue wide low cylindrical drip-tape carton roll placed naturally on soil in a farm context. Do not include any people or human body parts. Show a wide crop field with rows to provide a farm context. The roll should be wide and low (diameter 1.5-1.9 times height), located in the lower third, off-center, and measuring approximately 13-27% of the frame width. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 20,
+      "product_height_percent": 35,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Product roll is visibly centered in the frame rather than off-center on the lower third.",
+        "Product roll is upright; the specification requires a 'wide low cylindrical' geometry (laid flat) with a diameter 1.5 to 1.9 times its height.",
+        "Watermark text is '09134922013' which does not exactly match the required '09134922013' (extra '2' / typo).",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a low flat lying carton roll that is off-center on the lower third. Ensure the watermark reads exactly 'AFP | 09134922013'. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 16,
+      "product_height_percent": 26,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: A human figure is clearly visible crouching in the field and touching the plants."
+      ],
+      "correction_prompt": "Regenerate the image with no people or human body parts. The scene should show only the white-and-blue drip-tape carton roll placed on the soil next to the triticale seedlings.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 19,
+      "product_height_percent": 19,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The visible diameter of the drip-tape roll is approximately 1.4 times its visible height, which fails the geometric requirement of 1.5 to 1.9 times. This makes the roll appear squat and less like a standard wide cylindrical carton.",
+        "The product is not positioned in the lower third of the frame; its center is too high, violating the layout requirement that it should be naturally placed on the soil in the bottom section of the image."
+      ],
+      "correction_prompt": "Regenerate with the drip-tape roll positioned lower in the frame (bottom third) and ensure its visible diameter is at least 1.5 times its visible height. Keep the roll secondary to the crop.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 21,
+      "product_height_percent": 14,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Crop context mismatch: The article is about triticale (a cereal/grain crop), but the field shows broad-leafed dicot plants with pink flowers (likely an ornamental or medicinal herb like Echinacea), which is a hard reject for a clearly identifiable different species.",
+        "Product aspect ratio: The product visible diameter to height ratio is approximately 1.7x, which is within the acceptable range, but the crop context failure is disqualifying."
+      ],
+      "correction_prompt": "Regenerate the background to show a cereal crop field (triticale/wheat) in a farm context. Remove the broad-leafed flowering plants and replace them with green grass-like cereal rows or a prepared soil bed suitable for grains. Keep the white-and-blue 'AFP' drip-tape roll in the foreground with the exact requested watermark.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 14,
+      "product_height_percent": 23,
+      "product_x_center_percent": 15,
+      "reasons": [
+        "The product is a single, white wide cylindrical drip-tape roll, naturally placed on the soil in the lower third.",
+        "The crop is clearly a grass-like cereal (Triticale), with the growth stage consistent with a maturing field, matching the specific topic context.",
+        "The required watermark 'AFP | 09134922013' is clearly visible in the bottom-right corner.",
+        "The image is free of human silhouettes or body parts.",
+        "Product dimensions (14% width, 23% height) fall within the acceptable bounds and maintain a correct wide cylindrical aspect ratio."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-تریتیکاله-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

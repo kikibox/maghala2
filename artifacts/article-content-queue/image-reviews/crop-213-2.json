@@ -1,0 +1,55 @@
+{
+  "id": "crop-213",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Image contains a person (hard reject)",
+        "Contains hands, face, and human body parts (hard reject)",
+        "Product is not a wide low cylindrical drip-tape carton roll",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image completely: remove all people and human silhouettes; show only the sorghum crop field (recognizable leaves/stems or neutral seedlings). Place a single AFP white-and-blue wide, low, cylindrical drip-tape carton roll in the lower third (off-center, on soil). Ensure the roll is secondary in size (width ~20% of frame, height <32% of frame, diameter 1.5-1.9x height). Keep the 'AFP | 09134922013' watermark in the bottom right. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 20,
+      "product_height_percent": 16,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Centered product staging: The x_center is approximately 48-50%, which violates the strict requirement that the roll must be off-center.",
+        "Species identification risk: The young seedlings in the background feature narrow, lanceolate leaves that are visually indistinguishable from corn (maize) seedlings. The prompt requires a sorghum article and mandates a hard reject for clearly identifiable different species, or at least a reject if the 'agronomic story' (recognizability of the specific crop) is not clear.",
+        "Crop context: While the 'neutral bed' clause allows for young seedlings, the visual ambiguity between young maize and young sorghum makes it difficult to satisfy the requirement that the article crop be recognizable."
+      ],
+      "correction_prompt": "Move the drip-tape carton roll to the right side of the frame (lower third, approx 25-30% height) to satisfy the off-center requirement. Change the background seedlings to be clearly identifiable as young sorghum (distinguishing from corn) or use a mature sorghum field.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 17,
+      "product_height_percent": 12,
+      "product_x_center_percent": 67,
+      "reasons": [
+        "Product is a single white-and-blue wide low cylindrical roll (carton/tape) positioned on the soil in the lower third, off-center.",
+        "The crop is clearly recognizable as sorghum with botanically accurate growth habit, stems, and harvest-stage panicles.",
+        "Dimensions are within acceptable ranges: width is ~17%, height is ~12%, and the roll appears naturally placed rather than staged.",
+        "Zero human presence; the image contains only infrastructure/crop context.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom-right."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "مقدار-بذر-سورگوم-در-هکتار-راهنمای-جامع-کاربرد-عملی.webp"
+}

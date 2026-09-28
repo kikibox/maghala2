@@ -1,0 +1,97 @@
+{
+  "id": "crop-214",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Contains a person (farmer) and human body parts (face, hands, torso, legs), which are hard rejects.",
+        "The product shown is a small rectangular carton or container, not the required wide, low, cylindrical drip-tape roll.",
+        "The product is too small, falling below the preferred and acceptable width estimates (13-27% of frame).",
+        "The product is being held in hands rather than naturally placed on the soil.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person and hands completely. Replace the small carton with a large, wide, low cylindrical drip-tape roll resting directly on the soil in the lower third, slightly off-center. Ensure the roll is white and blue, secondary to the background, and occupies roughly 20-23% of the image width. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject: A person (human silhouette) is clearly visible in the background walking away.",
+        "Hard reject: Human body parts (head, torso, arms, legs) are present in the image, which violates the zero-person constraint."
+      ],
+      "correction_prompt": "Regenerate the image to strictly remove the person and all human silhouettes from the background. Ensure the scene contains only the drip tape roll on the soil in the corn field with no people or workers present.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 25,
+      "product_height_percent": 20,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product geometry incorrect: visible diameter/height ratio is approximately 1.4:1, which is below the required 1.5-1.9 range (too short/vertical cylinder)."
+      ],
+      "correction_prompt": "Regenerate the drip tape roll with a wider diameter to meet a 1.6:1 width-to-height ratio. Ensure the roll sits lower in the frame (off-center lower third) and appears naturally placed on the soil. Maintain the background context of corn (maize) and the required AFP watermark.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 18,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Presence of two people (woman crouching, man standing)",
+        "Hard reject: Human body parts and silhouettes are visible",
+        "Product bounding box is estimated based on the roll in the foreground, but the scene is invalid due to the presence of humans."
+      ],
+      "correction_prompt": "Remove all people, human figures, and body parts from the image completely. The scene must be empty of any human presence to meet strict guidelines.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 7,
+      "product_height_percent": 11,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Hard reject: two visible people in the image (man and woman)",
+        "Contains human faces, hands, arms, and legs",
+        "Product size is too small and not properly framed",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people. Show only a wide, low cylindrical AFP white-and-blue drip-tape carton roll placed on soil in a farm field. The roll should occupy 20-23% of the frame width, positioned off-center on the lower third of the image. No human figures, parts, or silhouettes. Enlarge the product group from 7% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 20,
+      "product_height_percent": 30,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The image contains zero people and zero human body parts.",
+        "The background features a farm context with a barn and young crop rows, which is agronomically consistent with a drip tape installation.",
+        "The crop morphology is neutral (young green plants) and does not clearly identify a different species, meeting the 'pass when story is clear' condition.",
+        "The product (drip tape carton) is white and blue, matching the 'AFP' branding.",
+        "The product's bounding box (width ~20%, height ~30%) falls within the acceptable range (13-27% width, <32% height).",
+        "The product is off-center in the lower third (x-center ~35%)."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-پنبه-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

@@ -1,0 +1,96 @@
+{
+  "id": "crop-209",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Presence of a person: The image features a man kneeling and handling the product, which triggers a hard reject due to the strict 'zero people' and 'zero human body parts' requirement.",
+        "Incorrect product placement: The product is being held by a hand rather than being naturally placed on the soil as required.",
+        "Interaction prohibited: The presence of a hand manipulating the drip tape and holding the roll violates the no-human-contact constraint."
+      ],
+      "correction_prompt": "Remove the human figure and all hands. Place the AFP white-and-blue drip-tape carton roll directly on the soil off-center in the lower third, with no visible human silhouettes or body parts, maintaining the farm context and required watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 32,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The product is positioned in the horizontal center of the frame, violating the strict requirement for off-center placement on the lower third.",
+        "The crop morphology is indistinct and botanically neutral; it does not provide the 'unmistakable morphology' of the specific crop named in the article title."
+      ],
+      "correction_prompt": "Move the drip-tape carton off-center to the lower third (left or right). Redesign the crop to display botanically accurate, clearly recognizable mature features or a distinct specific seedling form that matches the article title. Ensure the roll dimensions maintain a wider-than-tall aspect ratio.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 28,
+      "product_height_percent": 32,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Presence of a human (person) in the image, which is a hard reject condition.",
+        "Product (drip-tape roll) width is approximately 28% of the frame width, exceeding the maximum limit of 27%.",
+        "Product height is approximately 32% of the frame height, at the maximum limit, though width violation is primary.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the human worker entirely. Shrink the drip-tape roll so its width is under 25% of the frame. Ensure the roll is centered vertically or lower and off-center horizontally on the lower third. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 19,
+      "product_height_percent": 24,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The product is centered horizontally (50%) and vertically in the lower third, failing the requirement to be off-center and naturally placed.",
+        "The image displays a white-and-blue cylinder that visually appears to be a coil of thin tubing (likely a drip line reel) rather than a wide, thick 'drip-tape carton roll' with the necessary height and bulk.",
+        "The visible height (24%) is too tall relative to the width (19%), creating a taller-than-wide geometry that does not match the requested wide low cylindrical shape (diameter should be 1.5-1.9x height)."
+      ],
+      "correction_prompt": "Reposition the white and blue drip tape roll to the lower-left third of the frame. The roll must be visibly wide and low (diameter at least 1.5x its height) and appear as a wide industrial carton roll rather than a thin coil. Ensure the crop remains unidentifiable young seedlings or a prepared bed.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 15,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Hard reject: Presence of a human figure (farmer) in the field, which violates the zero people and zero body parts constraint.",
+        "Hard reject: The product shape in the foreground is a tall, narrow cylindrical spool/tube rather than the required 'wide low cylindrical' carton roll with a visible diameter of 1.5 to 1.9 times its height."
+      ],
+      "correction_prompt": "Remove the human figure entirely. Replace the spool with a wide, low, cylindrical drip-tape carton roll (white and blue) placed off-center on the lower third, ensuring the diameter is roughly 1.7 times the height.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 75,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Image contains exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll, naturally placed on soil.",
+        "Zero people and zero human body parts are visible, including no silhouettes in the distance.",
+        "Product bounding box estimation: width is approximately 18% of the frame (within the 13-27% acceptable range), height is approximately 22% (within the <32% limit), and the x-center is approximately 30% of the frame width, placing it off-center in the lower third as required.",
+        "The roll's visible diameter (width) is approximately 1.6 times its visible height, which is within the preferred 1.5 to 1.9 ratio.",
+        "The bottom-right watermark 'AFP | 09134922013' is present and correct.",
+        "The farm context is clear, showing young crop plants consistent with agronomic story requirements, and no prohibited items (bottles, extra rolls, etc.) are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-گلرنگ-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

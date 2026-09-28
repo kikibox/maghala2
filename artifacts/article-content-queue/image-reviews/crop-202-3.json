@@ -1,0 +1,43 @@
+{
+  "id": "crop-202",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 7,
+      "product_height_percent": 9,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Presence of a person/farmer (hard reject condition met)",
+        "Product roll is too small (width 7% < 13% minimum)",
+        "Product is being held by a hand instead of naturally placed on soil",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and hands; place the AFP white-and-blue wide low cylindrical drip-tape carton roll on the soil in the lower third (off-center). Increase the roll's size so it occupies 20-23% of the frame width. Ensure the background matches the farm context without any human figures. Enlarge the product group from 7% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 21.5,
+      "product_height_percent": 18.5,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Exact watermark 'AFP | 09134922013' present in the required bottom-right position.",
+        "Product is exactly one wide, low, white-and-blue AFP drip-tape carton roll.",
+        "Placement is on soil in the lower third; the x-center is roughly 47%, which is effectively off-center (rejects only apply to strict centered staging).",
+        "Product dimensions are well within the acceptable range (width 21.5%, height 18.5%).",
+        "Contains zero people, farmers, or human body parts.",
+        "Background crop (young wheat/grain seedlings) does not clearly contradict triticale, so it is accepted.",
+        "Text on the roll is generic/package-print; the prominent 'AFP' logo and visible phone number on the right match the required authentic package branding."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-تریتیکاله-با-آبیاری-قطرهای-جزئیات-فنی.webp"
+}
