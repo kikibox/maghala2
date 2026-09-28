@@ -1,0 +1,57 @@
+{
+  "id": "prod-025",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 13,
+      "product_height_percent": 15,
+      "product_x_center_percent": 39,
+      "reasons": [
+        "Presence of a human farmer/worker in the image (hard reject)",
+        "Product height exceeds 12% relative to its width, violating the 'drip-tape carton' aspect ratio requirement (should be 1.5-1.9x wider than tall)",
+        "The crop is not clearly identifiable as a specific named crop, failing the 'botanically accurate, unmistakable morphology' requirement for article-specific story"
+      ],
+      "correction_prompt": "Regenerate the image without any people (zero humans allowed). Replace the large human figure with an empty field view. Ensure the drip-tape carton roll is positioned lower and smaller, with a visible width-to-height ratio of roughly 1.5:1 to 1.9:1, and show distinct rows of a specific, recognizable crop matching the article title (e.g., tomatoes or cucumbers) in the foreground.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 12,
+      "product_height_percent": 11,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: Presence of a person (male farmer) visible in the center-right of the frame.",
+        "Product Geometry: The carton roll is not 'wide and low' relative to height; diameter to height ratio is too high (approx 1.9).",
+        "Product Size: The product appears too small in the frame (width ~12%) compared to the preferred 20-23% range.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the man completely. Generate a 'wide and low' cylindrical carton roll (diameter ~1.5x height). Place it in the bottom right third, on the soil. Increase the roll size to approximately 20% of the image width. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 24,
+      "product_height_percent": 18,
+      "product_x_center_percent": 62,
+      "reasons": [
+        "Product is a single AFP white-and-blue wide low cylindrical drip-tape roll placed on soil.",
+        "Product dimensions are within the acceptable practical range (width 24%, height 18%).",
+        "Product is positioned off-center in the lower third of the frame, meeting the secondary staging requirement.",
+        "Geometry shows a wide low profile with diameter to height ratio consistent with the 1.5-1.9x range.",
+        "No people or human body parts are visible in the image.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Background context matches an agronomic farming story, allowing a prepared bed/neutral vegetation pass for Role 1."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "نگهداری-از-لوله-نخ-دار-75-میلیمتر-برای-عمر-مفید-بیشتر-تصویر-شاخص.webp"
+}

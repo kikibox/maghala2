@@ -1,0 +1,40 @@
+{
+  "id": "prod-036",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: Two people/farmers are visible in the frame, violating the zero-person requirement.",
+        "Hard reject: A second, smaller package/roll is visible on the ground next to the main product.",
+        "The product bounding box exceeds the maximum allowed height of 32 percent."
+      ],
+      "correction_prompt": "Remove all people and the second small carton roll from the image. Keep the large white and blue drip-tape roll off-center in the lower third on the soil. Ensure the roll's visible height is less than 32 percent of the frame while maintaining the AFP watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 20,
+      "product_height_percent": 15,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll present, placed off-center on the lower third, naturally sitting on soil (ratio approx 1.33x width to height).",
+        "Product width (approx 20%) and height (approx 15%) fall within the acceptable ranges of 13-27% and <32%.",
+        "Zero people or human body parts detected in the frame.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Farm context with unattended tractor and machinery is permitted infrastructure; no contradictory crop or hard reject elements."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "مقایسه-لوله-نخ-دار-90-میلیمتر-با-سایر-برندها-جزئیات-فنی.webp"
+}

@@ -1,0 +1,49 @@
+{
+  "id": "prod-025",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 10,
+      "product_height_percent": 10,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Contains a clearly identifiable person (farmer/worker) kneeling in the foreground, which is a hard reject condition.",
+        "The image includes human body parts (face, hands, arms, legs) which are strictly prohibited.",
+        "The product (carton roll) is extremely small (under the 13% minimum width threshold) and is obscured by the human presence.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate without the person or worker. Show only the white and blue cylindrical drip-tape carton roll placed naturally on the soil in the lower third of the frame. Ensure the product is clearly visible as the main subject in the foreground, with the farm context in the background. Remove all human figures and body parts. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Hard reject: The image contains multiple human figures (one crouching in the foreground, one standing, and one in the background) which violates the 'zero people' constraint."
+      ],
+      "correction_prompt": "Remove all humans from the scene. Maintain the farm context with red barns and the soil bed, keeping the AFP drip tape roll as the primary focus on the ground.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 19,
+      "product_height_percent": 17,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Product is an AFP white-and-blue wide low cylindrical drip-tape carton roll positioned naturally on the soil in the lower-left."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "نگهداری-از-لوله-نخ-دار-75-میلیمتر-برای-عمر-مفید-بیشتر-کاربرد-عملی.webp"
+}

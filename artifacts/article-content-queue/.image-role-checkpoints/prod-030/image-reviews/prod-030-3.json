@@ -1,0 +1,102 @@
+{
+  "id": "prod-030",
+  "kind": 3,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 35,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Presence of a person (farmer) in the frame, which is a hard reject",
+        "Only one product type is visible (black woven coil); the packaged AFP coil is held by the person rather than lying flat on the ground",
+        "The product pair is not centered on the lower third as required",
+        "The required pair of objects (one packaged, one bare) must be fully visible, separate, and flat on the ground",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to show no people or body parts. Include exactly two layflat objects on the ground in the lower third: one packaged AFP coil and one bare black woven coil. Ensure the pair occupies only 12-15% of the frame width, is off-center, and remains fully visible. Maintain the exact bottom-right watermark 'AFP | 09134922013'. Reduce the product group from 35% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 35,
+      "product_height_percent": 50,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Presence of a person/farmer in the image",
+        "Product staging is centered, not on the lower third off-center",
+        "The pair of products occupies significantly more than 15% of the frame width",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 9-20% of frame width.; Reduce product height from 50% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image to show only the two specified products (packaged AFP coil and bare black woven coil) on the ground in a field, without any people, workers, or human silhouettes. Ensure the products are off-center, on the lower third of the frame, and occupy approximately 12-15% of the image width, clearly visible and separate. Reduce the product group from 35% to 9-20% of frame width. Reduce product height from 50% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 38,
+      "product_height_percent": 18,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Image contains a person (farmer/worker).",
+        "Person's hands, arms, and legs are visible.",
+        "Product pair is too wide (approx 38% of frame width) and located on the lower left rather than the off-center lower third.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate with no people or human body parts. Place the two coils (one bare black, one packaged AFP) small (12-15% width) on the lower right. Keep the bottom-right watermark. Reduce the product group from 38% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 20,
+      "product_height_percent": 30,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Presence of a person (worker/farmer) is strictly prohibited",
+        "Human hands, arms, and legs are visible in the frame",
+        "Only one bare coil is visible, missing the required packaged AFP coil",
+        "The bare coil is not on the ground but resting on a bale"
+      ],
+      "correction_prompt": "Regenerate scene with zero people or body parts. Show exactly two flat coils on the ground: one wrapped in packaging and one bare black woven coil. Ensure the pair occupies only 12-15% of frame width, remains off-center in the lower third, and is fully visible.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 20,
+      "product_height_percent": 18,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: Two human figures present.",
+        "Specific human body parts visible (faces, arms, legs, torsos).",
+        "Product pair occupies approx 20% width, failing the 12-15% constraint.",
+        "Product pair is not off-center on the lower third (positioned mid-left, with a person blocking the correct lower-right staging position).",
+        "Unapproved objects: A hay square/straw bale is visible between the coils."
+      ],
+      "correction_prompt": "Regenerate image with zero people or human body parts. Show one packaged AFP coil and one bare black woven coil. The pair must occupy 12-15% width, positioned off-center on the lower right third. Remove hay/straw objects and any other items.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 38,
+      "product_height_percent": 42,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Presence of a person (man) in the image",
+        "Presence of human body parts (head, arms, hands, legs)",
+        "Only one product coil is visible, not the required pair (one packaged AFP coil and one bare black woven coil)",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 9-20% of frame width.; Reduce product height from 42% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with zero people or human body parts. Show exactly two coils: one packaged AFP coil and one bare black woven coil. The pair must be small (approx 12-15% width), positioned in the lower third off-center, and flat on the ground. Keep the bottom-right watermark. Reduce the product group from 38% to 9-20% of frame width. Reduce product height from 42% to at most 32% of frame height.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

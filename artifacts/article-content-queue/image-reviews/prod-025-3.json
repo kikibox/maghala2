@@ -1,0 +1,66 @@
+{
+  "id": "prod-025",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Presence of a person (farmer) visible in the frame",
+        "Presence of human body parts (head, hands, arms, legs) which are strictly prohibited",
+        "Product is being physically interacted with by a human, violating the requirement for an unattended scene"
+      ],
+      "correction_prompt": "Regenerate the image completely removing the farmer and all human figures or body parts. Ensure the scene is unattended with only the drip-tape roll on the soil and irrigation infrastructure (tractor/barn) in the background.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: A person (farmer/worker) is clearly visible on the right side of the image, violating the 'zero people' and 'zero human body parts' rule.",
+        "The image contains a human silhouette and face, which is an automatic disqualifier."
+      ],
+      "correction_prompt": "Regenerate the image without any people, farmers, or workers. Show only the AFP drip-tape roll, the tractor, and the farm background. Keep the 'AFP | 09134922013' watermark intact.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 14,
+      "product_height_percent": 11,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Hard reject: multiple visible people (human faces, bodies, and hands present in the foreground and mid-ground).",
+        "The product is being held and interacted with by a person rather than being naturally placed on the soil."
+      ],
+      "correction_prompt": "Regenerate to completely remove all human figures, faces, and hands. Show only the unattended white-and-blue drip-tape roll resting directly on the soil in the farm field, with the red tractor visible in the background.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 22,
+      "product_height_percent": 15,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Product is a single AFP white-and-blue drip-tape roll.",
+        "Image matches hardware/farm context with tractor and soil.",
+        "Product dimensions and positioning are within acceptable bounds.",
+        "Watermark 'AFP | 09134922013' is present and required.",
+        "No forbidden people, extra products, or text found."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "نگهداری-از-لوله-نخ-دار-75-میلیمتر-برای-عمر-مفید-بیشتر-جزئیات-فنی.webp"
+}

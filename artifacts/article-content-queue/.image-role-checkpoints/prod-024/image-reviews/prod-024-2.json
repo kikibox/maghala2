@@ -1,0 +1,99 @@
+{
+  "id": "prod-024",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 25,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Image contains two people (farmers/crews), which is a hard reject criterion requiring zero people or human body parts."
+      ],
+      "correction_prompt": "Regenerate the image with zero people and no human silhouettes. Keep the farm context and young crop seedlings in prepared beds. Ensure the white-and-blue drip-tape roll is placed alone and off-center on the soil, with no other commercial products or containers visible. Maintain the AFP | 09134922013 watermark in the bottom-right corner.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 14,
+      "product_height_percent": 38,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product height exceeds the 32% maximum limit (approx. 38%).",
+        "Product aspect ratio is inverted (height > width), failing the required 1.5-1.9x width-to-height ratio.",
+        "Product x_center is at 45%, which is too centered; it must be off-center (lower third).",
+        "Article crop 'family' is not visually represented (neutral seedlings only).",
+        "Product width is only 14%, which is near the lower limit and may look too small.",
+        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with the AFP drip-tape roll lying flat on its side (height approx 20%, width approx 35%, aspect ratio 1.8x), positioned clearly to the left (x_center approx 35%). Change the background seedlings to visually represent the 'family' crop topic. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 29,
+      "product_height_percent": 30,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product is wider than the maximum allowed 27 percent of the frame",
+        "Text on the 'AFP' label is gibberish rather than authentic package print",
+        "Gibberish/invented writing outside authentic package print",
+        "machine-enforced bounding-box check failed: Reduce the product group from 29% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the width of the carton roll to approximately 22 percent of the frame width and rewrite the label text to be clear, legible, and contextually authentic without gibberish. Reduce the product group from 29% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 9,
+      "product_height_percent": 12,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Hard reject: The image contains two people (farmers/workers), faces, hands, and body parts, which is explicitly forbidden.",
+        "Product staging: The white and blue carton is being handled/inspected by the people, violating the 'zero people' and 'naturally placed on soil' requirements.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove both people and hands completely. Show only a single AFP white-and-blue wide cylindrical drip-tape carton roll resting on the soil in the field. The product should be small (approx 20% width) and positioned off-center. The background must remain the farm field without any human presence. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 75,
+      "product_width_percent": 22,
+      "product_height_percent": 31,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Product geometry and placement meet the width (22%), height (31%), and off-center positioning requirements in the lower half of the frame.",
+        "The exact required bottom-right watermark 'AFP | 09134922013' is present.",
+        "Hard reject: The crop visible in the foreground soil rows exhibits distinctive two-bladed grass morphology (V-shape), which strongly resembles Poaceae (corn/barley/grass). The requested crop is 'Tape' (a term often associated with Tape weed, Amaranthus retroflexus, or general tape-like vegetables), making this a 'clearly identifiable different species' relative to a generic or specific non-grass 'tape' crop context.",
+        "The 'AFP' and 'Drip' text on the roll is clear, but the small text under the logo is gibberish ('Dng...'), though this is less critical than the crop mismatch."
+      ],
+      "correction_prompt": "Regenerate the foreground soil rows to show generic, indistinct tiny green seedlings or bare tilled soil without distinct two-bladed grass leaves, ensuring the crop species is neutral or non-identifiable to avoid mismatch with the 'Tape' article context.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: A person (farmer) is clearly visible in the foreground.",
+        "Hard reject: The 'drip tape' is shown as a small vertical container/jar rather than a wide, low, cylindrical roll.",
+        "Product is centered on the lower third rather than off-center.",
+        "Product is extremely small, far below the required width threshold.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the man completely. Replace the small vertical jar with a wide, low cylindrical drip tape roll (white and blue) resting on the soil in the lower third, positioned off-center. The roll should be about 20% of the frame width and 1.5 times its height in diameter. Keep the farm context and crop rows. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

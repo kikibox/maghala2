@@ -1,0 +1,53 @@
+{
+  "id": "prod-022",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 9,
+      "product_height_percent": 10,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Hard reject: The image contains a visible human (a crouching man), which is strictly forbidden.",
+        "Hard reject: The product is not the required 'wide low cylindrical' carton roll; it is too small (width is ~9% of frame, minimum 13%) and appears to be a small container rather than a large carton.",
+        "Hard reject: The product geometry does not match the requirement of a diameter ~1.5-1.9x its height.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the man completely. Replace the small object with a large, wide, low cylindrical white and blue drip tape carton roll placed on the soil near the crop. The roll should be off-center in the lower third, with a width of approximately 20-23% of the image frame and height not exceeding 32% of the frame. Maintain the 'AFP | 09134922013' watermark in the bottom-right corner. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 24,
+      "product_height_percent": 26,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Image contains a clearly identifiable person (male farmer) crouching in the field, which is a hard reject per the zero-people rule."
+      ],
+      "correction_prompt": "Regenerate the image removing the person entirely, ensuring only the drip tape roll and the farm environment are visible while maintaining the original composition and background context.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 19,
+      "product_height_percent": 24,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Contains exactly one AFP white-and-blue drip-tape carton roll on the soil with a correct wide, low cylindrical shape.",
+        "The product is positioned off-center in the lower third of the frame and maintains secondary relative scale against the background.",
+        "The background shows a farm with crop rows and a red barn, matching the topic-specific farm context and image role.",
+        "The 'AFP | 09134922013' watermark is present in the bottom right as required.",
+        "No human silhouettes, faces, or body parts are visible in the image."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "هزینه-لوله-نخدار-160-میلیمتر-در-مزرعه-برآورد-کاربرد-عملی.webp"
+}
