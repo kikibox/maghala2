@@ -164,13 +164,17 @@ def ensure_translation_artifacts(sources=None):
 def rebuild_combined_sql():
     files = sorted(SQL.glob("*.sql")) if SQL.exists() else []
     (OUT / "create-all-translations.sql").write_text(
-        "-- Generated article translations: Arabic, Tajik and English.\nSET NAMES utf8mb4;\n\n"
+        "-- Generated article translations: Arabic, Tajik and English.\n"
+        "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_520_ci;\n"
+        "SET collation_connection = 'utf8mb4_unicode_520_ci';\n\n"
         + "\n".join(path.read_text(encoding="utf-8") for path in files),
         encoding="utf-8",
     )
     rollback_files = sorted(ROLLBACK.glob("*.sql"), reverse=True) if ROLLBACK.exists() else []
     (OUT / "rollback-all-translations.sql").write_text(
-        "-- Roll back generated article translations.\nSET NAMES utf8mb4;\n\n"
+        "-- Roll back generated article translations.\n"
+        "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_520_ci;\n"
+        "SET collation_connection = 'utf8mb4_unicode_520_ci';\n\n"
         + "\n".join(path.read_text(encoding="utf-8") for path in rollback_files),
         encoding="utf-8",
     )

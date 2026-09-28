@@ -85,6 +85,34 @@ class GeneratedTranslationTests(unittest.TestCase):
             fixed,
         )
 
+    def test_combined_translation_sql_sets_legacy_database_collation(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            sql = root / "translation-sql"
+            rollback = root / "translation-rollback"
+            sql.mkdir()
+            rollback.mkdir()
+            (sql / "one.sql").write_text("SELECT 1;", encoding="utf-8")
+            (rollback / "one.sql").write_text("SELECT 2;", encoding="utf-8")
+            with patch.object(translations, "OUT", root), patch.object(
+                translations, "SQL", sql
+            ), patch.object(translations, "ROLLBACK", rollback):
+                translations.rebuild_combined_sql()
+            for name in (
+                "create-all-translations.sql",
+                "rollback-all-translations.sql",
+            ):
+                content = (root / name).read_text(encoding="utf-8")
+                self.assertIn(
+                    "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_520_ci;",
+                    content,
+                )
+                self.assertIn(
+                    "SET collation_connection = 'utf8mb4_unicode_520_ci';",
+                    content,
+                )
+                self.assertNotIn("SET NAMES utf8mb4;\n", content)
+
 
 if __name__ == "__main__":
     unittest.main()
