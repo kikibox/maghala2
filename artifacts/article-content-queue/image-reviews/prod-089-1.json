@@ -1,0 +1,42 @@
+{
+  "id": "prod-089",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 22,
+      "product_height_percent": 24,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The image contains a full-body person (a male farmer crouching), which is an immediate hard reject requirement.",
+        "The crop visible in the foreground consists of seedlings that are botanically neutral and cannot be identified as the 'City, family tape20' article crop.",
+        "The product roll contains gibberish text and fake branding ('DING') that does not match the required article details, though it does have the AFP phone watermark."
+      ],
+      "correction_prompt": "Regenerate the image without any human figures, showing only the white and blue cylindrical drip tape roll on the soil. The crop context must be visually consistent with the article title. Keep the 'AFP | 09134922013' watermark in the bottom right.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 26,
+      "product_height_percent": 31,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Image contains exactly one AFP white-and-blue cylindrical drip-tape roll placed on the soil in a farm context.",
+        "No people, workers, or human body parts are visible.",
+        "Background shows crop rows with small seedlings (young vegetation), which is acceptable per the criteria as a neutral agronomic story.",
+        "Product is off-center to the lower-left, naturally placed on the soil.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Product dimensions (approx. 26% width, 31% height) fall within the acceptable ranges (13-27% width, <=32% height).",
+        "Geometry is realistic; no impossible shapes or conflicting hard-reject elements like bottles or second rolls are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "مقایسه-لوله-نخدار-160-میلیمتر-با-سایر-برندها-تصویر-شاخص.webp"
+}

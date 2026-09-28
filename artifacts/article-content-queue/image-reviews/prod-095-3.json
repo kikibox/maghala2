@@ -1,0 +1,54 @@
+{
+  "id": "prod-095",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Multiple product packages/rolls are visible: a second blue-and-white roll is lying on its side next to the main one, violating the single-product requirement."
+      ],
+      "correction_prompt": "Remove the smaller second roll on the ground to ensure only one AFP drip tape cartridge is visible.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject: The image contains a male person (a farmer) who is clearly visible in the center-right frame. The prompt explicitly requires zero people or human body parts.",
+        "Hard reject: The product is being touched by a hand, which further violates the 'zero human body parts' constraint."
+      ],
+      "correction_prompt": "Remove the person and the hand touching the roll completely. Ensure the roll sits naturally on the soil without any interaction or human presence in the frame.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 24,
+      "product_height_percent": 29,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Product width is 24% of the frame, within the acceptable range of 13-27%.",
+        "Product height is 29% of the frame, within the limit of 32%.",
+        "Product bounding box is located in the lower third, off-center to the left.",
+        "Product aspect ratio (width 24 vs height 29) approximates the required 1.5x-1.9x height ratio.",
+        "Product is naturally placed on soil.",
+        "Background (tractor, barn, field) matches the farm/hardware context of image role 3 without visible people.",
+        "Zero people or human body parts visible.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "نگهداری-از-نوار-تیپ-پلاکدار-برای-عمر-مفید-بیشتر-جزئیات-فنی.webp"
+}

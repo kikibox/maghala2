@@ -1,0 +1,102 @@
+{
+  "id": "prod-095",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 60,
+      "product_height_percent": 30,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The drip tape extending around the roll causes the total product bounding box to exceed the maximum 27% width constraint (estimated at 60%).",
+        "The product placement is too central; it should be off-center on the lower third.",
+        "The article crop morphology is not definitively clear/recognizable, though the background is contextually appropriate.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 60% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the drip tape rolled up and visible only on the side of the roll to ensure total product width is between 20-23%. Move the carton roll to the bottom-right corner. Ensure background crop rows clearly show the specific mature crop identified in the article title. Reduce the product group from 60% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 7,
+      "product_height_percent": 11,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: Image contains a person (male farmer).",
+        "Hard reject: The product is not a 'wide low cylindrical drip-tape carton roll' (image shows a small canister).",
+        "Product height (11%) is significantly below the minimum threshold (13%).",
+        "Product is centered rather than off-center in the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with a wide low cylindrical drip-tape carton roll (height 15-25% of frame) placed off-center in the lower third on soil. Remove the person/farmer completely. Use a farm background matching the crop. Keep the 'AFP | 09134922013' watermark. Enlarge the product group from 7% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 23,
+      "product_height_percent": 36,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Product height exceeds the maximum 32 percent limit",
+        "Gibberish/invented text on carton ('Dig 114-20041 1907') instead of authentic package print",
+        "machine-enforced bounding-box check failed: Reduce product height from 36% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the carton roll height to 30 percent or less of the frame, keep width between 20-24 percent, and ensure all printed text on the carton is authentic, readable drip-tape specifications instead of random gibberish numbers. Reduce product height from 36% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Presence of people (two farmers) and human body parts, which violates the strict zero-people rule.",
+        "Product Geometry: The object is not the 'wide low cylindrical drip-tape carton roll' specified; it appears to be a smaller cylindrical canister or container.",
+        "Product Placement: The product is centered in the lower half of the frame rather than being placed off-center on the lower third as required.",
+        "Product Proportions: The object's proportions do not match the 'wide low' description (1.5 to 1.9 times height); it is too small relative to the people and does not meet the 20-23% width target.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with zero people or human body parts; place a wide, low cylindrical white and blue drip tape carton roll off-center on the lower third of the soil, matching the crop context. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 10,
+      "product_height_percent": 15,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Image contains two visible people (farmers/workers), which is a hard reject requirement.",
+        "The roll is being held/interacted with by a person, violating the 'no people' rule.",
+        "Product is not naturally placed on the soil alone; it is part of a human interaction scene.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes from the image. Place a single white-and-blue cylindrical drip tape carton roll on the soil in the foreground, ensuring it is unattended and positioned off-center in the lower third. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 26,
+      "product_height_percent": 31,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Product is a single white and blue cylindrical drip tape roll placed on the soil.",
+        "No people or human body parts are visible.",
+        "Watermark 'AFP | 09134922013' is present in the bottom right.",
+        "Product is off-center (left third) and appropriately sized relative to the frame.",
+        "The background shows a field with crops that align with a generic farm context, consistent with the 'family tape' or general article role without explicitly identifying a 'different' crop."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "نگهداری-از-نوار-تیپ-پلاکدار-برای-عمر-مفید-بیشتر-کاربرد-عملی.webp"
+}

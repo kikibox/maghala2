@@ -1,0 +1,95 @@
+{
+  "id": "prod-094",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 27,
+      "product_height_percent": 30,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Product is centered (x=28%), violating the requirement to be off-center on the lower third",
+        "Product width exceeds the preferred range (27% is at the absolute upper limit, but the visual mass makes it a primary focal point rather than secondary)"
+      ],
+      "correction_prompt": "Move the drip-tape carton to the right side (x=65%), reducing its visual dominance. Place it in the bottom-right corner, further away from the center. Ensure the crop on the right remains the main visual focus.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 21,
+      "product_height_percent": 30,
+      "product_x_center_percent": 72,
+      "reasons": [
+        "Hard reject: Image contains a human subject (a young girl) standing in the center of the frame.",
+        "Presence of a human silhouette violates the zero-person constraint."
+      ],
+      "correction_prompt": "Remove the person from the image entirely. Keep the farm context, the row crops, and the drip-tape roll exactly as placed in the bottom right.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 13,
+      "product_height_percent": 17,
+      "product_x_center_percent": 62,
+      "reasons": [
+        "Product is too small and cropped; bottom of the roll is cut off, failing the 'fully visible' and 'naturally placed on soil' requirements",
+        "Product height (approx. 17%) is greater than width (approx. 13%), violating the 'wide low cylindrical' aspect ratio requirement (1.5-1.9x)",
+        "Product is cut off by the bottom frame edge"
+      ],
+      "correction_prompt": "Regenerate with a fully visible white drip tape roll sitting completely on the soil in the bottom right corner. Ensure the roll is wider than it is tall and not cropped by the frame edge.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 22.5,
+      "product_height_percent": 28,
+      "product_x_center_percent": 70.0,
+      "reasons": [
+        "The product label clearly reads 'AFP', but the article title (and implied brand context) specifies 'AF'. In a strict QA context, a mismatch on the primary branding text on the physical product is a significant failure, resembling 'invented writing' or an incorrect brand asset.",
+        "The 'AFP' text on the white roll conflicts with the requirement for authentic package print matching the specific article context if the article title is 'AF'.",
+        "While the geometry, position, and zero-person constraints are met, the branding text error triggers a reject for product accuracy."
+      ],
+      "correction_prompt": "Change the text on the white roll from 'AFP' to 'AF' to match the article title. Keep the 'AFP | 09134922013' watermark in the bottom right exactly as is.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 5,
+      "product_height_percent": 4,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject: The image contains a person (a farmer) crouching and interacting with the product, which strictly violates the 'zero people and zero human body parts' rule.",
+        "Hard reject: The product is not the required wide, low cylindrical drip-tape carton roll as specified (20-23% width); it appears to be a small canister or secondary container.",
+        "Hard reject: The product is centered rather than placed off-center in the lower third.",
+        "Hard reject: The product does not meet the minimum width requirement (approx 5% vs 13-27%).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Replace the small object with a large, wide, low cylindrical drip-tape carton roll placed off-center on the soil in the lower third. Ensure the roll's width is approximately 20-23% of the image frame and its height is less than 32%. The product must be clearly distinct and the primary subject, naturally resting on the ground. Enlarge the product group from 5% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 58,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The crop seedlings in the image are clearly identifiable as maize (corn) seedlings, which is a different species than the 'family tape' crop requested (ambiguous, but maize is a specific identified crop, violating the 'botanically neutral' or 'exact named crop' rule if not maize)",
+        "The product is positioned centrally rather than 'off-center' as preferred",
+        "The text on the carton is gibberish (unrealistic small print) which triggers a hard reject",
+        "The crop morphology is distinct/identifiable (corn) rather than neutral, risking a hard reject if the target is not corn"
+      ],
+      "correction_prompt": "Change the crop seedlings to small, unidentifiable neutral green shoots or generic sprouts. Move the white-and-blue drip-tape carton roll to the lower left or lower right (off-center). Ensure the text on the carton is realistic. Keep the bottom-right watermark 'AFP | 09134922013'.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

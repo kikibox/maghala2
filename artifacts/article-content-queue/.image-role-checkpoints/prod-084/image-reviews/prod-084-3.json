@@ -1,0 +1,100 @@
+{
+  "id": "prod-084",
+  "kind": 3,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 55,
+      "product_height_percent": 40,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: image contains two people (farmer and woman).",
+        "Hard reject: product pair is centered and occupies significantly more than 15 percent of the frame width.",
+        "Hard reject: product staging is in the foreground/center rather than the lower third off-center.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 55% to 9-20% of frame width.; Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove all human figures. Crop or scale the view so the two layflat coils (one packaged, one bare black) occupy only 12-15% of the frame width and are positioned off-center in the lower third. Ensure the coils are separate, flat, and fully visible. Reduce the product group from 55% to 9-20% of frame width. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 60,
+      "product_height_percent": 45,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product pair is centered in the lower third, violating the requirement to be off-center.",
+        "Product pair occupies approximately 60% of frame width, violating the 12-15% size constraint.",
+        "Contains a third product (packaged coiled tape) between the two approved coils, violating the 'exactly two' constraint.",
+        "Coils are positioned side-by-side with significant overlap/intersection rather than being fully separate.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 60% to 9-20% of frame width.; Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with the two approved coils (one packaged, one bare) placed as a very small, separate pair occupying only 15% of the frame width, positioned in the bottom-left corner. Ensure they are not touching or overlapping. Remove the small white coiled package in the middle. Reduce the product group from 60% to 9-20% of frame width. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 82,
+      "product_height_percent": 62,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Presence of a human face (silhouette) inside the large black coil hole",
+        "Product pair width significantly exceeds the 15% maximum limit (estimated 82%)",
+        "Required 12-15% width constraint violated",
+        "machine-enforced bounding-box check failed: Reduce the product group from 82% to 9-20% of frame width.; Reduce product height from 62% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the face in the hole completely. Reduce the size of the two coils to occupy only 12-15% of the total frame width. Ensure no human parts are visible anywhere in the image. Reduce the product group from 82% to 9-20% of frame width. Reduce product height from 62% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 75,
+      "product_height_percent": 40,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Presence of a full adult human figure, which is a hard reject condition.",
+        "Visible human body parts including face, head, arms, legs, and hands interacting with the product.",
+        "The pair of products occupies a massive portion of the frame width, significantly exceeding the strict 15% limit.",
+        "The product staging is centered and dominant rather than off-center on the lower third as required.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 75% to 9-20% of frame width.; Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the man entirely. Regenerate the scene with two small coiled products (one packaged, one bare) placed flat on the soil in the bottom right corner. The products must be tiny, occupying no more than 12-15% of the frame width. Reduce the product group from 75% to 9-20% of frame width. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 30,
+      "product_height_percent": 25,
+      "product_x_center_percent": 76,
+      "reasons": [
+        "Product bounding box is too wide, estimated at 30% of the frame instead of the required 12-15%",
+        "The pair of products is excessively large relative to the frame",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with the two layflat coils (one packaged, one bare) positioned in the bottom-right corner, ensuring their total width is reduced to approximately 12-15% of the frame width. Reduce the product group from 30% to 9-20% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 28,
+      "product_height_percent": 22,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "The products occupy more than 15% of the frame width.",
+        "The products are positioned centered rather than off-center.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the two products significantly reduced in size to occupy 12-15% of the total frame width, and shift the grouping off-center to the lower third of the image. Ensure both the packaged and bare coils are fully visible and clearly separated on the ground. Reduce the product group from 28% to 9-20% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

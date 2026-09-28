@@ -1,0 +1,55 @@
+{
+  "id": "prod-091",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 30,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: A crop plant is growing directly out of the center of the carton/roll, creating impossible geometry where the product is acting as a flower pot rather than a placed object.",
+        "The product is centered in the lower-middle section of the frame rather than being off-center on the lower third.",
+        "The plant growing out of the box is not a botanically accurate crop from a standard farm context (it looks like a generic stock image plant), causing the scene to feel inauthentic.",
+        "The crop in the background does not clearly match a specific 'article title' if one was implied, but the primary failure is the geometric impossibility of the plant growing out of the packaging."
+      ],
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 24,
+      "product_height_percent": 25,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Impossible geometry: The crop plant is growing directly out of the center of the drip-tape roll, which is physically impossible.",
+        "Product placement: The roll appears to be resting on the crop roots inside the central hole rather than sitting on the soil surface.",
+        "Role violation: The image depicts a single giant plant (a 'hero' plant) in the center, violating the rule that required crop rows should be small, unidentifiable seedlings in a prepared bed context."
+      ],
+      "correction_prompt": "Regenerate with the drip-tape roll resting flat on the brown soil surface next to the crop row. No plant should be growing out of the roll. The crop rows in the background should consist of many small seedlings, not one single large plant. Maintain the specific farm context.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 26,
+      "product_height_percent": 30,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Exact named crop (Maize/Field Corn) is recognizable in both the foreground seedling (distinct morphology) and the background crop rows.",
+        "Product is an AFP white-and-blue wide low cylindrical roll, correctly placed on soil in the lower-left off-center position.",
+        "Product dimensions are within acceptable ranges, though the width (26%) is on the larger end of the 20-23% preferred range, making the object slightly prominent.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present.",
+        "Zero human body parts or silhouettes visible.",
+        "Farm context matches the article/role requirements (prepared bed, irrigation context)."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "مقایسه-لوله-نخ-دار-75-میلیمتر-با-سایر-برندها-کاربرد-عملی.webp"
+}

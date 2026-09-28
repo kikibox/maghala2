@@ -1,0 +1,55 @@
+{
+  "id": "prod-088",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 25,
+      "product_height_percent": 38,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "Hard reject: The image contains a prominent human hand and arm on the right side, which violates the strict requirement for zero people or human body parts.",
+        "The drip tape roll is positioned on the far left (approx 22% horizontal center), failing the requirement for an off-center composition on the lower third (implying center-right).",
+        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image without any human figures, faces, hands, or body parts. Replace the held tool with a static irrigation connector or manifold on the soil. Center the white-and-blue drip tape roll horizontally in the middle of the frame, resting on the soil surface, ensuring it appears as a secondary element (approx 20% frame width, 25% frame height) against a backdrop of crop rows. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 21,
+      "product_height_percent": 22,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Product geometry hard fail: Visible diameter (~530px) is only 1.46x its visible height (~365px), falling below the required 1.5-1.9 aspect ratio range.",
+        "Centering hard fail: Product x-center is at 47%, which is too close to the frame center; the product must be distinctly off-center.",
+        "Secondary object fail: A white plastic manifold/connector fitting is visible next to the roll. While fixed hardware is allowed, a standalone loose pipe connector appears like an 'extra commercial product' or layflat accessory rather than integrated infrastructure."
+      ],
+      "correction_prompt": "Regenerate with the roll diameter at least 1.6x its visible height. Move the roll significantly to the left (x-center approx 30%). Remove the loose white plastic manifold/pipe connector next to the roll. Maintain the farm field background and 'AFP | 09134922013' watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 27,
+      "product_height_percent": 31,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Product is exactly one wide low cylindrical drip-tape carton roll.",
+        "Product is off-center and naturally placed on soil.",
+        "Zero people or human body parts visible.",
+        "Required bottom-right watermark is present.",
+        "Crop rows are botanically neutral/unidentifiable seedlings which are acceptable.",
+        "Aspect ratio and placement meet all practical requirements."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "توافق-لوله-نخدار-125-میلیمتر-با-نوار-تیپ-و-قطرهچکان-تصویر-شاخص.webp"
+}

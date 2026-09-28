@@ -1,0 +1,58 @@
+{
+  "id": "prod-094",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 28,
+      "product_height_percent": 45,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Presence of two distinct human figures (persons) in the image, which is a hard reject condition.",
+        "Product height exceeds the 32% limit; the roll is disproportionately large in the frame.",
+        "Product width is estimated at roughly 28% of the frame, exceeding the acceptable 27% limit.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width.; Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove all people from the image completely. Reduce the apparent size of the AFP drip-tape roll to make it look like a standard secondary object (approx 20-25% width). Keep the roll positioned on the soil in the lower-left/lower-center area without a central focus. Ensure no human silhouettes or body parts are visible anywhere in the frame. Reduce the product group from 28% to 13-27% of frame width. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 24,
+      "product_height_percent": 40,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Product height exceeds the 32% maximum limit",
+        "Product bounding box is positioned too high/centered, not naturally low in the bottom third as required",
+        "Required bottom-right watermark 'AFP | 09134922013' is missing",
+        "machine-enforced bounding-box check failed: Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate image with the drip-tape roll positioned lower to appear shorter (max 32% height), placed naturally on soil in the bottom third. Add the exact bottom-right watermark 'AFP | 09134922013'. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 20,
+      "product_height_percent": 23,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Product is clearly an AFP white-and-blue drip-tape roll with correct branding",
+        "Required bottom-right watermark 'AFP | 09134922013' is present and unmodified",
+        "No people, faces, or human body parts visible",
+        "Product dimensions fall within preferred range (20-23% width, <32% height)",
+        "Product is appropriately off-center on the lower third and placed on soil",
+        "Crop plants are neutral/sparse and do not contradict a hardware-focused drip-tape story",
+        "Farm background (field and barn) is contextually appropriate"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "مقایسه-لوله-نخدار-125-میلیمتر-با-سایر-برندها-جزئیات-فنی.webp"
+}

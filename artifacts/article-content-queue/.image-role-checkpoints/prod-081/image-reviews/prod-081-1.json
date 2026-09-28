@@ -1,0 +1,99 @@
+{
+  "id": "prod-081",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 19,
+      "product_height_percent": 21,
+      "product_x_center_percent": 81,
+      "reasons": [
+        "Hard reject: The image contains a prominent person (female farmer) sitting in the center frame, violating the zero-people and zero-human-silhouette requirement.",
+        "Hard reject: The product geometry is incorrect. The item shown is a bucket/tall cylinder (height is nearly equal to diameter), whereas the rule specifies a 'wide low cylindrical' roll with a visible diameter 1.5-1.9 times its height.",
+        "Hard reject: The product is not a 'drip-tape carton roll' but appears to be a plastic bucket with a lid, which is a forbidden object type."
+      ],
+      "correction_prompt": "Regenerate the image completely removing the person. Replace the bucket with a wide, low-diameter roll of white-and-blue AFP drip tape placed on the soil. The product must be a flat cylinder, not a bucket. Ensure the drip tape roll is off-center on the lower third.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 68,
+      "product_width_percent": 28,
+      "product_height_percent": 28,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "The text in the bottom-right watermark is gibberish/phonetic ('PHE LPHLSHSHL Dete') instead of the required format ('AFP | 09134922013'), which is a hard reject criterion.",
+        "The drip-tape roll is slightly too wide (28%) compared to the hard rejection limit (27%).",
+        "The background crop (peppers) is not mentioned in the provided article title or summary, making it a non-specific 'generic farm' context rather than a 'topic-specific' one.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with the exact bottom-right text 'AFP | 09134922013'. Make the drip-tape roll slightly smaller (width 22%) and replace the generic pepper plants with the specific crop mentioned in the article title/summary. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Watermark error: The required bottom-right watermark is 'AFP | 09134922013', but the image displays a generic 'AFP | 09134922013' on a black bar (or simply '09134922013' in the provided text overlay), which does not strictly match the required full string format with the pipe and 'AFP' prefix inside the bottom-right corner box."
+      ],
+      "correction_prompt": "Replace the current watermark with the exact string 'AFP | 09134922013' located in the bottom-right corner, ensuring it is clearly visible and matches the required format.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 24,
+      "product_height_percent": 22,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Hard reject: The image contains a person (a crouching man) touching the product. The instructions strictly require zero people and zero human body parts.",
+        "Hard reject: A farmer is explicitly visible and interacting with the roll, which violates the 'unattended' requirement for any visible hardware or product staging.",
+        "Watermark present: 'AFP | 09134922013' is correctly located in the bottom-right corner.",
+        "Product geometry: The roll is approximately 24% width and 22% height, which falls within acceptable dimensions, but the presence of the person is a definitive failure."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove the man; show only the white and blue AFP drip-tape roll placed on the soil in a farm context without any people or human body parts visible.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 88,
+      "product_width_percent": 31,
+      "product_height_percent": 15,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is a single white and blue cylindrical carton roll placed off-center on the soil in the lower third.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present and authentic.",
+        "No human body parts, farmers, or silhouettes are visible in the image.",
+        "Background shows a farm context with young green seedlings in rows, matching the role requirements.",
+        "Product proportions (diameter vs height) meet the 1.5 to 1.9 ratio guideline.",
+        "No prohibited items such as bottles, cans, extra packaging, or layflat hoses are present.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 31% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 31% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 12.0,
+      "product_height_percent": 22.0,
+      "product_x_center_percent": 28.5,
+      "reasons": [
+        "Missing required bottom-right watermark 'AFP | 09134922013'.",
+        "The text 'Dig fuguee' on the carton is gibberish/invented writing rather than authentic packaging print.",
+        "The product width is approximately 12%, which falls below the acceptable 13% minimum threshold.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to include the exact bottom-right watermark 'AFP | 09134922013' and ensure the carton text is clean and authentic without gibberish. Increase the product width to a minimum of 13% of the frame while keeping it off-center. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

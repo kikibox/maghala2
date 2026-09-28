@@ -1,0 +1,79 @@
+{
+  "id": "prod-081",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 10,
+      "product_height_percent": 10,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "Hard reject: Image contains two human figures (farmers/workers).",
+        "Hard reject: Visible human body parts (hands, arms, legs, faces).",
+        "Product shape mismatch: The roll is depicted standing vertically (upright) rather than lying horizontally (wide, low cylindrical) on the soil.",
+        "Product ratio mismatch: The roll is not 1.5 to 1.9 times wider than it is tall.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people. Show the drip-tape carton roll lying horizontally on the soil (wide and low profile). The roll should appear wider than it is tall (aspect ratio ~1.7:1). Ensure the background features crops clearly identifiable as 'rice' (green, wet, paddy field environment). Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 31,
+      "product_height_percent": 24,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Contains exactly one AFP white-and-blue drip-tape roll in a farm context.",
+        "No people or human body parts visible.",
+        "Required 'AFP | 09134922013' watermark present in bottom right.",
+        "Product is placed naturally on the soil between crop rows.",
+        "Minor deviation: Product width is estimated at 31%, which exceeds the practical limit of 27% and preferred range of 20-23%.",
+        "Minor deviation: Product is positioned exactly at center (50%) rather than 'off-center on the lower third' as preferred.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 31% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 31% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 11,
+      "product_height_percent": 12,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Presence of a clearly visible person (farmer) and human body parts (hands, legs, face), which are hard reject elements.",
+        "Presence of a second person standing in the background, also a hard reject element.",
+        "The product (drip-tape roll) is not the primary subject and is heavily obscured/secondary to the human figures.",
+        "The product size is too small relative to the frame (width and height estimates are below the preferred 20-23% range).",
+        "Product is centered horizontally rather than being off-center on the lower third as preferred.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with zero people or human body parts. Show exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll on soil in a farm context. Make the roll the clear subject, with a visible width of 20-23% of the frame, located off-center in the lower third. Ensure the crop morphology is botanically accurate and clearly recognizable. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 24,
+      "product_height_percent": 25,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is a white-and-blue wide low cylindrical drip-tape carton roll, matching the required description.",
+        "The crop shown (young seedlings with broad, heart-shaped leaves arranged in rows) is morphologically consistent with soybean (Glycine max), identifying it as the exact named crop.",
+        "The background features a farm context with crop rows, a prepared soil bed, and farm buildings in the distance, matching the image role 2 requirements.",
+        "The image contains zero people, faces, hands, or body parts.",
+        "The product dimensions are within acceptable practical ranges (width ~24%, height ~25%), though the diameter-to-height ratio is closer to 1.0 rather than the preferred 1.5-1.9, the product remains secondary to the crop and scene.",
+        "The product is off-center on the lower third and naturally placed on the soil.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "اندازهگیری-لوله-نخ-دار-90-میلیمتر-برای-مزرعه-کاربرد-عملی.webp"
+}
