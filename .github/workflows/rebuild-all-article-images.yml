@@ -1,23 +1,21 @@
-name: Rebuild all article images under current strict policy
+name: Rebuild article images only when policy changes
 
 on:
   workflow_dispatch:
   push:
     branches: [main]
     paths:
-      - '.github/workflows/rebuild-all-article-images.yml'
       - 'automation/rebuild_article_images_exact_product.py'
       - 'automation/image_prompt_policy.py'
       - 'automation/image_quality_gate.py'
       - 'automation/assets/**'
-  schedule:
-    - cron: '15 */2 * * *'
 
 permissions:
   contents: write
   actions: write
 
 concurrency:
+  # No periodic watchdog: images already approved by the current policy are never rebuilt.
   # Strict proof runs own the real pipeline lock; queue runs marked
   # [image-rebuild] use a separate skipped-workflow lock.
   group: article-content-pipeline
@@ -145,7 +143,7 @@ jobs:
             sleep 20
             gh workflow run rebuild-all-article-images.yml --ref main
           elif [ "$remaining" -gt 0 ]; then
-            echo "::warning::$remaining sets remain after $stalled no-progress runs; hourly watchdog will retry without creating an endless chain."
+            echo "::warning::$remaining sets remain after $stalled no-progress runs; use manual dispatch after reviewing diagnostics."
           else
             echo "Strict image rebuild is complete."
           fi

@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: article-content-pipeline
+  group: article-batch-001-repair
   cancel-in-progress: false
 
 env:
@@ -97,6 +97,29 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          state_dir="$(mktemp -d)"
+          cp "artifacts/article-content-queue/packages/$TARGET_PACKAGE.zip" "$state_dir/package.zip"
+          cp -a "artifacts/article-content-queue/packages/$TARGET_PACKAGE" "$state_dir/package-dir"
+          python - <<'PY' > "$state_dir/record.json"
+          import json
+          from pathlib import Path
+          data=json.loads(Path('artifacts/article-content-queue/packages/manifest.json').read_text(encoding='utf-8'))
+          print(json.dumps(next(x for x in data['packages'] if x['batch']=="${{ env.TARGET_PACKAGE }}"),ensure_ascii=False))
+          PY
+          git fetch origin main
+          git reset --hard origin/main
+          rm -rf "artifacts/article-content-queue/packages/$TARGET_PACKAGE" "artifacts/article-content-queue/packages/$TARGET_PACKAGE.zip"
+          cp "$state_dir/package.zip" "artifacts/article-content-queue/packages/$TARGET_PACKAGE.zip"
+          cp -a "$state_dir/package-dir" "artifacts/article-content-queue/packages/$TARGET_PACKAGE"
+          python - "$state_dir/record.json" <<'PY'
+          import json,sys
+          from pathlib import Path
+          path=Path('artifacts/article-content-queue/packages/manifest.json')
+          data=json.loads(path.read_text(encoding='utf-8'))
+          record=json.loads(Path(sys.argv[1]).read_text(encoding='utf-8'))
+          data['packages']=[record if x.get('batch')==record.get('batch') else x for x in data.get('packages',[])]
+          path.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
           git add -f "artifacts/article-content-queue/packages/$TARGET_PACKAGE.zip"
           git add -f "artifacts/article-content-queue/packages/$TARGET_PACKAGE"
           git add -f artifacts/article-content-queue/packages/manifest.json
