@@ -1,0 +1,68 @@
+{
+  "id": "crop-248",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 20,
+      "product_height_percent": 30,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The product is centered horizontally in the image (50% x-center), violating the requirement for off-center placement on the lower third.",
+        "The image contains multiple colors of drip tape (blue, red, white) spooled on the ground; the prompt strictly requires a single 'AFP white-and-blue' carton roll.",
+        "The crop context is extremely generic ('topic-specific farm context') with indistinct seedlings, failing to make the specific crop from the article title recognizable or botanically accurate.",
+        "The product roll appears to have an open center with the hose spooled below it, rather than being a solid white-and-blue cylindrical carton roll."
+      ],
+      "correction_prompt": "Regenerate the image with the white-and-blue AFP drip tape carton roll placed off-center on the lower third of the frame (left or right of center). Ensure only white and blue tape is visible (remove red/white variations) and that the product is a solid cylindrical carton roll. The crop context must be clearly identifiable as the specific article crop with visible mature morphology or distinct agronomic features. Keep the AFP | 09134922013 watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 15.8,
+      "product_height_percent": 18.0,
+      "product_x_center_percent": 30.5,
+      "reasons": [
+        "The product shape is a tall, narrow drum/cylinder rather than a 'wide low cylindrical' drip-tape carton roll.",
+        "The aspect ratio violates the specification that visible diameter (width) should be 1.5 to 1.9 times its visible height; here the height is greater than or equal to the width.",
+        "The crop shown is young corn (maize), which does not match the 'family' context requested, nor does it appear to be the specific article crop."
+      ],
+      "correction_prompt": "Regenerate the image to show a wide, flat, cylindrical roll of drip tape (roughly 1.5x taller than wide, actually 1.5x wider than tall). Place it in a family-specific farm context (e.g., family vegetable garden) instead of a commercial cornfield.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The image contains multiple human figures (an adult male, a child, and another adult), which is a hard reject criteria. The prompt strictly requires zero people or human silhouettes in the frame."
+      ],
+      "correction_prompt": "Regenerate the image showing only the empty farm field with the drip tape roll on the soil. Remove all people. Keep the background consistent with the agronomic story (e.g., corn/squash context) without any human figures.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 22,
+      "product_height_percent": 30,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Product dimensions and aspect ratio conform to the 1.5-1.9 height-to-width requirement.",
+        "The product width (22%) falls within the preferred 20-23% target range.",
+        "The product is correctly positioned in the lower third of the frame and is off-center.",
+        "The background contains no people, human silhouettes, or body parts, adhering to the strict 'zero people' rule.",
+        "Authentic product branding 'AFP' and the required watermark 'AFP | 09134922013' are present and accurate.",
+        "The scene features a tractor and young crop rows (consistent with the 'City' role context for a farm setting), providing a clear agronomic context without showing mature, identifiable crop morphology."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "هزینه-کشت-شنبلیله-با-نوار-تیپ-در-هکتار-کاربرد-عملی.webp"
+}

@@ -1,0 +1,55 @@
+{
+  "id": "crop-246",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 14,
+      "product_height_percent": 20,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Multiple people and human body parts (hands, forearms, legs, feet) are visible throughout the image, which is a hard reject.",
+        "The roll is too tall relative to its width (cylindrical bucket shape instead of wide low cylinder) and positioned too central rather than on the lower third edge.",
+        "Large hand tools (shovel, hoe) are prominent in the foreground, cluttering the scene."
+      ],
+      "correction_prompt": "Remove all people, body parts, hands, and large hand tools. Replace the container shape with a wide, low cylindrical roll (diameter ~1.7x height) placed on the lower third off-center. Increase the roll's width relative to its height to look like a flat drip tape spool.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 30,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The visible geometry of the product roll is inverted; it appears taller than it is wide (height ~30% vs width ~18%), violating the strict requirement that the visible diameter must be 1.5 to 1.9 times the visible height.",
+        "The crop seedlings are generic and do not immediately establish a 'topic-specific farm context' for a specific article title, though they are not a hard reject for being neutral young vegetation."
+      ],
+      "correction_prompt": "Regenerate with the drip tape roll lying horizontally on the soil (flat), ensuring its diameter (width) is roughly 1.5 to 1.9 times its thickness (height). Keep the roll in the lower third, off-center, with generic seedlings in the background.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 86,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Product is a white and blue wide low cylindrical drip-tape carton roll.",
+        "Product placement is off-center in the lower half of the frame and naturally sits on soil.",
+        "No people or human body parts are visible in the image.",
+        "Background shows crop rows consistent with a farm context.",
+        "Product dimensions (width 21%, height 24%) are within acceptable limits.",
+        "Required watermark is present.",
+        "No extra commercial products or prohibited items are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-کاملینا-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

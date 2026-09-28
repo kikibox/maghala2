@@ -1,0 +1,56 @@
+{
+  "id": "crop-248",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 12,
+      "product_height_percent": 17,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject: A human (farmer/worker) is clearly visible in the image.",
+        "Hard reject: Human body parts (head, torso, arms, hands, legs) are present.",
+        "Product height is greater than its visible width (aspect ratio < 1), failing the 1.5-1.9x requirement.",
+        "Product is not off-center on the lower third; it is positioned in the lower-left quadrant with a larger human subject dominating the right.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with absolutely no humans, faces, or body parts. Replace the man with a standalone wide cylindrical drip-tape roll. The roll must be positioned in the lower-left third, clearly wider than it is tall (approx 1.5:1 ratio), and resting on the soil. Ensure the roll occupies 20% of the frame width and remains secondary to the field background. Retain the 'AFP | 09134922013' watermark in the bottom right. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 16,
+      "product_height_percent": 14,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: The image contains a human (man) crouching in the foreground, which violates the requirement for zero people and zero human body parts.",
+        "The product is not off-center in the required lower-third position relative to a personless frame, but the primary failure is the presence of the person."
+      ],
+      "correction_prompt": "Regenerate the image to remove the man completely. Show only the AFP white-and-blue drip-tape roll resting naturally on the soil, ensuring no human body parts, silhouettes, or faces are visible in the frame.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 25,
+      "product_height_percent": 24,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Product is a white and blue cylindrical drip-tape roll placed on soil.",
+        "Background features unattended tractors and farm hardware, consistent with a hardware story role 3 without a specific crop context.",
+        "Zero people or human silhouettes visible.",
+        "Product is off-center in the lower half.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom right.",
+        "No forbidden objects like extra commercial products or bottles."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "هزینه-کشت-شنبلیله-با-نوار-تیپ-در-هکتار-جزئیات-فنی.webp"
+}

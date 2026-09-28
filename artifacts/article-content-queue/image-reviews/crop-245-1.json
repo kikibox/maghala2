@@ -1,0 +1,70 @@
+{
+  "id": "crop-245",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 4,
+      "product_height_percent": 6,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: image contains a full-body human figure (crouching man).",
+        "Hard reject: human body parts (hand, arm, legs, face) are clearly visible.",
+        "Product form factor is incorrect: the roll is a small canister or jar shape, not a wide low cylindrical drip-tape carton roll.",
+        "Product size is below the 13% minimum width threshold.",
+        "Product is held by a hand, which is not allowed for natural placement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the crouching man and human hands entirely. Show a single white and blue wide low cylindrical drip-tape carton roll placed naturally on the soil at the base of the rose plants. Ensure the roll width is between 20-23% of the frame, maintaining the off-center lower-third placement without any human presence. Enlarge the product group from 4% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 18,
+      "product_height_percent": 12,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The image shows a large white spool of 'Drip irrigation tape' with the text 'Drip irrigation tape' visible on the packaging. The product is an irrigation tape reel, not a 'wide low cylindrical drip-tape carton roll'. The prompt requires the exact named crop from the article title (which is a 'cotton' article based on the context of 'wide low cylindrical drip-tape carton roll') to be recognizable. The background shows roses, which is a 'clearly identifiable different species'.",
+        "The product width is approximately 18%, which is within the preferred 20-23% range but on the lower side. However, the primary failure is the crop mismatch."
+      ],
+      "correction_prompt": "Change the background crop to cotton plants. Replace the irrigation tape spool with a wide, low, cylindrical white and blue drip-tape carton roll placed on the soil.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 16,
+      "product_height_percent": 24,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Presence of a person (farmer) in the image, which is a hard reject per the instructions (zero people and zero human body parts allowed).",
+        "Presence of a human silhouette/arm/hand interacting with the product."
+      ],
+      "correction_prompt": "Remove the farmer and all human elements completely. Regenerate the scene to show only the AFP drip-tape roll placed on the soil in the crop field with no people present.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 25,
+      "product_height_percent": 24,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Contains exactly one AFP white-and-blue cylindrical drip-tape roll, off-center and placed on soil.",
+        "Product dimensions (width 25%, height 24%) are within acceptable bounds; aspect ratio is correct (diameter > height, not a wide drum or tube).",
+        "No people, hands, or body parts are visible in the scene.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present and correct.",
+        "Farm context (rows of green seedlings and soil) is appropriate for an agronomy/drip-irrigation article, avoiding a hard reject on a neutral bed.",
+        "No conflicting commercial products, hard pipes, or fake text found."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "نگهداری-پیازچه-با-نوار-تیپ-نکات-کلیدی-تصویر-شاخص.webp"
+}

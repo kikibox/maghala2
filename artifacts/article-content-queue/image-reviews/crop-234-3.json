@@ -1,0 +1,43 @@
+{
+  "id": "crop-234",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 25,
+      "product_height_percent": 35,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The product is a drip-tape roll with a visible core. The prompt strictly requires a 'drip-tape carton roll' (cardboard spool), not a plastic or open-core roll. The geometry and material do not match the specific 'carton' requirement.",
+        "The product is located on the far left, not the requested 'lower third' positioning.",
+        "The tractor in the background appears to have an operator/driver, which is a potential violation of the 'zero people' hard reject rule.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image replacing the plastic roll with a cardboard drip-tape carton roll positioned in the lower third of the frame. Remove the person or silhouette from the background tractor. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 100,
+      "product_width_percent": 15,
+      "product_height_percent": 15,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The image features exactly one roll of drip tape in a farm context suitable for a hardware story.",
+        "The roll is off-center on the lower third and naturally placed on soil.",
+        "The aspect ratio of the roll (diameter/height) is approximately 1.5-1.9, fitting the visual requirements.",
+        "The product dimensions (width and height) are within the acceptable 13-27% and <32% limits respectively, remaining secondary to the background.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom right.",
+        "No people, faces, or human body parts are visible.",
+        "The hardware infrastructure (irrigation lines) in the background is appropriate for the role and does not constitute a hard reject element."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-سیر-با-آبیاری-قطرهای-جزئیات-فنی.webp"
+}

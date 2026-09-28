@@ -1,0 +1,88 @@
+{
+  "id": "crop-245",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 92,
+      "product_width_percent": 41,
+      "product_height_percent": 18,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The required watermark 'AFP | 09134922013' is clearly present in the bottom right.",
+        "The context matches the farm and hardware focus of Role 3, with no visible people or human body parts.",
+        "The product (a wide drip-tape roll) is placed off-center on the soil as requested.",
+        "The geometry is consistent: the visible width of the product (including the unrolled tape) is approximately 1.5-1.9 times its height.",
+        "The crop context (small seedlings) does not clearly contradict the 'city/family tape' topic specified in the instructions.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 41% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 41% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 12,
+      "product_height_percent": 17,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The image contains a person (a man crouching in the foreground), which is a hard reject under the zero people and zero human body parts policy.",
+        "The man's hand is physically interacting with the drip tape roll, which is explicitly prohibited in Role 3 hardware stories where human presence is not allowed.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with no people or human body parts visible; show only the unattended white-and-blue AFP drip tape roll on the soil in a farm field with a distant tractor. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 95,
+      "product_width_percent": 30,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Exactly one AFP white-and-blue wide low cylindrical drip-tape roll visible",
+        "Zero people or human body parts in frame",
+        "Unattended tractor present, acceptable as infrastructure background context",
+        "Product is off-center on the lower third and placed naturally on soil",
+        "Required watermark 'AFP | 09134922013' is present in bottom-right",
+        "No hard reject elements (bottles, extra packages, layflat, impossible geometry, gibberish text)",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 30% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 16,
+      "product_height_percent": 12,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The image contains a man, which is a strict hard reject for the zero people/human parts requirement."
+      ],
+      "correction_prompt": "Regenerate the image to remove the man entirely, ensuring zero people or body parts are visible. Keep the single white and blue wide low cylindrical drip-tape carton roll off-center on the lower third on the soil, with the tractor visible in the background.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 22,
+      "product_height_percent": 16,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll is present.",
+        "Product is off-center on the lower third and naturally placed on soil.",
+        "No people or human body parts visible; unattended tractor is acceptable infrastructure.",
+        "Product width and height are within acceptable secondary bounding box limits.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present.",
+        "Crop plants are visually neutral and do not contradict the hardware story role."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "نگهداری-پیازچه-با-نوار-تیپ-نکات-کلیدی-جزئیات-فنی.webp"
+}

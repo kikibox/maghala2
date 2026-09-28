@@ -1,0 +1,61 @@
+{
+  "id": "crop-240",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "history": [
+    {
+      "pass": false,
+      "score": 55,
+      "duplicate_roles": [
+        2,
+        3
+      ],
+      "reasons": [
+        "Image 1 correctly fulfills the 'crop-identity overview' role by showing the paprika field.",
+        "Image 2 fails the 'irrigation-system story' role; it shows a close-up of the fruit and a canister but lacks the visual evidence of drip lines, root-zone moisture, or humidity control essential to the technical narrative of the article.",
+        "Image 3 fails the 'agronomic close evidence' role; it is a medium shot of fruit that is visually redundant with the subject of Image 2 and does not provide specific agronomic or irrigation evidence.",
+        "Images 2 and 3 are near-duplicates that repeat the same camera angle and layout, featuring the same crop and AFP product without fulfilling their distinct functional roles."
+      ],
+      "correction_prompt": "Replace Image 3 with a ground-level macro shot of a drip tape emitter at the base of a paprika stem, showing moist soil and water droplets to clearly represent the 'irrigation-system story' and 'agronomic close evidence' roles.",
+      "set_attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "duplicate_roles": [],
+      "reasons": [
+        "Severe crop-identity contradiction: The article title and summary explicitly specify 'Bell Pepper' (Paprika / پاپریکا), but Images 1 and 2 clearly depict 'Hot Chilies' (Capsicum annuum var. fasciculatum), which are botanically distinct from bell peppers. This is a hard reject under the contradictory crop rule.",
+        "Image 3 features what appears to be a mechanical pump or valve, which is contradictory to the article's focus on 'drip irrigation' (آبیاری قطره‌ای)."
+      ],
+      "correction_prompt": "Regenerate Images 1 and 2 replacing the hot chilies with mature Red Bell Peppers (Paprika). Regenerate Image 3 replacing the mechanical pump with a drip irrigation emitter system (e.g., a drip line with emitters).",
+      "set_attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "duplicate_roles": [
+        1,
+        2
+      ],
+      "reasons": [
+        "Image 2 depicts long, thin chili peppers, which are a clearly contradictory identifiable crop compared to the bell peppers (paprika) specified in the article title and Image 1.",
+        "Images 1 and 2 are near-duplicates that repeat the same functional role (crop-identity overview) with nearly identical camera angles, layouts, and composition, failing to provide distinct agronomic evidence.",
+        "The set does not successfully provide a distinct 'agronomic close evidence' image, as the second image fails on crop accuracy instead."
+      ],
+      "correction_prompt": "Regenerate the second image to show close-up evidence of an agronomic issue (such as fungal spots or pest damage) specifically on a bell pepper leaf or root zone to serve as distinct close evidence, replacing the contradictory chili pepper content.",
+      "set_attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 94,
+      "duplicate_roles": [],
+      "reasons": [
+        "The three images successfully fulfill their distinct functional roles: 1) a crop-identity overview, 2) an agronomic close-up with root-zone and product evidence, and 3) an irrigation-system and equipment story.",
+        "All images consistently feature the same AFP product and appropriate crops (peppers), maintaining set coherence.",
+        "Image 3 effectively differentiates its role by focusing on irrigation equipment and the field layout rather than repeating the close-up crop shot of images 1 and 2.",
+        "No images contain people, satisfying the mandatory zero-people requirement."
+      ],
+      "correction_prompt": "No correction needed; the set is functional and visually distinct.",
+      "set_attempt": 4
+    }
+  ]
+}

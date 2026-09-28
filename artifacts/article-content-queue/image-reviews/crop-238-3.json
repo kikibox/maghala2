@@ -1,0 +1,68 @@
+{
+  "id": "crop-238",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: Human subject (girl) clearly visible on the right side of the frame.",
+        "Hard reject: Multiple human body parts (face, arms, legs) are present.",
+        "Hard reject: Presence of a second large hose reel (non-AFP hardware) contradicts the 'single roll' instruction.",
+        "Hard reject: The secondary packaging/rolled tube creates visual clutter and violates the 'only one roll' constraint."
+      ],
+      "correction_prompt": "Remove all human subjects (girl, hands, face). Remove the second large hose reel. Retain the single white-and-blue AFP drip-tape roll on soil in the lower third, with a distant tractor and farm background.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 12,
+      "product_height_percent": 13,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Required watermark 'AFP | 09134922013' is completely missing from the image",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Add the black text watermark 'AFP | 09134922013' in the bottom right corner of the image Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 21.3,
+      "product_height_percent": 19.4,
+      "product_x_center_percent": 35.8,
+      "reasons": [
+        "Hard reject triggered: multiple human body parts visible (farmer's head, face, arms, hands, legs, feet).",
+        "Zero people and zero human body parts requirement not met."
+      ],
+      "correction_prompt": "Remove the man entirely, ensuring no people or body parts are visible in the frame, while keeping the farm hardware context and product staging intact.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 26,
+      "product_height_percent": 21,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Contains exactly one AFP white-and-blue wide cylindrical drip-tape roll.",
+        "Roll is placed off-center on the lower third on soil.",
+        "No people or human body parts are visible.",
+        "Hardware elements like the tractor and drip line are acceptable infrastructure.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present.",
+        "Visible plants do not clearly contradict the sesame topic."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "مقدار-بذر-کنجد-در-هکتار-راهنمای-جامع-جزئیات-فنی.webp"
+}
