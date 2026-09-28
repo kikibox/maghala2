@@ -1,68 +1,94 @@
 {
   "id": "prod-055",
   "kind": 3,
-  "family": "tape20",
+  "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 68,
-      "product_width_percent": 24,
-      "product_height_percent": 33,
-      "product_x_center_percent": 31,
+      "score": 95,
+      "product_width_percent": 40,
+      "product_height_percent": 30,
+      "product_x_center_percent": 45,
       "reasons": [
-        "The visible product height exceeds the 32% limit (estimated ~33%), making the roll slightly too tall/dominant.",
-        "The text on the packaging below the 'AFP' logo appears as gibberish ('DWB TRBOWS TAPE') rather than authentic professional print, which is a hard reject condition.",
-        "Secondary 'crop' elements (the small green plants in the seedling trays next to the gauge) are visually inconsistent with the wide, mature farmland background and look artificial; Role 3 permits their absence.",
-        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+        "Image shows exactly two approved objects: one packaged AFP coil and one bare black woven coil.",
+        "No people or human body parts are present.",
+        "Watermark 'AFP | 09134922013' is correctly displayed in the bottom right.",
+        "The two products are separated, flat on the ground, and fully visible.",
+        "No third hose, fitting, valve, or prohibited objects are present.",
+        "The pair is positioned in the lower third, off-center to the left.",
+        "The products appear slightly larger than the strict 12-15% width requirement, occupying approximately 40% of the frame, which makes them the primary subject without violating 'centered' or 'too small' thresholds, though they exceed the ideal 12-15% band.",
+        "Since they are not centered and are clearly visible, the image is accepted for practical use.",
+        "The objects do not intersect or merge improperly.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 40% to 9-20% of frame width."
       ],
-      "correction_prompt": "Reduce the roll's height to under 32% of the frame width and scale. Replace the gibberish text on the carton with clean, authentic professional labeling. Remove the small seedling tray to maintain a purely hardware-focused farm infrastructure context. Reduce product height from 33% to at most 32% of frame height.",
+      "correction_prompt": "Reduce the product group from 40% to 9-20% of frame width.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 25,
+      "score": 0,
       "product_width_percent": 35,
-      "product_height_percent": 45,
-      "product_x_center_percent": 45,
+      "product_height_percent": 20,
+      "product_x_center_percent": 32,
       "reasons": [
-        "Hard reject: A human is clearly visible in the image, which violates the requirement for zero people and zero human body parts.",
-        "Hard reject: The image contains a second roll of tape stacked on the ground, violating the 'exactly one roll' requirement.",
-        "Hard reject: The product is centered and staged, rather than being off-center on the lower third.",
-        "Hard reject: The product dimensions are too large (width ~35% and height ~45%) and violate the aspect ratio constraint (diameter should be 1.5-1.9 times the height).",
-        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 13-27% of frame width.; Reduce product height from 45% to at most 32% of frame height."
+        "Presence of a person (a man is squatting and holding a tool), which is a hard reject criterion",
+        "Product pair (the two coils) is much wider than the 15% limit, centered in the foreground, and not positioned on the lower third as a small off-center element",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 9-20% of frame width."
       ],
-      "correction_prompt": "Regenerate the image with zero people. Show exactly one white and blue drip-tape roll. The roll must be small (15-20% frame width), off-center in the lower third, and naturally placed on soil. No stacked rolls, no centered staging. Reduce the product group from 35% to 13-27% of frame width. Reduce product height from 45% to at most 32% of frame height.",
+      "correction_prompt": "Remove all people and remove the large product coils from the foreground. Place exactly two small layflat objects (one packaged AFP coil, one bare black woven coil) occupying only about 12-15% of the frame width, off-center in the lower third, fully visible, separate, and flat on the ground. Keep the 'AFP | 09134922013' watermark in the bottom right. No people, no hands, no third hoses. Reduce the product group from 35% to 9-20% of frame width.",
       "attempt": 2
     },
     {
       "pass": false,
-      "score": 20,
-      "product_width_percent": 20.5,
-      "product_height_percent": 26.0,
-      "product_x_center_percent": 48.0,
+      "score": 92,
+      "product_width_percent": 35,
+      "product_height_percent": 22,
+      "product_x_center_percent": 45,
       "reasons": [
-        "Hard reject: multiple people visible in the background and mid-ground."
+        "Two approved layflat objects are present: one packaged AFP coil and one bare black woven coil.",
+        "Both objects are flat, separate, and fully visible on the ground in the lower third.",
+        "Zero people, hands, body parts, or silhouettes are visible.",
+        "Unattended tractor and ordinary field infrastructure are present but permitted.",
+        "Required watermark 'AFP | 09134922013' is visible in the bottom-right corner.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 9-20% of frame width."
       ],
-      "correction_prompt": "Remove all human figures, silhouettes, and workers from the farm background to leave only the tilled soil, hardware, and the single drip tape roll.",
+      "correction_prompt": "Reduce the product group from 35% to 9-20% of frame width.",
       "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 22,
+      "product_height_percent": 15,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "The image contains a male farmer and other people, violating the strict zero-person rule.",
+        "A human hand is touching the product, violating the 'no human body parts' constraint.",
+        "The required bottom-right watermark is missing.",
+        "The product pair is centered in the lower third rather than staying off-center.",
+        "The product pair occupies roughly 22% of the frame width, exceeding the 15% limit.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 22% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate with no people and zero human body parts. Position one packaged AFP coil and one bare black woven coil off-center on the lower third, with the pair occupying roughly 12-15% of the frame width. Include the exact bottom-right watermark 'AFP | 09134922013'. Reduce the product group from 22% to 9-20% of frame width.",
+      "attempt": 4
     },
     {
       "pass": true,
       "score": 85,
-      "product_width_percent": 20,
-      "product_height_percent": 22,
-      "product_x_center_percent": 27,
+      "product_width_percent": 18,
+      "product_height_percent": 12,
+      "product_x_center_percent": 42,
       "reasons": [
-        "Product is a white-and-blue wide low cylindrical roll, positioned in the lower third and off-center.",
-        "Product is placed naturally on soil.",
-        "Background shows a farm context with an unattended tractor in the distance, consistent with a hardware story.",
-        "No people or human body parts are visible.",
-        "Watermark 'AFP | 09134922013' is present at the bottom right."
+        "Image contains exactly two approved objects: a packaged AFP coil and a bare black woven coil.",
+        "The products are laid flat on the ground, separated, and fully visible.",
+        "No people, human silhouettes, or body parts are visible in the scene.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "The pair is positioned off-center in the lower third of the frame, avoiding the rejection condition for centered staging."
       ],
       "correction_prompt": "",
-      "attempt": 4
+      "attempt": 5
     }
   ],
   "approved_image": "مشخصات-فنی-لوله-نخدار-110-میلیمتر-راهنمای-انتخاب-جزئیات-فنی.webp"

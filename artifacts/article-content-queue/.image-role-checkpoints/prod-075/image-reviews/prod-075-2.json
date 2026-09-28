@@ -1,0 +1,83 @@
+{
+  "id": "prod-075",
+  "kind": 2,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 72,
+      "reasons": [
+        "Hard reject: Image contains a person (farmer/worker) crouching in the field.",
+        "Hard reject: Human face, hands, arms, legs, and body parts are clearly visible.",
+        "Hard reject: Product width (~18%) exceeds the maximum allowed limit of 15%."
+      ],
+      "correction_prompt": "Regenerate the image with zero people and no human body parts. Show only one packaged AFP coil and one bare black woven coil flat on the ground. The pair must be small (12-15% frame width) and positioned off-center on the lower third. Keep the bottom-right watermark visible.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 10,
+      "product_height_percent": 20,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Image contains a person (farmer/worker) crouching in the frame.",
+        "Human body parts (face, hands, arms, legs, torso) are clearly visible and interact with the product.",
+        "Hard reject criteria met due to the presence of a person and body parts."
+      ],
+      "correction_prompt": "Regenerate without any people, farmers, workers, or human silhouettes. Show only the two layflat coiled hoses (one wrapped AFP package, one bare black coil) placed flat on the ground. Ensure the product pair is small (12-15% of frame width), off-center in the lower third, and fully visible.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 45,
+      "product_height_percent": 30,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Multiple people are visible in the background (standing and crouching), violating the zero people constraint",
+        "Product pair exceeds 15% of frame width",
+        "Product staging is centered rather than positioned off-center on the lower third",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts. Reduce product pair width to 12-15% of frame. Position pair off-center on the lower third of the frame. Reduce the product group from 45% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 10,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: A person (farmer or worker) is clearly visible in the mid-ground sitting on the ground with a cow.",
+        "Hard reject: The product pair (hose rolls) is centered in the frame rather than off-center on the lower third.",
+        "Product placement: The pair occupies roughly 18-20% of the frame width, exceeding the hard limit of 15%."
+      ],
+      "correction_prompt": "Remove the human and animal from the field completely. Move the two hose rolls to the left or right side (off-center) in the lower third so they do not overlap the vertical centerline. Ensure the pair is compact, occupying less than 15% of the image width.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 53,
+      "reasons": [
+        "Contains exactly one packaged coil and one bare black woven coil.",
+        "No people or human body parts are visible.",
+        "Product pair is located in the lower third, slightly off-center.",
+        "Watermark is present as required.",
+        "No prohibited third products or objects."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "مراحل-نصب-لوله-نخدار-110-میلیمتر-در-سیستم-آبیاری-کاربرد-عملی.webp"
+}

@@ -1,25 +1,59 @@
 {
   "id": "prod-005",
   "kind": 3,
-  "family": "tape20",
+  "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Person (farmer/worker) is present in the frame",
+        "Hard reject: Human hands are visible touching the product",
+        "Hard reject: Human face and body parts are visible",
+        "Product placement is centered rather than off-center on the lower third",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate scene with zero people and no human body parts visible. Remove the worker entirely. Stage one packaged AFP coil and one bare black woven coil flat on the ground, strictly on the lower third, off-center, occupying approximately 12-15% of frame width. Maintain bottom-right watermark. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 92,
+      "product_width_percent": 40,
+      "product_height_percent": 17,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Image contains exactly two approved layflat objects: one packaged AFP coil and one bare black woven coil.",
+        "Both products are flat on the ground, fully visible, and separate.",
+        "No people or human body parts are visible.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right.",
+        "No prohibited objects (valves, cans, drip tape, etc.) are visible.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 40% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 40% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
       "pass": true,
-      "score": 82,
-      "product_width_percent": 24,
-      "product_height_percent": 22,
+      "score": 88,
+      "product_width_percent": 16,
+      "product_height_percent": 16,
       "product_x_center_percent": 33,
       "reasons": [
-        "Product width (~24%) and height (~22%) fall within acceptable parameters.",
-        "The product is a white-and-blue wide cylindrical drip-tape roll placed on soil in the lower third.",
-        "The unattended tractor in the background is permitted infrastructure without a human silhouette.",
-        "The required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
-        "Zero people or body parts are visible in the frame."
+        "The image correctly contains the two required layflat coil objects: one packaged and one bare black woven coil.",
+        "The product pair is located on the ground in the lower-left/lower-center region.",
+        "The composition is off-center and the products are fully visible.",
+        "Zero people or human body parts are visible.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Unattended background hardware (tractor) is permitted as infrastructure."
       ],
       "correction_prompt": "",
-      "attempt": 1
+      "attempt": 3
     }
   ],
   "approved_image": "مشخصات-فنی-لوله-نخدار-160-میلیمتر-راهنمای-انتخاب-جزئیات-فنی.webp"

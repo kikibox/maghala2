@@ -1,64 +1,55 @@
 {
   "id": "prod-110",
   "kind": 3,
-  "family": "tape20",
+  "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 55,
-      "product_width_percent": 25,
-      "product_height_percent": 32,
-      "product_x_center_percent": 38,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 7,
+      "product_x_center_percent": 57,
       "reasons": [
-        "Product height is at the absolute maximum limit of 32%, failing the 'no more than 32%' rule due to visual estimation error.",
-        "Product is centered on the vertical axis (X=38%) rather than off-center on the lower third as required.",
-        "Second package or commercial product (sprinkler component) is visible next to the main roll, violating the 'zero second package/product' rule."
+        "Human face/silhouette clearly visible inside the tractor cabin (top center).",
+        "Only one layflat object is present; the required pair (packaged AFP + bare black coil) is incomplete.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 9-20% of frame width."
       ],
-      "correction_prompt": "Reduce the vertical height of the drip tape roll to under 30%, shift the product position to the right into the bottom-right quadrant, and completely remove the black sprinkler part from the foreground.",
+      "correction_prompt": "Regenerate to remove the driver or silhouette from the tractor cabin. Add a second coiled object on the ground next to the existing coil, showing one as a wrapped package and one as a bare black woven roll. Ensure both are flat, separate, and together occupy 12–15% of the frame width on the lower right. Enlarge the product group from 8% to 9-20% of frame width.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 35,
-      "product_width_percent": 19,
-      "product_height_percent": 23,
-      "product_x_center_percent": 73,
+      "score": 10,
+      "product_width_percent": 30,
+      "product_height_percent": 18,
+      "product_x_center_percent": 62,
       "reasons": [
-        "The product is positioned in the center-right of the frame; the prompt requires it to be off-center on the lower third."
+        "Hard reject: Presence of a human figure (farmer/worker) kneeling and handling products.",
+        "Hard reject: Visible human face, hands, and body parts (legs, arms).",
+        "Fail: The product pair is centered and occupies too large a portion of the frame width.",
+        "Fail: The product placement does not meet the 'lower third, off-center' requirement.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 9-20% of frame width."
       ],
-      "correction_prompt": "Move the white and blue drip-tape roll to the far left side of the lower third of the frame to achieve an off-center composition.",
+      "correction_prompt": "Remove all people and human body parts completely. Generate exactly two layflat coils (one packaged, one bare black) that are small (approx 12% width), positioned distinctly off-center on the bottom right, lying flat on the soil. Ensure the bottom-right watermark 'AFP | 09134922013' is clearly visible. Reduce the product group from 30% to 9-20% of frame width.",
       "attempt": 2
     },
     {
-      "pass": false,
-      "score": 25,
-      "product_width_percent": 20,
-      "product_height_percent": 23,
-      "product_x_center_percent": 20,
-      "reasons": [
-        "Hard reject: presence of two men (farmers/workers) and visible human body parts violates the zero-person constraint."
-      ],
-      "correction_prompt": "Remove the two men and all visible human body parts. Ensure the scene contains only the AFP drip tape roll on the soil and inanimate farm background elements (tractor, barn, crop rows) without any people.",
-      "attempt": 3
-    },
-    {
       "pass": true,
-      "score": 85,
-      "product_width_percent": 26,
-      "product_height_percent": 22,
-      "product_x_center_percent": 35,
+      "score": 82,
+      "product_width_percent": 14.0,
+      "product_height_percent": 12.0,
+      "product_x_center_percent": 40.0,
       "reasons": [
-        "Product is the specified white-and-blue wide low cylindrical drip-tape carton roll.",
-        "Zero people or human body parts visible.",
-        "Product is off-center on the lower third, placed naturally on soil.",
-        "Background (farm field, barn, unattended tractor) matches the hardware story context.",
-        "Watermark 'AFP | 09134922013' is present in the bottom-right.",
-        "Product width is at the upper limit of the acceptable range (26%)."
+        "The image correctly displays the two approved layflat objects: one packaged coil on the left and one bare black woven coil on the right.",
+        "The product pair is positioned in the lower third and slightly off-center to the left, adhering to the layout constraints.",
+        "The bounding box of the products occupies approximately 14% of the frame width, falling within the required 12-15% range.",
+        "The scene contains zero people or human body parts.",
+        "The required watermark 'AFP | 09134922013' is present and correct in the bottom-right corner."
       ],
       "correction_prompt": "",
-      "attempt": 4
+      "attempt": 3
     }
   ],
   "approved_image": "هزینه-لوله-نخ-دار-90-میلیمتر-در-مزرعه-برآورد-جزئیات-فنی.webp"

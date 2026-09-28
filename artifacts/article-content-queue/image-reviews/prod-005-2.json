@@ -1,26 +1,40 @@
 {
   "id": "prod-005",
   "kind": 2,
-  "family": "tape20",
+  "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
-      "pass": true,
-      "score": 90,
-      "product_width_percent": 17.5,
-      "product_height_percent": 22,
-      "product_x_center_percent": 50,
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 40,
+      "product_height_percent": 30,
+      "product_x_center_percent": 55,
       "reasons": [
-        "Watermark 'AFP | 09134922013' is present in the bottom-right corner as required.",
-        "Product dimensions meet specified criteria: width (17.5%) is within the preferred 20-23% range, and height (22%) is well below the 32% limit.",
-        "Geometry is correct: the product is a cylindrical roll and its visible diameter is roughly 1.5 to 1.9 times its visible height.",
-        "The crop is clearly identifiable as maize/corn, which is botanically accurate and unmistakable.",
-        "The image contains no people, human silhouettes, or parts.",
-        "The 'pipe through the roll' is visible but is the functional drip-tape line, not a hard-reject 'extra commercial product' or 'pipe' that conflicts with the intended irrigation layout."
+        "Product width significantly exceeds the 12-15% limit (approx 40%)",
+        "Products occupy the center of the frame rather than the lower third off-center",
+        "Product objects are too large relative to the frame dimensions",
+        "machine-enforced bounding-box check failed: Reduce the product group from 40% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image significantly reducing the scale of the two layflat coils so the total product pair width occupies only 12-15% of the frame. Position the pair in the lower third, off-center to the left. Keep them fully visible, separate, and flat on the ground. Maintain the required watermark. Reduce the product group from 40% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 14,
+      "product_height_percent": 15,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Required pair of two approved layflat objects (packaged AFP coil and bare black woven coil) is present.",
+        "Product pair occupies roughly 12–15% of frame width.",
+        "Pair is off-center in the lower third, fully visible, separate, and flat on the ground.",
+        "Zero people or human body parts visible.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present."
       ],
       "correction_prompt": "",
-      "attempt": 1
+      "attempt": 2
     }
   ],
   "approved_image": "مشخصات-فنی-لوله-نخدار-160-میلیمتر-راهنمای-انتخاب-کاربرد-عملی.webp"

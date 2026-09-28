@@ -1,27 +1,40 @@
 {
   "id": "prod-005",
   "kind": 1,
-  "family": "tape20",
+  "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
-      "pass": true,
-      "score": 84,
-      "product_width_percent": 16,
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 30,
       "product_height_percent": 22,
       "product_x_center_percent": 48,
       "reasons": [
-        "The main product is a single white and blue cylindrical drip-tape carton roll, clearly branded AFP.",
-        "The roll is positioned naturally on the soil in the lower half of the frame and is off-center to the left.",
-        "The product's width (~16%) and height (~22%) are within the acceptable parameters.",
-        "The background shows agricultural rows with young seedlings, matching a generic farm context for crops like tobacco or leafy greens.",
-        "No people, faces, or human body parts are visible.",
-        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
-        "There are no prohibited objects such as bottles, second rolls, or fake text overlays."
+        "Product pair width exceeds the hard reject limit of 15% of the frame.",
+        "The two objects are placed near the horizontal center rather than staying strictly off-center.",
+        "Objects are not separate, with the packaged object tucked too close to the black coil.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Shrink both layflat coils to be very small, totaling under 15% of the frame width. Move the pair to the lower-left or lower-right third of the image and separate the objects so they are clearly apart. Reduce the product group from 30% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 80,
+      "product_width_percent": 15,
+      "product_height_percent": 12,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Zero people or body parts visible.",
+        "Watermark 'AFP | 09134922013' present in bottom-right.",
+        "Two distinct objects present: one white packaged coil and one black woven coil.",
+        "Objects are flat on the ground and off-center on the lower third.",
+        "No forbidden items (valves, buckets, pipes) are visible."
       ],
       "correction_prompt": "",
-      "attempt": 1
+      "attempt": 2
     }
   ],
   "approved_image": "مشخصات-فنی-لوله-نخدار-160-میلیمتر-راهنمای-انتخاب-تصویر-شاخص.webp"

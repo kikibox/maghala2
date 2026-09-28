@@ -1,0 +1,42 @@
+{
+  "id": "prod-022",
+  "kind": 3,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 45,
+      "product_height_percent": 35,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: Multiple people (two humans) are present in the image, violating the zero-people requirement.",
+        "Hard reject: Human body parts (arms, faces) are visible.",
+        "The products are not separate and flat; one coil is being physically manipulated by a person's hands.",
+        "The combined bounding box of the products is too wide (approx. 45% of frame), exceeding the 15% limit.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove all people from the image. Keep only the two layflat coils on the ground. Ensure the coils are separate, flat, and not centered. Shrink the product scale so they occupy only 12-15% of the frame width. Keep the bottom-right watermark exactly as is. Reduce the product group from 45% to 9-20% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 16.0,
+      "product_height_percent": 14.0,
+      "product_x_center_percent": 36.0,
+      "reasons": [
+        "Both required objects are present: a packaged AFP coil and a bare black woven coil.",
+        "Zero people, human body parts, or silhouettes are visible.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Products are separate, flat on the ground, and unobstructed.",
+        "No forbidden items (round pipes, drip tape, bottles, etc.) are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "هزینه-لوله-نخدار-160-میلیمتر-در-مزرعه-برآورد-جزئیات-فنی.webp"
+}

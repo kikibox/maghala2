@@ -1,51 +1,106 @@
 {
   "id": "prod-082",
   "kind": 2,
-  "family": "tape20",
+  "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 10,
-      "product_width_percent": 22,
-      "product_height_percent": 28,
-      "product_x_center_percent": 45,
+      "score": 20,
+      "product_width_percent": 38.0,
+      "product_height_percent": 26.0,
+      "product_x_center_percent": 41.0,
       "reasons": [
-        "Hard reject: Contains visible people (arms, hands, legs, torso)",
-        "Hard reject: Product is centered rather than off-center on the lower third",
-        "Hard reject: The crop shown is not leek (trah) but a different species with a tomato nearby",
-        "Hard reject: Human presence violates the zero people/human body parts rule"
+        "Product pair significantly exceeds maximum 15% width constraint (estimated 38% width).",
+        "Agricultural plant is growing directly out of the black coil, creating an 'impossible intersection' and 'object passing through a coil' which is a hard reject condition.",
+        "The coils appear elevated or intersecting with the ground texture rather than lying flat and separate.",
+        "The packaged object is not a clean roll; it resembles a fragmented or hexagonal shape, suggesting a 'distorted dimension' or 'invented package'.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 9-20% of frame width."
       ],
-      "correction_prompt": "Regenerate the image to show a leek crop with botanically accurate broad flat leaves and a white stem. Remove all people and human body parts. Reposition the white-and-blue AFP drip tape roll to be off-center on the lower third of the frame, placed naturally on the soil without any human interaction or hand holding it.",
+      "correction_prompt": "Regenerate the image showing exactly two layflat coils lying completely flat on the soil, fully separated, with no plants growing out of them. The pair must occupy less than 15% of the frame width, positioned in the lower third, off-center. Keep the watermark. Reduce the product group from 38% to 9-20% of frame width.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 20,
-      "product_width_percent": 16.0,
-      "product_height_percent": 17.0,
-      "product_x_center_percent": 36.0,
+      "score": 35,
+      "product_width_percent": 55,
+      "product_height_percent": 30,
+      "product_x_center_percent": 45,
       "reasons": [
-        "Hard reject: The image prominently features a clearly identifiable different species (young corn/maize) instead of the required crop, leek (ترة)."
+        "Product pair occupies ~55% of frame width, significantly exceeding the strict 15% maximum limit.",
+        "Staging is centered in the lower third rather than being off-center.",
+        "The two coils appear to be merging/overlapping at the point of contact instead of remaining completely separate.",
+        "The packaged coil is not lying perfectly flat on the ground.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 55% to 9-20% of frame width."
       ],
-      "correction_prompt": "Replace the maize plants with young leek (ترة) crops and ensure the irrigation tape roll remains a wide low cylindrical carton roll placed naturally on the soil in the lower third off-center.",
+      "correction_prompt": "Scale down the two coils so they occupy less than 15% of the frame width. Shift the pair to the lower-right third. Ensure the packaged and bare coils are completely separated with a visible gap, and lay both perfectly flat on the soil. Reduce the product group from 55% to 9-20% of frame width.",
       "attempt": 2
     },
     {
-      "pass": true,
-      "score": 85,
-      "product_width_percent": 22,
-      "product_height_percent": 21,
-      "product_x_center_percent": 40,
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 34,
+      "product_height_percent": 24,
+      "product_x_center_percent": 46,
       "reasons": [
-        "Product is correctly identified as a white-and-blue drip-tape roll and positioned naturally on soil.",
-        "Contains the required 'AFP | 09134922013' watermark in the bottom-right corner.",
-        "No people or human body parts are present.",
-        "The crop is visually consistent with early-stage leeks (or a neutral young crop) in a farm setting."
+        "Product pair is centered rather than off-center on the lower third.",
+        "Combined product pair width is approximately 34% of frame width, significantly exceeding the 12-15% limit.",
+        "Packaged object is a round pipe/spool form rather than a flat layflat coil.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 34% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reposition the two flat layflat coils to the far right on the lower third (off-center). Shrink the pair to occupy only 12% of frame width. Ensure both are flat coiled shapes (not round spools). Keep watermark. Reduce the product group from 34% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 28,
+      "product_height_percent": 18,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The complete pair of coils is too large and occupies nearly 28% of the frame width (exceeding the strict 15% limit).",
+        "The product pair is located near the bottom-center rather than staying off-center on the lower third.",
+        "The packaged coil appears to be a round roll of black tape rather than a packaged AFP coil.",
+        "The required bottom-right watermark text is missing or malformed.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with exactly two small layflat coils (one packaged, one bare black) occupying less than 15% of the frame width, positioned off-center on the lower third of the image. Include the exact text 'AFP | 09134922013' in the bottom right corner. Do not include people or hands. Reduce the product group from 28% to 9-20% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 82,
+      "product_width_percent": 25.8,
+      "product_height_percent": 14.2,
+      "product_x_center_percent": 31.5,
+      "reasons": [
+        "Watermark is present and correctly positioned",
+        "Scene is free of people and human silhouettes",
+        "Exactly two approved layflat objects are visible",
+        "Pair is in the lower third and off-center",
+        "Products are flat on the ground, separate, and fully visible",
+        "machine-enforced bounding-box check failed: Reduce the product group from 25.8% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 25.8% to 9-20% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 12,
+      "product_height_percent": 13,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The image contains exactly two approved layflat objects: one packaged AFP coil (left) and one bare black woven coil (right).",
+        "The products are placed in the lower third, off-center, and are fully visible, separate, and resting flat on the ground.",
+        "The product pair occupies approximately 12% of the frame width, fitting within the 12-15% range.",
+        "There are zero people or human body parts in the frame, consistent with the 'family' constraint.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom right corner.",
+        "Background context (crops, soil, distant barn) is natural and does not contain prohibited commercial items like hoses, buckets, or round pipes."
       ],
       "correction_prompt": "",
-      "attempt": 3
+      "attempt": 6
     }
   ],
   "approved_image": "مشخصات-فنی-لوله-نخدار-125-میلیمتر-راهنمای-انتخاب-کاربرد-عملی.webp"

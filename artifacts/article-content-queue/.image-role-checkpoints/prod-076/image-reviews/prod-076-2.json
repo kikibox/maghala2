@@ -1,0 +1,85 @@
+{
+  "id": "prod-076",
+  "kind": 2,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Person/worker visible",
+        "Hard reject: Human body parts (face, arms, legs) visible",
+        "Missing required product: Packaged AFP coil",
+        "Missing required product: Bare black woven coil",
+        "Unapproved product present: Bucket",
+        "Unapproved product present: Potted plant",
+        "Watermark is present and correct (AFP | 09134922013)",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Generate a wide landscape shot of empty agricultural soil in a field. Place a small packaged AFP hose coil and a small bare black woven hose coil on the ground in the lower right third. The combined width of the two coils must be less than 12% of the image width. Keep the coils flat, separate, and fully visible. Ensure there are absolutely no people, workers, hands, or faces in the scene. Do not include buckets or pots. Preserve the watermark 'AFP | 09134922013' at the bottom right. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Critical violation: A full human body (face, torso, arms, legs) is visible, triggering hard reject criteria.",
+        "Missing required object: No bare black woven coil is visible on the ground; only a packaged coil is present.",
+        "Composition failure: The product (single coil) is centered in the lower third rather than off-center, and human staging disrupts the required focus.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the man completely. Place one wrapped white AFP coil and one bare black woven coil side-by-side on the ground. Ensure they are small (10-15% frame width) and located off-center in the lower left. Maintain the 'AFP | 09134922013' watermark. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 95,
+      "product_width_percent": 28,
+      "product_height_percent": 16,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Zero people or human body parts visible",
+        "Correct objects: one packaged white coil and one bare black woven coil",
+        "Pair is separate, flat on ground, and fully visible",
+        "Watermark 'AFP | 09134922013' is present in bottom-right corner as required",
+        "No disallowed infrastructure or extra products visible",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 28% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 15.0,
+      "product_height_percent": 25.0,
+      "product_x_center_percent": 35.0,
+      "reasons": [
+        "Presence of a human person (worker/farmer)",
+        "Centered product staging (products are in the center foreground)",
+        "Product width exceeds the 15% maximum limit"
+      ],
+      "correction_prompt": "Remove the person completely. The image must contain zero people. Reposition the two coiled products to the lower left third of the frame and scale them down so the pair occupies only 12-15% of the image width. Keep the bottom right watermark.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 14,
+      "product_height_percent": 10,
+      "product_x_center_percent": 22,
+      "reasons": [],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "نگهداری-از-لوله-نخ-دار-90-میلیمتر-برای-عمر-مفید-بیشتر-کاربرد-عملی.webp"
+}

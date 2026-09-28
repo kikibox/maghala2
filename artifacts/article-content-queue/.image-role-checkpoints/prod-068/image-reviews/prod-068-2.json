@@ -1,0 +1,68 @@
+{
+  "id": "prod-068",
+  "kind": 2,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "Hard reject: Person present (a female farmer/worker) and visible human body parts (head, arms, legs).",
+        "Hard reject: The required two products (packaged AFP coil and bare black woven coil) are not visible as a pair. Instead, there is a small handheld device and a wheeled reel."
+      ],
+      "correction_prompt": "Regenerate image to remove the person entirely. Show exactly two products: a packaged AFP coil and a bare black woven layflat coil. The products must be separate, flat on the ground, located in the lower third off-center, and occupy only about 12-15 percent of the frame width. Ensure zero human presence.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 35,
+      "product_height_percent": 30,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product pair is centered horizontally (approx 50%), violating the requirement to be off-center",
+        "Product pair occupies approx 35% of frame width, violating the 12-15% limit",
+        "Products occupy the bottom area rather than the specific 'lower third' placement intended to keep them small/distant",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Shrink the product pair significantly to occupy only 12-15% of frame width. Move the pair off-center horizontally. Ensure it is small and placed in the lower third, appearing as a distant detail. Reduce the product group from 35% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 25.0,
+      "product_height_percent": 12.0,
+      "product_x_center_percent": 38.0,
+      "reasons": [
+        "Hard reject: A person (woman) is visible in the image.",
+        "Hard reject: The product pair is wider than 15% of the frame width.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 25% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the person completely. Reduce the size of the two layflat coils so their combined width is between 12% and 15% of the frame width. Keep them flat on the ground in the lower third, off-center. Reduce the product group from 25% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 15,
+      "product_height_percent": 14,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "Contains exactly two layflat objects: one packaged AFP coil and one bare black woven coil",
+        "No people or human body parts visible",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner",
+        "Pair is located off-center in the lower-left third (approx 26% width, lower 15% height)",
+        "Products are separate, flat on the ground, and fully visible"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "مقایسه-لوله-نخدار-110-میلیمتر-با-سایر-برندها-کاربرد-عملی.webp"
+}

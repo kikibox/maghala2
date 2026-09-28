@@ -1,41 +1,71 @@
 {
   "id": "prod-089",
   "kind": 1,
-  "family": "tape20",
+  "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 25,
-      "product_width_percent": 22,
+      "score": 40,
+      "product_width_percent": 32,
       "product_height_percent": 24,
-      "product_x_center_percent": 32,
+      "product_x_center_percent": 45,
       "reasons": [
-        "The image contains a full-body person (a male farmer crouching), which is an immediate hard reject requirement.",
-        "The crop visible in the foreground consists of seedlings that are botanically neutral and cannot be identified as the 'City, family tape20' article crop.",
-        "The product roll contains gibberish text and fake branding ('DING') that does not match the required article details, though it does have the AFP phone watermark."
+        "Missing required object: one packaged AFP coil (only one bare black woven coil is visible).",
+        "Product staging is centered (horizontal center is near 50% mark), violating the requirement for an off-center lower-third placement.",
+        "Product pair occupies approximately 32% of frame width, significantly exceeding the 12-15% maximum limit.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 9-20% of frame width."
       ],
-      "correction_prompt": "Regenerate the image without any human figures, showing only the white and blue cylindrical drip tape roll on the soil. The crop context must be visually consistent with the article title. Keep the 'AFP | 09134922013' watermark in the bottom right.",
+      "correction_prompt": "Add one packaged AFP coil next to the existing bare black woven coil to form a pair. Move the entire pair to the lower-left third, ensuring they are not centered and do not exceed 15% of the total image width. Reduce the product group from 32% to 9-20% of frame width.",
       "attempt": 1
     },
     {
-      "pass": true,
-      "score": 90,
-      "product_width_percent": 26,
-      "product_height_percent": 31,
-      "product_x_center_percent": 40,
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 25,
+      "product_height_percent": 10,
+      "product_x_center_percent": 30,
       "reasons": [
-        "Image contains exactly one AFP white-and-blue cylindrical drip-tape roll placed on the soil in a farm context.",
-        "No people, workers, or human body parts are visible.",
-        "Background shows crop rows with small seedlings (young vegetation), which is acceptable per the criteria as a neutral agronomic story.",
-        "Product is off-center to the lower-left, naturally placed on the soil.",
-        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
-        "Product dimensions (approx. 26% width, 31% height) fall within the acceptable ranges (13-27% width, <=32% height).",
-        "Geometry is realistic; no impossible shapes or conflicting hard-reject elements like bottles or second rolls are visible."
+        "Hard reject: The image contains visible people (two men), which violates the strict rule of zero people and zero human body parts.",
+        "The product objects are partially obscured by the people sitting in front of them.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 25% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image showing only the two layflat coils on the ground. Remove all people, workers, and hands completely. Reduce the product group from 25% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 48.0,
+      "product_height_percent": 28.0,
+      "product_x_center_percent": 47.5,
+      "reasons": [
+        "The image contains exactly two approved layflat objects: one packaged AFP coil and one bare black woven coil.",
+        "There are no people, human body parts, or silhouettes present.",
+        "The watermark 'AFP | 09134922013' is correctly displayed in the bottom-right corner.",
+        "Both coils are resting flat on the ground in the lower third of the image.",
+        "No third hose, pipe, or forbidden object is visible.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 48% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 48% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 76,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Contains exactly two approved layflat objects: a packaged coil and a bare black woven coil",
+        "Both objects are fully visible, separate, and resting flat on the ground",
+        "Zero people or human body parts visible",
+        "Watermark 'AFP | 09134922013' is correctly positioned and present",
+        "Product pair is off-center on the lower third"
       ],
       "correction_prompt": "",
-      "attempt": 2
+      "attempt": 4
     }
   ],
   "approved_image": "مقایسه-لوله-نخدار-160-میلیمتر-با-سایر-برندها-تصویر-شاخص.webp"

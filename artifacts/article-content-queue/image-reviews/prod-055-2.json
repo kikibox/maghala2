@@ -1,82 +1,56 @@
 {
   "id": "prod-055",
   "kind": 2,
-  "family": "tape20",
+  "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 35,
-      "product_width_percent": 11,
-      "product_height_percent": 9,
-      "product_x_center_percent": 66,
+      "score": 15,
+      "product_width_percent": 48,
+      "product_height_percent": 65,
+      "product_x_center_percent": 18,
       "reasons": [
-        "Hard reject: Human body parts (legs, hands, arms) and a farmer are visible in the background.",
-        "Hard reject: Product roll does not meet the required 'off-center on the lower third' rule (it is located in the bottom-right/mid-right rather than the lower third).",
-        "Hard reject: Product bounding box (11% width) is slightly below the ideal 13-27% range.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+        "The image displays only one hose product (a single coil), but the prompt requires exactly two objects: one packaged AFP coil and one bare black woven coil.",
+        "The product occupies approximately 48% of the frame width, significantly exceeding the 12-15% maximum limit.",
+        "The product is positioned on the left side rather than the required lower third off-center location.",
+        "The hose is depicted elevated and spouting water, rather than lying completely flat on the ground as requested.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 48% to 9-20% of frame width.; Reduce product height from 65% to at most 32% of frame height."
       ],
-      "correction_prompt": "Remove all human figures and body parts. Reposition the drip-tape roll to the lower left third of the frame (bottom-left area) and increase the roll's visible width to approximately 15-20% of the frame while maintaining the required AFP watermark and farm context. Enlarge the product group from 11% to 13-27% of frame width.",
+      "correction_prompt": "Regenerate with two distinct layflat coils (one packaged, one bare) lying flat on the ground on the right side. The pair must be small (approx 12-15% frame width), located in the lower third, with no water spouting or hovering. Reduce the product group from 48% to 9-20% of frame width. Reduce product height from 65% to at most 32% of frame height.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 22,
-      "product_width_percent": 19,
-      "product_height_percent": 16,
-      "product_x_center_percent": 17,
+      "score": 25,
+      "product_width_percent": 44,
+      "product_height_percent": 24,
+      "product_x_center_percent": 50,
       "reasons": [
-        "Hard reject: The image prominently features a human male, violating the strict 'zero people' requirement.",
-        "The human figure constitutes the main focal point and largest object, which contradicts the requirement for the drip-tape to be a secondary presence.",
-        "The product is not the dominant element, failing the visual balance required for the city/family context role."
+        "The pair of products occupies approximately 44% of the frame width, exceeding the maximum 15% limit.",
+        "The products are centered horizontally, violating the requirement to stay off-center on the lower third.",
+        "The packaged coil on the left has an 'impossible intersection' and 'distorted dimensions' (folded geometry and a strange metallic surface that does not resemble a flat wrapped layflat coil).",
+        "machine-enforced bounding-box check failed: Reduce the product group from 44% to 9-20% of frame width."
       ],
-      "correction_prompt": "Regenerate the scene with zero humans, zero animals, and zero body parts visible. Focus on the farm context with a botanically accurate crop bed and the AFP drip-tape roll as the sole subject on the soil.",
+      "correction_prompt": "Regenerate with exactly two layflat coils: one wrapped and one bare black. Make them very small (approx 12% of frame width), positioned distinctly on the lower-left side of the frame, and ensure the wrapped coil looks like a realistic flat cylindrical roll, not a folded sheet. Reduce the product group from 44% to 9-20% of frame width.",
       "attempt": 2
     },
     {
-      "pass": false,
-      "score": 75,
-      "product_width_percent": 16,
-      "product_height_percent": 23,
-      "product_x_center_percent": 50,
-      "reasons": [
-        "Product is centered horizontally (product_x_center_percent ~50), failing the 'off-center on the lower third' requirement.",
-        "Product height (~23%) is too large relative to its width; the aspect ratio (width/height) is approximately 0.7, which does not meet the required 1.5 to 1.9 range for a wide, low cylindrical roll."
-      ],
-      "correction_prompt": "Shift the drip-tape roll significantly to the right (or left) so it is off-center in the lower third of the frame. Compress the roll vertically to make it appear wider and lower (aspect ratio 1.5-1.9:1) while maintaining the white-and-blue AFP branding and the bottom-right watermark.",
-      "attempt": 3
-    },
-    {
-      "pass": false,
-      "score": 10,
-      "product_width_percent": 11,
-      "product_height_percent": 18,
-      "product_x_center_percent": 38,
-      "reasons": [
-        "Human figure is visible (farmer/worker).",
-        "Product is a cylindrical container, not a wide low cylindrical drip-tape carton roll.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
-      ],
-      "correction_prompt": "Remove all human elements. Feature a wide, low cylindrical drip-tape carton roll (white and blue) on the soil surface, off-center on the lower third. Enlarge the product group from 11% to 13-27% of frame width.",
-      "attempt": 4
-    },
-    {
       "pass": true,
-      "score": 86,
-      "product_width_percent": 17,
-      "product_height_percent": 22,
-      "product_x_center_percent": 29,
+      "score": 80,
+      "product_width_percent": 17.0,
+      "product_height_percent": 25.0,
+      "product_x_center_percent": 32.0,
       "reasons": [
-        "Product accurately matches the description: single white and blue cylindrical drip-tape carton roll with 'AFP' branding",
-        "Placement is correct: off-center in the lower third of the frame and naturally placed on the soil",
-        "Proportions are acceptable: product width is approximately 17% and height is 22% of the frame (height <= 32%, width <= 27%)",
-        "No people, body parts, or extra commercial products (bottles, second rolls, etc.) are present",
-        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner",
-        "The background (crop rows and farm context) matches the requested topic-specific farm context"
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner as required.",
+        "No people, faces, body parts, or human silhouettes are visible anywhere in the image.",
+        "The two objects correctly represent a packaged AFP coil and a bare black woven coil.",
+        "The objects are flat on the ground and located in the lower third of the frame, off-center to the left.",
+        "The total width of the product pair is slightly above the target range (estimated ~17% vs 12-15% target), causing a minor deduction."
       ],
       "correction_prompt": "",
-      "attempt": 5
+      "attempt": 3
     }
   ],
   "approved_image": "مشخصات-فنی-لوله-نخدار-110-میلیمتر-راهنمای-انتخاب-کاربرد-عملی.webp"
