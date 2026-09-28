@@ -141,7 +141,8 @@ jobs:
             sleep 20
             gh workflow run rebuild-all-article-images.yml --ref main
           elif [ "$remaining" -gt 0 ]; then
-            echo "::warning::$remaining sets remain after $stalled no-progress runs; use manual dispatch after reviewing diagnostics."
+            echo "::warning::$remaining quarantined image sets remain after $stalled no-progress runs; preserving diagnostics and releasing the translation gate instead of deadlocking the pipeline."
+            gh workflow run article-translations.yml --ref main
           else
             echo "Family-aware image repair is complete; resuming translations before Persian generation."
             gh workflow run article-translations.yml --ref main
