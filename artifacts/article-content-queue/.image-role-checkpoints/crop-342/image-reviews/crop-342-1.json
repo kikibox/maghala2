@@ -1,0 +1,68 @@
+{
+  "id": "crop-342",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "Presence of two people (farmers) violates the strict 'zero people' rule",
+        "The crop shown is a fruit tree (peach/apricot), which is a clearly identifiable different species and fails the cantaloupe requirement",
+        "The product object appears to be a generic industrial drum, not clearly identifiable as the specific drip-tape carton roll",
+        "The product does not appear to be a wide, low cylindrical shape, instead looking like a taller cylindrical drum",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures. Replace the fruit tree with cantaloupe vines featuring lobed leaves and netted fruit. Replace the generic drum with an AFP white-and-blue wide, low cylindrical drip-tape roll (width 20-23%, height <32%, aspect ratio ~1.7) placed on soil in the lower-third, off-center. Ensure the 'AFP | 09134922013' watermark is present. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "The central fruit shown is botanically identifiable as a Cucurbita species (likely pumpkin or squash) rather than a netted cantaloupe (Cucumis melo), which triggers the hard rejection for a clearly identifiable different species.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the crop background to show cantaloupe vines with lobed leaves and netted fruit attached to the vine, instead of the visible squash/pumpkin species. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 14,
+      "product_height_percent": 16,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Crop species mismatch: The prominent netted fruit in the foreground displays distinct dark green vertical stripes and the foliage features large, deeply palmately-lobed leaves, which are characteristic of watermelon (Citrullus lanatus) rather than cantaloupe (Cucumis melo var. cantalupensis).",
+        "The presence of a clearly identifiable different species constitutes a hard reject according to the agronomic specificity of the article.",
+        "The orange pumpkin in the background further muddies the botanical context of the cantaloupe crop."
+      ],
+      "correction_prompt": "Replace the netted fruit with a small, green cantaloupe (melon) showing restrained netting and no stripes; modify the surrounding foliage to display the characteristic deeply lobed leaves of a cantaloupe vine; remove the background orange pumpkin.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 14,
+      "product_height_percent": 10,
+      "product_x_center_percent": 14,
+      "reasons": [
+        "Product geometry and placement are acceptable; the roll is off-center in the lower third and remains secondary in the composition.",
+        "The background effectively establishes the article-specific context for cantaloupe ('تالبی') with netted fruit and characteristic vines.",
+        "No forbidden human presence or prohibited items are visible.",
+        "The required bottom-right watermark is present and correct."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "میزان-برداشت-طالبی-در-هکتار-با-نوار-تیپ-تصویر-شاخص.webp"
+}

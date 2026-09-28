@@ -1,0 +1,70 @@
+{
+  "id": "crop-337",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 4,
+      "product_height_percent": 8,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Hard reject: multiple people (faces, hands, bodies) are present in the image.",
+        "The product is not the required white-and-blue wide low cylindrical drip-tape carton roll; it is a generic small white spool.",
+        "The crop shown is sugarcane (indicated by the thick stalks and pinkish-topping flowers), not the required sorghum.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate an image of a single white and blue low wide cylindrical carton roll of drip tape placed on soil in a field of mature sorghum. No people. The roll must be wide (approx 20% of frame width) and low profile, off-center in the lower third. Ensure the crop is botanically distinct sorghum (taller, thinner stalks than sugarcane). Enlarge the product group from 4% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 19,
+      "product_height_percent": 24,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product is centered in the frame rather than off-center on the lower third.",
+        "The crop in the background exhibits the distinct 'tassel' of corn (maize) rather than the seed-heads typical of sorghum, which is a hard reject for the specific agronomic context required."
+      ],
+      "correction_prompt": "Regenerate with the crop clearly showing sorghum (distinct seed-heads and leaf structure, no corn tassels) and move the AFP roll to an off-center position on the lower third.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Contains a visible human (farmer) squatting in the field",
+        "Product is identified as a cylindrical canister/drum, not a wide low cylindrical drip-tape roll",
+        "Product is staged in the center-bottom, violating the off-center requirement",
+        "Contains a human silhouette, which is a hard reject",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to remove all people and human body parts. Replace the canister with a wide, low, cylindrical white-and-blue drip-tape carton roll. Position the drip-tape roll on the soil in the lower third of the frame, off-center from the middle. Ensure the roll is secondary to the background sorghum field, maintaining a natural farm context without any human presence. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 18,
+      "product_height_percent": 28,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Watermark 'AFP | 09134922013' present in bottom-right.",
+        "Product dimensions are within the preferred width (20-23%) and allowed height range.",
+        "Product is placed naturally on the soil in the lower third.",
+        "No people or human body parts visible.",
+        "Crop morphology (sorghum panicles) matches the article context."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "میزان-برداشت-سورگوم-در-هکتار-با-نوار-تیپ-کاربرد-عملی.webp"
+}

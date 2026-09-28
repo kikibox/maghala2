@@ -1,0 +1,81 @@
+{
+  "id": "crop-336",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 26,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Second package: The image contains a large coil of drip tape lying flat on the soil next to the carton. The specification strictly requires 'exactly one' carton and explicitly hard-rejects a 'second roll' or 'extra commercial product'.",
+        "Layout violation: The second object (the coil) acts as a second packaging/roll element, cluttering the frame and violating the 'exactly one' constraint."
+      ],
+      "correction_prompt": "Remove the coiled drip tape lying on the ground; keep only the single white-and-blue AFP carton roll on the soil; maintain the unattended tractor in the distant background; keep the AFP watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: visible person (man crouching) and multiple human body parts (head, face, arms, hands, legs).",
+        "Product aspect ratio violation: estimated width (~12%) is significantly smaller than height (~18%), failing the required 1.5-1.9x width-to-height ratio for a wide cylindrical roll.",
+        "Product placement violation: item is positioned in the bottom-left extreme corner rather than being off-center on the lower third as specified.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with absolutely no people or human body parts visible. Increase the drip-tape roll's width relative to its height to appear as a wide cylinder (aspect ratio ~1.7:1) and place it off-center on the lower third of the frame. Keep the farm background and the bottom-right watermark. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 17,
+      "product_height_percent": 20,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Hard reject: A person (farmer/worker) is visible in the foreground.",
+        "Hard reject: Human body parts (head, arms, legs, hands, face) are present.",
+        "Fails Role 3 criteria: The image includes a human silhouette, which is explicitly forbidden."
+      ],
+      "correction_prompt": "Regenerate the image without any people, human silhouettes, or body parts. Ensure the scene only contains the unattended crop plants and the drip tape roll on the soil.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Human figures are clearly visible in the background (tractor operator and a standing worker), which triggers a hard reject."
+      ],
+      "correction_prompt": "Regenerate the image with a strictly empty background containing only soil, sky, and distant crops; remove all people, workers, and silhouettes to comply with the 'zero human' requirement.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 80,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Contains exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll in a farm context.",
+        "Product dimensions and aspect ratio (diameter ~1.7 times height) are within acceptable ranges.",
+        "Product is off-center on the lower third and naturally placed on soil.",
+        "No people, farmers, or human body parts are visible.",
+        "The exact bottom-right watermark 'AFP | 09134922013' is present as required.",
+        "No hard reject elements (like a second roll, extra commercial products, or impossible geometry) are present. The shovel is ordinary fixed hardware/infrastructure."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "نگهداری-کنجد-با-نوار-تیپ-نکات-کلیدی-جزئیات-فنی.webp"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "crop-330",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Multiple rolls/packs are visible; the large main roll and the two smaller rolls on the right clearly contradict the requirement for exactly one roll.",
+        "Loose coils/tubes are visible on the right, which resembles a 'layflat hose' or extra hardware not allowed.",
+        "An unattended tractor is present in the background, which is generally not the intended 'neutral hardware' context for a drip-tape close-up or may be deemed distracting/extra commercial."
+      ],
+      "correction_prompt": "Regenerate the image to show ONLY one single large white and blue drip-tape roll (no small rolls, no loose hose coils) on the soil. Remove the tractor from the background to keep the focus strictly on the irrigation product and the farm field context. Keep the 'AFP | 09134922013' watermark in the bottom right.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 28.5,
+      "product_height_percent": 30.0,
+      "product_x_center_percent": 40.0,
+      "reasons": [
+        "Product is too wide: Estimated width is ~28.5%, exceeding the maximum hard reject threshold of 27% of the frame width.",
+        "Product appears to be standing vertically on its edge rather than lying horizontally on the soil as a 'low cylindrical' roll.",
+        "Product is centered relative to the frame rather than being placed 'off-center on the lower third' as required for Role 3.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28.5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Scale down the drip tape roll to approximately 18% of the frame width so it looks secondary to the scene. Position the roll lying flat on the soil (horizontal orientation) in the bottom-left or bottom-right corner, away from the center. Ensure the farm environment dominates the shot. Reduce the product group from 28.5% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 17,
+      "product_height_percent": 22,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Contains exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Zero people or human body parts present.",
+        "Product dimensions (width 17%, height 22%) are within acceptable limits.",
+        "Product is off-center on the lower third and naturally placed on soil.",
+        "Background features an unattended tractor and farm context, which is allowed infrastructure without visible persons.",
+        "Required 'AFP | 09134922013' watermark is present and not rejected."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "نگهداری-پیاز-با-نوار-تیپ-نکات-کلیدی-جزئیات-فنی.webp"
+}

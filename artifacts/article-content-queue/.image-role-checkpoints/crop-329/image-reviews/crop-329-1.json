@@ -1,0 +1,98 @@
+{
+  "id": "crop-329",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 4,
+      "product_height_percent": 8,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "A man (farmer) is clearly visible in the image, which triggers a hard reject for people.",
+        "Human hands are visible touching the roll, which triggers a hard reject for body parts.",
+        "The product geometry is not a wide low cylindrical roll; it is held vertically like a standard tape cartridge.",
+        "The product is too small and not in the lower third; it is held at knee height.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the man completely. Place a wide, short, cylindrical drip-tape roll (20cm+ wide) flat on the soil in the lower foreground. Ensure no people or body parts are visible. Enlarge the product group from 4% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 19,
+      "product_height_percent": 26,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The image features a prominent flowering plant in the center with yellow flowers that have 5 petals, not the 4 petals characteristic of Canola (Rapeseed).",
+        "The presence of blue and red flowers in the foreground contradicts the requirement for a specific Canola crop context.",
+        "The background shows generic green crops but lacks the specific bluish-green rosettes of broad lobed brassica leaves described for the target article."
+      ],
+      "correction_prompt": "Replace the central yellow flower (mustard) and blue/red flowers with specific Canola (Rapeseed) plants showing bluish-green rosettes or yellow four-petal flowers. Remove the non-brassica floral elements to strictly align with the crop specification.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 9,
+      "product_height_percent": 12,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: presence of a person (farmer) with face, hands, arms, and legs, which violates the zero-person constraint.",
+        "Hard reject: the central object is a small cylindrical container or spool, not the required wide low cylindrical drip-tape carton roll.",
+        "Hard reject: the crop in the background is a mix of generic flowers with red and yellow blooms, which is not identifiable as canola (rapeseed) and fails the botanical requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to show a wide low cylindrical AFP drip-tape carton roll (white and blue) resting on the soil in the lower-left third. The background must be a field of canola/rapeseed (yellow four-petal flowers or bluish-green rosettes) with absolutely no people or human parts visible. The AFP | 09134922013 watermark must remain in the bottom-right corner. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 34,
+      "product_height_percent": 40,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: Product dimensions violate limits (Width ~34% > 27%, Height ~40% > 32%).",
+        "Hard reject: Product geometry is a large vertical roll/drum, not a wide low cylindrical drip-tape carton roll (Diameter must be 1.5-1.9x Height, here it is reversed).",
+        "Hard reject: Staging and perspective appear unnatural (floating/airborne look).",
+        "Hard reject: Background vegetation shows blue flowers which are not canola, and the overall crop context is generic/incorrect for the article.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 34% to 13-27% of frame width.; Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate a wide, low, horizontal cylindrical white-and-blue drip-tape carton roll lying flat on the soil in the bottom-left foreground (approx 20% width). The roll must appear grounded, not floating. Background must clearly show canola crop with only yellow flowers (no blue flowers). Ensure zero human body parts. Reduce the product group from 34% to 13-27% of frame width. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Background crop is clearly sunflowers (large heads with dark centers), which is a different species than the required article crop (canola/rapeseed) and triggers a hard reject."
+      ],
+      "correction_prompt": "Replace the sunflowers with a field of canola plants, specifically showing slender branching stems with small yellow four-petal flowers or bluish-green brassica rosettes.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 11,
+      "product_height_percent": 11,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Hard reject: Human presence (a male worker is crouching in the field and touching the product with his hands).",
+        "Product geometry: The roll is significantly too small (approx. 11% width vs. the 13-27% range) and is centered (47% x-coordinate) rather than placed in the lower third off-center.",
+        "Product shape: The visible roll is relatively short and wide (aspect ratio 1:1), failing the 1.5-1.9 diameter-to-height requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the human entirely. Increase the drip-tape roll size to 20-23% width. Reshape the roll to be a wide low cylinder (diameter ~1.7x height). Position the roll off-center on the soil (lower third). Ensure the canola field context remains but no person is visible. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

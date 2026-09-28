@@ -1,0 +1,70 @@
+{
+  "id": "crop-332",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 24,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Hard reject: The image contains a visible person (a woman) in the foreground, which violates the strict zero-person rule.",
+        "Hard reject: The product aspect ratio is incorrect. The roll appears as a short, squat cylinder where the visible height is nearly equal to its width, failing the required 1.5–1.9x width-to-height ratio for a wide low roll.",
+        "Product placement is centered and in the middle of the frame rather than naturally placed on the lower third off-center.",
+        "Product is staged/interacted with by a human hand rather than being passively placed on the soil.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all humans and hands completely. Replace the product with a wide, low cylindrical drip-tape roll where the diameter is distinctly 1.5 to 1.9 times the height. Place the roll naturally on the soil in the lower third of the frame, offset to one side. Keep the farm context and crops exactly the same. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 28,
+      "product_height_percent": 30,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product bounding box width (~28%) exceeds the maximum practical limit of 27%. The roll appears visually too dominant in the frame relative to the requirements.",
+        "Product is horizontally centered (x_center ~48-50%). The requirements explicitly mandate the product must be off-center, specifically on the lower third, rejecting centered product staging.",
+        "The roll is positioned on the soil surface between rows. While not strictly 'floating', it sits in the walkway. The requirement asks for 'naturally placed on soil', which is met, but the combination of width violation and centering is a hard reject.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Shift the drip-tape roll to the lower-left third of the frame (off-center). Reduce the visual size of the roll so its width is approximately 22% of the frame width. Maintain the farm background with crop rows and the required AFP watermark. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 52,
+      "product_width_percent": 19,
+      "product_height_percent": 19,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Product aspect ratio is significantly off-spec: the roll appears to have a height roughly equal to its width (~1:1), whereas the target range for a wide low cylindrical drip-tape carton is 1.5 to 1.9 times wider than it is tall.",
+        "No article title was provided to evaluate the specific crop morphology against, but the current crop (indistinct small-leafed seedlings) is only 'neutral'. It lacks the unmistakable botanical accuracy required for a specific named crop without a title context to validate the 'story'."
+      ],
+      "correction_prompt": "Redraw the product roll to be visibly wider and flatter, ensuring its width is 1.5 to 1.9 times its height (low-profile cylindrical carton). Keep the off-center bottom-left placement on the soil.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 21,
+      "product_height_percent": 28,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "The product is a single white and blue drip-tape carton roll positioned off-center on the lower third of the frame.",
+        "The visible diameter of the roll is approximately 1.5 to 1.9 times its visible height.",
+        "Product dimensions are within acceptable limits: width is 21% (between 13-27%) and height is 28% (under the 32% limit).",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and legible.",
+        "Background features a farm context with soil rows and young green crop seedlings without identifiable human figures or body parts."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "نگهداری-کدو-با-نوار-تیپ-نکات-کلیدی-تصویر-شاخص.webp"
+}

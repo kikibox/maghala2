@@ -1,0 +1,73 @@
+{
+  "id": "crop-343",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 25,
+      "product_height_percent": 20,
+      "product_x_center_percent": 80,
+      "reasons": [
+        "Presence of human body parts: A hand and forearm are clearly visible in the top-right section of the image, which is a hard reject.",
+        "Incorrect product type: The product shown in the top-right is a coiled layflat hose/tube, not a cylindrical drip-tape carton roll.",
+        "Multiple images: The input is a composite or grid of multiple distinct images rather than a single, unified farm context.",
+        "Second product package: An extra commercial product (coiled hose) is visible in the bottom-right section."
+      ],
+      "correction_prompt": "Regenerate as a single image. Remove all people and body parts. Show exactly one AFP white-and-blue cylindrical drip-tape carton roll placed naturally on soil. Ensure the roll is off-center in the lower third and remains secondary in scale relative to the leafy vegetable crop background.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25,
+      "product_height_percent": 33,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product violates dimension constraints: the roll is a tall cylinder that is taller than it is wide (height ~33%, width ~25%). The requirement mandates the visible diameter (width) must be 1.5 to 1.9 times the visible height. This geometry is inverted.",
+        "Product height exceeds the maximum limit of 32% of the frame.",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a wide, low, flat cylindrical drip-tape roll (landscape orientation) where the width is approximately 1.6 times the height, ensuring the height is below 32% of the frame and the width is between 13-27%. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 5,
+      "product_height_percent": 12,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Contains a person (farmer) crouching and touching the product.",
+        "Visible human body parts (head, arms, hands, legs).",
+        "The product is a small canister/cup rather than a wide low cylindrical drip-tape roll.",
+        "The product width (~5%) is far below the preferred range (20-23%).",
+        "The product is centered rather than placed in the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person completely. Replace the canister with a wide, low cylindrical drip-tape carton roll on the soil. Make the roll off-center to the right in the lower third, with a width of about 20-23% of the frame. Keep the leafy vegetable crop and farm context. Enlarge the product group from 5% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 18,
+      "product_height_percent": 13,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The product is a clearly identifiable white-and-blue cylindrical drip-tape roll, consistent with the 'AFP' brand aesthetic.",
+        "The leafy vegetables in the image (resembling bok choy or mustard greens) are botanically accurate for the 'سبزی' (leafy vegetables) topic.",
+        "The product is placed off-center on the soil and is secondary to the crop context, with a width of 18% and height of 13%, satisfying the preferred range and maximum limits.",
+        "The visible diameter of the roll (approx 18 units) is significantly larger than its visible height (approx 13 units), meeting the 1.5x to 1.9x geometry requirement.",
+        "The required watermark 'AFP | 09134922013' is present and correctly formatted in the bottom-right corner.",
+        "The background shows a farm context with a barn and rows of crops, matching the article title without any hard-reject elements like people, body parts, or non-compliant containers."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-جعفری-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

@@ -1,0 +1,67 @@
+{
+  "id": "crop-334",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 7,
+      "product_height_percent": 11,
+      "product_x_center_percent": 84,
+      "reasons": [
+        "Presence of a person (farmer) in the image (hard reject)",
+        "Product width is significantly below the preferred 20-23% range",
+        "Product is sitting on a burlap sack rather than directly on soil",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the man entirely. Increase the size of the white and blue drip-tape roll to occupy about 25% of the frame width. Ensure the roll is placed directly on the dark soil near the lettuce beds, off-center on the lower third. Retain the 'AFP | 09134922013' watermark in the bottom right. Enlarge the product group from 7% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 12,
+      "product_height_percent": 10,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product width is too small: estimated at 12%, which is below the minimum practical range of 13%.",
+        "Product height is too small: estimated at 10%, which is below the preferred range to complement the width.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the drip tape roll scaled up to 20-23% of the frame width while maintaining its position on the soil in the lower third. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 22,
+      "product_height_percent": 19,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The image contains two people (a man crouching in the foreground and a person in the background), which is a hard reject. The product dimensions are acceptable, but the human presence makes the image unusable."
+      ],
+      "correction_prompt": "Regenerate the image with no people or human body parts visible. Show only the drip tape roll on the soil next to the lettuce plants, maintaining the same crop context and product positioning.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 15,
+      "product_height_percent": 22,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Exactly one white-and-blue drip-tape roll is present, positioned off-center on the lower third of the frame and naturally placed on the soil.",
+        "The product dimensions are within the acceptable range (width ~15%, height ~22%) and maintain the correct cylindrical aspect ratio.",
+        "The crop is clearly identifiable as lettuce (کاهو) with visible heads of crinkled leaves, satisfying the article-specific agronomic context.",
+        "The 'AFP | 09134922013' watermark is present in the bottom-right corner as required.",
+        "The image contains zero people or human body parts, and no forbidden objects (bottles, multiple packages, etc.) are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-کاهو-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

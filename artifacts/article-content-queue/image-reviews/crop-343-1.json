@@ -1,0 +1,51 @@
+{
+  "id": "crop-343",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 20,
+      "product_height_percent": 15,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject: The bottom-right panel contains a clear animal body part (a cow's tail/head) which is not a human, but strictly speaking, the image shows 'layflat hose, pipe through the roll, impossible geometry, fake headline, caption, gibberish text or invented writing' — wait, let me re-evaluate based on standard hard rejects for this specific task. \n\nPrimary Hard Reject 1: The top-right panel shows lay-flat hose/pipe coiled, which is an extra commercial product/second package.\nPrimary Hard Reject 2: The main left panel shows the roll, but the composition is a collage. The rule states 'zero human body parts'. While no humans are present, the bottom-right panel shows an animal (cow). The rule says 'hard reject any person, farmer, worker, face, hand, arm, leg, body part or human silhouette'. It does not explicitly ban animals in the text, but usually, collages with extra crops/rolls or wrong product types are issues.\n\nLooking closer at the 'Product' definition: 'AFP white-and-blue wide low cylindrical drip-tape carton roll'. \nIn the left panel, the roll is visible.\nHowever, the image contains a SECOND roll/coil in the top right (layflat hose).\nAlso, the bottom right shows a different scene with an animal.\nThe prompt specifies 'The image must show exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll'. This image shows a collage with a coiled hose in the top right, violating the 'exactly one' and 'no extra commercial product' rule.\nAlso, the specific crop 'سبزی' (leafy vegetables) is visible in the left panel (lettuce/cabbage). But the presence of the coiled hose in the top right makes it a fail."
+      ],
+      "correction_prompt": "Remove the collage elements (top-right coiled hose and bottom-right animal). Generate a single image of the AFP drip-tape roll on the leafy vegetable farm soil, keeping the roll in the lower third and ensuring no coiled hose or animals are present.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 26,
+      "product_height_percent": 24,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "The crop rows contain clearly identifiable, mature leafy plants (with visible flower buds) that do not match the botanical morphology of the target article (سبزی leafy vegetables).",
+        "The product (drip-tape roll) is positioned centered horizontally in the frame rather than being off-center."
+      ],
+      "correction_prompt": "Regenerate the image with young, undifferentiated leafy vegetable seedlings (e.g., small spinach or lettuce) to match the 'sabzi' article. Move the AFP drip-tape roll to the bottom-left or bottom-right third of the frame so it is clearly off-center. Ensure the roll is wide and low (aspect ratio ~1.7:1).",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 68,
+      "reasons": [
+        "Product is exactly one wide low cylindrical drip-tape roll, white and blue, naturally placed on soil in the lower third.",
+        "Product size and off-center placement meet all practical geometric bounds.",
+        "Crop is young leafy vegetation, agronomically neutral but clearly supports a leafy-vegetable context.",
+        "Zero people or body parts are present.",
+        "Required bottom-right watermark is present and correct."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-جعفری-با-آبیاری-قطرهای-تصویر-شاخص.webp"
+}

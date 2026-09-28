@@ -1,0 +1,55 @@
+{
+  "id": "crop-339",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Hard reject: Presence of a person (arms and hand) interacting with the crop in the upper-left foreground",
+        "Hard reject: A portion of a human body part (thigh/knee area) is visible in the lower-left corner",
+        "Watermark formatting error: The text in the bottom-right reads 'AFP | 09134922013', which is missing the '2' found in the required string 'AFP | 09134922013'"
+      ],
+      "correction_prompt": "Regenerate with zero human presence, removing the arms, hand, and leg from the left side. Correct the watermark in the bottom right to exactly read 'AFP | 09134922013'.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: The image contains a clearly visible person (farmer/worker) crouching in the field, which violates the strict constraint of zero people or human body parts.",
+        "The product (drip-tape roll) is held by a human hand, violating the requirement for the product to be naturally placed on the soil without human interaction.",
+        "The product is too small relative to the frame (approx. 8-10% width) and is not positioned as a distinct, off-center element on the lower third of the soil.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Place a single AFP white-and-blue drip-tape roll on the soil in a wheat field. The roll should be wide, low, and cylindrical, occupying 20-23% of the frame width, positioned off-center in the lower third. Ensure no human silhouettes or body parts are visible. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 80,
+      "product_width_percent": 17.2,
+      "product_height_percent": 13.8,
+      "product_x_center_percent": 47.5,
+      "reasons": [
+        "Product is clearly a white-and-blue AFP drip-tape roll positioned in a mature wheat field, visually matching the specified crop and agronomic context.",
+        "Product size is within the acceptable practical limits, with a width of approximately 17.2% and a height of approximately 13.8%, keeping the product secondary to the crop.",
+        "The roll is placed naturally on the soil in the lower half of the frame and is off-center to the right of the image's vertical axis.",
+        "Zero people, human body parts, or human silhouettes are visible in the image.",
+        "The required AFP watermark is present and correctly displayed in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "میزان-برداشت-گندم-در-هکتار-با-نوار-تیپ-کاربرد-عملی.webp"
+}

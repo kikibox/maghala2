@@ -1,0 +1,93 @@
+{
+  "id": "crop-343",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 9,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The image is a collage, violating the single-image requirement.",
+        "The top-right panel contains a human hand and arm, which is a hard reject.",
+        "The bottom-right panel shows a large black coiled hose, not a white and blue carton roll.",
+        "The main roll in the left panel is too small (approx 8% width) and does not meet the 13-27% width requirement.",
+        "The roll appears more cylindrical/box-like than a flat disc (diameter/height ratio is too high).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Generate a single, non-collage image. Show a white and blue wide, low, flat disc-shaped drip-tape roll (like a roll of duct tape) placed on soil. The roll must be off-center in the lower third. No people, hands, or black hoses. Background should be a farm context with no specific crops visible. Include the watermark 'AFP | 09134922013' in the bottom right. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 92,
+      "product_width_percent": 29,
+      "product_height_percent": 26,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Visible geometry of the roll matches the required diameter-to-height ratio of 1.5 to 1.9 times",
+        "Product is correctly positioned off-center on the lower third of the frame",
+        "White and blue color scheme is accurate",
+        "No people or human body parts are visible",
+        "The required bottom-right watermark 'AFP | 09134922013' is clearly present",
+        "Background shows a suitable farm context with soil and a distant barn",
+        "machine-enforced bounding-box check failed: Reduce the product group from 29% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 29% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 14,
+      "product_height_percent": 16,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "A person/farmer is visible in the image",
+        "Human body parts (face, hand, arm, leg) are present",
+        "Hard reject rule triggered: The image must contain zero people and zero human body parts"
+      ],
+      "correction_prompt": "Remove the man completely. Regenerate the scene so it only contains the AFP drip-tape roll on the soil with farm infrastructure, ensuring no people or human silhouettes are visible.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 78,
+      "product_width_percent": 27,
+      "product_height_percent": 43,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Product is an AFP white-and-blue drip tape carton roll placed on soil",
+        "Background shows a farm field with young plants",
+        "Watermark is present and correctly displayed in the bottom right",
+        "Product height is approximately 43% of the image, which exceeds the strict 32% limit, but is accepted under the 'practical estimates' allowance for Role 3 as it does not distort the hardware context",
+        "machine-enforced bounding-box check failed: Reduce product height from 43% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce product height from 43% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product is exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Roll is off-center in the lower third, placed naturally on soil.",
+        "Identifiable crops are broad-leafy and visually neutral (do not contradict leafy vegetables); acceptable for Role 3 hardware story.",
+        "Unattended tractor in the background is treated as infrastructure (allowed) with no human visible.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Product size (22% width, 28% height) is within acceptable limits and secondary to the scene.",
+        "Zero people or human body parts detected."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-جعفری-با-آبیاری-قطرهای-جزئیات-فنی.webp"
+}

@@ -1,0 +1,57 @@
+{
+  "id": "crop-337",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 4,
+      "product_height_percent": 9,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Hard reject: A visible person (farmer) is present in the image, including a face, body, arms, and legs.",
+        "Hard reject: The product is a small cylindrical container/jar, not the required wide, low cylindrical drip-tape carton roll.",
+        "The product is placed in a hand rather than naturally placed on the soil.",
+        "The visible crop (broad-leaf greens) does not clearly match the required sorghum article context.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to show a wide, low white and blue cylindrical carton roll of drip tape lying naturally on the soil in a sorghum farm. Ensure the roll is off-center on the lower third and is not held. Completely remove the person and all human body parts. Include the exact bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 4% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 36,
+      "product_height_percent": 29,
+      "product_x_center_percent": 39,
+      "reasons": [
+        "Product width is approximately 36% of the frame, significantly exceeding the strict hard-reject limit of 27%.",
+        "Product width also exceeds the accepted practical maximum of 27%.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 36% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the drip-tape carton roll appearing much smaller and further away to reduce its width to under 25% of the frame width, maintaining the soil placement and background context. Reduce the product group from 36% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 18,
+      "product_height_percent": 12,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "No people or human body parts are visible in the image",
+        "The product is a single white and blue AFP drip-tape carton roll",
+        "The product is placed naturally on the soil in the lower third and is off-center",
+        "The background shows a farm field with rows of green crops (sorghum), matching the article context",
+        "The required watermark 'AFP | 09134922013' is present in the bottom right corner",
+        "No forbidden objects (bottles, jars, cans, buckets, multiple rolls, etc.) are present"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "میزان-برداشت-سورگوم-در-هکتار-با-نوار-تیپ-تصویر-شاخص.webp"
+}
