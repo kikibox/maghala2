@@ -65,7 +65,44 @@ class GeneratedTranslationTests(unittest.TestCase):
         )
         self.assertIn("shared-translation-slug-crop-001-en", create)
         self.assertIn("@resolved_conflict", create)
+        self.assertIn("_navar_inherited_thumbnail", create)
+        self.assertIn("'_thumbnail_id'", create)
+        self.assertIn("source_thumb.post_id=@source_post_id", create)
         self.assertNotIn("@slug_conflict IS NULL,LAST_INSERT_ID()", create)
+
+    def test_changed_generator_refreshes_existing_sql_artifact(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            trans = root / "translations"
+            sql = root / "translation-sql"
+            rollback = root / "translation-rollback"
+            folder = trans / "crop-001"
+            folder.mkdir(parents=True)
+            sql.mkdir()
+            rollback.mkdir()
+            payload = self.sample_translation()
+            (folder / "en-US.json").write_text(
+                json.dumps(payload), encoding="utf-8"
+            )
+            (folder / "en-US.html").write_text(
+                payload["html"], encoding="utf-8"
+            )
+            (sql / "crop-001-en-US.sql").write_text(
+                "-- stale", encoding="utf-8"
+            )
+            (rollback / "crop-001-en-US.sql").write_text(
+                "-- stale", encoding="utf-8"
+            )
+            sources = [({"id": "crop-001", "slug": "source-slug"}, {})]
+            with patch.object(translations, "TRANS", trans), patch.object(
+                translations, "SQL", sql
+            ), patch.object(translations, "ROLLBACK", rollback):
+                repaired = translations.ensure_translation_artifacts(sources)
+            self.assertEqual(repaired, 1)
+            refreshed = (sql / "crop-001-en-US.sql").read_text(
+                encoding="utf-8"
+            )
+            self.assertIn("_navar_inherited_thumbnail", refreshed)
 
     def test_legacy_article_sql_is_normalized_before_packaging(self):
         legacy = (

@@ -120,6 +120,8 @@ def build_sql(item: dict, translated: dict, lang: str) -> tuple[str, str]:
             f"INSERT INTO `ha_postmeta` (`post_id`,`meta_key`,`meta_value`) SELECT @translation_id,'{esc(meta_key)}',{sql_value} WHERE @translation_id IS NOT NULL AND NOT EXISTS (SELECT 1 FROM `ha_postmeta` WHERE post_id=@translation_id AND meta_key='{esc(meta_key)}');"
         )
     lines += [
+        "INSERT INTO `ha_postmeta` (`post_id`,`meta_key`,`meta_value`) SELECT @translation_id,'_navar_inherited_thumbnail',source_thumb.meta_value FROM `ha_postmeta` source_thumb WHERE @translation_id IS NOT NULL AND source_thumb.post_id=@source_post_id AND source_thumb.meta_key='_thumbnail_id' AND NOT EXISTS (SELECT 1 FROM `ha_postmeta` WHERE post_id=@translation_id AND meta_key='_thumbnail_id') AND NOT EXISTS (SELECT 1 FROM `ha_postmeta` WHERE post_id=@translation_id AND meta_key='_navar_inherited_thumbnail') LIMIT 1;",
+        "INSERT INTO `ha_postmeta` (`post_id`,`meta_key`,`meta_value`) SELECT marker.post_id,'_thumbnail_id',marker.meta_value FROM `ha_postmeta` marker WHERE marker.post_id=@translation_id AND marker.meta_key='_navar_inherited_thumbnail' AND NOT EXISTS (SELECT 1 FROM `ha_postmeta` WHERE post_id=@translation_id AND meta_key='_thumbnail_id') LIMIT 1;",
         f"INSERT INTO `ha_term_relationships` (`object_id`,`term_taxonomy_id`,`term_order`) SELECT @translation_id,tt.term_taxonomy_id,0 FROM `ha_term_taxonomy` tt JOIN `ha_terms` t ON t.term_id=tt.term_id WHERE @translation_id IS NOT NULL AND tt.taxonomy='category' AND t.slug='{esc(category_slug)}' AND NOT EXISTS (SELECT 1 FROM `ha_term_relationships` r WHERE r.object_id=@translation_id AND r.term_taxonomy_id=tt.term_taxonomy_id) LIMIT 1;",
         "COMMIT;",
     ]
@@ -153,8 +155,13 @@ def ensure_translation_artifacts(sources=None):
             if not html_path.exists():
                 html_path.write_text(translated["html"], encoding="utf-8")
                 repaired += 1
-            if not sql_path.exists() or not rollback_path.exists():
-                create_sql, rollback_sql = build_sql(item, translated, lang)
+            create_sql, rollback_sql = build_sql(item, translated, lang)
+            if (
+                not sql_path.exists()
+                or not rollback_path.exists()
+                or sql_path.read_text(encoding="utf-8") != create_sql
+                or rollback_path.read_text(encoding="utf-8") != rollback_sql
+            ):
                 sql_path.write_text(create_sql, encoding="utf-8")
                 rollback_path.write_text(rollback_sql, encoding="utf-8")
                 repaired += 1
