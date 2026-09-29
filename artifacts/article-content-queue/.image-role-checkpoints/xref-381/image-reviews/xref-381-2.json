@@ -1,0 +1,94 @@
+{
+  "id": "xref-381",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 7,
+      "product_height_percent": 15,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer/worker) and human body parts (head, arms, hands, legs) is clearly visible in the image.",
+        "Product geometry mismatch: The item is a narrow vertical canister/cup, not a wide low cylindrical drip-tape carton roll.",
+        "Product staging: The product is centered and being interacted with, violating the requirement for the product to be secondary and off-center.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts. Replace the vertical canister with a wide, low cylindrical drip-tape carton roll (approx. 1.5x height). Position the roll on the soil in the lower third, off-center to the left or right, at 20% of frame width. Keep the farm background with crops and the 'AFP | 09134922013' watermark. Enlarge the product group from 7% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 25,
+      "product_height_percent": 31,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product is centered horizontally, which is a hard reject (product staging must be off-center).",
+        "The drip tape roll is visually prominent and central, failing to remain secondary as requested."
+      ],
+      "correction_prompt": "Move the drip tape roll to the lower-left quadrant (x-coordinate approx 15-20%) to ensure it is off-center. Slightly reduce the visual prominence of the roll so it appears smaller in the frame (width approx 15-18%), maintaining the background farm context.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 11,
+      "product_height_percent": 16,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Human figures present: The image contains two people (an adult and a child) crouching in the foreground, which is a hard reject according to the prompt.",
+        "Product Staging and Positioning: The product is being held by a human hand rather than resting on the soil. Furthermore, it is centered vertically rather than positioned in the lower third.",
+        "Proportion: The drip-tape roll is significantly smaller than the preferred 20-23% width, and its diameter-to-height ratio is more cylindrical than the required wide, low format.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures. Restage the single wide, low cylindrical drip-tape roll on the soil in the lower-left third of the frame (occupying ~20% width) with the background of the specific crop and farm environment remaining unchanged. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 8,
+      "product_width_percent": 26,
+      "product_height_percent": 18,
+      "product_x_center_percent": 23,
+      "reasons": [
+        "The image clearly contains a person (farmer/worker) in the mid-ground on the right side near the crop rows, which is a hard reject."
+      ],
+      "correction_prompt": "Remove the human figure visible in the background near the crop rows on the right side to comply with the zero-people constraint.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 23,
+      "product_height_percent": 23,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: Contains two prominent people (farmers) in the foreground, violating the zero-people constraint.",
+        "Hard reject: Contains visible human body parts (faces, hands, legs, arms).",
+        "Violation: Product is centrally staged rather than off-center on the lower third.",
+        "Violation: The product's visible diameter is roughly equal to its height (cylindrical shape), failing the 1.5-1.9x diameter-to-height ratio requirement for a wide low roll."
+      ],
+      "correction_prompt": "Remove all people and human body parts completely. Place a wide, low cylindrical white drip-tape carton roll on the soil in the lower-left or lower-right third of the frame. The roll's width should be approximately 1.5 to 1.9 times its height. Ensure the roll is not centered. Keep the farm context and the specific crop rows visible in the background.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 70,
+      "product_width_percent": 19,
+      "product_height_percent": 26,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product orientation is incorrect: the drip tape roll is standing vertically (upright cylinder) rather than lying on its side (horizontal cylinder) on the soil.",
+        "Proportions are off: the height is too large relative to the width (approx 26% vs 19%), whereas a roll lying on its side should have a width approx 1.5x-1.9x its height.",
+        "The article title mentions 'city', but the background is a rural farm field with a red barn, which does not match the specific 'city' context requested."
+      ],
+      "correction_prompt": "Regenerate with the drip tape roll lying horizontally on its side on the soil (stacked flat cylinder) to correct the aspect ratio and orientation. Change the background to a farm context in a city environment (e.g., urban agriculture plot with city buildings in distance) to match the title.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

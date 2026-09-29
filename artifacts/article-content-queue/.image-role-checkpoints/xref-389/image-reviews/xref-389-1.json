@@ -1,0 +1,75 @@
+{
+  "id": "xref-389",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 10,
+      "product_height_percent": 15,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: Contains a prominent human figure (farmer).",
+        "Hard reject: The foreground crop is clearly identifiable as maize (corn), which is explicitly prohibited for the Canola article context.",
+        "The product is being held in a human hand rather than resting naturally on the soil.",
+        "The product is not the specified cylindrical drip-tape carton roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image without any humans. Show a wide, low, white and blue cylindrical drip-tape carton roll placed on the soil in the lower third, off-center. The field must clearly show canola (rapeseed) crop (bluish-green rosettes or yellow flowers), NOT maize or corn. Maintain the exact AFP | 09134922013 watermark in the bottom-right corner. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 17,
+      "product_height_percent": 24,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "The background crop (flowers) is clearly identifiable as a different species (bluebell/scilla and tulips), which conflicts with the required crop (canola/rapeseed).",
+        "The crop is not canola in any growth stage (no rosettes or yellow four-petal flowers)."
+      ],
+      "correction_prompt": "Replace the bluebell and tulip flowers with a field of canola/rapeseed crop (low bluish-green rosettes or yellow flowers).",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 9,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Image contains a human figure (farmer/man) interacting with the product.",
+        "Hard reject: Product is not placed on the soil but is being held by a person.",
+        "Hard reject: Product size is well below the minimum 13% width threshold (approx 8%).",
+        "Crop mismatch: Visible crop is sunflowers (Helianthus), not Canola/Rapeseed (Brassica napus).",
+        "Context mismatch: Background shows a sunflower field, which does not match the requested 'Canola' article topic.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Place a wide, cylindrical, white-and-blue drip-tape carton roll directly on the soil off-center in the lower third of the frame. The product should occupy approximately 20-23% of the image width. The background must feature a canola field showing low bluish-green rosettes of broad leaves or slender stems with small yellow four-petal flowers, completely removing sunflowers. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 23,
+      "product_height_percent": 28,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The image contains exactly one AFP white-and-blue drip-tape roll placed on the soil.",
+        "The roll is located in the lower half of the frame and is clearly secondary to the background.",
+        "Visible width is approximately 23% of the image width and height is approximately 28%, which meets size constraints.",
+        "The visible diameter is approximately 1.5-1.7 times the visible height, matching the specified ratio.",
+        "The crop in the background matches the description of canola/rapeseed at bloom with slender stems and small yellow flowers.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom right corner.",
+        "Zero people or human body parts are visible.",
+        "Product geometry is consistent and physically plausible for a carton roll."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-قطرهچکان-در-کشت-کلزا-هزینه-بهینه-تصویر-شاخص.webp"
+}

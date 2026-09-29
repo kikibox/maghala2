@@ -1,0 +1,71 @@
+{
+  "id": "xref-373",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Image contains multiple people (a child and an adult) and visible human body parts, which is a hard reject condition",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human figures. Add a white-and-blue cylindrical drip-tape carton roll placed naturally on the soil, off-center in the lower third. The roll should be secondary to the crop background and must not include any additional bottles or cans. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Product center is positioned near the horizontal center of the frame (40%), conflicting with the 'off-center' requirement.",
+        "Product height (25%) is disproportionately high relative to its width (18%), making the roll shape appear tall rather than the required 'wide low cylindrical' shape (diameter should be 1.5-1.9x height).",
+        "Crop morphology shows broad leaves that may be ambiguous for specific article crops; a botanically neutral small-leaf seedling context would be safer."
+      ],
+      "correction_prompt": "Shift the product roll further to the left or right third of the frame. Lower the vertical aspect ratio of the roll to make it flatter and wider (increase width to ~25% and decrease height to ~15%). Replace the broad-leaf seedlings with small, generic, indistinct green sprouts.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: Presence of a person (woman kneeling in foreground)",
+        "Hard reject: Visible human body parts (face, hands, legs)",
+        "Product shape mismatch: The roll is a small vertical spool, not a wide low cylindrical carton roll",
+        "Product size mismatch: Width is ~8% of frame, far below the preferred 20-23% range",
+        "Product staging: The roll is being held by hands rather than naturally placed on the soil",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate without any people. Show a single wide, low cylindrical white-and-blue AFP drip-tape carton roll (width ~20% of frame) placed on the soil off-center in the lower third. Ensure the roll is lying on the ground naturally without being held. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The image contains exactly one white-and-blue cylindrical carton roll, consistent with the requested drip tape product.",
+        "The product is located on the lower third of the frame and positioned off-center to the left, with proportions roughly matching the 1.5-1.9 aspect ratio requirements.",
+        "The background features a farm context with crop rows and a distant barn, fulfilling the city/family farm requirement.",
+        "The crop consists of young seedlings with broad leaves, which is botanically neutral enough to pass the criteria for a specific crop title.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No people, human body parts, or forbidden commercial objects are visible in the image."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-رانشی-در-کشت-بامیه-چالشها-کاربرد-عملی.webp"
+}

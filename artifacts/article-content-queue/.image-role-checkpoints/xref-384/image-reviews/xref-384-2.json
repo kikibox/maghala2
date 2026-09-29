@@ -1,0 +1,68 @@
+{
+  "id": "xref-384",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 14,
+      "product_height_percent": 12,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: The image contains two clearly visible people (a crouching woman and a standing man), which violates the strict requirement of zero people or human body parts.",
+        "Hard reject: The crop shown is not botanically accurate for 'yellow split-pea (لپه)'. The plants are long, strappy, and resemble corn or ornamental grasses with yellow spikes, rather than the bushy, pinnate-leaved, green herbaceous nature of split-pea plants.",
+        "Product geometry issue: The drip tape roll is too narrow (estimated 14% width) compared to the preferred 20-23% width range."
+      ],
+      "correction_prompt": "Remove all human figures and faces completely. Replace the crop with accurate botanically-correct yellow split-pea (chana/daal) plants (bushy, pinnate green leaves). Enlarge the white-and-blue AFP drip tape roll so it occupies approximately 20-25% of the image width, ensuring it remains a secondary element on the soil.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 58,
+      "product_width_percent": 14.5,
+      "product_height_percent": 12.8,
+      "product_x_center_percent": 35.2,
+      "reasons": [
+        "Product aspect ratio (Width:Height ≈ 1.13) is significantly lower than the required 1.5-1.9 range, making the roll appear too short and tall (more cubic/cylindrical) rather than wide and flat.",
+        "The crop shown in the background (tall plants with yellow flowers) is not botanically accurate for yellow split-pea (Labe) at any stage, nor is it a sufficiently neutral prepared bed to pass.",
+        "The placement of the roll is too high vertically, not effectively anchored in the 'lower third'."
+      ],
+      "correction_prompt": "Regenerate with a low, flat white-and-blue drip tape roll (width 1.8x its height) in the bottom-left corner. Set the background to a simple prepared soil bed with very small, early-stage yellow split-pea seedlings or neutral soil texture. Remove the tall flowering plants.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 24,
+      "product_height_percent": 34,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "Watermark is missing.",
+        "The crop shown is not a yellow split-pea (Lupin/Labe), but rather a wildflower or weed-like species (resembling dandelions or buttercups), which is a clearly identifiable different species.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Replace the crop with young yellow split-pea (Labe) seedlings showing botanically accurate leaves and growth habit. Add the required watermark 'AFP | 09134922013' to the bottom-right corner. Keep the product size, position, and soil context consistent. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 15,
+      "product_height_percent": 16,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Required AFP watermark is present and legible in the bottom-right corner.",
+        "The product is an AFP drip tape roll, positioned on the soil without any human body parts present.",
+        "Product dimensions and aspect ratio (low cylindrical shape) fall within acceptable ranges.",
+        "The background correctly depicts a topic-specific farm context with young seedlings and drip irrigation lines, which is consistent with the article's crop context.",
+        "No disqualifying items (like bottles, jars, or second rolls) or text artifacts are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-با-رانش-در-کشت-لپه-مقایسه-کاربرد-عملی.webp"
+}
