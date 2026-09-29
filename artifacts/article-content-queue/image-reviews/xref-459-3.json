@@ -1,0 +1,72 @@
+{
+  "id": "xref-459",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Extra commercial product/second roll present (smaller blue canister roll on the right)",
+        "Hard reject: Gibberish text visible on the large carton ('Drip Irrigation Extn' and illegible labels) and on the small canister roll",
+        "Product bounding box estimation: The small canister roll on the right appears to have a width of roughly 10% of the frame, failing the minimum 13% requirement for the primary product, though the large carton roll is within the 20-23% width range.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with exactly one AFP white-and-blue wide cylindrical drip-tape carton roll. Remove the extra small canister roll and all non-AFP branding. Ensure the large roll is the only commercial product shown. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 34,
+      "product_height_percent": 36,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "The product is too wide (34% vs max 27%) and too tall (36% vs max 32%).",
+        "The image displays a solid blue band with 'AFP' branding instead of the requested 'white-and-blue' drip tape texture.",
+        "The crop plants visible in the bottom right appear to be dicot seedlings/leafy greens which contradicts the 'سبزی' (leafy vegetables) constraint or are not specific enough for the role 3 context without clear identification.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 34% to 13-27% of frame width.; Reduce product height from 36% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shrink the drip tape roll size to fit within 23% width and 30% height. Show the white top surface with blue text on the side, not a solid blue band. Place it in a close-up hardware context (filter or manifold) to avoid ambiguous crop identification. Reduce the product group from 34% to 13-27% of frame width. Reduce product height from 36% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 28.8,
+      "product_height_percent": 32.5,
+      "product_x_center_percent": 34.8,
+      "reasons": [
+        "Contains a visible person (male farmer) and multiple body parts (hands, face, arms), which is a hard reject condition.",
+        "The visible diameter of the product roll is significantly larger than its height (approximately 2.5x instead of the required 1.5-1.9x ratio).",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28.8% to 13-27% of frame width.; Reduce product height from 32.5% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the person from the scene. Rescale the drip tape roll so its diameter is approximately 1.7 times its height while keeping it on the soil in the lower third. Reduce the product group from 28.8% to 13-27% of frame width. Reduce product height from 32.5% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "One AFP white-and-blue wide low cylindrical drip-tape carton roll shown in a farm context",
+        "Product is off-center on the lower third and naturally placed on soil",
+        "Zero people and zero human body parts visible",
+        "Watermark 'AFP | 09134922013' present in bottom-right corner as required",
+        "Unattended tractor in background is allowed as fixed infrastructure",
+        "Product dimensions and aspect ratio are within acceptable parameters",
+        "Crop plants (weeds) are present but do not contradict 'leafy vegetables' context"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-رطوبتی-در-کشت-گشنیز-هزینه-در-مزرعه-جزئیات-فنی.webp"
+}

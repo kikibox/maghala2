@@ -1,0 +1,68 @@
+{
+  "id": "xref-443",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 13,
+      "product_height_percent": 19,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Hard reject: Presence of a person (a man kneeling in the field).",
+        "Hard reject: The product is depicted as a small bucket or container, not the required 'wide low cylindrical drip-tape carton roll'.",
+        "The product geometry does not meet the 'wide and low' aspect ratio requirement."
+      ],
+      "correction_prompt": "Remove all people. Replace the bucket with a single wide, low-profile cylindrical white-and-blue carton roll placed on the soil. Ensure the roll is off-center on the lower third.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 19.5,
+      "product_height_percent": 28.0,
+      "product_x_center_percent": 26.5,
+      "reasons": [
+        "The article title 'city' indicates an urban agricultural context, but the image depicts a large rural field with a distant red barn, which does not match the specified background requirement.",
+        "The crop morphology is neutral/generic seedlings, which is acceptable for young stages, but the background mismatch is a hard reject."
+      ],
+      "correction_prompt": "Re-generate the image with an urban farm context (e.g., rooftop, community garden, or vertical farm wall) instead of a rural field. Keep the drip tape roll in the same position and size, ensuring the background matches the 'city' topic.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 9,
+      "product_height_percent": 11,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Contains two visible people, which is a hard reject based on the instruction requiring zero people or human body parts.",
+        "The product roll is held by a hand, meaning it is not naturally placed on the soil.",
+        "The roll is small and off-center but the primary cause of failure is the presence of human subjects.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts from the scene. Place the AFP drip-tape roll on the soil directly on the ground (not on a ledge or in a hand), keeping it in the lower third and off-center. Maintain the urban rooftop garden background. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 21,
+      "product_height_percent": 23,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Product matches the required white-and-blue wide low cylindrical drip-tape carton roll appearance.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present.",
+        "No people, human body parts, or silhouettes are visible.",
+        "The crop shown is consistent with a neutral-to-identifiable young stage of 'family tape20' (likely tomato), passing the neutral young vegetation rule.",
+        "No extraneous commercial products, bottles, or hard-reject geometry present."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-رانشی-در-کشت-جعفری-پیشنیازها-کاربرد-عملی.webp"
+}

@@ -1,0 +1,86 @@
+{
+  "id": "xref-448",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 23.5,
+      "product_height_percent": 25.0,
+      "product_x_center_percent": 41.5,
+      "reasons": [
+        "The product roll appears too short and squat (aspect ratio ~0.95), failing the requirement of 1.5 to 1.9 times visible height",
+        "The product appears more centrally located rather than off-center in the lower third",
+        "No visible drip tape extending from the roll to the wheat plants"
+      ],
+      "correction_prompt": "Redraw the AFP drip-tape roll as a wide, low cylindrical carton (height should be ~60% of width) placed off-center in the lower third, with a visible strip of drip tape unspooling to the right connecting to the wheat roots",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 80,
+      "product_width_percent": 33,
+      "product_height_percent": 26,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "The image shows one AFP white-and-blue drip-tape roll in a wheat farm context.",
+        "The crop is clearly identifiable as wheat with visible grain heads.",
+        "The exact required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "There are no people or human body parts visible.",
+        "The product is off-center and placed on soil in the lower third of the frame.",
+        "The product width (approx 33%) exceeds the preferred 20-23% range, but the roll is kept to a moderate size, avoiding the 'giant roll' hard-reject threshold.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 33% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 33% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 22,
+      "product_height_percent": 40,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Hard reject: Product height (estimated 40%) exceeds the 32% limit",
+        "Hard reject: Product is positioned in the bottom quarter, failing the 'lower third' requirement",
+        "Product staging is too low and appears pasted onto the foreground soil rather than placed naturally on the ground",
+        "machine-enforced bounding-box check failed: Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a smaller product bounding box where the height is under 32% of the frame; position the roll so it intersects the bottom 30% (lower third) of the frame, not the very bottom edge. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 68,
+      "product_width_percent": 17.2,
+      "product_height_percent": 23.5,
+      "product_x_center_percent": 34.0,
+      "reasons": [
+        "Watermark in bottom right is malformed; displays '09134922013' instead of the required '09134922013'",
+        "Product color appears metallic/silver rather than the specified white-and-blue"
+      ],
+      "correction_prompt": "Regenerate with the bottom right watermark exactly reading 'AFP | 09134922013' and change the product roll to white and blue plastic packaging.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 19,
+      "product_height_percent": 22,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "The product is a single white and blue cylindrical drip-tape roll placed on the soil in the lower third of the frame, off-center to the left.",
+        "The background clearly depicts mature wheat with visible grain heads, matching the specific crop context required for role 1.",
+        "The mandatory watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No people, body parts, or unlisted commercial containers (bottles, buckets, etc.) are visible.",
+        "The product's visible proportions (width vs. height) and frame placement are within the acceptable parameters."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-گشنیز-کاربردها-تصویر-شاخص.webp"
+}

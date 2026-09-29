@@ -1,0 +1,98 @@
+{
+  "id": "xref-454",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 22,
+      "product_height_percent": 18,
+      "product_x_center_percent": 85,
+      "reasons": [
+        "Presence of people",
+        "Crop shown is not lentil",
+        "Collage style inconsistent with requirement for a single specific farm context"
+      ],
+      "correction_prompt": "Regenerate a single, non-collage image of a lentil field with a small white and blue drip-tape roll in the foreground. Ensure no people are present and the crop is clearly identifiable as lentil.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 17,
+      "product_height_percent": 17,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The crop shown is a flowering legume (likely mung bean) which clearly contradicts the required article crop 'lentil (عدس)'.",
+        "Lentil plants are defined as low, fine-textured bushy legumes with thin branching stems and small leaflets, whereas the image displays upright, broad-leaved plants with prominent red/purple flowers.",
+        "Hard reject rule triggered for a clearly identifiable different species."
+      ],
+      "correction_prompt": "Regenerate the image replacing the flowering mung bean plants with a field of lentil plants. The lentil plants should be low, bushy, and fine-textured with thin stems and small pinnate leaflets. Ensure no prominent flowers or large leaves that identify the crop as something else. Keep the white-and-blue AFP drip-tape roll in the lower third.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 6.25,
+      "product_height_percent": 12.5,
+      "product_x_center_percent": 46.875,
+      "reasons": [
+        "Presence of a person (farmer)",
+        "Product is too small relative to the frame width (approx. 6.25%)",
+        "The crop in the foreground is identifiable as a monocot (likely corn or grass family), not a legume like lentils",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6.25% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and hands. Replace the crop with low, bushy legume plants featuring small paired pinnate oval leaflets (lentils). Increase the size of the white cylindrical drip-tape roll to approximately 20% of the frame width and place it off-center on the lower third, resting directly on the soil. Enlarge the product group from 6.25% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Background contains clearly identifiable sunflower heads (yellow flowers), which constitutes a hard reject for a lentil crop context.",
+        "Product roll is centered horizontally rather than being off-center in the lower third."
+      ],
+      "correction_prompt": "Regenerate the image replacing the sunflower fields with a field of low, fine-textured lentil seedlings (thin stems, small pinnate leaflets). Ensure the drip tape roll is positioned off-center in the lower third of the frame and remove the flowers.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 10,
+      "product_height_percent": 12,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Contains a person and human body parts (face, hands, arms, legs) which is a hard reject",
+        "The product is a cylindrical canister (fertilizer/pesticide container) rather than a wide low cylindrical drip-tape roll",
+        "The crop visible in the field appears to be corn/maize, which is explicitly forbidden for the lentil article",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any people or human body parts. Replace the small cylindrical canister with a wide, low, flat roll of white-and-blue drip tape placed on the soil. Change the crop in the field to lentil plants (low, fine-textured bushy legumes with thin branching stems, small paired pinnate oval leaflets and small flat pods) instead of corn. Ensure the drip tape roll is off-center in the lower third of the frame. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 23,
+      "product_height_percent": 25,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "The image displays a white-and-blue wide low cylindrical drip-tape carton roll.",
+        "The crop in the image (tall with broad blades) closely resembles corn/maize, which is in direct conflict with the required lentil crop for the article, failing the explicit negative instruction 'absolutely no corn blades'.",
+        "The product width (23%) and height (25%) are within the acceptable practical limits.",
+        "The product is appropriately off-center on the lower third.",
+        "The required 'AFP | 09134922013' watermark is present.",
+        "No people or human body parts are visible in the scene."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-سطوحی-در-کشت-عدس-مقایسه-تصویر-شاخص.webp"
+}

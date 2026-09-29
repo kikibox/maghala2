@@ -1,0 +1,96 @@
+{
+  "id": "xref-455",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 21,
+      "product_height_percent": 26,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: person (farmer) is clearly visible in the image, violating the zero-people rule."
+      ],
+      "correction_prompt": "Regenerate the image with no humans, workers, or silhouettes. Keep the crop and background context but remove all people.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 38,
+      "product_height_percent": 45,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Product width exceeds the 27% hard limit (estimated at ~38% of frame width)",
+        "Product height exceeds the 32% hard limit (estimated at ~45% of frame height)",
+        "The roll is not 'secondary'; it is the dominant foreground subject, failing the composition requirement.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 13-27% of frame width.; Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shrink the drip-tape roll significantly to be less than 15% of the frame width and 30% of the frame height. Position it further into the mid-ground (distance) on the soil, lower third, to make it secondary and allow the farm environment to dominate the image. Reduce the product group from 38% to 13-27% of frame width. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 15,
+      "product_height_percent": 12,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Presence of a person (farmer) in the image violates the hard reject criteria",
+        "Person is the main subject rather than the product",
+        "Product is not the primary focus"
+      ],
+      "correction_prompt": "Regenerate the image without the farmer/person, showing only the drip-tape carton roll placed naturally on soil in a farm context, with the product as the main visual focus and the AFP watermark in the bottom-right corner.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 52,
+      "product_width_percent": 38,
+      "product_height_percent": 32,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Product width is approximately 38%, which exceeds the hard limit of 27%.",
+        "The product diameter to height ratio is approximately 1.35:1 (940px / 680px), which falls short of the required 1.5 to 1.9 range.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Shrink the carton roll to approximately 22% of the frame width, increase its relative height to maintain a 1.6 diameter-to-height ratio, and shift the object slightly to the left to ensure it is clearly off-center on the lower third. Reduce the product group from 38% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 17,
+      "product_height_percent": 14,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Hard reject: Image contains a human (a man crouching in the foreground).",
+        "Hard reject: Visible human body parts including face, hands, arms, and legs are present."
+      ],
+      "correction_prompt": "Remove the crouching man entirely. Re-stage the AFP white-and-blue drip-tape carton roll on the soil in the foreground, keeping it small and off-center. Preserve the farm field background and the AFP | 09134922013 watermark in the bottom-right corner.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 22.5,
+      "product_height_percent": 22.5,
+      "product_x_center_percent": 35.0,
+      "reasons": [
+        "Single white and blue cylindrical drip tape roll is present",
+        "Product is naturally placed on soil",
+        "Visible aspect ratio (width/height) is approximately 1.5",
+        "Off-center placement in the lower third of the frame",
+        "Contains zero people or human body parts",
+        "Background farm context matches selected image role",
+        "Required watermark 'AFP | 09134922013' is present"
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-در-کشت-ارزن-پیشنیازها-جزئیات-فنی.webp"
+}

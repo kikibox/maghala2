@@ -1,0 +1,73 @@
+{
+  "id": "xref-450",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 8,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: Multiple visible people (one in foreground, one in background) violate the strict 'zero people' rule.",
+        "Hard reject: Human body parts (hands, legs, torso) are clearly visible interacting with the product.",
+        "Product width and height are significantly below the minimum acceptable thresholds (13-27%); the product appears too small relative to the frame.",
+        "Product is centered in the lower half rather than being off-center on the lower third as required.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with absolutely no people, faces, or body parts visible (unmanned field scene). The drip-tape roll must be an AFP white-and-blue wide low cylindrical carton, positioned off-center on the lower third of the frame. Increase the product size so its width is approximately 20-23% of the frame. Ensure the crop context matches the article title. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 9,
+      "product_height_percent": 24,
+      "product_x_center_percent": 51,
+      "reasons": [
+        "Critical Fail: Two visible human figures (farmers/workers) present in the foreground, violating the zero-person rule.",
+        "Product Form Mismatch: The product is depicted as a square container or tote, not the specified 'wide low cylindrical drip-tape carton roll'.",
+        "Centering Fail: The product is positioned near the horizontal center of the frame (51%), violating the 'off-center' requirement.",
+        "Text/Watermark Conflict: The image features a large black watermark box in the bottom right, conflicting with the requirement for the specific text overlay 'AFP | 09134922013'.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with no humans. Place a white and blue cylindrical drip-tape carton roll (wide/low shape) on the soil in the lower-left or lower-right third of the frame. Ensure the product is secondary in size and clearly off-center. Add the text watermark 'AFP | 09134922013' in the bottom right corner. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 19.4,
+      "product_height_percent": 28.9,
+      "product_x_center_percent": 35.2,
+      "reasons": [
+        "Presence of a person (a farmer/worker) sitting in the crop row, which violates the 'zero people' hard reject rule.",
+        "Visible human body parts including arms, hands, legs, face, and feet are present in the frame.",
+        "Presence of a large green bucket/container which acts as an extra commercial product and violates the 'zero extra containers' rule."
+      ],
+      "correction_prompt": "Remove the person and all visible human body parts from the image. Remove the green bucket container. Keep only the crop, the prepared soil, and the white AFP drip tape roll placed naturally on the soil.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 14,
+      "product_height_percent": 19,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Background context (rows of young green crop, barn, and silo) clearly aligns with the topic of tomato cultivation, satisfying the context-match requirement.",
+        "The image correctly displays a single white and blue drip tape carton roll with authentic 'AFP' branding.",
+        "Zero people or body parts are visible in the frame.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom right corner.",
+        "Product placement is off-center on the lower third of the frame and sits naturally on the soil.",
+        "The product dimensions (14% width, 19% height) are within the acceptable ranges and the roll is appropriately secondary to the crop."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-نوار-تیپ-در-کشت-بادمجان-هزینه-بهینه-کاربرد-عملی.webp"
+}

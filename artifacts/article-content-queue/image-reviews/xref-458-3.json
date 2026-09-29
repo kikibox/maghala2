@@ -1,0 +1,60 @@
+{
+  "id": "xref-458",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 21,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Contains a human figure (farmer/worker) and human body parts (face, arms, legs), which results in a hard reject.",
+        "Product is not a cylindrical roll; it appears as a flat box or drum.",
+        "Product is not positioned in the lower third as required; it is centrally located in the middle of the frame.",
+        "Product appears as tall as it is wide (approximately 1:1 ratio), failing the required diameter-to-height ratio of 1.5-1.9 times.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people. Replace the rectangular box with a wide, low cylindrical drip-tape roll (white and blue). Place the roll in the bottom-right third of the frame, oriented horizontally on the soil with a diameter 1.5 to 1.9 times its visible height. Ensure the roll is small (approx. 15% of frame width). Retain the farm context with visible crops and irrigation hardware like filters and gauges, but no humans. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 15,
+      "product_height_percent": 22,
+      "product_x_center_percent": 60,
+      "reasons": [
+        "Two visible farmers in the foreground violate the 'zero people' rule",
+        "Product width estimate of ~15% is significantly below the preferred 20-23% target range",
+        "The roll is placed in the bottom-center rather than the required 'off-center' position",
+        "Product appears in the foreground alongside other hardware, failing the 'secondary' priority requirement"
+      ],
+      "correction_prompt": "Regenerate without any people or human body parts. Place exactly one AFP drip-tape roll off-center on the lower third of the frame. Enlarge the roll so its width is approximately 20-23% of the image. Ensure the background crop context aligns with the article title.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 80,
+      "product_width_percent": 21,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is a single white-and-blue wide low cylindrical drip-tape carton roll (20L).",
+        "Product is placed off-center on the lower third naturally on the soil.",
+        "Product dimensions are within acceptable limits (Width: 21%, Height: 28%).",
+        "Visible diameter ratio is appropriate for the roll shape.",
+        "Zero people or human body parts visible.",
+        "Watermark 'AFP | 09134922013' is present in the bottom right corner.",
+        "No hard-reject elements such as bottles, cans, or gibberish text found (text on the roll is a typical product label).",
+        "Unattended tractor in the background is considered permitted infrastructure and does not cause a rejection."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-با-رانش-در-کشت-کینوا-مقایسه-جزئیات-فنی.webp"
+}
