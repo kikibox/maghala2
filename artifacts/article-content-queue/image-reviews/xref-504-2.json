@@ -1,0 +1,55 @@
+{
+  "id": "xref-504",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 4,
+      "product_height_percent": 6,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: presence of 3 people (human silhouettes, faces, hands, and bodies visible).",
+        "Product type mismatch: The visible white container is a cup or jar, not a wide low cylindrical drip-tape carton roll.",
+        "Product placement: The product is not visible as a secondary wide low roll on the soil in the lower third.",
+        "Missing specific crop: The background shows lettuce-style leafy greens, not recognizable clover (شبدر).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with zero people. Show a single wide, low cylindrical white-and-blue AFP drip-tape roll (20-23% width, low height) placed on the soil in the lower third, off-center. Background must be a farm with recognizable clover (three-leaflet leaves). Keep the watermark 'AFP | 09134922013'. Enlarge the product group from 4% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product is centered horizontally rather than off-center.",
+        "Crop in the foreground and background is not recognizable as clover (three-leaflet leaves); it appears to be broad-leafed weeds or non-specific crops, failing the 'recognizable clover' requirement.",
+        "The product is centered, violating the 'off-center' placement rule."
+      ],
+      "correction_prompt": "Regenerate with an off-center drip-tape roll (left or right third). The crop context must be clearly legible clover with dense three-leaflet leaves. Ensure the roll is secondary to the scene.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 19.0,
+      "product_height_percent": 23.0,
+      "product_x_center_percent": 70.0,
+      "reasons": [
+        "Product size and proportions meet the required range (width ~19%, height ~23%, diameter-to-height ratio ~1.6).",
+        "Product is positioned correctly on the soil in the lower third, off-center.",
+        "The background crop morphology with dense canopy and visible leaflets aligns with the clover context without being a hard reject.",
+        "Watermark is present and accurate."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-شبدر-مقایسه-کاربرد-عملی.webp"
+}

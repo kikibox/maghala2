@@ -1,0 +1,67 @@
+{
+  "id": "xref-501",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 28,
+      "product_height_percent": 22,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Extra commercial product: A pressure gauge is clearly visible next to the roll, which violates the 'zero extra commercial product' rule (unless it was meant to be interpreted as a filter, but it looks like a gauge).",
+        "Product width is approximately 28-30% of the frame, exceeding the 27% hard-reject threshold.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the pressure gauge/commercial hardware entirely. Reduce the scale of the drip tape carton roll so it occupies less than 27% of the frame width. Keep the roll in the lower-left area on the soil. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Presence of a person (farmer) in the image, which is a hard reject condition (zero people and zero human body parts required).",
+        "Presence of a second commercial package (a small canister) in the hand of the person; only one AFP roll is allowed and this is a forbidden extra commercial product."
+      ],
+      "correction_prompt": "Remove the man and the canister entirely. Keep the single white and blue AFP drip-tape carton roll on the soil, ensuring it is the only product in the foreground.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 21,
+      "product_height_percent": 28,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Human silhouette (tractor operator) is visible in the unattended tractor in the background, which triggers a hard reject rule.",
+        "Two extra commercial accessories (gauges/manifolds) are placed on the soil next to the main product, which are not permitted in the context of Role 3."
+      ],
+      "correction_prompt": "Remove the driver silhouette from the background tractor and replace the two gauges on the ground with small dirt mounds or neutral soil texture.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 24,
+      "product_height_percent": 31,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Exactly one white-and-blue wide low cylindrical drip-tape carton roll is shown",
+        "Product is placed on soil, off-center on the lower third",
+        "Product dimensions are within acceptable bounds (24% width, 31% height)",
+        "Zero people or human body parts visible",
+        "Watermark 'AFP | 09134922013' is present in the bottom right",
+        "Background (plowed field and farm buildings) matches the general farm context"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-سطوحی-در-کشت-پنبه-کاربردها-جزئیات-فنی.webp"
+}

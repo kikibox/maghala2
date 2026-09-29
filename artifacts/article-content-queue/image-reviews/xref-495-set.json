@@ -4,17 +4,42 @@
   "history": [
     {
       "pass": false,
-      "score": 45,
+      "score": 40,
       "duplicate_roles": [
-        1,
-        2
+        3
       ],
       "reasons": [
-        "Roles 1 and 2 are near-duplicates. Both images present the exact same crop-identity overview role using an identical low-angle camera perspective, a foreground product canister, and a continuous bed of green vegetation in the background. Neither serves as a distinct agronomic close-up or a specific irrigation-system story.",
-        "Image 3 depicts a tractor actively pulling a tillage implement on tilled soil, which directly contradicts the agronomic summary emphasizing 'rain gun' (micro-sprinkler) drip-irrigation efficiency and 'improving plant canopy quality' rather than initial soil preparation."
+        "Image 3 fails the mandatory 'zero people' rule by featuring a tractor with a visible operator inside the cab.",
+        "The crop morphology is inconsistent across the set; the leaf shapes in Image 3 are significantly different from the dense clover-like foliage in Images 1 and 2."
       ],
-      "correction_prompt": "Replace roles 1 and 2 with a distinct macro close-up of 'Rain Gun' micro-sprinklers actively spraying water over established rye-grass leaves, and replace role 3 with a wide shot of a sprinkler irrigation system setup, removing the tractor and tilled soil.",
+      "correction_prompt": "For the replacement of image 3, generate an image featuring the same crop species shown in the other two images, positioned on dry tilled soil next to the AFP roll, without any tractors or people visible in the frame.",
       "set_attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "duplicate_roles": [],
+      "reasons": [
+        "Hard reject on crop identity: The article title and summary explicitly specify 'clover' (شبدر), yet all three images display a contradictory identifiable crop. The broad, trilobed leaves (image 2) and upright stems (image 3) are botanically inconsistent with clover morphology, violating the requirement to only reject 'hard' if there is a clearly contradictory identifiable crop.",
+        "Irrigation layout violation: The summary specifically calls for a comparison with 'drip tape' (نوار تیپ) and 'sprinkler irrigation' (آبیاری بارانی). The images show an AFP product canister but fail to depict the actual 'irrigation-system story' requested. There are no visible drip lines, tape, or sprinkler heads to represent the technical agricultural narrative.",
+        "Lack of agronomic close evidence: None of the images provide 'agronomic close evidence' of the root-zone or specific water management effects. They are wide or medium shots of a field with a product, failing to fulfill the distinct functional role required for the second image in the set."
+      ],
+      "correction_prompt": "Regenerate the set to feature an identifiable crop of clover (Trifolium) with three-leaf morphology. The images must clearly illustrate irrigation systems: one showing a wide crop overview, one showing an agronomic close-up of the clover leaf/root zone, and one illustrating drip tape or a sprinkler system layout specifically for clover cultivation.",
+      "set_attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "duplicate_roles": [],
+      "reasons": [
+        "The three images successfully fulfill distinct editorial roles: Image 1 provides a wide overview, Image 2 offers an agronomic close-up on the soil, and Image 3 illustrates the irrigation layout with row perspective.",
+        "The crop is botanical neutral (young green seedlings) which aligns with the 'red clover' (شبدر) article topic without violating botanical accuracy.",
+        "No identifiable crops that contradict the article topic are present.",
+        "All images feature the consistent AFP product branding and maintain the mandatory 'zero people' constraint.",
+        "The lighting and agricultural setting are appropriate for the subject matter."
+      ],
+      "correction_prompt": "Create a macro close-up of an irrigation emitter or drip tape line at the base of the clover seedling to emphasize the 'root-zone' and irrigation detail mentioned in the article's benefits.",
+      "set_attempt": 3
     }
   ]
 }

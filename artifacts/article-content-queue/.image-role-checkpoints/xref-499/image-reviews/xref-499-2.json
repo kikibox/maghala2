@@ -1,0 +1,57 @@
+{
+  "id": "xref-499",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Presence of people: A man and a child are clearly visible in the frame.",
+        "Missing required product: There is no white-and-blue cylindrical drip-tape roll.",
+        "Incorrect product: The man is holding a white handheld device (likely a soil sensor or meter), which is not the required drip tape.",
+        "Human body parts: Faces, hands, and bodies are prominent features of the image.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people. Include one white-and-blue cylindrical drip-tape roll placed naturally on the soil in the lower third, off-center. The roll should be wide and low (cylindrical), approximately 20% of the frame width. Show the farm context with sainfoin crops. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 18,
+      "product_height_percent": 21,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: clearly identifiable different species in foreground",
+        "Hard reject: flower bed with tulips and purple blossoms (lupine-like) is not sainfoin (سپرس)",
+        "Sainfoin has pinnate compound leaves and a completely different growth habit than the shown flower bed",
+        "Background does not match article context"
+      ],
+      "correction_prompt": "Replace flower bed with sainfoin crop: pinnate compound leaves, soft silvery foliage, growing in neat rows on prepared farm soil, with the single AFP drip-tape roll on the foreground soil",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 20.0,
+      "product_height_percent": 23.5,
+      "product_x_center_percent": 30.0,
+      "reasons": [
+        "Product is a white cylindrical drip tape roll (width ~20%, height ~23.5%) placed in the lower-left third (x-center 30%), resting naturally on soil.",
+        "The crop rows show a legume in bloom with small red/purple flowers, which is botanically consistent with sainfoin (spars) rather than a clearly different species; it passes the neutral young vegetation/agronomic story rule.",
+        "The background (farm field, barn, distant tree) is generic and does not contradict the crop topic.",
+        "The mandatory bottom-right watermark 'AFP | 09134922013' is present.",
+        "No people, body parts, or extra commercial products (bottles, cans, buckets, pipes) are visible; zero hard rejects triggered."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-چرخشی-در-کشت-اسپرس-هزینه-در-مزرعه-کاربرد-عملی.webp"
+}

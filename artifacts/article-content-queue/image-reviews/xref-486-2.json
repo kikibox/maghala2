@@ -1,0 +1,87 @@
+{
+  "id": "xref-486",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 11,
+      "product_x_center_percent": 78,
+      "reasons": [
+        "Hard reject: Visible person/farmer kneeling in the frame.",
+        "Hard reject: Visible human hands touching the soil.",
+        "Hard reject: Visible second package (canister) near the person's hand."
+      ],
+      "correction_prompt": "Regenerate the image with absolutely no people, workers, or human body parts. Ensure there is exactly one drip-tape carton roll (remove the second canister) placed on the soil in the lower right foreground. The background should remain a farm field context without any human figures.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 26,
+      "product_height_percent": 34,
+      "product_x_center_percent": 63,
+      "reasons": [
+        "Product vertical height exceeds the 32% maximum limit",
+        "Product width (26%) and height (34%) push the 'secondary' object size to the maximum acceptable threshold",
+        "Visible drip-tape tubing is not present; the image only shows seedlings on soil, failing to provide the 'irrigation layout or root-zone evidence' required to pass the crop-context criteria",
+        "Product is slightly too wide/tall relative to the frame for a practical pass",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Resize the cylindrical drip-tape carton to be slightly smaller (reducing height to <32% of frame width) and clearly add a thin strip of white drip-irrigation tubing running from the carton into the soil between the crop rows. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Contains a human (farmer crouching in the field)",
+        "Visible human hands, face, and arms are present",
+        "The product shown appears to be a small container or pump unit rather than a standard cylindrical drip-tape roll (carton)",
+        "The geometry of the product does not match the required wide, low cylindrical carton roll",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures. Replace the central container with a wide, low, cylindrical white and blue drip-tape carton roll placed off-center on the soil. The roll should be clearly the main product in the foreground, with a diameter approximately 1.5 to 1.9 times its height. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Image contains multiple people (worker in background, two women in foreground) which violates the 'zero people and zero human body parts' rule.",
+        "The required bottom-right watermark 'AFP | 09134922013' is missing (the prompt text suggests it should be present).",
+        "The crop morphology (tall narrow green shoots) is ambiguous and does not clearly match a specific standard crop for a drip-tape article without more context, though the primary failure is the people."
+      ],
+      "correction_prompt": "Regenerate the image to remove all people and human silhouettes. Place the white and blue cylindrical AFP drip tape roll on the soil in the lower third, off-center. Add the text watermark 'AFP | 09134922013' in the bottom right corner.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 21,
+      "product_height_percent": 22,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Product matches the specified 'wide low cylindrical' geometry with an aspect ratio (diameter/height) within the 1.5-1.9 range.",
+        "Positioning is off-center and naturally placed on the soil surface in the lower third of the frame.",
+        "Product dimensions (width ~21%, height ~22%) fall within the preferred and acceptable bounds, keeping the product secondary to the environment.",
+        "Background context of young crop rows matches the 'farm context' and 'image role 2' requirements without showing a clearly identifiable different species that would trigger a hard reject.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Zero people or human body parts are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 1
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-قطرهچکان-در-کشت-کینوا-پیشنیازها-کاربرد-عملی.webp"
+}

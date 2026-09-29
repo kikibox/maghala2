@@ -1,0 +1,75 @@
+{
+  "id": "xref-495",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Image contains a full human figure (male farmer) prominently in the foreground holding the product.",
+        "Hard reject: Image contains human body parts (hands, legs, head, face).",
+        "Hard reject: The drip tape (roll) is in the wrong position (held by a person) and is not a 'wide low cylindrical' roll placed naturally on soil.",
+        "Hard reject: The product roll does not meet the required aspect ratio (approx 1.5-1.9x width vs height).",
+        "Product is too small; width is likely under 13% of the frame.",
+        "Watermark 'AFP | 09134922013' is present but placed awkwardly on top of the tape coil rather than on the background.",
+        "The visible drip tape on the right appears to be a loose coil on the ground, not the required 'wide low cylindrical carton roll'.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with zero people or body parts. Show exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll placed naturally on the soil. The roll should occupy 20-23% of the width in the lower third, off-center. The background must show a dense clover crop field. Keep the required bottom-right watermark. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Crop is not recognizable as clover (شبدر); background shows broad-leafed rows typical of a different species",
+        "Product is vertically centered relative to the crop canopy rather than strictly in the lower third",
+        "Cropping cuts off the bottom of the drip-tape roll"
+      ],
+      "correction_prompt": "Regenerate with a clover field background (distinct three-leaflet plants and low dense canopy). Reposition the AFP drip-tape roll lower in the frame so it sits in the bottom third without being cut off at the bottom.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 11.0,
+      "product_height_percent": 26.0,
+      "product_x_center_percent": 44.0,
+      "reasons": [
+        "Hard reject: The image contains a human subject (a male farmer), which violates the rule requiring zero people or human body parts.",
+        "Hard reject: The product shown is an upright cylindrical container (bucket/drum), not the required wide low cylindrical drip-tape carton roll.",
+        "Hard reject: The crop in the field appears to be a distinct dicot seedling (likely beans or soy) with visible compound leaves, rather than the required recognizable clover (unmistakable three-leaflet leaves).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the farmer entirely to ensure zero humans. Replace the container with a wide, low cylindrical drip-tape roll lying horizontally on the soil. Change the crop in the rows to a dense, low green clover field with visible three-leaflet leaves. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 21.0,
+      "product_height_percent": 23.0,
+      "product_x_center_percent": 40.0,
+      "reasons": [
+        "The product is a wide, low cylindrical drip-tape roll with the correct white and blue color scheme and branding.",
+        "The product width and height are within the acceptable ranges (13-27% and <32%).",
+        "The roll is positioned off-center in the lower third of the frame and sits naturally on the soil.",
+        "The background shows a dense, low green crop canopy consistent with the required clover article, and the context is agronomically plausible.",
+        "The exact bottom-right watermark 'AFP | 09134922013' is present.",
+        "No people, human body parts, or hard-reject objects (like other containers or pipes) are visible in the frame."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-در-کشت-شبدر-مزایا-تصویر-شاخص.webp"
+}

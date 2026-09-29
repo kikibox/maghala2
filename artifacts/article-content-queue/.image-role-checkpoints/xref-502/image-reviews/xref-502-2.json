@@ -1,0 +1,98 @@
+{
+  "id": "xref-502",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: The required product (AFP white-and-blue wide low cylindrical drip-tape carton roll) is not present in the image. Instead, there is a white cylindrical container/bucket at the bottom which is a hard-reject item (bottle, jar, canister, bucket, fertilizer or pesticide container).",
+        "Hard reject: The background crop is clearly identifiable as a legume (likely soybean) with trifoliate leaves, whereas the article requires fava bean (باقلا) which is defined by thick upright stems and broad paired leaflets. This is a clearly identifiable different species.",
+        "Missing Product: No drip-tape carton roll exists to measure or validate against the width, height, and placement constraints.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to feature a white-and-blue cylindrical drip-tape carton roll lying on the soil in the lower third. The background crop must be fava beans (broad paired leaflets, thick stems) or a neutral prepared bed. Remove the white bucket/container. Ensure the water mark 'AFP | 09134922013' is present in the bottom right corner. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 26,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The image does not show the required bottom-right watermark 'AFP | 09134922013'; instead, it contains an inverted white-on-black version, which is not the required specific watermark format. The visible text in the bottom right is not the required 'AFP | 09134922013' watermark exactly.",
+        "The crop in the image (plants with broad leaves) does not clearly show the specific required 'fava bean (باقله)' morphology (thick upright stems, visible elongated pods), though it is not a hard reject different species, it does not meet the specific visual story requirement.",
+        "The product dimensions (width ~22%, height ~26%) are within the acceptable range."
+      ],
+      "correction_prompt": "Regenerate the image to include the exact white text watermark 'AFP | 09134922013' in the bottom-right corner. Ensure the fava bean plants show characteristic thick stems and visible elongated pods. Keep the product roll off-center in the lower third on the soil.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 15,
+      "product_height_percent": 15,
+      "product_x_center_percent": 12,
+      "reasons": [
+        "The product is a square/rectangular box or canister (a roll core without the long tape spool), not the required 'wide low cylindrical' roll.",
+        "The visible crop species has serrated/pointed leaves with pinnate pairs (resembling cotton or tomato seedlings), which is a 'clearly identifiable different species' from the required Fava bean (which has thick upright stems and elongated pods).",
+        "The product packaging text appears to be generic or gibberish ('Drip Irrigation Type'), missing required specific article crop branding.",
+        "The geometry of the brown loops around the plant stems is unnatural and unrecognizable as standard drip tape layout."
+      ],
+      "correction_prompt": "Regenerate a 'wide low cylindrical' drip tape roll with visible spool of tape in white and blue packaging. Place it off-center on the bottom-right on the soil. Replace the crop in the background with a fava bean (broad leaflet, upright) plant. Ensure the crop is specifically a fava bean, not cotton or tomato.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 22,
+      "product_height_percent": 20,
+      "product_x_center_percent": 74,
+      "reasons": [
+        "Identifiable plant species is not fava bean (thick stems/coarse leaves in foreground and background resemble other crops like sunflower or cotton)",
+        "Product aspect ratio (width/height) is 1.1x, falling short of the required 1.5-1.9x cylindrical profile"
+      ],
+      "correction_prompt": "Replace the vegetation with fava bean plants featuring thick stems and broad paired leaflets. Regenerate the drip-tape roll to be significantly wider and flatter (w/d ratio 1.6x) to emphasize the cylindrical carton shape.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 24,
+      "product_height_percent": 27,
+      "product_x_center_percent": 64,
+      "reasons": [
+        "Visible crop plants are clearly identifiable as a different species (broad-leafed dicots with distinct lobed/tripinnate morphology) rather than the required fava bean (baqlla); visible mature morphology contradicts the article crop",
+        "Product geometry (cylindrical roll with vertical side walls) is not clearly 'wide low' cylindrical drip-tape shape"
+      ],
+      "correction_prompt": "Regenerate with crop plants matching visible fava bean morphology (thick upright stems, paired leaflets, elongated pods) or neutral young seedlings. Change product to a distinctly wide, low cylindrical roll (flat aspect ratio ~1.5-1.9) placed on soil in lower-third off-center, ensuring width 20-23% and height <30%.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 17,
+      "product_height_percent": 20,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Exact required bottom-right watermark 'AFP | 09134922013' present and preserved.",
+        "Product is a single white-and-blue cylindrical drip-tape carton roll with visible 'AFP' branding, placed off-center in the lower third and naturally sitting on soil.",
+        "No people, faces, hands, arms, legs, or human silhouettes visible anywhere in frame.",
+        "Product width is ~17% of frame (within preferred 20-23% range and acceptable 13-27% band), height ~20% (within max 32%), and visible diameter-to-height ratio is appropriate (~1.5-1.9x).",
+        "Background farm context is agronomically neutral young vegetation; exact mature fava bean morphology (thick upright stems, broad paired leaflets, elongated pods) is not fully visible, but young fava seedlings are plausible and do not constitute a clearly identifiable different species, so it passes per the neutral-vegetation allowance.",
+        "No hard-reject items present: no second roll, no bottles/jars/canisters/buckets, no fertilizer/pesticide containers, no layflat hose, no pipe through roll, no impossible geometry, no fake or gibberish text, and no extra commercial products. Unattended irrigation hardware allowance not even triggered.",
+        "Score reflects a strong pass with only a minor deduction for the article-specific mature fava bean morphology not being fully visible (neutral young crop context accepted)."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-گلخانهای-در-کشت-باقلا-هزینه-بهینه-کاربرد-عملی.webp"
+}
