@@ -1,0 +1,96 @@
+{
+  "id": "xref-428",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: Image contains visible human body parts (arms, hands, boots).",
+        "Hard reject: The drip tape roll is being handled/inserted by a human, violating the 'unattended' and 'zero people' requirements.",
+        "Hard reject: There is a second tool (a handle) visible in the hand, which is not allowed."
+      ],
+      "correction_prompt": "Regenerate the image without any human figures or body parts. The AFP drip tape roll should be resting on the soil unattended. Remove the hand and the tool handle. Keep the background farm context with low green crops.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 22,
+      "product_height_percent": 35,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product height is estimated at 35% of the frame, exceeding the 32% maximum limit.",
+        "Product is centered on the horizontal axis, violating the 'off-center' requirement.",
+        "Product is located near the bottom edge (ground line) rather than the lower third of the frame.",
+        "Watermark 'AFP | 09134922013' is missing.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Lower the carton roll so it occupies the lower third of the frame, not the very bottom; shift the product to the left (off-center); ensure the roll height is less than 32% of the image; add the watermark 'AFP | 09134922013' in the bottom right corner. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 12.0,
+      "product_height_percent": 15.0,
+      "product_x_center_percent": 38.0,
+      "reasons": [
+        "The image contains a visible human (a farmer/woman) crouching in the foreground, which is a hard reject condition.",
+        "The image contains visible human body parts (hands, face, legs).",
+        "The product (drip-tape roll) does not meet the width requirement (12% < 13%) and the height is too large relative to its width.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image completely removing the human figure and all body parts; increase the drip-tape roll width to between 13-23% of the frame and adjust the geometry to appear as a wide, low cylinder. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18.75,
+      "product_height_percent": 31.25,
+      "product_x_center_percent": 47.25,
+      "reasons": [
+        "The image contains a visible person (farmer) crouching in the background, which is a hard reject condition requiring zero people or human body parts.",
+        "The product (drip tape roll) is centered horizontally in the frame rather than being placed off-center.",
+        "The product is placed directly on bare soil between crop rows instead of being integrated into a dedicated garden cress bed with drip tape lines visible.",
+        "The required exact bottom-right watermark 'AFP | 09134922013' is missing (note: the prompt text specifies this is required, and the image does not display it)."
+      ],
+      "correction_prompt": "Regenerate image: Completely remove the person in the background (zero humans). Move the AFP white-and-blue drip tape roll off-center to the lower third (e.g., right side of the frame) and place it directly on the soil within the green garden cress bed. Ensure the required text watermark 'AFP | 09134922013' is visible in the bottom right corner.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 18.2,
+      "product_height_percent": 21.5,
+      "product_x_center_percent": 63.5,
+      "reasons": [
+        "Missing the mandatory bottom-right watermark 'AFP | 09134922013'. The prompt explicitly states the watermark is required and that the product must be an AFP white-and-blue carton roll. While there is a label on the roll, it lacks the specific bottom-right watermark and phone number required by the strict criteria."
+      ],
+      "correction_prompt": "Add the exact text 'AFP | 09134922013' in the bottom right corner of the image. Ensure the product roll is clearly an AFP white-and-blue drip-tape carton.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 9,
+      "product_height_percent": 35,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: The image contains a person (hands, arms, torso, legs, and footwear are clearly visible).",
+        "Hard reject: The drip-tape roll is being held by a person rather than naturally placed on the soil as required.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image without any people or human body parts. Show only a single AFP white-and-blue drip-tape roll lying naturally on the soil of a garden cress farm, with no one holding or interacting with the product. Enlarge the product group from 9% to 13-27% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

@@ -1,0 +1,84 @@
+{
+  "id": "xref-441",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 14,
+      "product_height_percent": 21,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Contains visible human body parts (hands, arms, torso, legs, boots), which is a hard reject condition",
+        "Product is centered in the lower third (49%) instead of being off-center",
+        "Product aspect ratio is too narrow (height is larger relative to width than the required 1.5-1.9x width-to-height ratio for a cylindrical roll)"
+      ],
+      "correction_prompt": "Remove all human body parts; move the drip tape roll off-center to the left or right lower third, and adjust its shape to a wider, low cylindrical roll with a 1.5:1 to 1.9:1 width-to-height ratio.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 14,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Hard reject: person (farmer/worker) and human body parts (face, arms, legs) are clearly visible in the foreground.",
+        "Hard reject: The product shown is a cylindrical bucket/container, not a wide low cylindrical drip-tape carton roll.",
+        "Hard reject: The product is centered horizontally in the lower third, whereas the requirement is for an off-center placement.",
+        "Background crop appears to be broadleaf (potato/corn) rather than the required alfalfa (trifoliate).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to remove all people and human body parts. Replace the container with a wide, low cylindrical drip-tape carton roll (white and blue, off-center on the lower third). Replace the current crop with young alfalfa seedlings (dense fine trifoliate leaflets). Keep the farm field background and required watermark. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 25,
+      "product_height_percent": 26,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The product bounding box height (26%) is too high relative to the width (25%), failing the 'wide low cylindrical' requirement where diameter should be 1.5-1.9 times the height. The visible diameter is roughly equal to the height.",
+        "The visible top surface of the roll is a flat white disc with a hole, resembling a paper/foam roll or a flat disc rather than a standard cylindrical drip-tape spool."
+      ],
+      "correction_prompt": "Regenerate the roll to be significantly wider and flatter (diameter 1.8 times height) to match the specified wide low cylindrical geometry, positioned on the lower-left third of the frame.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 10,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Contains a visible person (a man crouching), which is a hard reject requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts. Place a single wide cylindrical drip-tape roll (20-23% width) on the soil in the lower third, off-center to the right, in a field of dense, fine-leafed alfalfa. Ensure no other crops or hardware interfere with the product staging. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 17,
+      "product_height_percent": 20,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Required AFP watermark is present and correct.",
+        "No people or human body parts are visible.",
+        "Single white and blue cylindrical carton roll is clearly visible.",
+        "Product is positioned off-center on the lower third.",
+        "Product proportions (width vs height) are within acceptable range.",
+        "Crop context is agronomically suitable (neat rows of young leafy plants consistent with alfalfa).",
+        "Product size is secondary but visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-رطوبتی-در-کشت-یونجه-چالشها-کاربرد-عملی.webp"
+}

@@ -1,0 +1,55 @@
+{
+  "id": "xref-430",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Missing required watermark: 'AFP | 09134922013' not present in the image.",
+        "Product size is too small: The white and blue carton roll is extremely small relative to the frame, likely falling below the 13% width threshold.",
+        "Product positioning: The roll is located too far down in the frame, partially obscured by the black irrigation tubing.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to include the required watermark 'AFP | 09134922013' in the bottom right. Scale up the white and blue drip-tape carton roll so it occupies roughly 20-23% of the image width. Position the roll slightly higher in the frame and ensure it is not obscured by the black irrigation tubing. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 21,
+      "product_height_percent": 22,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Product is centered horizontally (approx 44%), failing the 'off-center on the lower third' requirement.",
+        "Product aspect ratio (diameter to height) is approximately 1:1, failing the requirement of 1.5 to 1.9 times.",
+        "Watermark 'AFP | 09134922013' is missing at the bottom-right of the image."
+      ],
+      "correction_prompt": "Regenerate with the carton roll significantly wider (oval/elliptical shape) and positioned to the left or right. Add the text 'AFP | 09134922013' in the bottom-right corner.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 24,
+      "product_height_percent": 21,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Zero people or human body parts are visible; the distant tractor and farm equipment are accepted as infrastructure.",
+        "The product (white and blue AFP drip tape roll) is positioned off-center in the lower third, naturally placed on the soil.",
+        "Product width (24%) and height (21%) are within the acceptable practical estimate ranges.",
+        "The image does not contain any hard-reject items like extra commercial products, fake text, or contradictory crops (the small visible plants are neutral and consistent with a drip-tape story).",
+        "Required bottom-right watermark 'AFP | 09134922013' is present."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-شاهی-مقایسه-جزئیات-فنی.webp"
+}

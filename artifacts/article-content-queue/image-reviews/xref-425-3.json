@@ -1,0 +1,72 @@
+{
+  "id": "xref-425",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Crop conflict: Visible red flowers (tulips) clearly contradict the specified crop (سعفران - Saffron crocus).",
+        "Gibberish text: The text below 'AFP' on the carton is unintelligible gibberish.",
+        "Unreadable text: The text on the right side of the carton is blurry and illegible."
+      ],
+      "correction_prompt": "Replace the red tulips with visible Saffron crocus plants (Crocus sativus). Remove gibberish text from the carton and ensure any side-panel text is sharp and legible.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 22.0,
+      "product_height_percent": 28.0,
+      "product_x_center_percent": 25.0,
+      "reasons": [
+        "Second commercial package: There is a second roll/coil of drip tape next to the main carton roll, which is a hard reject condition.",
+        "Crop contradiction: The image shows tulips, which clearly contradicts the specified context of saffron crocus.",
+        "Watermark placement: While the required text 'AFP | 09134922013' is present, it appears as a solid black overlay box rather than a standard watermark, and includes an invalid phone number sequence.",
+        "Product geometry: The main product roll appears slightly too vertical/cylindrical rather than a wide low cylindrical carton."
+      ],
+      "correction_prompt": "Remove the second roll of tape next to the carton. Replace the tulips with saffron crocus plants (Crocus sativus). Change the background to a wide-open cultivated field typical of saffron farming, retaining the distant tractor. Ensure the main drip tape roll is low and wide. Keep the bottom-right watermark 'AFP | 09134922013'.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 38,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is too tall (38% > 32% max)",
+        "Height-to-width aspect ratio is off (1.5/0.38 ≈ 4.0, should be ~1.5-1.9)",
+        "Purple tulips are prominent in foreground, which creates a contradiction with the Zعفرan (saffron) topic if the crop was meant to be neutral/absent in a hardware close-up",
+        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Generate a wide, low profile drip-tape roll (aspect ratio ~1.8) placed on soil in the lower-left. Keep the purple flowers in the background or replace them with sparse green shoots to maintain the 'hardware story' context without contradicting the saffron topic. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Product is an AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Off-center on the lower third and naturally placed on soil.",
+        "Contains zero people or human body parts.",
+        "Background matches farm context with visible saffron (crocus) rows and unattended tractor infrastructure.",
+        "Watermark 'AFP | 09134922013' is present in the bottom right.",
+        "Product dimensions are within acceptable limits (width 13-27%, height <=32%).",
+        "Ratio of visible diameter to height is approximately 1.5-1.9."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-زعفران-مزایا-جزئیات-فنی.webp"
+}
