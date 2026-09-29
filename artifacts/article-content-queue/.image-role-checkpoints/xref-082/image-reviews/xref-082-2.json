@@ -1,0 +1,99 @@
+{
+  "id": "xref-082",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 5,
+      "product_height_percent": 7,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Presence of a person (main subject crouching and holding the object).",
+        "Presence of distant human figures (farmers in the background).",
+        "The object held is a small white puck or container, not the specified wide, low, cylindrical drip-tape carton roll.",
+        "The visible crop (plants with red fruits, likely tomatoes) is clearly identifiable and does not match the required article crop of rosemary (woody, needle-like leaves).",
+        "The product is held by a person, which is a hard reject; it must be placed on the soil.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image: Show a white and blue wide, low, cylindrical drip-tape carton roll resting on the soil in a farm field. The background must show rows of woody, low shrubs with many needle-like dark-green leaves (rosemary). Include unattended irrigation infrastructure (pipes/filters) if appropriate. No people or human body parts. Include the exact watermark 'AFP | 09134922013' in the bottom right. Enlarge the product group from 5% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 17,
+      "product_height_percent": 25,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The product is visually too centered in the frame rather than positioned off-center on the lower third as requested.",
+        "The crop in the background does not clearly identify rosemary; the foliage looks more like a general salad green or herb rather than woody low shrubs with needle-like leaves."
+      ],
+      "correction_prompt": "Reframe to move the drip-tape roll toward the bottom-right or bottom-left, ensuring it is clearly off-center. Make the background crops explicitly look like rosemary bushes with darker, needle-like leaves and woody stems.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 17,
+      "product_height_percent": 20,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Presence of a farmer and multiple human body parts in the scene, which triggers a hard reject requirement for zero people and zero body parts",
+        "Product is placed on a hard, flat paved surface rather than soil",
+        "The drip tape roll is not positioned in the lower third of the frame as required; it is placed high in the foreground",
+        "Plant context does not clearly match the rosemary article description or farm context"
+      ],
+      "correction_prompt": "Regenerate the image to remove all people and human body parts completely. Reposition the white and blue drip tape roll onto a patch of brown soil in the lower third of the frame (bottom 33% of the image), off-center. Ensure the product width is under 27% of the frame and the height is under 32%. Keep the background a farm setting but ensure no human silhouettes are visible.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 17,
+      "product_height_percent": 19,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The crop shown is clearly identifiable as a different species (broad-leaved seedlings, possibly tobacco or similar) rather than rosemary, which should have needle-like dark-green leaves.",
+        "The product is centered horizontally (around 45-50% x-axis) rather than being off-center on the lower third as required.",
+        "The product's geometry is slightly off (height is nearly equal to width, failing the 1.5-1.9 times diameter rule)."
+      ],
+      "correction_prompt": "Replace the broad-leafed crop with rows of woody, needle-leafed rosemary shrubs. Move the white drip-tape roll off-center to the lower-left or lower-right third of the frame, and increase its vertical height relative to its width to look like a cylindrical roll.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 5,
+      "product_height_percent": 8,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: presence of a person (male farmer) in the frame",
+        "Hard reject: product is missing (only a tiny generic container or object is visible at the bottom, not the required wide low cylindrical drip-tape carton roll)",
+        "Product size constraints not met",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the human entirely. Insert a single wide low cylindrical white-and-blue drip-tape carton roll on the soil in the lower third. Ensure the roll width is between 20-23% of the frame and height is under 32%. Place the roll off-center (e.g., near x=70%). Keep the rosemary crop and farm background intact. Enlarge the product group from 5% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 19,
+      "product_height_percent": 21,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product aspect ratio fails: the visible roll is taller than it is wide (height > width), which violates the requirement that the diameter should be 1.5 to 1.9 times its visible height for a lying cylindrical roll.",
+        "Crop morphology mismatch: the crop shown consists of tall, erect purple flower spires (resembling salvia or lavender), whereas the article crop (rosemary) is defined as a low woody shrub with needle-like dark-green leaves; this is a clearly identifiable different species.",
+        "Product staging violation: the roll appears centered horizontally (x_center ~48%), rather than being off-center on the lower third.",
+        "Text error: The required bottom-right watermark 'AFP | 09134922013' is missing."
+      ],
+      "correction_prompt": "Regenerate with a low woody rosemary crop (dark green, bushy, not tall purple flowers). Change the roll to a wide, low cylindrical shape (diameter 1.5-1.9x height) lying flat. Move the roll to the right side, in the lower third, ensuring it is off-center. Ensure the bottom-right watermark 'AFP | 09134922013' is visible.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

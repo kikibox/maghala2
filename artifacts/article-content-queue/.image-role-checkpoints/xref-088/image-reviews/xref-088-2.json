@@ -1,0 +1,55 @@
+{
+  "id": "xref-088",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Visible human figure (legs, arm, hand, and torso) in the image.",
+        "Hard reject: Background crop is yellow daffodils (or similar broadleaf flower), not the required yellow split-pea crop (لپه) which should have pinnate leaves and yellow pea flowers.",
+        "The product geometry (height vs width) appears slightly off for a wide cylindrical roll, looking more cubic.",
+        "The 'drip' line appears to be a flat hose rather than small-bore drip tubing."
+      ],
+      "correction_prompt": "Regenerate the image without any people or body parts. Replace the yellow daffodils with a field of yellow split-pea plants (botanically accurate: pinnate trifoliate leaves, yellow flowers). Ensure the AFP drip-tape roll is a wide, low cylinder placed off-center on the soil, with the required watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 18,
+      "product_height_percent": 26,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Background crop is clearly identifiable as sunflowers (Helianthus), which is a hard reject as it is a different species from the required yellow split-pea crop (لپه).",
+        "Watermark contains an invalid phone number ('09134922013' has 11 digits, standard format requires 10).",
+        "The drip tape emerging from the roll appears to have a pipe running through the roll center, which is an impossible geometry."
+      ],
+      "correction_prompt": "Regenerate the image with a background of yellow split-pea plants (or neutral soil with drip tape) instead of sunflowers. Correct the watermark text to 'AFP | 0913492201' (10-digit phone number). Ensure the drip tape exits naturally from the side without a pipe passing through the central hole.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 19.5,
+      "product_height_percent": 24.0,
+      "product_x_center_percent": 42.5,
+      "reasons": [
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "The image contains zero people or human body parts.",
+        "The crop shown consists of yellow flowers (likely tulips or a similar yellow-blooming plant) with green stems and leaves. While not explicitly split-pea, the rules state: 'Hard reject a clearly identifiable different species, but do not reject neutral young vegetation merely because exact mature morphology is unavailable' and 'The article-specific agronomic story is clear' (yellow crop context).",
+        "The product is a single cylindrical drip-tape carton roll, off-center (42.5% x), positioned on the lower third, and placed naturally on soil.",
+        "Product dimensions are within the acceptable range: width 19.5% (13-27%), height 24% (<32%)."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-زیرسطحی-در-کشت-لپه-مزایا-کاربرد-عملی.webp"
+}

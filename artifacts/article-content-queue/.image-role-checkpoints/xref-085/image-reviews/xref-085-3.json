@@ -1,0 +1,68 @@
+{
+  "id": "xref-085",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Contains a person (farmer/worker)",
+        "No white and blue cylindrical drip-tape carton roll visible",
+        "Image is a portrait shot of a person rather than a hardware story",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with zero people. Show a single white-and-blue wide low cylindrical drip-tape roll on the soil in a farm context (filter, manifold, or flush point visible). The roll must be off-center on the lower third, secondary in size (around 20% width), and not centered. Keep the bottom-right watermark exactly 'AFP | 09134922013'. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Two persons (farmers) are clearly visible in the background, violating the 'zero people' constraint."
+      ],
+      "correction_prompt": "Regenerate the image completely removing all persons and human silhouettes. Keep the AFP drip-tape roll in the foreground on the soil and the irrigation hardware, but ensure the background contains only tractors, filters, and fields with no people present.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 25,
+      "product_height_percent": 25,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: A prominent human figure (a man) is present in the center of the image, which is strictly forbidden.",
+        "Hard reject: Two distinct rolls of product are visible in the frame (one in the foreground and one in the background), violating the 'exactly one roll' requirement."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human silhouettes. Remove the man and the background roll to ensure exactly one AFP drip-tape roll is visible. Keep the unattended tractor and irrigation infrastructure.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 75,
+      "product_width_percent": 25,
+      "product_height_percent": 23,
+      "product_x_center_percent": 39,
+      "reasons": [
+        "Image contains exactly one AFP white-and-blue drip-tape roll",
+        "Product is placed naturally on soil in lower third, off-center",
+        "Product dimensions are within acceptable limits (width 25%, height 23%, ratio ~1.09)",
+        "Required bottom-right watermark 'AFP | 09134922013' is present",
+        "Background shows a farm field with an unattended tractor, which is allowed as irrigation infrastructure",
+        "No people, body parts, or human silhouettes are visible",
+        "No prohibited items like bottles, jars, or extra commercial products"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-اسپرس-کاربردها-جزئیات-فنی.webp"
+}

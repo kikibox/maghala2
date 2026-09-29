@@ -1,0 +1,69 @@
+{
+  "id": "xref-079",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 9,
+      "product_height_percent": 9,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "The product is a standard vertical cylindrical roll, not a wide, low, cylindrical roll as required.",
+        "The visible diameter is not 1.5 to 1.9 times its height; it is approximately square.",
+        "The crop shown is clearly a sunflower (large, alternate, pinnately lobed leaves), not summer savory (small, opposite, entire leaves).",
+        "The product is too small relative to the frame (preferred 20-23%, acceptable 13-27% but currently ~9%).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Replace the crop with botanically accurate summer savory (Saturea humilis) seedlings, characterized by small opposite leaves and square stems. Replace the vertical cylindrical roll with a wide, low cylindrical drip tape roll (visible diameter 1.5-1.9x its height) that occupies approximately 18% of the frame width, placed on the soil. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 18,
+      "product_height_percent": 28,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: A crouching person (worker/farmer) is visible on the right side of the image, which violates the zero-people constraint.",
+        "Product geometry: The roll is significantly wider than the specified 1.5-1.9x height ratio (appearing nearly square), failing the shape requirement."
+      ],
+      "correction_prompt": "Regenerate with absolutely no people, workers, or body parts visible. Modify the drip tape roll to be a wide, low cylinder with a visible diameter at least 1.5 times its visible height. Maintain the summer savory crop context and the required bottom-right watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 15,
+      "product_height_percent": 14,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Hard reject: Image contains multiple visible people (a female face, hands, and arms) which violates the zero-person constraint.",
+        "Hard reject: The drip tape is being held by a human hand rather than being placed naturally on the soil.",
+        "The secondary roll held by the person counts as an extra commercial product/roll, which is not allowed."
+      ],
+      "correction_prompt": "Remove all people and human body parts. Place the white and blue AFP drip-tape roll naturally on the soil in the lower-left or lower-right third of the frame. Ensure the background shows a farm field with young summer savory (or neutral beds) and the required 'AFP | 09134922013' watermark.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Product is the required single AFP white-and-blue low cylindrical drip-tape carton roll.",
+        "Crop context shows summer-savory-type young plants with a clear agronomic story and no clearly identifiable different species.",
+        "Product is secondary, off-center on the lower third, and naturally placed on soil.",
+        "Zero people or human body parts are visible.",
+        "Required bottom-right watermark is present."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-قطرهچکان-در-کشت-مرزه-پیشنیازها-کاربرد-عملی.webp"
+}

@@ -1,0 +1,43 @@
+{
+  "id": "xref-082",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 11,
+      "product_height_percent": 14,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Hard reject: Image contains a person (farmer/worker) interacting with the product, which violates the 'zero people and zero human body parts' rule.",
+        "The product is a tall narrow vertical roll, not a 'wide low cylindrical' one as specified.",
+        "Product placement is centered-to-lower, not distinctly off-center on the lower third.",
+        "The product is being handled by a human, violating the 'naturally placed on soil' and 'unattended hardware' criteria.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Regenerate the image showing only the AFP white-and-blue wide low cylindrical drip-tape carton roll resting naturally on the soil in a farm context. Ensure the roll is wide and low (not tall and narrow), off-center on the lower third, with a background of a farm field (e.g., tractor or open soil) to match the hardware story. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 26,
+      "product_height_percent": 30,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Contains exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Image shows no people or human body parts (hard reject avoided).",
+        "Tractor and animal in background are acceptable context without violating 'zero people' rule.",
+        "Product is placed off-center on soil in the lower third.",
+        "Product width (26%) and height (30%) fall within acceptable practical limits (<27% wide, <=32% high).",
+        "Required watermark 'AFP | 09134922013' is present in bottom-right."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آبیاری-سطوحی-در-کشت-رزماری-کاربردها-جزئیات-فنی.webp"
+}

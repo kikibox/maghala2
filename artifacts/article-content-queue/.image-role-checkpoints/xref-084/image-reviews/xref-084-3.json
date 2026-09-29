@@ -1,0 +1,43 @@
+{
+  "id": "xref-084",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 4,
+      "product_height_percent": 8,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: Image contains a prominent person (a male farmer) kneeling and holding the product. The prompt explicitly requires zero people and zero human body parts.",
+        "Product sizing violation: The drip-tape roll is extremely small (approx. 4% width, 8% height), failing the minimum acceptable width of 13% and maximum height of 32% (it is just small, but the width is the primary fail).",
+        "Placement violation: The roll is held in a hand in the center-lower area rather than being placed naturally on soil as a secondary element.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people, workers, or human body parts. Show exactly one AFP white-and-blue drip-tape carton roll placed naturally on the soil. The roll should be off-center in the lower third, with a width between 20-23% of the frame (min 13%, max 27%). Maintain the 'AFP | 09134922013' watermark in the bottom-right corner. Enlarge the product group from 4% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Contains exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Hardware story context with unattended tractor and irrigation field visible.",
+        "No people or human body parts visible.",
+        "Background (tillage, tractor, barn) matches farm context for drip tape hardware.",
+        "Watermark 'AFP | 09134922013' is present and correct.",
+        "Product geometry is realistic (diameter approx 1.5x height) and placed on soil.",
+        "Product size is secondary but within acceptable practical estimates."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-خربزه-هزینه-بهینه-جزئیات-فنی.webp"
+}

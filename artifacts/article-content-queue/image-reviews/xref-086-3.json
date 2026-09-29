@@ -1,0 +1,67 @@
+{
+  "id": "xref-086",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Presence of human figures: There is a visible silhouette of a driver in the tractor cab, and a human hand is visible in the foreground holding a tool.",
+        "Hard reject violation: The image contains human body parts (hand) and a person, which are strictly prohibited.",
+        "Extra commercial products: There is a second small canister (packaging) next to the main roll, and a tool (brush/hand) is present.",
+        "Background Context: While the farm context matches, the presence of the hand and the driver makes it a fail regardless of other elements."
+      ],
+      "correction_prompt": "Remove the human hand in the foreground and the driver silhouette inside the tractor. Remove the small secondary canister and the brush tool. Ensure the main roll is the only commercial product visible. Keep the tractor unattended in the background.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: A person (driver) is clearly visible seated inside the tractor cabin in the background, violating the 'zero people' and 'zero human silhouette' rules."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove the driver from the tractor cabin, ensuring the interior is empty and no human silhouettes or body parts are visible anywhere in the scene.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 18,
+      "product_height_percent": 28,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: presence of two people (a woman and a child) in the image, which violates the 'zero people' rule.",
+        "Hard reject: visible human body parts (hands, legs, faces) interacting with the product.",
+        "Additional commercial product visible: a standalone metallic pressure gauge/manifold device to the right of the roll."
+      ],
+      "correction_prompt": "Remove all people and human body parts from the scene. Remove the additional metallic gauge device on the right. Leave only the single white and blue AFP drip-tape roll on the soil, off-center, with no other products or human figures.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 21,
+      "product_height_percent": 25,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Product is the correct AFP white and blue wide low cylindrical drip-tape roll",
+        "Product is secondary to the scene, sitting naturally on soil in the lower third, and off-center",
+        "Dimensions are within practical estimates (width ~21%, height ~25%, ratio ~1.5x)",
+        "Background shows farm context (barn, tilled fields) matching role 3 without hard reject issues",
+        "Required AFP phone watermark is present and intact"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-در-کشت-جعفری-راهنمای-جامع-جزئیات-فنی.webp"
+}
