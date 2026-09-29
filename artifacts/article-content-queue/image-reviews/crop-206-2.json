@@ -1,0 +1,53 @@
+{
+  "id": "crop-206",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 13,
+      "product_height_percent": 18,
+      "product_x_center_percent": 56,
+      "reasons": [
+        "Hard reject: The image contains a person (a farmer or worker) kneeling in the foreground. This violates the strict requirement for zero people and zero human body parts.",
+        "Product size: The drip tape roll is slightly smaller than the preferred width (13% vs 20-23%) and is nearly touching the minimum threshold, making it less prominent than ideal, though still technically within the 13-27% acceptable range. However, the presence of the person is the primary cause of failure."
+      ],
+      "correction_prompt": "Regenerate the image removing the person entirely. Keep the AFP white-and-blue drip tape roll as the sole focus, placed on the soil with visible drip lines and young crops in the background. Ensure no human body parts or silhouettes are present.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The drip tape roll is centered horizontally and vertically (centered product staging), failing the requirement to be off-center on the lower third.",
+        "The background crop seedlings do not clearly match the specific crop from the article title 'city, family tape20', which likely requires a specific urban or non-field context.",
+        "The product placement, while on soil, is too prominent and centered relative to the specific geometric constraints of the prompt."
+      ],
+      "correction_prompt": "Regenerate the image moving the drip tape roll to the left or right third of the frame, lower in the composition, and ensuring the crop specifically matches the 'city, family' context (e.g., urban farm or high-density rows) rather than a generic open field.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 14,
+      "product_height_percent": 22,
+      "product_x_center_percent": 72,
+      "reasons": [
+        "The subject is a single, low, cylindrical carton roll with white and blue branding, matching the specified product type.",
+        "The product is correctly off-center and placed on the soil bed in the foreground.",
+        "The background depicts a field of young crop seedlings in rows with drip lines, which is a valid agronomic context for irrigation, even if the crop is not yet mature.",
+        "The watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No people, human body parts, or prohibited containers are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "فاصله-نوار-تیپ-در-کشت-پیازچه-استانداردهای-توصیهشده-کاربرد-عملی.webp"
+}

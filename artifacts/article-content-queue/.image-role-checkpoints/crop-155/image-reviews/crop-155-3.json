@@ -6,20 +6,62 @@
   "approved": true,
   "attempts": [
     {
-      "pass": true,
-      "score": 82,
-      "product_width_percent": 16,
-      "product_height_percent": 14,
-      "product_x_center_percent": 28,
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 14,
+      "product_height_percent": 24,
+      "product_x_center_percent": 42,
       "reasons": [
-        "Product (AFS drip-tape carton) is correctly identified as a wide, low cylindrical roll off-center on the lower third of the frame.",
-        "Product dimensions are within acceptable limits: width approx. 16%, height approx. 14%.",
-        "Product is naturally placed on soil without centered staging.",
-        "Background context (farm with irrigation crop) aligns with role 3 hardware story, and while tulips are visible, the crop is not a clear contradiction to the general topic, and no human body parts are present.",
-        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner."
+        "The product roll's height is approximately 24% of the frame, exceeding the maximum 32% only slightly, but the diameter-to-height ratio (0.58) is significantly lower than the required 1.5 to 1.9 range (the roll is too tall relative to its width).",
+        "The product is positioned on the lower right third of the frame (center around 42% x-coordinate, which is not far off-center but the geometry of the roll is distorted)."
+      ],
+      "correction_prompt": "Regenerate the image with a much wider and flatter cylindrical roll shape where the width is approximately 1.7 times the height, keeping it on the soil and off-center in the lower third, maintaining the farm background.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 32,
+      "product_height_percent": 33,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Product width exceeds the strict 27% hard reject threshold (approx 32%)",
+        "Product height exceeds the strict 32% hard reject threshold (approx 33%)",
+        "Product x-center is too close to the middle (42%), violating the off-center lower-third requirement",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 13-27% of frame width.; Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the drip tape roll size to 20% width and 25% height to strictly comply with dimension limits. Move the product's horizontal position to the left (approx 30% x-center) or right (approx 70% x-center) to ensure it is clearly off-center in the lower third of the frame. Reduce the product group from 32% to 13-27% of frame width. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 13,
+      "product_height_percent": 12,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Hard reject: The image contains a prominent human subject (farmer/worker) in the foreground, violating the 'zero people' constraint.",
+        "The product is not an AFP wide low cylindrical drip-tape carton roll; instead, it resembles a smaller, square or short cylindrical container that does not match the visual description of the specific product."
+      ],
+      "correction_prompt": "Regenerate the image to show an unattended farm scene with zero people. Place a wide, low, cylindrical AFP drip-tape carton roll (white and blue) on the soil in the lower third, off-center. Keep crop plants visually neutral or absent. Include the 'AFP | 09134922013' watermark in the bottom right.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 80,
+      "product_width_percent": 18,
+      "product_height_percent": 16,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Visually consistent 'wide low cylindrical drip-tape carton roll' (1.5-1.9x diameter-to-height ratio).",
+        "Correct off-center placement in the lower third, naturally placed on soil.",
+        "Product dimensions are within acceptable range (18% width, 16% height), maintaining secondary status.",
+        "Absence of any persons or human body parts.",
+        "Correct bottom-right watermark 'AFP | 09134922013'.",
+        "Farm context (tractor, barn, crop rows) is consistent with the hardware role without contradictions."
       ],
       "correction_prompt": "",
-      "attempt": 1
+      "attempt": 4
     }
   ],
   "approved_image": "فاصله-نوار-تیپ-در-کشت-زعفران-استانداردهای-توصیهشده-جزئیات-فنی.webp"

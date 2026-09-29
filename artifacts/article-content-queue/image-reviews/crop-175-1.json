@@ -1,0 +1,112 @@
+{
+  "id": "crop-175",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 75,
+      "product_width_percent": 12,
+      "product_height_percent": 14,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Product width is approx 12% (below preferred 20% but within 13-27% practical limit).",
+        "Product height is approx 14% (under the 32% limit).",
+        "Product is off-center in the lower third.",
+        "Contains the required 'AFP | 09134922013' watermark.",
+        "Zero people or human body parts.",
+        "Farm context includes drip tape infrastructure.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 18,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The visible crop is clearly identifiable as a grass species (likely foxtail millet) rather than sesame; the long, bristly seed panicles do not match the 'narrow lance-shaped leaves and elongated seed capsules' defined for article-specific recognition.",
+        "The visible product appears to be a standard industrial roll (like paper, plastic, or wire) rather than a drip-tape carton roll; it is not wide/low and cylindrical, and it lacks the characteristic appearance of a large irrigation tape roll."
+      ],
+      "correction_prompt": "Replace the grass with sesame plants (upright stems, narrow lance-shaped leaves, and elongated seed capsules). Replace the industrial-looking roll with a large, wide, low cylindrical carton roll of white-and-blue drip tape.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 17,
+      "product_height_percent": 23,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: A person (male farmer) is visible in the image.",
+        "Hard reject: Human body parts (head, face, arms, hands, legs) are visible.",
+        "Hard reject: The person is touching the product, violating the 'zero people' constraint."
+      ],
+      "correction_prompt": "Remove the man/farmer and his body parts entirely. Ensure the AFP drip-tape roll is placed on the soil in a sesame farm context without any human presence, silhouettes, or body parts. Keep the bottom-right watermark 'AFP | 09134922013'.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 24,
+      "product_height_percent": 12,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Presence of a person in the background (sitting figure), which is a hard reject condition.",
+        "Crop context appears to be grain (e.g., wheat/barley) rather than the specified sesame (کنجد), lacking the specific lance-shaped leaves and seed capsules."
+      ],
+      "correction_prompt": "Regenerate the image with no people. Replace the background crop with recognizable young sesame plants (narrow lance-shaped leaves). Ensure the product roll is in the foreground on the soil. Keep the AFP | 09134922013 watermark.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 20,
+      "product_height_percent": 18,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The background crops are clearly identifiable as corn (maize) seedlings with wide, arching leaves, not the upright, narrow-leaved sesame (kenaf) stems required for the article topic.",
+        "The crop visual does not match the specific agronomic story for sesame."
+      ],
+      "correction_prompt": "Replace the maize/corn background crops with young sesame seedlings featuring narrow lance-shaped leaves and thin upright stems to match the article topic.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 24,
+      "product_height_percent": 31,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The product is centered horizontally (48%) and sits on the horizontal midline, violating the requirement to be off-center on the lower third.",
+        "The crop shown is grass-like (narrow, long leaves growing in dense rows) rather than sesame; it lacks the specific lance-shaped leaves and upright broad-leafed stems of sesame, appearing more like turf or cereals.",
+        "The product appears to be a rigid canister/cylinder (flat top, likely a container) rather than a visible roll of flexible drip tape with a center hole/spiral winding visible."
+      ],
+      "correction_prompt": "Reposition the AFP drip tape canister to the right third of the image, low on the soil. Replace the grass background with visible sesame seedlings showing lance-shaped leaves. Ensure the product clearly reads as a roll of tape, not a solid canister.",
+      "attempt": 6
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 62,
+      "reasons": [
+        "Product is a white-and-blue wide low cylindrical drip-tape carton roll, consistent with the AFP product specification.",
+        "The roll is placed on the soil in a farm context, with background crop rows matching the agronomic theme.",
+        "No people, faces, or body parts are visible in the image.",
+        "The bottom-right watermark 'AFP | 09134922013' is present and legible, meeting the watermark requirement.",
+        "The product’s bounding box width, height, and off-center placement are within the practical thresholds (width ~18%, height ~24%, x-center ~62%).",
+        "The background shows a prepared agricultural field with young crop rows; the crop is not clearly a different species, so it is treated as acceptable neutral young vegetation per the agronomic flexibility."
+      ],
+      "correction_prompt": "",
+      "attempt": 1
+    }
+  ],
+  "approved_image": "میزان-برداشت-کنجد-در-هکتار-با-نوار-تیپ-تصویر-شاخص.webp"
+}

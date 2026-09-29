@@ -1,0 +1,71 @@
+{
+  "id": "crop-184",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 38,
+      "product_height_percent": 42,
+      "product_x_center_percent": 82,
+      "reasons": [
+        "The image is a composite grid containing multiple views, violating the requirement for a single image of exactly one carton roll.",
+        "The product (specifically the large roll in the top-right panel) exceeds the maximum width (38% vs 27% max) and height (42% vs 32% max) limits.",
+        "The product is placed in the top-right quadrant instead of the required lower third.",
+        "Multiple instances of the product are visible (one in the main left view, one in top-right, one in bottom-right).",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 13-27% of frame width.; Reduce product height from 42% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate as a single, unified image (no grid/collage) containing only one roll of AFP drip tape. Place the roll on the soil in the lower third of the frame, off-center to the left or right. Scale the roll to be approximately 20% of the frame width and 25% of the frame height. Keep the background as a farm context with no people visible. Reduce the product group from 38% to 13-27% of frame width. Reduce product height from 42% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 22,
+      "product_height_percent": 34,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Product height exceeds the 32 percent limit",
+        "Product is centered horizontally instead of being off-center on the lower third",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Move the roll off-center to the lower-left or lower-right third and reduce its vertical height to under 30 percent of the frame while maintaining the wide cylindrical aspect ratio. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 17.5,
+      "product_height_percent": 15.0,
+      "product_x_center_percent": 32.0,
+      "reasons": [
+        "Hard reject: A man (person, body, face, hands, legs) is clearly visible in the foreground interacting with the crop.",
+        "The image violates the strict 'zero people and zero human body parts' rule."
+      ],
+      "correction_prompt": "Remove the man completely. Keep only the farm background (field, tractor, barn) and the AFP drip-tape roll placed on the soil. Ensure no people are visible in the scene.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 23,
+      "product_height_percent": 28,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Contains exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product is off-center on the lower third and placed naturally on soil.",
+        "Product width (approx 23%) and height (approx 28%) are within acceptable limits.",
+        "Zero people or human body parts present.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom right.",
+        "Unattended tractor in background is acceptable infrastructure.",
+        "Crop plants are visually neutral and do not contradict lettuce."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "فاصله-نوار-تیپ-در-کشت-کاهو-استانداردهای-توصیهشده-جزئیات-فنی.webp"
+}

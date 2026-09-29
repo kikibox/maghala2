@@ -1,0 +1,72 @@
+{
+  "id": "crop-159",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 16.5,
+      "product_height_percent": 21,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Crop type mismatch: The image displays grassy shoots (resembling corn, onion, or garlic) which are not 'leafy vegetables' (سبزی). The required leafy green article is not present.",
+        "Crop ambiguity: The background crop is not a botanically neutral bed that clearly signals 'leafy vegetables'; it is an identifiable monocot grass crop."
+      ],
+      "correction_prompt": "Replace the tall grassy shoots in the field with rows of broad-leafed leafy vegetables (such as lettuce or spinach) to accurately match the 'leafy vegetables' (سبزی) article. Keep the white and blue drip-tape roll in the same position with the required AFP watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 10,
+      "product_height_percent": 9,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Product width is approximately 10% of the frame width, which is below the hard-reject minimum of 13%.",
+        "The roll's geometry appears roughly circular (width equals height), whereas the specification requires a 'wide' profile where the visible diameter is 1.5 to 1.9 times the height.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Enlarge the white and blue drip-tape roll so its width covers approximately 15% of the image frame. Ensure the roll has a distinctly 'wide' cylindrical shape with a diameter significantly larger than its vertical height (approx 1.5x ratio). Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: Image contains two human figures (farmers), which is strictly forbidden.",
+        "Product geometry failure: The roll's diameter/height ratio is incorrect; it appears too tall and narrow (cylindrical canister shape) rather than the required wide, low ratio (1.5-1.9x).",
+        "Product size failure: The product is too small relative to the frame (width ~8%) and is interacting with a person.",
+        "Context failure: The crop context is generic, and the interaction with the harvest basket and humans violates the 'zero people' rule.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human body parts. Show a single AFP white-and-blue wide, low cylindrical drip-tape roll placed on the soil in a leafy vegetable field (سبزی). The roll must be wide (aspect ratio ~1.7:1) and occupy ~20% of the frame width. Do not include farmers, hands, or harvest baskets. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 23,
+      "product_height_percent": 25,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The image contains exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "The background context clearly shows a farm with rows of leafy vegetables, consistent with the topic 'سبزی' (leafy vegetables).",
+        "The product is naturally placed on soil and is off-center within the lower third of the image.",
+        "The visible diameter of the product is proportionate to its height, appearing approximately 1.5 to 1.9 times its height.",
+        "The bottom-right watermark 'AFP | 09134922013' is clearly visible and correct.",
+        "The image contains zero people or human body parts.",
+        "The product's width and height fall within the acceptable practical estimates (width: 23%, height: 25%).",
+        "No hard reject criteria are present (e.g., second roll, bottle, jar, etc.)."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-پیاز-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

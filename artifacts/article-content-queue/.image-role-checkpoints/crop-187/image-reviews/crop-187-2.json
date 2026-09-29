@@ -7,35 +7,47 @@
   "attempts": [
     {
       "pass": false,
-      "score": 45,
-      "product_width_percent": 0,
-      "product_height_percent": 0,
-      "product_x_center_percent": 0,
+      "score": 40,
+      "product_width_percent": 30,
+      "product_height_percent": 22,
+      "product_x_center_percent": 55,
       "reasons": [
-        "Required product is a white-and-blue wide low cylindrical drip-tape carton roll, but the image shows a flat-tape spool of inconsistent scale relative to the field.",
-        "Hard reject: Visible crop is clearly identifiable as a different species (corn/maize) with distinct narrow leaves, whereas the article specifies fava bean (باقلا) with thick stems, broad leaflets, and pods.",
-        "Hard reject: Product shape and proportion (tall spool geometry) do not match the required wide, low cylindrical carton roll.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+        "Product width is too wide (approx 30% vs max 27% limit).",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate the image with a white-and-blue wide low cylindrical drip-tape carton roll positioned on the soil in the lower third. The background must clearly depict fava bean plants (thick upright stems, broad paired leaflets, visible pods), not corn. Remove any conflicting crop species and ensure the product shape matches a flat carton roll, not a tall spool. Keep the watermark. Enlarge the product group from 0% to 13-27% of frame width.",
+      "correction_prompt": "Resize the drip tape roll to occupy only 20-23% of the image width to ensure it looks like a standard carton roll, keep the 'AFP | 09134922013' watermark in the bottom right. Reduce the product group from 30% to 13-27% of frame width.",
       "attempt": 1
     },
     {
-      "pass": true,
-      "score": 78,
-      "product_width_percent": 19,
-      "product_height_percent": 21,
-      "product_x_center_percent": 43,
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 13,
+      "product_height_percent": 15,
+      "product_x_center_percent": 38,
       "reasons": [
-        "Product geometry and positioning align with requirements: off-center, placed on soil in the lower third, and secondary in scale.",
-        "The product is a white cylindrical carton roll with 'AFP' branding, matching the requested description.",
-        "The required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
-        "No people, body parts, or unauthorized objects are visible.",
-        "The background crop, while not a mature fava bean, appears to be young broad-leafed vegetation which is acceptable when the agronomic context is clear.",
-        "Image quality is good with clear focus on the product and appropriate lighting."
+        "Presence of a person (legs, arms, hands, and shoes) in the right-center of the image, which is a hard reject condition.",
+        "The crop shown (likely a weed or dicot seedling) does not resemble fava bean plants (thick upright stems, broad paired leaflets)."
+      ],
+      "correction_prompt": "Regenerate the image to show a farm field with young fava bean plants and a white-and-blue drip-tape roll on the soil. Strictly exclude all people, human body parts, and silhouettes. Ensure the roll is wide, cylindrical, and low-profile.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 19.5,
+      "product_height_percent": 26.0,
+      "product_x_center_percent": 49.5,
+      "reasons": [
+        "Product is a white-and-blue wide low cylindrical drip-tape carton roll consistent with AFP branding.",
+        "The exact bottom-right watermark 'AFP | 09134922013' is present as required.",
+        "The background shows a farm field with young crop seedlings and a distant barn, matching the agronomic context.",
+        "The product is off-center on the lower third and naturally placed on soil.",
+        "Zero people, human body parts, or human silhouettes are visible.",
+        "Product dimensions (width ~20%, height ~26%, diameter-to-height ratio ~1.5) are within the acceptable practical range.",
+        "Only minor deduction due to the product being positioned slightly too centrally on the x-axis; however, it still satisfies the 'off-center' condition due to its vertical placement in the lower third and overall framing."
       ],
       "correction_prompt": "",
-      "attempt": 2
+      "attempt": 3
     }
   ],
   "approved_image": "میزان-برداشت-باقلا-در-هکتار-با-نوار-تیپ-کاربرد-عملی.webp"

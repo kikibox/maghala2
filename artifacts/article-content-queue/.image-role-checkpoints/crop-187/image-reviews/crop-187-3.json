@@ -6,22 +6,46 @@
   "approved": true,
   "attempts": [
     {
-      "pass": true,
-      "score": 74,
-      "product_width_percent": 18,
-      "product_height_percent": 20,
-      "product_x_center_percent": 35,
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 30,
       "reasons": [
-        "Product appears wide and low with a cylindrical roll shape.",
-        "The product is white with blue branding matching AFP.",
-        "The roll is off-center in the lower third of the frame.",
-        "There are no people or human body parts.",
-        "The exact AFP phone watermark is present in the bottom-right.",
-        "Farm context is visible with soil and crop rows.",
-        "No forbidden items or extra commercial products are present."
+        "Crop morphology (broad leaves, branching stems) does not match fava bean (باقلا); it resembles sunflower or similar, causing a hard reject.",
+        "Image layout is a collage (three separate panels), which is not a single unified scene and typically fails QA for role images."
+      ],
+      "correction_prompt": "Regenerate a single continuous image (no collage). Show a field of actual fava bean plants (باقلا). Place the white and blue AFP drip tape roll on the soil in the lower-left or lower-right, ensuring it occupies 13-27% width and <32% height. Keep the 'AFP | 09134922013' watermark. No people.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 28,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "The visible diameter of the roll is approximately 1.14 times its visible height (18% width / 15.7% estimated height), which is significantly below the required 1.5 to 1.9 times ratio (the roll looks too tall/cylindrical rather than wide/flat)."
+      ],
+      "correction_prompt": "Regenerate the image with a visibly wider, flatter cylindrical drip-tape roll (approximately 1.6 to 1.8 times wider than it is tall). Keep the roll off-center in the lower third on the soil, maintaining the farm context and the 'AFP | 09134922013' watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 27,
+      "product_height_percent": 26,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Single AFP white-and-blue drip-tape roll present, no secondary products or containers.",
+        "Zero people or human body parts visible.",
+        "Product is wide, low, and cylindrical as specified.",
+        "Product is off-center on the lower third and naturally placed on soil.",
+        "Background matches context with farm rows and unattended tractor (infrastructure allowed).",
+        "Required watermark 'AFP | 09134922013' is present and correct."
       ],
       "correction_prompt": "",
-      "attempt": 1
+      "attempt": 3
     }
   ],
   "approved_image": "میزان-برداشت-باقلا-در-هکتار-با-نوار-تیپ-جزئیات-فنی.webp"

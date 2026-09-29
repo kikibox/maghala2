@@ -3,97 +3,52 @@
   "kind": 2,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 68,
-      "product_width_percent": 22,
-      "product_height_percent": 25,
-      "product_x_center_percent": 65,
+      "score": 20,
+      "product_width_percent": 16,
+      "product_height_percent": 26,
+      "product_x_center_percent": 48,
       "reasons": [
-        "The product is not a 'cylindrical drip-tape carton roll'; it is a flat reel/spool of drip tape. The spec specifically requires a cylindrical carton roll of the tape itself.",
-        "The product appears as a second roll/spool, but the spec calls for exactly one cylindrical carton roll, not a spool.",
-        "The crop is identifiable as mature saffron, which is allowed, but the product shape is not cylindrical."
+        "Hard reject: Human body parts visible (arms, hands, legs, boots of a person crouching on the left).",
+        "The product is being actively handled by hands rather than resting naturally on the soil.",
+        "The product is positioned too far to the center and is partially obscured by the human subject."
       ],
-      "correction_prompt": "Replace the drip-tape spool with a white-and-blue cylindrical carton roll (flat top and bottom) of drip tape lying off-center on the soil, keeping the saffron crop and the AFP phone watermark exactly as they are.",
+      "correction_prompt": "Remove the person/hands/feet completely. Place the white and blue AFP drip-tape roll naturally on the soil surface without holding it. Ensure the roll is located in the lower third, off-center to the right, and clearly surrounded by saffron plants.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 45,
-      "product_width_percent": 26,
-      "product_height_percent": 34,
-      "product_x_center_percent": 26,
+      "score": 65,
+      "product_width_percent": 24.2,
+      "product_height_percent": 31.5,
+      "product_x_center_percent": 51.2,
       "reasons": [
-        "The product height (estimated 34%) exceeds the strict maximum limit of 32%.",
-        "The product bounding box width (26%) is at the upper edge of the acceptable range.",
-        "A large shadow cast by the product to the right could be interpreted as an extra 'roll' or unapproved shape depending on strict interpretation, though the main height violation is the definitive reason.",
-        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+        "The crop shown in the field consists of large multi-petaled purple flowers, not the narrow grass-like leaves and sparse flowers defined for saffron (Crocus sativus).",
+        "The product placement is centered (51.2%) rather than being off-center on the lower third as required."
       ],
-      "correction_prompt": "Generate a new image where the white and blue AFP drip-tape roll is smaller in frame height (under 32%), ensuring the visible height is strictly smaller than the visible width. Keep the roll in the lower-left third on the soil among saffron crocus plants. Ensure zero human presence. Reduce product height from 34% to at most 32% of frame height.",
+      "correction_prompt": "Replace the large floral plants with visible narrow grass-like saffron leaves and tiny sparse flowers. Move the drip-tape roll horizontally to the left or right so it is clearly off-center on the lower third.",
       "attempt": 2
     },
     {
-      "pass": false,
-      "score": 15,
-      "product_width_percent": 12,
-      "product_height_percent": 22,
-      "product_x_center_percent": 28,
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 20,
+      "product_height_percent": 23,
+      "product_x_center_percent": 68,
       "reasons": [
-        "Presence of a human body part (person crouching, hand reaching into the crop) violates the hard reject rule for any visible person or human body part.",
-        "The product height (approx 22%) is disproportionately high relative to its width (approx 12%), creating a vertical/boxy appearance rather than the required wide low cylindrical shape.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+        "Product is a white-and-blue cylindrical drip-tape roll with clear 'AFP' branding.",
+        "Context accurately shows saffron crocus (narrow grass-like leaves with purple flowers).",
+        "Irrigation layout is visible with blue drip tape running through the rows.",
+        "Zero people or human body parts are present in the image.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Product dimensions and placement (lower third, off-center) fit the constraints."
       ],
-      "correction_prompt": "Regenerate the image to completely remove the person and their hands. Adjust the drip-tape roll to be a wide, low cylinder where the diameter is at least 1.5 times the height. Ensure the product fits in the lower third, off-center on the left. Enlarge the product group from 12% to 13-27% of frame width.",
+      "correction_prompt": "",
       "attempt": 3
-    },
-    {
-      "pass": false,
-      "score": 40,
-      "product_width_percent": 24,
-      "product_height_percent": 28,
-      "product_x_center_percent": 25,
-      "reasons": [
-        "Watermark text is incorrect: The image displays '09134922013' instead of the required '09134922013' (Wait, looking closely at the prompt and image: The prompt asks for '09134922013' and the image has '09134922013'. Actually, looking at the prompt text provided in the user message: 'The exact bottom-right watermark \"AFP | 09134922013\" is REQUIRED'. The image has '09134922013'. This matches. Let me re-read the prompt carefully. Ah, the prompt says '09134922013'. The image has '09134922013'. Okay, so that matches. Let me re-check the '09134922013' in the prompt. Yes. Wait, I see the prompt says '09134922013'. The image says '09134922013'. That's a match. Let me look for other issues. The flowers in the image are clearly yellow and purple crocuses. The prompt requires 'saffron crocus with narrow grass-like leaves and sparse purple flowers'. Yellow crocuses are present. While yellow crocuses are a thing, saffron is specifically *Crocus sativus* which is purple. The presence of many yellow flowers suggests a generic crocus field rather than a specific saffron agronomic story. However, the prompt says 'Hard reject a clearly identifiable different species'. Yellow crocus is a different species from Saffron crocus (C. sativus). So this is a hard reject. Also, the product is a roll of tape, not 'drip-tape carton roll' specifically? No, it looks like a roll of tape. But the 'yellow flowers' are the main issue. Wait, let me look at the watermark again. The prompt says '09134922013'. The image has '09134922013'. Okay. Let's look at the text on the package. It says 'drip irrigation tape'. The prompt says 'drip-tape carton roll'. The item is a roll of tape, not a carton. But 'carton roll' might just mean the roll that comes in a carton? Or is it a 'drip-tape carton roll' where 'carton' is a typo in the prompt? The prompt says 'drip-tape carton roll'. The image shows a roll of tape. This is likely acceptable as the standard form factor. The main fail is the crop. The prompt defines the article crop as 'saffron crocus... sparse purple flowers'. The image shows a mix of yellow and purple. This is not the specific saffron story. It looks like a generic ornamental crocus field. Therefore, it fails the 'article-specific agronomic story' check because the crop is mixed and includes the wrong species.",
-        "reasons_corrected"
-      ],
-      "correction_prompt": "Remove all yellow flowers. The field must contain only purple saffron crocuses (Crocus sativus) with narrow leaves. Ensure the crop is identifiable as saffron, not generic yellow/purple ornamental crocuses.",
-      "attempt": 4
-    },
-    {
-      "pass": false,
-      "score": 0,
-      "product_width_percent": 10,
-      "product_height_percent": 10,
-      "product_x_center_percent": 45,
-      "reasons": [
-        "Hard reject: The image contains a person (farmer/worker), including body parts (hands, legs, face).",
-        "Product does not meet the requirement of being a wide, low, cylindrical roll placed naturally on the soil; it is being held/interacted with by a person.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
-      ],
-      "correction_prompt": "Regenerate the image to show a wide cylindrical drip-tape carton roll placed naturally on the soil in a saffron farm. The roll must be off-center in the lower third, approximately 20% of the frame width, and no human figures or body parts must be visible. Maintain the white and blue design with the 'AFP | 09134922013' watermark in the bottom right. Enlarge the product group from 10% to 13-27% of frame width.",
-      "attempt": 5
-    },
-    {
-      "pass": false,
-      "score": 92,
-      "product_width_percent": 28,
-      "product_height_percent": 30,
-      "product_x_center_percent": 35,
-      "reasons": [
-        "Shows exactly one wide low cylindrical drip-tape carton roll",
-        "Background crop accurately depicts saffron crocus with narrow grass-like leaves and sparse purple flowers",
-        "Watermark 'AFP | 09134922013' is present and correct",
-        "Zero people or body parts visible",
-        "Product is placed naturally on soil in the lower third",
-        "Product geometry is correct (wide cylindrical shape)",
-        "Product width (28%) is on the edge of the upper acceptable limit, but remains secondary to the strong background and crop identification",
-        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
-      ],
-      "correction_prompt": "Reduce the product group from 28% to 13-27% of frame width.",
-      "attempt": 6
     }
   ],
-  "approved_image": null
+  "approved_image": "فاصله-نوار-تیپ-در-کشت-زعفران-استانداردهای-توصیهشده-کاربرد-عملی.webp"
 }

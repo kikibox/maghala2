@@ -4,52 +4,40 @@
   "history": [
     {
       "pass": false,
-      "score": 65,
-      "duplicate_roles": [],
-      "reasons": [
-        "Contradictory crop: The article features eggplant (bademjan). Image 1 clearly displays Sunflowers, which is a hard reject for a crop-identity overview.",
-        "Contradictory crop: Image 2 features leafy plants resembling Potato or Soy, not Eggplant, lacking the correct botanical morphology for the specific crop target.",
-        "Role failure: Image 3 shows a tractor in a field that appears to be pre-planting or tilled (no crop visible), failing to support the article's focus on 'maintenance' and 'irrigation' of active eggplant beds."
+      "score": 40,
+      "duplicate_roles": [
+        2
       ],
-      "correction_prompt": "Regenerate the set with accurate eggplant crops in all images: 1) Overview of dense eggplant rows with sunflowers removed. 2) Macro close-up of eggplant foliage and drip tape. 3) Eggplant field with irrigation system active, removing the tractor.",
+      "reasons": [
+        "Image 2 shows a tomato field with red fruits, which is clearly a different crop and contradicts the article's specific focus on eggplant (bademjan).",
+        "Image 1 uses very young, generic seedlings which lack the distinct eggplant leaf morphology needed for clear crop identity.",
+        "Only Image 3 effectively depicts the eggplant crop (via identifiable foliage) combined with the drip tape product. Replacing the contradictory crop image with a different angle or close-up of eggplant would complete the set."
+      ],
+      "correction_prompt": "Regenerate Image 2 to show a close-up of mature eggplant plants and fruit in a field with a drip line, replacing the contradictory tomato crop while maintaining a distinct agronomic perspective.",
       "set_attempt": 1
     },
     {
       "pass": false,
-      "score": 45,
-      "duplicate_roles": [
-        1,
-        3
-      ],
+      "score": 35,
+      "duplicate_roles": [],
       "reasons": [
-        "Hard fail: A clearly red barn is present in the background of image #3.",
-        "Duplication: Image #1 and Image #3 are near-duplicates, sharing the exact same camera angle (eye-level), framing (product at bottom-left), and layout (product in an open tilled row). They also share the same 'technical narrative' regarding the irrigation lines.",
-        "Crop Morphology: The images depict generic young seedlings rather than clearly identifiable eggplant plants (which should have distinct foliage), and image #1 shows no drip tape installation despite the 'maintenance' topic."
+        "Hard reject: Image 2 features prominent, colorful flowers (orange, pink, purple) in the foreground and mid-ground which clearly represent a different crop (like hibiscus or a flower farm), directly contradicting the article topic of eggplant (bademjan). The instructions state that a 'clearly contradictory identifiable crop' is a hard reject.",
+        "Weaker execution for the 'agronomic close evidence' role: The set lacks a strong visual of root-zone evidence or specific crop close-ups. The close-ups shown are of generic young plants, while the contradictory flowering plants in Image 2 disrupt the narrative for an eggplant field.",
+        "While Image 1 (Overview) and Image 3 (System Story) are functional and appropriate, the inclusion of a clearly contradictory crop in Image 2 breaks the set's integrity regarding the specific agricultural subject matter."
       ],
-      "correction_prompt": "Replace images #1 and #3 with a completely different angle (e.g., low-angle close-up) showing actual eggplant crop foliage and drip tape lines. Ensure no red barn or large structures are visible in the background of any shot.",
+      "correction_prompt": "Replace Image 2: Show a close-up of an eggplant field featuring young green eggplant seedlings with large, fuzzy leaves. To emphasize the 'agronomic close evidence' role, the shot should clearly display the black drip tape running along the soil surface adjacent to the plant stems, free of any foreign flowering plants or crops.",
       "set_attempt": 2
     },
     {
-      "pass": false,
-      "score": 70,
+      "pass": true,
+      "score": 85,
       "duplicate_roles": [],
       "reasons": [
-        "The set fails to clearly establish 'crop-identity' for eggplant, as Image 1 shows ornamental bedding plants (like Marigold) and small seedlings, and Image 2 shows leafy greens (like Lettuce or Tobacco), neither of which are identifiable as eggplant.",
-        "The intended 'agronomic close evidence' and 'irrigation-system story' roles are not distinctly fulfilled; while Image 3 is the only one showing the unrolled drip tape (the irrigation system), Images 1 and 2 are redundant shots of the product roll sitting on the ground without specific agronomic context."
+        "The set successfully fulfills distinct editorial roles: a crop-identity overview, an agronomic close-up, and an irrigation-system story.",
+        "All three images feature the AFP drip tape product and consistent young eggplant vegetation without showing any people, satisfying all mandatory constraints."
       ],
-      "correction_prompt": "Regenerate Image 1 to show a clear close-up of an identifiable mature eggplant plant. Regenerate Image 2 to show a distinct macro shot of soil, root-zone, or tape emitters demonstrating irrigation efficacy, rather than a wide shot of the product roll.",
+      "correction_prompt": "",
       "set_attempt": 3
-    },
-    {
-      "pass": false,
-      "score": 40,
-      "duplicate_roles": [],
-      "reasons": [
-        "Image 1 contains a clearly identifiable crop (the red fruit and foliage are characteristic of a pepper plant) which contradicts the topic of eggplant (بادمجان) cultivation.",
-        "The required three functional roles (crop-identity overview, agronomic close evidence, irrigation-system story) are not distinctly fulfilled due to the identity contradiction in the first image."
-      ],
-      "correction_prompt": "Replace the red pepper plant in the foreground with a mature eggplant plant displaying its characteristic deep purple fruits and broad leaves.",
-      "set_attempt": 4
     }
   ]
 }

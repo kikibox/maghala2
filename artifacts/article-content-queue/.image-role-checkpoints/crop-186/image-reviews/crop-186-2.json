@@ -7,86 +7,79 @@
   "attempts": [
     {
       "pass": false,
-      "score": 10,
-      "product_width_percent": 4,
-      "product_height_percent": 15,
-      "product_x_center_percent": 50,
+      "score": 35,
+      "product_width_percent": 19,
+      "product_height_percent": 24,
+      "product_x_center_percent": 70,
       "reasons": [
-        "Hard reject: presence of multiple people (two farmers/workers)",
-        "Hard reject: Product is a small canister, not a wide cylindrical drip-tape carton roll",
-        "Hard reject: Wrong crop (plants look like Artemisia or generic herbs, not Canola/Rapeseed)",
-        "Hard reject: Product is centered, not off-center on the lower third",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
+        "The required image role 2 article crop کلزا (canola/rapeseed) is clearly misidentified. The plant shown is not canola/rapeseed; it has the morphology of a related non-target crucifer such as black-eyed susanna. Canola/rapeseed at bloom is defined by slender branching stems with small yellow four-petal flowers. The hard-reject criterion 'clearly identifiable different species' applies.",
+        "The AFP bottom-right watermark is present (required). The drip-tape roll dimensions are within acceptable bounds (width ~19%, height ~24%, off-center in the lower third, natural placement on soil). No people or human body parts are present. The main fatal issue is the wrong crop species.",
+        "correction_prompt\":\"Regenerate with the foreground crop strictly as canola/rapeseed: low bluish-green rosettes of broad lobed brassica leaves at establishment or slender branching stems bearing small yellow four-petal flowers at bloom. Remove the large yellow composite flower and replace it with the correct four-petal Brassicaceae morphology. Keep the AFP drip-tape roll in the lower-right off-center position on soil, no people, retain AFP | 09134922013 watermark.\"}"
       ],
-      "correction_prompt": "Generate a wide low cylindrical white-and-blue drip tape roll on the soil of a Canola farm. The roll should be off-center (lower third) and occupy about 20% of the frame width. No people. Background must show Canola crop (bluish-green rosettes or yellow flowers). Enlarge the product group from 4% to 13-27% of frame width.",
       "attempt": 1
-    },
-    {
-      "pass": false,
-      "score": 10,
-      "product_width_percent": 22,
-      "product_height_percent": 38,
-      "product_x_center_percent": 28,
-      "reasons": [
-        "Hard reject: The background features sunflowers and blue tubular flowers, which are clearly identifiable different species and not the required canola (rapeseed) at establishment or bloom.",
-        "Hard reject: The required text 'دبیرست' and specific branding elements on the roll do not perfectly match the 'AFP white-and-blue' package expectation, and the visible height of the product exceeds the 32 percent limit.",
-        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
-      ],
-      "correction_prompt": "Replace the sunflowers and blue flowers with a crop of canola (rapeseed) showing low bluish-green rosettes or slender stems with small yellow four-petal flowers. Ensure the AFP white-and-blue drip-tape roll is positioned on the soil in the lower-left, with its height strictly less than 32% of the frame and width between 20-23%. Maintain the bottom-right watermark 'AFP | 09134922013'. Reduce product height from 38% to at most 32% of frame height.",
-      "attempt": 2
-    },
-    {
-      "pass": false,
-      "score": 20,
-      "product_width_percent": 12,
-      "product_height_percent": 18,
-      "product_x_center_percent": 25,
-      "reasons": [
-        "Presence of people: The image prominently features two people (an adult and a child) kneeling in the foreground, which is a hard reject violation.",
-        "Incorrect crop context: The background shows a dense field of mixed wildflowers (poppies, cosmos, etc.), which is not representative of a specific commercial canola (rapeseed) farm context.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
-      ],
-      "correction_prompt": "Remove the two people from the image completely. Replace the wildflower background with a commercial canola field showing yellow four-petal flowers or green rosettes. Ensure the irrigation roll is slightly larger and positioned naturally on the soil in the lower third. Enlarge the product group from 12% to 13-27% of frame width.",
-      "attempt": 3
     },
     {
       "pass": false,
       "score": 40,
       "product_width_percent": 20,
-      "product_height_percent": 23,
-      "product_x_center_percent": 45,
+      "product_height_percent": 25,
+      "product_x_center_percent": 65,
       "reasons": [
-        "Hard reject: The background crop is clearly identifiable as Sunflower (Helianthus annuus) with large yellow flower heads, not Canola/Rapeseed which must feature small yellow four-petal flowers or bluish-green rosettes; the visible flower morphology is distinctly different (too large, distinct petal shape).",
-        "Hard reject: The watermark in the bottom right is 'AFP | 09134922013' but the visible text is 'AFP | 09134922013' (checking: prompt requires 'AFP | 09134922013'). The visible number is 09134922013. It matches. However, the crop rejection is absolute.",
-        "Warning: Product height (23%) is close to the limit but acceptable; however, the crop mismatch is the primary disqualifier."
+        "The crop shown is clearly identifiable as black-eyed Susans (Rudbeckia), characterized by their long, narrow, lance-shaped leaves. This violates the requirement for canola, which must have broad lobed brassica leaves or slender branching stems with yellow four-petal flowers. It is not a neutral seedling stage and acts as a hard reject for a different species."
       ],
-      "correction_prompt": "Regenerate the image. Change the background field to a canola (rapeseed) field. It must show slender branching stems with small yellow four-petal flowers (not large sunflower heads) or low bluish-green rosettes. Ensure the roll remains in the lower third on soil with the correct AFP watermark.",
+      "correction_prompt": "Regenerate the image with canola/rapeseed plants instead of black-eyed Susans. Ensure the plants show bluish-green rosettes or yellow four-petal flowers on branching stems, maintaining the correct drip-tape roll placement and AFP watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 16,
+      "product_height_percent": 19,
+      "product_x_center_percent": 63,
+      "reasons": [
+        "The crop shown in the background includes sunflowers and purple cornflowers, which are not canola (rapeseed). The article requires a farm context with recognizable canola (e.g., bluish-green rosettes or small yellow four-petal flowers).",
+        "Hard reject for clearly identifiable different species in the crop context."
+      ],
+      "correction_prompt": "Regenerate the image replacing the sunflowers and purple cornflowers with canola (rapeseed). Show canola as low bluish-green rosettes of broad lobed brassica leaves at establishment, or slender branching stems with small yellow four-petal flowers at bloom. Do not include sunflowers, corn, or other non-canola species. Keep the drip-tape roll size, position, and 'AFP | 09134922013' watermark exactly as they are.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 17,
+      "product_height_percent": 25,
+      "product_x_center_percent": 61,
+      "reasons": [
+        "The background crop is clearly identifiable as sunflowers (tall stalks, yellow composite flower heads), not canola or rapeseed. The prompt requires hard rejection of clearly identifiable different species, and explicitly prohibits anything that is not brassica (canola).",
+        "The article topic is canola, and the visual context fails to reflect the specific botanical description of canola at bloom (small yellow four-petal flowers) or rosettes; instead, the sunflower field creates an irrelevant topic mismatch.",
+        "The drip tape roll contains an unreadable, gibberish sub-heading under the 'AFP' logo, which is a required visual defect (fake/invented text)."
+      ],
+      "correction_prompt": "Regenerate the background to show a field of canola (rapeseed) with slender stems and small yellow four-petal flowers, replacing the sunflowers. Ensure the drip tape roll packaging text is clean and legible, removing the gibberish sub-heading.",
       "attempt": 4
     },
     {
       "pass": false,
-      "score": 15,
-      "product_width_percent": 16,
-      "product_height_percent": 18,
-      "product_x_center_percent": 37,
+      "score": 0,
+      "product_width_percent": 15,
+      "product_height_percent": 15,
+      "product_x_center_percent": 45,
       "reasons": [
-        "Hard reject: Image contains a visible person (farmer/worker) crouching in the frame.",
-        "The product roll is cylindrical and upright, failing the specific 'wide low' shape requirement."
+        "Hard reject: The image contains a person (farmer/worker) and multiple human body parts (arms, hands, legs, torso) crouching in the frame, which is strictly prohibited."
       ],
-      "correction_prompt": "Regenerate image without any people or human body parts. Show the drip tape as a wide, low, flattened cylindrical roll sitting horizontally on the soil. Ensure the background consists of canola (rapeseed) rosettes or blooming plants.",
+      "correction_prompt": "Remove the crouching farmer and all visible body parts; keep the canola field and the AFP drip-tape carton roll placed independently on the soil in the lower third, off-center.",
       "attempt": 5
     },
     {
       "pass": false,
-      "score": 12,
-      "product_width_percent": 26,
-      "product_height_percent": 29,
-      "product_x_center_percent": 48,
+      "score": 35,
+      "product_width_percent": 16,
+      "product_height_percent": 18,
+      "product_x_center_percent": 37,
       "reasons": [
-        "The background crop is clearly sunflowers (broad brown center disks with yellow ray florets), not canola (rapeseed). The image violates the strict requirement for recognizable canola morphology (bluish-green rosettes, or yellow four-petal flowers).",
-        "The product roll is centered (x_center ~48%), violating the 'off-center' staging requirement."
+        "The crop on the right side of the image consists of long, blade-like leaves characteristic of cereals or general grasses, which is explicitly forbidden in the prompt.",
+        "Hard reject due to the presence of cereal or generic tall grass morphology which does not match the required canola (rapeseed) specification."
       ],
-      "correction_prompt": "Regenerate the image with a canola field background featuring slender stems and small yellow four-petal flowers, replacing the sunflowers entirely. Move the white and blue AFP drip-tape roll to the far-left or far-right lower third (x_center around 20% or 80%). Ensure the watermark 'AFP | 09134922013' remains in the bottom right. Ensure no people are visible.",
+      "correction_prompt": "Regenerate the image replacing all cereals and blade-like grasses on the right with low bluish-green rosettes of broad lobed brassica canola leaves, ensuring no tall grass or wheat is present.",
       "attempt": 6
     }
   ],

@@ -8,85 +8,85 @@
     {
       "pass": false,
       "score": 20,
-      "product_width_percent": 7,
-      "product_height_percent": 10,
-      "product_x_center_percent": 45,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 20,
       "reasons": [
-        "Hard reject: Image contains a person (farmer) and visible human body parts.",
-        "Hard reject: The background shows identifiable corn rows, which is a different species than the required fava bean (باقلا).",
-        "The drip-tape roll is incorrectly centered in the frame instead of being off-center on the lower third.",
-        "The product dimensions (width and height) are significantly smaller than the required 13-27 percent width range.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+        "Contains visible hands touching plants in the top-right panel, which violates the strict requirement of zero people or body parts.",
+        "The product (drip tape) appears in the bottom-right panel, not in the main left panel context, and lacks the required white-and-blue packaging carton roll description (appears to be just dark tubing).",
+        "The drip tape roll is centered in its sub-panel rather than naturally placed on soil off-center on the lower third of the main frame.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate the image removing all people. Change the crop background to clearly visible fava bean plants with broad leaflets and upright stems. Ensure a single wide cylindrical drip-tape carton roll (15-20% frame width) is placed naturally on the soil, off-center in the lower left or right third, maintaining the 'AFP | 09134922013' watermark. Enlarge the product group from 7% to 13-27% of frame width.",
+      "correction_prompt": "Remove all human hands and body parts. Show a single white-and-blue AFP carton roll of drip tape placed naturally on soil in the foreground off-center. Ensure the crop is fava bean (baqila) with visible stems and pods. Add the required watermark 'AFP | 09134922013' at the bottom right. Enlarge the product group from 8% to 13-27% of frame width.",
       "attempt": 1
-    },
-    {
-      "pass": false,
-      "score": 25,
-      "product_width_percent": 18,
-      "product_height_percent": 22,
-      "product_x_center_percent": 38,
-      "reasons": [
-        "Crop context is clearly corn (maize), not fava bean (baqila); visible tassels and characteristic corn foliage are distinct and identifiable."
-      ],
-      "correction_prompt": "Regenerate image with a crop field of young fava bean plants (thick upright stems, paired leaflets, visible pods). Replace the corn field with fava beans in the background to match the required article context. Keep the AFP drip-tape roll and watermark exactly as they are.",
-      "attempt": 2
     },
     {
       "pass": false,
       "score": 45,
       "product_width_percent": 22,
       "product_height_percent": 25,
-      "product_x_center_percent": 18,
+      "product_x_center_percent": 29,
       "reasons": [
-        "The background vegetation shows plants with long, tapered single leaves and slender stems, which is not recognizable as fava bean (باقل). The fava bean article requires broad paired leaflets; this crop resembles a monocot (like corn, sorghum, or a grass).",
-        "The crop morphology is clearly identifiable as a different species (poaceae family characteristics), which fails the requirement to make the article crop recognizable or at least neutral."
+        "The crop morphology (thick stalks, large broad leaves) strongly resembles sunflowers (Helianthus) or another broad-leafed species rather than fava beans, which require paired leaflets and elongated, thick pods; the visible structures on the plant are more like flower buds or generic pods that do not satisfy the 'visible elongated pods' requirement for Vicia faba.",
+        "The watermark in the bottom right contains '09134922013', but the specification strictly requires '0913492201' (ten digits). This fails the exact string match requirement for the mandatory watermark."
       ],
-      "correction_prompt": "Change the background crop to fava beans with broad paired leaflets and upright stems, ensuring the plants are clearly distinguishable from grass or corn.",
+      "correction_prompt": "Regenerate the central crop to clearly show fava bean plants (broad pinnate leaves, thick upright stems, and distinct elongated flat pods) instead of the current sunflower-like appearance. Correct the bottom-right watermark text to exactly 'AFP | 0913492201'.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 17,
+      "product_height_percent": 22,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Hard reject: The crop shown is clearly identifiable as a dicot seedling with broad, smooth-edged leaves (resembling Helianthus/Sunflower or a similar weed), which is a clearly identifiable different species than Fava Bean (Vicia faba). Fava beans have distinct pinnately compound leaves with multiple leaflets and a different stem structure.",
+        "Hard reject: The product in the foreground appears to be a solid white cylindrical container or roll with a flat top, not the specified 'drip-tape carton roll' which typically shows the perforated tape texture or a distinct carton spiral.",
+        "The background crop fails to establish the 'fava bean' agronomic story as required."
+      ],
+      "correction_prompt": "Regenerate the image showing a drip-tape roll in a farm field. Replace the broad-leafed dicot crop with distinct Fava Bean (Vicia faba) plants, characterized by pinnately compound leaves with oval leaflets and thick, square, fibrous stems. Ensure the crop rows clearly show these botanical features. Keep the drip-tape roll as a small, secondary element in the bottom-left on soil.",
       "attempt": 3
     },
     {
       "pass": false,
-      "score": 25,
-      "product_width_percent": 12,
-      "product_height_percent": 25,
-      "product_x_center_percent": 52,
+      "score": 55,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 25,
       "reasons": [
-        "The crop shown is clearly maize/corn, which is a hard reject for an article about fava beans (باقلًا).",
-        "The product is too small; width is under 13% and the aspect ratio (height/width) is inverted, appearing tall and narrow rather than wide and low.",
-        "The product is centered in the frame rather than being off-center in the lower third.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+        "The product bounding box dimensions (height of 22% vs width of 18%) do not meet the requirement that the visible diameter be about 1.5 to 1.9 times the visible height.",
+        "A coiled hose is visible on the soil near the drip tape roll, which is explicitly listed as a hard reject element."
       ],
-      "correction_prompt": "Regenerate the scene with a fava bean farm (broad leaves, thick stems, elongated pods) in the background. The foreground must show a single wide, low cylindrical drip-tape roll (width 20-23% of frame, height <32% of frame) placed off-center on the soil in the lower third. Ensure the roll is much wider than it is tall. No people. Enlarge the product group from 12% to 13-27% of frame width.",
+      "correction_prompt": "Remove the coiled hose on the ground and ensure the drip tape roll is wider relative to its height to meet the specified 1.5-1.9x diameter-to-height ratio.",
       "attempt": 4
     },
     {
       "pass": false,
-      "score": 20,
-      "product_width_percent": 18,
-      "product_height_percent": 21,
-      "product_x_center_percent": 45,
+      "score": 30,
+      "product_width_percent": 10,
+      "product_height_percent": 10,
+      "product_x_center_percent": 32,
       "reasons": [
-        "Hard reject: Image contains visible human figures (three people/farmers) in the background, violating the strict 'zero people and zero human body parts' rule.",
-        "Hard reject: The crop shown is corn (maize), identified by distinct tassels and leaf structure, not fava beans. The rules require fava bean morphology (thick upright stems, broad paired leaflets) and hard reject clearly identifiable different species."
+        "Hard reject: The crop is clearly corn (maize), not fava beans. Fava beans have broad paired leaflets and different growth habits, whereas the plants shown have long, narrow blades characteristic of corn. This is a clearly identifiable different species, which is a hard reject.",
+        "Product geometry failure: The drip tape carton roll is much smaller than required. Its visible diameter/width is approximately 10% of the frame, which is significantly below the preferred 20-23% range and even below the minimum acceptable 13% for a practical estimate.",
+        "Watermark format failure: The required watermark is 'AFP | 09134922013' (single pipe). The image shows 'AFP | | 09134922013' (double pipe), which does not exactly match the required text.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
       ],
-      "correction_prompt": "Remove all human figures and replace background workers with empty fields. Replace the corn plants with fava bean plants featuring broad paired leaflets and visible elongated pods. Ensure the crop rows clearly resemble fava beans rather than maize.",
+      "correction_prompt": "Regenerate the image showing a fava bean crop (thick upright stems, broad paired leaflets). The drip tape carton roll must be significantly larger (approx 20% of frame width) and positioned in the lower third. The watermark in the bottom right must be exactly 'AFP | 09134922013' with a single vertical bar. Enlarge the product group from 10% to 13-27% of frame width.",
       "attempt": 5
     },
     {
       "pass": false,
-      "score": 10,
-      "product_width_percent": 0,
-      "product_height_percent": 0,
-      "product_x_center_percent": 0,
+      "score": 55,
+      "product_width_percent": 20,
+      "product_height_percent": 17,
+      "product_x_center_percent": 46,
       "reasons": [
-        "Multiple people (human figures) are visible in the background, which is a hard reject criterion.",
-        "The required product (white-and-blue wide low cylindrical drip-tape carton roll) is missing.",
-        "The crop shown appears to be corn (maize) seedlings, not fava beans (baqla), which is a clearly identifiable different species.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+        "Watermark location is incorrect: the requirement specifies bottom-right 'AFP | 09134922013', but in this image it is overlaid on the crop at the bottom-right, not cleanly placed as a watermark overlay.",
+        "Crop morphology is ambiguous: the foreground plants do not clearly display the thick upright stems, broad paired leaflets, and elongated pods required to confirm fava bean (باقلا); they resemble a generic broadleaf crop.",
+        "Centered product staging: the roll is centered on the bottom line, conflicting with the requirement for off-center placement in the lower third."
       ],
-      "correction_prompt": "Regenerate the image to show a white-and-blue cylindrical drip tape roll (20-23% width) on the soil. Replace the corn seedlings with a fava bean farm context. Remove all people, faces, and body parts. Keep the AFP | 09134922013 watermark in the bottom right. Enlarge the product group from 0% to 13-27% of frame width.",
+      "correction_prompt": "Regenerate with the drip-tape carton roll off-center in the lower third. Ensure the crop clearly shows fava bean morphology (thick upright stems, paired leaflets). Place the 'AFP | 09134922013' watermark cleanly in the bottom-right corner.",
       "attempt": 6
     }
   ],

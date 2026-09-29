@@ -1,0 +1,71 @@
+{
+  "id": "crop-140",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The background crop shows large broad leaves, which is not consistent with lentil (عدس) morphology; lentil plants should have small paired pinnate oval leaflets.",
+        "The product roll is positioned too high in the frame relative to the lens focal point, though it is on soil.",
+        "The background crop is clearly a different species (broad-leaf) rather than the neutral young vegetation or specific lentil morphology required."
+      ],
+      "correction_prompt": "Regenerate with background crop showing small, fine-textured branching stems with tiny pinnate leaflets (lentil morphology) instead of large broad leaves, ensuring the crop matches the 'lentil' article theme.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: visible human (face, body, hands) present",
+        "Hard reject: second distinct roll/container (small blue spool) is visible",
+        "Hard reject: primary wide roll is centered and too large relative to the frame",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Replace the centered large roll with a single small white-and-blue cylindrical drip-tape roll placed on the soil off-center in the lower third, occupying less than 27% of the frame width. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 22,
+      "product_height_percent": 14,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The vegetation shown is not consistent with lentils (عَدَس). The large, broad, simple oval leaves on thick stems are characteristic of beans, peppers, or broadleaf weeds, whereas the specification explicitly requires 'small paired pinnate oval leaflets' and 'many thin branching stems'.",
+        "The background crop does not match the specific article requirement for lentil morphology."
+      ],
+      "correction_prompt": "Replace the foreground plants with low bushy lentil plants featuring thin branching stems and small paired pinnate leaflets. Ensure the crop morphology clearly matches lentils (no broad simple leaves) while keeping the product roll in the same position.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 20,
+      "product_height_percent": 24,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "The image displays exactly one white and blue AFP wide low cylindrical drip-tape carton roll.",
+        "The product is naturally placed on soil in the lower third of the frame, satisfying the off-center placement requirement.",
+        "The visible diameter is approximately 1.7 times the visible height, consistent with the 1.5 to 1.9 requirement.",
+        "The crop in the image appears to be generic young leafy vegetation. It does not show the specific mature morphology of lentils (small paired pinnate oval leaflets and small flat pods) and lacks the fine-textured bushy appearance of a mature lentil field.",
+        "However, because the vegetation is young and does not exhibit the 'hard reject' characteristics of a clearly different species (such as large corn blades or sunflower heads), and the prompt allows neutral vegetation when the agronomic story is clear, it is acceptable but less ideal than a definitive lentil image.",
+        "The required AFP watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "There are zero people or human body parts in the image.",
+        "The irrigation drip tape line is visible on the soil, fitting the drip-tape context."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-عدس-با-آبیاری-قطرهای-تصویر-شاخص.webp"
+}
