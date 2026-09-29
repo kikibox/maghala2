@@ -1,0 +1,59 @@
+{
+  "id": "xref-135",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: The image contains a person (farmer) and visible human body parts (head, hands, arms, legs), which are strictly prohibited.",
+        "Hard reject: The product is a tall, narrow canister/bucket, which is explicitly prohibited in favor of a wide, low, cylindrical roll.",
+        "Hard reject: Product staging is centered/foreground and does not meet the width/height ratio requirements.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts. Replace the canister with exactly one white-and-blue wide low cylindrical drip-tape carton roll on the soil, off-center on the lower third. Ensure the background shows a clear farm context matching the article title, with no text except the required bottom-right watermark. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 30,
+      "product_height_percent": 35,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product width is approximately 30% of the frame, exceeding the maximum 27% limit",
+        "Product height is approximately 35% of the frame, exceeding the maximum 32% limit",
+        "Product x_center is at 45%, which is closer to the center than the preferred off-center placement",
+        "Image role 2 requires the crop to be clearly identifiable; while the seedlings are small, the specific crop mentioned in the article title (if it were 'tomato' or 'corn') is not explicitly clear just from generic seedlings, though the context is agronomic. The primary rejection is due to the product size violations.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with the AFP drip-tape roll significantly smaller (width ~20%, height ~25%) and placed further to the side (left or right third) to be clearly off-center, ensuring the agricultural background remains visible. Reduce the product group from 30% to 13-27% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 20,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The 'AFP' white-and-blue wide low cylindrical drip-tape carton roll is present and correctly branded.",
+        "The product dimensions are within the acceptable range, with width at 18% and height at 20% of the frame.",
+        "The roll is placed off-center on the lower third, resting naturally on the soil.",
+        "Zero people or human body parts are visible in the image.",
+        "The background shows a farm context with crop rows, matching the topic of an agronomic story.",
+        "The required watermark 'AFP | 09134922013' is visible in the bottom-right corner.",
+        "No forbidden items such as bottles, jars, canisters, buckets, fertilizer containers, or second packages are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-رطوبتی-در-کشت-گلرنگ-چالشها-کاربرد-عملی.webp"
+}

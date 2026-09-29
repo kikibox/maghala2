@@ -1,0 +1,56 @@
+{
+  "id": "xref-128",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: The image contains three visible people (farmer, worker, engineer), which violates the requirement of zero people or human body parts.",
+        "Product mismatch: The visible products are not 'wide low cylindrical drip-tape carton roll' geometry; the foreground item is a tall, wide canister/drum, and the small item is a standard cylinder.",
+        "Quantity violation: There are multiple container products visible (one in foreground, one in mid-ground), violating the 'exactly one' requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures from the scene. Replace the foreground canister with a single wide, low cylindrical drip-tape carton roll lying on the soil, off-center in the lower third. Ensure the roll is flat and wide (diameter approx. 1.75x height) with zero vertical cylinders. Keep the bottom-right watermark 'AFP | 09134922013' and the farm setting. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 26,
+      "product_height_percent": 29,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "The crop in the foreground is botanically distinct from clover, appearing to be tobacco or a similar broadleaf crop, which triggers a hard reject.",
+        "The crop lacks the 'unmistakable three-leaflet leaves' and 'dense low canopy' characteristic of the required article crop, clover.",
+        "The product's diameter-to-height ratio is approximately 1.2 (26/29), which is below the preferred minimum of 1.5."
+      ],
+      "correction_prompt": "Regenerate the image to feature a field of mature clover (low-growing, distinct three-leaflet leaves). The AFP drip-tape carton roll must be placed naturally on the soil; adjust the roll's geometry to be wider relative to its height (diameter approx. 1.7x height) and ensure it occupies approximately 22% of the frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 86,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product is a white-and-blue cylindrical drip-tape roll with AFP branding.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No people or body parts are visible in the image.",
+        "Product is placed naturally on the soil in a farm setting.",
+        "Product dimensions and position fall within acceptable guidelines.",
+        "The background shows crop rows consistent with a farm context."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-سطوحی-در-کشت-شبدر-پیشنیازها-تصویر-شاخص.webp"
+}

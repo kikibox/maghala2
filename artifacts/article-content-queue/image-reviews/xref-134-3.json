@@ -1,0 +1,56 @@
+{
+  "id": "xref-134",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 34,
+      "product_height_percent": 28,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Product bounding box (including the coiled drip tape lying on the ground) exceeds the hard limit of 27% width (estimated at 34%).",
+        "Product is centered horizontally (52%) rather than off-center on the lower third as specified.",
+        "Product height is 28%, which is within limits, but the width violation is critical.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 34% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Shrink the coiled drip tape loop significantly so the total product width is under 27% of the frame. Move the product off-center to the left or right (approximately 30-40% or 60-70% x-position) and ensure the height is small relative to the width. Reduce the product group from 34% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 16,
+      "product_height_percent": 20,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The image contains a human person (farmer/worker) which is a hard reject condition (zero people/human body parts required).",
+        "The image includes an extra commercial product (small white tube/stick) held by the hand.",
+        "The product is staged with a person, violating the 'zero people' constraint."
+      ],
+      "correction_prompt": "Regenerate with no people, no hands, and no extra products. Show the roll placed naturally on the soil.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 24,
+      "product_height_percent": 20,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is a white-and-blue cylindrical drip-tape carton roll",
+        "Correct aspect ratio (width > height)",
+        "Placed naturally on soil, off-center in the lower third",
+        "Background matches farm context with tractor and soil",
+        "Watermark 'AFP | 09134922013' is present",
+        "No people, second rolls, or contradictory hardware"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-چرخشی-در-کشت-شوید-هزینه-بهینه-جزئیات-فنی.webp"
+}

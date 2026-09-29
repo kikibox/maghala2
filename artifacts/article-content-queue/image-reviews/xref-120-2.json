@@ -1,0 +1,58 @@
+{
+  "id": "xref-120",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 9,
+      "product_height_percent": 15,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Human body parts (arms, hands, legs, shoes, and torso) are clearly visible in the image, which is a hard reject condition.",
+        "The drip-tape roll is not wide or low cylindrical as specified; it appears somewhat tall relative to its diameter.",
+        "The product is not positioned off-center on the lower third; it is located near the center of the frame.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human body parts. Show a wide, low cylindrical drip-tape roll placed off-center on the lower third of the frame in a chickpea field. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 28.5,
+      "product_height_percent": 22.0,
+      "product_x_center_percent": 50.0,
+      "reasons": [
+        "Hard reject: A human figure (farmer) is clearly visible in the background, violating the strict zero-person rule.",
+        "Hard reject: The product is centered on the horizontal axis, violating the 'off-center on the lower third' requirement.",
+        "Product width estimate (~28%) exceeds the acceptable 27% maximum limit.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28.5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the farmer/person in the background completely. Move the drip tape roll to the bottom-right or bottom-left quadrant to ensure it is off-center. Shrink the roll to make it smaller relative to the frame width (aim for ~20% width). Reduce the product group from 28.5% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 17,
+      "product_height_percent": 21,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "The product is correctly placed in the lower-left area on soil, off-center.",
+        "The product is a white cylindrical roll, visually matching the 'wide low cylindrical' requirement.",
+        "Product width (17%) and height (21%) fall within the acceptable 13-27% and <32% bounds.",
+        "The watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Zero people or human body parts are visible.",
+        "The crop shows young, bushy plants in rows that are botanically neutral but acceptable for the specified role, as exact mature morphology is not required for young seedlings.",
+        "Product dimensions (width/height ratio) are consistent with the required 1.5-1.9 range."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-در-کشت-نخود-راهنمای-جامع-کاربرد-عملی.webp"
+}

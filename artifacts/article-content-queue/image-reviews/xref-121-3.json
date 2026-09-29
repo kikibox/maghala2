@@ -1,0 +1,39 @@
+{
+  "id": "xref-121",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 14,
+      "product_height_percent": 22,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: The image contains a visible person (farmer/worker) and human body parts (hands, arms, legs), which violates the 'zero people' rule.",
+        "Product aspect ratio violation: The roll appears roughly cylindrical/vertical (height ~22% vs width ~14%), failing the requirement that the visible diameter (width) should be 1.5-1.9 times the visible height (i.e., it should look wide and low).",
+        "Interaction violation: A human hand is touching the product, which is not allowed."
+      ],
+      "correction_prompt": "Regenerate the image with zero people and no hands touching the object. Show a single wide, low cylindrical drip-tape carton roll lying horizontally on the soil. The roll must be wider than it is tall (aspect ratio ~1.7:1). Keep the background field context and the bottom-right watermark exactly as is.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 22,
+      "product_height_percent": 20,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The roll is wide and low, off-center on the lower third, and naturally placed on soil.",
+        "Zero people and zero human body parts are present.",
+        "The background matches a hardware/farm context (tillered field, distant barn), and no identifiable crop contradicts garlic.",
+        "The required bottom-right AFP watermark is present."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-در-کشت-ریحان-نکات-کلیدی-جزئیات-فنی.webp"
+}

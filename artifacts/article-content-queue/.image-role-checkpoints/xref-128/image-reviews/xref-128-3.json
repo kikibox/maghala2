@@ -1,0 +1,96 @@
+{
+  "id": "xref-128",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 26,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Presence of multiple persons (farmers/workers) in the image",
+        "Product is centered rather than off-center on the lower third"
+      ],
+      "correction_prompt": "Remove all people from the image. Move the drip-tape roll to the lower right or lower left (off-center). Ensure the roll is the primary product shown.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 21,
+      "product_height_percent": 19,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "The 'visible diameter' of the roll (width) is approximately 1.1 times its 'visible height' (vertical box height), violating the 1.5 to 1.9 ratio required for a low cylindrical roll.",
+        "The crop visible in the background consists of straight, vertical shoots/stems that clearly contradict the morphology of clover (شبدر), which typically grows in a flatter, leafy mat."
+      ],
+      "correction_prompt": "Regenerate the image with a cylindrical drip-tape roll that has a wider, flatter aspect ratio (diameter 1.5x-1.9x the height). Change the background crop to a low-growing green clover field instead of tall vertical shoots.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 72,
+      "product_width_percent": 26,
+      "product_height_percent": 34,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The product violates the off-center and lower-third requirement by being centered on the vertical axis (x=45%) and extending into the upper half of the frame.",
+        "Product height exceeds the maximum 32% limit.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shift the roll 10 to 12 percent to the left and scale it down so the height is under 32% and width under 26%, ensuring it sits clearly in the lower third on the soil. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Presence of a person (farmer) and visible body parts (face, hands, arms, legs) which are hard rejects.",
+        "The product shown is a small cylindrical canister, not a wide low cylindrical drip-tape carton roll.",
+        "The product does not resemble the required AFP white-and-blue drip-tape packaging described.",
+        "The product is being held/placed by a human, violating the 'zero people' rule.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Generate an image of a single white and blue AFP drip-tape carton roll lying on bare farm soil. The roll must be off-center in the lower third, with a width of approximately 20% of the frame. No people or hands are allowed. The background should show a farm context with soil and neutral infrastructure like unattended irrigation hardware, matching a hardware story role. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25,
+      "product_height_percent": 35,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product height exceeds the 32 percent limit (approx 35-38%).",
+        "Product is centered rather than off-center in the lower third (x_center is 50%).",
+        "Text on the product packaging appears as gibberish/non-English characters instead of authentic English/Urdu package print.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the product height to under 30% of the frame width. Position the roll off-center (lower left or lower right) on the soil. Ensure packaging text is authentic English/Urdu, not gibberish. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 14,
+      "product_height_percent": 25,
+      "product_x_center_percent": 23,
+      "reasons": [
+        "Hard reject: Three human figures (adults and a child) are clearly visible.",
+        "Hard reject: The image contains faces, hands, arms, legs, and full body parts.",
+        "The scene is a family context rather than the specified hardware/story context where crops may be absent.",
+        "The product is present in the correct location but is invalidated by the strict zero-person rule."
+      ],
+      "correction_prompt": "Remove all people, faces, and human body parts. Focus on the irrigation hardware and the drip-tape roll on the soil. Ensure no humans are visible in the frame. Keep the AFP watermark.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

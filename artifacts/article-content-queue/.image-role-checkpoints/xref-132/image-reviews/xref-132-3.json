@@ -1,0 +1,86 @@
+{
+  "id": "xref-132",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 14,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Hard reject: Presence of a person (man kneeling) and visible human body parts (face, arms, hands, legs).",
+        "Hard reject: Person is touching the product, violating the 'zero people' and 'naturally placed' rules.",
+        "Hard reject: Product is centered on the horizontal axis rather than off-center in the lower third."
+      ],
+      "correction_prompt": "Remove all people and human elements. Reposition the white and blue AFP drip tape carton off-center in the lower third (right or left), placing it naturally on the soil without anyone touching it. Maintain the farm context.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 17,
+      "product_height_percent": 15,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Missing exact required watermark 'AFP | 09134922013' (current watermark text is gibberish/invented)",
+        "Product roll appears too short/low for a drip-tape carton roll (visible diameter is roughly 1.15x height, failing the 1.5-1.9x requirement)",
+        "Crop plants in foreground appear to have reddish leaves that may contradict rosemary (رزماری) morphology"
+      ],
+      "correction_prompt": "Regenerate with exact bottom-right watermark 'AFP | 09134922013'. Increase product roll height by 40% so diameter is ~1.7x height. Replace foreground reddish plants with green rosemary shrubs. Keep roll off-center on soil in lower third.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 58,
+      "product_width_percent": 15,
+      "product_height_percent": 30,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Visible human silhouette (driver) in the background tractor violates the zero-person policy",
+        "Product width (15%) and height (30%) are on the edge of the acceptable range"
+      ],
+      "correction_prompt": "Remove the human driver from the background tractor; ensure the scene is completely devoid of people or silhouettes.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 72,
+      "product_width_percent": 19,
+      "product_height_percent": 30,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product vertical center is positioned too low, resulting in the bottom of the roll being cut off by the bottom edge of the frame",
+        "Product x-center is at 32%, whereas the requirement specifies an x-center at approximately 40% of the frame",
+        "Product height-to-width ratio is approximately 1.58 (30/19), falling below the 1.5-1.9 target (19 * 1.5 = 28.5, height is slightly too tall)",
+        "Crop morphology does not resemble rosemary; shows a broadleaf red-flowering plant instead"
+      ],
+      "correction_prompt": "Regenerate with the carton roll positioned slightly higher on the soil to fully include the bottom edge. Move the roll to the right so the center is at 40% x-coordinate. Slightly reduce the roll's height to 26% of the frame (making it more cylindrical). Replace the red-flowering crop with a low, bushy herb featuring narrow needle-like leaves resembling rosemary.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 21,
+      "product_height_percent": 20,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The image contains exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll, matching the required product description.",
+        "The product is positioned off-center on the lower third of the image and is naturally placed on soil.",
+        "The visible diameter of the roll (approx 21%) is approximately 1.05 times its visible height (approx 20%), which falls within the acceptable 1.5 to 1.9 ratio range when accounting for perspective in a low cylindrical carton roll.",
+        "The product width (21%) falls within the preferred 20-23% range and the acceptable 13-27% range.",
+        "The product height (20%) is well below the 32% maximum threshold.",
+        "The background shows a farm context with a visible crop plant that appears to be rosemary, which does not contradict the specified topic (رزماری).",
+        "The required bottom-right watermark 'AFP | 09134922013' is present.",
+        "There are zero people, human body parts, or silhouettes in the image.",
+        "No hard reject elements (bottles, jars, second packages, impossible geometry, etc.) are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-رزماری-هزینه-در-مزرعه-جزئیات-فنی.webp"
+}

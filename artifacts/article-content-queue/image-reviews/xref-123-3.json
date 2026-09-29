@@ -1,0 +1,84 @@
+{
+  "id": "xref-123",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 26,
+      "product_height_percent": 33,
+      "product_x_center_percent": 29,
+      "reasons": [
+        "Product height exceeds the 32 percent maximum limit",
+        "Product is positioned too high in the frame rather than the lower third",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate image with the drip tape roll smaller and positioned lower on the soil in the bottom-left third, reducing its vertical height to less than 32 percent of the frame. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 22,
+      "product_height_percent": 18,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Presence of a person (farmer) and multiple human body parts (face, hands, legs) violates the 'zero people' constraint."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove the human figure, ensuring the scene contains only the cylindrical drip-tape roll, soil, and agricultural background.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 28,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Presence of a second drip-tape roll on the right side of the frame",
+        "The unrolled tape section with visible text acts as an extra commercial product or 'impossible geometry' relative to the required single-item constraint",
+        "Product width estimate (28%) slightly exceeds the 27% hard reject limit",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the second roll of drip tape on the right and the unrolled tape strip completely. Regenerate to show exactly one AFP white-and-blue cylindrical roll on the lower left third of the frame, with a width of 25% and height of 22%, maintaining the farm background with the distant tractor. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 16,
+      "product_height_percent": 14,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: A person (farmer/worker) is clearly visible in the foreground, which violates the requirement for zero people and human body parts.",
+        "Hard reject: The product is a canister/bottle, not a wide low cylindrical drip-tape roll.",
+        "The product is cut off at the bottom of the frame and not fully placed on the soil surface."
+      ],
+      "correction_prompt": "Remove the person and the canister. Replace with a wide, low cylindrical drip-tape roll placed on the soil in the lower-left third, ensuring no human figures are present.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 22,
+      "product_height_percent": 24,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Zero people or human body parts are visible in the scene.",
+        "The product is a single wide cylindrical drip-tape carton, consistent with the 'wide' description.",
+        "Color palette is white and blue as requested.",
+        "Product width (22%) and height (24%) are within acceptable limits (width < 27%, height < 32%).",
+        "The product is placed off-center on the lower left, satisfying the positioning requirement.",
+        "The soil context and field infrastructure (unattended tractors) fit the 'farm context' role.",
+        "Minor deduction due to slightly narrow crop morphology which is less typical for garlic, though not explicitly contradictory to the hardware story role."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-موسیر-کاربردها-جزئیات-فنی.webp"
+}

@@ -1,0 +1,69 @@
+{
+  "id": "xref-127",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 11,
+      "product_height_percent": 14,
+      "product_x_center_percent": 62,
+      "reasons": [
+        "Contains exactly one AFP white-and-blue cylindrical drip-tape carton roll",
+        "Product is correctly placed off-center on the lower third and resting naturally on soil",
+        "Background matches the farm drip-irrigation context without any crop contradictions",
+        "No people, human body parts, or disallowed commercial products are present",
+        "Required AFP phone watermark is present and correctly formatted",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 18,
+      "product_height_percent": 18,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: A person (farmer) is prominently visible in the image, violating the rule of zero people or body parts.",
+        "Incorrect crop morphology: The potted plant shown has indeterminate vining stems typical of tomatoes or cucumbers, which clearly contradicts the required sugar beet (چغندر) context."
+      ],
+      "correction_prompt": "Regenerate image with zero people. Show exactly one AFP white and blue wide low cylindrical drip-tape roll on the soil. No potted plants; if crop context is needed, show only small sugar beet green leaf clusters or soil, not tomatoes.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 26,
+      "product_height_percent": 29,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Crop in the foreground clearly contradicts sugar beet (it looks like a small radish/beetroot with different leaf morphology)",
+        "Product x-center is near 48%, close to centered staging rather than off-center on the lower third",
+        "Height (29%) is high relative to width and violates the natural placement emphasis; product is too prominent for role 3 (should be secondary)",
+        "Text on the roll is gibberish/invented, violating the no fake caption rule beyond the required AFP watermark"
+      ],
+      "correction_prompt": "Regenerate a wider, lower-angle shot: keep the AFP white-and-blue wide cylindrical drip-tape carton roll visibly secondary, place it clearly off-center in the lower third on soil, replace any inconsistent foreground crop with neutral/absent soil, keep farm background consistent with the article, and remove all non-AFP text/markings on the roll.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product dimensions (25% width, 30% height) and off-center positioning satisfy the layout guidelines.",
+        "Visible drip-tape morphology and packaging correctly reflect the topic-specific agricultural context.",
+        "No human silhouettes or body parts are present in the scene."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-سطوحی-در-کشت-چغندر-نکات-کلیدی-جزئیات-فنی.webp"
+}

@@ -1,0 +1,79 @@
+{
+  "id": "xref-120",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 28,
+      "product_height_percent": 38,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product dimensions exceed strict limits (Height 38% > 32%, Width 28% > 27%)",
+        "Center of mass is slightly off the preferred lower third, appearing more centrally placed vertically",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width.; Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shrink the drip tape roll to occupy only ~20% width and 15% height. Place it lower in the frame (bottom 15%) to emphasize a low, wide aspect ratio. Ensure the hardware (pressure gauge) is visible but does not crowd the product. Reduce the product group from 28% to 13-27% of frame width. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 18.75,
+      "product_height_percent": 20.31,
+      "product_x_center_percent": 34.37,
+      "reasons": [
+        "The crop plant in the foreground exhibits morphology that looks more like corn or a broadleaf weed, which clearly contradicts the required chickpea (نخود) context for Role 3.",
+        "The visible diameter of the drip-tape roll is approximately equal to its height (ratio 1:1), violating the required aspect ratio of 1.5 to 1.9 times the height."
+      ],
+      "correction_prompt": "Replace the foreground crop with identifiable chickpea sprouts and regenerate the drip-tape roll to have a visibly wider, flatter cylindrical shape where the diameter is clearly larger than the height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 23,
+      "product_height_percent": 22,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "Hard reject: The image contains a person (a male farmer), which is explicitly forbidden in the prompt requirements ('The image must contain zero people and zero human body parts').",
+        "The product bounding box height (22%) is acceptable, but the presence of the human figure is a critical failure."
+      ],
+      "correction_prompt": "Regenerate the image without any people. Show only the white and blue AFP drip tape roll on the soil in the lower-left third of the frame. Keep the farm field background and crop rows but remove the man.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "The bottom-right watermark 'AFP | 09134922013' is REQUIRED but is missing from the image.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to include the exact text 'AFP | 09134922013' in the bottom-right corner as a watermark. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product dimensions are within acceptable limits (width 21%, height 24%).",
+        "Product is off-center and placed naturally on soil.",
+        "Watermark is present and correct.",
+        "No people or human body parts are visible.",
+        "Crop morphology is neutral and does not hard reject the context."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-در-کشت-نخود-راهنمای-جامع-جزئیات-فنی.webp"
+}

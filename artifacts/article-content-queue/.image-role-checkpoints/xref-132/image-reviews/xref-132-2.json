@@ -1,0 +1,73 @@
+{
+  "id": "xref-132",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 8,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: A person (male farmer) is prominently visible in the image, violating the 'zero people' and 'zero human body parts' rule.",
+        "Product failure: The product is being held by a person rather than placed naturally on the soil.",
+        "Size violation: The visible width of the drip-tape roll is far below the required 13-27% range of the frame.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Place a wide, low, cylindrical white-and-blue drip-tape carton roll on the soil in the lower third of the frame. The roll must be off-center, clearly secondary to the rosemary plants, and occupy roughly 20% of the image width without being held by anyone. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 15,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The product is depicted as a narrow, tall roll (height ~28% vs width ~15%). This fails the geometric requirement of a 'wide low cylindrical' roll and the specific ratio that visible diameter should be about 1.5 to 1.9 times its visible height (it is actually inverted/taller than wide).",
+        "The product is described as a white-and-blue carton roll, but the image shows a small cylindrical container (resembling a paint tin or canister) rather than a large carton roll of drip tape.",
+        "The required crop is 'rosemary', which is defined as a woody low shrub with many needle-like dark-green leaves. The plants in the image have broad, oval leaves and appear to be rose bushes, which is a clearly identifiable different species."
+      ],
+      "correction_prompt": "Replace the broad-leaved plants with rosemary (woody shrubs, needle-like dark green leaves). Replace the small canister with a wide, low cylindrical white-and-blue carton roll of drip tape. The roll must be significantly wider than it is tall (diameter 1.5-1.9x height) and placed on the soil in the lower third. Ensure the crop width is 20-23% and height is under 32%.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 35,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: Image contains two people (a man and a woman), which violates the zero-people constraint.",
+        "Product is centered rather than off-center on the lower third.",
+        "Product geometry is incorrect (diameter is not 1.5-1.9x the height, and the roll appears too tall).",
+        "Human hands are present touching the product.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image removing all people and human body parts. Place exactly one white-and-blue AFP drip-tape carton roll on the soil in the lower third, off-center to the left. Ensure the roll's diameter is 1.5 to 1.9 times its height. Maintain the rosemary farm background. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 18.0,
+      "product_height_percent": 25.0,
+      "product_x_center_percent": 30.0,
+      "reasons": [
+        "Product is exactly one AFP drip-tape carton roll, white and blue.",
+        "Product dimensions are within acceptable ranges (width 13-27%, height <= 32%).",
+        "Product is correctly positioned off-center in the lower third.",
+        "Background features woody low shrubs with needle-like dark-green leaves, which clearly identifies the article crop as rosemary.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Zero people or human body parts are visible; the tractor in the background is accepted as unattended infrastructure.",
+        "Image role 2 is well-executed with clear crop identification."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-رزماری-هزینه-در-مزرعه-کاربرد-عملی.webp"
+}

@@ -1,0 +1,87 @@
+{
+  "id": "xref-131",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 8,
+      "product_height_percent": 8,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "The image contains two people (a man and a woman) crouching in the field, which is a hard reject condition (zero people allowed).",
+        "The product in the image appears to be a small white bottle, jar, or canister, not a 'wide low cylindrical drip-tape carton roll'.",
+        "The product is not off-center on the lower third in a natural placement on soil; it is being held or manipulated by the people.",
+        "The crop in the background looks like barley or wheat, not specifically rye, though the main rejection is the presence of humans and incorrect product shape.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people. Show exactly one wide, low, cylindrical drip-tape carton roll (white and blue) resting naturally on the soil in the lower third (off-center). The background should feature a rye field with tall slender stems. Ensure the roll is a wide cylindrical package, not a bottle. Maintain the 'AFP | 09134922013' watermark in the bottom right corner. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 26,
+      "product_height_percent": 22,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product x_center is near the middle of the frame (45%), violating the off-center requirement on the lower third.",
+        "The crop heads in the background are thick and spike-like with prominent awns, resembling wheat rather than the long narrow grain heads specified for rye (چاودار)."
+      ],
+      "correction_prompt": "Reposition the product roll to be clearly off-center on the lower third of the frame (e.g., 30% or 65% x-position). Change the background crop to feature rye with tall slender stems and long, narrow grain heads, ensuring they are distinct from wheat.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 58,
+      "product_width_percent": 23,
+      "product_height_percent": 34,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The rye (چاودار) shown has wide, spreading leaves and open, drooping grass panicles that are botanically inconsistent with the tight, solid spike morphology required to identify rye.",
+        "Hard reject: The crop's morphology is clearly identifiable as a different grass species (likely a wheat relative or wild grass) rather than rye.",
+        "Hard reject: The product's visible height (approx. 34% of the frame) exceeds the 32% limit, making it too large relative to the background.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a crop field that specifically shows rye (defined by its closed, non-branching grain spikes) and scale down the white-and-blue drip-tape roll so it occupies no more than 30% of the image height. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 10,
+      "product_height_percent": 13,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Presence of a human figure (crouching man) and visible body parts (face, hands, legs, feet) triggers a hard reject.",
+        "The product appears as a standard cylindrical container or canister rather than a wide, low cylindrical drip-tape roll.",
+        "The product is centered in the frame relative to the subject, violating the off-center requirement for the lower third.",
+        "The visible product height exceeds its width, failing the 1.5-1.9x diameter-to-height aspect ratio requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Replace the white cylindrical container with a wide, low horizontal roll of white and blue drip tape placed naturally on the soil in the lower-left or lower-right foreground. Ensure the crop (rye) is clearly visible in the background with no human presence. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 98,
+      "product_width_percent": 19.5,
+      "product_height_percent": 24.5,
+      "product_x_center_percent": 36.5,
+      "reasons": [
+        "The image contains exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "The crop is clearly identifiable as rye (tall slender stems, narrow heads), matching the required article.",
+        "The product is correctly placed in the lower third and off-center on the soil.",
+        "The bounding box proportions (width approx 19.5%, height approx 24.5%) fit the preferred 1.5x-1.9x diameter-to-height ratio.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom right.",
+        "No people, human body parts, or prohibited containers are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-خرسابی-در-کشت-چاودار-راهنمای-جامع-کاربرد-عملی.webp"
+}

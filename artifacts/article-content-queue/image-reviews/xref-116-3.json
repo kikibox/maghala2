@@ -1,0 +1,55 @@
+{
+  "id": "xref-116",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 17,
+      "product_height_percent": 20,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Visible crops are standard green and red bell peppers. The prompt specifies 'paprika pepper' and explicitly states that hard reject is triggered when identifiable crops clearly contradict it; bell peppers are a distinct cultivar and represent a contradiction.",
+        "Presence of extra commercial products: three identical cylindrical rolls are visible in the right foreground. The prompt requires 'exactly one' roll and hard rejects any 'second roll' or 'extra commercial product'.",
+        "Product geometry mismatch: The required aspect ratio (width 1.5 to 1.9 times height) is violated; the roll is nearly as tall as it is wide (1:1)."
+      ],
+      "correction_prompt": "Regenerate with only one drip-tape roll (width 1.5-1.9x height) placed off-center on the lower third, showing paprika chili pepper plants (long and slender) instead of bell peppers, ensuring no additional product rolls in the foreground, and maintaining the 'AFP | 09134922013' watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 16,
+      "product_height_percent": 22,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "The required AFP phone watermark 'AFP | 09134922013' is missing from the bottom-right corner (the crop tag is visible instead), which is a hard reject condition.",
+        "The product is a standard drip-tape roll (flat reel), not the specified 'wide low cylindrical drip-tape carton roll'.",
+        "The crop shows green and red peppers which are not paprika (paprika morphology differs, usually pointed or different red hue); since an identifiable crop appears, it must strictly match the topic (paprika)."
+      ],
+      "correction_prompt": "Regenerate the image to strictly show a wide, low, cylindrical carton roll (not a flat reel) positioned on the soil. The crop must be identifiable as paprika pepper. The AFP phone number watermark 'AFP | 09134922013' must be visible in the bottom right corner.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 98,
+      "product_width_percent": 22,
+      "product_height_percent": 18,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Exactly one 'AFP' branded wide cylindrical drip-tape roll is present and correctly placed on soil in the lower-left third (off-center).",
+        "Product aspect ratio is correct; the roll is wider than it is tall, with width ~22% and height ~18% of the frame, fitting the 1.5-1.9:1 requirement.",
+        "Background matches the specified 'paprika' crop context perfectly, with a single paprika plant visible without contradicting the crop.",
+        "Zero people or body parts are present.",
+        "The required 'AFP | 09134922013' watermark is correctly displayed in the bottom-right corner.",
+        "Farmer infrastructure (tractor) is visible but correctly identified as unattended, which is allowed."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-در-کشت-پاپریکا-کاربردها-جزئیات-فنی.webp"
+}
