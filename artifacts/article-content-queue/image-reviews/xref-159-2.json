@@ -1,0 +1,72 @@
+{
+  "id": "xref-159",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 12,
+      "product_height_percent": 35,
+      "product_x_center_percent": 75,
+      "reasons": [
+        "Presence of a person (farmer) and human body parts (hand) in the main frame and top-right panel.",
+        "The object in the top-right panel resembles a canister or jar (with a lid) rather than a cylindrical drip-tape roll.",
+        "Product does not meet the geometric requirement of diameter being 1.5-1.9 times the height.",
+        "Image uses a split-screen layout rather than a single cohesive scene.",
+        "The product is too small relative to the frame width (under 13% threshold).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the farmer and the split-screen layout. Display a single AFP white-and-blue drip-tape roll on soil. The roll should be cylindrical, wider than tall, and clearly identifiable as irrigation tape, not a canister. Enlarge the product group from 12% to 13-27% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 52,
+      "product_width_percent": 32.0,
+      "product_height_percent": 26.0,
+      "product_x_center_percent": 36.0,
+      "reasons": [
+        "The product bounding box width estimate (~32%) significantly exceeds the maximum allowable 27% of the frame.",
+        "The product is a standard cylindrical spool/roll, not the 'wide low cylindrical drip-tape carton' shape required.",
+        "The required exact bottom-right watermark 'AFP | 09134922013' is missing; the 'AF' text is integrated onto the package label instead of the image corner.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the product width reduced to under 25% of the frame. Change the product shape to a wide, low cylindrical carton roll. Add the exact text watermark 'AFP | 09134922013' in the bottom-right corner. Reduce the product group from 32% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 11,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Hard reject: Image contains two full human bodies (farmers/workers), which violates the 'zero people and zero human body parts' constraint.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and body parts. Show a single AFP white-and-blue drip-tape carton roll placed naturally on the soil in a farm field with young corn seedlings, no humans visible. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 18,
+      "product_height_percent": 20,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is a white-and-blue wide low cylindrical drip-tape roll with correct 'AFP' branding and visible diameter-to-height ratio (~1.8x).",
+        "Product is off-center (x-center 38%) and placed on soil in the lower third, satisfying the 'lower third' and 'naturally placed' requirements.",
+        "Product width (18%) and height (20%) fall within the preferred and acceptable ranges; height is under 32%.",
+        "Zero people or body parts are present.",
+        "Background context (farm field with crop rows and barn) aligns with a 'farm context' topic.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-رانشی-در-کشت-شوید-چالشها-کاربرد-عملی.webp"
+}

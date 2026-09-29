@@ -1,0 +1,53 @@
+{
+  "id": "xref-172",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 17,
+      "product_height_percent": 12,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer/man) and human body parts (head, arms, hands, legs) is explicitly forbidden.",
+        "The product is interacting with a person, which violates the 'zero people' constraint."
+      ],
+      "correction_prompt": "Remove the man and all human elements from the image completely. Retain the AFP water drip tape roll on the soil, the irrigation hardware (sprinkler/connector), and the spinach plants in the background to maintain the hardware/crop context without humans.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 25,
+      "product_height_percent": 20,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Missing required 'AFP | 09134922013' watermark"
+      ],
+      "correction_prompt": "Add the exact bottom-right watermark 'AFP | 09134922013'",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 18,
+      "product_height_percent": 26,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Required watermark 'AFP | 09134922013' is present in the bottom right",
+        "Image contains exactly one white-and-blue cylindrical drip-tape roll",
+        "Zero people or human body parts visible",
+        "Product is placed naturally on soil in the lower third and is off-center to the left",
+        "Product dimensions (width 18%, height 26%) fall within acceptable ranges",
+        "Farm context with crop rows is visually neutral and does not contradict the spinach topic",
+        "No prohibited items such as containers, extra products, or gibberish text detected"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-اسفناج-هزینه-بهینه-جزئیات-فنی.webp"
+}

@@ -1,0 +1,94 @@
+{
+  "id": "xref-163",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 14,
+      "product_height_percent": 25,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Image contains a visible human (farmer/kneeling man), which is a hard reject criterion.",
+        "Product is not off-center on the lower third; it is centered."
+      ],
+      "correction_prompt": "Remove the person entirely. Move the white and blue drip-tape carton roll to the lower third, strictly off-center (left or right). Ensure the roll's height is no more than 32% of the frame and diameter is 1.5-1.9 times its height. Keep the alfalfa crop context.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 15,
+      "product_height_percent": 12,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "The crop's leaves appear to be simple or compound with lobes (resembling lettuce or spinach) rather than the dense, fine trifoliate (three-part) leaflets required for alfalfa.",
+        "The product width is only 15% of the frame width, falling below the 13-27% target range."
+      ],
+      "correction_prompt": "Regenerate with the crop clearly showing alfalfa trifoliate (three-part) leaves instead of broad simple leaves; increase the width of the white drip-tape roll to be more prominent (approx 20% of frame width) while keeping it in the lower third.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Hard reject: The image contains a human figure (person), which is explicitly forbidden by the requirement 'zero people and zero human body parts'.",
+        "Hard reject: The product is not a drip-tape carton roll as described; it appears to be a cylindrical jar or canister.",
+        "Fail: The crop shown (sunflowers/sunflowers vs alfalfa) does not match the specific botanical definition of alfalfa (trifoliate leaflets).",
+        "Fail: The required watermark 'AFP | 09134922013' is missing.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image showing a wide, low cylindrical white-and-blue drip-tape carton roll placed on the soil in an alfalfa field with dense trifoliate leaves. The crop must clearly be alfalfa (no broad leaves like sunflowers). Ensure zero people or human body parts are visible. The roll must be off-center (lower third), approximately 20% of the frame width. Include the watermark 'AFP | 09134922013' in the bottom right corner. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 19,
+      "product_height_percent": 21,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "The crop shown has broad, simple leaves characteristic of vegetables like lettuce or radishes; the article requires alfalfa (یونجه), which is defined by its trifoliate (three-leaf) structure."
+      ],
+      "correction_prompt": "Change the background crop to young alfalfa with trifoliate three-leaf leaflets.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject due to the presence of a man (human body parts: face, head, arms, legs, torso) in the image. The requirement is zero people.",
+        "Hard reject due to the product being nearly centered (x_center ~48%), whereas it is required to be off-center on the lower third.",
+        "Product geometry mismatch: The visible width of the roll (approx 15%) is not 1.5 to 1.9 times its height (approx 18%), resulting in a tall-to-wide ratio that is too high for a wide low cylindrical roll."
+      ],
+      "correction_prompt": "Remove the human farmer completely. Shift the white and blue drip-tape roll to the right side of the frame (off-center in the lower third). Redesign the roll to be significantly flatter and wider (wider than it is tall, approx 1.7x width-to-height ratio) and place it naturally on the soil.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 24,
+      "product_height_percent": 35,
+      "product_x_center_percent": 62,
+      "reasons": [
+        "The product's height (approx 35%) exceeds the 32% hard limit",
+        "The product is placed in the foreground, appearing as the primary subject rather than secondary",
+        "Geometry check failed: Visible diameter (600px) is not 1.5-1.9 times the visible height (350px)",
+        "Crop morphology shows broad leaves, contradicting the specific 'fine trifoliate' requirement for mature alfalfa",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate image. Make the alfalfa drip-tape roll significantly smaller and lower, positioned further down in the frame to be clearly secondary (height < 32%). Ensure the crop has distinct trifoliate fine leaflets. Maintain the AFP watermark at bottom-right. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

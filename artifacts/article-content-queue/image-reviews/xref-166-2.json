@@ -1,0 +1,71 @@
+{
+  "id": "xref-166",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 7,
+      "product_height_percent": 11,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Presence of human body parts: The image shows a person's torso, arms, and hands holding the product, which is a hard reject condition.",
+        "Product size violation: The drip tape roll is too small (width ~7%, height ~11%), significantly underestimating the required 13-27% width and 32% height bounds.",
+        "Product shape violation: The roll appears as a tall cylinder rather than a wide, low cylindrical shape. Its visible diameter is not 1.5 to 1.9 times its visible height.",
+        "Product placement: The product is being held by hands in the center rather than being naturally placed on soil in the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely (no hands, torso, or legs). Place a wide, low cylindrical drip-tape carton roll directly on the soil in the lower-left or lower-right quadrant. The roll should be roughly 20% of the image width and have a diameter-to-height ratio of 1.7:1. Enlarge the product group from 7% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Missing required AFP white-and-blue wide low cylindrical drip-tape carton roll; the visible item is a white tape roll (not a drip-tape carton roll) with incorrect form and labeling.",
+        "Background/farm context appears to be generic rows of seedlings with a distant tractor and barn; the crop is not unmistakably the exact named crop required for the article title (botanically neutral young vegetation, no definitive morphology).",
+        "Product staging and framing do not meet the required dimensions/centering criteria for the described drip-tape carton roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with: exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll on soil; place off-center in the lower third; ensure crop-specific morphology or clear agronomic story for the article title; keep the bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 18.5,
+      "product_height_percent": 14.0,
+      "product_x_center_percent": 38.0,
+      "reasons": [
+        "Hard reject: The image contains visible human body parts (legs and a hand), violating the strict requirement for zero people or human silhouettes."
+      ],
+      "correction_prompt": "Regenerate the image keeping the drip-tape roll and farm context but completely remove the person; show only the field infrastructure and the product on the soil without any human legs or hands.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The product is a single, white-and-blue cylindrical roll of drip tape that matches the requested style.",
+        "The roll is placed off-center in the lower third of the image, resting naturally on the soil.",
+        "The product size (width approx 20%, height approx 25%) falls within the 13-27% and <32% tolerance ranges, and the width-to-height ratio is correct for a wide low roll.",
+        "The background shows a farm field with crop rows and a drip line running through the bed, which aligns with an agronomic context.",
+        "The young vegetation consists of small, botanically neutral seedlings which is acceptable when mature crop morphology is not required.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "No people, human body parts, or extraneous commercial packaging are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-کاملینا-نکات-کلیدی-کاربرد-عملی.webp"
+}

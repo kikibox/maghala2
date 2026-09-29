@@ -1,0 +1,54 @@
+{
+  "id": "xref-156",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 16,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Presence of a person (farmer/workerman) and visible human body parts (face, hands, legs, torso), which triggers a hard reject.",
+        "The product is centered or near-center horizontally, violating the off-center placement requirement."
+      ],
+      "correction_prompt": "Remove the person and all body parts from the image. Shift the drip-tape roll to the lower-left or lower-right third so it is visibly off-center. Ensure the roll sits naturally on soil with no human presence in the frame. Maintain the triticale field background and the AFP watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Missing the exact bottom-right watermark 'AFP | 09134922013'",
+        "Missing the white drip-tape carton roll; the scene contains no product",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Add a white-and-blue wide low cylindrical drip-tape carton roll placed naturally on soil, sized approx. 20% frame width, positioned in the lower-left third of the frame, and include the required bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 24,
+      "product_height_percent": 22,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Watermark 'AFP | 09134922013' is present and legible in the bottom-right corner.",
+        "Zero people, body parts, or silhouettes are visible in the frame.",
+        "The product is placed on the soil in the lower-left area, off-center as required.",
+        "Product dimensions are within acceptable thresholds: width is 24% (within 13-27%) and height is 22% (within 32%).",
+        "The cylindrical ratio (width:height) is approximately 1.1, which is acceptable for a wide drip-tape roll.",
+        "No identifying crop morphology is present to contradict the triticale context; the scene features pre-plant/soil infrastructure which aligns with the 'hardware story' role."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-تریتیکاله-مقایسه-جزئیات-فنی.webp"
+}

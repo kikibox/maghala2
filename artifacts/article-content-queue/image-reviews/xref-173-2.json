@@ -1,0 +1,70 @@
+{
+  "id": "xref-173",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 10,
+      "product_height_percent": 18,
+      "product_x_center_percent": 56,
+      "reasons": [
+        "The product width is approximately 10% of the image, falling below the minimum acceptable threshold of 13%.",
+        "The product is centered vertically near the horizontal midline rather than being placed off-center on the lower third as specified.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Widen the white and blue drip-tape roll to occupy 20% of the frame width and move it lower into the bottom third of the image. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Hard reject: Person (farmer/worker) is visible in the image, which is a strict violation of the zero-human rule."
+      ],
+      "correction_prompt": "Regenerate the image strictly with ZERO people or body parts visible. Keep the exact same farm/soil context, wooden raised bed, and the 'AFP | 09134922013' watermark in the bottom-right corner. Ensure the AFP blue-and-white drip tape roll in the bottom-left remains the primary focus and is off-center.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 16,
+      "product_height_percent": 18,
+      "product_x_center_percent": 23,
+      "reasons": [
+        "Presence of people and human body parts (arms and hands) on the right side of the image violates the 'zero people' constraint.",
+        "The product is a vertical roll (width less than height) instead of a wide low cylindrical roll (diameter 1.5-1.9x height).",
+        "Multiple drip tape products are visible, violating the 'exactly one' requirement.",
+        "A commercial canister is visible in the right hand, violating the 'zero extra commercial product' constraint."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human body parts. Ensure the primary product is exactly one horizontal wide low cylindrical AFP drip-tape roll (diameter 1.5-1.9 times height), placed on the soil in the lower-left third. Remove the canister and the unrolled drip tape in the foreground. Maintain the lettuce farm context.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The product is a white-and-blue drip-tape roll clearly labeled 'AFP', matching the brand requirements.",
+        "The product is positioned in the lower third and off-center to the left.",
+        "The dimensions (18% width, 22% height) are within the acceptable 13-27% width range and the 32% height limit.",
+        "The ratio of width to height (~0.8) aligns with the 'low cylindrical' description requested.",
+        "The background shows green leafy crops in rows with a barn, which is agronomically consistent with lettuce or salad crop production.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom right corner.",
+        "Zero people or body parts are visible.",
+        "The product is placed naturally on the soil."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-در-کشت-کاهو-چالشها-کاربرد-عملی.webp"
+}

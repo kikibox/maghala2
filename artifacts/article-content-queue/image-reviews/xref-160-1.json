@@ -1,0 +1,90 @@
+{
+  "id": "xref-160",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 4,
+      "product_height_percent": 7,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Presence of a person (farmer) kneeling in the foreground; hard reject rule: zero people or human body parts allowed.",
+        "Product roll is significantly too small (width approx 4%, height approx 7%); must be 13-27% width.",
+        "Product is positioned in the lower center, not off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with no people or body parts. Increase the drip-tape roll size to 20% frame width and place it off-center on the lower third. Enlarge the product group from 4% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 28,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Presence of two farmers/people which is a hard reject.",
+        "Human hands and body parts are visible interacting with the container.",
+        "The product shown is a tall, upright container/jar rather than a wide, low cylindrical drip-tape roll.",
+        "The container is centered and being touched, rather than lying off-center on the soil.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people. Replace the upright container with a wide, low cylindrical drip-tape roll lying on its side. Position the roll on the soil in the lower third, off-center to the left or right, with no human presence. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 40,
+      "product_height_percent": 25,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "The product is too wide relative to the frame, failing the hard limit of 27% and exceeding the ideal secondary placement.",
+        "The roll is upright/cylindrical, whereas the crop 'drip-tape' is practically and visually flat tape that rolls wide and low; an upright roll looks like a hose or pipe rather than drip tape.",
+        "Text on the product is garbled and illegible, failing the requirement for no gibberish text.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 40% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with a wide, low-profile flat drip-tape carton that fits within 20% of the frame width. Fix the product labels so text is legible or remove gibberish. Ensure the roll is clearly low and wide rather than upright. Reduce the product group from 40% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0.06,
+      "product_height_percent": 0.08,
+      "product_x_center_percent": 0.48,
+      "reasons": [
+        "Hard reject: The image contains two people, which is explicitly forbidden (zero people and zero human body parts).",
+        "Hard reject: The product is centered in the frame rather than being off-center on the lower third.",
+        "Hard reject: The product geometry is incorrect; the visible diameter is not 1.5 to 1.9 times its visible height.",
+        "Hard reject: The crop morphology (seedlings) is botanically neutral/unidentifiable, failing to make the exact named crop from the article title recognizable.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0.06% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people completely. Position the white-and-blue AFP drip-tape carton roll off-center on the lower third, resting naturally on soil. Reshape the roll so its diameter is 1.5 to 1.9 times its height, with a width of approximately 20% of the frame. Ensure the background clearly depicts the specific crop named in the article title with botanically accurate morphology. Enlarge the product group from 0.06% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 25,
+      "product_height_percent": 24,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product matches required description of one wide low cylindrical drip-tape carton roll.",
+        "Product is placed naturally on soil, off-center in the lower third, with proper aspect ratio (diameter approx. 1.04x height).",
+        "The 'irrigation layout' criterion is met by the visible loop of brown drip tape extending from the roll, consistent with the product's function.",
+        "Background shows farm context with young seedlings and distant farm infrastructure.",
+        "Zero people or body parts are present.",
+        "Required watermark 'AFP | 09134922013' is present and correctly positioned bottom-right.",
+        "Product size and position are within the acceptable ranges defined in the role."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-رانشی-در-کشت-کینوا-مقایسه-تصویر-شاخص.webp"
+}

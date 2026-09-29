@@ -1,0 +1,96 @@
+{
+  "id": "xref-162",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 16,
+      "product_height_percent": 14,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Missing required 'AFP | 09134922013' watermark in the bottom-right corner",
+        "Product is too small relative to the frame (target 20-23%, actual ~16%)",
+        "Product position is too central (x ~47%), target is off-center lower third",
+        "Product appears to be a standard plastic spool rather than a wide cylindrical carton roll"
+      ],
+      "correction_prompt": "Regenerate with a bottom-right watermark 'AFP | 09134922013'. Increase the white-and-blue drip-tape carton roll size to ~22% of frame width. Move the roll to the bottom-left third (x ~30%) and ensure it is off-center.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 7,
+      "product_height_percent": 9,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Hard reject: Presence of a person (male crouching in the field) and visible body parts (hands, face, arms, legs), which strictly violates the zero-person rule.",
+        "The drip-tape roll is positioned in the bottom-left corner, whereas the requirement specifies an off-center placement on the lower third (implying a more central horizontal position, roughly 40-60%).",
+        "The product bounding box height (approx. 9%) is relatively small compared to the preferred width (20-23%) and the hard limit (32%), suggesting the product is secondary to the crop, failing the 'secondary' visibility requirement.",
+        "The roll has a high aspect ratio (vertical diameter > width), whereas the requirement specifies a wide cylindrical roll where the diameter is 1.5 to 1.9 times the height (horizontal axis).",
+        "The background crop appears to be wheat or generic grain, not definitively rye (though the zero-person rule alone triggers a hard reject).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human elements. Reposition the drip-tape roll to the lower-center (45-55% x-position). Modify the roll geometry to be wide and horizontal (low height, wide diameter). Ensure the product is clearly visible and secondary to the field context without dominating the frame. Enlarge the product group from 7% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 68,
+      "product_width_percent": 22.1,
+      "product_height_percent": 24.5,
+      "product_x_center_percent": 46.2,
+      "reasons": [
+        "The product is a large, wide cylindrical roll (resembling a plastic film reel or spool) rather than a standard 'drip-tape' roll which is typically long and narrow. This violates the expected geometry of the specified product.",
+        "The roll is positioned in the immediate foreground, touching the edge of the frame, and appears to be staging the scene rather than being placed naturally on soil as part of the crop's environment."
+      ],
+      "correction_prompt": "Regenerate the image with a long, slender drip-tape roll (standard agricultural geometry) placed naturally on the soil in the lower-left background, not in the foreground. Ensure the rye crop in the background clearly displays tall slender stems and long narrow grain heads.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 25,
+      "product_height_percent": 20,
+      "product_x_center_percent": 29,
+      "reasons": [
+        "Product geometry fails: The visible diameter of the drip-tape roll (width) is approximately 1.25 times its height, which is outside the required range of 1.5 to 1.9 times."
+      ],
+      "correction_prompt": "Regenerate the drip-tape roll to have a flatter profile; increase the width and decrease the height so the diameter is approximately 1.7 times the height, maintaining the 20% width constraint and off-center positioning.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 14,
+      "product_height_percent": 17,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Hard reject: The image contains two people (one crouching in the foreground, one standing in the background). The prompt strictly forbids zero people, faces, hands, or body parts.",
+        "Placement violation: The product is placed on a hay bale in the foreground, not 'naturally placed on soil' in the field context described.",
+        "Context violation: The crop in the background appears to be mature wheat with awns (beards), which may be identifiable as a different species than the required 'rye' (which typically has smoother ears), and is not a 'prepared bed' or 'tiny unidentifiable seedlings'.",
+        "Product aspect ratio: The roll's visible height is greater than 50% of its width, violating the requirement for a diameter 1.5-1.9 times its visible height."
+      ],
+      "correction_prompt": "Regenerate image with zero people (no farmers, hands, or faces). Show exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll placed directly on the soil (not on a bale) in a field of small rye seedlings. The roll should be off-center in the lower third. Keep the 'AFP | 09134922013' watermark in the bottom-right corner.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 23,
+      "product_height_percent": 38,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product height (38%) exceeds the hard limit of 32%.",
+        "Product aspect ratio (width 23 vs height 38) fails the required 1.5-1.9 range; the roll appears too tall relative to its width.",
+        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a much wider, low-profile roll; drastically reduce vertical height to less than 30% of the frame width, maintain a flat cylindrical shape with a 1.5-1.9 width-to-height ratio, and keep it in the lower-left foreground. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

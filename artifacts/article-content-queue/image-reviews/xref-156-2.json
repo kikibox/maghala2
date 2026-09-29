@@ -1,0 +1,85 @@
+{
+  "id": "xref-156",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Hard reject: Two people (farmer and worker) are clearly visible in the foreground.",
+        "Hard reject: Multiple human body parts (arms, legs, hands, faces) are present in the image.",
+        "Hard reject: A loose coil of drip tape is visible on the ground next to the carton, constituting an 'extra commercial product' violation.",
+        "Hard reject: The image shows the product being unrolled/handled by people rather than placed naturally on soil as an off-center, unattended object."
+      ],
+      "correction_prompt": "Regenerate the image with the same farm context and crop but remove all people and body parts. Show the single wide cylindrical carton roll of drip tape sitting unattended on the soil in the lower-left or lower-right area, with zero loose coils of tape on the ground and no workers present.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 68,
+      "product_width_percent": 19,
+      "product_height_percent": 23,
+      "product_x_center_percent": 29,
+      "reasons": [
+        "The background crop morphology does not distinctly match the article crop (triticale). The visible green rows are too broad-leafed and weedy, resembling sunflowers or other broadleafs rather than the narrow-leafed triticale specified for the topic.",
+        "Watermark violation: The bottom-right contains the gibberish text 'Drip Itrigot Tapa' within the black box, whereas the strict requirement is exactly 'AFP | 09134922013'."
+      ],
+      "correction_prompt": "Regenerate with a background of narrow-leafed triticale seedlings or prepared beds specifically for that crop. Replace the entire bottom-right black box with a clean 'AFP | 09134922013' watermark, removing all other text.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 10,
+      "product_height_percent": 13,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Presence of a full human figure (crouching man) and visible body parts (face, hands, arms, legs), which is a hard reject.",
+        "The product is being actively held by hands rather than resting naturally on the soil.",
+        "The product is centered horizontally rather than being off-center on the lower third.",
+        "The product is a generic white container/canister, not the specific wide, low, cylindrical drip-tape carton roll described in the requirements.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with no people or human body parts. Place a single white-and-blue cylindrical drip-tape carton roll off-center on the lower third of the frame, resting naturally on the soil in a field of young triticale. Ensure the roll occupies approximately 20-23% of the frame width and has the exact bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 35,
+      "product_height_percent": 25,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "The product is centered horizontally rather than being off-center in the lower third.",
+        "The product's width is too wide relative to the frame (estimated at ~35%), violating the 13-27% limit.",
+        "The product is not placed 'off-center' as required by the spatial composition rules.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the AFP white-and-blue drip-tape roll placed clearly off-center on the right or left side of the lower third. The roll should be smaller (around 20% width of the frame) and clearly secondary to the background. Ensure the background shows a field of triticale seedlings or a prepared bed suitable for triticale. Reduce the product group from 35% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 20.5,
+      "product_height_percent": 21.0,
+      "product_x_center_percent": 36.5,
+      "reasons": [
+        "Product geometry: The roll maintains the correct wide, low cylindrical shape with a diameter-to-height ratio within the acceptable 1.5 to 1.9 range.",
+        "Placement and Proportion: The product is correctly positioned in the lower-left quadrant (lower third) and is appropriately secondary to the crop scene, fitting the required 20-23% width preference.",
+        "Agronomic Context: The image shows a crop field with rows of young seedlings. While the seedlings are somewhat generic, they are consistent with early-stage triticale growth and pass the neutral vegetation check.",
+        "Watermark Integrity: The required 'AFP | 09134922013' watermark is clearly visible in the bottom right corner.",
+        "No Hard Rejects: The image contains zero people, human silhouettes, or extra commercial products like bottles or cans."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-تریتیکاله-مقایسه-کاربرد-عملی.webp"
+}

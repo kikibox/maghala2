@@ -1,0 +1,80 @@
+{
+  "id": "xref-163",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 82,
+      "product_width_percent": 22,
+      "product_height_percent": 22,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Required bottom-right watermark text 'AFP | 09134922013' is missing.",
+        "Product bounding box geometry (width:height ratio approx 1:1) does not match the specified requirement of 1.5 to 1.9 times."
+      ],
+      "correction_prompt": "Regenerate the image with the product width-to-height ratio adjusted to 1.5-1.9x and add the exact text watermark 'AFP | 09134922013' to the bottom-right corner.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 18,
+      "product_height_percent": 20,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: Contains two visible people (farmers) in the frame."
+      ],
+      "correction_prompt": "Remove both human figures and their body parts entirely from the scene. Keep the AFP drip tape roll on the soil with the tractor and farm background.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 82,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "The image contains a visible crop plant that clearly contradicts the specified topic of alfalfa (younaj), violating the hard reject rule for crop morphology."
+      ],
+      "correction_prompt": "Remove the visible green crop plant from the foreground; keep the soil plain to maintain the alfalfa topic and hardware context without contradictory crop morphology.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 18,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Contains a person/farmer interacting with the product (hard reject)",
+        "Contains human body parts: face, hands, and legs (hard reject)",
+        "Image fails zero-person and zero-human-silhouette requirement",
+        "Watermark text \"09134922013\" does not match required \"09134922013\" format or is present but the image is rejected for human presence regardless of valid watermark"
+      ],
+      "correction_prompt": "Remove all human presence, faces, and body parts completely. Regenerate a product-only shot of the white-and-blue AFP drip-tape carton roll placed naturally on soil, off-center on the lower third, with a width of 13-27% and height under 32%. Background should be a farm context with unattended infrastructure if needed.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 21,
+      "product_height_percent": 27,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product is a wide low cylindrical drip-tape carton roll with white top and blue/white body (AFP branding)",
+        "The watermark 'AFP | 09134922013' is present and correctly formatted",
+        "The product is placed on the soil in a farm context (open field with barn and pivot rig in the background)",
+        "Product size (width ~21%, height ~27%) is within the practical acceptable range",
+        "Product is positioned in the lower third of the frame, avoiding centered staging",
+        "Zero people or human body parts are visible in the scene",
+        "No extra commercial products (bottles, jars, buckets, etc.) are present"
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-قطرهچکان-در-کشت-یونجه-مقایسه-جزئیات-فنی.webp"
+}

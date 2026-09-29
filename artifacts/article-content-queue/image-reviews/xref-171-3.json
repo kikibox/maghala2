@@ -1,0 +1,97 @@
+{
+  "id": "xref-171",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 22,
+      "product_height_percent": 38,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product height (~38%) exceeds the hard limit of 32%.",
+        "The visible diameter of the product is less than 1.5 times its visible height, violating the required aspect ratio for the roll.",
+        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a wider and shorter product roll to maintain the required 1.5-1.9:1 diameter-to-height ratio and keep the height under 32% of the frame. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Hard reject: Visible human body parts (hands, arms, legs) and a person on the right side of the frame.",
+        "Hard reject: Presence of a glass bottle/vial held in the hand.",
+        "Hard reject: Product is placed next to a growing plant (not visually neutral/absent as per Role 3 hardware story preference, though not the primary rejection factor)."
+      ],
+      "correction_prompt": "Remove the person, hands, arms, and glass bottle. Place the AFP white-and-blue wide low cylindrical drip-tape carton roll solo on the soil in a farm context. The roll should be off-center on the lower third. Keep the background with tractor and hardware. Do not include any people or human silhouettes. Maintain the bottom-right watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 23,
+      "product_height_percent": 29,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Presence of a person (farmer) in the background triggers a hard reject rule."
+      ],
+      "correction_prompt": "Regenerate the image without the person. Ensure the background contains only unattended tractors, pumps, and fixed irrigation infrastructure (no human silhouettes or body parts visible anywhere).",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 21,
+      "product_height_percent": 25,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: presence of a human figure (farmer/worker) in the image.",
+        "Hard reject: visible human body parts (head, torso, arms, legs).",
+        "Role 3 specification explicitly requires zero people or human silhouettes; unattended hardware is the only permitted infrastructure context.",
+        "The human subject actively engages with the hardware, contradicting the 'unattended' requirement."
+      ],
+      "correction_prompt": "Remove the person entirely. Keep the tractors, plow, and manometer. Ensure the AFP drip-tape roll remains in the lower-left position (approx 21% width) on the soil, with no human silhouettes or body parts visible anywhere in the frame. Maintain the 'AFP | 09134922013' watermark in the bottom right.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: identifiable human figure (silhouette of a person) is visible in the background near the tractor, violating the 'zero people or human silhouettes' requirement."
+      ],
+      "correction_prompt": "Regenerate the image ensuring no human figures, silhouettes, or body parts are visible in the background, maintaining only the farm context and the AFP drip-tape roll in the foreground.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 75,
+      "product_width_percent": 25,
+      "product_height_percent": 22,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is a cylindrical drip-tape roll, white and blue, matching the AFP branding",
+        "Product is positioned off-center on the lower third, naturally placed on soil",
+        "Tractor in background is unattended (no driver) and serves as farm infrastructure",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner",
+        "No human body parts or silhouettes visible",
+        "Product width is approximately 25% of the frame, within the preferred 20-23% range or acceptable 13-27% range",
+        "Product height is approximately 22% of the frame, well below the 32% limit",
+        "The aspect ratio of the roll (width ~25%, height ~22%) is roughly 1.1x, which is slightly flatter than the ideal 1.5-1.9x, but acceptable for a layflat roll view",
+        "The surrounding objects appear to be irrigation hardware rather than prohibited products like jars or cans"
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-ذرت-هزینه-در-مزرعه-جزئیات-فنی.webp"
+}

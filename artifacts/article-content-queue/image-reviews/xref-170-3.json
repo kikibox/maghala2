@@ -1,0 +1,92 @@
+{
+  "id": "xref-170",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 11,
+      "product_height_percent": 14,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Presence of human body parts (a person in the background)",
+        "Product aspect ratio violates geometry constraints (height/diameter mismatch)",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person in the background and replace the cylindrical carton with a wide, low drip-tape roll (diameter approx 1.5-1.9 times its height) placed on the soil in the lower third. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 88,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "The bottom-right watermark displays a 10-digit phone number '09134922013', but the strict requirements mandate the exact 11-digit watermark 'AFP | 09134922013'.",
+        "The package text below the 'AFP' logo reads 'Drip Dripen Tape', which is gibberish/duplicated phrasing rather than authentic, professional packaging text."
+      ],
+      "correction_prompt": "Regenerate the image. Update the bottom-right watermark to exactly 'AFP | 09134922013' (11 digits). Replace the gibberish text under the AFP logo with clean, readable 'Drip Tape'.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 21,
+      "product_height_percent": 28,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The roll shape is too narrow and tall (vertical canister/drum style) rather than a wide low cylindrical shape. Its diameter-to-height ratio is too close to 1:1 instead of the required 1.5 to 1.9."
+      ],
+      "correction_prompt": "Regenerate the roll as a wide, low cylindrical form (flattened geometry, diameter at least 1.6 times its height) on the lower-left soil, keeping the current size, background, and unattended tractor.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 20,
+      "product_height_percent": 16,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "The image contains a person (a farmer) leaning against a tractor, which violates the hard rejection rule for any human or body part."
+      ],
+      "correction_prompt": "Regenerate the image strictly with zero people, removing the farmer and ensuring only the tractors and drip tape rolls are visible.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 17,
+      "product_height_percent": 22,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The image contains a second roll of black tubing next to the white and blue carton, which violates the 'zero second roll' and 'exactly one roll' constraint.",
+        "The product is in the center-left of the frame and appears in the lower half, failing the strict 'lower third' placement requirement.",
+        "The presence of an extra commercial product (the black tubing) triggers a hard reject."
+      ],
+      "correction_prompt": "Remove the black tubing and any extra hardware from the foreground. Regenerate the image to show only a single white and blue cylindrical drip-tape carton roll. The roll should be located in the bottom third of the image, placed naturally on the soil, with a farm context background. Ensure the roll is clearly off-center.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 26,
+      "product_height_percent": 28,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The exact required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No human body parts or silhouettes are visible in the image.",
+        "The background context matches the 'family farm' topic with visible tractors and a barn.",
+        "The product shows the correct white-and-blue wide low cylindrical drip-tape appearance.",
+        "The product height (28%) is within the limit of 32%, and width (26%) is within the practical limit of 27%.",
+        "The visible diameter ratio is approximately 1.6, which falls within the required 1.5 to 1.9 range."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-ماش-مزایا-جزئیات-فنی.webp"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "xref-157",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 14,
+      "product_height_percent": 17,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Hard reject: The image contains multiple people (a man crouching, a standing person, and another person's legs), which violates the 'zero people' constraint.",
+        "Hard reject: The presence of human faces, hands, and limbs constitutes a disqualifying human element.",
+        "Product centering: The product bounding box is centered around x=47%, failing the requirement to be off-center on the lower third."
+      ],
+      "correction_prompt": "Regenerate the image with no people, faces, or body parts. The AFP drip-tape roll must be a secondary element (13-27% width) positioned off-center on the lower third of the frame in a farm context, while retaining the bottom-right watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 12,
+      "product_height_percent": 20,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Visible person (woman crouching) and human body parts (face, hands, arms, legs) present.",
+        "The product roll is not naturally placed alone; it is being interacted with and supported by a person.",
+        "Product bounding box width is estimated at 12%, which is slightly below the acceptable 13% minimum for practical estimation.",
+        "Product width does not meet the preferred range of 20-23%.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate without any human figure, hands, or body parts. Frame the roll so it occupies 20-23% of the image width with a height of about 15%. Ensure it is off-center on the lower third on the soil. Retain the 'AFP | 09134922013' watermark. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 23,
+      "product_height_percent": 28,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product meets visual and dimensional criteria (approx 23% width, 28% height, diameter ratio ~1.6x)",
+        "Exactly one roll visible with no extra packaging, drums, or human silhouettes",
+        "Hardware context (tractor/irrigation) is valid and consistent with role 3",
+        "Product is off-center and naturally placed on soil",
+        "Required AFP phone watermark is present and correct"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-چرخشی-در-کشت-تره-چالشها-جزئیات-فنی.webp"
+}

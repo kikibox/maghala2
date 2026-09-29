@@ -1,0 +1,57 @@
+{
+  "id": "xref-172",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 14,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: The image contains a visible person (human arms and hands holding a tool) on the left side, violating the 'zero people and zero human body parts' rule.",
+        "Hard reject: The watermarked phone number in the bottom right is '09134922013', which does not match the required exact watermark '09134922013' (there is a subtle typo in the image, it reads 09134922013 vs 09134922013 - actually, looking closely, the image has 09134922013 but the requirement says 09134922013. Wait, let me double check the number in the prompt vs image. Prompt: 09134922013. Image: 09134922013. They match. Okay, the main rejection is the person.)",
+        "Note: The crop visible looks more like cabbage or broccoli rather than spinach (dense low rosettes), which is a soft fail, but the hard reject of the person is sufficient.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any people or body parts; replace the hands holding the trowel with just the trowel resting in the soil. Ensure the crop clearly resembles spinach rosettes rather than brassicas. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 5,
+      "product_height_percent": 8,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Hard reject: Contains a visible human arm and hand holding a shovel.",
+        "Product does not meet specifications: The drip-tape carton appears to be a small canister/bottle shape rather than a wide low cylindrical roll.",
+        "Product placement: The roll is centered and too small relative to the frame (estimated ~5% width, ~8% height).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to strictly exclude any human body parts, arms, or hands. Replace the shovel and canister with a single wide, low cylindrical drip-tape carton roll (white and blue) placed on the soil in the foreground. The roll should be roughly 20% of the frame's width and 15% of its height, positioned off-center on the lower third of the image. Ensure the spinach crop is recognizable in the background. Enlarge the product group from 5% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 22,
+      "product_height_percent": 19,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Product is an AFP white-and-blue wide cylindrical drip-tape roll placed naturally on soil.",
+        "Position is off-center on the lower third as required.",
+        "Product proportions are compliant (visible diameter approx 1.7x height; height is 19% < 32% limit; width is 22% within preferred 20-23% range).",
+        "Background clearly matches the spinach context, showing dense low rosettes of smooth dark-green leaves with no flowers, pods, or incompatible species.",
+        "Zero people or human body parts are visible.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-اسفناج-هزینه-بهینه-کاربرد-عملی.webp"
+}
