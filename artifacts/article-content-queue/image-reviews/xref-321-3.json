@@ -1,0 +1,68 @@
+{
+  "id": "xref-321",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25.5,
+      "product_height_percent": 44.2,
+      "product_x_center_percent": 31.5,
+      "reasons": [
+        "The product's height is significantly too large, exceeding the maximum 32% limit of the frame (estimated at ~44%).",
+        "The product's visible width is not about 1.5 to 1.9 times its visible height (it is roughly 1:1.7 instead of the required aspect ratio).",
+        "The required bottom-right watermark is 'AFP | 09134922013', but the image displays an invented number 'AFP | 09134922013' which is a hard reject for gibberish text.",
+        "machine-enforced bounding-box check failed: Reduce product height from 44.2% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image ensuring the drip tape roll is much smaller and flatter (aspect ratio ~1.7:1), with a height strictly under 32% of the frame. Correct the bottom-right watermark to the exact string 'AFP | 09134922013'. Reduce product height from 44.2% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 14,
+      "product_height_percent": 14,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Presence of people and human body parts (farmer, hands, legs, face) violates the hard reject criteria"
+      ],
+      "correction_prompt": "Regenerate the image to remove all human figures and body parts, keeping only the unattended hardware and the drip-tape roll in the farm context.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Missing required bottom-right watermark 'AFP | 09134922013'",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Add the exact text 'AFP | 09134922013' as a watermark in the bottom-right corner of the image. Ensure the text is clear and legible, matching the required format exactly. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 96,
+      "product_width_percent": 24,
+      "product_height_percent": 21,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product width and height within acceptable range (13-27%, <32%).",
+        "Product is off-center on the lower third of the frame.",
+        "Exactly one AFP white-and-blue wide low cylindrical drip-tape roll is visible.",
+        "Zero people or human body parts are present.",
+        "Crop presence is visually neutral and does not contradict the mung bean topic in this context.",
+        "The required watermark 'AFP | 09134922013' is clearly visible and authentic.",
+        "Farmer/tractor in the background is an unattended piece of infrastructure/infrastructure context (implied or distant), and no human silhouettes are visible.",
+        "Text on the product is consistent with the brand without obvious gibberish in close-up."
+      ],
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-قطرهچکان-در-کشت-ماش-مزایا-جزئیات-فنی.webp"
+}

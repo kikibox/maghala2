@@ -1,0 +1,69 @@
+{
+  "id": "xref-312",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 19,
+      "product_height_percent": 27,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "The image contains a second commercial product (a grey manifold/controller) next to the drip tape roll, which triggers a hard reject for 'extra commercial product' or 'second package'.",
+        "The product is positioned in the center of the frame rather than being off-center on the lower third as requested."
+      ],
+      "correction_prompt": "Remove the grey manifold unit next to the roll. Move the AFP drip tape roll to the left side of the lower third of the frame to ensure it is off-center. Keep the background and watermarks identical.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 14,
+      "product_height_percent": 16,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "Hard reject: Image contains visible human body parts (crouching person on the right).",
+        "Product aspect ratio mismatch: Visible diameter/height is approximately 1.0-1.1 (wide cylinder), failing the 1.5-1.9 requirement.",
+        "Product is not off-center on the lower third: It is positioned on the far left, rather than in a balanced lower-third composition.",
+        "Role 3 conflict: The image contains a prominent, identifiable crop (leafy plants) that may be interpreted as contradicting the hardware-focused requirement."
+      ],
+      "correction_prompt": "Remove the crouching person completely from the right side. Regenerate the irrigation roll with a wider aspect ratio (diameter roughly 1.6x its height) and place it off-center in the lower-third, naturally sitting on soil without a prominent crop background.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 20,
+      "product_height_percent": 18,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Visible crop plants in the foreground clearly contradict the spinach (اسفناج) topic, as they are not identifiable spinach and are not neutral",
+        "Product roll diameter is visibly wider than 1.9 times its visible height",
+        "Product is not naturally placed on soil; it appears to sit on the surface between crop rows rather than being integrated into the soil bed"
+      ],
+      "correction_prompt": "Regenerate the image replacing the foreground crop with bare soil or visually neutral ground suitable for spinach farming, ensuring the drip-tape roll has a diameter approximately 1.5 to 1.9 times its visible height and is placed naturally on the soil surface.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 25,
+      "product_height_percent": 15,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product is a single white-and-blue wide cylindrical drip-tape roll, placed off-center on the lower third on soil",
+        "Product dimensions (width ~25%, height ~15%, aspect ratio ~1.67) fall within acceptable limits",
+        "Zero people or human body parts present",
+        "Watermark 'AFP | 09134922013' is clearly visible in the bottom-right corner",
+        "Background farm context matches a generic crop field, and no crop morphology (like lentils) is specifically visible that would contradict spinach; visible leafy plants are visually neutral",
+        "No forbidden objects (bottles, buckets, etc.) or invalid roll types present"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-در-کشت-اسفناج-مزایا-جزئیات-فنی.webp"
+}

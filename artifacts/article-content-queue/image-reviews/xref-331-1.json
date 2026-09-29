@@ -1,0 +1,55 @@
+{
+  "id": "xref-331",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 4,
+      "product_height_percent": 10,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: The image contains a prominent person (farmer) squatting in the field, which is explicitly forbidden.",
+        "Hard reject: Human body parts (face, arms, legs, hands) are clearly visible.",
+        "Product Form Error: The item in the image is a small canister or jar, not a wide cylindrical drip-tape carton roll as requested.",
+        "Scale Error: The product is far too small (width < 13%), failing the required size requirements.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with zero people. Replace the canister with a large wide cylindrical drip-tape roll lying on the soil in the foreground. The roll must be blue and white with AFP branding and occupy 20-25% of the frame width. Keep the farm background and crop visible but remove all humans. Enlarge the product group from 4% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 31,
+      "product_height_percent": 41,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "The image contains a human figure (a man crouching in the background) which is explicitly prohibited (zero people).",
+        "The product's height (41%) and width (31%) exceed the maximum acceptable limits of 32% and 27%, respectively.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 31% to 13-27% of frame width.; Reduce product height from 41% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image without the human figure in the background; reduce the size of the drip-tape roll to be under 25% of the frame width. Reduce the product group from 31% to 13-27% of frame width. Reduce product height from 41% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 100,
+      "product_width_percent": 16.4,
+      "product_height_percent": 23.2,
+      "product_x_center_percent": 33.6,
+      "reasons": [
+        "The image contains exactly one AFP white-and-blue drip-tape roll with the required bottom-right watermark.",
+        "The product is placed off-center in the lower third on soil and remains secondary to the background crop.",
+        "There are zero people or human body parts in the image.",
+        "The geometry of the roll is correct and no prohibited objects or text are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-هویج-راهنمای-جامع-تصویر-شاخص.webp"
+}

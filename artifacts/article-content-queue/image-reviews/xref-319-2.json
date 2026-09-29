@@ -1,0 +1,57 @@
+{
+  "id": "xref-319",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 38,
+      "product_width_percent": 10,
+      "product_height_percent": 15,
+      "product_x_center_percent": 54,
+      "reasons": [
+        "Watermark rejected: The prompt requires the text to be in the bottom-right corner, but this image displays the watermark in the bottom-left corner.",
+        "Product geometry: The roll's visible diameter (width) is not 1.5 to 1.9 times its visible height; it is nearly square (ratio ~0.7).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Move the 'AFP | 09134922013' watermark to the bottom-right corner. Reshape the drip tape roll to have a significantly wider diameter than its height to correct the aspect ratio. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 9,
+      "product_height_percent": 11,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Hard reject: The image contains two visible people (a man and a woman) kneeling in the field.",
+        "Rule violation: The strict 'zero people and zero human body parts' constraint fails due to the presence of faces, arms, and full bodies.",
+        "Rule violation: The product is staged as being handled by a person rather than being a passive part of the scene.",
+        "Visual issue: The product is too small and partially obscured by the hands in the foreground.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or hands visible. Position the white and blue cylindrical drip-tape carton roll autonomously on the soil at the lower left or right third of the frame. Ensure the crop rows (leek tracts) are clearly visible in the background without any human silhouettes. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 72,
+      "reasons": [
+        "The product bounding box indicates the roll's width is approximately 20% of the frame and height is 22%, both well within the acceptable thresholds.",
+        "The roll's visible diameter is roughly 1.7 times its visible height, matching the specified 1.5 to 1.9 range.",
+        "The product is located off-center in the lower third of the image, with its x-center at 72%, which is naturally placed on the soil.",
+        "Zero people or human body parts are visible in the image.",
+        "The background shows a farm context with green seedlings in tilled soil rows, which is a valid neutral agronomic setting for the topic.",
+        "The required 'AFP | 09134922013' watermark is correctly present at the bottom right."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-با-رانش-در-کشت-تره-هزینه-در-مزرعه-کاربرد-عملی.webp"
+}

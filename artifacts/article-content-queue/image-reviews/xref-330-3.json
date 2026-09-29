@@ -1,0 +1,56 @@
+{
+  "id": "xref-330",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 3,
+      "product_height_percent": 2,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The image contains a visible person (farmer) standing in the background, which violates the strict 'zero people and zero human body parts' requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 3% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any people; show a close-up, off-center view of the specific white-and-blue wide low cylindrical drip-tape carton roll on the soil. Enlarge the product group from 3% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 42,
+      "product_height_percent": 38,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Product width exceeds the hard reject limit of 27% of the frame",
+        "Product height exceeds the hard reject limit of 32% of the frame",
+        "Second roll of drip tape visible on the ground to the right constitutes an extra commercial product",
+        "machine-enforced bounding-box check failed: Reduce the product group from 42% to 13-27% of frame width.; Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shrink the main drip-tape roll to under 20% width and 30% height; remove the small secondary roll on the ground; move the main roll off-center to the lower-left third; ensure the roll is positioned more naturally on the soil without overlapping the watermark area. Reduce the product group from 42% to 13-27% of frame width. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 75,
+      "product_width_percent": 17,
+      "product_height_percent": 16,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product is a white and blue cylindrical drip-tape roll.",
+        "Image contains zero people or body parts.",
+        "Watermark 'AFP | 09134922013' is present in the bottom right.",
+        "Product is off-center in the lower third and placed naturally on soil.",
+        "Product width (17%) is within the acceptable 13-27% range.",
+        "Product height (16%) is well below the 32% maximum limit.",
+        "Crop plants are visually neutral (small green leaves) and do not clearly contradict basil (ريحان)."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-گلخانهای-در-کشت-ریحان-چالشها-جزئیات-فنی.webp"
+}

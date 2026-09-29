@@ -1,0 +1,75 @@
+{
+  "id": "xref-329",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 4,
+      "product_height_percent": 8,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Presence of a human subject (farmer/watermark-free but violates zero-person constraint).",
+        "Hard reject: A visible person, face, hands, and body parts are present in the image.",
+        "Product does not meet the 'secondary' requirement; it is too small relative to the requested 13-27% width range.",
+        "Product geometry is incorrect; it does not look like a 'wide low cylindrical' roll as specified (looks like a small spool).",
+        "The role 3 'hardware story' criteria are not met because of the human intervention shown.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with zero humans. Replace the person with a view of the field hardware. Ensure the white-and-blue cylindrical carton roll is large (approx 20% frame width) and placed off-center in the lower third on the soil. Keep the paprika pepper farm context and the required bottom-right watermark. Enlarge the product group from 4% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 25,
+      "product_height_percent": 40,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Presence of two people (farmer/worker) in the image",
+        "Hard reject: Human faces, arms, legs, and body parts are clearly visible",
+        "Hard reject: Product is not placed naturally on soil but is positioned with humans",
+        "Hard reject: Product is centered in the frame rather than off-center on the lower third",
+        "Hard reject: Product height is significantly taller than 32% of the frame",
+        "machine-enforced bounding-box check failed: Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove all human figures completely. Place a single AFP white-and-blue drip-tape roll on the soil in a paprika farm, positioned in the lower third off-center. The roll should be low, wide, and cylindrical, secondary to the background. No people or silhouettes. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 16,
+      "product_height_percent": 16,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The product is centered horizontally, violating the 'off-center' requirement.",
+        "The product's visible width and height are nearly equal (16% both), failing the 1.5:1 to 1.9:1 aspect ratio constraint for a cylindrical roll.",
+        "The visible crop fruit clearly contradicts the target 'paprika' morphology."
+      ],
+      "correction_prompt": "Regenerate with a wide, low cylindrical drip-tape roll placed off-center on the lower third of the frame. Ensure the roll's width is visibly 1.5 to 1.9 times its height. Replace the central staging with an off-center position and use paprika-appropriate crop morphology or neutral soil.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 75,
+      "product_width_percent": 23,
+      "product_height_percent": 26,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product (white and blue drip-tape carton roll) is correctly identified as a wide, low cylindrical roll.",
+        "Product dimensions are within acceptable thresholds: width (~23%) is in the 13-27% practical range, and height (~26%) is below the 32% hard-reject limit.",
+        "The product is naturally placed on the soil and positioned in the lower third of the frame, off-center.",
+        "The background clearly matches the specific crop context of paprika (red peppers), showing mature paprika plants with no contradictory crops.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "No prohibited elements (people, human body parts, extra commercial containers, pipes through the roll, or gibberish text) are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-رطوبتی-در-کشت-پاپریکا-چالشها-جزئیات-فنی.webp"
+}
