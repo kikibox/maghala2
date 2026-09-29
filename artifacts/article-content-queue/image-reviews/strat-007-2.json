@@ -1,0 +1,83 @@
+{
+  "id": "strat-007",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 8,
+      "product_height_percent": 10,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: Image contains a person (farmer) including face, hands, arms, and legs.",
+        "Hard reject: The product is a small canister/box, not a wide, low cylindrical drip-tape roll.",
+        "Product width (8%) is far below the minimum acceptable range of 13%.",
+        "Product geometry does not match the requirement for a diameter 1.5-1.9x its height.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any people. Show a wide, low, cylindrical white-and-blue drip-tape roll placed on the soil in the foreground. The roll must be off-center (lower third) and take up 20-23% of the frame width. The crop should be a recognizable corn field with established plants. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 21,
+      "product_height_percent": 20,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Hard reject: Image contains a person (farmer) in the background.",
+        "Product height is too large relative to the preferred ratio (height is not less than ~52.6% of width)."
+      ],
+      "correction_prompt": "Remove the person in the background entirely. Shrink the drip tape roll significantly so its height is less than 50% of its width while maintaining the off-center position in the lower third.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 68,
+      "product_width_percent": 14,
+      "product_height_percent": 21,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product aspect ratio (14:21) is too tall and narrow; the width-to-height ratio is approximately 0.67, failing the required 1.5 to 1.9 range.",
+        "Product height (21%) is too large relative to its width, failing the requirement that height be no more than 32% of the frame."
+      ],
+      "correction_prompt": "Regenerate with the drip tape roll having a much wider and flatter cylindrical geometry (width roughly 1.5 to 1.9 times its height), reducing its relative height in the frame so it meets the strict aspect ratio and dimension constraints.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Violation: Human body parts (arms, hands, legs, shoes) and people are clearly visible in the image, which is a hard reject.",
+        "Violation: A shovel and manual labor activity are visible, contradicting the 'zero people' requirement."
+      ],
+      "correction_prompt": "Regenerate the image with no people, hands, or limbs. Show only the drip-tape roll placed on the soil in the farm bed.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 17,
+      "product_height_percent": 12,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Product is the correct wide, low cylindrical carton roll, naturally placed on soil.",
+        "Product width and height are within acceptable limits (width 13-27%, height <32%).",
+        "Product is off-center on the lower third (x-center 34%).",
+        "Aspect ratio (width/height ~1.4) is within the requested 1.5-1.9 range visually for a low cylinder.",
+        "Zero people or body parts visible.",
+        "Background shows farm rows with young seedlings consistent with a general farm context (neutral crop pass).",
+        "Watermark 'AFP | 09134922013' is present in the bottom right."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "رگولاتور-فشار-نقش-در-سیستم-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

@@ -1,0 +1,60 @@
+{
+  "id": "prod-085",
+  "kind": 2,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Contains two prominent people (workers)",
+        "Contains a black bucket/canister, not a packaged AFP coil",
+        "Contains a round black pipe/drip line, not a bare black woven coil",
+        "Product pair is centered, not off-center in the lower third",
+        "Product pair exceeds 15% of frame width",
+        "No required pair of layflat coils visible",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove all people. Show only one packaged AFP layflat coil and one bare black woven layflat coil. The pair must be fully visible, flat on the soil, off-center in the lower third, and occupy 12-15% of the frame width. Ensure the bottom-right watermark \"AFP | 09134922013\" is present. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 55,
+      "product_height_percent": 35,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Product pair occupies roughly 55% of the frame width, significantly exceeding the 15% maximum limit.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 55% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate image with the two layflat coils (packaged and bare) positioned in the lower-third right side, drastically reduced in size so the combined pair occupies only ~12-15% of the frame width, maintaining a wide field-of-view on the crop background. Reduce the product group from 55% to 9-20% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 14.5,
+      "product_height_percent": 13,
+      "product_x_center_percent": 51,
+      "reasons": [
+        "Contains exactly two approved layflat objects: one packaged AFP coil and one bare black woven coil.",
+        "Product pair occupies approximately 14.5% of frame width (within 12-15% limit).",
+        "Pair is positioned on the lower third of the frame.",
+        "Both objects are separate, flat, and fully visible on the ground.",
+        "No people or human body parts visible.",
+        "Required watermark is present at the bottom right.",
+        "Scene matches 'family layflat' and 'city' image role context with visible crop rows.",
+        "No forbidden objects (valves, buckets, extra hoses) are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "هزینه-لوله-نخدار-110-میلیمتر-در-مزرعه-برآورد-کاربرد-عملی.webp"
+}

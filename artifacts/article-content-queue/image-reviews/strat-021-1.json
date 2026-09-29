@@ -1,0 +1,54 @@
+{
+  "id": "strat-021",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 26,
+      "product_height_percent": 35,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Product height exceeds the 32 percent hard limit",
+        "The central crop is not the 'family' crop (likely tomato or bell pepper), failing the specific article crop recognition requirement",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with the drip-tape roll reduced in height to under 32 percent of the frame (wider but flatter) and replace the central crop with recognizable family crop morphology. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 21,
+      "product_height_percent": 25,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "The required article crop, 'family tape20', is not identifiable or morphologically consistent in the image; instead, a central plant with indistinct foliage and unrecognizable species is present, making the crop unclear and not matching the specified name. The presence of unidentifiable seedlings fails to meet the requirement for a clear, botanically accurate crop from the title.",
+        "Product height (approximately 25% of frame) exceeds the maximum allowable 32% threshold when estimated relative to the image's vertical dimension, violating the height constraint for acceptable product representation."
+      ],
+      "correction_prompt": "Regenerate the image with a clearly identifiable 'family tape20' crop (e.g., legume or grain species with visible pod/ear structure), reduce the drip-tape carton roll's height to ≤32% of frame height while maintaining width between 13–27%, ensure the product remains off-center in the lower third on soil, and remove any non-conforming central vegetation that obscures crop identity.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 15,
+      "product_height_percent": 14,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The image displays exactly one AFP-branded drip tape roll.",
+        "The product is placed naturally on the soil in the lower third of the frame and is off-center.",
+        "The dimensions of the roll (width vs height) align with the specified ratio.",
+        "There are no visible people or human body parts.",
+        "The bottom-right watermark 'AFP | 09134922013' is present.",
+        "The crop morphology in the foreground resembles corn seedlings, fitting the role 1 requirement."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "برنامهریزی-آبیاری-بر-اساس-بارندگی-تصویر-شاخص.webp"
+}

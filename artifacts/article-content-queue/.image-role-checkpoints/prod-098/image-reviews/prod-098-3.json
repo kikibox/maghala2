@@ -3,7 +3,7 @@
   "kind": 3,
   "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
@@ -93,7 +93,69 @@
       ],
       "correction_prompt": "Reduce the product group from 58% to 9-20% of frame width.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Human presence: The image contains a visible person, which is a hard reject condition (zero people allowed).",
+        "Staging constraint: The products are not off-center on the lower third; the human subject dominates the composition.",
+        "Product scale: The product pair (coils) is cropped on the left edge and appears much larger than the 12-15% width requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the man completely. Regenerate the scene to show only the two layflat coils (one wrapped in packaging, one bare black) situated in the bottom-right area of the frame. The pair of coils must be small, occupying less than 15% of the width, and clearly placed on the bare soil. Ensure no humans are visible. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 90,
+      "product_width_percent": 22,
+      "product_height_percent": 14,
+      "product_x_center_percent": 63,
+      "reasons": [
+        "Image contains exactly two layflat products (packaged coil and bare black coil)",
+        "Watermark is correctly displayed in the bottom-right",
+        "No people or human body parts visible",
+        "Position is off-center in the lower third",
+        "machine-enforced bounding-box check failed: Reduce the product group from 22% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 22% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 35,
+      "product_height_percent": 22,
+      "product_x_center_percent": 15,
+      "reasons": [
+        "Image contains a visible person, which is a hard reject criterion.",
+        "The product pair is centered rather than off-center on the lower third.",
+        "The product width exceeds the 15% maximum limit.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with zero people or human body parts. Reduce product width to 12-15% of frame. Move the product pair to an off-center position on the lower third of the frame. Retain the required AFP | 09134922013 watermark. Reduce the product group from 35% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 12,
+      "product_height_percent": 10,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Contains exactly two required layflat objects: one packaged AFP coil and one bare black woven coil.",
+        "Pair occupies 12% of frame width, satisfying the strict size requirement.",
+        "Products are off-center on the lower third, fully visible, separate, and lying flat on the ground.",
+        "Zero people or human body parts detected.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
     }
   ],
-  "approved_image": null
+  "approved_image": "مقایسه-لوله-تاشو-90-میلیمتر-با-سایر-برندها-جزئیات-فنی.webp"
 }

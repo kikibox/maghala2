@@ -1,0 +1,116 @@
+{
+  "id": "xref-001",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 8,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Presence of a person (farmer/worker) in the image (hard reject).",
+        "Presence of human body parts including face, hands, arms, and legs (hard reject).",
+        "The main panel features a small canister/container held by a person, not the required wide low cylindrical drip-tape carton roll.",
+        "The drip-tape roll in the bottom-right inset does not meet width/height ratio requirements (it appears flatter and wider than the 1.5-1.9 aspect ratio specified).",
+        "The product is part of a collage with multiple panels rather than a single scene with the product secondary in a farm context.",
+        "The crop does not clearly look like sorghum (resembles corn/maize or generic row crop).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Generate a single image showing a wide, low cylindrical white and blue drip-tape carton roll placed on dry soil in a sorghum field. The roll should be secondary to the crop, located in the lower third, off-center, with a width-to-height ratio of about 1.5. The background must show sorghum plants in a mature or harvest stage. No people, hands, or body parts are allowed. Keep the AFP watermark exactly as is in the bottom right corner. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 19.5,
+      "product_height_percent": 28.0,
+      "product_x_center_percent": 47.5,
+      "reasons": [
+        "The crop shown in the background is clearly corn (maize), identifiable by its broad leaves and thick stems, which is a different species from the required sorghum article.",
+        "The product placement is centered on the lower third rather than being off-center."
+      ],
+      "correction_prompt": "Regenerate the image with a sorghum (Sorghum bicolor) crop background replacing the corn, ensuring the sorghum has narrower leaves and typical stalks. Shift the drip tape roll to the left to break the central axis while maintaining the lower-third positioning.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Human present (farmer crouching in the field)",
+        "Contains human body parts (head, face, hands, arms, legs)",
+        "Violates strict 'zero people' and 'zero human body parts' requirement"
+      ],
+      "correction_prompt": "Regenerate the image with zero people and zero human body parts; remove the crouching man and his hands; keep only the AFP white-and-blue drip-tape carton roll placed on soil in the sorghum field, with the 'AFP | 09134922013' watermark.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 5,
+      "product_height_percent": 10,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Human figure present (person sitting in the middle of the field).",
+        "Product type mismatch: The object is a small white bucket or container, not a wide low cylindrical drip-tape carton roll.",
+        "Geometry mismatch: The object is not wide (should be 20-23% width) and is not off-center in the lower third.",
+        "Crop recognition: The crop looks like mature sorghum or corn, but the presence of the person makes the image unusable regardless.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with zero people or body parts. Feature one wide low white-and-blue cylindrical drip-tape roll placed on soil in the bottom-left or bottom-right area (off-center). The roll should be wide (approx 20% of frame width) and short (approx 10% height). Background is a sorghum farm field with rows of sorghum. AFP | 09134922013 watermark in bottom right. Enlarge the product group from 5% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Hard reject: The image contains a person (a male farmer) which is strictly prohibited in this task.",
+        "Hard reject: The background crop is visibly sunflowers (Helianthus annuus), not sorghum (Sorghum bicolor). The leaf morphology and flower heads are botanically incompatible with the required article."
+      ],
+      "correction_prompt": "Regenerate the image to strictly exclude all people, hands, and human silhouettes. Replace the sunflowers with accurate young sorghum crops (tall grass-like stems with narrow linear leaves). Keep the AFP drip-tape roll in the same position and orientation with the required watermark.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: A person (farmer/worker) is clearly visible in the image.",
+        "Hard reject: The product is a bottle/canister, not a wide low cylindrical drip-tape roll.",
+        "The crop shown is likely corn/maize or a grass, not clearly recognizable as sorghum.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Replace the bottle with a single wide, low cylindrical AFP white-and-blue drip tape carton roll lying horizontally on the soil in the lower third, slightly off-center. The roll width should be approximately 20% of the image width. Populate the background with rows of sorghum plants. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 6
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "The image accurately depicts an AFP white-and-blue cylindrical drip-tape roll placed naturally on the soil.",
+        "The crop shown is clearly identifiable as sorghum, characterized by its long, slender, grass-like leaves and growth habit in the furrows.",
+        "The product is wide and low with correct geometry, placed off-center in the lower third of the frame.",
+        "The 'AFP | 09134922013' watermark is present in the bottom right corner as required.",
+        "There are zero people or human body parts visible in the scene.",
+        "The background with irrigation layout and crop rows fits the agronomic context perfectly."
+      ],
+      "correction_prompt": "",
+      "attempt": 1
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-سورگوم-پیشنیازها-تصویر-شاخص.webp"
+}

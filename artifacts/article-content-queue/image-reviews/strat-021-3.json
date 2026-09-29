@@ -1,0 +1,97 @@
+{
+  "id": "strat-021",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 12,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Image is a collage composed of multiple distinct panels.",
+        "Top-right panel explicitly contains a human hand, violating the strict zero-person rule.",
+        "Bottom-right panel contains a stylized cloud graphic which resembles an impossible geometry or fake element."
+      ],
+      "correction_prompt": "Regenerate as a single, seamless 4:3 image without any borders or multiple panels. Remove all human hands and body parts. Ensure the scene shows only one AFP drip tape roll placed on a farm soil background, with the AFP | 09134922013 watermark in the bottom right.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 92,
+      "product_width_percent": 31,
+      "product_height_percent": 27,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Zero people or human body parts visible; scene contains only the product and farm infrastructure (soil, buildings).",
+        "Product is a white-and-blue cylindrical roll consistent with the 'AFP drip-tape' description.",
+        "Background (farmland, farm buildings) is neutral and consistent with a generic farm context.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 31% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 31% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 22,
+      "product_height_percent": 22,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: The image contains a visible person (a man crouching next to the product). The requirements explicitly state that the image must contain zero people and zero human body parts.",
+        "Hard reject: The presence of a human figure violates the 'zero people' constraint for image role 3."
+      ],
+      "correction_prompt": "Remove the person from the scene entirely. Keep the white-and-blue AFP drip-tape roll in its current position on the soil, ensuring it remains the secondary subject. Maintain the farm background with crop rows and the bottom-right watermark 'AFP | 09134922013'.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 20.83,
+      "product_height_percent": 29.16,
+      "product_x_center_percent": 37.5,
+      "reasons": [
+        "Critical Geometry Violation: The product is a wide cylindrical cartoner, but it is oriented vertically (standing on its bottom face). The requirement for Role 3 dictates the 'visible diameter' must be roughly 1.5 to 1.9 times the 'visible height'. Currently, the product width is 20.8% and the visible height is 29.2% (ratio ~0.71). It is standing on end, which creates a tall vertical silhouette that resembles a bucket or canister.",
+        "Shape Rejection: Due to the vertical orientation, the object fails the 'wide low' geometry test and triggers the 'tall narrow drum' rejection criterion in the context of the specific role requirements."
+      ],
+      "correction_prompt": "Re-render the white and blue cylindrical carton lying horizontally on its side (flat orientation). Ensure the object's visible width is significantly greater than its visible height (target ratio 1.5x to 1.9x) to match the 'wide low' geometry requirement.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 31,
+      "product_height_percent": 42,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: Presence of a person (woman) and human body parts (face, hands, arms, legs) in the frame.",
+        "The product (drip-tape carton roll) height (approx 42%) exceeds the 32% maximum limit, making it too prominent relative to the soil and background.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 31% to 13-27% of frame width.; Reduce product height from 42% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image to remove the woman and all human elements. Ensure the white and blue AFP drip-tape roll is positioned low on the soil in the foreground, appearing smaller and flatter with a height under 32 percent of the frame, set against a wide farm landscape with a distant tractor. Reduce the product group from 31% to 13-27% of frame width. Reduce product height from 42% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 17,
+      "product_height_percent": 22,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product is a single AFP drip-tape roll, visually neutral hardware story compliant.",
+        "Zero people or human body parts detected in the scene.",
+        "The tractor in the background is unattended and constitutes permissible farm infrastructure.",
+        "The visible drip-tape roll diameter is approximately 1.7 times its height, meeting the geometry requirement.",
+        "The bottom-right watermark 'AFP | 09134922013' is present and exact.",
+        "Product is naturally placed on the soil, positioned off-center on the lower third, and remains secondary to the farm context."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "برنامهریزی-آبیاری-بر-اساس-بارندگی-جزئیات-فنی.webp"
+}

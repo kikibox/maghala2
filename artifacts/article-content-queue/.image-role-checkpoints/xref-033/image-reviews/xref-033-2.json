@@ -3,7 +3,7 @@
   "kind": 2,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
@@ -90,7 +90,38 @@
       ],
       "correction_prompt": "Regenerate the image showing ONLY the white-and-blue cylindrical drip-tape carton roll placed naturally on the soil. Remove all human figures and body parts. Replace the sunflowers with a bed of yellow split-pea crops (Lep). Ensure the roll is wide and low (width 20% of frame, height ~12%), positioned in the lower third off-center, with the required 'AFP | 09134922013' watermark. Enlarge the product group from 10% to 13-27% of frame width.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 25,
+      "product_height_percent": 22,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The article-specific crop 'لپه' (yellow split-pea crop) is not recognizable. The image displays a field of yellow tulips, which is a clearly identifiable different species. The tulips have incorrect morphology (tall stems, cup-shaped flowers, and narrow strap-like leaves) compared to the potted/ground-cover growth habit of mature yellow split-peas (chickpeas).",
+        "The crop in the background is visually dominant and contradicts the required 'farm context' for legumes.",
+        "Although the crop error is the primary hard reject, the unconnected drip tubing floating on the soil in the foreground (not visibly connected to the roll's internal channel) also resembles the 'pipe through the roll / impossible geometry' hard reject."
+      ],
+      "correction_prompt": "Replace the background of yellow tulips with a realistic field of mature yellow split-pea (chickpea) plants. Ensure the plants have the correct potted growth habit and pod structure typical of legumes. Remove the disconnected tubing loop from the soil and ensure the irrigation layout appears natural and functional.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 17.5,
+      "product_height_percent": 21.0,
+      "product_x_center_percent": 32.0,
+      "reasons": [
+        "Required watermark 'AFP | 09134922013' is present and unaltered.",
+        "Zero people or body parts visible.",
+        "Single AFP wide low cylindrical drip-tape carton roll in white-and-blue (blue band/base), off-center on the lower third, naturally placed on soil.",
+        "Product bounding box respects size constraints: width ~17.5% (within 13–27%), height ~21% (≤32%), and visible diameter is ~1.6× its visible height (within 1.5–1.9).",
+        "Crop context is a farm bed with agronomic story; yellow split-pea (لپه) morphology is not clearly identifiable, but the neutral young vegetation / prepared bed does not trigger a hard reject when the agronomic story is clear and no clearly identifiable different species is present. No forbidden extra commercial product, fake headline, caption, gibberish, or impossible geometry detected.",
+        "Corridor irrigation hardware appears as a coiled tape/line with connectors; interpreted as ordinary irrigation infrastructure and not an extra commercial product (no bottle, jar, canister, bucket, fertilizer, pesticide container, second roll, or pipe through the roll)."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
     }
   ],
-  "approved_image": null
+  "approved_image": "آبیاری-قطرهای-با-نوار-تیپ-در-کشت-لپه-پیشنیازها-کاربرد-عملی.webp"
 }

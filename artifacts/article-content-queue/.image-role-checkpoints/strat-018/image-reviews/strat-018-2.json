@@ -91,6 +91,96 @@
       ],
       "correction_prompt": "Add the specific text watermark 'AFP | 09134922013' in the bottom right corner. Adjust the cantaloupe net to be a proper loose mesh enclosing the fruit, not fused with the stem. Ensure the carton clearly represents a drip tape roll with visible tape texture or specific labeling.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: The image contains two visible people (an adult male and a child), which strictly violates the 'zero people and zero human body parts' rule.",
+        "Product Mismatch: The image shows a cardboard box and a melon wrapped in netting, not the required 'white-and-blue wide low cylindrical drip-tape carton roll.'",
+        "Extra Objects: The presence of the melon and mesh netting constitutes an extra commercial product/element not allowed in the prompt.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts completely. Remove the melon and mesh netting. Replace the cardboard box with a white-and-blue wide low cylindrical drip-tape carton roll. Place the roll on the soil in a farm context. Ensure the roll is off-center in the lower third of the frame and its width is approximately 20% of the frame. Maintain the bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 28,
+      "product_height_percent": 32,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The required exact bottom-right watermark 'AFP | 09134922013' is missing (the image shows a different number: 09134922013 vs 09134922013 - actually looking at the image provided in the prompt, the watermark says 'AFP | 09134922013'. Wait, let me double check the prompt text vs image. Prompt asks for 'AFP | 09134922013'. Image watermark is 'AFP | 09134922013'. OK, that matches. ",
+        "The article title refers to a specific crop ('The [Crop Name] Article'), but the image shows generic indistinguishable seedlings, failing the requirement to make the named crop recognizable or at least show a clearly identifiable agronomic context.",
+        "The 'AFP' logo and text on the carton roll appear gibberish or partially obscured/incorrect (e.g. 'BROWN' instead of 'TAPES' or similar), violating the rule against invented writing or fake text outside authentic package print.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with the required watermark 'AFP | 09134922013' in the bottom right. Ensure the crop seedlings are clearly identifiable as the specific crop mentioned in the article title. Remove any illegible or gibberish text on the product packaging, keeping only the clean 'AFP' logo and relevant branding. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 12,
+      "product_height_percent": 10,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: The image contains a person (farmer) with visible face, torso, arms, hands, legs, and feet. The requirements explicitly state 'zero people and zero human body parts' and 'hard reject any person... even distant'.",
+        "Product size violation: The roll is visually smaller than the required width range (approx. 12-13% width vs. 20-23% preferred / 13-27% acceptable lower bound).",
+        "Product placement: The roll is being actively placed by a hand rather than sitting naturally on the soil.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate without any people, workers, or body parts. Increase the size of the white and blue drip-tape carton roll so it is approximately 25% of the image width. Place the roll naturally on the soil in the lower left third, off-center. Keep the farm background and AFP watermark. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Presence of people (two workers)",
+        "Human body parts visible (arms, hands, legs)",
+        "Hard reject rule: zero people and zero human body parts"
+      ],
+      "correction_prompt": "Regenerate image with the AFP white-and-blue drip-tape roll in the foreground on the soil (lower third, off-center) and remove all people or human figures from the field background; maintain the farm context and crop rows.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 28,
+      "product_height_percent": 28,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product width (28%) exceeds the 27% hard-reject limit",
+        "Gibberish/invented text visible on the packaging ('irrigation' looks like 'irrqaaoo'), failing the text quality requirement",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Shrink the drip-tape carton roll so its width is exactly 23% of the frame width; fix the illegible gibberish on the packaging to read standard readable English label text or generic barcodes without gibberish characters. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 22,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Presence of two people (farmers) in the foreground and mid-ground.",
+        "Presence of visible human body parts (hands, arms, legs, faces).",
+        "Product shape is a short, wide canister or bucket rather than a wide, low cylindrical drip-tape carton roll.",
+        "Product is centered in the staging rather than off-center in the lower third.",
+        "The crop morphology (small leafy seedlings) is not clearly distinguishable as the named crop 'family tape20' (which implies a specific irrigation context rather than a specific plant morphology, but the visual is generic vegetables).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts. Replace the central canister with a wide, low, cylindrical drip-tape carton roll. Place the roll off-center in the lower third of the frame on the soil. Keep the background farm context and crop rows visible. Maintain the bottom-right watermark. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 6
     }
   ],
   "approved_image": null

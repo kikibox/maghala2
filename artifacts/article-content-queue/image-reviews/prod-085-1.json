@@ -1,0 +1,54 @@
+{
+  "id": "prod-085",
+  "kind": 1,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Image contains two visible people (a woman and a man) which violates the zero human rule.",
+        "Hard reject: Only one bare black woven coil is visible; the required pair (one packaged AFP coil and one bare black woven coil) is missing the second product.",
+        "Hard reject: The products are not staged on the ground; they are being handled/installed by workers.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Generate an image of exactly two layflat coils (one packaged and one bare black woven) placed flat on the ground in the lower third, off-center. Remove all people completely. No other objects. Ensure the product pair occupies 12-15% of frame width. Include bottom-right watermark \"AFP | 09134922013\". Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 36.5,
+      "product_height_percent": 17.0,
+      "product_x_center_percent": 49.0,
+      "reasons": [
+        "Hard reject: Product pair width is approximately 36.5%, which exceeds the maximum limit of 15%.",
+        "Hard reject: Product pair is centered horizontally (approx 49%), violating the off-center requirement.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 36.5% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Shrink the coils significantly to occupy approximately 12-14% of the frame width. Move the pair distinctly off-center, aligning them with the lower-left or lower-right third of the image. Ensure they remain flat and separate on the soil. Reduce the product group from 36.5% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 98,
+      "product_width_percent": 16,
+      "product_height_percent": 13,
+      "product_x_center_percent": 23,
+      "reasons": [
+        "Both required objects (packaged and bare coil) are fully visible and flat on the ground.",
+        "Zero people or human body parts are present.",
+        "Exact required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Product is correctly off-center (lower third, left of frame center)."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "هزینه-لوله-نخدار-110-میلیمتر-در-مزرعه-برآورد-تصویر-شاخص.webp"
+}
