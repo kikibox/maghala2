@@ -1,0 +1,53 @@
+{
+  "id": "xref-341",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "The image contains a visible person (farmer/worker), which is a hard reject criterion. The presence of human body parts and silhouettes is explicitly prohibited.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person from the image completely. Ensure the scene contains zero people or human body parts. Regenerate the image showing only the drip tape carton roll and the basil crop in the farm context. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 14.5,
+      "product_height_percent": 17.0,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Product width is estimated at 14.5%, which is below the preferred 20-23% range for a secondary but prominent display.",
+        "The drip tape roll's geometry appears somewhat flattened, with the width-to-height ratio slightly less than the target 1.5-1.9x, making it look less like a standard cylindrical carton.",
+        "The product is positioned slightly high in the lower third; it should be planted lower on the soil for better natural staging."
+      ],
+      "correction_prompt": "Increase the physical size of the drip-tape roll to approximately 22% of the image width. Position the roll lower in the bottom-left quadrant to sit naturally on the soil. Ensure the roll maintains a cylindrical shape with a diameter roughly 1.7 times its height. Keep the basil plants and farm context exactly as shown.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "Zero people or human body parts visible, complying with hard reject criteria.",
+        "Drip tape roll is off-center on the lower third and naturally placed on the soil.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom right.",
+        "Central plant clearly shows the required morphology for basil (opposite oval aromatic leaves on compact stems).",
+        "Product dimensions fall within the acceptable ranges (width 13-27%, height <32%)."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-خرسابی-در-کشت-ریحان-پیشنیازها-کاربرد-عملی.webp"
+}

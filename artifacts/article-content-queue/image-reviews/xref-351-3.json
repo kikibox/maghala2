@@ -1,0 +1,68 @@
+{
+  "id": "xref-351",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Secondary commercial product (black filter/coupling assembly) is present on the ground next to the roll, which is not allowed.",
+        "Gibberish text is present on the carton label; only authentic package print and the specific phone number watermark are allowed."
+      ],
+      "correction_prompt": "Regenerate to show ONLY the white and blue carton roll on the soil without any additional black irrigation hardware or filters. Clean up the text on the carton so it appears sharp and legible, removing any gibberish or invented letters.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 16,
+      "product_height_percent": 20,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Hard reject: image contains a visible person standing in the background holding a tool.",
+        "Hard reject: image contains a person sitting in the tractor in the background."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human silhouettes. Remove the standing figure and the driver from the tractor in the background, keeping only the unattended tractor as infrastructure if present.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 30,
+      "product_height_percent": 30,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The visible width of the AFP drip-tape carton roll exceeds the 27 percent hard limit (estimated at 30 percent of the frame width).",
+        "Next to the main carton roll, there is a visible second roll of white tubing on the ground, which violates the 'second roll' rejection criteria.",
+        "There is an unexplained soil spike/stake intersecting the second roll, which violates the 'impossible geometry' rejection criteria.",
+        "The background contains a tractor that appears to be occupied by a driver (a blurred dark silhouette is visible in the cabin), which is a hard reject trigger for human silhouettes.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image. Ensure the main AFP carton roll is smaller (under 27% width). Completely remove the second roll of tubing and the soil spike. Ensure the distant tractor is clearly unoccupied (no silhouettes in the cabin). Keep the watermark. Reduce the product group from 30% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 21,
+      "product_height_percent": 25,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product is an AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product is placed off-center on the lower third of the frame, naturally on soil.",
+        "No people, faces, or body parts are visible.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Background context (farmed soil and tractor) is acceptable for a general agricultural hardware story."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-نوار-تیپ-در-کشت-سیر-پیشنیازها-جزئیات-فنی.webp"
+}

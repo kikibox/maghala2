@@ -1,0 +1,55 @@
+{
+  "id": "xref-343",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 12,
+      "product_height_percent": 12,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Product width is only ~12%, falling below the 13% acceptable minimum.",
+        "Product x_center is at ~49%, placing the object near the center of the frame, which violates the requirement for off-center placement on the lower third.",
+        "Product height (12%) is too small relative to its width, failing the required aspect ratio (diameter should be 1.5-1.9x height).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Increase the carton roll width to 20-23% of the frame and scale height to match a 1.5:1 diameter ratio. Move the roll to the left (x ~30-40%) to ensure it is off-center on the lower third. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 18,
+      "product_height_percent": 18,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Product width (18%) and height (18%) violate the required aspect ratio of 1.5 to 1.9 (18/18 = 1.0).",
+        "The crop morphology (low-growing, multi-colored flowers) does not clearly identify as the specific 'city, family tape20' article crop context; it appears to be a general flower or wildflower field, which may fail the 'unmistakable morphology' requirement for a specific article."
+      ],
+      "correction_prompt": "Regenerate with a wider, flatter drip-tape roll (aspect ratio approx 1.7:1) and ensure the crop clearly matches the specific article context.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 21.5,
+      "product_height_percent": 14.5,
+      "product_x_center_percent": 46.5,
+      "reasons": [
+        "The image displays exactly one AFP white-and-blue drip-tape roll placed on the soil bed.",
+        "The background matches the farm context with visible crop rows and a barn, appropriate for an agronomic story.",
+        "The product bounding box estimates show the width is within the acceptable 13-27% range and height is under 32%.",
+        "The product is placed on the lower third of the image, off-center relative to the vertical midline.",
+        "The required watermark 'AFP | 09134922013' is clearly visible in the bottom-right corner.",
+        "There are zero people, human body parts, or other prohibited commercial containers in the frame."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-چرخشی-در-کشت-مارچوبه-مزایا-تصویر-شاخص.webp"
+}

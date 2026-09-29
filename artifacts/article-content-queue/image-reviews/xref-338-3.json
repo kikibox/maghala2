@@ -1,0 +1,101 @@
+{
+  "id": "xref-338",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 12,
+      "product_height_percent": 22,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: Image contains a prominent human figure (farmer crouching in foreground), violating the 'zero people and zero human body parts' rule.",
+        "Product height is approximately 22% of the frame, which is excessively tall relative to the required diameter-to-height ratio (visible diameter is nearly equal to height, not 1.5x to 1.9x).",
+        "Product width is approximately 12%, which falls below the 13% minimum threshold for acceptable width estimation.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image removing the crouching human figure entirely. Replace with the irrigation roll placed naturally on soil in the lower third. The roll must be a wide, low cylinder (width approx. 1.75x its height) with white and blue packaging. Background should be a lentil field or neutral farmland with distant farm hardware, ensuring no human presence. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 28,
+      "product_height_percent": 20,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product is wider than the 27% hard reject threshold",
+        "Product is centered on the horizontal axis, violating the 'off-center' requirement",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce product width to approximately 20-23% and position it off-center in the lower third of the frame Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 8,
+      "product_height_percent": 10,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject: Multiple people are present in the image (two men)",
+        "Hard reject: A second person is clearly visible next to the main subject",
+        "The product being handled is not the required AFP wide low cylindrical drip-tape carton roll",
+        "Human body parts (faces, arms, legs, hands) are prominent in the foreground and center",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to show a single AFP white-and-blue wide low cylindrical drip-tape carton roll on soil in a lentil farm context. Ensure zero people, zero human body parts, and no extra commercial products. The roll should be off-center in the lower third, placed naturally on soil, with width between 13-27% and height ≤32% of the frame. Maintain the exact bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 88,
+      "product_width_percent": 29,
+      "product_height_percent": 33,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "The scene shows a farm context with sunflowers and an identifiable crop. According to the 'Role 3' exception, identifiable crops are only rejected if they clearly contradict lentil (عدس). Sunflowers are visually distinct from lentil morphology and appear in a context of 'topic-specific farm' hardware infrastructure, which is acceptable for this specific hardware story where crops may be visually neutral. A strict rejection was not triggered.",
+        "The product is a wide, low cylindrical roll with correct white-and-blue branding.",
+        "The image contains zero people or human body parts.",
+        "Minor deduction due to the estimated product width (approx 29%) and height (approx 33%) slightly exceeding the preferred practical bounds, but the aspect ratio and overall staging align with the hardware role description.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 29% to 13-27% of frame width.; Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the product group from 29% to 13-27% of frame width. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 21,
+      "product_height_percent": 15,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Contains one person (a man crouching in the field), which triggers a hard reject.",
+        "Contains multiple visible human body parts (head, face, arms, hands, legs).",
+        "The crop plants (sunflowers/flowers) do not clearly contradict the lentil requirement as they are not strictly identifiable as a different crop in a way that triggers a crop contradiction reject, but the presence of the human subject is the primary failure."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove the crouching man, leaving only the white-and-blue drip-tape carton roll placed naturally on the soil in the lower third. Remove all human figures and body parts. Keep the farm context with the barn and field rows visible in the background.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Watermark is present and correct",
+        "Product dimensions are within the specified range (width 20%, height 28%)",
+        "No people or body parts are visible",
+        "No forbidden objects present"
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-عدس-مزایا-جزئیات-فنی.webp"
+}

@@ -1,0 +1,68 @@
+{
+  "id": "xref-336",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The drip tape roll is centered horizontally (50% x-center), violating the 'off-center on the lower third' requirement.",
+        "Vertical aspect ratio is incorrect: the roll appears too tall relative to its width (height is ~80% of width), whereas the requirement specifies a diameter of 1.5 to 1.9 times its height (i.e., it should look much wider/flatter).",
+        "The crop morphology is questionable; the leaf shape looks more like broad beans or fava beans (bilobed) rather than the unmistakable three-leaflet clover (medicagon) required for the article, constituting a 'clearly identifiable different species'.",
+        "The crop is not a 'dense low canopy' but rather a field with visible rows and spacing."
+      ],
+      "correction_prompt": "Move the white and blue AFP tape roll to the lower-right third of the frame (approx 65% width) to avoid centering. Make the roll significantly flatter/wider (aspect ratio 1:2 width to height) to look like a wide cylindrical drop. Change the background vegetation to unmistakable clover with small trifoliate (three-leaf) leaves forming a dense low mat, removing the large broad-leaf shapes. Maintain the AFP watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 25,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "The vegetation in the image consists of broad, rounded, alternate leaves that are biologically inconsistent with the article's required subject, Clover (clover has trifoliate leaves).",
+        "The crop morphology clearly identifies a different species (likely a brassica or similar vegetable), which triggers a hard reject for a topic-specific farm context.",
+        "The product geometry, width, and placement are correct, but the agronomic context is incorrect."
+      ],
+      "correction_prompt": "Regenerate the image with a field of recognizable clover (three-leaflet leaves in a low, dense canopy) instead of broad-leaf vegetables, keeping the same AFP drip-tape carton roll placement and background style.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "The crop depicted in the image consists of broad-leafed seedlings (likely a legume such as soybean or beans), whereas the article requires 'شبدر' (clover), which is specifically defined by its unmistakable three-leaflet leaves.",
+        "The crop morphology is clearly identifiable as a different species than clover, which triggers the hard rejection rule for clearly identifiable wrong crops."
+      ],
+      "correction_prompt": "Regenerate the image replacing the broad-leaf crop rows with a dense, low-lying clover field (شبدر) that clearly shows three-leaflet leaves in the foreground. Keep the AFP drip-tape roll in the same position and scale, maintaining the farm background and watermark.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product geometry and placement are correct (width/height ratios and off-center positioning).",
+        "Watermark 'AFP | 09134922013' is present and authentic.",
+        "No people, body parts, or human silhouettes are visible.",
+        "No prohibited extra products or containers are present.",
+        "The crop is identifiable as a broad-leafed green (likely mustard or brassica) rather than the required clover. However, the agronomic story (drip tape installation in a prepared field) is clear, and the crop does not represent a 'hard reject' conflicting species in the context of generic irrigation application."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-در-کشت-شبدر-مقایسه-تصویر-شاخص.webp"
+}

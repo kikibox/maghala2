@@ -1,0 +1,72 @@
+{
+  "id": "xref-333",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 86,
+      "product_width_percent": 11,
+      "product_height_percent": 20,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "The image correctly features the required white and blue AFP drip-tape carton roll.",
+        "The product is appropriately off-center in the lower third of the frame.",
+        "The crop shown is a young, broad-leafed plant that is botanically consistent with young fava bean (باقلا) sprouts.",
+        "The bottom-right watermark 'AFP | 09134922013' is present and accurately rendered.",
+        "There are zero people, hands, or human silhouettes in the image.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: A person (farmer) is clearly visible crouching in the field, violating the zero-people rule.",
+        "Hard reject: The product is a standing vertical cartridge (like a toilet paper roll), not a 'wide low cylindrical' roll.",
+        "Product Shape: The roll appears tall and narrow, failing the geometry requirement of being 1.5-1.9x wider than it is tall.",
+        "Geometry: The roll is centered vertically in its own frame rather than sitting low, and its proportions do not match the 'drip-tape carton roll' described.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the farmer and all people completely. Replace the standing cartridge with a wide, short, low-profile horizontal roll (1.5x wider than tall) sitting on the soil. Ensure the crop is clearly fava bean (thick stems, broad leaflets, pods). Keep the AFP watermark. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 17.5,
+      "product_height_percent": 16.5,
+      "product_x_center_percent": 35.0,
+      "reasons": [
+        "Background crop is clearly identifiable as chili peppers (distinct red fruits and morphology) which contradicts the required fava bean context; this triggers the hard reject for 'clearly identifiable different species'."
+      ],
+      "correction_prompt": "Regenerate the image with the background crop changed to fava bean plants (thick upright stems, broad leaflets, and visible elongated green pods) to match the article topic. Keep the existing product roll, size, and position exactly as they are.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 24,
+      "product_height_percent": 22,
+      "product_x_center_percent": 18,
+      "reasons": [
+        "Image contains exactly one drip-tape carton roll matching the required AFP white-and-blue color scheme.",
+        "The roll is placed naturally on the soil in the lower third of the frame and is off-center.",
+        "The product's visible diameter is approximately 1.8 times its visible height, which is within the 1.5-1.9 range.",
+        "No people, human body parts, or faces are visible.",
+        "Background shows a farm crop context, and although the crop is not explicitly mature fava bean morphology, it is acceptable as a neutral young vegetative crop for agronomic context.",
+        "The required bottom-right watermark 'AFP | 09134922013' is clearly visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-باقلا-چالشها-کاربرد-عملی.webp"
+}

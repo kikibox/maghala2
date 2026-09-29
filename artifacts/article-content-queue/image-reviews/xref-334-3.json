@@ -1,0 +1,66 @@
+{
+  "id": "xref-334",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 21,
+      "product_height_percent": 28,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: A person is visible in the center of the image background (standing near the tractor), which violates the requirement for zero people or human silhouettes.",
+        "Hard reject: The image contains 'gibberish text' on the white carton label below the AFP logo, which is not permissible."
+      ],
+      "correction_prompt": "Regenerate without any human figures in the background and replace the gibberish text on the carton with clean, legible product labeling.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 22,
+      "product_height_percent": 32,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The crop plant shown in the foreground is a corn seedling, which clearly contradicts the required canola (rapeseed) topic.",
+        "The crop should be visually absent or neutral to fit the hardware story role; its prominent appearance is a hard reject."
+      ],
+      "correction_prompt": "Remove the corn seedling. Keep the unattended tractor and the drip-tape roll, but set the crop context to a visually neutral or bare soil farm environment.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 14,
+      "product_height_percent": 20,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The image contains a visible person (a man crouching next to the roll), which is an automatic hard reject according to the rules requiring zero people.",
+        "The product (the drip tape roll) is not wide or low-cylindrical enough to match the specific 'wide low cylindrical' description in the image role, appearing more square or short-cylindrical.",
+        "The presence of a human figure and hands directly touching the roll violates the 'zero human body parts' constraint."
+      ],
+      "correction_prompt": "Regenerate the image to strictly remove all human figures and body parts. The scene must show only the single AFP drip tape roll and unattended infrastructure (like the tractor) in a farm field, with no people visible.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 22,
+      "product_height_percent": 26,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Single drip-tape roll present and correctly branded 'AFP'.",
+        "Tractor is unattended and counts as allowed infrastructure, not a prohibited product.",
+        "No people or human body parts visible.",
+        "Watermark 'AFP | 09134922013' is present in the bottom right.",
+        "Product dimensions and off-center placement are within acceptable practical limits."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-زیرسطحی-در-کشت-کلزا-مقایسه-جزئیات-فنی.webp"
+}

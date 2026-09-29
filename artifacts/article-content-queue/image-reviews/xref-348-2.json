@@ -1,0 +1,57 @@
+{
+  "id": "xref-348",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 12.5,
+      "product_height_percent": 13.5,
+      "product_x_center_percent": 67.0,
+      "reasons": [
+        "Product width is too narrow (12.5%), falling below the minimum acceptable threshold of 13%.",
+        "Product height exceeds the 32% maximum limit.",
+        "Watermark text '09134922013' does not match the required string '09134922013'.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12.5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Increase the width of the drip-tape carton roll to be between 15 and 20% of the image frame. Reduce the height of the carton roll. Correct the bottom-right watermark to strictly display 'AFP | 09134922013'. Enlarge the product group from 12.5% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 11,
+      "product_height_percent": 18,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Hard reject: The image contains a person (hands, arms, legs, and torso) which is explicitly forbidden in the prompt instructions.",
+        "Product Aspect Ratio: The visible drip-tape roll appears too tall (more like a short canister), not meeting the requirement for a wide, low cylindrical shape where diameter is 1.5-1.9x the height.",
+        "Product Staging: The product is being held by a hand rather than naturally placed on the soil off-center as required.",
+        "Product Size: The product is too small relative to the frame (approx 11% width), falling below the 13% minimum practical estimate.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person and hands completely. Place the wide, low cylindrical drip-tape roll on the soil in the lower left off-center position. Make the roll wider and flatter (diameter 1.5-1.9x height) and larger in frame (approx 20% width). Show the AFP watermark in the bottom right. Keep the farm and lettuce context. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 19,
+      "product_height_percent": 24,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product is a white and blue drip-tape carton roll positioned in the lower third and naturally placed on the soil",
+        "Product dimensions are within the preferred width range (19% width, 24% height) and off-center",
+        "Crop in the foreground is clearly identifiable as lettuce, matching the article topic",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and accurate",
+        "No people, human body parts, or silhouettes are visible in the image"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-زیرسطحی-در-کشت-کاهو-مقایسه-کاربرد-عملی.webp"
+}

@@ -1,0 +1,85 @@
+{
+  "id": "xref-340",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25.0,
+      "product_height_percent": 22.0,
+      "product_x_center_percent": 33.0,
+      "reasons": [
+        "Extra commercial products are present next to the roll: two distinct containers with 'AFP' labeling (cylindrical canisters/filters), which are explicitly prohibited in the hard reject list.",
+        "Two identifiable green plants (looks like maize/corn) are present in the foreground. If the article title does not explicitly name corn/maize, this constitutes a hard reject for contradictory crop morphology. The presence of plants also conflicts with the 'hardware story' role 3 which prefers crop absence or neutral context."
+      ],
+      "correction_prompt": "Remove the two small containers and the green plants next to the roll. Keep only the white and blue drip tape roll on the soil. Maintain the tractor and farm background. Keep the watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25,
+      "product_height_percent": 35,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The drip-tape roll contains prominent gibberish/legible but non-AFP text that is not authentic package print or part of the required watermark",
+        "The product is centrally located in the frame rather than off-center on the lower third",
+        "The product height exceeds the 32% limit",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Move the drip-tape roll to the far left or right bottom third to make it off-center. Reduce the roll's height to under 30% of the frame. Ensure the roll only has the 'AFP' logo and minimal clean text, removing any gibberish. Keep the unattended tractor and soil background. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 13,
+      "product_height_percent": 16,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product is not in the lower third (it is in the bottom-left corner, likely under the 25% line)",
+        "Product is cropped at the bottom edge, violating the 'naturally placed' requirement",
+        "Product height/width ratio is approx 1.0, which contradicts the required 1.5-1.9 ratio for a wide low cylindrical roll",
+        "Tractor is the dominant subject, failing the 'product must be secondary' requirement"
+      ],
+      "correction_prompt": "Regenerate with a wide low cylindrical drip-tape roll positioned entirely within the lower third of the frame, off-center, sitting fully on the soil without cropping. The roll should have a clear width-to-height ratio of approximately 1.7. Keep the farm context and tractor in the background but ensure the roll is the clear primary subject. Keep the AFP watermark.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 95,
+      "product_width_percent": 28,
+      "product_height_percent": 25,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The product is correctly identified as a white and blue wide low cylindrical drip-tape carton roll with visible 'AFP' branding.",
+        "The background context is appropriate, featuring a tractor and corn field which aligns with the farm setting.",
+        "The exact required bottom-right watermark 'AFP | 09134922013' is present.",
+        "There are zero people or human body parts visible in the frame; the tractor is unattended.",
+        "The product is placed naturally on the soil and positioned in the lower half of the frame.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 29,
+      "reasons": [
+        "The image clearly features a white and blue AFP drip tape roll that fits the required product dimensions and positioning.",
+        "The lower-third, off-center placement of the roll on the soil is naturally integrated into the farm context.",
+        "No prohibited elements such as people, extra commercial products, or conflicting crop species are present.",
+        "The required AFP watermark is correctly displayed in the bottom right without interfering with the scene."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-جعفری-مقایسه-جزئیات-فنی.webp"
+}

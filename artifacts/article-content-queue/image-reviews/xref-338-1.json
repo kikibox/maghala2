@@ -1,0 +1,83 @@
+{
+  "id": "xref-338",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 10,
+      "product_height_percent": 12,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: Image contains a human subject (man) and visible human body parts (face, arms, hands, legs), violating the zero-person constraint.",
+        "Hard reject: Wrong product form. The object held is a roll of white tape (like paper/gum tape), not the required wide low cylindrical drip-tape carton roll.",
+        "Hard reject: Context mismatch. The background shows a field of flowers (daisies/cosmos) rather than the required lentil crop (low fine-textured bushy legumes), and does not resemble a lentil farm context.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with no people or body parts. Show a white and blue wide low cylindrical drip-tape roll placed on the soil in the lower-left foreground. Background must show low, bushy legume plants with small branching stems and oval leaflets (lentil crop), not flowers. Include exact watermark 'AFP | 09134922013' in bottom right. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 24,
+      "reasons": [
+        "The article crop is lentil (عدس), which must appear as low fine-textured bushy legumes with thin branching stems, small paired pinnate oval leaflets, and small flat pods. The background vegetation clearly displays large broad lobed leaves, strongly resembling squash, sunflower, or brassica species. This is a hard reject for a clearly identifiable different species.",
+        "Product geometry: The visible diameter of the roll is only about 1.27 times its height, falling below the required 1.5–1.9 ratio for a wide low cylindrical drip-tape carton roll.",
+        "The product placement is acceptable in x-centering and soil contact, and the AFP watermark is present, but the crop species mismatch and roll aspect ratio failure dominate."
+      ],
+      "correction_prompt": "Regenerate the image replacing the broad-leaved background plants with low bushy lentil (عدس) plants having thin branching stems, small paired pinnate oval leaflets, and small flat pods. No large broad leaves, no corn, no sunflower, no brassica. Keep the single white-and-blue AFP wide low cylindrical drip-tape roll, adjusting its visible diameter to approximately 1.5 to 1.9 times its height, placed off-center on the lower third on soil. Keep the exact bottom-right watermark \"AFP | 09134922013\". Ensure zero people, zero human body parts, and no extra commercial products, containers, or fake text.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 23,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Background crop is clearly identifiable as Zinnias (large broad leaves and daisy-like flower heads), which violates the requirement for lentil (عدس) morphology or neutral unidentifiable seedlings.",
+        "Lentil must be low, fine-textured bushy legumes; the visible crop is too large and structurally incorrect.",
+        "Product is vertically centered in the lower half of the frame rather than being naturally placed in the bottom third.",
+        "Product aspect ratio (width 22% vs height 23%) is nearly square, violating the requirement for a wide roll (diameter approx 1.5-1.9 times height)."
+      ],
+      "correction_prompt": "Replace the zinnia field with a prepared soil bed containing tiny, unidentifiable young lentil seedlings. Reposition the white AFP roll lower into the bottom third of the frame and increase its width so the diameter is visibly wider than its height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 19,
+      "product_height_percent": 22,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Centered product staging (x-center ~50% instead of off-center lower third).",
+        "Crop species does not match required lentil: seedlings show broad, large ovate leaves inconsistent with fine pinnate lentil leaflets and appear as clearly identifiable different species (large-leaf legume/brassica-like), triggering hard reject."
+      ],
+      "correction_prompt": "Reposition the white-and-blue cylindrical drip-tape roll off-center in the lower third, placed naturally on soil. Replace the current seedlings with a botanically correct lentil (عدس) crop: low, bushy, fine-textured legumes with many thin branching stems, small paired pinnate oval leaflets and small flat pods. Ensure the framing background visibly matches the lentil article topic. Do not add any people or extra commercial products.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 19,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The product (AFP drip-tape roll) is a white cylindrical roll positioned in the lower-left quadrant on the soil, meeting the placement, size, and ratio requirements.",
+        "The background clearly depicts a farm field with crops and farm buildings, which aligns with the article's context regarding lentils (عدس) and irrigation.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and exact.",
+        "Zero people or human body parts are visible in the image.",
+        "No prohibited commercial items or containers are present; the product is the sole packaging."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-عدس-مزایا-تصویر-شاخص.webp"
+}

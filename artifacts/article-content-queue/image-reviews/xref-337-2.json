@@ -1,0 +1,81 @@
+{
+  "id": "xref-337",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 4,
+      "product_height_percent": 12,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: Image contains a clearly visible person (farmer).",
+        "Hard reject: Product is a tall narrow white container/bucket, not the required wide low cylindrical drip-tape carton roll.",
+        "Hard reject: Product size is far too small (width ~4%) and shape is incorrect (vertical can vs horizontal roll).",
+        "The product does not meet the geometric requirements (diameter should be 1.5-1.9x height, width 13-27%).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the human figure completely. Replace the white vertical canister with a wide, low, cylindrical AFP drip-tape roll lying on the soil. The roll must be white and blue, wider than it is tall, positioned in the lower right foreground (off-center), and appear larger (approx 20% frame width). The crop must be a melon field. Enlarge the product group from 4% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 30.0,
+      "product_height_percent": 34.0,
+      "product_x_center_percent": 64.0,
+      "reasons": [
+        "Product height exceeds the 32% maximum threshold (approx 34%).",
+        "Product width exceeds the 27% maximum threshold (approx 30%).",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width.; Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with the drip tape roll significantly smaller and more distant to ensure it occupies less than 30% of the image width and height, maintaining its position on the lower right side. Reduce the product group from 30% to 13-27% of frame width. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "The product width is approximately 12% of the frame, which is below the 13% minimum acceptable threshold.",
+        "The product diameter-to-height ratio appears too tall (approximately 0.67), conflicting with the required wide cylindrical shape (1.5 to 1.9 ratio).",
+        "The product is positioned in the lower center, failing the requirement to be off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Widen the perspective to make the roll larger (15-20% of frame width) and flatter. Move the roll off-center to the right or left while maintaining its position on the lower third of the frame. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 24,
+      "product_height_percent": 22,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The crop shown in the image is not botanically recognizable as melon (ملون); the seedlings and general vegetation do not display the distinctive lobed leaves, specific growth habit, or stem structure required to define the crop context.",
+        "The product roll is positioned on the bottom-left rather than the preferred off-center lower-third location, making the product staging less optimal."
+      ],
+      "correction_prompt": "Regenerate with clearly identifiable young melon (ملون) plants showing accurate botany and vining growth habit. Move the white-and-blue AFP drip-tape roll to the lower-center or lower-right third of the frame, ensuring it remains secondary to the agricultural context.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 14,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "The central roll is slightly above the lower-third placement and is not distinctly 'wide cylindrical', though its visible dimensions and secondary scale are acceptable.",
+        "The crop's indeterminate young morphology aligns with the permitted neutral-vegetation standard, and the farm context supports the article narrative."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-در-کشت-ملون-پیشنیازها-کاربرد-عملی.webp"
+}

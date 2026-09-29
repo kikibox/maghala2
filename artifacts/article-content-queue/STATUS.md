@@ -4,17 +4,17 @@
 
 ## نمای کلی
 
-- آخرین بروزرسانی: `2026-09-29T07:20:49+00:00`
-- وضعیت صف: **آماده اجرای بعدی** (`ready`)
-- پیشرفت: **574 از 1148 (50.00٪)**
+- آخرین بروزرسانی: `2026-09-29T07:38:52+00:00`
+- وضعیت صف: **توقف موقت برای تکمیل ترجمه‌های عقب‌مانده** (`translations_pending`)
+- پیشرفت: **588 از 1148 (51.22٪)**
 - نمودار پیشرفت: `██████████░░░░░░░░░░`
-- تکمیل‌شده: **574**
+- تکمیل‌شده: **588**
 - در حال پردازش: **0**
-- در انتظار: **320**
-- ناموفق: **254**
+- در انتظار: **300**
+- ناموفق: **260**
 - مسدود مدل تصویر: **0**
-- میانگین طول مقالات تکمیل‌شده: **1283 کلمه**
-- اولویت فعلی: **تولید مقاله فارسی بعدی**
+- میانگین طول مقالات تکمیل‌شده: **1282 کلمه**
+- اولویت فعلی: **تکمیل ترجمه‌های موجود**
 
 ## تنظیمات تولید و انتشار
 
@@ -24,8 +24,8 @@
 - تعداد تصاویر هر مقاله: **3**
 - حداقل کلمات: **1050**
 - لینک داخلی مجاز: **4 تا ۷**
-- اندازه هر اجرا: **2 مقاله**
-- مدیر موازی: **2 مقاله / 4 تصویر هم‌زمان**
+- اندازه هر اجرا: **20 مقاله**
+- مدیر موازی: **20 مقاله / 40 تصویر هم‌زمان**
 - حداکثر تلاش هر مقاله: **4**
 - دسته وردپرس: **مقاله‌ها** (`35`)
 - لینک‌های داخلی شناخته‌شده: **682**
@@ -39,22 +39,22 @@
 | `irrigation` | 12 | 11 | 0 | 0 | 1 | 91.67٪ |
 | `product` | 112 | 36 | 0 | 0 | 76 | 32.14٪ |
 | `strategic` | 33 | 27 | 0 | 0 | 6 | 81.82٪ |
-| `xref` | 650 | 228 | 319 | 0 | 103 | 35.08٪ |
+| `xref` | 650 | 242 | 299 | 0 | 109 | 37.23٪ |
 
 ## وضعیت ترجمه مقالات تولیدشده
 
-- مقالات فارسی تکمیل‌شده: **574**
-- واحدهای ترجمه تکمیل‌شده: **1722 از 1722**
-- واحدهای ترجمه باقی‌مانده: **0**
-- مقالات فاقد حداقل یک ترجمه: **0**
-- وضعیت صف فارسی: **فعال**
+- مقالات فارسی تکمیل‌شده: **588**
+- واحدهای ترجمه تکمیل‌شده: **1722 از 1764**
+- واحدهای ترجمه باقی‌مانده: **42**
+- مقالات فاقد حداقل یک ترجمه: **14**
+- وضعیت صف فارسی: **متوقف تا تکمیل ترجمه‌ها**
 - بسته‌های ترجمه ۵۰تایی آماده: **0**
 
 | زبان | تکمیل | باقی‌مانده | مسیر |
 |---|---:|---:|---|
-| عربی عراق (`ar-IQ`) | 574 | 0 | `/iraq/` |
-| تاجیکی (`tg-TJ`) | 574 | 0 | `/tj/` |
-| انگلیسی (`en-US`) | 574 | 0 | `/en/` |
+| عربی عراق (`ar-IQ`) | 574 | 14 | `/iraq/` |
+| تاجیکی (`tg-TJ`) | 574 | 14 | `/tj/` |
+| انگلیسی (`en-US`) | 574 | 14 | `/en/` |
 
 ## وضعیت بازطراحی تصاویر
 
@@ -69,46 +69,46 @@
 
 ## مقاله بعدی صف
 
-- عنوان: **آبیاری گره‌ای در کشت شنبلیله: مزایا**
-- شناسه: `xref-332`
+- عنوان: **آبیاری بارانی در کشت گشنیز: کاربردها**
+- شناسه: `xref-342`
 - گروه: `xref`
-- تعداد تلاش قبلی: **0**
+- تعداد تلاش قبلی: **1**
 
 ## آخرین مقالات تکمیل‌شده
 
+- **آبیاری قطره‌ای با نوار تیپ در کشت سیر: پیش‌نیازها** — `xref-351` — `xref` — 1346 کلمه — تحویل: `SQL package` — `2026-09-29T07:27:48+00:00`
+- **آبیاری چرخشی در کشت مارچوبه: مزایا** — `xref-343` — `xref` — 1190 کلمه — تحویل: `SQL package` — `2026-09-29T07:27:29+00:00`
+- **آبیاری باغ میوه در کشت عدس: مزایا** — `xref-338` — `xref` — 1179 کلمه — تحویل: `SQL package` — `2026-09-29T07:27:24+00:00`
+- **آبیاری زیرسطحی در کشت کلزا: مقایسه** — `xref-334` — `xref` — 1071 کلمه — تحویل: `SQL package` — `2026-09-29T07:27:22+00:00`
+- **آبیاری قطره‌ای در کشت شبدر: مقایسه** — `xref-336` — `xref` — 1457 کلمه — تحویل: `SQL package` — `2026-09-29T07:26:44+00:00`
+- **آبیاری بارانی در کشت ملون: پیش‌نیازها** — `xref-337` — `xref` — 1066 کلمه — تحویل: `SQL package` — `2026-09-29T07:26:37+00:00`
+- **آبیاری گره‌ای در کشت شنبلیله: مزایا** — `xref-332` — `xref` — 1346 کلمه — تحویل: `SQL package` — `2026-09-29T07:26:35+00:00`
+- **آبیاری چرخشی در کشت کینوا: مزایا** — `xref-350` — `xref` — 1248 کلمه — تحویل: `SQL package` — `2026-09-29T07:26:35+00:00`
+- **آبیاری سطوحی در کشت ملون: نکات کلیدی** — `xref-346` — `xref` — 1062 کلمه — تحویل: `SQL package` — `2026-09-29T07:26:25+00:00`
+- **آبیاری باغ میوه در کشت جعفری: مقایسه** — `xref-340` — `xref` — 1173 کلمه — تحویل: `SQL package` — `2026-09-29T07:26:19+00:00`
+- **آبیاری زیرسطحی در کشت کاهو: مقایسه** — `xref-348` — `xref` — 1159 کلمه — تحویل: `SQL package` — `2026-09-29T07:26:10+00:00`
+- **آبیاری هوشمند در کشت باقلا: چالش‌ها** — `xref-333` — `xref` — 1343 کلمه — تحویل: `SQL package` — `2026-09-29T07:25:40+00:00`
+- **آبیاری قطره‌ای در کشت تریتیکاله: هزینه در مزرعه** — `xref-339` — `xref` — 1288 کلمه — تحویل: `SQL package` — `2026-09-29T07:25:36+00:00`
+- **آبیاری خرسابی در کشت ریحان: پیش‌نیازها** — `xref-341` — `xref` — 1109 کلمه — تحویل: `SQL package` — `2026-09-29T07:24:44+00:00`
 - **آبیاری بارانی با رانش در کشت پنبه: نکات کلیدی** — `xref-314` — `xref` — 1397 کلمه — تحویل: `SQL package` — `2026-09-29T06:54:06+00:00`
 - **آبیاری رطوبتی در کشت پاپریکا: چالش‌ها** — `xref-329` — `xref` — 1145 کلمه — تحویل: `SQL package` — `2026-09-29T06:53:53+00:00`
 - **آبیاری چرخشی در کشت ریحان: مزایا** — `xref-322` — `xref` — 1061 کلمه — تحویل: `SQL package` — `2026-09-29T06:53:36+00:00`
 - **آبیاری گلخانه‌ای در کشت ریحان: چالش‌ها** — `xref-330` — `xref` — 1348 کلمه — تحویل: `SQL package` — `2026-09-29T06:52:37+00:00`
 - **آبیاری هوشمند در کشت گندم: چالش‌ها** — `xref-315` — `xref` — 1360 کلمه — تحویل: `SQL package` — `2026-09-29T06:52:27+00:00`
 - **آبیاری بارانی در کشت اسفناج: مزایا** — `xref-312` — `xref` — 1095 کلمه — تحویل: `SQL package` — `2026-09-29T06:52:14+00:00`
-- **آبیاری بارانی با رانش در کشت ارزن: پیش‌نیازها** — `xref-324` — `xref` — 1516 کلمه — تحویل: `SQL package` — `2026-09-29T06:52:04+00:00`
-- **آبیاری بارانی با رانش در کشت تره: هزینه در مزرعه** — `xref-319` — `xref` — 1477 کلمه — تحویل: `SQL package` — `2026-09-29T06:51:29+00:00`
-- **آبیاری باغ میوه در کشت هویج: راهنمای جامع** — `xref-331` — `xref` — 1130 کلمه — تحویل: `SQL package` — `2026-09-29T06:50:54+00:00`
-- **آبیاری قطره‌ای با قطره‌چکان در کشت ماش: مزایا** — `xref-321` — `xref` — 1304 کلمه — تحویل: `SQL package` — `2026-09-29T06:50:02+00:00`
-- **آبیاری محوری در کشت یونجه: هزینه بهینه** — `xref-325` — `xref` — 1347 کلمه — تحویل: `SQL package` — `2026-09-29T06:49:40+00:00`
-- **آبیاری بارانی با رانش در کشت رزماری: پیش‌نیازها** — `xref-317` — `xref` — 1335 کلمه — تحویل: `SQL package` — `2026-09-29T06:49:33+00:00`
-- **آبیاری سطوحی در کشت ریحان: کاربردها** — `xref-313` — `xref` — 1077 کلمه — تحویل: `SQL package` — `2026-09-29T06:48:01+00:00`
-- **آبیاری سطوحی در کشت کاهو: مقایسه** — `xref-297` — `xref` — 1168 کلمه — تحویل: `SQL package` — `2026-09-29T06:11:02+00:00`
-- **آبیاری رطوبتی در کشت ذرت: کاربردها** — `xref-294` — `xref` — 1069 کلمه — تحویل: `SQL package` — `2026-09-29T06:10:38+00:00`
-- **آبیاری گره‌ای در کشت سورگوم: مقایسه** — `xref-296` — `xref` — 1273 کلمه — تحویل: `SQL package` — `2026-09-29T06:09:34+00:00`
-- **آبیاری سطوحی در کشت پیازچه: پیش‌نیازها** — `xref-310` — `xref` — 1248 کلمه — تحویل: `SQL package` — `2026-09-29T06:08:18+00:00`
-- **آبیاری خرسابی در کشت پیازچه: پیش‌نیازها** — `xref-311` — `xref` — 1069 کلمه — تحویل: `SQL package` — `2026-09-29T06:07:35+00:00`
-- **آبیاری سطوحی در کشت کینوا: مزایا** — `xref-304` — `xref` — 1103 کلمه — تحویل: `SQL package` — `2026-09-29T06:07:07+00:00`
-- **آبیاری زیرسطحی در کشت پیازچه: کاربردها** — `xref-301` — `xref` — 1495 کلمه — تحویل: `SQL package` — `2026-09-29T06:06:50+00:00`
 
 ## خطاهای اخیر
 
+- **آبیاری گلخانه‌ای در کشت نخود: راهنمای جامع** — `xref-344` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['Product is vertically too tall relative to its height (height 26% vs width 23% makes it look more like a short drum/canister rather than the wide low cylindrical ratio of 1.5-1.9).', 'Crop is not clearly recognizable as mature chickpea (bushy tiny serrated leaflets/inflated pods); it is neutral generic young leafy vegetation.', 'Background scene is generic farm rows and does not clearly align with a specific article title or chickpea-specific`
+- **آبیاری هوشمند در کشت طالبی: چالش‌ها** — `xref-335` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ["The fruit shown in the foreground is too large, fully netted (ripe), and isolated on the vine, which violates the requirement for 'restrained netted fruit still attached to the vine' typical of a young crop article.", 'The prominent green plant in the right foreground (likely corn) is a different species and serves as a distracting visual element rather than a neutral background.', "The product is a standard 'drip tape' carton (cylindrical) w`
+- **آبیاری گره‌ای در کشت هویج: پیش‌نیازها** — `xref-345` — مرحله: `text` — تلاش: **1/4** — `Text QA failed after 4 attempts: word count 37 below 1050; missing title; missing meta_title; missing meta_description; missing focus_keyword; missing excerpt; missing html`
+- **آبیاری زیرسطحی در کشت عدس: نکات کلیدی** — `xref-347` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Product height is 48%, violating the strict 32% maximum limit.', 'The aspect ratio (width-to-height) is approximately 0.5, failing the required 1.5 to 1.9 specification.', 'Background crop shows broad, lanceolate leaves typical of brassicas or large-leaved vegetables, not the fine pinnate foliage of lentils.', 'No visible drip tape line on the soil surface; only faint hoses are present in the background.', 'machine-enforced bounding-box check`
+- **آبیاری رطوبتی در کشت گلرنگ: مقایسه** — `xref-349` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ['Hard reject: visible person and human body parts', 'Hard reject: human hands, face, and silhouette present', 'Product is not centered on the lower third']`
+- **آبیاری بارانی در کشت گشنیز: کاربردها** — `xref-342` — مرحله: `text` — تلاش: **1/4** — `Text QA failed after 4 attempts: word count 1029 below 1050`
 - **آبیاری هوشمند در کشت کاهو: هزینه در مزرعه** — `xref-320` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
 - **آبیاری چرخشی در کشت رزماری: هزینه در مزرعه** — `xref-328` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
 - **آبیاری رانشی در کشت چغندر: راهنمای جامع** — `xref-327` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
 - **آبیاری رطوبتی در کشت کینوا: مزایا** — `xref-323` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
-- **آبیاری بارانی با رانش در کشت باقلا: نکات کلیدی** — `xref-316` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['The crop in the image consists of long, narrow, grass-like leaves which are clearly identifiable as corn/maize (Zea mays) or a similar monocot, rather than fava beans (Vicia faba).', 'Fava bean plants should exhibit broad, paired, oval-shaped leaflets and thicker stems, which are not present in this image.', "This constitutes a 'clearly identifiable different species' error, which is a hard reject condition according to the prompt instruction`
-- **آبیاری بارانی در کشت نخود: هزینه در مزرعه** — `xref-318` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
-- **آبیاری رطوبتی در کشت مرزه: چالش‌ها** — `xref-326` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Product width (~12%) is below the 13% practical minimum threshold', 'Product height (~18%) is greater than its visible width, failing the required 1.5-1.9 aspect ratio', "Visible text on the package is gibberish/illegible and does not meet the 'authentic package print' requirement", 'machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width.']`
-- **آبیاری گلخانه‌ای در کشت کاهو: پیش‌نیازها** — `xref-307` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
-- **آبیاری قطره‌ای با قطره‌چکان در کشت شاهی: مقایسه** — `xref-300` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
-- **آبیاری قطره‌ای در کشت لپه: راهنمای جامع** — `xref-305` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ["Article-specific crop mismatch: The prominent mature crop is clearly sunflowers, not the required 'yellow split-pea crop' (لاپه). Sunflowers are botanically distinct from legumes, triggering a hard reject for a clearly identifiable different species.", 'Geometry check: The roll is wide (landscape) rather than cylindrical/vertical; its diameter is not ~1.5-1.9x its height (it is wider than it is tall).']`
 
 ## بسته‌های ۵۰تایی آماده
 
@@ -125,10 +125,10 @@
 
 ## خروجی‌های تولیدشده
 
-- فایل JSON مقاله‌ها: **574**
-- تصاویر تولیدشده: **1722**
-- فایل‌های SQL: **574**
-- فایل‌های Rollback: **574**
+- فایل JSON مقاله‌ها: **588**
+- تصاویر تولیدشده: **1764**
+- فایل‌های SQL: **588**
+- فایل‌های Rollback: **588**
 
 ## فایل‌های مدیریتی
 

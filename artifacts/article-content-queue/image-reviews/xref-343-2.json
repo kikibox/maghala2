@@ -1,0 +1,54 @@
+{
+  "id": "xref-343",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 13,
+      "product_height_percent": 12,
+      "product_x_center_percent": 53,
+      "reasons": [
+        "Hard reject: The image contains a human (a person kneeling in the field), which is strictly prohibited.",
+        "Product staging is centered rather than off-center on the lower third."
+      ],
+      "correction_prompt": "Regenerate the image strictly removing any people, hands, or human silhouettes. Position the AFP drip-tape roll on the soil in the lower third of the frame, moved away from the center to either the left or right side, keeping it secondary to the agricultural context.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 13,
+      "product_height_percent": 22,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Hard reject: The 'tape' visible in the image is a white pipe or hose, not the required flat drip tape (rule: 'layflat hose' is a hard reject).",
+        "Crop identification: The crop is identified as 'city, family' (Role 2), which is not a crop. The article title must be an actual crop (like tomato, pepper, etc.).",
+        "Crop morphology: While the morphology of the seedlings is clear (likely a legume), the 'city, family' context does not match any farm crop, failing the 'topic-specific farm context' requirement."
+      ],
+      "correction_prompt": "Regenerate the image with the crop clearly visible (replace 'city, family' with a specific crop name in the context). The drip tape must be visible as a flat ribbon strip on the ground, not a white pipe/hose.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 51,
+      "reasons": [
+        "Product is a correctly described white-and-blue wide cylindrical drip-tape carton roll.",
+        "Image contains zero people or human body parts.",
+        "Product dimensions are within the acceptable 13-27% width range and no more than 32% height.",
+        "Product is off-center and naturally placed on soil.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner as required.",
+        "Background context matches the farm setting with irrigation layout visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-چرخشی-در-کشت-مارچوبه-مزایا-کاربرد-عملی.webp"
+}
