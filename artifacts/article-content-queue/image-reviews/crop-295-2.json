@@ -1,0 +1,111 @@
+{
+  "id": "crop-295",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 5,
+      "product_height_percent": 8,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: The image contains two people (a man and a child) and visible human body parts, which violates the zero-person rule.",
+        "Hard reject: The crop shown is red peppers, which is a different species from the required article 'سبزی' (leafy vegetables).",
+        "Hard reject: The product shown is a small canister/bottle held by a person, not the required wide low cylindrical drip-tape carton roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human silhouettes. Feature exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll placed off-center on the lower third of the frame on soil. The crop must be leafy vegetables (سبزی) with botanically accurate leaves and stems. Ensure the roll's width is between 13-27% of the image width and height is less than 32%. Maintain the bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 5% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 16,
+      "product_height_percent": 22,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "The required crop is leafy vegetables (سبزی), but the image displays a clearly identifiable different species (bell peppers).",
+        "The crop does not match the botanically accurate article requirement for leafy greens, which is a hard rejection criterion."
+      ],
+      "correction_prompt": "Replace the pepper plants with leafy vegetables such as spinach, lettuce, or parsley to match the specified crop context.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 7,
+      "product_height_percent": 9,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: A person (farmer) is clearly visible in the image.",
+        "The image depicts a chili pepper field, which is a different crop species from the required 'سبزی' (leafy vegetables) without a clear agronomic justification.",
+        "The product roll is significantly smaller than the preferred width (7% instead of 13-27%), appearing more like a container than a wide drip-tape roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image showing a field of leafy vegetables (such as lettuce or spinach) without any people. Place a wide, low cylindrical drip-tape roll on the soil in the lower third of the frame, ensuring it is 20% of the frame width and off-center. Enlarge the product group from 7% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 26,
+      "product_height_percent": 26,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "The crop visible in the image is clearly a pepper or bell pepper crop, which is a clearly identifiable different species from the required article (سبزی / leafy vegetables).",
+        "The drip-tape roll is centered horizontally in the frame, violating the requirement for it to be off-center on the lower third.",
+        "The roll's aspect ratio (width/height) is approximately 1:1, which does not meet the requirement of 1.5 to 1.9 times the height."
+      ],
+      "correction_prompt": "Regenerate the image showing rows of leafy vegetables (سبزی) instead of peppers. Place the white AFP drip-tape roll off-center on the bottom third of the frame, ensuring it is wide and low (diameter ~1.5-1.9x height). Maintain the 'AFP | 09134922013' watermark.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 11,
+      "product_height_percent": 20,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The crop shown is clearly identifiable as red bell peppers, which is a different species from the required 'leafy vegetables' (سبزی) or a neutral bed. This is a hard reject condition.",
+        "The product roll width (approx 11%) is below the practical minimum of 13% for this context, making it appear disproportionately small compared to the foreground plants.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to feature a field of leafy green vegetables (like lettuce, spinach, or parsley) or a prepared soil bed with tiny seedlings instead of bell peppers. Increase the size of the drip tape roll so its width is approximately 20% of the frame, ensuring it remains on the soil in the lower third. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 58,
+      "product_width_percent": 18.0,
+      "product_height_percent": 24.0,
+      "product_x_center_percent": 48.0,
+      "reasons": [
+        "Centered product staging: The roll is placed near the horizontal center of the frame, violating the off-center requirement.",
+        "Impossible geometry: The cylindrical roll is wider than it is tall, whereas the rule requires the visible diameter to be about 1.5 to 1.9 times its visible height."
+      ],
+      "correction_prompt": "Reposition the drip-tape roll to the lower right third of the frame so it is clearly off-center. Rotate or adjust the perspective so the roll appears significantly taller than it is wide, making the diameter at least 1.5 times the height. Keep the farm context and crop rows as is.",
+      "attempt": 6
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 15.8,
+      "product_height_percent": 20.5,
+      "product_x_center_percent": 56.2,
+      "reasons": [
+        "The target article 'paprika' is clearly depicted with rows of plants bearing attached red elongated peppers.",
+        "The product is a white cylindrical roll with blue branding and the required 'AFP' watermark, placed naturally on the soil.",
+        "The product is located in the lower third of the frame and is off-center.",
+        "Product dimensions (width ~15.8%, height ~20.5%) fall within the acceptable 13-27% and <32% constraints respectively.",
+        "No people, human body parts, or prohibited items (bottles, cans, extra packages) are present.",
+        "The background context matches the drip-irrigation farm theme."
+      ],
+      "correction_prompt": "",
+      "attempt": 1
+    }
+  ],
+  "approved_image": "هزینه-کشت-پاپریکا-با-نوار-تیپ-در-هکتار-کاربرد-عملی.webp"
+}

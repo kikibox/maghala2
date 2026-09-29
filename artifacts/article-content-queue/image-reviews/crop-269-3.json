@@ -1,0 +1,43 @@
+{
+  "id": "crop-269",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 28,
+      "product_height_percent": 45,
+      "product_x_center_percent": 82,
+      "reasons": [
+        "Image contains a person (farmer) and another person (driver) visible in the scene, which is a hard reject condition (zero people allowed).",
+        "Product is not placed on the soil as required; it is mounted on the tractor implement and is not a standalone item.",
+        "Product proportions are incorrect; it is too tall and wide relative to the frame, failing the size limits (width > 27%, height > 32%).",
+        "Product is not the specified 'wide low cylindrical drip-tape carton roll' but appears to be a standard agricultural implement cylinder.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width.; Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate a photo of a single white-and-blue drip tape carton roll placed on the ground on the lower right. Ensure the roll is wide and low (height ~1.5-1.9x smaller than width). Remove all people and human silhouettes from the scene. Keep the tractor and field context but ensure the product is clearly isolated on the soil. Reduce the product group from 28% to 13-27% of frame width. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 62,
+      "reasons": [
+        "Product is a single wide, low cylindrical white-and-blue roll with visible 'AFP' branding, consistent with the required drip-tape carton roll.",
+        "Watermark 'AFP | 09134922013' is correctly present in the bottom-right corner and remains intact.",
+        "The product is naturally placed on the soil in the lower-right (lower third of the vertical frame), maintaining an off-center position relative to the frame's center.",
+        "A visible crop plant (weed/seedling) is present in the lower-left corner, which does not clearly contradict the 'farm context' of the hardware story, and no hard reject criteria for crop morphology are met.",
+        "Unattended tractor in the background serves as permitted infrastructure/hardware context without introducing a human, worker, or farmer silhouette.",
+        "Product dimensions are within the acceptable 13-27% width and <=32% height limits, maintaining a secondary role in the frame."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "فاصله-نوار-تیپ-در-کشت-پیاز-استانداردهای-توصیهشده-جزئیات-فنی.webp"
+}

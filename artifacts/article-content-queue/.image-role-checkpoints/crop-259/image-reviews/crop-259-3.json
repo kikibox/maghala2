@@ -3,88 +3,56 @@
   "kind": 3,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 15,
-      "product_width_percent": 18,
-      "product_height_percent": 22,
-      "product_x_center_percent": 42,
+      "score": 25,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 48,
       "reasons": [
-        "Presence of a farmer: The image shows a person crouching in the field, which is a hard reject for Role 3 hardware stories requiring zero people or human silhouettes.",
-        "Human body parts: The image clearly displays a full human body (head, arms, legs) interacting with the product, violating the strict exclusion of human elements."
+        "Hard reject: The image contains a visible person (a woman crouching) which violates the zero-person policy.",
+        "The product roll is not positioned off-center on the lower third; it is placed centrally in the middle-lower area.",
+        "The product's dimensions are incorrect; it appears significantly smaller than the preferred 20-23% width range.",
+        "The product is partially obscured by the person rather than being clearly visible on soil as a standalone subject.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
       ],
-      "correction_prompt": "Remove the crouching farmer completely. Keep the white and blue drip-tape roll on the soil in the lower-left area, ensuring the product remains secondary to the corn field and background barn context.",
+      "correction_prompt": "Regenerate the image with zero people and no human silhouettes. Ensure the single white and blue AFP drip-tape roll is the primary subject, placed off-center in the lower third on the soil. Increase the roll size so its width is approximately 20-23% of the frame. Keep the agricultural hardware context (tractor, filters) but ensure the product is clearly visible without obstruction. Enlarge the product group from 8% to 13-27% of frame width.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 55,
-      "product_width_percent": 28,
-      "product_height_percent": 26,
-      "product_x_center_percent": 38,
+      "score": 40,
+      "product_width_percent": 32,
+      "product_height_percent": 24,
+      "product_x_center_percent": 34,
       "reasons": [
-        "Product width estimate (approx 28% of frame) exceeds the hard-reject limit of 27%.",
-        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+        "Second roll (the tan colored roll on the right side of the frame) is visible, violating the 'exactly one' product requirement.",
+        "Non-product commercial objects (a metal manifold/valve assembly and a yellow and black hardware case) are visible, violating the ban on 'extra commercial product' or 'bottle, jar, canister, bucket, fertilizer or pesticide container' (depending on interpretation, the case is a hardware product, not irrigation infrastructure).",
+        "The main product is too wide; it takes up approximately 32 percent of the frame width, which exceeds the absolute hard reject limit of 27 percent.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate the image with the drip-tape roll made smaller to be less than 25% of the image width, ensuring it is positioned in the bottom-left quadrant on the soil. Reduce the product group from 28% to 13-27% of frame width.",
+      "correction_prompt": "Remove all extra commercial products (second roll, metal manifold, hardware case). Keep only the single white and blue wide low cylindrical AFP drip-tape carton roll on the soil. Reduce the product width to less than 27 percent of the frame while keeping it off-center on the lower third. Maintain the red tractor in the background. Keep the bottom-right watermark. Reduce the product group from 32% to 13-27% of frame width.",
       "attempt": 2
     },
     {
-      "pass": false,
-      "score": 20,
-      "product_width_percent": 12,
-      "product_height_percent": 18,
-      "product_x_center_percent": 20,
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 20,
+      "product_height_percent": 24,
+      "product_x_center_percent": 37,
       "reasons": [
-        "Presence of a person (farmer) in the foreground and on the tractor",
-        "Presence of a second commercial product (small container in hands)",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+        "Product is a cylindrical drip-tape carton roll, white with blue base, consistent with brand identity and role 3 hardware context.",
+        "Bounding box estimation: width is ~20% and height is ~24% of the frame, keeping the product within the 13-27% width and <32% height limits.",
+        "The product is off-center on the lower third, resting naturally on the soil surface.",
+        "Zero people, human body parts, or human silhouettes are visible; the tractor in the background is unattended infrastructure, which is permitted.",
+        "The watermark 'AFP | 09134922013' is correctly present in the bottom-right corner.",
+        "No conflicting text, gibberish writing, or unwanted secondary commercial products (like bottles or jars) are present."
       ],
-      "correction_prompt": "Regenerate the image strictly excluding all people and human body parts. Remove the container in the foreground. Ensure only a single wide, low cylindrical drip-tape roll (white and blue) is visible on the soil, positioned in the lower-left third, with a size approximately 20% of frame width. Maintain the unattended red tractor in the background. Enlarge the product group from 12% to 13-27% of frame width.",
+      "correction_prompt": "",
       "attempt": 3
-    },
-    {
-      "pass": false,
-      "score": 0,
-      "product_width_percent": 25,
-      "product_height_percent": 28,
-      "product_x_center_percent": 20,
-      "reasons": [
-        "Hard reject: human (man) is present in the foreground and center, violating the zero-person requirement."
-      ],
-      "correction_prompt": "Regenerate the image completely removing the man from the scene; keep the unattended tractor, the drip tape roll on the soil, and the farm field background without any people or body parts.",
-      "attempt": 4
-    },
-    {
-      "pass": false,
-      "score": 10,
-      "product_width_percent": 15,
-      "product_height_percent": 15,
-      "product_x_center_percent": 33,
-      "reasons": [
-        "Contains a person/farmer, hard reject"
-      ],
-      "correction_prompt": "Regenerate the image ensuring absolutely no human figures, faces, hands, or body parts are visible. Show only the irrigation hardware (filters, tape roll) and the agricultural infrastructure (tractor, farm environment).",
-      "attempt": 5
-    },
-    {
-      "pass": false,
-      "score": 15,
-      "product_width_percent": 8,
-      "product_height_percent": 30,
-      "product_x_center_percent": 49,
-      "reasons": [
-        "The image contains a prominent person (a female worker) holding the product, which violates the strict requirement for zero people or human body parts.",
-        "The product is positioned in the center of the frame (holding position) rather than being naturally placed on the soil in the lower third.",
-        "The product appears to be a standard roll of tape or paper held by a hand, lacking the specific 'wide low cylindrical drip-tape carton roll' appearance and branding (white and blue) described in the role specification.",
-        "The product's bounding box dimensions are incorrect; it is too narrow relative to its height.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
-      ],
-      "correction_prompt": "Remove the person completely. Place a single wide, low-cylindrical white and blue drip-tape carton roll on the bare soil in the lower-left third of the image. Ensure the roll is approximately 20% of the image width. Keep the background farm context with unattended tractor, no people. Enlarge the product group from 8% to 13-27% of frame width.",
-      "attempt": 6
     }
   ],
-  "approved_image": null
+  "approved_image": "نگهداری-کاملینا-با-نوار-تیپ-نکات-کلیدی-جزئیات-فنی.webp"
 }

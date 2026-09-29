@@ -1,0 +1,74 @@
+{
+  "id": "crop-233",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 9,
+      "product_x_center_percent": 68,
+      "reasons": [
+        "Presence of a person (arms, hands, and legs) which is a hard reject",
+        "Product is not a wide low cylindrical drip-tape carton roll; it appears to be a small container/canister",
+        "Product size is too small (width 8% is below the 13% practical minimum)",
+        "Product is not the correct shape/aspect ratio for the specified hardware",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate without any human body parts; feature exactly one wide low cylindrical white-and-blue drip-tape carton roll on the soil that occupies approximately 20% of the frame width and is positioned in the lower third off-center, with no people visible. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 24,
+      "product_height_percent": 34,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "The image contains a visible person (worker) in the background on the right, which is a hard reject requirement.",
+        "The product height appears to be approximately 34 percent of the frame height, exceeding the strict 32 percent limit.",
+        "The product is positioned in the lower-left quadrant rather than the required 'off-center on the lower third'.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with zero people or human silhouettes in the background. Reduce the drip tape roll's vertical height to strictly under 32 percent of the frame. Position the roll clearly in the lower-third section of the image. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 11,
+      "product_height_percent": 10,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject: Visible human presence (farmer/custodian) violates the 'zero people and zero human body parts' rule.",
+        "Roll geometry is not wide/low: The roll appears more square in height than the required ~1.5-1.9x width ratio.",
+        "Product is centered/too central: The roll is placed near the bottom-center of the frame rather than being off-center on the lower third.",
+        "Contextual contradiction: The crop shown has a morphology that clearly contradicts 'summer savory' (مرزه).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the human figure entirely; keep the unattended wide, low cylindrical drip-tape roll off-center on the soil in a field with summer savory crop morphology; ensure roll width is ~1.5-1.9x height. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 16,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No people, hands, or body parts are visible in the image.",
+        "The product is an AFP white and blue drip tape roll placed naturally on soil.",
+        "The product dimensions are within acceptable limits (width ~16%, height ~25%).",
+        "The crop plants are generic leafy green seedlings and do not clearly contradict summer savory morphology.",
+        "The background shows a farm context with tilled soil and a distant building, consistent with the role."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-مرزه-با-آبیاری-قطرهای-جزئیات-فنی.webp"
+}

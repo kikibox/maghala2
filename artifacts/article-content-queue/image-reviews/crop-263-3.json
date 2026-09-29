@@ -1,0 +1,53 @@
+{
+  "id": "crop-263",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 21,
+      "product_height_percent": 28,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Hard reject: A clearly identifiable young crop plant (resembling corn/maize with distinct broad leaves) is shown in the foreground. This contradicts the melon (ملون) crop requirement and fails the 'visually neutral' hardware story constraint for identifiable crops.",
+        "Hard reject: The image contains 'invented writing' in the form of unreadable gibberish text lines on the label of the drip-tape roll, which violates the requirement for authentic package print only."
+      ],
+      "correction_prompt": "Regenerate the image with the large foreground crop plant completely removed to maintain a neutral hardware focus. Ensure the label on the drip-tape roll displays clear, authentic text without gibberish lines. Keep the AFP watermark and the irrigation hardware intact.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 35,
+      "product_height_percent": 30,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The image contains multiple rolls and extra commercial items (filters, connectors), violating the 'exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll' requirement. The main roll is also too wide (35%), exceeding the 27% hard reject threshold and violating the preferred width range.",
+        "Multiple extra items (filters, small rolls) create a scene that doesn't match the 'exactly one roll' constraint and the 'secondary' product role expectation.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to feature ONLY one AFP white-and-blue drip-tape roll on the soil. Ensure the roll's width is between 20-23% of the frame width (max 27%) and height is under 32%. Remove all other rolls, filters, and connectors. Keep the background (field, tractor, barn) unchanged but reduce the scale of the single roll to make it secondary to the environment. Maintain the exact bottom-right watermark 'AFP | 09134922013'. Reduce the product group from 35% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 26,
+      "product_height_percent": 22,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The image successfully includes the required AFP white-and-blue wide low cylindrical drip-tape carton roll in a secondary position.",
+        "It is placed on soil in a farm context matching the topic and role 3 (hardware story).",
+        "The bounding box estimates (approx. 26% width, 22% height, x-center at 40%) are within acceptable practical limits for this filter close-up view.",
+        "No people, human body parts, or hard reject elements (like extra products or centered staging) are present.",
+        "The required bottom-right watermark 'AFP | 09134922013' is visible and has not been altered or rejected."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "میزان-برداشت-ملون-در-هکتار-با-نوار-تیپ-جزئیات-فنی.webp"
+}

@@ -1,0 +1,55 @@
+{
+  "id": "crop-222",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 16,
+      "product_height_percent": 17,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "The product bounding box geometry fails the aspect ratio requirement (diameter ~1.62x height vs required 1.5-1.9x); it is too tall and short rather than a wide low cylindrical roll.",
+        "The bottom-right watermark is missing its required 'pipe through the roll' text artifact; the visible text is '09134922013' instead of the required exact string 'pipe through the roll'.",
+        "The hardware infrastructure (filter, gauge) is too prominent and competes with the product for visual focus rather than acting as secondary context."
+      ],
+      "correction_prompt": "Flatten the roll geometry to a wide low cylindrical aspect ratio (diameter approx 1.7x height). Reduce the visual prominence of the filter and gauge to make the roll the focal point. Ensure the bottom-right watermark text exactly matches 'pipe through the roll'.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Second package/second roll of drip tape is visible in the background, which is a hard reject",
+        "The two rolls disrupt the requirement for exactly one main subject product",
+        "Extra commercial packaging in the scene distracts from the single-product focus"
+      ],
+      "correction_prompt": "Regenerate the image to include only the single main drip-tape roll, completely removing the second roll and hand tools in the background",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Product is a white-and-blue wide low cylindrical carton roll placed naturally on soil",
+        "Product is off-center on the lower third (x approx 43%, y approx 65%)",
+        "Zero people or human body parts visible",
+        "Unattended tractor and irrigation hardware are acceptable as background context",
+        "Required bottom-right watermark 'AFP | 09134922013' is present and legible",
+        "Background shows farm context with crop rows matching the drip-tape topic"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "مقدار-بذر-کدو-در-هکتار-راهنمای-جامع-جزئیات-فنی.webp"
+}

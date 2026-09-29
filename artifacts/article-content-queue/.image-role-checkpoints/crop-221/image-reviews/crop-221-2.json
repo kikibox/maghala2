@@ -1,0 +1,92 @@
+{
+  "id": "crop-221",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 23,
+      "product_height_percent": 30,
+      "product_x_center_percent": 18,
+      "reasons": [
+        "The central crop plant is botanically identifiable as a tomato (Cucumis sativus is the melon family, but this plant shows tomato-like compound leaves and growth habit), which is a 'clearly identifiable different species' and triggers a hard reject.",
+        "The product geometry is incorrect: it depicts a short vertical drum or canister rather than the required 'wide low cylindrical' roll shape (diameter should be 1.5-1.9x the height, but here height is nearly equal to width)."
+      ],
+      "correction_prompt": "Replace the central tomato plant with a biologically accurate Melon (Cucumis melo) plant featuring characteristic lobed or scalloped leaves and round melon fruit. Regenerate the AFP product to be a wide, low-lying cylindrical drip-tape roll lying horizontally or on its side on the soil, not a vertical drum. Maintain the bottom-right watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 14.2,
+      "product_height_percent": 28.1,
+      "product_x_center_percent": 31.5,
+      "reasons": [
+        "The crop shown next to the drip-tape roll is a solanaceous vegetable (physically indistinguishable from a tomato or eggplant) with an indeterminate fruit and serrated compound leaves. This does not match the article's required crop, melon (Cucurbita), which is botanically characterized by a prostrate climbing habit, palmately-lobed heart-shaped leaves, and a round/oblong fruit directly attached to the base. Although melon seedlings are permissible, the mature fruit and foliage here clearly belong to a different family (Solanaceae), which is a hard reject criterion."
+      ],
+      "correction_prompt": "Regenerate the image replacing the solanaceous plant with a young melon vine. The plant must show flat palmate-lobed leaves and a round developing melon fruit resting at the soil surface. Keep the AFP white-and-blue drip-tape roll in its current position and scale, maintain the zero-people constraint, and ensure the 'AFP | 09134922013' watermark remains in the bottom-right corner.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 15.2,
+      "product_height_percent": 14.5,
+      "product_x_center_percent": 62.5,
+      "reasons": [
+        "The image contains a clearly identifiable, mature green melon fruit which is not a neutral seedling or young vegetation; per strict rules, a clearly identifiable different crop species or incorrect stage is a hard reject.",
+        "The product geometry is cylindrical but appears taller (vertical) relative to the frame than a 'wide low' horizontal roll; its aspect ratio is roughly 1:1 rather than the required 1.5 to 1.9 width-to-height ratio.",
+        "The product is centered vertically and horizontally in the middle of the frame rather than 'off-center on the lower third'."
+      ],
+      "correction_prompt": "Remove the large green melon fruit. Place the drip-tape roll on the soil in the lower third, off-center (left or right). Ensure the roll is lying horizontally with a width approximately 1.7 times its height. Background should show neutral seedlings or bare soil, not a mature crop.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 24,
+      "product_height_percent": 32,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "The crop shown is clearly identifiable as corn/maize seedlings (V.3), which is a hard reject as it contradicts the required 'melon' (arugula) article; the prompt allows neutral seedlings but this specific morphology is distinct and incorrect.",
+        "The drip tape is missing from the roll; it appears to be an empty carton or reel core rather than a visible white-and-blue tape roll.",
+        "Text on the product container is gibberish ('Drip CONTAINER...') rather than authentic package printing."
+      ],
+      "correction_prompt": "Replace the visible corn seedlings with neutral, unidentifiable young sprouts. Ensure the roll contains visible blue-and-white drip tape. Correct package text to be legible and authentic.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Image contains a person (male farmer) touching the product and interacting with the crops.",
+        "Hard reject: Image contains human body parts (face, arms, legs, hands, feet).",
+        "Product placement: The product is being staged/held by a person, which violates the 'zero people' and 'naturally placed' requirements.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any people, hands, or human silhouettes. Show only the white-and-blue cylindrical drip-tape carton roll on the soil with melon crops in the background. Keep the AFP watermark. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 29,
+      "product_height_percent": 22,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product width is approximately 29% of the frame, exceeding the hard reject threshold of 27%.",
+        "The visible crop plants have broad, ovate leaves and upright stems characteristic of Solanaceae (e.g., tomato or potato), not Cucurbitaceae (melon). This constitutes a clearly identifiable different species.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 29% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image featuring a melon seedling (vine-like growth, distinct cucurbit leaves) instead of the current plant. Reduce the drip-tape carton roll size so its width is under 20% of the frame, and position it lower in the foreground to clearly distinguish it from the vegetation. Reduce the product group from 29% to 13-27% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}
