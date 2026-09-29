@@ -1,0 +1,80 @@
+{
+  "id": "xref-155",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 25,
+      "product_height_percent": 35,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Product height is approximately 35% of the frame, which exceeds the strict 32% hard reject limit.",
+        "There is a second package (a small silver spool) visible next to the main product, violating the rule against second packages or extra commercial products.",
+        "Watermark format is incorrect; '09134922013' is 10 digits, but the required valid format must be exactly 9 digits ('AFP | 091349220').",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Strictly crop or scale the image so the white cylinder roll's height is less than 32% of the frame. Remove the small silver spool next to the product. Replace the '0' at the end of the watermark phone number to make it 9 digits. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 11,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Hard reject: The image contains a prominent man (human body parts including face, arms, and legs are clearly visible), which violates the 'zero people' rule.",
+        "Product size: The drip tape roll is too small (approx 12% width) compared to the 13-27% acceptable range.",
+        "Composition: The human figure dominates the frame, interfering with the required focus on the hardware/infrastructure.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the man from the scene. Generate a close-up shot of the white-and-blue AFP drip tape roll placed on the soil. Ensure the roll's width is approximately 20-25% of the frame width and it is positioned off-center in the lower third. Keep the background as a farm context (soil, distant tractor) but with zero humans. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 28,
+      "product_height_percent": 30,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product: Exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll present.",
+        "Positioning: Naturally placed on soil and off-center on the lower third.",
+        "Geometry: Visible diameter-to-height ratio is approximately 1.5 to 1.9 times, consistent with a wide low roll.",
+        "Context: Background matches a farm infrastructure context with an unattended tractor; no identifiable crop contradiction found.",
+        "Constraints: No people or human body parts present; no extra commercial products, fake text, or invalid geometry.",
+        "Watermark: Exact bottom-right watermark 'AFP | 09134922013' present and compliant.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: A full human (farmer/worker) is visible in the image (crouching on the right side), which violates the strict 'zero people' and 'zero human body parts' requirement."
+      ],
+      "correction_prompt": "Remove the crouching man entirely. Regenerate the scene showing only the AFP drip-tape roll in the foreground soil with the background field, ensuring no people, silhouettes, or body parts are present.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 22,
+      "product_height_percent": 21,
+      "product_x_center_percent": 25,
+      "reasons": [],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-رزماری-مزایا-جزئیات-فنی.webp"
+}

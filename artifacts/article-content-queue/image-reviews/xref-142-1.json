@@ -1,0 +1,55 @@
+{
+  "id": "xref-142",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18.75,
+      "product_height_percent": 18.75,
+      "product_x_center_percent": 47.5,
+      "reasons": [
+        "Hard reject: A clearly visible person (woman) is working in the field in the background. The prompt requires zero people or human body parts.",
+        "Watermark text appears to be a generic placeholder rather than the specific mandatory string 'AFP | 09134922013'.",
+        "Product geometry (diameter to height ratio) does not meet the 1.5-1.9x requirement, appearing too square/boxy rather than cylindrical."
+      ],
+      "correction_prompt": "Remove the person in the background entirely. Update the bottom-right watermark to 'AFP | 09134922013'. Adjust the drip-tape roll to have a width roughly 1.7 times its height to reflect a proper cylindrical carton shape.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 26,
+      "product_height_percent": 28,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The background crop is a clearly identifiable flowering row-crop (marigolds), which is botanically distinct from the required garden cress (شاهی). The rules require a crop recognizable as dense divided green leaves or a neutral prepared bed, not a different visible species.",
+        "The product roll is centered (x_center approx 48%), failing the strict 'off-center' requirement.",
+        "The product width (approx 26%) is at the upper limit of the acceptable range and slightly compromises the 'secondary' nature of the product requested."
+      ],
+      "correction_prompt": "Regenerate the image replacing the background with rows of garden cress (شاهی), characterized by small, divided green leaves in dense low beds, without any visible flowers. Move the white-and-blue AFP drip-tape roll to the left (x_center approx 35%) and reduce its size slightly to 18-20% of the frame width to ensure it is clearly secondary to the crop context.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 17,
+      "product_height_percent": 22,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Exactly one white-and-blue AFP drip-tape roll present in the foreground.",
+        "Product dimensions are within acceptable limits (width 17%, height 22%); aspect ratio is slightly taller than the 1.5-1.9 ideal but geometrically plausible for a short roll.",
+        "Roll is placed naturally on soil, off-center in the lower third.",
+        "Background shows a farm context with crop rows and a distant barn; the crops are indistinguishable young seedlings/young plants which meets the 'neutral young vegetation' allowance without hard-rejecting a different species.",
+        "Zero people or human body parts present.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-گلخانهای-در-کشت-شاهی-هزینه-در-مزرعه-تصویر-شاخص.webp"
+}

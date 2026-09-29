@@ -1,0 +1,79 @@
+{
+  "id": "xref-154",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 23,
+      "product_height_percent": 30,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Missing required bottom-right watermark string 'AFP | 09134922013' (image displays 'AFP | 09134922013' but with a non-matching number ending in '013' instead of the required '013' from the prompt string, or similar mismatch)",
+        "The product roll appears slightly too prominent/wide for the 'secondary' requirement of Role 3; it occupies the primary visual focus in the foreground."
+      ],
+      "correction_prompt": "Shrink the drip-tape roll to be clearly secondary and smaller in frame. Ensure the bottom-right watermark is exactly 'AFP | 09134922013'. Shift the roll slightly further left to ensure off-center placement.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 18,
+      "product_height_percent": 28,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: A human figure (red shirt, blue pants) is clearly visible operating the tractor in the background. The rules explicitly state 'Hard reject any person, farmer, worker, face, hand, arm, leg, body part or human silhouette, even distant.'",
+        "Hard reject: The watermark 'AFP | 09134922013' is missing from the bottom right corner (the image contains a placeholder box instead of the specific required text)."
+      ],
+      "correction_prompt": "Remove the human figure from the tractor in the background (tractor should be unmanned/unattended or removed). Ensure the exact text watermark 'AFP | 09134922013' is present in the bottom right corner.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 19.5,
+      "product_height_percent": 24.5,
+      "product_x_center_percent": 34.5,
+      "reasons": [
+        "Presence of potted plants acts as 'extra commercial products' or props that clutter the specific hardware story context.",
+        "The product is paired with additional items (pots, wheel), which dilutes the focus on the single drip-tape carton roll required by the spec."
+      ],
+      "correction_prompt": "Remove the potted plants and the wheel prop; keep only the single AFP drip tape roll centered in the lower third on soil.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 16,
+      "product_height_percent": 12,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Two distinct product rolls are visible in the foreground, violating the single-roll requirement",
+        "The right-side hardware item has a long protruding metal spike or pipe, which is inconsistent with a standard drip-tape filter or manifold and falls under the 'impossible geometry' hard reject criteria",
+        "Text on the main white roll is gibberish (e.g., 'Olp Olupeao Sat') rather than authentic packaging print"
+      ],
+      "correction_prompt": "Remove the extra hardware item on the right. Show a single wide, low cylindrical white drip-tape roll with blue print, placed on soil in the lower-left third. Clean, readable 'AFP' branding on the roll. Keep the unattended tractor and farm background.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 23,
+      "product_height_percent": 25,
+      "product_x_center_percent": 15,
+      "reasons": [
+        "No people or human body parts present",
+        "Background matches farm context with unattended tractor and soil",
+        "Required AFP phone watermark present",
+        "Crop plants are visually neutral (bare soil)",
+        "Product placement and geometry are acceptable"
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-ارزن-کاربردها-جزئیات-فنی.webp"
+}

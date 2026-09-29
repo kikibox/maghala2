@@ -1,0 +1,70 @@
+{
+  "id": "xref-143",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 8,
+      "product_height_percent": 9,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: Human presence. The image contains a person (woman in overalls) touching the product.",
+        "Hard reject: Incorrect product. The item held is a small jar or container, not a wide cylindrical drip-tape carton roll.",
+        "Product geometry: The item is too small (under 13% width) and centered in the frame rather than placed on the soil at the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image showing a large wide cylindrical drip-tape roll placed on the soil in the lower third, with no people, hands, or human silhouettes. Background must be a rosemary farm with woody shrubs. Keep AFP watermark in bottom right. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 40,
+      "product_height_percent": 45,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product bounding box is too large (width ~40%, height ~45%), exceeding the max 32% height and 27% width limits.",
+        "Product is centered on the X-axis, violating the 'off-center' requirement.",
+        "The background crop appears to be woody shrubs but does not clearly match the specific morphology of mature rosemary (needle-like leaves) requested in the role, looking more like generic greenery or willow.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 40% to 13-27% of frame width.; Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a much smaller drip tape roll (width 20%, height <30%) positioned on the lower-left or lower-right third, placed naturally on the soil. Ensure the background clearly depicts a rosemary farm with distinct needle-like foliage. Reduce the product group from 40% to 13-27% of frame width. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 18,
+      "product_height_percent": 20,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "The image contains a person, which is a hard reject based on the rule 'zero people and zero human body parts'."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove the person. Frame only the low cylindrical drip-tape roll on the soil in the lower-left foreground, with rosemary plants and a neutral farm background. Keep the exact AFP watermark.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 22,
+      "product_height_percent": 20,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "The product is a white-and-blue cylindrical drip-tape carton roll positioned on the soil in the lower-left quadrant.",
+        "Product width is approximately 22% of the frame, which falls within the acceptable range (13-27%).",
+        "Product height is approximately 20% of the frame, well below the 32% limit.",
+        "The visible diameter (approx 220px) is roughly 1.1 times the visible height (approx 200px); while this is slightly compact compared to the ideal 1.5-1.9 ratio, the practical height constraint is met.",
+        "The crop depicted features woody stems and needle-like dark-green leaves, recognizable as rosemary.",
+        "The watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No people, human body parts, or prohibited packaging (bottles, jars, cans) are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-رزماری-راهنمای-جامع-کاربرد-عملی.webp"
+}

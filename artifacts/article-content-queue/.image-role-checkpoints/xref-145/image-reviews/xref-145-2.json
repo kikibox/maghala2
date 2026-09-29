@@ -1,0 +1,95 @@
+{
+  "id": "xref-145",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Presence of human body parts (arms, hands, legs, and boots) which is a hard reject condition for this role.",
+        "The product is being held by a person, violating the 'zero people and zero human body parts' requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures, hands, and legs from the image. Place the drip tape roll directly on the soil surface in a farm context, off-center in the lower third. Ensure the crop in the background matches the specific article topic (e.g., corn or soybean if applicable). Retain the bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 21,
+      "product_height_percent": 28,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Extra commercial product/text artifact: There is a large, ghosted 'AFP' text watermark at the bottom right corner, outside the required phone number format, which triggers a hard reject for fake headline/gibberish text.",
+        "Product geometry: The product width (21%) is within the acceptable 13-27% range, but the height (28%) is quite high relative to the width, making it look more like a vertical cylinder or short canister rather than the 'wide low cylindrical' drip tape roll specified.",
+        "Product shape: The roll is too tall and narrow, failing the 'diameter about 1.5 to 1.9 times its visible height' requirement."
+      ],
+      "correction_prompt": "Regenerate with a wide, flat drip tape roll (diameter > 1.5x height). Remove the ghosted 'AFP' text at the bottom right, keeping only the 'AFP | 09134922013' watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 8,
+      "product_height_percent": 10,
+      "product_x_center_percent": 51,
+      "reasons": [
+        "Hard reject: Image contains two visible people (male and female farmers). Rule: Zero people or human body parts allowed.",
+        "Hard reject: Product placement is centered and handled by a person, not off-center on soil.",
+        "Product type/size error: The object is a small, short canister/box, not a wide low cylindrical roll with a diameter-to-height ratio of ~1.5-1.9.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with ZERO people. Show a single AFP wide low cylindrical drip-tape roll sitting on the soil, off-center (lower third). The roll must be approximately 20% of the frame width and about 1.5-1.9 times its height in diameter. Remove all humans/farmers. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 26,
+      "product_height_percent": 35,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The image contains two clearly visible human figures (people) in the background, which is a hard reject criterion.",
+        "The text on the carton ('trogates iet') is gibberish/invented writing outside of the standard brand logo, which is a hard reject.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with absolutely no people or human silhouettes visible in the background. Correct the text on the carton to read 'Drip Tape 20mm' and 'AFP' in clean, legible fonts. Maintain the crop, product shape, and placement. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: image contains two people (farmers/workers).",
+        "The product roll is significantly too small (approx. 8% width) relative to the required 13-27% range; it is not the visual focus.",
+        "The product is centered rather than placed off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image to remove all people/human body parts entirely. Increase the size of the white-and-blue AFP drip-tape roll so it is clearly visible and approximately 20% of the frame width, placing it off-center in the lower third on the soil. Ensure the crop is recognizable or a neutral prepared bed with clear irrigation layout. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 68,
+      "product_width_percent": 17.8,
+      "product_height_percent": 26.5,
+      "product_x_center_percent": 35.0,
+      "reasons": [
+        "The roll geometry appears taller than required; the visible height is approximately 84% of its width, exceeding the maximum allowable ratio of 0.66 (1.9 times wider than tall).",
+        "The roll's aspect ratio does not meet the 1.5 to 1.9:1 width-to-height requirement."
+      ],
+      "correction_prompt": "Flatten the white drip-tape roll to be visibly wider relative to its height, ensuring the width is 1.7 times its visible height, while maintaining the off-center position on the soil.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}
