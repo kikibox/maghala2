@@ -69,6 +69,7 @@ IMAGE_QA_REVIEW_ATTEMPTS = max(1, int(os.getenv("IMAGE_QA_REVIEW_ATTEMPTS", "4")
 MIN_WORDS = int(os.getenv("MIN_WORDS", "1050"))
 MIN_LINKS = int(os.getenv("MIN_INTERNAL_LINKS", "4"))
 MAX_ATTEMPTS = max(1, int(os.getenv("MAX_ATTEMPTS", "4")))
+FAILED_RETRY_CYCLES = max(0, int(os.getenv("FAILED_RETRY_CYCLES", "1")))
 
 # SQL needs term_taxonomy_id, not term_id. Keep the old variable as a
 # backwards-compatible fallback for existing repository settings.
@@ -287,6 +288,14 @@ def write_status(q, result):
     processing = [x for x in items if x.get("status") == "processing"]
     eligible = select_batch(q)
     next_item = eligible[0] if eligible else None
+    retry_eligible = sum(
+        1 for item in items
+        if item.get("status") == "failed" and is_retry_eligible(item)
+    )
+    retry_exhausted = sum(
+        1 for item in items
+        if item.get("status") == "failed" and not is_retry_eligible(item)
+    )
     by_vertical = {}
     for item in items:
         vertical = item.get("vertical", "unknown")
@@ -333,6 +342,8 @@ def write_status(q, result):
         "processing": c["processing"],
         "completed": done,
         "failed": c["failed"],
+        "retry_eligible": retry_eligible,
+        "retry_exhausted": retry_exhausted,
         "blocked_image_model": c["blocked_image_model"],
         "progress_percent": round(pct, 2),
         "average_completed_words": average_words,
@@ -376,6 +387,8 @@ def write_status(q, result):
         f"- در حال پردازش: **{c['processing']}**",
         f"- در انتظار: **{c['pending']}**",
         f"- ناموفق: **{c['failed']}**",
+        f"- واجد تلاش مجدد محدود: **{retry_eligible}**",
+        f"- ناموفق نهایی پس از چرخه retry: **{retry_exhausted}**",
         f"- مسدود مدل تصویر: **{c['blocked_image_model']}**",
         f"- میانگین طول مقالات تکمیل‌شده: **{average_words or '—'} کلمه**",
         f"- اولویت فعلی: **{'تکمیل ترجمه‌های موجود' if translation_data.get('persian_queue_paused') else 'تولید مقاله فارسی بعدی'}**",
@@ -1092,14 +1105,43 @@ def sql_for(item, obj, images):
     return "\n".join(q) + "\n", rollback, body
 
 
+def is_retry_eligible(item):
+    status = item.get("status")
+    attempts = int(item.get("attempts", 0))
+    if status == "pending":
+        return attempts < MAX_ATTEMPTS
+    if status != "failed":
+        return False
+    return (
+        attempts < MAX_ATTEMPTS
+        or int(item.get("failed_retry_cycles", 0)) < FAILED_RETRY_CYCLES
+    )
+
+
+def prepare_attempt(item):
+    """Open one bounded retry cycle after an item exhausts normal attempts."""
+    if item.get("status") == "failed" and int(item.get("attempts", 0)) >= MAX_ATTEMPTS:
+        item["failed_retry_cycles"] = int(item.get("failed_retry_cycles", 0)) + 1
+        item["attempts"] = 0
+        item["retry_cycle_started_at"] = now()
+    item.update(
+        status="processing",
+        attempts=int(item.get("attempts", 0)) + 1,
+        started_at=now(),
+    )
+
+
 def select_batch(q):
-    """Retry failed work before starting new work, up to MAX_ATTEMPTS."""
-    eligible = [
-        x for x in q["items"]
-        if x.get("status") in {"pending", "failed"}
-        and int(x.get("attempts", 0)) < MAX_ATTEMPTS
-    ]
-    eligible.sort(key=lambda x: (x.get("status") != "failed", x.get("failed_at", ""), x["id"]))
+    """Retry failed work first, including one bounded post-exhaustion cycle."""
+    eligible = [x for x in q["items"] if is_retry_eligible(x)]
+    eligible.sort(
+        key=lambda x: (
+            x.get("status") != "failed",
+            int(x.get("failed_retry_cycles", 0)),
+            x.get("failed_at", ""),
+            x["id"],
+        )
+    )
     return eligible[:BATCH]
 
 
@@ -1226,7 +1268,7 @@ def process(q):
     # The coordinator owns queue state. Workers only call APIs and return
     # results, preventing concurrent JSON/SQL/Git state writes.
     for item in batch:
-        item.update(status="processing", attempts=item["attempts"]+1, started_at=now())
+        prepare_attempt(item)
     q["updated_at"] = now()
     QUEUE.write_text(json.dumps(q, ensure_ascii=False, indent=2), encoding="utf-8")
     write_status(q, "processing")
@@ -1259,6 +1301,7 @@ def process(q):
                         delivery="sql_package", last_error="",
                     )
                     item.pop("failed_stage", None);item.pop("failed_at", None);item.pop("started_at", None)
+                    item.pop("failed_retry_cycles", None);item.pop("retry_cycle_started_at", None)
                     (ITEMS / f"{item['id']}.json").write_text(
                         json.dumps({**item, **obj, "html": body, "images": images}, ensure_ascii=False, indent=2),
                         encoding="utf-8")

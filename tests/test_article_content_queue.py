@@ -89,8 +89,12 @@ class ArticleQueueTests(unittest.TestCase):
             self.assertEqual(repaired.count(f"[[[IMAGE_{i}]]]"), 1)
 
     def test_failed_items_are_retried_first(self):
-        old_batch, old_attempts = queue.BATCH, queue.MAX_ATTEMPTS
-        queue.BATCH, queue.MAX_ATTEMPTS = 1, 4
+        old_batch, old_attempts, old_cycles = (
+            queue.BATCH,
+            queue.MAX_ATTEMPTS,
+            queue.FAILED_RETRY_CYCLES,
+        )
+        queue.BATCH, queue.MAX_ATTEMPTS, queue.FAILED_RETRY_CYCLES = 1, 4, 1
         try:
             q = {"items": [
                 {"id": "new", "status": "pending", "attempts": 0},
@@ -98,7 +102,39 @@ class ArticleQueueTests(unittest.TestCase):
             ]}
             self.assertEqual(queue.select_batch(q)[0]["id"], "retry")
         finally:
-            queue.BATCH, queue.MAX_ATTEMPTS = old_batch, old_attempts
+            queue.BATCH, queue.MAX_ATTEMPTS, queue.FAILED_RETRY_CYCLES = (
+                old_batch,
+                old_attempts,
+                old_cycles,
+            )
+
+    def test_exhausted_failure_gets_one_bounded_retry_cycle(self):
+        old_batch, old_attempts, old_cycles = (
+            queue.BATCH,
+            queue.MAX_ATTEMPTS,
+            queue.FAILED_RETRY_CYCLES,
+        )
+        queue.BATCH, queue.MAX_ATTEMPTS, queue.FAILED_RETRY_CYCLES = 20, 4, 1
+        try:
+            item = {
+                "id": "retry-exhausted",
+                "status": "failed",
+                "attempts": 4,
+                "failed_retry_cycles": 0,
+            }
+            self.assertTrue(queue.is_retry_eligible(item))
+            queue.prepare_attempt(item)
+            self.assertEqual(item["status"], "processing")
+            self.assertEqual(item["attempts"], 1)
+            self.assertEqual(item["failed_retry_cycles"], 1)
+            item.update(status="failed", attempts=4)
+            self.assertFalse(queue.is_retry_eligible(item))
+        finally:
+            queue.BATCH, queue.MAX_ATTEMPTS, queue.FAILED_RETRY_CYCLES = (
+                old_batch,
+                old_attempts,
+                old_cycles,
+            )
 
     def test_image_response_is_normalized_to_optimized_16_by_9_webp(self):
         source = io.BytesIO()
