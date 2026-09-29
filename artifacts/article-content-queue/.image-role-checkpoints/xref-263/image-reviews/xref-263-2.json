@@ -1,0 +1,91 @@
+{
+  "id": "xref-263",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 24,
+      "product_height_percent": 15,
+      "product_x_center_percent": 70,
+      "reasons": [
+        "Contains two drip-tape rolls instead of exactly one.",
+        "Contains an extra irrigation accessory (black fitting/clamp) on the soil.",
+        "Fails the 'single package' constraint required for this image role."
+      ],
+      "correction_prompt": "Remove the smaller drip-tape roll and the black fitting on the ground. Ensure exactly one large AFP white-and-blue cylindrical drip-tape carton roll is visible, placed naturally on the soil in the lower-right quadrant.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 16,
+      "product_height_percent": 22,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "Presence of people (two men crouching and working in the field) is a hard reject criterion.",
+        "The prompt strictly requires zero people and zero human body parts."
+      ],
+      "correction_prompt": "Regenerate the image without any people or human silhouettes, showing only the farm context, crop, and the AFP drip-tape roll on the soil.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 15,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product placement is centered horizontally and in the lower-middle third, violating the strict 'off-center on the lower third' constraint."
+      ],
+      "correction_prompt": "Shift the drip-tape roll to the bottom-right corner to ensure it is clearly off-center.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 9,
+      "product_height_percent": 16,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "Hard reject: A person (woman) is clearly visible in the image, violating the zero-people rule.",
+        "Hard reject: Human body parts (face, arms, legs) are present.",
+        "Product constraint violation: The drip-tape roll is far too small (estimated 9% width), well below the acceptable 13-27% range.",
+        "Product constraint violation: The product's aspect ratio is nearly square (width 9, height 16), not the required wide cylindrical shape (1.5-1.9x wider).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Enlarge the white cylindrical drip-tape roll significantly so it is approximately 20% of the frame width. Ensure the roll has a wide, flat geometry (visually 1.8 times wider than it is tall) and place it off-center on the soil in the lower third. Maintain the farm context and the required watermark. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 23.5,
+      "product_height_percent": 31.2,
+      "product_x_center_percent": 37.5,
+      "reasons": [
+        "The visible text on the carton face ('Drip Irngation Tite') is gibberish or invented writing outside authentic package print, violating the 'no gibberish text' hard reject rule.",
+        "The product is centered in the frame (x_center ~37.5%), failing the requirement to be off-center on the lower third."
+      ],
+      "correction_prompt": "Regenerate the image with the carton roll positioned clearly off-center to the left or right in the lower third of the frame. Correct the text on the carton to clear, readable 'Drip Irrigation Tape'. Ensure the botanically accurate 'city' crop (likely sunflowers or similar based on article context) is visible in the foreground or bed to match the title.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 13,
+      "product_height_percent": 18,
+      "product_x_center_percent": 51,
+      "reasons": [
+        "Hard reject: Image contains people (farmers/workers).",
+        "Hard reject: The drip tape roll is centered horizontally (51% x_center), violating the requirement to be off-center."
+      ],
+      "correction_prompt": "Remove all people from the image. Reposition the white-and-blue drip tape roll to the lower-left third of the frame. Maintain the sunflower field background and the AFP | 09134922013 watermark.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

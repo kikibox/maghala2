@@ -1,0 +1,86 @@
+{
+  "id": "xref-270",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 4,
+      "product_height_percent": 6,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Presence of a person and human body parts (face, hands, arms, legs) violates the strict no-person rule.",
+        "The product is a small white canister, not a white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product size is significantly too small (approx. 4-6% width) relative to the required 13-27% range.",
+        "The subject is centered, violating the off-center lower-third positioning requirement.",
+        "The article-specific crop is not identifiable (generic seedlings).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person completely. Replace the canister with a wide, low, cylindrical drip-tape roll (white and blue) with diameter approx 1.5-1.9 times height. The roll should be roughly 20% of image width, placed off-center in the lower third on the soil. Show a prepared field with generic irrigation lines. Ensure no human parts are visible. Enlarge the product group from 4% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Missing the required AFP blue branding; the visible roll is white with blue text instead of 'AFP white-and-blue' branding",
+        "Product is positioned at the bottom-center of the frame rather than off-center on the lower third",
+        "Product proportions do not meet the 1.5-1.9x diameter-to-height requirement (appears taller and narrower than specified for a wide low cylindrical roll)",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with an AFP-branded blue and white drip-tape roll. Position the product clearly off-center in the lower third of the frame. Ensure the roll has a wide, low cylindrical aspect ratio with a diameter 1.5-1.9 times its height. Keep the farm background and crop rows intact. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 22,
+      "product_width_percent": 13,
+      "product_height_percent": 14,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: presence of two people and multiple human body parts (hands, faces, legs) which are explicitly prohibited in image role 2.",
+        "The product is an upright vertical cylinder rather than the requested wide, low cylindrical shape (visible diameter should be 1.5 to 1.9 times its height).",
+        "The crop in the image consists of young, botanically neutral seedlings and does not match the specific 'city family' farm context required for this article title."
+      ],
+      "correction_prompt": "Regenerate: Remove all people and body parts. Replace with a wide, low cylindrical (diameter ~1.5x height) AFP drip-tape roll (white and blue) placed naturally on soil in a topic-specific farm setting. Ensure the crop morphology for 'city family' is botanically accurate and recognizable.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 22,
+      "product_height_percent": 30,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "The product roll lacks the 'drip tape' element required by the image role; only the carton/roll is visible without any tape.",
+        "The crop morphology shown in the field does not clearly match the specific crop context expected for a 'family tape20' article (typically associated with solanaceous crops like tomatoes or peppers rather than the leafy vegetables shown)."
+      ],
+      "correction_prompt": "Regenerate the image to include a visible section of drip tape (blue or black tubing with drippers) wrapped around or coming from the white cylindrical roll. Adjust the crop rows in the background to clearly resemble young tomato or pepper plants to match the article topic.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 13,
+      "product_height_percent": 26,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The product is a white and blue drip-tape carton roll with the correct 'wide' geometry (diameter ~1.5-1.9x height).",
+        "The roll is appropriately placed in the foreground on soil, consistent with the 20% width target.",
+        "The crop morphology (leaf structure) and spacing are consistent with young sunflowers, which matches the article title/role.",
+        "Zero people or body parts are present.",
+        "The required 'AFP | 09134922013' watermark is clearly visible and correct.",
+        "Background (farm context) matches the requested role."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-چرخشی-در-کشت-کینوا-هزینه-بهینه-کاربرد-عملی.webp"
+}

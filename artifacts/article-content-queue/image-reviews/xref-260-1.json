@@ -1,0 +1,83 @@
+{
+  "id": "xref-260",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 40,
+      "product_height_percent": 30,
+      "product_x_center_percent": 75,
+      "reasons": [
+        "Product width (~40%) significantly exceeds the maximum allowable threshold of 27% of the frame",
+        "Product is visually dominant rather than secondary to the farm context",
+        "Composition presents the product as a 'product shot' overlay rather than a naturally integrated farm scene",
+        "machine-enforced bounding-box check failed: Reduce the product group from 40% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the size of the drip tape carton roll so its width is less than 25% of the total image width. Reposition the roll to be smaller and further to the edge (off-center) to ensure it appears secondary to the tomato crop background. Ensure the roll's diameter-to-height ratio is approximately 1.5 to 1.9. Reduce the product group from 40% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 17,
+      "product_height_percent": 14,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is positioned in the bottom center rather than the lower third left or right off-center as required.",
+        "Visible diameter of the roll is less than 1.5 times its visible height (approximately 1.2 times), failing the geometry requirement.",
+        "The crop shown (apple trees) does not correspond to a specific named crop in the article title provided in the prompt."
+      ],
+      "correction_prompt": "Regenerate with the roll positioned in the lower-left third of the frame and elongated to ensure the visible diameter is 1.5 to 1.9 times the height. Ensure the crop in the background matches the specific article title.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 22,
+      "product_height_percent": 24,
+      "product_x_center_percent": 23,
+      "reasons": [
+        "Hard reject: The image contains a prominent male farmer in the foreground, violating the zero-person policy.",
+        "The image contains human body parts (hands, arms, face, legs) and face, which is a hard reject condition."
+      ],
+      "correction_prompt": "Regenerate the image without the person. Show only the white AFP drip-tape carton in a farm field context with zero humans, no face, and no body parts visible.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Text on the side of the carton roll contains gibberish/invented writing ('Drip', 'Irrigation'), violating the requirement for authentic package print only.",
+        "Hard reject: The roll is oriented vertically (standing up like a can) instead of lying horizontally on its side as required for a wide low cylindrical roll."
+      ],
+      "correction_prompt": "Regenerate with the drip tape roll lying horizontally on the soil in a wide, low profile orientation. Ensure the roll diameter is approximately 1.5 to 1.9 times its visible height. The side of the roll should display only the 'AFP' logo with no additional text or gibberish characters. Place the roll off-center on the lower third of the frame, maintaining the exact bottom-right watermark 'AFP | 09134922013'. Ensure the background remains a farm context with young seedlings but clearly identifiable crop morphology if possible.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 98,
+      "product_width_percent": 22,
+      "product_height_percent": 20,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Exact one AFP white-and-blue wide low cylindrical drip-tape carton roll",
+        "Botanically accurate, unmistakable corn morphology",
+        "Off-center, naturally placed on soil",
+        "Zero people, zero human body parts",
+        "Required watermark present",
+        "No prohibited containers, packages, or impossible geometry",
+        "Product is secondary, within practical dimensions"
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-خرسابی-در-کشت-بادمجان-پیشنیازها-تصویر-شاخص.webp"
+}

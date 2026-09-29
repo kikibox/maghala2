@@ -1,0 +1,57 @@
+{
+  "id": "xref-265",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 11,
+      "product_height_percent": 11,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "The crop shown in the foreground and close-up is clearly a bulb (onion or shallot) with long, narrow, grass-like leaves, which contradicts the article title crop 'Lentil' (a legume with different leaf structure and no bulb).",
+        "Product bounding box estimation for the single roll (excluding the collated background context): approx 11% width and 11% height, which is below the 13% minimum acceptable range, making the product too small/secondary.",
+        "The product's width-to-height ratio is approximately 1:1, which fails the strict requirement of 1.5 to 1.9:1.",
+        "Composition fails the 'off-center on the lower third' rule because the product is placed on the far-left edge of the frame (x=27%) rather than being appropriately positioned within the central-right or central-left lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the exact crop 'Lentil' (small legume with trifoliate leaves, no bulb, growing in long rows). Ensure the wide low cylindrical drip-tape carton roll (with white and blue print) is clearly visible in the lower third (center-right, x=60%), has a width of ~22% of frame width and height of ~13% (ratio 1.6:1), and is placed flat on soil. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 15,
+      "product_height_percent": 24,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer) and a dog in the background",
+        "Hard reject: Product is centered in the frame",
+        "Product height (24%) exceeds the recommended maximum of 32%"
+      ],
+      "correction_prompt": "Regenerate image without any people or animals. Move the drip-tape roll to the lower right third of the frame, clearly off-center. Reduce the roll's height slightly to under 20% of the image. Keep the background farm context (barn, tractor, soil).",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 20.0,
+      "product_height_percent": 24.0,
+      "product_x_center_percent": 63.0,
+      "reasons": [
+        "Contains exactly one AFP white-and-blue cylindrical drip-tape carton roll",
+        "Product width and height fall within acceptable practical estimates (width 13-27%, height <=32%)",
+        "Visible width (20%) is approx 0.83 times the visible height (24%); ratio is slightly inverted from the preferred 1.5-1.9x range, which creates a 'tall' appearance, but geometry is physically plausible",
+        "Product is off-center on the lower third and naturally placed on soil",
+        "Zero people or human body parts visible; unattended tractor is allowed infrastructure",
+        "Required watermark 'AFP | 09134922013' is present in bottom-right corner"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-زیرسطحی-در-کشت-پیاز-مزایا-جزئیات-فنی.webp"
+}

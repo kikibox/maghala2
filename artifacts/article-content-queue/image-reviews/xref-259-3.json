@@ -1,0 +1,74 @@
+{
+  "id": "xref-259",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 18,
+      "product_height_percent": 26,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product aspect ratio is nearly square (18% width vs 26% height), failing the requirement for a wide cylindrical shape (diameter approx 1.5-1.9 times height).",
+        "Product appears excessively large, violating the constraint that the product should be secondary (width 20-23% preferred, max 27%).",
+        "Image role 3 is a hardware story where crop plants should be absent or visually neutral; distinct young crop seedlings are clearly visible growing directly next to the equipment.",
+        "Visible piping infrastructure (white manifold and blue line) runs through the roll's central hole, creating 'impossible geometry'."
+      ],
+      "correction_prompt": "Regenerate image: Show a wide, low cylindrical drip-tape roll (width 1.5-1.9x height) as a secondary element (max 23% width). Place it off-center on soil in a close-up hardware shot. Remove all crop plants/seedlings. Ensure no pipe passes through the center hole. Include required watermark 'AFP | 09134922013'.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 32,
+      "product_height_percent": 24,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product width (approx 32%) and height (approx 24%) fall within the acceptable practical ranges (13-27% width, <32% height).",
+        "Roll is wide, low, and cylindrical with appropriate proportions.",
+        "Zero people or human body parts detected.",
+        "Watermark 'AFP | 09134922013' is present and correctly formatted in the bottom-right corner.",
+        "Background matches the 'farm context' (tractor and barn visible) without identifiable crop contradictions (Role 3 hardware story).",
+        "Text on the roll includes 'Drip Tape' and 'AFD', consistent with authentic package print, no gibberish.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 32% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 68,
+      "product_width_percent": 26,
+      "product_height_percent": 33,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product height (~33%) slightly exceeds the strict 32% limit.",
+        "Product is too large relative to the hardware story framing; it feels primary rather than secondary.",
+        "Text on the front of the carton roll is somewhat illegible/gibberish (invented writing below 'AFP'), which risks rejection.",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the size of the drip-tape carton roll to approximately 20% of the frame width and 25% height to maintain a secondary product position. Ensure all printed text on the packaging is clean and legible, removing any gibberish or invented writing. Keep the roll on the lower left, naturally placed on the soil. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 86,
+      "product_width_percent": 18,
+      "product_height_percent": 18,
+      "product_x_center_percent": 23,
+      "reasons": [
+        "Product width and height estimates are within the acceptable 13-27% range.",
+        "Product is positioned correctly in the lower third and off-center to the left.",
+        "The background context (farm field, tractor, barn) fits the family drip-tape topic.",
+        "The required AFP | 09134922013 watermark is present in the bottom-right corner.",
+        "No people or human body parts are visible in the image."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-در-کشت-کینوا-مزایا-جزئیات-فنی.webp"
+}

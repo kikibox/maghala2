@@ -1,0 +1,45 @@
+{
+  "id": "xref-262",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 9,
+      "product_height_percent": 7,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Hard reject: multiple visible people (faces, bodies, hands, legs) are present in the foreground",
+        "Product staging is off-center but people dominate the frame, violating zero-person rule",
+        "Product appears too small relative to frame (~9% width vs. preferred 20-23%)",
+        "Two people handle the roll, making it not a naturally unattended product shot",
+        "People are clearly identifiable and not distant silhouettes",
+        "Watermark present but does not override the presence of multiple full-body humans",
+        "Scene includes people actively placing/holding product, which conflicts with image role 2 'no people' requirement",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image: remove all people; show exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll placed naturally on soil in lower third off-center; background is a prepared mung bean field with young unidentifiable seedlings and irrigation layout; no faces, hands, or human silhouettes; include 'AFP | 09134922013' bottom-right watermark. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 17,
+      "product_height_percent": 18,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "The image successfully features the required white-and-blue cylindrical drip-tape roll in a low, wide orientation.",
+        "The crop is recognizable as young legumes with trifoliate leaves, consistent with the mung bean article, though the exact mature morphology is not present as allowed by the rules.",
+        "The product is appropriately sized, placed on soil in the lower third, and not centrally staged.",
+        "The required watermark is clearly visible and present without issue.",
+        "There are no hard rejects such as human silhouettes, extra products, or gibberish text."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-با-رانش-در-کشت-ماش-کاربردها-کاربرد-عملی.webp"
+}

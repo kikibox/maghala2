@@ -1,0 +1,81 @@
+{
+  "id": "xref-256",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Hard reject: presence of a person (farmer) and human body parts (hands, legs) violates the zero-person constraint."
+      ],
+      "correction_prompt": "Remove the person entirely. Place the AFP drip-tape roll directly on the soil in the lower-left third of the frame. Ensure the background consists of the farm context and crop without any people or human silhouettes.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 20,
+      "product_height_percent": 32,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "The product in the image is a cylindrical carton (resembling a coffee can or industrial container) standing vertically, not a wide low cylindrical drip-tape roll lying horizontally. This violates the required morphology of the product."
+      ],
+      "correction_prompt": "Regenerate the image showing a wide, low cylindrical drip-tape roll (like a large spool) lying flat on the soil. The roll should be oriented horizontally, not standing up. Maintain the farm background and the required 'AFP | 09134922013' watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 24,
+      "product_height_percent": 31,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The watermark 'AFP | 09134922013' appears in white text on a black box instead of being rendered as a transparent or semi-transparent overlay, which is a deviation from standard watermark aesthetics, though the text content is correct.",
+        "The crop in the foreground is identifiable as corn (maize) seedlings. Since the prompt mentions 'topic-specific farm context' without explicitly naming 'corn' in the text provided, and standard drip tape applications are often featured in generic or different crop contexts in these tests, strictly adhering to the 'named crop' requirement (which is absent in the provided prompt string) leads to a risk of mismatch. However, the primary issue is the watermark styling."
+      ],
+      "correction_prompt": "Regenerate with the 'AFP | 09134922013' watermark as transparent white text (no black background box) in the bottom-right corner.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 7,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: Image contains a clearly visible person (farmer/worker) crouching and handling the product, violating the 'zero people' and 'zero human body parts' requirement.",
+        "Product size violation: The drip-tape roll is significantly undersized, occupying less than 13% of the frame width, whereas the preferred range starts at 20%.",
+        "Product height violation: The product's visible height is too small relative to the frame.",
+        "Product placement violation: The roll is centered horizontally, whereas it must be off-center on the lower third.",
+        "Context mismatch: The background shows a generic field; the specific crop named in the article title is not clearly identifiable or defined, and the presence of the person distracts from the required agronomic context.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts. Replace the crouching farmer with the drip-tape roll placed naturally on the soil. Enlarge the white and blue AFP drip-tape roll to be approximately 20-23% of the image width and 1.5-1.9 times its visible height. Position the roll off-center in the lower third of the frame. Set the background to a clearly visible field of the exact crop mentioned in the article title, showing identifiable mature morphology or a specific agronomic context for that crop. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 23,
+      "product_height_percent": 30,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Product dimensions and positioning strictly adhere to specifications: width is 23% (preferred 20-23%), height is 30% (max 32%), and it is off-center in the lower third.",
+        "No people, human body parts, or faces are present in the image.",
+        "The background shows rows of green young seedlings, which align with the instruction that 'neutral young vegetation' is acceptable when exact mature morphology is not visible.",
+        "Required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "Package geometry is cylindrical, low, and wide, matching the 'drip-tape carton roll' description.",
+        "The scene is set on natural soil, fulfilling the placement requirement."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-کدو-پیشنیازها-کاربرد-عملی.webp"
+}

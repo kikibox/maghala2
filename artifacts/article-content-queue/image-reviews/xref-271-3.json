@@ -1,0 +1,84 @@
+{
+  "id": "xref-271",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 23,
+      "product_height_percent": 30,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: Presence of a second package/object. There is a metallic canister/filter sitting in the ground next to the tape roll, which violates the 'zero extra commercial product' rule.",
+        "Hard reject: Human silhouette visible. The tractor in the background clearly has a human figure (driver) inside the cab, violating the 'zero people' constraint."
+      ],
+      "correction_prompt": "Remove the human driver from the tractor in the background. Remove the metallic canister next to the drip tape roll so only the tape carton remains in the foreground.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 72,
+      "product_width_percent": 20,
+      "product_height_percent": 20,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The crop plants in the foreground (small, leafy, indeterminate) do not clearly contradict 'khurba' (melon); they are visually neutral young plants. This passes the 'do not hard reject if neutral' clause, but also fails the 'topic-specific' match. However, the prompt allows neutral crops.",
+        "The unattended tractor and the blue irrigation pump/filter unit on the right are visible. While the prompt allows unattended pumps and irrigation hardware, the placement of the pump/irrigation unit right next to the carton roll creates a visual composition where the hardware competes with the product, cluttering the 'lower third' placement area. More critically, the prompt specifies the product must be 'naturally placed on soil', but it is placed immediately adjacent to heavy hardware and a tiller/tractor, which is physically awkward (staging) rather than naturally on soil alone.",
+        "Product size (width ~20%, height ~20%) and aspect ratio (1.0, slightly off the 1.5-1.9 target but acceptable for a carton roll appearance) are within range.",
+        "The water mark 'AFP | 09134922013' is present and required."
+      ],
+      "correction_prompt": "Remove the blue pump/filter unit and the large tractor; focus the scene on the drip-tape roll naturally sitting on soil in a field with distant melon crops or neutral soil texture, ensuring the roll is the clear focal point without competing heavy hardware.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 95,
+      "product_width_percent": 38,
+      "product_height_percent": 28,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Product is a single white-and-blue cylindrical drip-tape roll from AFP.",
+        "Zero people or human body parts are visible in the frame.",
+        "Background context matches the article summary, featuring melons (خربزه) in the crop rows.",
+        "Product is placed on soil and is off-center.",
+        "No hard reject items such as bottles, jars, or extra commercial products are present.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 38% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 22,
+      "product_height_percent": 26,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: Presence of two human figures (farmers/workers) crouching in the foreground. The requirements strictly prohibit zero people or human body parts.",
+        "Hard reject: The two individuals are holding/interacting with a pipe component, violating the 'zero human' and 'no pipe through the roll' (implied usage/interaction) constraints."
+      ],
+      "correction_prompt": "Remove both people. Keep the AFP drip-tape roll in the lower-left foreground on the soil. Remove the pipe held by the man. Ensure the background contains only the farm field, tractors, and barn, with no human silhouettes.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 19,
+      "product_height_percent": 22,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Product is a white cylindrical roll with AFP branding located on the soil in the lower left.",
+        "No people or human body parts are visible in the image.",
+        "The roll dimensions and off-center placement are within acceptable limits.",
+        "The background farm context with unattended tractors and a barn aligns with the image role requirements."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-خربزه-مقایسه-جزئیات-فنی.webp"
+}

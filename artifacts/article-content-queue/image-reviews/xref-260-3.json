@@ -1,0 +1,69 @@
+{
+  "id": "xref-260",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The image contains a person (a woman), which is a hard reject requirement.",
+        "The person's hand is touching the product, and their presence contradicts the requirement for zero people or body parts."
+      ],
+      "correction_prompt": "Regenerate the image to show the AFP drip-tape roll placed on the soil without any people, hands, or human silhouettes visible. Ensure the background remains a farm field context and the watermark is preserved.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 24,
+      "product_height_percent": 25,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The bottom-right watermark 'AFP | 09134922013' is a fake placeholder instead of the required 'AFP | 09134922013'",
+        "Product height is approx 25% (exceeds the 32% limit? No, 25% is acceptable height-wise, but width 24% is acceptable, so these are okay)",
+        "Wait, looking closer at the image, there is a person (blue shirt/dark pants) standing in the background near the shed, which violates the 'zero people' rule"
+      ],
+      "correction_prompt": "Remove all humans from the background. Replace the bottom-right placeholder text with the exact watermark string 'AFP | 09134922013'.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 22,
+      "product_height_percent": 31,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Image contains a person (farmer/kneeling worker).",
+        "Hard reject: Human body parts (face, hands, arms, legs) are clearly visible.",
+        "Product geometry appears tall and narrow (more like a drum) rather than the required wide, low cylindrical shape."
+      ],
+      "correction_prompt": "Regenerate the image to remove the person entirely. Show a single, wide, low cylindrical AFP drip-tape carton roll resting naturally on the soil in the foreground, with no humans present. Ensure the roll is off-center in the lower third.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 21,
+      "product_height_percent": 28,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The image features exactly one AFP white and blue wide low cylindrical drip-tape carton roll placed naturally on tilled soil in a farm context, consistent with a hardware story role.",
+        "Product dimensions are compliant, with a width of 21% and height of 28%, maintaining the required aspect ratio and secondary visual weight.",
+        "The product is correctly positioned off-center in the lower third of the frame.",
+        "Zero people or human body parts are visible.",
+        "Unidentifiable neutral crops (small weeds) are present but do not contradict the hardware focus.",
+        "The required bottom-right watermark \"AFP | 09134922013\" is clearly visible and correctly formatted.",
+        "No forbidden items such as extra containers, pipes, or impossible geometry are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-خرسابی-در-کشت-بادمجان-پیشنیازها-جزئیات-فنی.webp"
+}

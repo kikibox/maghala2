@@ -1,0 +1,98 @@
+{
+  "id": "xref-257",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: The image contains a prominent male farmer/worker crouching in the frame.",
+        "Hard reject: The product shown is a small cylindrical canister or pail, not a wide low cylindrical drip-tape carton roll.",
+        "Fail: The crop depicted is clearly a row of yellow flowers, not the required yellow split-pea (لپه) article.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures and regenerate an image showing exactly one wide low cylindrical drip-tape carton roll on the soil, with visible drip tape lines in a yellow split-pea field. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product height is at the 30% limit, which is high and risks violating the 'must be no more than 32 percent' constraint if visual estimation is slightly off.",
+        "Product x-center at 30% is not clearly off-center; it is positioned too near the vertical center of the frame.",
+        "Required exact bottom-right watermark 'AFP | 09134922013' is missing; the text in the image is gibberish.",
+        "The visible drip tape emerging from the roll does not look like authentic packaging material."
+      ],
+      "correction_prompt": "Shift the product significantly further left to approximately 20% x-center. Regenerate the text in the bottom right to exactly read 'AFP | 09134922013'. Ensure the roll maintains a width-to-height ratio of approximately 1.5:1.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 14,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Contains two people (mandatory hard reject)",
+        "Background crop is sunflowers, not لپه (yellow split-pea)",
+        "Product roll is not 'wide' and 'low' as required (diameter/height ratio and aspect incorrect)",
+        "Product is not positioned on the lower third (it is in the mid-lower section, not the bottom third)",
+        "Product width is below the 13% acceptable threshold",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Generate a farm scene featuring yellow split-pea crops (لپه) and soil beds. Include a single, wide, low cylindrical white-and-blue drip-tape carton roll placed on the soil in the lower third, off-center. No people, no sunflowers, no other objects. Watermark: 'AFP | 09134922013' in the bottom-right corner. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22.5,
+      "product_height_percent": 23.5,
+      "product_x_center_percent": 48.0,
+      "reasons": [
+        "The background shows clearly identifiable tulips, not yellow split-pea (لپه), which constitutes a hard reject for a different identifiable species",
+        "The product is placed in the center-lower section of the frame, violating the requirement for it to be off-center",
+        "The crop morphology is botanically incorrect for the specified article"
+      ],
+      "correction_prompt": "Replace the tulip field with rows of young yellow split-pea (دال) seedlings or a prepared bed with irrigation evidence. Move the drip tape roll to the left or right third of the frame (lower third) to ensure it is off-center.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 68,
+      "reasons": [
+        "Hard reject: The background crop is clearly identifiable as tulips, which is a different species from the required article crop (yellow split-pea / لپه).",
+        "The background context does not match the specific agricultural story for split-pea cultivation.",
+        "The required bottom-right watermark text 'AFP | 09134922013' is missing."
+      ],
+      "correction_prompt": "Replace the tulip field with a field of yellow split-pea plants (crops with pinnate leaves and yellow flowers/peas). Add the text watermark 'AFP | 09134922013' in the bottom-right corner. Ensure the drip-tape roll remains small, off-center, and placed on the soil.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 20,
+      "product_height_percent": 15,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Crop background is clearly identifiable as yellow tulips, not the required article crop لپه (yellow split-pea), triggering the hard reject for a different species.",
+        "Product is correctly positioned and sized with required watermark, but the subject matter mismatch is critical."
+      ],
+      "correction_prompt": "Regenerate the farm background to feature botanically accurate yellow split-pea (لپه) crop with characteristic compound leaves and stems instead of tulips, maintaining the existing AFP white-and-blue drip-tape roll, placement, and bottom-right watermark.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

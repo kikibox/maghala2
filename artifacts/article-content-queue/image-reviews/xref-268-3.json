@@ -1,0 +1,87 @@
+{
+  "id": "xref-268",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 19,
+      "product_height_percent": 15,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Second package/filter device visible next to the crop, violating single-product constraint",
+        "Watermark text '09134922013' has incorrect digit sequence versus required '09134922013' formatting",
+        "Plant shown is generic summer savory candidate but irrigation hardware (filter/valve) creates commercial product conflict"
+      ],
+      "correction_prompt": "Remove the separate filter/valve device next to the crop; keep only the AFP white-and-blue wide low cylindrical drip-tape roll on soil; ensure watermark reads exactly 'AFP | 09134922013' bottom-right.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 10,
+      "product_height_percent": 16,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The bottom-right watermark is 'AFP | 09134922013', which does not match the required 'AFP | 09134922013'.",
+        "The product is a tape roll, not the specified 'wide low cylindrical drip-tape carton' shape; it lacks the 'drip-tape carton' visual structure and 'wide low' proportions.",
+        "The crop in the foreground has purple flowers, which is not consistent with 'summer savory' (مرزه).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with a white-and-blue wide, low, cylindrical drip-tape carton placed on soil in a farm context. Ensure the carton is 1.5-1.9 times wider than its height. Change the bottom-right watermark to exactly 'AFP | 09134922013'. Remove the purple flowers or replace them with neutral summer savory (Murrah) plants or remove crops from the immediate foreground if this is a hardware close-up. Do not include any people. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 30,
+      "product_height_percent": 30,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Watermark 'AFP | 09134922013' present in bottom-right corner",
+        "Image contains zero people or human body parts",
+        "Product matches described type (wide low cylindrical roll) with correct branding",
+        "Product placed naturally on soil surface in agricultural context",
+        "No disallowed commercial products, bottles, or conflicting elements visible",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 30% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 12,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject: The image contains a prominent male figure (farmer/worker) crouching in the foreground, which violates the 'zero people and zero human body parts' rule.",
+        "Hard reject: The image includes human hands and arms interacting with the product.",
+        "Context mismatch: The image depicts a person actively engaging with the hardware, whereas Role 3 requires a hardware story where crops may be absent or visually neutral without people present."
+      ],
+      "correction_prompt": "Regenerate the image to show only the single AFP drip-tape carton roll on the soil in a farm field context. Remove all human figures, faces, and body parts completely. Ensure the product is off-center on the lower third and naturally placed without any people or workers visible.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 26,
+      "product_height_percent": 24,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Exactly one AFP white-and-blue wide cylindrical drip-tape roll is present.",
+        "Product is off-center on the lower third and naturally placed on soil.",
+        "Background visibly matches a farm context (field, soil, barn, distant crop rows) without any crop-morphology contradiction for summer savory.",
+        "Zero people or human body parts are visible.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "Product dimensions and placement are within acceptable limits."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-مرزه-هزینه-بهینه-جزئیات-فنی.webp"
+}

@@ -1,0 +1,55 @@
+{
+  "id": "xref-266",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 21,
+      "product_height_percent": 20,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Product geometry incorrect: The roll is nearly a square (height 20% vs width 21%). It must be a wide, low cylinder with a diameter (width) approximately 1.5 to 1.9 times its visible height.",
+        "Product placement: The roll is placed in the lower-left corner instead of off-center on the lower third.",
+        "Article crop ambiguity: The central plant shows slender dark pods that are visually ambiguous; without clearly identifiable mung bean morphology (trifoliate leaves), the agronomic story for the article is not definitively clear."
+      ],
+      "correction_prompt": "Regenerate: 1. Reshape the drip-tape roll to be a wide, low cylinder with a diameter about 1.75 times its height. 2. Move the roll to the off-center lower third. 3. Ensure the mung bean plants clearly display trifoliate leaves to establish the crop context.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 24,
+      "product_height_percent": 35,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The crop plants visible in the image do not clearly resemble mung beans; the foliage is broad and lacks the distinct trifoliate leaves or slender dark pods that define the article crop, creating ambiguity about the article-specific context.",
+        "The product roll appears to be positioned too low or cut off at the bottom, and its vertical height extends to approximately 35 percent of the frame, which exceeds the hard reject threshold of 32 percent.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with the drip-tape roll clearly visible and not cropped, ensuring the crop height is less than 30 percent of the frame. Update the vegetation to clearly show mung bean morphology with trifoliate leaves, ensuring the farm context matches the article title. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 13,
+      "product_height_percent": 18,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Product: A single white-and-blue cylindrical drip-tape roll with 'AFP' logo is clearly visible, acting as the required item.",
+        "Placement: The roll is positioned off-center in the lower-left third of the frame, resting naturally on the soil in the crop row.",
+        "Geometry: The roll's width (approx. 13-14% of the frame) and height (approx. 18-19% of the frame) fall within the strict acceptable limits (W: 13-27%, H: <=32%).",
+        "Context: The background shows young crop seedlings with trifoliate leaves emerging from furrows. The morphology (leaf structure and arrangement) is consistent with mung bean (ماش) seedlings in an early growth stage, satisfying the 'recognizable' requirement without needing to show mature pods.",
+        "Safety: No people, faces, hands, or body parts are visible.",
+        "Watermark: The exact required watermark 'AFP | 09134922013' is present in the bottom right corner and not obscured."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-رطوبتی-در-کشت-ماش-هزینه-بهینه-تصویر-شاخص.webp"
+}
