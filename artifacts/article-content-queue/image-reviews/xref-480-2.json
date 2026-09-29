@@ -1,0 +1,70 @@
+{
+  "id": "xref-480",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "No drip-tape carton roll present; the central product is a cylindrical potted plant, which does not match the required item",
+        "Zero people requirement met, but a required product is missing",
+        "Gibberish/invented text on the container ('[7111] inqarvna...') fails the text authenticity check",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Replace the potted plant with a cylindrical white-and-blue drip-tape carton roll placed off-center on the soil with the green tape spooling out; keep the farm background and crop context Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 33,
+      "product_height_percent": 28,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Contains a second package (the green coiled drip tape) next to the main roll.",
+        "Product bounding box width exceeds the 27% limit.",
+        "Contains gibberish/invalid text on the packaging label.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 33% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the green coiled tape and all extra packaging. Ensure only the white-and-blue carton roll is visible. Rewrite the label text to be clear, authentic English, removing gibberish characters. Reduce the product group from 33% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 8,
+      "product_height_percent": 6,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Contains two full-body people (faces, arms, legs) which is a hard reject.",
+        "The product (drip-tape roll) is being held by a person's hands, violating the 'zero human body parts' and 'naturally placed on soil' constraints.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any people or human body parts. Place the white and blue AFP drip-tape roll directly on the soil in the lower third of the frame, off-center to the left or right. Ensure the roll's width is 20-25% of the frame width and its diameter is roughly 1.7x its height. Keep the background as a farm field with rows of young crop seedlings and irrigation infrastructure visible. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Product is the correct AFP white-and-blue drip-tape carton roll with realistic geometry (diameter approx 1.7x height).",
+        "Product is positioned in the lower third and off-center, sitting naturally on soil.",
+        "Background shows a farm field with crops (neutral young vegetation) and irrigation lines, matching the farm topic.",
+        "No people or human body parts are visible.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-مارچوبه-کاربردها-کاربرد-عملی.webp"
+}

@@ -1,0 +1,52 @@
+{
+  "id": "xref-487",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "The product is not the required 'drip-tape carton roll'; it appears to be a container (like a bucket or canister) holding a leafy green plant.",
+        "The product lacks the correct geometry; the required roll should have a visible diameter about 1.5 to 1.9 times its height, whereas this object is taller than it is wide.",
+        "The required product must be a cylindrical carton roll, whereas the image shows a cylindrical container with a living plant inside, which is a completely different object type."
+      ],
+      "correction_prompt": "Regenerate image showing a wide, flat cylindrical AFP white and blue drip-tape carton roll on the soil. The roll must be roughly 1.5 to 1.9 times wider than it is tall. Remove the leafy green plant. Ensure the background shows a farm context with crop rows. The required bottom-right watermark 'AFP | 09134922013' must be present.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 92,
+      "product_width_percent": 30,
+      "product_height_percent": 31,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The required bottom-right watermark 'AFP | 09134922013' is present and authentic.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 30% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 5,
+      "product_height_percent": 8,
+      "product_x_center_percent": 75,
+      "reasons": [
+        "Hard reject: A person (farmer/worker) is clearly visible in the background tending to the crops.",
+        "Hard reject: The required 'drip-tape carton roll' is missing; the image shows a small cylindrical spool which does not match the requested object size or type.",
+        "The central plant is not the specific crop requested for the role (likely a generic leafy plant rather than the article-specific crop).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person in the background entirely. In the bottom-right foreground, replace the small spool with a large, wide cylindrical drip-tape carton roll (white and blue, AFP branding). Ensure the roll is about 20% of the frame width, lying flat on the soil, and off-center. Keep the specific crop plant in the center. Enlarge the product group from 5% to 13-27% of frame width.",
+      "attempt": 3
+    }
+  ],
+  "approved_image": null
+}

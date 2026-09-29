@@ -1,0 +1,40 @@
+{
+  "id": "xref-492",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 17,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Presence of human arms, hands, and legs is visible in the image.",
+        "Product aspect ratio is too narrow (width is less than 1.5 times height) and appears like a small reel rather than a wide cylindrical drip-tape carton roll.",
+        "Product size is too small (width 12%) to meet the minimum practical threshold of 13%.",
+        "Product is not clearly a wide white-and-blue carton, but rather a small white reel.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human elements (arms, hands, legs). Replace the small white reel with a large, wide white-and-blue cylindrical drip-tape carton roll that is significantly wider than it is tall (aspect ratio ~1.7:1). The roll should occupy roughly 15-20% of the frame width and be off-center on the lower third. Retain the AFP watermark. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 21,
+      "product_height_percent": 33,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Person is present in the image, which is a hard reject condition (face, hands, arms, legs, body, and silhouette are all visible).",
+        "The product height (approx 33%) exceeds the maximum allowed height of 32%.",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image to remove all human elements (no people, faces, hands, or limbs). Ensure the carton roll height is less than 32% of the frame height while maintaining a white and blue AFP roll placed on the soil in a farm context. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 2
+    }
+  ],
+  "approved_image": null
+}

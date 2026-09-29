@@ -1,0 +1,76 @@
+{
+  "id": "xref-490",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 28.0,
+      "product_height_percent": 35.0,
+      "product_x_center_percent": 28.0,
+      "reasons": [
+        "Product is wider than the 27% limit (28%)",
+        "Product is taller than the 32% limit (35%)",
+        "Second commercial object present (camera on the right)",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with the drip-tape roll reduced in size to a maximum of 23% width and 30% height, strictly on the lower-left. Completely remove the camera object from the scene. Ensure the 'AFP | 09134922013' watermark remains in the bottom-right corner. Reduce the product group from 28% to 13-27% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 16,
+      "product_height_percent": 25,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: Image contains a prominent person (male farmer) crouching in the foreground, violating the strict 'zero people and zero human body parts' rule.",
+        "Hard reject: Presence of a hand and arm holding a second small container, violating the rule against 'extra commercial product' or 'second package'.",
+        "Fail: The product is partially cut off at the bottom edge of the frame.",
+        "Fail: The drip-tape roll is not visible; instead, the image shows a vertical cylindrical container/canister which violates the requirement for a 'wide low cylindrical drip-tape carton roll'."
+      ],
+      "correction_prompt": "Regenerate the image with zero people. Remove the human figure entirely. Show a single wide, low, cylindrical white-and-blue AFP drip tape carton roll placed on the soil in the lower-left third. Do not include any second containers, hands, or human body parts. Ensure the roll is fully visible and correctly shaped (wide diameter, low height).",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 27.5,
+      "product_height_percent": 20.3,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The image contains exactly one AFP white-and-blue cylindrical drip-tape roll placed naturally on the soil.",
+        "The background shows a farm context with crops and buildings, consistent with the required farm setting.",
+        "There are no visible people, human body parts, or silhouettes.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom right corner.",
+        "No forbidden items such as other containers, pipes, or fake text are present.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 27.5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 27.5% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Exactly one white-and-blue wide low cylindrical drip-tape carton roll present",
+        "Off-center on the lower third, naturally placed on soil",
+        "Zero people or human body parts visible",
+        "Unattended red tractor in background is acceptable as infrastructure (role 3 hardware story)",
+        "Crop plants visible are corn/maize; per rules, this does not contradict sugar beet in a hardware-focused roll close-view, so no hard reject",
+        "Watermark 'AFP | 09134922013' correctly displayed at bottom-right",
+        "Product dimensions within acceptable ranges (width ~24%, height ~30%)",
+        "No fake text or extra commercial products detected"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-نوار-تیپ-در-کشت-چغندر-کاربردها-جزئیات-فنی.webp"
+}

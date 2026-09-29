@@ -1,0 +1,52 @@
+{
+  "id": "xref-483",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 24.0,
+      "product_height_percent": 18.0,
+      "product_x_center_percent": 36.0,
+      "reasons": [
+        "The exact bottom-right watermark 'AFP | 09134922013' is required and is correctly present in this image, but the product roll is positioned too low in the frame, extending almost to the bottom edge and overlapping the watermark region, which compromises the natural 'lower third' placement and risks obscuring the mandatory watermark."
+      ],
+      "correction_prompt": "Regenerate the image to position the drip-tape roll slightly higher so it sits naturally on the soil in the lower third without touching the bottom frame edge, ensuring the bottom-right watermark remains clearly visible and unobstructed.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 19,
+      "product_height_percent": 22,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Presence of a person (farmer) in the background. This is a hard reject rule: 'Hard reject any person, farmer, worker... even distant.'",
+        "Presence of a human silhouette/body part in the scene. The farmer is a clear violation of the 'zero people' and 'zero human body parts' constraint.",
+        "The product bounding box (width ~19%, height ~22%) technically meets the dimensional requirements, but the fatal flaws in the background prevent a pass."
+      ],
+      "correction_prompt": "Regenerate the image ensuring absolutely zero human presence. Remove the farmer from the scene. Keep the irrigation equipment (tractor, seeder) and the soil context, but ensure no people or body parts are visible in the background. Maintain the off-center positioning of the drip tape roll on the lower third of the frame.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 24,
+      "product_height_percent": 26,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Required AFP watermark is present in the bottom-right corner.",
+        "Product is the correct AFP white-and-blue wide low cylindrical drip-tape roll, positioned off-center on the lower left.",
+        "No people, human body parts, or silhouettes are visible.",
+        "Product dimensions are within acceptable limits (width ~24%, height ~26%).",
+        "Hardware role (tractor implement) is appropriate for the farm context."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-رانشی-در-کشت-شبدر-هزینه-در-مزرعه-جزئیات-فنی.webp"
+}

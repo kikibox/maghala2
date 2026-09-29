@@ -1,0 +1,54 @@
+{
+  "id": "xref-480",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 30,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: Image contains a 'bottle' (the small blue-capped container in the foreground).",
+        "Hard reject: Image contains 'invented writing' in the text on the cartridge label (illegible gibberish) rather than authentic, legible package print.",
+        "The presence of the bottle and gibberish text violates the specific content restrictions for Role 3."
+      ],
+      "correction_prompt": "Regenerate the image strictly as a low cylindrical carton roll of AFP white-and-blue drip tape placed on soil. Include a background farm scene with an unattended tractor. Remove all small bottles, jars, or secondary containers. Ensure the text on the package is legible and authentic (e.g., 'AFP' and 'Drip Tape'). Maintain the 'AFP | 09134922013' watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 27,
+      "product_height_percent": 26,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Watermark text in the bottom right is 'AFP | 09134922013' with an extra '1', whereas the required watermark is 'AFP | 0913492201'.",
+        "Product width at 27% is at the hard reject limit ('Hard reject a roll wider than 27 percent')."
+      ],
+      "correction_prompt": "Regenerate with the exact bottom-right watermark 'AFP | 09134922013' (ensure no extra digits) and scale the roll down so its width is approximately 20-23% of the frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 23,
+      "product_height_percent": 30,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Product dimensions are acceptable: width ~23% (within 13-27 range), height ~30% (within 32% limit), and ratio ~1.5 which is correct.",
+        "Placement is correct: off-center on the lower third, naturally placed on soil.",
+        "No people or body parts are visible in the image.",
+        "Unattended tractor in the background is acceptable hardware/infrastructure, not a person.",
+        "Product appearance (white and blue wide low cylindrical roll) matches the specified requirements."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-مارچوبه-کاربردها-جزئیات-فنی.webp"
+}
