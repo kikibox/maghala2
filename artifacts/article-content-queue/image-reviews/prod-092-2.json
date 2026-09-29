@@ -1,0 +1,72 @@
+{
+  "id": "prod-092",
+  "kind": 2,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Image contains multiple human figures (two women, one man) and human body parts (hands in the inset).",
+        "Hard reject: The required two approved layflat objects (packaged AFP coil and bare black woven coil) are not visible in the main frame.",
+        "Hard reject: The image composition is centered on the human subjects rather than the product on the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to show only two layflat coils (one packaged AFP, one bare black woven) lying flat on the ground in the lower third, taking up 12-15% of the frame width. Remove all human figures and body parts completely. Ensure the watermark 'AFP | 09134922013' is in the bottom right. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 55,
+      "product_height_percent": 40,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product pair occupies approximately 55% of the frame width, significantly exceeding the 15% maximum constraint",
+        "Positioned at the bottom-center rather than 'off-center on the lower third'",
+        "Coils appear large and close to the camera (foreground) rather than 'distant' (12-15% size)",
+        "machine-enforced bounding-box check failed: Reduce the product group from 55% to 9-20% of frame width.; Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shrink the two coils drastically so the pair is only 12-15% of the frame width, position the pair on the far right side of the lower third, keep all other elements exactly as they are. Reduce the product group from 55% to 9-20% of frame width. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 25,
+      "product_height_percent": 22,
+      "product_x_center_percent": 60,
+      "reasons": [
+        "Hard reject: The image contains a prominent full-body person (a worker) interacting with the product.",
+        "Hard reject: Only a single product (a bare black coil) is visible; the required second product (packaged AFP coil) is missing.",
+        "The product does not occupy the required 12-15% of the frame width (approx 25%).",
+        "machine-enforced bounding-box check failed: Reduce the product group from 25% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely from the scene. Show exactly two separate flat objects: one packaged AFP coil and one bare black woven coil lying side-by-side on the ground. The pair must be small (12-15% frame width) and positioned off-center in the lower third. Keep the 'AFP | 09134922013' watermark. Reduce the product group from 25% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 14,
+      "product_height_percent": 22,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Contains exactly one packaged AFP coil and one bare black woven coil.",
+        "No people or human body parts visible.",
+        "Product pair is positioned in the lower third and slightly off-center (left).",
+        "Product width is approximately 14% of the frame width (within 12-15% limit).",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and intact.",
+        "Coils are separate, flat on the ground, and fully visible without distortion or intersection."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "اندازهگیری-لوله-تاشو-125-میلیمتر-برای-مزرعه-کاربرد-عملی.webp"
+}

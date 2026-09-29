@@ -96,6 +96,100 @@
       ],
       "correction_prompt": "Regenerate the image removing all people and human silhouettes. The scene must show only a packaged AFP coil and a bare black woven coil on the ground. The pair of coils must be small (occupying 12-15% of frame width), positioned off-center on the lower third of the frame, and remain fully visible without distortion. Include the bottom-right watermark 'AFP | 09134922013'. Reduce the product group from 55% to 9-20% of frame width. Reduce product height from 40% to at most 32% of frame height.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 92,
+      "product_width_percent": 36,
+      "product_height_percent": 20,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Contains exactly two approved objects: one packaged AFP coil and one bare black woven coil.",
+        "Zero people, human body parts, or silhouettes visible.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No prohibited items (round pipe, drip tape, valves, etc.) are visible.",
+        "Products are flat on the ground and separate.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 36% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 36% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 15.5,
+      "product_height_percent": 16.5,
+      "product_x_center_percent": 28.5,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer/worker).",
+        "Hard reject: Presence of human body parts (head, arms, hands, legs).",
+        "The layout violates the requirement for the pair to be off-center on the lower third; the products are too far to the left."
+      ],
+      "correction_prompt": "Regenerate the scene with exactly two products (one packaged AFP coil and one bare black woven coil) placed in the lower third, off-center to the right. They must occupy approximately 12-15 percent of the frame width and be fully visible and flat on the ground. The scene must be completely devoid of any people, faces, hands, or body parts. Retain the watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 55.0,
+      "product_height_percent": 30.0,
+      "product_x_center_percent": 50.0,
+      "reasons": [
+        "Product pair width is approximately 55% of the frame width, exceeding the hard reject limit of 15%.",
+        "Product staging is centered horizontally rather than off-center on the lower third.",
+        "An animal (horse) is visible in the background mid-ground, which is inconsistent with the strictly inanimate 'city/family' or agricultural equipment layout specified in role 3.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 55% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Shrink the two layflat coils to occupy 12-15% of frame width, move the pair to the lower-right off-center, and remove all animals (horse) from the background. Reduce the product group from 55% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 46,
+      "product_height_percent": 28,
+      "product_x_center_percent": 56,
+      "reasons": [
+        "The combined pair of products (packaged coil and black coil) occupies approximately 45-48 percent of the frame width, which drastically exceeds the 12 to 15 percent maximum limit.",
+        "The products are positioned too large in the foreground; they must be scaled down significantly to appear as a small, distant pair.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 46% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Scale down both the packaged coil and the black flat coil to be very small, occupying only 12-15% of the image width. Position the pair in the lower third, off-center to the left or right, and ensure they are significantly further away from the camera to reduce their visual footprint while maintaining flatness on the soil. Reduce the product group from 46% to 9-20% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 22,
+      "product_height_percent": 13,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Image contains exactly two layflat objects: one packaged coil (left) and one black woven coil (right).",
+        "Objects are flat, separate, and fully visible on the ground.",
+        "Zero people or human body parts present.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner as required.",
+        "No hard rejects (no extra products, no floating items, no distorted shapes).",
+        "Slight under-occupancy: the pair spans ~22% of frame width instead of the ideal 12–15%, causing a minor deduction.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 22% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 22% to 9-20% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 35,
+      "product_height_percent": 20,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: Human male visible crouching and interacting with products.",
+        "Hard reject: Human body parts (hands, legs, torso, face) are present.",
+        "Hard reject: Product pair bounding box width exceeds the 15% limit.",
+        "Hard reject: Product pair is not positioned off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the man completely. Regenerate exactly two small irrigation coils (one packaged, one bare black) sitting on the dirt in the lower third. They must be small, occupying under 15% of frame width, and located in the bottom-right corner. No people allowed. Reduce the product group from 35% to 9-20% of frame width.",
+      "attempt": 6
     }
   ],
   "approved_image": null

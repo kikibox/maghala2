@@ -1,86 +1,43 @@
 {
   "id": "prod-094",
   "kind": 1,
-  "family": "tape20",
+  "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 35,
-      "product_width_percent": 35,
-      "product_height_percent": 35,
-      "product_x_center_percent": 45,
+      "score": 25,
+      "product_width_percent": 100,
+      "product_height_percent": 40,
+      "product_x_center_percent": 50,
       "reasons": [
-        "Missing required 'City' in the article title (currently 'City, family tape20').",
-        "The crop in the image is corn (maize), but the article is about 'family tape' which implies a different context or crop (typically vegetables or field crops), creating a mismatch between the specific agronomic story and the image.",
-        "The product appears slightly too large relative to the frame; it should be 20-23% width to remain secondary.",
-        "Text on the label is gibberish/illegible and does not clearly say 'drip-tape'.",
-        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 13-27% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+        "Missing 'packaged AFP coil' (required object).",
+        "Missing 'bare black woven coil' (image shows a straight hose/tube, not a coil).",
+        "Object extends from the far left edge to the bottom-right, occupying nearly the full width of the frame (>15% requirement).",
+        "Product staging is centered/diagonal rather than 'off-center on the lower third'.",
+        "Product is not 'fully visible' (parts are cut off by the frame edges).",
+        "machine-enforced bounding-box check failed: Reduce the product group from 100% to 9-20% of frame width.; Reduce product height from 40% to at most 32% of frame height."
       ],
-      "correction_prompt": "Regenerate with 'City' in the title. Use a crop that matches 'family tape' (e.g., tomatoes, cucumbers, or general vegetables) or clarify if 'family' refers to a specific crop family. Reduce the size of the drip tape roll to approximately 20% of the image width. Ensure the roll is an AFP white-and-blue wide low cylindrical carton. Keep the 'AFP | 09134922013' watermark. Reduce the product group from 35% to 13-27% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "correction_prompt": "Replace the long straight hose with two small, separate coiled products: one packaged AFP coil and one bare black woven coil. Position the pair together, fully visible, in the bottom-right corner, occupying less than 15% of the frame width. Reduce the product group from 100% to 9-20% of frame width. Reduce product height from 40% to at most 32% of frame height.",
       "attempt": 1
-    },
-    {
-      "pass": false,
-      "score": 20,
-      "product_width_percent": 20,
-      "product_height_percent": 33,
-      "product_x_center_percent": 24,
-      "reasons": [
-        "Hard reject: Visible tomatoes and cucumbers next to the product are extra commercial products/vegetable bodies not permitted in the scene.",
-        "Hard reject: Product vertical height slightly exceeds the 32% maximum limit.",
-        "Background contains visible agricultural produce which violates the 'zero extra commercial product' rule.",
-        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
-      ],
-      "correction_prompt": "Regenerate the image removing all tomatoes and cucumbers next to the drip tape roll. Ensure the crop field consists only of young green seedlings and soil. Adjust the product's height to be no more than 32% of the frame height. Reduce product height from 33% to at most 32% of frame height.",
-      "attempt": 2
-    },
-    {
-      "pass": false,
-      "score": 10,
-      "product_width_percent": 12,
-      "product_height_percent": 18,
-      "product_x_center_percent": 28,
-      "reasons": [
-        "Person present",
-        "Hands visible",
-        "Legs visible",
-        "Face visible",
-        "Human silhouette present",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
-      ],
-      "correction_prompt": "Regenerate the image with zero people, workers, or body parts visible. Ensure no hands, faces, or legs are present anywhere in the frame, including background or distant views. Enlarge the product group from 12% to 13-27% of frame width.",
-      "attempt": 3
-    },
-    {
-      "pass": false,
-      "score": 20,
-      "product_width_percent": 25,
-      "product_height_percent": 30,
-      "product_x_center_percent": 28,
-      "reasons": [
-        "Hard reject: A person (child/farmer) is present in the image, which violates the zero people/zero body parts rule."
-      ],
-      "correction_prompt": "Regenerate the image with no people; show the white AFP drip-tape roll placed on soil in a farm field with a red barn in the distance, ensuring the crop is recognizable or a prepared bed is visible.",
-      "attempt": 4
     },
     {
       "pass": true,
       "score": 95,
-      "product_width_percent": 17,
-      "product_height_percent": 22,
-      "product_x_center_percent": 34,
+      "product_width_percent": 14,
+      "product_height_percent": 12,
+      "product_x_center_percent": 78,
       "reasons": [
-        "Product width (17%) and height (22%) fall within the acceptable ranges (13-27% and <32%).",
-        "The roll is positioned off-center in the lower third of the frame, resting naturally on soil.",
-        "The width-to-height ratio is approximately 0.77, which is consistent with a low cylindrical drip tape roll.",
-        "Zero people or human body parts are present in the image.",
-        "The required watermark 'AFP | 09134922013' is visible in the bottom-right corner.",
-        "The background shows a farm context with a red barn and crop rows, which matches the required agronomic story."
+        "Contains exactly one packaged AFP coil and one bare black woven coil",
+        "No people or human body parts visible",
+        "Watermark 'AFP | 09134922013' correctly displayed in bottom-right",
+        "Products positioned off-center on the lower third of the frame",
+        "Both objects appear separate, flat on the ground, and fully visible",
+        "Product width estimated at ~14% of frame, within the 12-15% requirement"
       ],
       "correction_prompt": "",
-      "attempt": 5
+      "attempt": 2
     }
   ],
   "approved_image": "مقایسه-لوله-نخدار-125-میلیمتر-با-سایر-برندها-تصویر-شاخص.webp"

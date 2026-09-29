@@ -1,0 +1,74 @@
+{
+  "id": "prod-092",
+  "kind": 1,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 22,
+      "product_height_percent": 22,
+      "product_x_center_percent": 12,
+      "reasons": [
+        "Presence of multiple people (hard reject rule)",
+        "Coils are isolated in a separate visual box rather than flat on the ground in the scene",
+        "Coil pair is centered in the bottom-left corner rather than the lower third",
+        "Coil pair width is significantly wider than 15% of frame",
+        "Watermark format mismatch (uses a pipe symbol instead of a space)",
+        "machine-enforced bounding-box check failed: Reduce the product group from 22% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes. Place a packaged coil and a black woven coil directly on the soil surface in the lower third (bottom right), occupying only 12-14% of frame width. Ensure they are separate and flat. Change watermark text to 'AFP 09134922013'. Reduce the product group from 22% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 95,
+      "product_width_percent": 31,
+      "product_height_percent": 15,
+      "product_x_center_percent": 63,
+      "reasons": [
+        "The image displays exactly two approved objects: one packaged AFP coil and one bare black woven coil.",
+        "The pair is placed flat on the ground, fully visible, and in separate positions.",
+        "No people or body parts are visible.",
+        "The exact bottom-right watermark is present.",
+        "All hard-rejection criteria are avoided.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 31% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 31% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 22,
+      "product_height_percent": 20,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Hard reject: A human worker is visible in the image. The rules strictly forbid any people, human silhouettes, or body parts.",
+        "Hard reject: The pair of products is centered or near-centered staging rather than off-center on the lower third.",
+        "The product pair width exceeds the 15 percent maximum limit (estimated at ~22%).",
+        "machine-enforced bounding-box check failed: Reduce the product group from 22% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the worker entirely from the scene. Retain only the packaged coil and bare black coil placed on the ground on the lower right third of the frame. Scale the product pair down so they occupy less than 15% of the total frame width. Ensure the soil and background remain visible without any human presence. Reduce the product group from 22% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 14,
+      "product_height_percent": 14,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The complete product pair is located on the lower third, off-center.",
+        "The pair occupies approximately 14% of the frame width, which meets the 12-15% requirement.",
+        "No people or human body parts are visible.",
+        "The required watermark is present at the bottom right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "اندازهگیری-لوله-تاشو-125-میلیمتر-برای-مزرعه-تصویر-شاخص.webp"
+}

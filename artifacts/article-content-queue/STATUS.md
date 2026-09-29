@@ -4,19 +4,19 @@
 
 ## نمای کلی
 
-- آخرین بروزرسانی: `2026-09-29T22:32:42+00:00`
-- وضعیت صف: **آماده اجرای بعدی** (`ready`)
-- پیشرفت: **859 از 1148 (74.83٪)**
-- نمودار پیشرفت: `██████████████░░░░░░`
-- تکمیل‌شده: **859**
+- آخرین بروزرسانی: `2026-09-29T22:46:44+00:00`
+- وضعیت صف: **توقف موقت برای تکمیل ترجمه‌های عقب‌مانده** (`translations_pending`)
+- پیشرفت: **863 از 1148 (75.17٪)**
+- نمودار پیشرفت: `███████████████░░░░░`
+- تکمیل‌شده: **863**
 - در حال پردازش: **0**
 - در انتظار: **0**
-- ناموفق: **289**
-- واجد تلاش مجدد محدود: **236**
-- ناموفق نهایی پس از چرخه retry: **53**
+- ناموفق: **285**
+- واجد تلاش مجدد محدود: **217**
+- ناموفق نهایی پس از چرخه retry: **68**
 - مسدود مدل تصویر: **0**
 - میانگین طول مقالات تکمیل‌شده: **1277 کلمه**
-- اولویت فعلی: **تولید مقاله فارسی بعدی**
+- اولویت فعلی: **تکمیل ترجمه‌های موجود**
 
 ## تنظیمات تولید و انتشار
 
@@ -26,8 +26,8 @@
 - تعداد تصاویر هر مقاله: **3**
 - حداقل کلمات: **1050**
 - لینک داخلی مجاز: **4 تا ۷**
-- اندازه هر اجرا: **2 مقاله**
-- مدیر موازی: **2 مقاله / 4 تصویر هم‌زمان**
+- اندازه هر اجرا: **20 مقاله**
+- مدیر موازی: **20 مقاله / 40 تصویر هم‌زمان**
 - حداکثر تلاش هر مقاله: **4**
 - دسته وردپرس: **مقاله‌ها** (`35`)
 - لینک‌های داخلی شناخته‌شده: **682**
@@ -39,24 +39,24 @@
 |---|---:|---:|---:|---:|---:|---:|
 | `crop` | 341 | 318 | 0 | 0 | 23 | 93.26٪ |
 | `irrigation` | 12 | 12 | 0 | 0 | 0 | 100.00٪ |
-| `product` | 112 | 47 | 0 | 0 | 65 | 41.96٪ |
+| `product` | 112 | 51 | 0 | 0 | 61 | 45.54٪ |
 | `strategic` | 33 | 27 | 0 | 0 | 6 | 81.82٪ |
 | `xref` | 650 | 455 | 0 | 0 | 195 | 70.00٪ |
 
 ## وضعیت ترجمه مقالات تولیدشده
 
-- مقالات فارسی تکمیل‌شده: **859**
-- واحدهای ترجمه تکمیل‌شده: **2577 از 2577**
-- واحدهای ترجمه باقی‌مانده: **0**
-- مقالات فاقد حداقل یک ترجمه: **0**
-- وضعیت صف فارسی: **فعال**
+- مقالات فارسی تکمیل‌شده: **863**
+- واحدهای ترجمه تکمیل‌شده: **2577 از 2589**
+- واحدهای ترجمه باقی‌مانده: **12**
+- مقالات فاقد حداقل یک ترجمه: **4**
+- وضعیت صف فارسی: **متوقف تا تکمیل ترجمه‌ها**
 - بسته‌های ترجمه ۵۰تایی آماده: **0**
 
 | زبان | تکمیل | باقی‌مانده | مسیر |
 |---|---:|---:|---|
-| عربی عراق (`ar-IQ`) | 859 | 0 | `/iraq/` |
-| تاجیکی (`tg-TJ`) | 859 | 0 | `/tj/` |
-| انگلیسی (`en-US`) | 859 | 0 | `/en/` |
+| عربی عراق (`ar-IQ`) | 859 | 4 | `/iraq/` |
+| تاجیکی (`tg-TJ`) | 859 | 4 | `/tj/` |
+| انگلیسی (`en-US`) | 859 | 4 | `/en/` |
 
 ## وضعیت بازطراحی تصاویر
 
@@ -71,13 +71,17 @@
 
 ## مقاله بعدی صف
 
-- عنوان: **توافق لوله تاشو 160 میلیمتر با نوار تیپ و قطره‌چکان**
-- شناسه: `prod-069`
+- عنوان: **هزینه لوله تاشو 90 میلیمتر در مزرعه: برآورد**
+- شناسه: `prod-107`
 - گروه: `product`
 - تعداد تلاش قبلی: **4**
 
 ## آخرین مقالات تکمیل‌شده
 
+- **اندازه‌گیری لوله تاشو 125 میلیمتر برای مزرعه** — `prod-092` — `product` — 1498 کلمه — تحویل: `SQL package` — `2026-09-29T22:38:15+00:00`
+- **هزینه لوله تاشو 2 اینچ 63 میلیمتر در مزرعه: برآورد** — `prod-106` — `product` — 1294 کلمه — تحویل: `SQL package` — `2026-09-29T22:36:59+00:00`
+- **نگهداری از لوله تاشو 3 اینچ 75 میلیمتر برای عمر مفید بیشتر** — `prod-090` — `product` — 1139 کلمه — تحویل: `SQL package` — `2026-09-29T22:36:18+00:00`
+- **اندازه‌گیری لوله تاشو 3 اینچ 75 میلیمتر برای مزرعه** — `prod-100` — `product` — 1188 کلمه — تحویل: `SQL package` — `2026-09-29T22:35:07+00:00`
 - **مشخصات فنی لوله نخ دار 90 میلیمتر: راهنمای انتخاب** — `prod-058` — `product` — 1187 کلمه — تحویل: `SQL package` — `2026-09-29T22:15:53+00:00`
 - **مشخصات فنی نوار تیپ 20 سانتی رول 1000 متری: راهنمای انتخاب** — `prod-033` — `product` — 1274 کلمه — تحویل: `SQL package` — `2026-09-29T22:15:29+00:00`
 - **مشخصات فنی نوار تیپ پلاکدار: راهنمای انتخاب** — `prod-052` — `product` — 1353 کلمه — تحویل: `SQL package` — `2026-09-29T22:15:03+00:00`
@@ -94,23 +98,19 @@
 - **هزینه لوله تاشو 125 میلیمتر در مزرعه: برآورد** — `prod-016` — `product` — 1263 کلمه — تحویل: `SQL package` — `2026-09-29T21:42:55+00:00`
 - **نگهداری مارچوبه با نوار تیپ: نکات کلیدی** — `crop-297` — `crop` — 1184 کلمه — تحویل: `SQL package` — `2026-09-29T21:42:30+00:00`
 - **نگهداری از لوله نخدار 125 میلیمتر برای عمر مفید بیشتر** — `prod-003` — `product` — 1175 کلمه — تحویل: `SQL package` — `2026-09-29T21:42:19+00:00`
-- **راهنمای جامع کاشت پیاز با آبیاری قطره‌ای** — `crop-281` — `crop` — 1391 کلمه — تحویل: `SQL package` — `2026-09-29T21:24:31+00:00`
-- **راهنمای جامع کاشت مرزه با آبیاری قطره‌ای** — `crop-233` — `crop` — 1537 کلمه — تحویل: `SQL package` — `2026-09-29T21:21:27+00:00`
-- **میزان برداشت ملون در هکتار با نوار تیپ** — `crop-263` — `crop` — 1145 کلمه — تحویل: `SQL package` — `2026-09-29T21:20:08+00:00`
-- **راهنمای جامع کاشت یونجه با آبیاری قطره‌ای** — `crop-277` — `crop` — 1413 کلمه — تحویل: `SQL package` — `2026-09-29T21:20:02+00:00`
 
 ## خطاهای اخیر
 
-- **مقایسه لوله نخی 2 اینچ 50 میلیمتر با سایر برندها** — `prod-053` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ['Meets all core constraints: no people, zero human parts, exactly two approved layflat objects (one packaged AFP coil and one bare black woven coil), both flat, separate, and fully visible on the ground.', 'Product pair is off-center and positioned in the lower third.', "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.", 'No prohibited items (round pipe, drip tape, cable, third hose, etc.) are visible.', 'machine-e`
-- **اندازه‌گیری لوله تاشو 160 میلیمتر برای مزرعه** — `prod-063` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Product pair is too wide (45%), exceeding the maximum 15% width limit.', 'Product pair is centered rather than placed off-center on the lower third.', 'machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height.']`
-- **مشخصات فنی لوله تاشو 125 میلیمتر: راهنمای انتخاب** — `prod-042` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ['Contains exactly one packaged coil and one bare black woven coil as required.', 'Both objects are flat on the ground and fully visible.', 'Zero people or human body parts present.', "Watermark 'AFP | 09134922013' is present in bottom-right.", 'Tractor and barn in background are acceptable unattended infrastructure.', 'Note: Product pair occupies approx 23% of frame width, slightly exceeding the 12-15% optimal target but not triggering a hard `
-- **اندازه‌گیری لوله تاشو 90 میلیمتر برای مزرعه** — `prod-073` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['Image contains a human (farmer) touching the product', 'Only one visible coil instead of a packaged AFP coil and a bare black woven coil', 'Product placement is not off-center in the lower third as required', 'machine-enforced bounding-box check failed: Enlarge the product group from 8% to 9-20% of frame width.']`
-- **توافق لوله نخی 2 اینچ 50 میلیمتر با نوار تیپ و قطره‌چکان** — `prod-057` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Hard reject: A full person (farmer/worker) is present, including head, torso, arms, and legs.', 'Hard reject: No visible layflat hose coils (either packaged AFP or bare black) in the scene.', 'machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width.']`
-- **نگهداری از لوله تاشو 110 میلیمتر برای عمر مفید بیشتر** — `prod-070` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ['Hard reject: A distinct human figure (person) is visible in the background on the left side of the image.', 'Product pair width (approx 26%) exceeds the maximum allowed limit of 15%.', 'machine-enforced bounding-box check failed: Reduce the product group from 26% to 9-20% of frame width.']`
-- **مراحل نصب لوله تاشو 110 میلیمتر در سیستم آبیاری** — `prod-051` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Presence of a human (worker/farmer) and body parts violates strict rejection criteria.', 'Product pair exceeds the 15% frame width limit.', 'Product pair is centered vertically rather than in the lower third.', 'Products are not flat on the ground; the coiled item is being held by a person.', 'machine-enforced bounding-box check failed: Reduce the product group from 22% to 9-20% of frame width.; Reduce product height from 40% to at most 32% o`
-- **مراحل نصب لوله تاشو 125 میلیمتر در سیستم آبیاری** — `prod-074` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ['Image contains a person (farmer) crouching next to the products, which is a hard reject trigger.', 'Image contains human body parts (hands, arms, legs), which is a hard reject trigger.', 'Product width (approx. 20%) exceeds the 15% limit.', 'Products are not in the required off-center lower third position.']`
-- **مشخصات فنی لوله تاشو 160 میلیمتر: راهنمای انتخاب** — `prod-056` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Hard reject: Visible person (farmer/worker) present in the frame', 'Hard reject: Human body parts (hands, legs, face, torso) are clearly visible', 'Hard reject: Wrong product type (individual emitters are shown instead of a layflat coil pair)', 'Hard reject: Centered and foreground staging instead of small off-center lower third placement', 'Hard reject: Missing required objects (packaged AFP coil and bare black woven coil)', 'machine-enforce`
-- **مراحل نصب لوله تاشو 160 میلیمتر در سیستم آبیاری** — `prod-054` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Pair width (~38% of frame) exceeds the 12–15% requirement.', 'Staging is centered rather than off-center on the lower third.', "Required bottom-right watermark is not the exact 'AFP | 09134922013' string.", 'machine-enforced bounding-box check failed: Reduce the product group from 38% to 9-20% of frame width.']`
+- **مقایسه لوله نخدار 125 میلیمتر با سایر برندها** — `prod-094` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ['Hard reject: The image contains three visible people (farmers/workers) with full body parts, faces, and arms, violating the zero-person constraint.', "Hard reject: The product is not placed flat on the ground; it is held in the lap of a seated person, violating the 'flat on the ground' requirement.", 'Layout violation: The products are centered in the frame rather than off-center on the lower third as required.', 'machine-enforced bounding-bo`
+- **نگهداری از لوله نخدار 110 میلیمتر برای عمر مفید بیشتر** — `prod-104` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ['Hard reject: Image contains a person (farmer/worker) and human body parts (face, arms, legs, torso), violating the zero people rule.', 'Hard reject: Image shows only one bare black woven coil; the required packaged AFP coil is missing.', 'The product pair is not separate and flat as required due to the presence of the person interacting with the single coil.']`
+- **توافق لوله نخ دار 90 میلیمتر با نوار تیپ و قطره‌چکان** — `prod-072` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ['The image correctly shows exactly two objects: one packaged coil and one bare black coil.', 'There are zero people or human body parts present.', "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.", "Rejection reason: The total product pair width is approximately 23% of the frame, which exceeds the strict hard-reject limit of 15%. The prompt requested 'practical QA', but the specific hard-reject constraint for `
+- **توافق لوله تاشو 125 میلیمتر با نوار تیپ و قطره‌چکان** — `prod-093` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['Hard reject: A person (farmer/worker) and human body parts (face, arms, hands, legs) are clearly visible in the center of the image.', 'machine-enforced bounding-box check failed: Reduce the product group from 30% to 9-20% of frame width.']`
+- **مشخصات فنی لوله تاشو 3 اینچ 75 میلیمتر: راهنمای انتخاب** — `prod-105` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Product pair width exceeds the maximum 15% limit', 'Products occupy too large a portion of the frame', "Layout does not fit the '12 to 15 percent of frame width' constraint", 'machine-enforced bounding-box check failed: Reduce the product group from 40% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height.']`
+- **توافق لوله تاشو 90 میلیمتر با نوار تیپ و قطره‌چکان** — `prod-087` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Pair width exceeds the maximum 15% limit', 'Objects are not entirely in the lower third of the frame', 'Left product is not a layflat coil but a folded package']`
+- **نگهداری از لوله تاشو 160 میلیمتر برای عمر مفید بیشتر** — `prod-086` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['Product pair occupies approximately 45 percent of frame width, significantly exceeding the 15 percent maximum limit.', "Staging is centered on the product pair, violating the 'off-center' layout requirement.", 'machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width.']`
+- **توافق لوله تاشو 3 اینچ 75 میلیمتر با نوار تیپ و قطره‌چکان** — `prod-096` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ['Hard reject: Human male visible crouching and interacting with products.', 'Hard reject: Human body parts (hands, legs, torso, face) are present.', 'Hard reject: Product pair bounding box width exceeds the 15% limit.', 'Hard reject: Product pair is not positioned off-center on the lower third.', 'machine-enforced bounding-box check failed: Reduce the product group from 35% to 9-20% of frame width.']`
+- **مقایسه لوله تاشو 110 میلیمتر با سایر برندها** — `prod-097` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['contains two children (people), which is a hard reject condition', 'the two layflat coils are not fully separated from the human figures and are not staged on the lower third as required', 'product pair is not isolated; the dominant frame subjects are the children, not the coils', 'coils are not centered off to the side on the lower third as specified', 'product bounding box cannot be cleanly estimated due to overlap with persons', 'coils app`
+- **راهنمای جامع خرید لوله تاشو 90 میلیمتر: نکات انتخاب و قیمت** — `prod-099` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ["Contains two visible people (a crouching female in the foreground and a person standing in the background), violating the 'zero people' hard reject rule", 'The combined width of the two coil products exceeds the 15 percent maximum frame width limit', 'machine-enforced bounding-box check failed: Reduce the product group from 24% to 9-20% of frame width.']`
 
 ## بسته‌های ۵۰تایی آماده
 
@@ -127,10 +127,10 @@
 
 ## خروجی‌های تولیدشده
 
-- فایل JSON مقاله‌ها: **859**
-- تصاویر تولیدشده: **2577**
-- فایل‌های SQL: **859**
-- فایل‌های Rollback: **859**
+- فایل JSON مقاله‌ها: **863**
+- تصاویر تولیدشده: **2589**
+- فایل‌های SQL: **863**
+- فایل‌های Rollback: **863**
 
 ## فایل‌های مدیریتی
 

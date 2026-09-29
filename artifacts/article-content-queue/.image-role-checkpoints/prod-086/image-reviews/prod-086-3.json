@@ -96,6 +96,99 @@
       ],
       "correction_prompt": "Regenerate the image to remove all people. Ensure the two layflat coils are placed as a distinct pair, separated but close together, occupying only 12-15% of the frame width, positioned on the lower third. Reduce product height from 35% to at most 32% of frame height.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 92,
+      "product_width_percent": 42.0,
+      "product_height_percent": 18.0,
+      "product_x_center_percent": 46.0,
+      "reasons": [
+        "Image contains exactly two approved layflat objects: one packaged coil and one bare black coil.",
+        "No people or human body parts are visible.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom right corner.",
+        "Products are on the ground, flat, and fully visible.",
+        "Background includes allowed infrastructure (tractor) without violating hard reject rules.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 42% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 42% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: A person (farmer/worker) is clearly visible in the foreground.",
+        "Hard reject: Human body parts (hands, arms, face, legs) are visible.",
+        "Image contains a third product (a packaged coil or tape on the left) in addition to the required two objects.",
+        "Product staging is centered rather than off-center.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image completely removing all people and human body parts. Show only two layflat coils (one packaged AFP and one bare black) flat on the ground, positioned off-center in the lower third and occupying only 12-15% of the frame width. Remove the third product. Ensure the bottom-right watermark 'AFP | 09134922013' remains. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 50,
+      "product_height_percent": 30,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject: Human silhouettes are visible in the background on the left and center, violating the 'zero people' requirement",
+        "Hard reject: The product bounding box is too wide (approximately 50%), significantly exceeding the 15% maximum limit",
+        "Hard reject: The products are not positioned on the lower third as required, but rather in the bottom-left corner",
+        "machine-enforced bounding-box check failed: Reduce the product group from 50% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove all human silhouettes from the background. Regenerate the products (packaged AFP coil and bare black woven coil) to be much smaller, ensuring the combined width is less than 15% of the frame width. Position the products on the lower third of the image, away from the left corner. Reduce the product group from 50% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Presence of a person, farmer, and visible human body parts (face, hands, arms, legs) violates the strict zero-person requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with no people or human silhouettes; ensure two flat coils (one packaged, one bare black woven) are off-center on the lower third and fully visible. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 55,
+      "product_height_percent": 60,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Image contains a person (farmer/worker) holding a hose, which is a hard reject criterion.",
+        "The product pair is centered, not off-center on the lower third as required.",
+        "The product pair exceeds 15% of the frame width.",
+        "The products are not separated on the ground; one is being held and manipulated by the person.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 55% to 9-20% of frame width.; Reduce product height from 60% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove all people and human body parts. Isolate the packaged AFP coil and one bare black woven coil lying flat on the ground. Place them off-center on the lower third of the frame, occupying only 12-15% of the frame width. Ensure they are fully visible and separate. Maintain the 'AFP | 09134922013' watermark. Reduce the product group from 55% to 9-20% of frame width. Reduce product height from 60% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 88,
+      "product_width_percent": 35,
+      "product_height_percent": 32,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Zero people and zero human body parts visible.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right.",
+        "Contains exactly two approved layflat objects: a packaged AFP coil and a bare black woven coil.",
+        "Objects are separate, flat on the ground, and fully visible without distortion or impossible intersections.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 35% to 9-20% of frame width.",
+      "attempt": 6
     }
   ],
   "approved_image": null

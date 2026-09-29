@@ -1,0 +1,33 @@
+{
+  "id": "prod-092",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "history": [
+    {
+      "pass": false,
+      "score": 40,
+      "duplicate_roles": [
+        1,
+        2
+      ],
+      "reasons": [
+        "Image 1 and Image 2 are near-duplicates: both feature the exact same product composition (shrink-wrapped coil next to an open coil), similar camera angles, and largely indistinguishable foregrounds that do not successfully differentiate the 'identity overview' role from the 'agronomic evidence' role.",
+        "The intended 'irrigation-system story' is absent; the third image depicts a dry, tilled field which contradicts the topic of irrigation and fails to show the system in use.",
+        "The crop in Image 2 is visually generic and not specific enough to strongly establish the 'agronomic close evidence' role compared to a clearer, closer shot."
+      ],
+      "correction_prompt": "Replace Image 1 with a strictly product-only 'hero' shot on a neutral background to establish clear crop identity. Replace Image 2 with a high-resolution close-up of the 125mm tube running through healthy crop soil (root-zone evidence). Replace Image 3 with a dynamic, wide shot of the irrigation system actively watering a crop, clearly showing water flow.",
+      "set_attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "duplicate_roles": [],
+      "reasons": [
+        "All three images fulfill their distinct functional roles: the first serves as a broad crop-identity overview with a barn landscape, the second provides agronomic close evidence of mature, dense crop rows, and the third tells an irrigation-system story using a prepared, fallow field layout.",
+        "The sets of images share the same AFP product (black hose and packaging) as intended, and while the products maintain consistent visual placement, the backgrounds and field conditions vary sufficiently to avoid being classified as near-duplicates.",
+        "No people appear in any of the images, maintaining the mandatory zero-people requirement for this industrial/agricultural context."
+      ],
+      "correction_prompt": "No correction needed",
+      "set_attempt": 2
+    }
+  ]
+}
