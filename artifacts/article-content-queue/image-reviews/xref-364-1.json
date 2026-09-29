@@ -1,0 +1,86 @@
+{
+  "id": "xref-364",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 12,
+      "product_height_percent": 16,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Presence of human body parts (hands, arms, legs, shoes) in the top-right panel which is a hard reject.",
+        "Presence of a second product/roll (drip tubing coils) in the bottom-right panel which is a hard reject.",
+        "Missing exact required bottom-right watermark text 'AFP | 09134922013' (image contains 'AFP | 09134922013' but it is on a separate panel and the prompt specifies it as a required element to check for, but the main reason for rejection is the hard fails of multiple panels/bodies). *Correction*: Actually, the watermark IS present in the bottom right. However, the hard rejects for people and multiple products override this.",
+        "Multiple product roll/container visible.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the human hands/legs from the top-right panel. Remove the coiled tubing from the bottom-right panel. Ensure the image shows exactly one white-and-blue AFP carton roll in a maize field with zero people, zero other products, and the required watermark. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 17,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product is centered horizontally (violates off-center requirement)",
+        "Product height is too large relative to width (roughly equal aspect ratio, failing the 1.5-1.9x width/height ratio requirement for a 'wide low' cylindrical roll)"
+      ],
+      "correction_prompt": "Regenerate with the drip tape roll placed off-center on the lower left third of the frame. Ensure the roll is noticeably wider than it is tall (approx 1.7x ratio). Keep the maize crop context and AFP watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "The product is a wide white cylindrical carton roll, but it lacks the required 'blue' visual identity (white-and-blue) needed for the AFP drip-tape description.",
+        "The product appears to be placed 'floating' or buried in the soil rather than resting 'naturally' on the soil surface, creating a physically implausible interaction with the ground.",
+        "Visible text on the carton front ('AFD', 'Drig', 'frgqteb') appears to be gibberish or garbled, violating the rule against fake headlines or invented writing outside authentic package print.",
+        "Small, unidentifiable green seedlings are visible in the foreground on the soil, which conflicts with the background crop's mature maize stage (agronomic inconsistency)."
+      ],
+      "correction_prompt": "Regenerate the product as a wide white-and-blue cylindrical drip-tape carton roll. Ensure the roll rests naturally on the soil surface without floating. Remove gibberish text from the carton and replace with clean, authentic AFP branding. Remove small green seedlings from the foreground soil. Ensure the background maize crop and product scale remain consistent.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 23,
+      "product_height_percent": 27,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Product bounding box x-center is approximately 37%, which is not in the lower third of the frame (66-99% range).",
+        "Despite the product's lower vertical placement, its horizontal position is too central/left to satisfy the 'off-center on the lower third' requirement."
+      ],
+      "correction_prompt": "Move the drip-tape carton roll horizontally to the right side of the image so its center falls within the right third of the frame, while maintaining its current size and height constraints.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 15,
+      "product_height_percent": 21,
+      "product_x_center_percent": 60,
+      "reasons": [
+        "Maize crop with irrigation layout is clearly recognizable in background",
+        "Product is a white and blue wide low cylindrical drip-tape carton roll",
+        "Product width is approximately 15% of the frame (acceptable)",
+        "Product height is approximately 21% of the frame (well below 32% limit)",
+        "Product is off-center and naturally placed on the soil",
+        "No people or human body parts visible",
+        "Bottom-right watermark 'AFP | 09134922013' is present and correct",
+        "Background matches article context (maize farming with irrigation)"
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-ذرت-مقایسه-تصویر-شاخص.webp"
+}

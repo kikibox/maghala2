@@ -1,0 +1,53 @@
+{
+  "id": "xref-365",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 31.0,
+      "product_height_percent": 38.0,
+      "product_x_center_percent": 28.0,
+      "reasons": [
+        "The roll is centered horizontally in the lower-left section, violating the 'off-center on the lower third' requirement.",
+        "The product's width (approx 31% of frame) and height (approx 38% of frame) exceed the strict maximum thresholds (27% width / 32% height).",
+        "The roll appears to float slightly above the ground texture rather than being naturally placed on the soil as required.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 31% to 13-27% of frame width.; Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shrink the drip tape roll to 20% width of the frame and reposition it slightly rightward to ensure it is clearly off-center. Press the base of the roll firmly into the soil texture to ground it naturally. Keep the hardware and background context identical. Reduce the product group from 31% to 13-27% of frame width. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 22,
+      "product_height_percent": 21,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The crop visible next to the roll is a broadleaf plant and does not clearly resemble clover; for Role 3, the crop must be absent or visually neutral to avoid context contradiction."
+      ],
+      "correction_prompt": "Regenerate the image with zero crop plants. Maintain the roll on the soil in the lower-left off-center position with a clean farm background.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 24,
+      "product_height_percent": 20,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Product is an AFP white-and-blue wide low cylindrical drip-tape roll matching the specified 'hardware story' role.",
+        "The roll is correctly positioned off-center on the lower third of the frame on the soil.",
+        "Dimensions are within acceptable ranges: width is ~24% (preferred 20-23% range) and height is ~20% (limit 32%).",
+        "No people, human body parts, or silhouettes are visible; the unattended tractor and hay bales in the background provide a suitable farm context without being 'extra commercial products'.",
+        "The required 'AFP | 09134922013' watermark is present and legible in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-شبدر-نکات-کلیدی-جزئیات-فنی.webp"
+}

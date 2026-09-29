@@ -1,0 +1,96 @@
+{
+  "id": "xref-366",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 25,
+      "product_height_percent": 40,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: The central plant appears to be Chenopodium album (Lamb's Quarters) or a similar broadleaf weed, not the required article crop of Basil (which must have opposite oval leaves); clearly identifiable different species triggers a hard reject.",
+        "Hard reject: The 'crop' is depicted growing directly out of the open center of the irrigation tape roll, which is physically impossible and falls under 'impossible geometry'.",
+        "Product height is approximately 40% of the frame height, exceeding the maximum limit of 32%.",
+        "The product is staged in an unnatural position (plant growing through it) and is too large, failing to be a secondary element.",
+        "machine-enforced bounding-box check failed: Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate image showing a realistic basil plant (opposite oval leaves) next to a white and blue AFP drip-tape roll. The plant must not grow through the roll. The roll must be placed on the soil to the left (width ~20%, height <30%). Ensure the drip tape connects the roll to the crop row. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 18,
+      "product_height_percent": 23,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The product is positioned in the bottom-left instead of the required off-center lower-third placement.",
+        "The central crop in the foreground is too prominent, competing with the product which is required to be secondary to the farm context."
+      ],
+      "correction_prompt": "Shift the white and blue carton roll slightly to the right to better fit the 'lower third' off-center rule, and ensure the crop context remains the dominant background element.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "The image contains a child and a partial view of an adult (arms, shoulders, legs), which violates the strict requirement for zero people and zero human body parts.",
+        "The required bottom-right watermark 'AFP | 09134922013' is missing from the image.",
+        "The product packaging shows 'AFP' text but lacks the specific white-and-blue drip-tape branding required."
+      ],
+      "correction_prompt": "Regenerate the image with absolutely no people, hands, or body parts visible. Include the 'AFP | 09134922013' watermark in the bottom-right corner. Show a realistic AFP white-and-blue wide cylindrical drip-tape carton roll resting naturally on the soil in a field of young basil plants.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 15,
+      "product_height_percent": 35,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product height exceeds the maximum threshold of 32% (measured at ~35%).",
+        "Background contains clearly identifiable pink flowers (resembling Zinnia) mixed with the basil crop, which violates the 'no clearly identifiable different species' rule.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the drip tape roll height to under 32% of the frame. Remove all pink flowering plants from the background to ensure the crop context is purely basil. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 11,
+      "product_height_percent": 22,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Contains a person/farmer with visible body parts and hand, which is a hard reject condition.",
+        "Product dimensions are significantly off-spec; width is too small (<13% min) and height is too large (>32% max).",
+        "Product is centered instead of off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or body parts. Show a single AFP white-and-blue drip-tape roll lying horizontally on the soil. The roll must be off-center, with a visible diameter 1.5 to 1.9 times its height. Ensure the product width is between 20-23% and height is less than 32%. Use a farm context with basil (ریحان) crops and keep the 'AFP | 09134922013' watermark. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 20.5,
+      "product_height_percent": 23.0,
+      "product_x_center_percent": 43.5,
+      "reasons": [
+        "Background crop rows are clearly identifiable as a different species (likely tomato or potato seedlings) rather than the specified ریحان (basil).",
+        "The foreground plants lack the compact, opposite-oval leaf morphology required for recognizable basil; they appear as generic or distinct broadleaf weeds/seedlings.",
+        "Product is positioned slightly toward the center horizontally (43.5%) rather than distinctly off-center on the lower third, and it is slightly too tall relative to its width (ratio ~0.9) to appear as a wide low cylindrical roll (target 1.5-1.9x)."
+      ],
+      "correction_prompt": "Replace background and foreground crops with compact, low-growing, oval-leaved basil plants. Reposition the white-and-blue drip-tape roll strictly to the lower third off-center. Widen and flatten the roll geometry so its width is roughly 1.7 times its height.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

@@ -1,0 +1,55 @@
+{
+  "id": "xref-359",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 13,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Presence of a person (farmer/worker) visible in the frame, which is a hard reject.",
+        "Product height exceeds 32% of the frame height relative to its width constraints.",
+        "Visible human body parts (face, hands, legs) present.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with no people or human body parts visible. Ensure the drip tape roll is wider (occupying 20-25% of frame width), positioned on the lower third, and does not appear centered. Maintain the crop field context. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 20,
+      "product_height_percent": 30,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: The image contains a person (a male farmer) kneeling in the field, which is strictly forbidden.",
+        "Hard reject: Human body parts (face, arms, hands, legs) are clearly visible and interacting with the product.",
+        "The image violates the 'zero people' requirement."
+      ],
+      "correction_prompt": "Remove the person entirely. Keep the white and blue drip tape roll on the soil in the lower third. Retain the 'AFP | 09134922013' watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 16,
+      "product_height_percent": 17,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is a white and blue cylindrical drip-tape roll placed naturally on the soil in the lower-left third, satisfying the off-center requirement.",
+        "The roll's dimensions (width ~16%, height ~17%) are within the acceptable 13-27% range, and the roll remains secondary to the background crop.",
+        "Background shows a field of agricultural plants with irrigation lines and flowering crops (sunflowers visible in the distance), which aligns well with the crop-specific context for 'city, family' or home-farming articles without clearly contradicting the title.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom right.",
+        "Zero people or body parts are visible in the image."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-رانشی-در-کشت-کینوا-کاربردها-کاربرد-عملی.webp"
+}

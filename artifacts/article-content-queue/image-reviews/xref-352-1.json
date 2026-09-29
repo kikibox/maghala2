@@ -1,0 +1,67 @@
+{
+  "id": "xref-352",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 6,
+      "product_height_percent": 5,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Presence of a human figure (man crouching) is a hard reject.",
+        "Visible body parts (arms, hands, legs, head) are present, which are explicitly prohibited.",
+        "The product (tape roll) is too small relative to the frame (width ~6%), falling significantly below the 13% minimum acceptable width.",
+        "The product appears to be a small white roll (resembling a label or small spool) rather than a 'wide low cylindrical drip-tape carton roll'.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove the person and all human body parts. Ensure the scene contains zero humans. Replace the small white object with a large AFP white-and-blue drip-tape roll on the ground. The roll must be wide (20-23% of frame width), low profile (diameter ~1.7x height), and placed off-center in the lower third on the soil. Maintain the background context of sugar beet farm rows and irrigation infrastructure (tractor allowed if unattended). Ensure the 'AFP | 09134922013' watermark remains at the bottom right. Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: A person is visible standing next to the tractor in the background, which is a strict violation of the zero-person rule.",
+        "Product placement: The product is horizontally centered (approx. 45%), failing the 'off-center' requirement."
+      ],
+      "correction_prompt": "Remove the person near the tractor. Reposition the drip-tape roll to be clearly off-center (lower third) so it is not in the middle of the frame. Ensure the sugar beet crop rows remain clear in the foreground.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 16,
+      "product_height_percent": 22,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: The image contains two clearly visible human silhouettes in the background (far left of the field), which violates the 'zero people and zero human body parts' constraint."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human silhouettes in the field. Ensure the white cylindrical drip-tape roll is positioned clearly off-center (closer to the bottom right) on the soil, maintaining the reddish sugar beet crops.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 14,
+      "product_height_percent": 20,
+      "product_x_center_percent": 57,
+      "reasons": [
+        "The product, an AFP drip-tape roll, is clearly visible, positioned in the lower third, off-center, and placed naturally on the soil.",
+        "The background crop matches the article description of 'sugar beet' with its characteristic reddish leaf stems and low rosettes, providing a clear agronomic story.",
+        "The mandatory watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No people, body parts, or prohibited objects (like bottles or second rolls) are visible in the image.",
+        "The product's dimensions are within the acceptable practical range (width 14%, height 20%), remaining secondary to the crop context."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-گلخانهای-در-کشت-چغندر-مزایا-تصویر-شاخص.webp"
+}

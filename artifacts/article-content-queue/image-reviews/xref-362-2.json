@@ -1,0 +1,99 @@
+{
+  "id": "xref-362",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: Image contains a full human figure (face, body, hands, legs), violating the zero-person requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any human figures or body parts; show only the farm scene, the rosemary crop, and the standalone drip-tape roll on the soil. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 10,
+      "product_height_percent": 12,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: The image contains a clearly visible person (farmer), violating the 'zero people' and 'zero human body parts' requirement.",
+        "Product size: The product roll is too small relative to the frame; its width is approximately 10%, below the minimum acceptable threshold of 13%.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Generate a static scene with only the farm infrastructure and crops. Increase the size of the white and blue drip tape roll to make it approximately 18% of the frame width, ensuring it remains off-center on the lower third. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 13.5,
+      "product_height_percent": 22.5,
+      "product_x_center_percent": 48.0,
+      "reasons": [
+        "The product (drip-tape roll) is centered in the frame (approx. 48% x-center), violating the off-center requirement.",
+        "The product is placed on a wooden crate rather than naturally placed on soil.",
+        "The product is too small (width 13.5%); preferred is 20-23%.",
+        "A person (driver) is clearly visible inside the tractor in the background, which is a hard reject for any human body part or silhouette."
+      ],
+      "correction_prompt": "Remove the human from the tractor. Reposition the drip-tape roll to the lower-right quadrant (off-center) so its width is approximately 22% of the frame. Place the roll directly on the soil, removing the wooden crate. Ensure the roll is clearly visible and not centered.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 24.0,
+      "product_height_percent": 30.0,
+      "product_x_center_percent": 47.0,
+      "reasons": [
+        "Product is centered horizontally (near 50%) rather than off-center on the lower third",
+        "Product bounding box height is close to the 32% limit and width is large, making the roll appear prominent rather than secondary"
+      ],
+      "correction_prompt": "Shift the drip-tape roll significantly to the right (lower third, x-center > 60%), reduce its visual scale by approximately 30-40% to make it secondary, and ensure it is clearly off-center on the soil surface.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 10,
+      "product_height_percent": 16,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Hard reject due to the presence of a person (farmer/worker).",
+        "Failure to show 'exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll' matching the specific physical requirements.",
+        "Product roll is not visible in a natural 'drip-tape carton' form (appears as a different style of roll/packaging).",
+        "Human body parts are visible.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Regenerate to show a single AFP white-and-blue wide low cylindrical drip-tape carton roll placed on the soil in a rosemary field, secondary to the plants, with no human silhouettes or body parts present. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 21,
+      "product_height_percent": 29,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Product is the correct AFP white-and-blue wide low cylindrical drip-tape carton roll",
+        "Product dimensions and placement are within acceptable bounds (width ~21%, height ~29%)",
+        "Product is off-center on the lower third and naturally placed on soil",
+        "Crop is clearly recognizable as rosemary (woody low shrubs with needle-like leaves)",
+        "Background matches the article context (farm field with rosemary)",
+        "Watermark 'AFP | 09134922013' is present and correct",
+        "Zero people or human body parts visible"
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-رانشی-در-کشت-رزماری-مزایا-کاربرد-عملی.webp"
+}

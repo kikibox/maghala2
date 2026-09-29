@@ -1,0 +1,80 @@
+{
+  "id": "xref-354",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: A person (farmer) is clearly visible in the background standing near the tractor, which violates the zero-person rule."
+      ],
+      "correction_prompt": "Regenerate the image without the person in the background. Ensure the scene contains only the soil, the drip tape roll, the manometer, and the unattended tractor. Keep the 'AFP | 09134922013' watermark in the bottom right corner.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 22,
+      "product_height_percent": 24,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: Image contains a visible person standing in the field near the tractor. The criteria explicitly state to 'Hard reject any person, farmer, worker... even distant'.",
+        "Hard reject: The specific required bottom-right watermark 'AFP | 09134922013' is missing."
+      ],
+      "correction_prompt": "Regenerate the image strictly without any people, human body parts, or human silhouettes in the scene. Ensure the 'AFP | 09134922013' watermark is visible in the bottom-right corner.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 13,
+      "product_height_percent": 11,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: Image contains two human figures (people/farmers), which violates the 'zero people' requirement for Role 3 hardware story."
+      ],
+      "correction_prompt": "Regenerate image: Remove all people and human body parts. Show only the drip tape carton roll on the soil. Add unattended irrigation hardware (e.g., manifold, valve, pump) in the background to maintain the 'hardware story' context. Keep the roll in the lower-third, off-center position.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 25,
+      "product_height_percent": 35,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Two human silhouettes are clearly visible in the mid-ground between the crop rows, violating the strict 'zero people' rule.",
+        "The drip-tape roll is centered and significantly oversized, appearing larger than the adjacent irrigation hardware (valves and filters), which contradicts the requirement that the product be secondary and off-center.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the two human figures in the background. Make the drip-tape roll significantly smaller and move it to the far left foreground so it is clearly secondary to the adjacent blue filter, silver gauge, and red hardware. Ensure the roll's height is less than 30% of the frame. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 19,
+      "product_height_percent": 28,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "Contains exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product is off-center on the lower third and naturally placed on soil.",
+        "Product dimensions are within the acceptable width (19%) and height (28%) ranges.",
+        "Visible ratio of diameter to height is approximately 1.5x, which is consistent with a wide low roll.",
+        "Background context (farm field with irrigation hardware) matches the hardware story role 3.",
+        "Visible crop (green plant) does not clearly contradict fava bean morphology; it is visually neutral/generic.",
+        "Zero people or human body parts visible.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-نوار-تیپ-در-کشت-باقلا-کاربردها-جزئیات-فنی.webp"
+}

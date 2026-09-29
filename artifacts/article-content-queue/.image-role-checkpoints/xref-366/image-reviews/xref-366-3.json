@@ -1,0 +1,65 @@
+{
+  "id": "xref-366",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject: Image contains a visible person (man farmer, face, hands, arms, legs). The requirement is zero people or human body parts."
+      ],
+      "correction_prompt": "Remove the human subject completely and keep only the unattended drip-tape roll in the farm context.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 58,
+      "product_width_percent": 25,
+      "product_height_percent": 31,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The product's vertical position exceeds the 32% height limit, violating the constraint that the product must remain secondary to the background.",
+        "The visible diameter-to-height ratio of the roll is too high (approximately 2.4x), failing the 1.5 to 1.9 times requirement.",
+        "The product appears slightly above the natural 'lower third' of the frame due to the high horizon line."
+      ],
+      "correction_prompt": "Reduce the vertical height of the drip-tape roll to approximately 25% of the frame to meet the size constraint. Adjust the roll's aspect ratio to be wider relative to its height (1.7:1) to look more like a standard wide carton. Lower the product's position so its base sits lower in the foreground and ensure it stays within the bottom third of the image.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 12,
+      "product_height_percent": 13,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: Human person (farmer/man) is prominently featured in the image.",
+        "Hard reject: Visible human body parts (face, arms, legs, hand) are present.",
+        "The product (tape roll) is very small relative to the frame and lacks the specific wide low cylindrical carton form factor described as the primary subject, acting more as a prop next to the person.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the human figure completely. Focus the composition on a single AFP white-and-blue wide low cylindrical drip-tape carton roll resting on the soil. The roll should be wider than it is tall, placed on the lower third but off-center. The background should show a farm context (e.g., corn field or soil) with optional hardware like a filter or manifold, but absolutely no people. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 23,
+      "product_height_percent": 26,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Meets the 'hardware story' requirements: includes irrigation infrastructure (filter, gauge, manifold) with no human presence.",
+        "Product is off-center and placed on soil, with acceptable dimensions.",
+        "Background crop (corn/maize) does not clearly contradict the topic of basil, so it is not a hard reject."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-نوار-تیپ-در-کشت-ریحان-نکات-کلیدی-جزئیات-فنی.webp"
+}

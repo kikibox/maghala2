@@ -1,0 +1,71 @@
+{
+  "id": "xref-364",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 33,
+      "product_height_percent": 24,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Presence of human hand/arm in top-right inset (hard reject).",
+        "Presence of second coil/roll of tape in bottom-right inset (hard reject: second roll).",
+        "Product appears centered/large in the main panel, likely exceeding the width limit and off-center requirement.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 33% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate single panel image: Remove all human hands and the bottom-right inset. Show a single white and blue AFP drip-tape roll lying on soil off-center (lower-left third). The roll should occupy approximately 20% of frame width. Ensure no other tape coils or hardware are visible. Reduce the product group from 33% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 24,
+      "product_height_percent": 35,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Product height exceeds the 32% maximum limit",
+        "Visible aspect ratio (width vs height) is approximately 1.0, falling short of the required 1.5 to 1.9 ratio",
+        "Product placement is slightly higher than the preferred 'lower third' region",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the product height to a maximum of 30% of the frame width. Increase the roll's visual width to at least 1.5 times its height to match the specified cylindrical geometry. Position the roll lower in the frame, anchoring it strictly in the bottom 10-15% vertical section to ensure it remains secondary and off-center. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Hard reject: Visible human (crouching male person, face, hands, legs) present in the image.",
+        "Hard reject: The product is not placed on soil; it is resting on dry grass/straw.",
+        "Background contains a tractor which, while acceptable as infrastructure, does not resolve the human presence violation."
+      ],
+      "correction_prompt": "Regenerate image with no people or human body parts; place the single white-and-blue AFP drip-tape carton roll directly on the soil in the lower-left third, with a background of a maize farm field featuring unattended irrigation hardware.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 24,
+      "product_height_percent": 20,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "The image clearly shows the required AFP white-and-blue drip-tape roll placed on the soil in the lower-left quadrant, meeting the off-center positioning and placement criteria.",
+        "The visible crop in the background consists of maize, which aligns with the required topic and does not trigger a hard reject.",
+        "The scene appropriately includes irrigation infrastructure (sprayer/pump and spray lance), which is permitted in Role 3 as part of the hardware story.",
+        "The product size estimates are within acceptable practical ranges, with the roll appearing secondary to the hardware and background context.",
+        "The bottom-right watermark 'AFP | 09134922013' is present as required.",
+        "There are no people, faces, hands, or human silhouettes visible in the frame, and no prohibited extra commercial products or containers are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-ذرت-مقایسه-جزئیات-فنی.webp"
+}
