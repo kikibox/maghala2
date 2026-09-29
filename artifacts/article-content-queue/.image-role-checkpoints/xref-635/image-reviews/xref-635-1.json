@@ -1,0 +1,91 @@
+{
+  "id": "xref-635",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 15,
+      "product_height_percent": 22,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: The image contains multiple people (a woman crouching in the foreground and a man in the background), which is strictly prohibited.",
+        "Hard reject: The product roll is centrally positioned (approx. 50% x-axis), violating the off-center requirement."
+      ],
+      "correction_prompt": "Regenerate the image with no people or human body parts visible. Remove the woman and man completely. Place the AFP white-and-blue drip-tape roll on the soil bed in the lower left third of the frame, making it clearly off-center.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25,
+      "product_height_percent": 45,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "The product height (approx. 45% of the frame) significantly exceeds the hard limit of 32%.",
+        "The visible diameter/height ratio is too high (approximately 2:1 or more), exceeding the preferred range of 1.5 to 1.9 times.",
+        "machine-enforced bounding-box check failed: Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a visibly wider and flatter drip-tape roll that is smaller in height (less than 32% of the frame height) to maintain a ratio of roughly 1.5 to 1.9 times its height. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 16,
+      "product_height_percent": 23,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Contains a clear male figure and human body parts (hand touching the roll), which triggers a hard reject."
+      ],
+      "correction_prompt": "Regenerate the image to show only the product and the crop bed without any people, hands, or body parts visible.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 24,
+      "product_height_percent": 22,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: The image contains multiple people (two adults and one child) sitting on stools, which violates the zero-people rule.",
+        "Hard reject: The crop visible is not sunflower; the small green seedlings/leaves are botanically inconsistent with the 'Sunflower' article title, creating a mismatch between the image and the story.",
+        "Product Geometry: The roll is positioned slightly high or large relative to the height constraint (should be <=32%), but the primary failure is the presence of humans.",
+        "Context: The 'family' context (adults and a child) is not suitable for the 'City' article, which implies a non-domestic/urban agricultural setting."
+      ],
+      "correction_prompt": "Remove all people (adults and child). Replace the seedlings with visible sunflower sprouts or leaves. Position the AFP drip-tape roll (white and blue) on the soil in the lower third, off-center to the left, keeping it secondary in size. Ensure the background shows a clear urban/city farm context rather than a rural family farm scene.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The required bottom-right watermark text 'AFP | 09134922013' is missing from the image.",
+        "The irrigation roll lacks visible drip tape threading or material extending from the package, which is typical for this product presentation."
+      ],
+      "correction_prompt": "Regenerate the image to include the exact bottom-right watermark 'AFP | 09134922013'. Ensure the drip tape is visibly threaded or unspooled from the roll.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 20,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Hard reject: The image contains a clearly visible person (a male farmer) crouching next to the product, violating the zero-people and zero-human-silhouette policy.",
+        "Hard reject: A human hand is visible touching the drip tape near the product, violating the zero-human-body-parts policy.",
+        "Hard reject: The presence of the person dominates the foreground and creates a staged product presentation rather than a natural off-center field placement."
+      ],
+      "correction_prompt": "Remove the man and his hand entirely. Keep the white and blue cylindrical AFP drip tape roll on the soil in the lower-left third, positioned off-center with the irrigation tape unspooled across the rows. Ensure the background shows the farm and crop rows but contains no human figures or body parts.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

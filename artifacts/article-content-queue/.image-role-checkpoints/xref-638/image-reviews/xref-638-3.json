@@ -1,0 +1,56 @@
+{
+  "id": "xref-638",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Watermark text in bottom-right reads 'AFP | 09134922013' but visual inspection confirms it is missing or altered compared to the strict requirement of 'AFP | 09134922013' (Wait, looking closely at the prompt: 'AFP | 09134922013' is required. The image has 'AFP | 09134922013'. So this is fine.)",
+        "Product is centered horizontally (approx 50% x-axis), violating the requirement to be off-center on the lower third",
+        "Product is placed in the middle of the crop row rather than on the soil shoulder/bed, appearing to float or be placed on the crop line",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Move the carton roll to the lower right, ensuring it is off-center and rests firmly on the soil bed rather than in the crop row. Keep the exact bottom-right watermark. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 60,
+      "reasons": [
+        "Hard reject: Person visible on the tractor in the background (driver)",
+        "Hard reject: Second person standing next to the equipment in the background"
+      ],
+      "correction_prompt": "Remove all people and silhouettes from the background, leaving only the field, sky, and unattended tractor to match the zero-person constraint.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 23,
+      "product_height_percent": 30,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Image correctly features one AFP white-and-blue cylindrical drip-tape roll situated on the soil in a farm context.",
+        "The product dimensions are within acceptable ranges: width approx 23%, height approx 30%, adhering to the 13-27% width and <32% height constraints.",
+        "The roll is positioned off-center on the lower third as required.",
+        "The exact watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No people, human body parts, or silhouettes are visible in the image.",
+        "Unattended hardware elements (connectors/manifolds) are visible but permitted as infrastructure context without violating the 'zero people' rule.",
+        "The background includes farm crops and a tractor which fits the 'topic-specific farm context'."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-رانشی-در-کشت-بادمجان-نکات-کلیدی-جزئیات-فنی.webp"
+}

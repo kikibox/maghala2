@@ -1,0 +1,66 @@
+{
+  "id": "xref-639",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 18.5,
+      "product_height_percent": 20.5,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: The required 'AFP | 09134922013' watermark is missing from the bottom-right corner.",
+        "Hard reject: The article topic is 'family tape20' (drip tape), but the image displays a white and blue cylindrical roll of hose, pipe, or general tubing, not a 'drip-tape carton roll'."
+      ],
+      "correction_prompt": "Regenerate the bottom-right corner to include the exact text 'AFP | 09134922013'. Replace the cylindrical hose roll with a standard 'drip-tape carton roll' (typically a flatter, wider roll of thin black or green tape).",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 8,
+      "product_height_percent": 18,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Presence of two human figures (people) in the image, which is a hard reject criterion.",
+        "The product is not a wide low cylindrical roll of drip tape but appears to be a small box or canister, failing the geometric description.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes from the image. Replace the product with a wide, low cylindrical roll of white-and-blue drip tape on a cardboard core, placed naturally on the soil, positioned in the lower third, with a visible diameter significantly larger than its height. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 68,
+      "product_width_percent": 26,
+      "product_height_percent": 30,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "The crop shown is botanically identifiable as corn/maize seedlings (vase-like shoot formation), which constitutes a clearly identifiable different species. The rule explicitly states to hard reject a clearly identifiable different species from the named crop in the title."
+      ],
+      "correction_prompt": "Regenerate the image using botanically neutral, small unidentifiable seedlings or a bare soil surface to allow the article-specific crop story to be inferred, rather than showing identifiable corn/maize sprouts.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Product meets dimensions: width ~20% and height ~25%, both within acceptable ranges (width 13-27%, height <=32%).",
+        "Product geometry is correct: wide low cylindrical roll with visible drip tape loop.",
+        "Positioning: Product is off-center to the right and placed naturally on soil.",
+        "Context: Background shows young green seedlings in a field, consistent with 'family farm' or 'city' agriculture; crop morphology is neutral/unidentifiable seedlings which is acceptable.",
+        "Watermark: 'AFP | 09134922013' is present in the bottom-right corner as required.",
+        "No violations: No people, body parts, extra commercial products, or impossible geometry visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-در-کشت-پنبه-مزایا-تصویر-شاخص.webp"
+}

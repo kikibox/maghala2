@@ -1,0 +1,69 @@
+{
+  "id": "xref-643",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 21,
+      "product_height_percent": 22,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Hard reject: visible people (two workers) in the background."
+      ],
+      "correction_prompt": "Remove all human figures and body parts. Redefine the crop plants as generic/neutral or clear them out to maintain a hardware context. Reposition the drip tape roll slightly to the right to be closer to the center of the lower third (currently slightly far left). Maintain the bottom-right watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Image contains a person (a woman crouching in the field), which violates the zero-person and zero-human-body-part rule.",
+        "Hard reject: The person is holding a small container/canister, which is an extra commercial product/bottle prohibited by the guidelines.",
+        "Product staging is not placed naturally on the soil; it is placed in front of the person and is not off-center on the lower third as required."
+      ],
+      "correction_prompt": "Regenerate the image with zero people. Place the AFP white-and-blue cylindrical drip-tape carton roll directly on the soil in the lower third, off-center. Ensure the roll is approximately 20-23% of the frame width and does not exceed 32% of the frame height. The background should show a farm context suitable for basil without any human presence or extra containers.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 26,
+      "product_height_percent": 33,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "The image contains two people (farmers), which is a hard reject rule.",
+        "The product is centered horizontally (rule requires off-center placement).",
+        "The product height (~33%) exceeds the 32% limit.",
+        "The crop morphology does not clearly match the required topic (ریحان/basil).",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove all people and silhouettes; shift the product to the left third of the frame; reduce the product's vertical scale to be under 30% of the frame height; and ensure the surrounding foliage clearly resembles basil. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 21,
+      "product_height_percent": 23,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product is a single white-and-blue wide low cylindrical drip-tape carton roll",
+        "Product is off-center on the lower third and placed naturally on soil",
+        "Geometry matches required dimensions (diameter approx 1.7x height)",
+        "Required AFP watermark is present in the bottom-right corner",
+        "No people, human body parts, or silhouettes visible",
+        "Background features a farm with unattended tractor and neutral crop rows"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-در-کشت-ریحان-مزایا-جزئیات-فنی.webp"
+}

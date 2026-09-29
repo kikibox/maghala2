@@ -1,0 +1,56 @@
+{
+  "id": "xref-636",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 16,
+      "product_height_percent": 14,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Contains a person (farmer) kneeling and touching the product.",
+        "Image role 3 is a hardware story with crop plants absent or visually neutral; the crop context is visually strong and the product is presented with human interaction, which is prohibited."
+      ],
+      "correction_prompt": "Regenerate the image as an unattended, static scene showing only a white-and-blue wide low cylindrical drip-tape carton roll on soil in a farm context with no people, hands, arms, or human body parts visible.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 58,
+      "product_width_percent": 32,
+      "product_height_percent": 32,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "The product roll is centered in the frame, violating the off-center lower third placement requirement",
+        "The product width is estimated at 32%, which exceeds the maximum 27% limit",
+        "The product height is estimated at 32%, touching the maximum limit",
+        "The aspect ratio of the roll is approximately 1:1 (width equals height), but it must be about 1.5 to 1.9 times wider than it is tall",
+        "The product is staged as the primary hero subject rather than being secondary in the scene",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with the drip-tape roll placed in the lower-left or lower-right third of the frame, not in the center. Reduce the roll's scale so it is clearly secondary to the landscape. The roll should be noticeably wider than it is tall (aspect ratio 1.5:1 or higher). Keep the white and blue color scheme and the bottom-right watermark exactly as is. Reduce the product group from 32% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Correctly displays one AFP white-and-blue wide low cylindrical drip-tape carton roll",
+        "Product is naturally placed on soil and off-center to the left on the lower third",
+        "Background shows an open farm field with a distant red barn, matching the topic-specific farm context without contradictions",
+        "Contains zero people or human body parts",
+        "Correctly includes the required bottom-right watermark 'AFP | 09134922013'"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-کینوا-نکات-کلیدی-جزئیات-فنی.webp"
+}

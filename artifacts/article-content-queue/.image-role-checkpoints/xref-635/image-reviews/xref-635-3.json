@@ -1,0 +1,94 @@
+{
+  "id": "xref-635",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 10.5,
+      "product_height_percent": 15.5,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Presence of a person (farmer) in the image",
+        "Product appears to be a square container or jar, not a cylindrical drip-tape carton roll",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10.5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove the human figure. Ensure the product is a wide, low, cylindrical white carton of drip tape (not a square container), positioned off-center in the lower third of the frame, placed naturally on the soil. Enlarge the product group from 10.5% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 32,
+      "product_height_percent": 25,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product is centered horizontally (x=50%), violating the 'off-center' requirement",
+        "Product width (32%) exceeds the maximum allowable limit of 27%",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with the drip-tape roll positioned to the left or right (off-center) and scaled down to be no wider than 25% of the frame. Ensure the roll appears secondary to the farm context. Reduce the product group from 32% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: visible persons (two people operating tractors in the background).",
+        "Hard reject: visible human body parts (faces, arms, legs) on the tractors.",
+        "Product appears slightly too prominent in the foreground relative to the required 'secondary' status."
+      ],
+      "correction_prompt": "Regenerate the scene to completely remove all people, workers, and silhouettes. Place the white and blue AFP drip-tape roll on the soil in the bottom-left area, reducing its visual dominance while maintaining the correct aspect ratio. Keep the farm machinery and crop context identical but with zero human presence.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 22,
+      "product_height_percent": 30,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "Hard reject: The image contains a prominent person (farmer/worker) standing in the center, which violates the 'zero people and zero human body parts' rule.",
+        "Hard reject: The product roll is positioned in the bottom-left corner rather than the required 'lower third' off-center position.",
+        "Background context: The presence of the person completely dominates the scene, making the product not secondary as required."
+      ],
+      "correction_prompt": "Regenerate the image to remove the person entirely. Move the white and blue AFP drip tape roll from the corner to the bottom-center area (lower third) on the soil. Ensure the background remains a farm field with a tractor and crops, but no people.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 14,
+      "product_height_percent": 13,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product geometry and orientation fail: The roll is not 'wide low cylindrical' (width is only slightly greater than height); it is a standard vertical roll that does not satisfy the aspect ratio requirement of 1.5 to 1.9 times the visible height.",
+        "Product is centered: The roll is located near the horizontal center of the frame (45%), whereas the specification requires an off-center placement in the lower third."
+      ],
+      "correction_prompt": "Regenerate the image showing a wide, low-lying cylindrical drip-tape carton roll lying horizontally on the soil. Ensure the roll is significantly wider than it is tall (width approximately 1.8 times height) and is clearly off-center to the left or right in the lower third of the frame. Keep the farm context and unattended tractor in the background.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 26,
+      "product_height_percent": 30,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "The image displays exactly one white-and-blue AFP drip-tape carton roll placed on soil.",
+        "The unattended tractor and farm hardware in the background serve as an acceptable infrastructure context without people or human silhouettes.",
+        "The product is positioned in the lower half of the frame and is centered horizontally, which is permitted as long as it is not strictly centered in the vertical middle staging.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-قطرهچکان-در-کشت-شنبلیله-چالشها-جزئیات-فنی.webp"
+}

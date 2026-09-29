@@ -1,0 +1,56 @@
+{
+  "id": "xref-645",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 10,
+      "product_height_percent": 15,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Image contains a prominent human figure (farmer), which triggers a hard reject based on the 'zero people and zero human body parts' rule.",
+        "The product is a cylindrical container/canister rather than the required 'wide low cylindrical drip-tape carton roll'.",
+        "The product is being held by a human hand, rather than resting naturally on the soil.",
+        "The product is too small relative to the frame; width is estimated at 10%, falling below the minimum acceptable estimate of 13%.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with absolutely no people or body parts. Place a wide, low, cylindrical white-and-blue drip-tape carton roll on the soil. Ensure the roll width is between 20-23% of the frame width and height is under 32%. The crop should be a clearly identifiable wheat field or similar grain crop context. Retain the bottom-right watermark. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 21,
+      "product_height_percent": 17,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Presence of a human (farmer) is a hard reject.",
+        "The subject is examining the crops rather than interacting with the irrigation product."
+      ],
+      "correction_prompt": "Remove the man and hands. Ensure the AFP drip-tape roll remains the primary subject in the lower third, positioned naturally on the soil with no human figures present in the wheat field.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The product is correctly identified as an AFP white-and-blue drip tape roll.",
+        "The image contains zero people or human body parts.",
+        "The exact required bottom-right watermark 'AFP | 09134922013' is present.",
+        "The product's geometry and placement align with the specified parameters (off-center, on soil, secondary to background).",
+        "The background context (irrigated crop rows) matches the agronomic story for drip tape without violating the 'no exact crop' rule.",
+        "Ordinary irrigation infrastructure (the drip line) is present but does not trigger a hard reject as per instructions."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-گلرنگ-راهنمای-جامع-کاربرد-عملی.webp"
+}

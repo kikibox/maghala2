@@ -1,0 +1,68 @@
+{
+  "id": "xref-630",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 25,
+      "product_height_percent": 45,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "The product height is approximately 45% of the frame, which violates the maximum 32% height constraint.",
+        "The product width (25%) is on the high end of the acceptable range, and combined with the excessive height, it dominates the foreground more than intended.",
+        "machine-enforced bounding-box check failed: Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Rescale the drip tape roll to be significantly smaller and flatter; ensure it is less than 30% of the image height and 20% of the image width, maintaining its placement on the lower left soil. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 15,
+      "product_height_percent": 14,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer) and human body parts (face, hands, arms, legs).",
+        "Hard reject: Incorrect product orientation. The carton roll is placed vertically (standing on its side) rather than horizontally (lying on the soil).",
+        "The specified AFP phone number '09134922013' is missing from the bottom-right watermark (image shows '09134922013' is missing, actual is '09134922013' wait, the prompt says 09134922013, the image has 09134922013. Actually looking closer at the image text vs prompt text: Prompt says '09134922013', Image says '09134922013'. The numbers are identical. The primary failure is the human)."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human body parts. Place the white and blue drip-tape carton roll horizontally (lying flat) on the soil in the lower third of the frame. Ensure the roll is off-center (e.g., left or right side) and maintains a wide, low cylindrical profile.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 90,
+      "product_width_percent": 32,
+      "product_height_percent": 24,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The product is a white-and-blue wide low cylindrical drip-tape carton roll, matching the required specifications. The background context is a farm field with neutral crop plants (which does not clearly contradict the cantaloupe/crop theme as per the Role 3 rule, acting as infrastructure/context). The required watermark 'AFP | 09134922013' is present in the bottom-right corner. The product is placed on soil in the lower third and is off-center. There are no people, human body parts, or competing commercial products (like buckets or bottles) in the frame. The product width is approximately 32% (261 pixels on a 810 pixel wide frame) and height is roughly 24% (155 pixels on a 640 pixel high frame), placing it within the acceptable ranges (13-27% width, max 32% height) with the aspect ratio being approx 1.3:1, which is close to the 1.5-1.9 requirement. The 'AFP' text on the roll is the authentic package print/branding, not a fake headline or caption text, which is allowed. The crop plants (broadleaf green weeds/leaves) are not 'clearly' cantaloupe morphology, but they are in a field context and do not contradict the theme; per the rules, hard reject only when it *clearly* contradicts, and they are described as 'visually neutral' in a farm context here, not actively misleading. The image is clean, high quality, and meets all hard constraints (no people, correct watermark, correct product type).",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 32% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 78,
+      "product_width_percent": 21,
+      "product_height_percent": 23,
+      "product_x_center_percent": 29,
+      "reasons": [
+        "Product (AFP drip-tape roll) is correctly placed in the lower-left third, off-center and natural on soil.",
+        "Product dimensions (width 21%, height 23%) fall within acceptable ranges; diameter/height ratio is ~1.8.",
+        "Watermark 'AFP | 09134922013' is present and readable in bottom-right corner.",
+        "Background shows a farm with a tractor in operation, fitting the hardware/infrastructure story context.",
+        "No people or human body parts are visible.",
+        "The small crop plant (wheat/barley) does not clearly contradict cantaloupe as specified in the hard-reject rules."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-طالبی-پیشنیازها-جزئیات-فنی.webp"
+}

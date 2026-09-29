@@ -1,0 +1,86 @@
+{
+  "id": "xref-646",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 19,
+      "product_height_percent": 24,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Second package present: an extra drip-tape reel is visible lying on the ground to the right of the main carton roll",
+        "Second package violation",
+        "Second roll violation",
+        "Multiple drip-tape items in frame"
+      ],
+      "correction_prompt": "Regenerate the image to show exactly one upright white-and-blue wide low cylindrical drip-tape carton roll placed on the soil in a farm context; remove the extra drip-tape reel lying on the ground; keep the AFP | 09134922013 watermark visible.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 35,
+      "product_height_percent": 43,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product width (~35%) exceeds the maximum 27% limit",
+        "Product height (~43%) exceeds the maximum 32% limit",
+        "Product is centered horizontally instead of being off-center in the lower third",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 13-27% of frame width.; Reduce product height from 43% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image to significantly reduce the drip-tape roll's size so its width is under 27% and height under 32% of the frame. Move the roll off-center to the left or right side in the lower third of the frame, keeping it placed on the soil and preserving the exact bottom-right watermark Reduce the product group from 35% to 13-27% of frame width. Reduce product height from 43% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 11,
+      "product_height_percent": 15,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Presence of a person (farmer) which is a hard reject rule, violating the 'zero people' requirement.",
+        "Presence of human body parts (hands, face, legs, feet) in the frame.",
+        "The product roll is too small relative to the recommended width (currently ~11% vs preferred 20-23%).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to remove the farmer and all human body parts. Place the AFP white and blue drip tape roll on the soil in the lower third, off-center, with the roll occupying approximately 20-23% of the frame width. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "The prompt specifies 'drip-tape' but the product visual appears to be a roll of perforated pipe (like PEX or PPR), which lacks the flat, tape-like geometry of drip tape.",
+        "The roll is positioned in the lower foreground center, but the product is relatively large and acts as the main subject rather than being a secondary element in a wider scene.",
+        "The product diameter/height ratio is too high; it appears taller relative to its width than a typical wide drip-tape roll.",
+        "The packaging design (white with blue) is generic and does not clearly read as an 'AFP white-and-blue' branded carton roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with a wide flat roll of drip-tape (not round pipe) made of white and blue material. The roll should be smaller, positioned off-center to the right, and look like it is lying on the soil in a farm field. Maintain the 'AFP | 09134922013' watermark in the bottom right. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 21,
+      "product_height_percent": 19,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product width is approximately 21% and height is 19% of the frame, which falls well within the acceptable 13-27% width range and the maximum 32% height limit.",
+        "The visible diameter of the roll is roughly 1.1 times its height, which is slightly narrower than the 1.5-1.9 preferred ratio but remains physically consistent with a wide cylindrical carton roll.",
+        "The product is naturally placed on the soil in a farm field context, with a barn and distant crops providing appropriate background infrastructure without any visible human presence.",
+        "The required watermark 'AFP | 09134922013' is clearly visible in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-مارچوبه-راهنمای-جامع-جزئیات-فنی.webp"
+}

@@ -1,0 +1,65 @@
+{
+  "id": "xref-645",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 53,
+      "reasons": [
+        "Hard reject: Image contains a person (arm, hand, and leg visible on the right side).",
+        "The product is centered in the frame rather than off-center on the lower third."
+      ],
+      "correction_prompt": "Remove all people and body parts from the image. Move the drip-tape carton roll to the left or right side, off-center in the lower third of the frame. Keep the farm background with the tractor and crops.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 17,
+      "product_height_percent": 21,
+      "product_x_center_percent": 71,
+      "reasons": [
+        "Hard reject: The product in the foreground appears to be a roll of irrigation drip tape, but the background contains corn (maize). This clearly contradicts the required crop (lentil) in the topic-specific farm context.",
+        "The background context does not match the required crop, violating the role 3 instruction to maintain topic-specific farm context when identifiable crops are present."
+      ],
+      "correction_prompt": "Replace the background corn crop with lentils to match the article title. Ensure the drip tape roll remains in the foreground with the required watermark and dimensions.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 20,
+      "reasons": [
+        "Product width is approximately 12% of the frame, falling below the acceptable 13-27% range; the roll appears too small relative to the frame height.",
+        "The product is partially cropped at the bottom-left corner, violating the requirement for the roll to be naturally placed and fully visible.",
+        "The diameter-to-height ratio of the visible roll portion is less than 1.5x, failing the specific geometry requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the AFP drip-tape roll positioned fully within the frame in the bottom-right (right-lower third), increasing its width to approximately 20-22% of the frame and ensuring a diameter-to-height ratio of roughly 1.7x on flat soil. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 21,
+      "product_height_percent": 25,
+      "product_x_center_percent": 62,
+      "reasons": [
+        "Contains exactly one white cylindrical roll with clear AFP branding and the required bottom-right watermark.",
+        "Product is positioned off-center on the soil (lower third), with appropriate secondary sizing relative to the frame.",
+        "Background context (tractor and barn) aligns with a farm/hardware story, and no people or human body parts are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-گلرنگ-راهنمای-جامع-جزئیات-فنی.webp"
+}
