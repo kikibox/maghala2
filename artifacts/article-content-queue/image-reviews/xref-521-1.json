@@ -1,0 +1,58 @@
+{
+  "id": "xref-521",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 9,
+      "product_height_percent": 11,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: The image contains a full-body human figure (farmer crouching) and visible hands interacting with the product.",
+        "The product is not a wide low cylindrical drip-tape carton roll; it appears to be a smaller container or drum, failing the geometry requirement.",
+        "The product is centered and too small (under 13% width of the frame).",
+        "Zero people rule was violated.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to exclude all human figures, faces, or hands. Feature exactly one wide, low cylindrical AFP white-and-blue drip-tape roll (diameter 1.5-1.9x height) placed naturally on the soil. The roll should be off-center on the lower third, wider (20-23% of frame), and the background must remain the farm context without the person. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 30,
+      "product_height_percent": 28,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Presence of a visible person (human silhouette) standing in the background, which is a hard reject criteria.",
+        "Missing the required exact bottom-right watermark string 'AFP | 09134922013' (the image displays a different/modified watermark).",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person in the background. Replace the bottom-right watermark with the exact text 'AFP | 09134922013'. Ensure the product width is reduced to less than 27% of the frame width and moved to the lower third. Reduce the product group from 30% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 70,
+      "product_width_percent": 22,
+      "product_height_percent": 17,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Exactly one white-and-blue cylindrical carton roll is visible",
+        "Product is positioned off-center in the lower third on soil",
+        "Product width and height are within acceptable ranges (13-27% width, <=32% height)",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner",
+        "Zero people or human body parts are visible",
+        "The crop morphology is consistent with the context",
+        "No hard reject items (second package, container, etc.) are present"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-با-رانش-در-کشت-بادمجان-راهنمای-جامع-تصویر-شاخص.webp"
+}

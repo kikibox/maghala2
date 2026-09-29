@@ -1,0 +1,76 @@
+{
+  "id": "xref-515",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 14,
+      "product_height_percent": 11,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: Visible human body parts (arm, hand, leg, torso) present in the image.",
+        "Placement violation: The product is being held by hands rather than naturally placed on the soil.",
+        "Context violation: The crop appears to be broccoli or a similar brassica seedling, not recognizable as clover (شبدر).",
+        "Staging violation: The product is being manipulated by a person rather than resting on the ground as required."
+      ],
+      "correction_prompt": "Regenerate image with no people or body parts. Place a white and blue cylindrical drip-tape roll naturally on the soil, off-center. The crop must be a dense, low clover canopy with three-leaflet leaves. The background must be a clover farm.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 92,
+      "product_width_percent": 22,
+      "product_height_percent": 35,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Zero people, faces, or human body parts present.",
+        "Watermark is exact and positioned in the bottom-right.",
+        "Exactly one wide, low, cylindrical roll positioned on the soil.",
+        "Visible diameter ratio approximately 1.7 (within the 1.5-1.9 range).",
+        "Product is off-center and naturally placed on soil.",
+        "Crop morphology (three-leaflet clover) is identifiable in the dense low canopy.",
+        "Background visibly matches the clover farm context.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 15,
+      "product_height_percent": 15,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Hard reject: A person (farmer) is clearly visible in the image, which violates the 'zero people' rule.",
+        "Hard reject: The drip tape roll appears too small to be the main product (secondary status is okay, but here it's barely visible next to the human).",
+        "The crop shown is not unmistakably clover (tripinnate) but looks more like broadleaf vegetation.",
+        "Extra items: Gardening hand tools (knives/spade) are on the ground, which may be interpreted as extra clutter."
+      ],
+      "correction_prompt": "Regenerate image: Remove all people and body parts. Remove all hand tools. Feature an AFP white-and-blue cylindrical drip tape roll placed naturally on the soil in the lower third, off-center (approx 15% of frame width). The crop must be clearly recognizable as clover with three-leaflet leaves in a dense low canopy. Maintain the bottom-right watermark 'AFP | 09134922013'.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 20.5,
+      "product_height_percent": 28.5,
+      "product_x_center_percent": 38.2,
+      "reasons": [
+        "The required 'AFP | 09134922013' watermark is present in the bottom right.",
+        "The image contains zero people, human body parts, or silhouettes.",
+        "The product is an AFP white-and-blue cylindrical drip-tape carton roll, placed naturally on soil.",
+        "Product dimensions are within acceptable bounds (width approx. 20%, height approx. 29%, off-center).",
+        "The background shows a dense, low green canopy consistent with the requested crop article (clover or botanically neutral young vegetation) without hard-rejecting species mismatches.",
+        "Visible text on the roll (AFP and other print) is coherent and matches the brand."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-خرسابی-در-کشت-شبدر-چالشها-کاربرد-عملی.webp"
+}

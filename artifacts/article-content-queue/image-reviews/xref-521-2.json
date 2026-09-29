@@ -1,0 +1,73 @@
+{
+  "id": "xref-521",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 10,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: A person (farmer) is clearly visible in the image.",
+        "The drip tape roll is being held by a human, which is explicitly forbidden.",
+        "Product is not placed naturally on soil (it is held in hands).",
+        "Product is centered/held by hands rather than off-center on the lower third.",
+        "Image role 2 (product context) is violated due to the presence of a human operator.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Place a white and blue cylindrical drip tape carton roll on the soil in the foreground. Ensure the roll is off-center to the left or right and naturally resting on the ground. Keep the farm background with tractor and crops but ensure no humans are visible. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 26,
+      "product_height_percent": 36,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The crop in the image is clearly corn/maize (identifiable by the long, broad, parallel-veined leaves), whereas the article title specifies 'tomatoes'. This is a hard reject for a clearly identifiable different species.",
+        "The product roll (drip tape) height is approximately 36% of the frame (from pixel y=505 to y=765 on a 768px high image), which exceeds the maximum allowed height of 32%.",
+        "machine-enforced bounding-box check failed: Reduce product height from 36% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Replace the corn field with a young tomato field (indeterminate seedlings with characteristic lobed leaves) to match the article title. Scale down the drip tape roll to be smaller so its height is under 32% of the frame height, while keeping it off-center on the lower third. Reduce product height from 36% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 11,
+      "product_height_percent": 11,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Person is clearly visible (kneeling farmer with arms and legs)",
+        "Product roll width is 11%, which is below the minimum practical threshold of 13%",
+        "Product roll height is 11%, which fails to meet the minimum 1.5:1 diameter-to-height ratio requirement (11/11 = 1.0:1)",
+        "Product is positioned nearly centered on the x-axis instead of the required off-center position on the lower third",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with zero people or human body parts. Remove the kneeling figure. Increase the diameter of the white AFP drip-tape roll to be approx 1.5-1.9x its height. Scale the roll so it occupies approximately 15-20% of the frame width. Position the roll strictly off-center on the left or right side of the lower third, placed naturally on the soil. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 26,
+      "product_height_percent": 22,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Correctly displays the 'AFP | 09134922013' watermark in the bottom right as required.",
+        "Product is a white-and-blue wide, low cylindrical carton roll placed on soil in the lower third, off-center.",
+        "The visual geometry matches the 1.5 to 1.9x width-to-height ratio requirement.",
+        "The scene includes zero human body parts, faces, or silhouettes.",
+        "The image role 2 context (a farm field with early-stage crops and a red barn) provides a valid agronomic story for drip tape without hard-rejecting for lacking a specific mature crop."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-با-رانش-در-کشت-بادمجان-راهنمای-جامع-کاربرد-عملی.webp"
+}

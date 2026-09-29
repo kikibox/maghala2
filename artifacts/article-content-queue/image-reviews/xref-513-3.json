@@ -1,0 +1,57 @@
+{
+  "id": "xref-513",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 30,
+      "product_height_percent": 35,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: visible carrots are in the foreground next to the product; while not strictly contradicting cucumber, they introduce a confusing crop context that conflicts with the specific 'cucumber' requirement for Role 3 crop neutrality/consistency.",
+        "Hard reject: additional objects (an alarm clock and carrots) are placed near the product, violating the requirement to keep the product secondary and the scene clean of unrelated staged items or extra commercial product feel.",
+        "The product bounding box is too large; width is estimated at 30% and height at 35%, exceeding the 27% width and 32% height limits.",
+        "The product is not on the lower third off-center; it is positioned quite centrally in the lower foreground.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the carrots and the alarm clock from the foreground. Reduce the size of the drip tape roll so it occupies 20-23% of the width. Position the roll lower in the frame on the soil, off-center to the left or right. Keep the background tractor and field but ensure the foreground is clean soil without staged vegetables or clocks. Reduce the product group from 30% to 13-27% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 13,
+      "product_height_percent": 12,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The image explicitly shows carrots (orange root vegetables with green tops), which clearly contradicts the required crop context of 'خیار' (cucumber), triggering the hard reject clause for an identifiable crop that contradicts the specified crop.",
+        "The product (the drip-tape carton roll) is not depicted as a 'white-and-blue wide low cylindrical' roll; it appears as a small, upright cylindrical carton, violating the shape description.",
+        "The product is located at the very bottom edge of the frame, failing to meet the requirement of being placed on the lower third (y-axis position)."
+      ],
+      "correction_prompt": "Replace the carrots in the foreground with visible cucumber plants (green vines with small cucumber fruits). Ensure the drip-tape roll is a white and blue wide, low, cylindrical carton roll, positioned naturally on the soil within the lower third of the frame, remaining off-center.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 19,
+      "product_height_percent": 22,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The product (drip-tape carton roll) is placed on the soil in the lower third of the frame and is off-center.",
+        "The visible diameter to height ratio of the roll meets the 1.5 to 1.9 requirement.",
+        "No people, human body parts, or silhouettes are present in the image.",
+        "The exact bottom-right watermark 'AFP | 09134922013' is present.",
+        "Surrounding crops feature cucumber fruits, which are consistent with the topic and do not trigger a hard reject.",
+        "Image context (farm field with distant barn) successfully matches the farm setting without containing any prohibited secondary packaging or containers."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-قطرهچکان-در-کشت-خیار-مقایسه-جزئیات-فنی.webp"
+}

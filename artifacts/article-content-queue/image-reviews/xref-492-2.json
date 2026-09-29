@@ -1,0 +1,91 @@
+{
+  "id": "xref-492",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 2,
+      "product_height_percent": 2,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Image contains two people (facing farmer and crouching farmer)",
+        "The product is a small white bottle/jar, not a wide cylindrical drip-tape carton roll",
+        "Product is held in a human hand",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 2% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people, no human body parts, and no small bottles. Feature a wide, low cylindrical white-and-blue drip-tape carton roll placed naturally on the soil as the sole product. The roll must be off-center in the lower third, approximately 20-25% of the frame width, and the background must match a specific farm crop context (e.g., potato fields) without any other infrastructure. Enlarge the product group from 2% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The product is positioned too centrally (lower-center) rather than being clearly off-center as required.",
+        "The bounding box of the product is centered in the lower third, violating the specific placement constraint for off-center staging."
+      ],
+      "correction_prompt": "Regenerate the image with the drip-tape roll positioned distinctly to the left or right side of the frame, ensuring it is not centered horizontally, while maintaining the farm context and watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 15,
+      "product_height_percent": 22,
+      "product_x_center_percent": 70,
+      "reasons": [
+        "Hard reject: Image contains two people (a woman and a child) sitting on the soil, which violates the strict 'zero people' constraint."
+      ],
+      "correction_prompt": "Regenerate the image with the cornfield and drip tape carton exactly as they are, but remove the woman and the child completely so no people or body parts are visible.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 13,
+      "product_height_percent": 15,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Diameter-to-height ratio is too small (approx. 0.8x), failing the requirement of 1.5 to 1.9x."
+      ],
+      "correction_prompt": "Regenerate the image with a horizontally oriented, wide cylindrical drip-tape roll. Increase the product's diameter to be 1.5 to 1.9 times its height, making the roll visibly wider. Ensure the product width is at least 15% of the frame while maintaining its placement on the lower left.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 15,
+      "reasons": [
+        "Hard reject: Human visible (a man is crouching next to the product and placing a hand on it)."
+      ],
+      "correction_prompt": "Remove the man completely and keep only the empty farm context with the unattended drip tape carton.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 14,
+      "product_height_percent": 15,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "The exact AFP watermark 'AFP | 09134922013' is present in the bottom right corner.",
+        "Product geometry is correctly proportioned with a wide cylindrical diameter relative to its height.",
+        "The product is placed off-center in the lower third of the frame as required.",
+        "Zero people or human body parts are visible in the image.",
+        "The product dimensions are within the acceptable 13-27 percent width range.",
+        "Background features a farm context with crop rows and a rural building."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-پنبه-هزینه-در-مزرعه-کاربرد-عملی.webp"
+}

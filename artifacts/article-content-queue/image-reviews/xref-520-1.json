@@ -1,0 +1,57 @@
+{
+  "id": "xref-520",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Hard reject: The image contains a human figure (arm, hand, leg, and boot) in the foreground, which violates the 'zero people' and 'zero human body parts' requirements.",
+        "Hard reject: The drip-tape carton roll appears smaller than the preferred minimum width (estimated at 12%, below the 13% practical threshold).",
+        "Hard reject: The geometry of the roll does not meet the aspect ratio requirement; it appears more like a square or isometric cube rather than a wide low cylindrical carton (diameter not 1.5-1.9 times height).",
+        "Fail: The crop shown is indistinguishable generic 'seedlings' rather than a botanically accurate crop suitable for the specific 'city, family tape20' article title.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any human figures. Replace the cube-like shape with a realistic wide, low cylindrical drip-tape roll placed on the soil. Increase the roll size to occupy roughly 15-20% of the image width. Ensure the crop rows clearly resemble a specific agricultural crop (e.g., corn seedlings or lettuce) rather than generic green sprouts. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 72,
+      "product_width_percent": 14,
+      "product_height_percent": 35,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "The product is positioned too low vertically; its bottom edge is flush with the frame boundary instead of being naturally placed on the soil in the lower third.",
+        "The roll is slightly too tall (approx 35% of frame height vs max 32% limit), causing it to touch the bottom edge.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Raise the roll position to sit naturally on the soil in the lower third of the frame without touching the bottom border; reduce the vertical height to 32% or less of the frame to ensure it looks planted in the dirt rather than floating at the edge. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 19,
+      "product_height_percent": 16,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Product geometry is correct: wide, low cylindrical roll with diameter approx 1.2x height, placed on soil.",
+        "Product is a single white-and-blue AFP drip-tape carton roll.",
+        "Zero people or human body parts detected.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom right.",
+        "Background matches a farm context with rows of young crops (mint/citrus) and distant barn.",
+        "Product is placed in the lower third of the frame and remains secondary to the background scene."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-کینوا-مزایا-تصویر-شاخص.webp"
+}
