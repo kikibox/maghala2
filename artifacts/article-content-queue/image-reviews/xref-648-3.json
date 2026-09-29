@@ -1,0 +1,56 @@
+{
+  "id": "xref-648",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Presence of a human figure (silhouette/person) in the background near the tractor, which is a hard reject requirement.",
+        "The image contains a second irrigation component (a vertical stake or manifold with tubing) next to the roll, which could be interpreted as an extra commercial product or hardware clutter.",
+        "The product width (approx 14%) and height (approx 18%) are within acceptable secondary staging bounds, but the human figure triggers immediate rejection."
+      ],
+      "correction_prompt": "Remove the person standing near the tractor in the background. Remove the vertical irrigation stake/tubing next to the roll so only the single carton roll is visible on the soil.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 26,
+      "product_height_percent": 29,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "A human figure (driver silhouette) is clearly visible inside the unattended tractor in the background.",
+        "Hard reject rule violation: The presence of any human body part or silhouette, even in the distance, causes automatic failure.",
+        "Additional hard reject violation: A second commercial product (a mechanical drip stake/anchor) is present next to the carton roll.",
+        "Product height is too large relative to the frame (29%) and the width (26%) is near the upper limit, failing the 'secondary product' requirement."
+      ],
+      "correction_prompt": "Regenerate the image with a completely unmanned tractor in the background (driver cabin must be empty). Remove the mechanical drip stake from the foreground. Shrink the drip tape carton roll to be approximately 18% of the frame width and 22% of the frame height to ensure it remains secondary to the irrigation hardware context.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 18,
+      "product_height_percent": 18,
+      "product_x_center_percent": 29,
+      "reasons": [
+        "Watermark 'AFP | 09134922013' is present and correct.",
+        "Product matches description: AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Zero people or body parts visible (tractor is unattended infrastructure).",
+        "Product width and height are within acceptable parameters (secondary size).",
+        "Product is off-center on the lower third and naturally placed on soil.",
+        "Hardware story context (tractor, irrigation field) is appropriate."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-رانشی-در-کشت-خربزه-راهنمای-جامع-جزئیات-فنی.webp"
+}

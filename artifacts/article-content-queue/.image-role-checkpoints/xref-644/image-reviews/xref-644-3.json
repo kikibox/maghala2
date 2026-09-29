@@ -3,76 +3,67 @@
   "kind": 3,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 12,
-      "product_width_percent": 15,
-      "product_height_percent": 22,
-      "product_x_center_percent": 82,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 38,
       "reasons": [
-        "Multiple people present (crouching man, hands in panel 2).",
-        "Crops present appear to be broad-leafed (likely sunflower or similar), which contradicts the required crop context of alfalfa (یونجه).",
-        "Collage format with 3 distinct frames.",
-        "Center panel shows a small cylindrical container held by hands, not a wide low drip-tape carton roll."
+        "Hard reject: Visible human body parts on the right side of the image (arm, hand, leg, foot).",
+        "Product height exceeds the 32% limit; estimated height is approximately 15%.",
+        "Product width is approximately 12%, below the 13% practical minimum.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
       ],
-      "correction_prompt": "Single wide image of a wide, low cylindrical drip-tape carton roll placed on dry soil. The roll is blue and white. No people. No crops visible or visible rows of tall clover/alfalfa plants in background. Roll is 20% width, off-center to the left. Watermark 'AFP | 09134922013' bottom right.",
+      "correction_prompt": "Remove all human silhouettes and body parts from the right side of the frame. Increase the drip-tape roll to be wider and shorter (height no more than 32%, width between 20-23%) to meet geometric requirements. Enlarge the product group from 12% to 13-27% of frame width.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 30,
-      "product_width_percent": 21,
-      "product_height_percent": 28,
-      "product_x_center_percent": 28,
+      "score": 35,
+      "product_width_percent": 16,
+      "product_height_percent": 20,
+      "product_x_center_percent": 30,
       "reasons": [
-        "Hard reject: multiple people (silhouettes/bodies) are visible in the background field."
+        "The crop plant in the foreground has a morphology that does not resemble alfalfa (clover), instead appearing like a flowering legume such as bean or pea with distinct pinnate leaves, which contradicts the topic."
       ],
-      "correction_prompt": "Regenerate the image with no people, faces, hands, or human silhouettes visible. Keep the white and blue cylindrical drip tape roll on the soil in the lower left, with the AFP watermark in the bottom right.",
+      "correction_prompt": "Regenerate the image replacing the foreground flowering plant with a neutral soil patch or a generic green alfalfa (clover) patch, keeping the white and blue AFP drip-tape roll on the left as is.",
       "attempt": 2
     },
     {
       "pass": false,
-      "score": 15,
-      "product_width_percent": 22,
-      "product_height_percent": 28,
-      "product_x_center_percent": 24,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 25,
+      "product_x_center_percent": 18,
       "reasons": [
-        "Presence of a person (farmer/worker) and human body parts (face, hand, arm, leg) is a hard reject requirement; the scene must be devoid of any people.",
-        "A second identical roll/package is visible near the hand, violating the 'zero extra commercial products' rule."
+        "Hard reject: image contains a human (male farmer in overalls crouching).",
+        "Hard reject: human body parts (face, arms, legs) are clearly visible.",
+        "Presence of the human violates the 'zero people' and 'zero human body parts' requirements."
       ],
-      "correction_prompt": "Remove the crouching man and his hand completely. Ensure only one white-and-blue drip-tape roll is present on the soil in the lower-left area, with no human silhouettes or body parts visible.",
+      "correction_prompt": "Remove the crouching man and his hands entirely. Retain the farm background, the specific crop rows (alfalfa), and the white-and-blue AFP drip-tape roll in the lower-left foreground. Ensure no human silhouettes are present.",
       "attempt": 3
     },
     {
-      "pass": false,
-      "score": 20,
-      "product_width_percent": 15,
-      "product_height_percent": 16,
-      "product_x_center_percent": 28,
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 16.5,
+      "product_height_percent": 16.0,
+      "product_x_center_percent": 31.5,
       "reasons": [
-        "Hard reject: Person/farmer is clearly visible in the background on the right.",
-        "Hard reject: Human body parts (face, arms, legs, hands) are visible and identify a human silhouette."
+        "Product is a single AFP white and blue wide low cylindrical drip-tape carton roll",
+        "Roll is off-center on the lower third and naturally placed on soil",
+        "Crop context is neutral/non-contradictory for alfalfa drip-tape use",
+        "No people, body parts, or silhouettes are visible",
+        "Required bottom-right watermark 'AFP | 09134922013' is present and intact",
+        "No prohibited extra commercial products, bottles, or second rolls are visible",
+        "Proportions and placement fall within acceptable practical ranges"
       ],
-      "correction_prompt": "Remove the person on the right side of the field, keeping only the unattended tractor and the crop rows.",
+      "correction_prompt": "",
       "attempt": 4
-    },
-    {
-      "pass": false,
-      "score": 25,
-      "product_width_percent": 14,
-      "product_height_percent": 13,
-      "product_x_center_percent": 38,
-      "reasons": [
-        "Presence of a human farmer sitting in the foreground holding a tool, which is a hard reject condition (zero people, body parts, or silhouettes allowed).",
-        "Background shows a corn/maize crop, which visually contradicts the required topic of 'alfalfa' (clover-like broadleaf).",
-        "The AFp drip-tape roll is placed on a wooden stand rather than being 'naturally placed on soil' as required.",
-        "Hard reject for 'bottle, jar, canister' applies to the cylindrical container shape, though it is the required product, the human subject is the primary failure."
-      ],
-      "correction_prompt": "Regenerate the image to strictly remove the farmer and any human presence. Ensure the background is an alfalfa field (broadleaf) rather than corn. Place the AFP white and blue wide low cylindrical drip-tape roll directly on the soil, off-center in the lower third. Do not place it on a stand. Maintain the bottom-right watermark 'AFP | 09134922013'.",
-      "attempt": 5
     }
   ],
-  "approved_image": null
+  "approved_image": "آبیاری-قطرهای-با-قطرهچکان-در-کشت-یونجه-کاربردها-جزئیات-فنی.webp"
 }

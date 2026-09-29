@@ -1,0 +1,41 @@
+{
+  "id": "crop-051",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Image contains a person (crouching male farmer), which is a hard reject condition.",
+        "The product is a small cylindrical container/bottle (likely seed, fertilizer, or pesticide) held by the person, not the required wide, low cylindrical drip-tape carton roll.",
+        "The crop morphology (broad lobed leaves) is acceptable for canola, but the product violation is critical.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person completely. Replace the small container in the hand with a single wide, low, cylindrical white-and-blue AFP drip-tape carton roll resting on the soil. Ensure the roll is off-center in the lower third of the frame, with a diameter 1.5 to 1.9 times its height. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 23,
+      "product_height_percent": 26,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product is a single AFP white-and-blue drip-tape roll placed naturally on soil.",
+        "Crop is correctly identified as canola/rapeseed with lobed brassica leaves, without any maize, tomato, or cereal features.",
+        "All size, shape, and off-center placement constraints are met.",
+        "Zero people or body parts are visible.",
+        "The required bottom-right watermark is clearly present and correctly formatted."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-کلزا-با-آبیاری-قطرهای-تصویر-شاخص.webp"
+}
