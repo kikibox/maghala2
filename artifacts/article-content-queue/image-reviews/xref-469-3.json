@@ -1,0 +1,87 @@
+{
+  "id": "xref-469",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Hard reject: visible person (farmer/woman) in the scene",
+        "Hard reject: human body parts (arms, hands, face, legs) clearly present",
+        "Product is not off-center on the lower third as required; it is centered and in the foreground",
+        "Image contains human silhouettes, violating the zero-person rule"
+      ],
+      "correction_prompt": "Remove the person entirely. Regenerate the scene to show only the AFP white-and-blue drip-tape carton roll on soil with irrigation hardware (no person), and move the product to the lower-left third (x-center around 30–35%), off-center and secondary.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 23,
+      "product_height_percent": 27,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Presence of additional irrigation hardware (blue and white striped drip tubing, manifold, and blue cap) violates the constraint of 'zero second package, second roll, extra commercial product' and 'exactly one' roll.",
+        "Text on the carton is illegible and not authentic to the 'AFP' standard, appearing as 'gibberish' or AI-generated placeholder text outside the package label requirement.",
+        "The crop visible in the background (young seedlings, likely corn) is visually identifiable and not 'neutral', potentially contradicting the 'sugar beet' context unless strictly filtered, but the hardware contamination is a definitive fail."
+      ],
+      "correction_prompt": "Regenerate image to include ONLY the single white and blue carton roll. Remove the extra drip tubing, manifold, and blue cap components from the foreground to satisfy the 'exactly one' product constraint. Ensure crop background is neutral/absent or strictly matches sugar beet. Correct the package text to be clean and readable.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 68,
+      "product_width_percent": 27,
+      "product_height_percent": 36,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product height exceeds the 32% hard reject threshold",
+        "Product width is at the absolute maximum limit (27%), lacking the preferred secondary presence",
+        "Product is centered rather than off-center on the lower third",
+        "machine-enforced bounding-box check failed: Reduce product height from 36% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shrink the drip tape carton roll to be approximately 20% wide and 25% tall. Move the product further to the left or right so it sits clearly off-center on the lower third of the frame. Reduce product height from 36% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 14,
+      "product_height_percent": 12,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Visible person in the background (hard reject criterion).",
+        "Visible human silhouette in the background.",
+        "Human body parts (arm, leg) are present in the image.",
+        "Identifiable crop (corn/maize) is present, which contradicts the strict requirement for 'sugar beet' morphology if crops are identifiable (though secondary, the person is the primary rejection).",
+        "The product is partially obscured by the crop and appears to be resting on soil, but the background elements violate the 'zero people' rule."
+      ],
+      "correction_prompt": "Regenerate the image with no people, no human silhouettes, and no arms or legs visible in the background. Ensure the farm setting remains clear but unpopulated. Keep the drip tape roll on the soil in the foreground.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 25,
+      "product_height_percent": 22,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is a single white cylindrical roll positioned in the lower third off-center.",
+        "Product width (25%) and height (22%) are within the acceptable ranges.",
+        "Product rests naturally on the soil surface.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present.",
+        "No human figures, body parts, or silhouettes are visible in the image.",
+        "Background shows a farm context with tractor, barn, and crop rows consistent with the article topic."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-قطرهچکان-در-کشت-چغندر-مزایا-جزئیات-فنی.webp"
+}

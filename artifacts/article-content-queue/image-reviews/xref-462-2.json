@@ -1,0 +1,72 @@
+{
+  "id": "xref-462",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Critical reject: A person (farmer/worker) is visible in the image, which is strictly prohibited.",
+        "Critical reject: Incorrect product. The image shows a small cylindrical canister or container, not the required 'wide low cylindrical drip-tape carton roll' (which should be wider than it is tall and roughly 20-23% of frame width).",
+        "Critical reject: Incorrect crop context. The background shows broadleaf plants with red flowers (likely a cover crop like buckwheat or similar), not the required 'lentil (عدس)' morphology (low fine-textured bushy legumes with pinnate leaflets).",
+        "Product placement error: The product is centered in the bottom third rather than off-center.",
+        "Product size error: The product is far too small (approx. 8% width vs required 20-23%).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate: Remove all people and body parts completely. Replace the canister with a single wide, low, cylindrical AFP drip-tape carton roll (white and blue) resting on the soil, occupying 20-25% of frame width. Change the field background to a lentil farm showing low, bushy legume plants with pinnate oval leaflets and small pods; remove red flowers. Place the roll off-center in the lower third. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 24.5,
+      "product_height_percent": 30.2,
+      "product_x_center_percent": 38.2,
+      "reasons": [
+        "The image contains visible gibberish/invented text below the AFP logo ('FLAG DROUGHT ETC'), which is a hard reject trigger outside authentic package print.",
+        "The crop morphology shows broad, coarse leaves and yellow flowers, which are likely brassica (mustard) rather than the required lentil (fine-textured bushy legumes with small oval leaflets)."
+      ],
+      "correction_prompt": "Remove all gibberish text under the logo and replace background plants with botanically accurate lentil seedlings showing small pinnate oval leaflets and thin stems instead of broad leaves.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 14,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: Human silhouette present (full body parts including legs, torso, and feet visible).",
+        "Hard reject: Product placement rule violated (product must be off-center and placed naturally on soil, not held by a person).",
+        "Hard reject: Product geometry inconsistent (cylinder held in hands, not resting on ground).",
+        "Crop morphology mismatch: Broad-leaf seedlings visible in the foreground are not consistent with the required lentil (عدس) description (fine-textured bushy legumes with pinnate leaflets)."
+      ],
+      "correction_prompt": "Regenerate without any humans. Place a white-and-blue wide low cylindrical drip-tape carton roll on the soil in the lower-third off-center position. Use lentil-specific crop morphology (fine-textured, branching stems, small pinnate leaflets) in the background. Ensure the exact watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The product is a white and blue cylindrical carton roll matching the description.",
+        "The 'AFP' logo and required bottom-right phone watermark are present and correct.",
+        "Product geometry is correct with an approximate 1.8:1 width-to-height ratio.",
+        "Product is placed naturally on soil in a farm context.",
+        "Zero people or human body parts visible.",
+        "Vegetation is young/seedling stage; allowed as it is not a clearly identifiable different species, just generic crop rows."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-قطرهچکان-در-کشت-عدس-هزینه-بهینه-کاربرد-عملی.webp"
+}

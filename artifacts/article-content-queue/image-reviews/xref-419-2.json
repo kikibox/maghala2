@@ -1,0 +1,109 @@
+{
+  "id": "xref-419",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 11,
+      "product_height_percent": 12,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Visible person (farmer) present in the image.",
+        "Wrong product geometry: The object is a vertical cylindrical spool/roll, but the spec requires a 'wide low cylindrical' carton roll (wide, flat, pancake-style).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with zero people or body parts. Replace the vertical spool with a wide, low flat cylindrical drip-tape carton roll (pancake shape) placed on the soil in the lower third. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Presence of a person (farmer), which is a hard reject criterion.",
+        "The product shown is a cylindrical canister/tub, not a wide low drip-tape carton roll.",
+        "The crop shown appears to be tomatoes, not melon (خربزه).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to show a wide, low, cylindrical white and blue drip-tape roll (labeled AFP) on the soil. The roll must be off-center in the lower third, approximately 20% of the frame width. Remove all people and human body parts. Change the crop to a melon field with recognizable botanically accurate vines, leaves, or fruit. Ensure the watermark 'AFP | 09134922013' remains in the bottom-right corner. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The crop shown in the background is clearly identifiable as tomatoes (Solanum lycopersicum), which is a hard reject. The image role specifically requires a context for melon (خربزه) farming, and tomatoes are a completely different species."
+      ],
+      "correction_prompt": "Replace the background tomato plants with a field of cucurbit vines featuring the large, lobed, broad leaves characteristic of melons or pumpkins, arranged in typical vining rows. Retain the AFP drip-tape roll in the foreground on the soil.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The drip tape roll is presented with a vertical orientation (a tall cylinder standing on its end) rather than the required 'wide low cylindrical' shape lying on its side.",
+        "The product height violates the 32% frame limit, being approximately 25% tall relative to its width due to the vertical orientation.",
+        "The melon fruit shapes are too rounded and resemble pumpkins rather than the typically oblong or netted shape of common melon varieties."
+      ],
+      "correction_prompt": "Regenerate the image with the drip tape roll in a horizontal orientation, lying flat on the soil as a 'wide low cylindrical' shape, reducing its vertical height. Change the melon fruit shape to be slightly oblong to accurately represent melons (Cucumis melo) instead of pumpkins.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 18,
+      "product_height_percent": 30,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Clearly identifiable different species (pumpkin) shown in place of melon",
+        "Background crop does not match the required article crop (melon)",
+        "Image role requirement for recognizable melon is violated"
+      ],
+      "correction_prompt": "Replace the pumpkin with a mature melon (botanically accurate shape and texture) and ensure the crop rows in the background feature melon plants.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 13,
+      "product_height_percent": 16,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "The product shape is a tall, narrow cylinder with a vertical aspect ratio. The requirement for the product is to have a visible diameter that is 1.5 to 1.9 times its visible height, which is characteristic of a 'wide low' cylindrical roll. The object in the image is significantly taller than it is wide.",
+        "The crop depicted is a watermelon, not the specified article crop of melon (kharpouz). While a melon is acceptable if neutral, a clearly identifiable different species should be hard rejected."
+      ],
+      "correction_prompt": "Regenerate the image showing a wide, low, cylindrical drip-tape roll. The roll must have a flat profile where the diameter is roughly 1.5 to 1.8 times the height. The background must show melon plants or a neutral prepared field, not watermelons.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 93,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Product is an AFP white-and-blue wide low cylindrical drip-tape carton roll placed naturally on soil in a melon field.",
+        "Melon crops (خربزه) are clearly recognizable with botanically accurate growth stage.",
+        "Product dimensions and off-center placement meet the required bounds.",
+        "Zero people or human body parts visible.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present and unobstructed.",
+        "No hard rejects or extra commercial packaging detected."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-رانشی-در-کشت-خربزه-چالشها-کاربرد-عملی.webp"
+}

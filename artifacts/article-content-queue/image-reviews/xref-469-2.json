@@ -1,0 +1,54 @@
+{
+  "id": "xref-469",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 15,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: Image contains a clearly visible person (female farmer/worker) interacting with the crop and holding a bottle, violating the 'zero people' and 'no body parts' constraint.",
+        "Hard reject: The farmer is holding a white bottle/jar (fertilizer or pesticide container), which is explicitly forbidden by the 'bottle, jar, canister' rejection rule.",
+        "Hard reject: The 'AFP | 09134922013' watermark is rendered as an illegitimate black text box overlay (fake caption/gibberish) rather than the standard transparent authentic package print/watermark.",
+        "The drip tape roll is centered on the lower third, violating the 'off-center' requirement."
+      ],
+      "correction_prompt": "Remove the person and the bottle completely. Ensure the drip tape roll is placed off-center on the soil. Replace the black text box watermark with a standard, high-resolution transparent AFP contact watermark in the bottom-right corner.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 19,
+      "product_height_percent": 24,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product is centered in the lower third rather than off-center as required.",
+        "Background is a generic field with reddish-leafed plants that do not clearly match the specific 'sugar beet' crop context defined in the article (large low rosettes with thick reddish leaf stems); the plants shown look like ornamental plants or an unidentifiable species, risking a hard reject for 'different species'."
+      ],
+      "correction_prompt": "Reposition the roll off-center to the left (approx x=40%) and replace the background plants with clear rows of young sugar beet rosettes featuring distinct reddish stems to match the article context.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 20,
+      "product_height_percent": 27,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Image shows one AFP white-and-blue drip-tape roll naturally placed on soil.",
+        "Background clearly depicts sugar beet seedlings with reddish stems in rows, matching the crop description.",
+        "No people or human body parts are visible.",
+        "Watermark is correctly placed in the bottom-right corner.",
+        "Product dimensions and position are within accepted ranges (secondary role, off-center)."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-قطرهچکان-در-کشت-چغندر-مزایا-کاربرد-عملی.webp"
+}

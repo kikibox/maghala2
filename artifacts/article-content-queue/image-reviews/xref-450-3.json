@@ -1,0 +1,107 @@
+{
+  "id": "xref-450",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 19,
+      "product_height_percent": 26,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Hard reject: Person visible in the background (farmer working near the tractor)."
+      ],
+      "correction_prompt": "Remove all human figures and silhouettes from the background, keeping the tractor and farm landscape but ensuring no people are visible.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 15,
+      "product_height_percent": 15,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: The image contains two visible people (farmers/workers) in the foreground and mid-ground, which violates the 'zero people' constraint.",
+        "Hard reject: The second farmer standing in the background is fully visible, contradicting the requirement to avoid human silhouettes or bodies.",
+        "The product width is estimated at 15%, which is below the preferred 20-23% range, though acceptable; however, the presence of people is the primary failure."
+      ],
+      "correction_prompt": "Remove all people and human figures from the image completely. Regenerate the scene showing only the AFP drip-tape roll on the soil with the farm background, ensuring the product remains in the lower third and off-center.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25,
+      "product_height_percent": 22,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Zero people rule violated: the background clearly contains farmers/workers on and around the tractors."
+      ],
+      "correction_prompt": "Regenerate the scene completely without any people. Keep the tractors and farm hardware unattended. Ensure the white-and-blue drip-tape roll is in the lower-left foreground on the soil.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 18.0,
+      "product_height_percent": 17.0,
+      "product_x_center_percent": 18.0,
+      "reasons": [
+        "Hard reject: The image contains multiple people (three distinct farmers/workers) and visible human body parts.",
+        "The instruction explicitly requires zero people and zero human body parts."
+      ],
+      "correction_prompt": "Remove all humans (workers and farmer) from the scene. Keep the tractor and drip tape roll in place.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 11,
+      "product_height_percent": 24,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Hard reject: Person visible in the image (sitting next to the roll)",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with no people, faces, or body parts visible. Keep the unattended tractor and the specific drip-tape roll on the soil as requested. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 17,
+      "product_height_percent": 13,
+      "product_x_center_percent": 24,
+      "reasons": [
+        "The 'AFP | 09134922013' watermark is rendered as a black box in the bottom right, which contradicts the required appearance of a standard, unboxed watermark.",
+        "The tractor driver's cabin contains a visible silhouette of a person (steering wheel and driver's form), violating the hard reject rule for any human presence or body parts.",
+        "The crop plants visible are brassicas (cabbage) which contradict the required topic of 'سبزی' (leafy vegetables)."
+      ],
+      "correction_prompt": "Regenerate the image to ensure the 'AFP | 09134922013' watermark is visible without a black background box. Remove all human silhouettes or drivers from the tractor cabin. Change the crop in the foreground to leafy greens such as lettuce or spinach instead of cabbages. Keep the white and blue drip-tape carton roll in the lower-left foreground on the soil.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "Product is a single white cylindrical carton roll",
+        "Off-center placement on the lower left (lower third)",
+        "Natural placement on soil surface",
+        "Background shows a farm context with tractor and leafy crops",
+        "Visible leafy greens do not contradict the topic",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner",
+        "Zero people or human body parts visible",
+        "Product dimensions are within the acceptable practical estimates"
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-نوار-تیپ-در-کشت-بادمجان-هزینه-بهینه-جزئیات-فنی.webp"
+}

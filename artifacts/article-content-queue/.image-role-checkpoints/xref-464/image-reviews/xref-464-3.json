@@ -1,0 +1,81 @@
+{
+  "id": "xref-464",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 13,
+      "product_height_percent": 15,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Human character (face, body) visible in the center",
+        "Tractor is manned (human silhouette in the cabin)",
+        "Diameter-to-height ratio is too low (wider than 1.5x its height)"
+      ],
+      "correction_prompt": "Regenerate without any humans, silhouettes, or manned equipment; keep the tractor empty and distant. Ensure the drip-tape roll is wider (diameter approx. 1.6-1.9x its height) and clearly secondary in scale.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 21.5,
+      "product_height_percent": 23.8,
+      "product_x_center_percent": 29.5,
+      "reasons": [
+        "Contains a visible human figure",
+        "Contains human body parts including head, face, hands, arms, legs, and feet"
+      ],
+      "correction_prompt": "Remove the human figure and all body parts entirely; ensure the drip-tape roll is placed alone on the soil with unattended irrigation hardware in the background.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 21,
+      "product_height_percent": 26,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Second package/commercial product visible: There are two additional dark blue coil rolls of irrigation tubing in the foreground right, violating the rule against a 'second roll' or 'extra commercial product'.",
+        "Crop contradiction risk: A green seedling (likely corn or similar monocot) is prominently displayed in the center. The prompt specifies hard reject if the crop clearly contradicts garlic (سیر); a visible corn/maize plant in a garlic article context constitutes a contradiction/neutral failure."
+      ],
+      "correction_prompt": "Remove the dark blue coiled rolls on the right; remove the green corn seedling from the center to avoid crop contradiction; retain the AFP white-and-blue drip-tape roll on soil and the background tractor.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 14,
+      "product_height_percent": 20,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The unattended tractor in the background contains a human silhouette/figure inside the cab, which triggers a hard reject based on the zero-tolerance policy for any human presence or silhouette.",
+        "There is a metallic cylindrical object lying next to the product roll which constitutes an 'extra commercial product' or 'extra hardware,' violating the requirement for exactly one package/roll.",
+        "The product is not placed in the lower third off-center; it is located higher in the frame and slightly too far to the left relative to the ideal lower-third composition."
+      ],
+      "correction_prompt": "Remove the human silhouette from the tractor cab, remove the metallic cylindrical object next to the roll, and move the product roll to the lower left or lower right third of the frame so it rests directly on the soil.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 80,
+      "product_width_percent": 16,
+      "product_height_percent": 18,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Product (drip-tape roll) correctly identified as a white and blue cylindrical carton roll placed on the soil in the lower-left.",
+        "Product dimensions estimated at ~16% width and ~18% height, fitting within the required bounds (width <= 27%, height <= 32%).",
+        "Product is off-center (x ~28%) and placed on the soil, consistent with the layout requirements.",
+        "Background (open farmland with tractor in distance and soil texture) matches the 'hardware' role (topic-specific farm context, infrastructure allowed).",
+        "Zero people or human body parts visible.",
+        "Required watermark 'AFP | 09134922013' present in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-رطوبتی-در-کشت-سیر-راهنمای-جامع-جزئیات-فنی.webp"
+}

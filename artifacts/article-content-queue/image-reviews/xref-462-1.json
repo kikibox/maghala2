@@ -1,0 +1,42 @@
+{
+  "id": "xref-462",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 9,
+      "product_height_percent": 10,
+      "product_x_center_percent": 56,
+      "reasons": [
+        "Presence of a human (male farmer) which is a hard reject for any image role requiring zero people",
+        "The product is being held in the hand, not placed on the soil",
+        "The product is too small relative to the frame (width is only ~9%); it should be between 13-27% while remaining secondary",
+        "The crop in the background does not resemble lentil plants (which should be fine textured and low bushy legumes); they appear as larger leafy rows that could be confused with corn or broadleaf weeds",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or body parts. The AFP white-and-blue drip tape carton roll must be resting on the soil in the lower third, off-center. The crop rows should be small, fine-textured lentil plants (low bushy legumes). The product should occupy about 15-20% of the frame width. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 22,
+      "product_height_percent": 16,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The product (AFP roll) is placed on the lower third, off-center, and has the correct aspect ratio (width ~22%, height ~16%, width/height ratio ~1.4-1.5 is acceptable).",
+        "The required watermark 'AFP | 09134922013' is clearly visible in the bottom-right corner.",
+        "No people or human body parts are visible in the frame.",
+        "The background shows a prepared soil bed with young seedlings. While the exact morphology of lentils is hard to verify at this stage, the crop does not contain any hard-reject features like corn blades, sunflower heads, or large bean leaves. The agronomic context (irrigation in a field) supports the 'lentil' story without explicit rejection triggers.",
+        "The text on the roll is mostly gibberish, but since the product branding (AFP) and required watermark are correct, this is a minor deduction rather than a hard fail."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-قطرهچکان-در-کشت-عدس-هزینه-بهینه-تصویر-شاخص.webp"
+}

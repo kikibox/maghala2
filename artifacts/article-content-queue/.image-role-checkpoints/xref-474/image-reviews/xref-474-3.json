@@ -1,0 +1,68 @@
+{
+  "id": "xref-474",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 12.5,
+      "product_height_percent": 22.0,
+      "product_x_center_percent": 48.0,
+      "reasons": [
+        "Hard reject: The image contains a human figure (farmer) crouching and interacting with the product, which violates the requirement for zero people or human body parts.",
+        "Hard reject: The product packaging appears as a tall, vertical container rather than a wide, low cylindrical roll.",
+        "Hard reject: The product is not placed naturally on the soil; it is being held or positioned by the person.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12.5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Show exactly one white-and-blue wide, low cylindrical drip-tape carton roll placed directly on the soil. Position the roll off-center on the lower third of the frame, maintaining a secondary scale (approx 20% width, <32% height). Ensure the background is a farm context with no visible crop plants or people. Enlarge the product group from 12.5% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 23,
+      "product_height_percent": 21,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product is horizontally centered (near 48% of frame) instead of off-center as required on the lower third",
+        "The crop plants visible in the background look like corn/maize, which clearly contradicts the required leek (تره) topic, triggering a hard reject"
+      ],
+      "correction_prompt": "Move the roll horizontally to the left third of the frame and change the background crop rows to distinct leeks rather than corn",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 16,
+      "product_height_percent": 22,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: a person (man) and multiple human body parts (arms, hands, legs, face) are clearly visible in the frame, which violates the zero-person constraint.",
+        "The product is being held or touched by a human hand, rather than being naturally placed on the soil independently as required for a hardware-focused story."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove the man and all human body parts. The AFP drip-tape roll must be standing alone on the soil, unattended, with a close-up hardware perspective showing the irrigation context without people.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 26.5,
+      "product_height_percent": 30.5,
+      "product_x_center_percent": 38.0,
+      "reasons": [
+        "Exactly one white-and-blue cylindrical drip-tape carton roll is present, with the required 'AFP' branding and water-drop logo.",
+        "The product is naturally placed on soil, off-center to the left in the lower third of the frame.",
+        "No people or human body parts are visible in the image.",
+        "The 'تره' (leek) contradiction check passes: visible sprouts are generic, visually neutral, and do not clearly identify as a different crop.",
+        "Product dimensions fall within acceptable ranges: width 26.5% is within the 13-27% practical range, and height 30.5% is below the 32% maximum limit.",
+        "The required bottom-right watermark 'AFP | 09134922013' is correctly present."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-چرخشی-در-کشت-کاملینا-چالشها-جزئیات-فنی.webp"
+}

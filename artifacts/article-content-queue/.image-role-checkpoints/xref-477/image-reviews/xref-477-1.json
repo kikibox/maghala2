@@ -1,0 +1,96 @@
+{
+  "id": "xref-477",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 7,
+      "product_height_percent": 9,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: The image contains a visible person (male figure).",
+        "Product geometry: The object is held upright (cylindrical) rather than lying flat, and is not a wide low cylindrical roll as required.",
+        "Product scale: The product is too small (approx 7-9% width/height) and does not meet the minimum 13% width requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image excluding any people or human parts. Show one wide, low, cylindrical drip-tape carton roll lying flat on the soil, off-center in the lower third. The roll must be white and blue with the text 'AFP' clearly visible. Ensure the background features rows of woody rosemary shrubs (needle-like dark-green leaves) in a farm setting. Enlarge the product group from 7% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 24,
+      "product_height_percent": 21,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Product x_center_percent is 47, which places it directly in the center of the frame, violating the requirement to be off-center on the lower third.",
+        "Crop morphology is incorrect; plants shown resemble yucca or palm fronds, rather than the required woody low shrubs with needle-like dark-green leaves (rosemary)."
+      ],
+      "correction_prompt": "Move the drip-tape roll significantly to the left or right (lower third off-center). Replace the tall yucca-like plants with low-lying woody rosemary shrubs (dark green needle-like leaves). Ensure the product bounding box is shifted away from the center vertical axis.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 10,
+      "product_height_percent": 14,
+      "product_x_center_percent": 56,
+      "reasons": [
+        "The product is a small upright canister/box, not the required wide low cylindrical drip-tape carton roll.",
+        "Product width is too small (approx 10%) compared to the preferred 20-23% and minimum 13% threshold.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Replace the small canister with a wide, low, cylindrical white and blue drip tape carton roll. The roll must be roughly 20-23% of the image width, lying on the soil in the lower-right area, and must have a clearly visible circular top (diameter 1.5-1.9x height). Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 20.5,
+      "product_height_percent": 23.5,
+      "product_x_center_percent": 62.0,
+      "reasons": [
+        "The crop displayed in the foreground is not rosemary (رزماری); it lacks the woody shrub structure and needle-like dark-green leaves, instead appearing as broad-leaved plants with ornamental flowers (larkspur), which constitutes a clearly identifiable different species.",
+        "The background context shows an ornamental flower field (with a barn and mixed florals) rather than a rosemary farm, failing to match the required article-specific agronomic story."
+      ],
+      "correction_prompt": "Regenerate the image with woody, low-lying rosemary shrubs featuring needle-like dark green leaves in the foreground. The setting must be a dedicated rosemary farm field, removing all ornamental colorful flowers and the distant barn to establish the correct agronomic context. Keep the white-and-blue AFP drip-tape roll exactly as is.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 6,
+      "product_height_percent": 9,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Hard reject: Presence of two people (farms/workers) violates the 'zero people' rule.",
+        "Hard reject: The required bottom-right watermark 'AFP | 09134922013' is missing from the image.",
+        "Hard reject: The product shown is being held by a person, whereas the requirement specifies it must be 'naturally placed on soil'.",
+        "Product size (approx 6% width) falls below the acceptable 13% minimum for a secondary product.",
+        "Product placement is centered rather than off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures and regenerate the scene with the AFP drip-tape roll lying on the soil in a rosemary field. Place the roll off-center on the lower third of the frame. Add the watermark 'AFP | 09134922013' in the bottom right corner. Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 19,
+      "product_height_percent": 20,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The crop visible in the image consists of red flowers with broad leaves, not rosemary (woody low shrubs with needle-like dark-green leaves).",
+        "The AFP watermark text is 'AFP | 09134922013' but the required text is 'AFP | 09134922013' with a space at the beginning of the number (image shows 'AFP | 09134922013' which looks like it might be missing the initial 0 or is formatted differently - actually looking at crop 4, the text is 'AFP | 09134922013', the requirement says 'AFP | 09134922013'. Wait, crop 4 shows 'AFP | 09134922013'. The instruction says 'AFP | 09134922013'. Actually, the prompt says 'AFP | 09134922013'. Let me re-read. Prompt: 'The exact bottom-right watermark \"AFP | 09134922013\"'. Image: 'AFP | 09134922013'. Wait, looking closely at crop 4, it says 'AFP | 09134922013'. The prompt requires 'AFP | 09134922013'. Actually, the image text in crop 4 is 'AFP | 09134922013'. Wait, looking at crop 4, the numbers are 09134922013. The prompt says 09134922013. Okay, the watermark is present.",
+        "The background contains clearly identifiable different species (red flowers), which triggers a hard reject."
+      ],
+      "correction_prompt": "Regenerate image with rosemary crops (woody, needle-like leaves) replacing red flowers; ensure bottom-right watermark reads exactly 'AFP | 09134922013'.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}
