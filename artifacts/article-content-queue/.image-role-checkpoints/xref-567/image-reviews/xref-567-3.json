@@ -1,0 +1,87 @@
+{
+  "id": "xref-567",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 6,
+      "product_height_percent": 15,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Image contains a person (farmer/worker), which violates the zero-people rule.",
+        "The person's face, hands, arms, and legs are clearly visible.",
+        "Product is not the primary focus as required for the specific image role without human context.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with absolutely no people, faces, hands, or human silhouettes. Show only the AFP drip-tape roll on the soil in a farm context. Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 13,
+      "product_height_percent": 19,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Hard reject: The image contains three visible people (human silhouettes, faces, hands, arms, and legs), which is strictly prohibited by the 'zero people' and 'zero human body parts' constraints."
+      ],
+      "correction_prompt": "Remove all people, farmers, workers, and human body parts from the scene. Keep only the single white-and-blue AFP drip-tape carton roll placed naturally on the soil in a farm context. Ensure the roll is wide and low (diameter approx 1.5 to 1.9 times height), positioned off-center on the lower third, and no taller than 32% of the frame. Retain the 'AFP | 09134922013' watermark in the bottom-right.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 88,
+      "product_width_percent": 23,
+      "product_height_percent": 17,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "The product is centered horizontally (approx. 49%) and not positioned 'off-center on the lower third' as requested for role 3."
+      ],
+      "correction_prompt": "Shift the carton roll to the right (around 65% x-center) or left (around 30% x-center) to be off-center, ensuring it stays on the lower third of the frame.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 24,
+      "product_height_percent": 42,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "A person is clearly visible in the image, which results in an immediate hard reject.",
+        "The product (the drip tape roll) is too large, exceeding the height limit of 32% of the frame.",
+        "The product is centered rather than being positioned in the lower third and off-center.",
+        "machine-enforced bounding-box check failed: Reduce product height from 42% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image without any person or human silhouettes. Shrink the white and blue drip tape roll so it appears smaller (approx 20-25% width) and position it off-center in the lower third, directly on the soil. Reduce product height from 42% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 14,
+      "product_height_percent": 14,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Presence of a man: hard reject due to human body parts (head, hands, legs) and face.",
+        "Product is not secondary: the subject is interacting with the product, drawing primary focus to the human element."
+      ],
+      "correction_prompt": "Remove the man completely; ensure zero people or body parts are visible. Stage the drip tape roll on the soil in a farm field, keeping it secondary (roughly 20% width of the frame) and off-center in the lower third. Maintain the background farm context.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 25,
+      "product_height_percent": 21,
+      "product_x_center_percent": 42,
+      "reasons": [],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-خربزه-مقایسه-جزئیات-فنی.webp"
+}

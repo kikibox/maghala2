@@ -1,0 +1,59 @@
+{
+  "id": "xref-564",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 12,
+      "product_height_percent": 12,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: Image contains two visible human figures (farmers).",
+        "Hard reject: Human body parts and silhouettes are present.",
+        "Product shape is a tall cylinder, whereas the specification requires a wide, low cylindrical roll (aspect ratio ~1.5-1.9:1).",
+        "The crop displayed (likely a sunflower) is not the specified 'family' crop, creating a mismatch with the article title context.",
+        "The product is too small relative to the frame (12% width), falling below the preferred 20-23% or acceptable 13-27% range with proper proportioning.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes. Replace the product with a wide, low horizontal cylindrical roll of drip tape (1.5-1.9 times wider than it is tall). Ensure the roll is off-center in the lower third of the frame and occupies approximately 20-23% of the image width. Focus on a family farming crop context without any visible workers. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Contains a person (farmer crouching in the field).",
+        "Contains human body parts (face, arms, legs, torso).",
+        "Background includes sunflowers which are not tomato plants (crop mismatch)."
+      ],
+      "correction_prompt": "Regenerate image removing all humans. Show a wide cylindrical drip tape roll (blue and white AFP label) placed on soil in a tomato field with visible tomato plants. Ensure the roll is off-center (lower third) and no people are visible.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "The product is a white-and-blue cylindrical roll of drip tape positioned on the soil in the foreground.",
+        "The roll's width is approximately 20% of the frame and its height is around 28%, both within acceptable bounds.",
+        "The diameter to height ratio is visually consistent with a wide, low cylindrical roll.",
+        "The placement is off-center in the lower-left quadrant, appearing natural and un-staged.",
+        "The background depicts a field with young green seedlings and rows, consistent with a farm context.",
+        "The required 'AFP | 09134922013' watermark is visible in the bottom right corner.",
+        "No people or human body parts are visible in the scene."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-در-کشت-کدو-هزینه-بهینه-کاربرد-عملی.webp"
+}

@@ -1,0 +1,55 @@
+{
+  "id": "xref-560",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 13,
+      "product_height_percent": 10,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Clear hard reject due to the presence of a person (farmer) in the image, violating the zero-people rule."
+      ],
+      "correction_prompt": "Regenerate the image without any human presence, focusing only on the farm context and the drip-tape carton roll.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: Presence of a human farmer.",
+        "Hard reject: Presence of human body parts (head, hands, legs).",
+        "Product width (12%) falls below the 13% practical minimum.",
+        "Product is not on the lower third (positioned middle-lower).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the farmer and all human body parts. Enlarge the white-and-blue drip-tape carton roll to approximately 20% width and 15% height. Reposition the roll off-center on the lower third of the frame. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 19,
+      "product_height_percent": 23,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "The required bottom-right watermark 'AFP | 09134922013' is present.",
+        "The product is exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "The product is off-center and placed naturally on soil in the lower third.",
+        "Product size constraints are met: width is ~19% of frame and height is ~23% of frame.",
+        "No people, human silhouettes, or body parts are visible.",
+        "The background matches the farm context with prepared beds and young vegetation."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-شنبلیله-پیشنیازها-کاربرد-عملی.webp"
+}

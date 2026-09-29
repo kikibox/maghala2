@@ -1,0 +1,56 @@
+{
+  "id": "xref-553",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 25,
+      "product_height_percent": 35,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product height is approximately 35% of the frame height, which exceeds the hard limit of 32%.",
+        "Visible crop sprouts are present throughout the scene, contradicting the 'wheat' crop context; hard reject criteria met due to clear crop contradiction in Role 3.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the drip-tape roll height to less than 32% of the frame. Remove all visible crop sprouts to ensure a neutral hardware context without identifiable crops. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 14,
+      "product_height_percent": 22,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Presence of two human workers/farmers (hard reject)",
+        "Visible human body parts including faces, arms, and legs (hard reject)",
+        "Product roll is placed on hard-centered soil rather than a naturally off-center lower-third position",
+        "Crop plant morphology does not match wheat (contradiction)",
+        "Product height ratio is too vertical (approx 64% width vs required 53-67% ratio)"
+      ],
+      "correction_prompt": "Remove all people and human body parts. Show a single AFP white-and-blue drip-tape carton roll resting on soil in a wheat field with no identifiable crop leaves. Ensure the roll has a wide cylindrical aspect ratio (diameter 1.5-1.9x height) and is positioned off-center on the lower third. Retain the bottom-right AFP watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 22,
+      "product_height_percent": 15,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Product is an AFP white-and-blue drip-tape carton roll, matching the role description.",
+        "The roll is placed on soil in the lower third, off-center, and in a farm context with an unattended tractor in the background.",
+        "Product dimensions are within acceptable limits (width ~22%, height ~15%).",
+        "No people or human body parts are visible.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-گندم-مقایسه-جزئیات-فنی.webp"
+}

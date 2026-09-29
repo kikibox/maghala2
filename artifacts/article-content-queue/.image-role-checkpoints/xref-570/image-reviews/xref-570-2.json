@@ -1,0 +1,102 @@
+{
+  "id": "xref-570",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer) in the image.",
+        "Hard reject: Presence of human body parts (head, torso, arms, legs, hands, feet).",
+        "The product is not the required 'AFP white-and-blue wide low cylindrical drip-tape carton roll'. Instead, the person is holding a small container and taping a hose onto the ground.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person and all human body parts. Replace the scene with a wide, low, cylindrical white-and-blue drip-tape carton roll (approximately 20-23% of the frame width, less than 32% height) resting off-center on the lower third of the soil. The background should show a field of لپه (yellow split-pea) crops with accurate botanical features (leaves, stems, growth habit). Ensure no other commercial containers, bottles, or people are visible. The bottom-right watermark 'AFP | 09134922013' must be present. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 27,
+      "product_height_percent": 34,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Zero people, faces, or human body parts visible.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present.",
+        "Product is a single white-and-blue cylindrical roll off-center on the lower third, placed naturally on soil.",
+        "Background shows yellow crops and young vegetation consistent with a farm context, but yellow flowers may suggest canola rather than strictly neutral young لپه; however, young leaves are botanically neutral enough to avoid hard rejection.",
+        "No hard rejects (no bottles, second rolls, centered staging, fake text, or layflat hoses).",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 10,
+      "product_height_percent": 10,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Image contains a person (female farmer).",
+        "Hard reject: Image contains human body parts (arms, legs, face, hair).",
+        "Hard reject: Crop is sunflowers, not yellow split-pea (لپه).",
+        "The product roll is not 'wide low cylindrical' and the proportions do not match the 'diameter 1.5 to 1.9 times height' constraint.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the human figure completely. Replace the sunflower field with a field of yellow split-pea crops or a prepared soil bed. Ensure the drip tape roll is wide and low-cylindrical, positioned off-center on the lower third, measuring approximately 20-23% of the frame width. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 23,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Background shows clearly identifiable sunflowers, which is a hard reject for a لپه (yellow split-pea crop) article.",
+        "Product aspect ratio (width vs height) is too squat; it lacks the cylindrical depth required (should be 1.5-1.9x wider than tall)."
+      ],
+      "correction_prompt": "Replace the sunflower field background with a field of green legume plants (yellow split-peas). Ensure the roll has greater depth (1.5-1.9 times its height) to look cylindrical.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 17.5,
+      "product_height_percent": 34.5,
+      "product_x_center_percent": 50.0,
+      "reasons": [
+        "Human hands and arms are clearly visible holding and interacting with the product, which is a hard reject criterion.",
+        "Human body parts are explicitly forbidden in the image requirements.",
+        "The product appears to be centered horizontally rather than placed off-center on the lower third.",
+        "Visible height of the roll exceeds the 32 percent maximum constraint.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34.5% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image to remove all human hands, arms, and body parts. Position the white and blue cylindrical drip-tape carton roll off-center in the bottom third of the frame, resting naturally on the soil. The roll should have a wide aspect ratio (diameter 1.5-1.9x its height) and appear secondary to the crop context. Ensure the watermark 'AFP | 09134922013' remains in the bottom-right corner. Reduce product height from 34.5% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 21,
+      "product_height_percent": 33,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Image contains clearly identifiable human silhouettes in the background (farmer and vehicle operator), which constitutes a hard reject for any human presence.",
+        "The split-pea crop in the foreground is in a very early seedling stage (cotyledon stage). The prompt specifies that botanically accurate mature leaves, stems, and growth habits should be recognizable, or at least not a 'clearly identifiable different species.' While young seedlings can pass, these appear to be generic dicot seedlings that do not strongly suggest yellow split-pea (Chana lappa) specific morphology (like trifoliate leaves), but the human presence is the primary cause of failure.",
+        "Product height is borderline, occupying approximately 33% of the frame, slightly exceeding the strict 32% limit.",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with a strictly empty background—no people, no tractors, and no silhouettes—featuring only a farm field context. Replace the generic seedlings with mature, botanically accurate yellow split-pea plants showing distinct trifoliate leaves and stems to clearly identify the crop. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

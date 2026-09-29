@@ -1,0 +1,59 @@
+{
+  "id": "xref-571",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Presence of a person (visible hand, arm, leg, and torso/jeans) in the image.",
+        "Hard reject: The product is not the required 'wide low cylindrical drip-tape carton roll'. Instead, it shows a small handheld watering container and a coiled thin tube with a black box (valve/emitter), violating the 'single product' and 'no extra commercial product' rules.",
+        "Hard reject: The drip tape roll is not placed off-center on the lower third; the visible coiled tube is in the bottom-right corner and is not the correct product form factor.",
+        "Fail: The required visible diameter-to-height ratio (1.5-1.9x) and width/height percentage constraints are not met because the correct object is missing.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image showing a wide, low, cylindrical white-and-blue AFP drip tape carton roll sitting alone on the soil in the lower-left third. Remove all human body parts, hands, and legs. Remove the coiled tube and black box. Show upright clusters of blue-green garlic seedlings in the background. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 30,
+      "product_height_percent": 38,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Product bounding box exceeds maximum width limit (estimated 30% vs 27% max).",
+        "Product bounding box exceeds maximum height limit (estimated 38% vs 32% max).",
+        "Center of mass/vertical position is too low, occupying more than the allowed 32% vertical height.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width.; Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the size of the drip-tape carton roll so that its width is approx 15-20% of the frame and its height is no more than 25%. Position the roll on the soil in the lower third of the image, off-center to the left. Reduce the product group from 30% to 13-27% of frame width. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 21,
+      "product_height_percent": 29,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The image displays exactly one wide, low cylindrical drip-tape roll with the required 'AFP' branding.",
+        "The product dimensions are within the acceptable range, with width around 21% and height under the 32% threshold.",
+        "The roll is correctly placed off-center in the lower-left section of the frame.",
+        "The foreground shows garlic seedlings (narrow, flat, blue-green leaves in upright clusters) that match the specific article crop requirement.",
+        "The background farm infrastructure and distant crops provide an authentic agronomic context.",
+        "There are no visible people or body parts in the image.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and intact."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-سیر-هزینه-در-مزرعه-کاربرد-عملی.webp"
+}

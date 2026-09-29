@@ -1,0 +1,75 @@
+{
+  "id": "xref-555",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 12,
+      "product_height_percent": 20,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The central roll appears to be a vertical cylinder (standing on its end or flat side) rather than a horizontal drip-tape carton roll. The rules require a 'wide low cylindrical' roll lying down where the visible diameter is 1.5 to 1.9 times the height. This vertical orientation contradicts the specific geometry required for a carton roll of tape.",
+        "The product width estimate (12%) falls below the acceptable lower bound of 13%.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the drip-tape carton roll to lie horizontally on the soil, flat and wide (diameter approx 1.6x height), ensuring the roll width is roughly 15% of the frame width. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 29,
+      "product_height_percent": 32,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The image correctly displays an AFP drip-tape roll in a farm context without any people or body parts.",
+        "The required watermark 'AFP | 09134922013' is present and clear in the bottom-right corner.",
+        "However, the product width is estimated at 29 percent of the frame, which exceeds the hard reject threshold of 27 percent for wide rolls.",
+        "Despite the size violation, the product geometry is appropriate (diameter-to-height ratio is within the 1.5-1.9 range), and it is naturally placed off-center on the soil in the lower third.",
+        "The crop (young seedlings) is botanically neutral, which is acceptable for the mung bean article context as per the 'neutral young vegetation' rule.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 29% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 29% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 4,
+      "product_height_percent": 6,
+      "product_x_center_percent": 54,
+      "reasons": [
+        "Hard reject: Presence of a person (female farmer/worker) in the image.",
+        "Hard reject: Multiple human body parts visible including face, arms, hands, and legs.",
+        "Product size: The drip-tape roll is not prominent and does not meet the width/height percentage requirements.",
+        "Crop ambiguity: The leafy plants shown are not clearly recognizable as mung beans (trifoliate leaves/slender pods).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image showing only the wide low cylindrical AFP white-and-blue drip-tape roll on the soil. Remove all people and human body parts. Ensure the mung bean plants (trifoliate leaves, slender pods) are clearly visible. The drip-tape roll must be large, occupying roughly 20% of the frame width. Enlarge the product group from 4% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Contains exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll in a farm context",
+        "Product width (24%) and height (30%) are within the preferred and acceptable ranges",
+        "Product is off-center on the lower third and naturally placed on soil",
+        "Crops are not clearly identifiable mung beans, but the agronomic story with neutral young vegetation passes as per instructions",
+        "Zero people or human body parts visible",
+        "Required bottom-right watermark 'AFP | 09134922013' is present and correct",
+        "No banned items (bottles, jars, people, extra rolls, impossible geometry) detected"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-ماش-پیشنیازها-کاربرد-عملی.webp"
+}
