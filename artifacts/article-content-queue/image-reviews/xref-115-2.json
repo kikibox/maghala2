@@ -1,0 +1,52 @@
+{
+  "id": "xref-115",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: The image contains a person (a male farmer) who is clearly interacting with the product, which violates the strict 'zero people and zero human body parts' rule.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image strictly without any people, farmers, workers, or human silhouettes. Show only the farm context and the drip tape roll on the soil. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Image contains visible human silhouettes/people working in the field in the background, which is a hard reject.",
+        "Product width (18%) and height (25%) metrics are within acceptable ranges, but the presence of people is a fatal flaw."
+      ],
+      "correction_prompt": "Remove all human silhouettes, farmers, or workers from the background. Regenerate the scene with only the drip tape roll, lettuce crop, soil, and irrigation lines, maintaining the off-center product placement in the lower third.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 16,
+      "product_height_percent": 21,
+      "product_x_center_percent": 39,
+      "reasons": [
+        "Required watermark 'AFP | 09134922013' present and accurate.",
+        "Product correctly positioned on the lower-left third (off-center) and on the soil.",
+        "Product dimensions (width and height) fall within acceptable limits.",
+        "Background context (drip irrigation, lettuce heads) matches the article topic.",
+        "Zero people or human body parts detected."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-رانشی-در-کشت-کاهو-نکات-کلیدی-کاربرد-عملی.webp"
+}

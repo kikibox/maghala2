@@ -1,0 +1,98 @@
+{
+  "id": "xref-107",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25,
+      "product_height_percent": 35,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Visible crop (yellow bud plants) is not yellow split-pea and clearly contradicts the topic.",
+        "Product bounding box height is estimated at 35%, exceeding the 32% hard limit.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the yellow bud plants. Reposition the drip-tape roll to be lower so its visible height is under 32% of the frame. Ensure the soil context is neutral without contradictory crop morphology. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Hard reject: Presence of a visible person (farmer) and human body parts (hands, arms, legs) in the frame.",
+        "Hard reject: Product is not in the required 'lower third' area; it is positioned at approximately the 80% vertical mark of the image.",
+        "Hard reject: Visible diameter (width) of the cylindrical roll is roughly equal to its height (~1.0x), which does not meet the requirement of 1.5 to 1.9 times the height.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the man and the chair entirely. Reposition the white-and-blue cylindrical roll so it rests in the lower third of the frame on the soil. Ensure the roll's width is visibly 1.5 to 1.9 times its height. Keep the tractor and farm background. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 23,
+      "product_height_percent": 32,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product is centered in the frame (violates off-center requirement)",
+        "Product height is exactly at the 32% maximum limit (risky)",
+        "Product appears to be a cylindrical tank/drum rather than a wide, low drip-tape carton roll",
+        "Geometry does not strictly match the 'wide low' aspect ratio preference",
+        "Crop in soil is generic seedling, not clearly contradicted but context is weak for specific role",
+        "Product is not naturally placed 'low' relative to the background horizon line (too prominent/centered)"
+      ],
+      "correction_prompt": "Regenerate image with the AFP drip-tape roll placed clearly off-center to the left or right on the soil (lower third), ensuring it is wide and low (cylindrical roll, not a canister). Keep the farm context with unattended tractor, no people. Remove center staging.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 18,
+      "product_height_percent": 19,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Presence of a visible person (driver) inside the tractor cabin in the background; the filter strictly rejects any person or human body part, even distant or unattended.",
+        "The product bounding box height (approx 19%) exceeds 15% of the width, failing the required aspect ratio of 1.5-1.9 times visible height."
+      ],
+      "correction_prompt": "Regenerate the image with a tractor cabin window that is clearly empty or an unoccupied, unattended tractor in the background (remove the driver completely). Flatten the white-and-blue AFP drip-tape roll significantly to ensure its width is roughly 1.7 times its visible height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 14,
+      "product_height_percent": 35,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Visible diameter is significantly less than 1.5x the height, failing the required 1.5 to 1.9 aspect ratio for a wide low roll.",
+        "Product height exceeds the 32 percent limit.",
+        "Product is positioned on straw rather than naturally placed on soil.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a wider, flatter drip tape roll (width 1.8x height) placed directly on dry soil at the lower third, ensuring height stays under 32 percent. Replace yellow sunflowers with yellow split-pea plants (لپه) to align with the crop topic. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Crop Context Mismatch: The image displays a field of sunflowers, which clearly contradicts the 'hard reject' condition for لپه (yellow split-pea crop) when identifiable crops are present.",
+        "Crop Prominence: The sunflowers are large and dominate the right side of the frame, failing the requirement to have crop plants 'absent or visually neutral' in a hardware story.",
+        "Product Positioning: The product is located in the bottom-left corner rather than the preferred 'off-center on the lower third' and does not sit naturally on bare soil as the surrounding plants interfere with its base."
+      ],
+      "correction_prompt": "Replace the sunflowers with small, neutral, generic sprouts or bare soil. Keep the drip-tape roll in the lower-left to lower-center third, resting on the ground. Do not include identifiable crops.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

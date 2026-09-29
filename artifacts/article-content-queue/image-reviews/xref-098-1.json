@@ -1,0 +1,69 @@
+{
+  "id": "xref-098",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 25,
+      "product_height_percent": 15,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Presence of a person (farmer) and human body parts, which is a hard reject criterion.",
+        "Image composition is a collage/patchwork rather than a single coherent image with the product placed naturally on soil in a farm context.",
+        "The product bounding box is estimated from the small inset bottom-right; the main scene contains a person, violating the 'zero people' rule."
+      ],
+      "correction_prompt": "Generate a single, non-collage image of an AFP white-and-blue drip-tape roll placed naturally on soil in a leek field. Include zero people or body parts. Ensure the 'AFP | 09134922013' watermark is in the bottom-right corner.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 29,
+      "product_height_percent": 24,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product is wider than the maximum allowed threshold (29% width vs max 27%).",
+        "Product is centered on the x-axis (50%) instead of being off-center.",
+        "Visible text under the main 'AFP' logo contains gibberish characters, violating the requirement for authentic package print only.",
+        "Crop morphology does not clearly match a leek (تره); the broad-leaf seedlings are more consistent with solanaceous vegetables (e.g., tomato or pepper), failing the specific agronomic story for the topic.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 29% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with the AFP drip-tape roll appearing smaller (approx. 23% width) and positioned in the right third of the frame (x-center approx. 65%). Place the roll on the soil. The background must clearly show leek (تره) seedlings with narrow, strap-like foliage. All text on the roll must be clean English; remove any gibberish. Ensure the bottom-right watermark 'AFP | 09134922013' is present. Reduce the product group from 29% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 16,
+      "product_height_percent": 17,
+      "product_x_center_percent": 61,
+      "reasons": [
+        "The required bottom-right watermark 'AFP | 09134922013' is missing from the image, violating a hard requirement.",
+        "The visible drip-tape roll includes a black core/piping feature which is not explicitly described as authentic for the specified 'wide low cylindrical drip-tape carton' product.",
+        "The leek crop is not distinctly recognizable; the young vegetation appears generic and fails to clearly meet the botanical or agronomic requirements for the 'leek' (تره) article role."
+      ],
+      "correction_prompt": "Regenerate the image including the bottom-right text watermark 'AFP | 09134922013'. Ensure the product is a standard wide, low cylindrical carton roll with no piping or black cores. Clarify the crop as leek (تره) with more distinct leaf morphology and agronomic context to satisfy the article role.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 15,
+      "product_height_percent": 17,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product geometry: The roll's diameter and height are well-proportioned, and its placement in the lower-left third of the frame is appropriate and off-center.",
+        "Watermark: The required AFP watermark (AFP | 09134922013) is present and clearly visible in the bottom-right corner.",
+        "Content: The farm context is clear and relevant, featuring soil, irrigation lines, and a distant barn.",
+        "Species: The visible vegetation consists of young seedlings with parallel-veined leaves. According to the guidelines, neutral young vegetation is acceptable when exact mature morphology is unavailable, and these seedlings do not clearly identify a different species."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-رانشی-در-کشت-تره-هزینه-بهینه-تصویر-شاخص.webp"
+}

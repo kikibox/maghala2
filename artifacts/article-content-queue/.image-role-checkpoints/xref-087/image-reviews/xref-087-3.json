@@ -1,0 +1,94 @@
+{
+  "id": "xref-087",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 6,
+      "product_height_percent": 11,
+      "product_x_center_percent": 20,
+      "reasons": [
+        "Presence of a person (human silhouette) in the image, which is a hard reject condition.",
+        "Multiple rolls and small containers are visible, violating the 'exactly one' requirement and the 'extra commercial product' rule.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any people or human silhouettes. Ensure only a single wide cylindrical drip-tape carton roll is visible, removing any other product packaging or containers. Maintain the farm context with unattended hardware (tractor) in the background. Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: Human figure (driver) is visible inside the tractor cab."
+      ],
+      "correction_prompt": "Regenerate the image with an unattended tractor; the interior must be empty and no people or silhouettes should be visible.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 8,
+      "product_height_percent": 10,
+      "product_x_center_percent": 15,
+      "reasons": [
+        "Contains a visible person standing next to the tractor, violating the 'zero people' rule.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove the man standing next to the tractor, ensuring only unattended farm hardware and the landscape are visible. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "person is present in the image",
+        "human body parts (face, hands, arms, legs) are visible"
+      ],
+      "correction_prompt": "regenerate the image with zero people or human body parts visible, keeping the exact same composition, lighting, soil, and farm context",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 14,
+      "product_height_percent": 22,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: Human figures are present in the image (a kneeling girl and a standing adult).",
+        "Hard reject: Human body parts (faces, hands, arms, legs) are clearly visible.",
+        "Watermark violation: The required bottom-right text is 'AFP | 09134922013'. The provided watermark contains an extra digit, reading 'AFP | 091349220133'.",
+        "Context mismatch: The crop plants resemble corn seedlings, which contradicts the specific requirement for clover (شبدر)."
+      ],
+      "correction_prompt": "Regenerate the image with the drip-tape roll placed on the soil in the lower-left area with no people or human body parts. Ensure the background shows clover plants. Correct the bottom-right watermark to exactly 'AFP | 09134922013'.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 25,
+      "product_height_percent": 15,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product correctly placed on soil",
+        "No people or body parts present",
+        "Watermark required and present",
+        "Farm context visible",
+        "Drip tape roll identifiable",
+        "Off-center positioning appropriate"
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-رطوبتی-در-کشت-شبدر-چالشها-جزئیات-فنی.webp"
+}

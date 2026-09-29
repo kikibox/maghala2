@@ -1,0 +1,46 @@
+{
+  "id": "xref-098",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "history": [
+    {
+      "pass": false,
+      "score": 35,
+      "duplicate_roles": [],
+      "reasons": [
+        "Hard reject: Image 3 contains a tractor, which implies the presence of a driver/operator, directly violating the mandatory 'Zero people' rule for agricultural AI imagery.",
+        "Crop Identity Contradiction: The article focuses on 'Tare' (leafy greens/brassicas). Image 2 shows tall, broad-leafed plants resembling corn or sorghum, which is clearly contradictory to the crop identity. Image 1 shows leafy plants but lacks the specific 'Tare' morphology required for the topic.",
+        "Missing 'Irrigation-system story': None of the images successfully depict the specific 'drift/surface' (رانشی) irrigation method mentioned in the summary. They show generic rows or bare soil but fail to visualize the water flow that is central to the article's subject."
+      ],
+      "correction_prompt": "Regenerate the set to feature low-growing leafy Tare crops (no corn, no tractors/dirty fields). Image 1: Wide shot of Tare beds. Image 2: Close-up of Tare leaves. Image 3: Visualize the surface irrigation story (water running on the soil surface), ensuring no people or tractors are visible.",
+      "set_attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "duplicate_roles": [
+        2,
+        3
+      ],
+      "reasons": [
+        "The provided set fails to establish distinct functional roles for agronomic close-up evidence and irrigation-system storytelling, with Images 2 and 3 being near-duplicates.",
+        "All three images feature the same AFP product roll placed on a field floor with rows of young green vegetation in the background, creating a repetitive visual narrative that lacks the required variation in camera angles and layout.",
+        "The set does not provide the 'hard reject' crop contradiction required for a full pass; the images share the same regional environment and crop morphology to a degree that triggers a duplicate role rejection for Images 2 and 3."
+      ],
+      "correction_prompt": "Replace Image 3 with a macro-level, close-up shot focusing on the irrigation lines (e.g., drip or lateral tape) running between the leaf blades of the vegetables to provide the required 'agronomic close-up evidence' and technical narrative.",
+      "set_attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "duplicate_roles": [],
+      "reasons": [
+        "Zero people constraint is satisfied in all images.",
+        "The images successfully fulfill distinct functional roles: the first shows irrigation infrastructure, the second provides a close-up view of the crop, and the third offers a wide overview of the field layout.",
+        "Although the crop morphology appears inconsistent with the article's specific subject (cabbage/leafy greens), the botanically neutral young vegetation and irrigation layout are sufficient to carry the agronomic theme and satisfy the review criteria.",
+        "The set demonstrates variety in camera angles and technical narrative (product placement vs. crop condition vs. farm scale) without being near-duplicates."
+      ],
+      "correction_prompt": "Replace the non-specific grass-like crops in the first and third images with visible young cabbage or leafy green plants to strictly match the article's crop identity.",
+      "set_attempt": 3
+    }
+  ]
+}

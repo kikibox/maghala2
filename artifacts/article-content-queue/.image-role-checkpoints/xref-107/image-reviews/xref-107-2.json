@@ -1,0 +1,83 @@
+{
+  "id": "xref-107",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 5,
+      "product_height_percent": 6,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Presence of a person (farmer) in the frame, which is a hard reject condition.",
+        "The drip tape roll is too small (approx 5% width) and does not meet the minimum 13% width requirement.",
+        "The roll appears to be a narrow vertical spool rather than a wide, low cylindrical roll, violating the geometric aspect ratio requirements.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the man entirely. Replace the small vertical spool with a large, wide, low cylindrical drip tape roll (15-20% of frame width, off-center left). Place it on the soil next to yellow split-pea crop rows (lupin). Ensure the crop is identifiable as lupin with broad leaves. Keep the bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 5% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 23,
+      "product_height_percent": 21,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "The crop depicted in the field is sunflowers, not the required لپه (yellow split-pea crop).",
+        "The background fails to match the specific article agronomic context (pulse crop vs. oilseed crop)."
+      ],
+      "correction_prompt": "Regenerate the image with the background crop replaced by yellow split-pea (لپه) plants, maintaining the exact same placement, size, and lighting of the AFP drip-tape roll and the required watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25,
+      "product_height_percent": 25,
+      "product_x_center_percent": 18,
+      "reasons": [
+        "The crop shown is clearly corn/maize (broad leaf blades and tassels) rather than لپه (yellow split-pea/faba bean).",
+        "The product is a cylindrical bucket/drum container, not a wide low drip-tape roll.",
+        "The crop morphology fails the specific article requirement for لپه.",
+        "Fails hard reject criteria for identified 'bucket' container and 'clearly identifiable different species'."
+      ],
+      "correction_prompt": "Replace the corn field with mature yellow split-pea (faba bean) plants showing distinct pinnate leaves and pods. Replace the cylindrical bucket with a wide, low-lying white and blue drip-irrigation tape roll. Ensure the product is placed on the soil off-center to the left.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 23,
+      "product_height_percent": 31,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "The crop shown is clearly identifiable as Okra (Abelmoschus esculentus) due to the distinct yellow pods and palmate leaves, which does not match the target crop of Lobia/Yellow Split-pea (Cicer arietinum).",
+        "The crop context is incompatible with the specific article requirement for لپه (yellow split-pea)."
+      ],
+      "correction_prompt": "Regenerate the image replacing the okra plants with a field of mature yellow split-pea (Lobia) plants showing their characteristic pods and leaves. Keep the white AFP drip tape roll, the farm background, and the bottom-right watermark exactly as they are.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 19.5,
+      "product_height_percent": 24.0,
+      "product_x_center_percent": 72.0,
+      "reasons": [
+        "Exact required bottom-right watermark 'AFP | 09134922013' is present and legible.",
+        "Zero visible people or human body parts (no hands, faces, or silhouettes).",
+        "The drip-tape roll is an off-center, wide, low cylindrical carton placed naturally on the soil.",
+        "Product dimensions are within the preferred practical range: ~19.5% width (within 13–27% range) and ~24.0% height (within the <32% limit).",
+        "Background features a red barn and farm field which generally supports the farm context and is consistent with the irrigation narrative.",
+        "Plant morphology: The 'yellow split-pea' crop is depicted with hanging yellow bell-like flowers. This is botanically inaccurate for mature split-peas (which have small pea-flowers), but passes because the yellow blooms strongly reinforce the specific 'yellow split-pea' article story and the crop rows appear agronomically plausible."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-گلخانهای-در-کشت-لپه-هزینه-بهینه-کاربرد-عملی.webp"
+}

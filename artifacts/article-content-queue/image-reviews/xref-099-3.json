@@ -1,0 +1,65 @@
+{
+  "id": "xref-099",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 15,
+      "product_height_percent": 17,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Hard reject: Human hand, arm, and legs are visible in the image",
+        "Hard reject: A person is touching the crop, violating the zero people/bodily parts rule"
+      ],
+      "correction_prompt": "Regenerate the image with the same composition but completely remove the person, hand, and legs. Keep the drip tape roll and lettuce plants on the soil without any human presence.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 23,
+      "product_height_percent": 28,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Gibberish text on the product packaging ('DIP', 'trt igmct') causes a hard reject for invented writing outside authentic print."
+      ],
+      "correction_prompt": "Regenerate the image with clear, legible, authentic product labeling on the AFP roll. The packaging should not contain gibberish text; maintain the exact bottom-right watermark 'AFP | 09134922013'. Ensure the product width remains between 13-27% of the frame.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 18,
+      "product_height_percent": 31,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "The required watermark is missing: the bottom right displays 'AFP | 09134922013' with a forward slash, but the required format is 'AFP | 09134922013' without a slash between the identifier prefix and number.",
+        "Text on the package below the 'AFP' logo appears as gibberish/unnatural spacing ('DIA' 'INOTURETA' 'EDNP') which triggers the rejection criteria for invented or gibberish writing."
+      ],
+      "correction_prompt": "Change the bottom-right watermark text to exactly 'AFP | 09134922013' (no slash between prefix and number). Clean up the text on the carton label so it is clearly legible and not gibberish. Keep the white and blue wide cylindrical drip-tape roll off-center on the soil, surrounded by neutral lettuce plants and a farm background, ensuring zero people are visible.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Product width is approximately 18% and height is 24%, fitting within the 13-27% practical and 20-32% height constraints",
+        "The water roll diameter is ~1.45 times its height, acceptable for a perspective view",
+        "The product is off-center and placed naturally on the soil",
+        "No people or human body parts are visible",
+        "The lettuce crop and farm setting match the context for role 3",
+        "The required watermark 'AFP | 09134922013' is clearly present in the bottom right"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-کاهو-چالشها-جزئیات-فنی.webp"
+}
