@@ -93,6 +93,95 @@
       ],
       "correction_prompt": "Regenerate the image with exactly two layflat objects (one packaged AFP coil, one bare black woven coil) occupying 12-15% of frame width, placed on the lower third off-center, with absolutely zero people, workers, or human body parts visible. Reduce the product group from 35% to 9-20% of frame width.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 33,
+      "product_height_percent": 35,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Pair occupies significantly more than the required 12-15 percent of frame width.",
+        "Product staging is too centered rather than off-center on the lower third.",
+        "Left object is a square, block-like package rather than a typical cylindrical coil shape.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 33% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a much tighter crop where the two coils occupy only 12 to 15 percent of the total frame width. Move the pair to the far bottom-left or bottom-right corner (off-center). Ensure the left coil is a standard round cylinder with packaging, not a square block. Reduce the product group from 33% to 9-20% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Missing the required 'packaged AFP coil'; the present object is a generic unmarked beige box, not a coil.",
+        "Watermark 'AFP | 09134922013' is missing the required leading vertical bar separator ' | ' and the leading vertical bar at the start of the string.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Replace the beige box with a clearly marked rectangular paper box containing a coiled hose (packaged AFP coil). Add the missing leading vertical bar to the watermark so it strictly reads '| AFP | 09134922013'. Ensure the combined pair occupies 12-15% of frame width. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 45,
+      "product_height_percent": 55,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Exact bottom-right watermark 'AFP | 09134922013' is missing",
+        "Product pair is significantly wider than the 12-15% frame width constraint",
+        "The packaging is a generic cardboard box labeled 'APP APP', not a specified AFP coil package",
+        "The black coil appears to be a roll of plastic pipe or heavy tubing rather than a fine woven layflat hose",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width.; Reduce product height from 55% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a specific AFP-branded box and a fine black woven layflat hose. Place the pair small (15% width) on the lower third, ensuring the exact watermark 'AFP | 09134922013' is visible in the bottom right. Reduce the product group from 45% to 9-20% of frame width. Reduce product height from 55% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 38,
+      "product_height_percent": 30,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The bottom-right watermark 'AFP | 09134922013' is present and exactly matches the required format.",
+        "The image contains zero people, farmers, or human body parts.",
+        "The pair of objects is flat, visible, and unmerged (not passing through each other).",
+        "Two approved objects are present: one packaged AF tape coil (left) and one black woven tape coil (right).",
+        "Infrastructure/hardware violations are absent.",
+        "The pair occupies approximately 38% of the frame width, failing the strict 12-15% hard reject constraint.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 38% to 9-20% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 95,
+      "product_width_percent": 21,
+      "product_height_percent": 14,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "machine-enforced bounding-box check failed: Reduce the product group from 21% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 21% to 9-20% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 19,
+      "reasons": [
+        "The image contains a person, which is a hard reject.",
+        "The image contains a human body part, which is a hard reject.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 24% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts from the image. Keep the two products, the soil texture, and the required watermark 'AFP | 09134922013' exactly as they are. Reduce the product group from 24% to 9-20% of frame width.",
+      "attempt": 6
     }
   ],
   "approved_image": null

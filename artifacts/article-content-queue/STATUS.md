@@ -4,19 +4,19 @@
 
 ## نمای کلی
 
-- آخرین بروزرسانی: `2026-09-29T21:39:53+00:00`
-- وضعیت صف: **آماده اجرای بعدی** (`ready`)
-- پیشرفت: **843 از 1148 (73.43٪)**
+- آخرین بروزرسانی: `2026-09-29T21:49:21+00:00`
+- وضعیت صف: **توقف موقت برای تکمیل ترجمه‌های عقب‌مانده** (`translations_pending`)
+- پیشرفت: **851 از 1148 (74.13٪)**
 - نمودار پیشرفت: `██████████████░░░░░░`
-- تکمیل‌شده: **843**
+- تکمیل‌شده: **851**
 - در حال پردازش: **0**
 - در انتظار: **0**
-- ناموفق: **305**
-- واجد تلاش مجدد محدود: **295**
-- ناموفق نهایی پس از چرخه retry: **10**
+- ناموفق: **297**
+- واجد تلاش مجدد محدود: **275**
+- ناموفق نهایی پس از چرخه retry: **22**
 - مسدود مدل تصویر: **0**
-- میانگین طول مقالات تکمیل‌شده: **1278 کلمه**
-- اولویت فعلی: **تولید مقاله فارسی بعدی**
+- میانگین طول مقالات تکمیل‌شده: **1277 کلمه**
+- اولویت فعلی: **تکمیل ترجمه‌های موجود**
 
 ## تنظیمات تولید و انتشار
 
@@ -26,8 +26,8 @@
 - تعداد تصاویر هر مقاله: **3**
 - حداقل کلمات: **1050**
 - لینک داخلی مجاز: **4 تا ۷**
-- اندازه هر اجرا: **2 مقاله**
-- مدیر موازی: **2 مقاله / 4 تصویر هم‌زمان**
+- اندازه هر اجرا: **20 مقاله**
+- مدیر موازی: **20 مقاله / 40 تصویر هم‌زمان**
 - حداکثر تلاش هر مقاله: **4**
 - دسته وردپرس: **مقاله‌ها** (`35`)
 - لینک‌های داخلی شناخته‌شده: **682**
@@ -37,26 +37,26 @@
 
 | گروه | کل | تکمیل | در انتظار | در حال پردازش | ناموفق | پیشرفت |
 |---|---:|---:|---:|---:|---:|---:|
-| `crop` | 341 | 314 | 0 | 0 | 27 | 92.08٪ |
-| `irrigation` | 12 | 11 | 0 | 0 | 1 | 91.67٪ |
-| `product` | 112 | 36 | 0 | 0 | 76 | 32.14٪ |
+| `crop` | 341 | 318 | 0 | 0 | 23 | 93.26٪ |
+| `irrigation` | 12 | 12 | 0 | 0 | 0 | 100.00٪ |
+| `product` | 112 | 39 | 0 | 0 | 73 | 34.82٪ |
 | `strategic` | 33 | 27 | 0 | 0 | 6 | 81.82٪ |
 | `xref` | 650 | 455 | 0 | 0 | 195 | 70.00٪ |
 
 ## وضعیت ترجمه مقالات تولیدشده
 
-- مقالات فارسی تکمیل‌شده: **843**
-- واحدهای ترجمه تکمیل‌شده: **2529 از 2529**
-- واحدهای ترجمه باقی‌مانده: **0**
-- مقالات فاقد حداقل یک ترجمه: **0**
-- وضعیت صف فارسی: **فعال**
+- مقالات فارسی تکمیل‌شده: **851**
+- واحدهای ترجمه تکمیل‌شده: **2529 از 2553**
+- واحدهای ترجمه باقی‌مانده: **24**
+- مقالات فاقد حداقل یک ترجمه: **8**
+- وضعیت صف فارسی: **متوقف تا تکمیل ترجمه‌ها**
 - بسته‌های ترجمه ۵۰تایی آماده: **0**
 
 | زبان | تکمیل | باقی‌مانده | مسیر |
 |---|---:|---:|---|
-| عربی عراق (`ar-IQ`) | 843 | 0 | `/iraq/` |
-| تاجیکی (`tg-TJ`) | 843 | 0 | `/tj/` |
-| انگلیسی (`en-US`) | 843 | 0 | `/en/` |
+| عربی عراق (`ar-IQ`) | 843 | 8 | `/iraq/` |
+| تاجیکی (`tg-TJ`) | 843 | 8 | `/tj/` |
+| انگلیسی (`en-US`) | 843 | 8 | `/en/` |
 
 ## وضعیت بازطراحی تصاویر
 
@@ -71,13 +71,21 @@
 
 ## مقاله بعدی صف
 
-- عنوان: **نگهداری عدس با نوار تیپ: نکات کلیدی**
-- شناسه: `crop-308`
-- گروه: `crop`
+- عنوان: **مراحل نصب لوله تاشو 3 اینچ 75 میلیمتر در سیستم آبیاری**
+- شناسه: `prod-013`
+- گروه: `product`
 - تعداد تلاش قبلی: **4**
 
 ## آخرین مقالات تکمیل‌شده
 
+- **مقایسه لوله تاشو 3 اینچ 75 میلیمتر با سایر برندها** — `prod-001` — `product` — 1104 کلمه — تحویل: `SQL package` — `2026-09-29T21:47:00+00:00`
+- **راهنمای جامع آبیاری باغ میوه** — `irr-12` — `irrigation` — 1136 کلمه — تحویل: `SQL package` — `2026-09-29T21:45:27+00:00`
+- **نگهداری کلزا با نوار تیپ: نکات کلیدی** — `crop-329` — `crop` — 1290 کلمه — تحویل: `SQL package` — `2026-09-29T21:44:40+00:00`
+- **آفات و بیماری‌های شوید با آبیاری قطره‌ای** — `crop-299` — `crop` — 1335 کلمه — تحویل: `SQL package` — `2026-09-29T21:44:29+00:00`
+- **نگهداری کنجد با نوار تیپ: نکات کلیدی** — `crop-336` — `crop` — 1211 کلمه — تحویل: `SQL package` — `2026-09-29T21:43:07+00:00`
+- **هزینه لوله تاشو 125 میلیمتر در مزرعه: برآورد** — `prod-016` — `product` — 1263 کلمه — تحویل: `SQL package` — `2026-09-29T21:42:55+00:00`
+- **نگهداری مارچوبه با نوار تیپ: نکات کلیدی** — `crop-297` — `crop` — 1184 کلمه — تحویل: `SQL package` — `2026-09-29T21:42:30+00:00`
+- **نگهداری از لوله نخدار 125 میلیمتر برای عمر مفید بیشتر** — `prod-003` — `product` — 1175 کلمه — تحویل: `SQL package` — `2026-09-29T21:42:19+00:00`
 - **راهنمای جامع کاشت پیاز با آبیاری قطره‌ای** — `crop-281` — `crop` — 1391 کلمه — تحویل: `SQL package` — `2026-09-29T21:24:31+00:00`
 - **راهنمای جامع کاشت مرزه با آبیاری قطره‌ای** — `crop-233` — `crop` — 1537 کلمه — تحویل: `SQL package` — `2026-09-29T21:21:27+00:00`
 - **میزان برداشت ملون در هکتار با نوار تیپ** — `crop-263` — `crop` — 1145 کلمه — تحویل: `SQL package` — `2026-09-29T21:20:08+00:00`
@@ -90,27 +98,19 @@
 - **میزان برداشت لپه در هکتار با نوار تیپ** — `crop-237` — `crop` — 1157 کلمه — تحویل: `SQL package` — `2026-09-29T21:19:19+00:00`
 - **میزان برداشت چغندر در هکتار با نوار تیپ** — `crop-284` — `crop` — 1293 کلمه — تحویل: `SQL package` — `2026-09-29T21:19:18+00:00`
 - **هزینه کشت پاپریکا با نوار تیپ در هکتار** — `crop-295` — `crop` — 1077 کلمه — تحویل: `SQL package` — `2026-09-29T21:18:57+00:00`
-- **مقدار بذر کدو در هکتار: راهنمای جامع** — `crop-222` — `crop` — 1089 کلمه — تحویل: `SQL package` — `2026-09-29T21:18:34+00:00`
-- **میزان برداشت گلرنگ در هکتار با نوار تیپ** — `crop-285` — `crop` — 1137 کلمه — تحویل: `SQL package` — `2026-09-29T21:18:12+00:00`
-- **فاصله نوار تیپ در کشت ریحان: استانداردهای توصیه‌شده** — `crop-241` — `crop` — 1296 کلمه — تحویل: `SQL package` — `2026-09-29T21:17:47+00:00`
-- **میزان برداشت موسیر در هکتار با نوار تیپ** — `crop-255` — `crop` — 1254 کلمه — تحویل: `SQL package` — `2026-09-29T21:17:47+00:00`
-- **راهنمای جامع کاشت عدس با آبیاری قطره‌ای** — `crop-140` — `crop` — 1537 کلمه — تحویل: `SQL package` — `2026-09-29T20:59:04+00:00`
-- **مقدار بذر باقلا در هکتار: راهنمای جامع** — `crop-135` — `crop` — 1244 کلمه — تحویل: `SQL package` — `2026-09-29T20:58:53+00:00`
-- **آفات و بیماری‌های پیاز با آبیاری قطره‌ای** — `crop-159` — `crop` — 1154 کلمه — تحویل: `SQL package` — `2026-09-29T20:56:45+00:00`
-- **فاصله نوار تیپ در کشت کاهو: استانداردهای توصیه‌شده** — `crop-184` — `crop` — 1269 کلمه — تحویل: `SQL package` — `2026-09-29T20:56:06+00:00`
 
 ## خطاهای اخیر
 
-- **آفات و بیماری‌های ملون با آبیاری قطره‌ای** — `crop-221` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Product width is approximately 29% of the frame, exceeding the hard reject threshold of 27%.', 'The visible crop plants have broad, ovate leaves and upright stems characteristic of Solanaceae (e.g., tomato or potato), not Cucurbitaceae (melon). This constitutes a clearly identifiable different species.', 'machine-enforced bounding-box check failed: Reduce the product group from 29% to 13-27% of frame width.']`
-- **آفات و بیماری‌های بادمجان با آبیاری قطره‌ای** — `crop-275` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
-- **نگهداری کاملینا با نوار تیپ: نکات کلیدی** — `crop-259` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image-set diversity gate rejected the three-image editorial set after 4 rounds`
-- **هزینه کشت خربزه با نوار تیپ در هکتار** — `crop-254` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['The visible crop has smooth, hard-shelled red fruits growing upright on erect indeterminate stems with tomato-like foliage, which is clearly identifiable as tomato, a different species from melon.', 'The roll is placed in the immediate foreground beside the plant rather than off-center in the lower third, reducing it to primary staging.']`
-- **آفات و بیماری‌های کلزا با آبیاری قطره‌ای** — `crop-186` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['The crop on the right side of the image consists of long, blade-like leaves characteristic of cereals or general grasses, which is explicitly forbidden in the prompt.', 'Hard reject due to the presence of cereal or generic tall grass morphology which does not match the required canola (rapeseed) specification.']`
-- **میزان برداشت باقلا در هکتار با نوار تیپ** — `crop-187` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ["Watermark location is incorrect: the requirement specifies bottom-right 'AFP | 09134922013', but in this image it is overlaid on the crop at the bottom-right, not cleanly placed as a watermark overlay.", 'Crop morphology is ambiguous: the foreground plants do not clearly display the thick upright stems, broad paired leaflets, and elongated pods required to confirm fava bean (باقلا); they resemble a generic broadleaf crop.', 'Centered product `
-- **فاصله نوار تیپ در کشت زعفران: استانداردهای توصیه‌شده** — `crop-155` — مرحله: `image` — تلاش: **1/4** — `article_image_generation unavailable after 4 retries: RuntimeError`
-- **فاصله نوار تیپ در کشت کنجد: استانداردهای توصیه‌شده** — `crop-174` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['The visible plant is a young corn/maize seedling, not sesame (konjeng). The prompt requires the crop to be recognizable as sesame, but it is clearly a different species.', 'The product is a white cylindrical roll with a central hole, resembling a towel or industrial roll, not a carton drip-tape roll.']`
-- **میزان برداشت زعفران در هکتار با نوار تیپ** — `crop-076` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ['Hard reject: image contains multiple people (a kneeling figure on the right and a standing figure in the background).', 'Hard reject: image contains visible human body parts (arm, legs, face).', "The crop shown (pink tulip-like flowers) is visually contradictory to the target topic 'saffron crocus' (Crocus sativus), which typically has purple flowers and lacks the specific leaf structure shown.", 'Strict instruction violation: presence of any`
-- **راهنمای جامع کاشت گشنیز با آبیاری قطره‌ای** — `crop-112` — مرحله: `image` — تلاش: **1/4** — `article_image_generation unavailable after 4 retries: RuntimeError`
+- **میزان برداشت طالبی در هکتار با نوار تیپ** — `crop-342` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Presence of a human (farmer)', 'Presence of human body parts (head, hands, arms, legs)', 'Product is a vertical cylindrical container (bottle/drum style) rather than a wide low cylindrical drip-tape carton roll', 'Product geometry fails requirement (height is greater than width, not 1.5-1.9x wide)', 'Product placement is centered rather than off-center on the lower third', 'Product is too small relative to the 20-23% width preference', 'machi`
+- **مقدار بذر لپه در هکتار: راهنمای جامع** — `crop-313` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['Crop species mismatch: The background clearly displays sunflowers, not the required لپه (yellow split-pea) crop which must have compound leaves and a bushy/herbaceous growth habit.', 'Product aspect ratio: The roll is wider than it is tall, failing the requirement for a diameter of 1.5 to 1.9 times its height.']`
+- **فاصله نوار تیپ در کشت تریتیکاله: استانداردهای توصیه‌شده** — `crop-321` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Product (drip-tape roll) width is below the preferred 20% range, measured at approximately 13% of the image width.', 'The background crop shows wide leaves and developing panicles that do not clearly match the specific botanical characteristics of triticale, risking a hard reject for a different species.']`
+- **مشخصات فنی لوله تاشو 90 میلیمتر: راهنمای انتخاب** — `prod-017` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ['Exactly two approved layflat objects are present: one packaged coil (left) and one bare black woven coil (right).', 'Zero people or human body parts are visible in the frame.', 'The background contains only unattended infrastructure (tractor) and farm buildings, which are permitted.', "The exact required watermark 'AFP | 09134922013' is present in the bottom-right corner.", 'Both products are fully visible, separate, and resting flat on the g`
+- **نگهداری از لوله تاشو 90 میلیمتر برای عمر مفید بیشتر** — `prod-004` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['Critical hard reject: Image contains a full human body (farmer) in the foreground.', 'Image does not contain a packaged AFP coil.', 'Image does not contain two separate layflat coils; it contains one tool.', "Centered product staging and human presence violate the 'zero people' and 'off-center' rules."]`
+- **نگهداری عدس با نوار تیپ: نکات کلیدی** — `crop-308` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['The crop morphology visible in the image does not match the required lentil (عدس) definition; the plants lack the fine pinnate leaflets and look more like generic legume or broadleaf weeds rather than recognizable lentil plants.', "The required exact bottom-right watermark 'AFP | 09134922013' is missing from the image."]`
+- **راهنمای جامع خرید لوله تاشو 110 میلیمتر: نکات انتخاب و قیمت** — `prod-020` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 3 after 6 attempts: ['No people or human body parts are visible.', 'Exactly two layflat coils are present: one packaged and one bare black.', "Watermark 'AFP | 09134922013' is present in bottom-right.", 'Objects are flat and fully visible on the ground.', 'Unattended tractor in the background is allowed infrastructure.', 'machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width.']`
+- **هزینه لوله نخی 2 اینچ 50 میلیمتر در مزرعه: برآورد** — `prod-014` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ["Missing required watermark text: 'AFP | 09134922013'", 'machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width.']`
+- **اندازه‌گیری لوله نخی 2 اینچ 50 میلیمتر برای مزرعه** — `prod-015` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 1 after 6 attempts: ['The image contains a person, which is a hard reject.', 'The image contains a human body part, which is a hard reject.', 'machine-enforced bounding-box check failed: Reduce the product group from 24% to 9-20% of frame width.']`
+- **نگهداری از لوله نخدار 160 میلیمتر برای عمر مفید بیشتر** — `prod-007` — مرحله: `image_qa_deferred` — تلاش: **4/4** — `Image QA rejected article image 2 after 6 attempts: ['Hard reject: Image contains two people/farmers (faces, hands, legs, and body parts are visible).', 'Missing required products: No AFP coil or black woven coil is visible in the image.', 'Staging requirement not met: The required product pair is not off-center on the lower third occupying 12-15% of frame width.', 'machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width.']`
 
 ## بسته‌های ۵۰تایی آماده
 
@@ -127,10 +127,10 @@
 
 ## خروجی‌های تولیدشده
 
-- فایل JSON مقاله‌ها: **843**
-- تصاویر تولیدشده: **2529**
-- فایل‌های SQL: **843**
-- فایل‌های Rollback: **843**
+- فایل JSON مقاله‌ها: **851**
+- تصاویر تولیدشده: **2553**
+- فایل‌های SQL: **851**
+- فایل‌های Rollback: **851**
 
 ## فایل‌های مدیریتی
 

@@ -3,7 +3,7 @@
   "kind": 3,
   "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
@@ -97,7 +97,53 @@
       ],
       "correction_prompt": "Regenerate image with exactly two layflat objects (one packaged AFP coil and one bare black woven coil) separated and lying flat on the ground in the lower-third right-off-center, pair occupying less than 15% of frame width; remove all people, hands, or human silhouettes; retain the bottom-right watermark 'AFP | 09134922013'. Reduce the product group from 50% to 9-20% of frame width. Reduce product height from 45% to at most 32% of frame height.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 90,
+      "product_width_percent": 30,
+      "product_height_percent": 22,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Contains exactly one packaged AFP coil and one bare black woven coil.",
+        "Zero people or human body parts visible.",
+        "Watermark 'AFP | 09134922013' is correctly present in the bottom right.",
+        "Products are flat, separate, and fully visible on the ground.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 30% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: a human silhouette (person) is visible in the image.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the person, farmer, worker, face, hands, arms, legs, or body parts from the image entirely. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 15,
+      "product_height_percent": 14,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "No people or human body parts present.",
+        "Products are flat, separate, and fully visible on the ground.",
+        "Products appear in the lower-left section of the frame.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Only one packaged and one bare black woven coil are visible; no prohibited third items or hardware.",
+        "Product width (spanning from x=221 to x=733) covers exactly 15% of the frame width, matching the upper limit of the 12-15% requirement."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
     }
   ],
-  "approved_image": null
+  "approved_image": "نگهداری-از-لوله-تاشو-90-میلیمتر-برای-عمر-مفید-بیشتر-جزئیات-فنی.webp"
 }

@@ -3,92 +3,78 @@
   "kind": 3,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 15,
-      "product_width_percent": 4,
-      "product_height_percent": 5,
-      "product_x_center_percent": 25,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 55,
       "reasons": [
-        "Two people are visible in the image",
-        "Drip-tape product is extremely small and off-center in the bottom-left corner, not matching required dimensions or positioning",
-        "Crop visible is fruit trees which does not clearly align with cantaloupe (طالبی) requirement",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
+        "Hard reject: presence of two people, faces, hands, and full body parts in the frame",
+        "Watermark at bottom-right is correctly present",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate with exactly one AFP white-and-blue drip-tape carton roll occupying 20-23 percent of frame width, placed off-center on the lower third, no people, farm context with cantaloupe or neutral crop Enlarge the product group from 4% to 13-27% of frame width.",
+      "correction_prompt": "Remove all people, faces, and human body parts; regenerate a scene with only unattended irrigation hardware, soil, and the cantaloupe crop without human figures Enlarge the product group from 12% to 13-27% of frame width.",
       "attempt": 1
     },
     {
       "pass": false,
       "score": 10,
-      "product_width_percent": 0,
-      "product_height_percent": 0,
-      "product_x_center_percent": 0,
+      "product_width_percent": 15,
+      "product_height_percent": 28,
+      "product_x_center_percent": 32,
       "reasons": [
-        "The image contains multiple people, violating the zero-person rule (hard reject).",
-        "The required 'AFP white-and-blue wide low cylindrical drip-tape carton roll' is missing.",
-        "The crop shown (tall corn/maize) does not match the specified 'طالبی' (cantaloupe) context and lacks cantaloupe vines or fruits in the relevant crop rows.",
-        "The 'cylindrical drip-tape carton roll' would exceed size/position thresholds if present.",
-        "The watermark 'AFP | 09134922013' is visible but does not offset the hard rejects.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+        "Hard reject: The image contains two distinct human figures (a man and a woman), which violates the 'zero people' constraint."
       ],
-      "correction_prompt": "Regenerate a zero-person wide low cylindrical drip-tape carton roll, white-blue AFP branded, centered lower-third on soil in a cantaloupe farm field; roll width 18-22% of frame, height ≤32%, 1.5-1.9x wide; include 'AFP | 09134922013' bottom-right; no people, no extra commercial items, no tall corn. Enlarge the product group from 0% to 13-27% of frame width.",
+      "correction_prompt": "Regenerate the image to exclude all human figures, faces, and body parts. Focus on a hardware story showing the AFP drip tape roll and irrigation infrastructure (filters, manifolds) on the soil, with a cantaloupe vine or fruit context if appropriate, but no people.",
       "attempt": 2
     },
     {
       "pass": false,
-      "score": 25,
-      "product_width_percent": 19,
-      "product_height_percent": 28,
-      "product_x_center_percent": 47,
+      "score": 20,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 26,
       "reasons": [
-        "Presence of a full human figure (farmer crouching) which is a hard reject.",
-        "Product is centered rather than off-center on the lower third."
+        "Gibberish text visible on the carton label instead of authentic packaging print",
+        "Identifiable crop morphology (melon/squash family) clearly contradicts طالبی (cantaloupe) context requiring specific crop match or neutral crop absence in hardware story"
       ],
-      "correction_prompt": "Remove the human figure entirely; shift the drip tape carton roll to the lower-left or lower-right third; keep the sunflower field background and bottom-right AFP | 09134922013 watermark.",
+      "correction_prompt": "Remove all gibberish text from carton; make crop visually neutral or absent for hardware irrigation focus; ensure authentic AFP branding only",
       "attempt": 3
     },
     {
       "pass": false,
       "score": 15,
-      "product_width_percent": 15,
-      "product_height_percent": 16,
-      "product_x_center_percent": 33,
+      "product_width_percent": 14,
+      "product_height_percent": 19,
+      "product_x_center_percent": 41,
       "reasons": [
-        "Hard reject: Presence of a person and human body parts is strictly forbidden in this role."
+        "Hard reject: Presence of a man (human figure) in the image, which violates the requirement for zero people.",
+        "Hard reject: Product dimensions (width ~14%, height ~19%) do not meet the minimum aspect ratio requirements (height must not exceed 32% width, diameter 1.5-1.9x height) and the width is on the lower limit of the acceptable range.",
+        "Product placement is on soil (correct) but the primary violation is the human presence."
       ],
-      "correction_prompt": "Remove the woman and all human elements from the image. Ensure the AFP drip-tape roll is placed naturally on the soil in the sunflower field background without any people present.",
+      "correction_prompt": "Regenerate the image to show ONLY the white-and-blue drip-tape carton on the soil without any people, farmers, or human body parts. Ensure the roll is wide and low-cylindrical, off-center on the lower third. Keep the tractor in the background and the crop context, but strictly remove all human elements.",
       "attempt": 4
     },
     {
-      "pass": false,
-      "score": 45,
-      "product_width_percent": 17,
-      "product_height_percent": 19,
-      "product_x_center_percent": 44,
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 25,
+      "product_height_percent": 20,
+      "product_x_center_percent": 38,
       "reasons": [
-        "Product x_center_percent is 44%, which is too close to the center (50%), violating the 'off-center' requirement (typically aiming for ~30-35%).",
-        "Product height_percent (19%) is slightly higher than its width_percent (17%), meaning the roll is not as wide as its specified 1.5x-1.9x height ratio implies; it should appear more flattened/wide relative to its height."
+        "Contains exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product is off-center on the lower third and naturally placed on soil.",
+        "Proportions are within acceptable bounds (width 25%, height 20%).",
+        "Background matches topic-specific farm context with irrigation hardware (tractor) visible.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom right.",
+        "No people or human silhouettes are visible."
       ],
-      "correction_prompt": "Regenerate with the drip-tape roll shifted further to the left, aiming for an x-center of 30%. Increase the roll's visible width relative to its height to achieve a 1.8x width-to-height ratio, maintaining the secondary product size.",
+      "correction_prompt": "",
       "attempt": 5
-    },
-    {
-      "pass": false,
-      "score": 12,
-      "product_width_percent": 16,
-      "product_height_percent": 21,
-      "product_x_center_percent": 24,
-      "reasons": [
-        "Hard reject: image contains a prominent adult male crouching in the foreground (explicit violation of 'zero people' rule).",
-        "Hard reject: visible face, hands, arms, legs, and body silhouette present.",
-        "Hard reject: the 'hardware story' role requires no identifiable crop context when plants are absent/neutral, but this is an active human interaction scene (irrigation setup)."
-      ],
-      "correction_prompt": "Regenerate with zero people. Show only the AFP white-and-blue drip-tape roll (approx 18% width) resting on dark soil in the lower-left third. Include a filter manifold and flush connector in the mid-ground to establish the hardware context. Remove the farmer and all visible crops or make them extremely distant/neutral. Keep the 'AFP | 09134922013' watermark bottom-right.",
-      "attempt": 6
     }
   ],
-  "approved_image": null
+  "approved_image": "میزان-برداشت-طالبی-در-هکتار-با-نوار-تیپ-جزئیات-فنی.webp"
 }

@@ -3,7 +3,7 @@
   "kind": 2,
   "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
@@ -95,7 +95,83 @@
       ],
       "correction_prompt": "Remove the person entirely. Reposition the packaged AFP coil and bare black woven coil to the lower third of the frame, offset to the left or right. Shrink the pair so their combined width is under 15% of the image. Ensure they are flat on the ground and separate. Reduce the product group from 45% to 9-20% of frame width. Reduce product height from 35% to at most 32% of frame height.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25,
+      "product_height_percent": 22,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product pair is centered in the lower third",
+        "Product width (25%) exceeds the maximum limit of 15%",
+        "Product scale is too large relative to the frame",
+        "machine-enforced bounding-box check failed: Reduce the product group from 25% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Zoom out to ensure the two layflat coils occupy only 12-15% of the frame width; position the pair off-center to the left or right in the lower third of the image. Reduce the product group from 25% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 45,
+      "product_height_percent": 20,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Pair is centered rather than off-center on the lower third",
+        "Combined product pair occupies approx 45% of frame width, violating the 12-15% constraint",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Shrink the two layflat coils drastically so their combined pair occupies only 12-15% of the frame width. Move the pair to the right, off-center on the lower third. Keep both coils flat on the ground, fully visible, separate. Keep the bottom-right watermark. No people. Reduce the product group from 45% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 52,
+      "product_height_percent": 33,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The combined pair of products is too wide, occupying roughly 52% of the frame width instead of the required 12-15%.",
+        "The left object appears to be a single coiled round pipe or flexible hose rather than the required packaged AFP flatlay coil, which typically has a rectangular flat profile.",
+        "The product pair is placed in the bottom-center rather than staying off-center on the lower third.",
+        "The products are excessively large in scale relative to the surrounding crop rows and soil texture.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 52% to 9-20% of frame width.; Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with the two layflat coils significantly smaller (occupying only ~12-15% of frame width) and shifted to the far bottom-right corner (off-center). Ensure the left object is a rectangular packaged flatlay coil, not a round coiled hose. Reduce the product group from 52% to 9-20% of frame width. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 45,
+      "product_height_percent": 25,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Hard reject: A person (a man sitting on a bale) is present in the image.",
+        "Hard reject: The product pair is centered rather than off-center on the lower third.",
+        "Hard reject: The product pair is far too wide, exceeding 15 percent of the frame width.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with zero people or human parts. The complete product pair must occupy only 12-15% of frame width and be positioned off-center on the lower third. Reduce the product group from 45% to 9-20% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 14.5,
+      "product_height_percent": 8.5,
+      "product_x_center_percent": 42.0,
+      "reasons": [
+        "Contains exactly two approved layflat objects: one packaged AFP coil (wrapped/labelled) and one bare black woven coil.",
+        "Pair occupies roughly 14–15% of frame width, staying off-center on the lower third, flat on the ground.",
+        "Zero people, farmers, workers, faces, hands, arms, legs, bodies, or human silhouettes are present.",
+        "The bottom-right watermark 'AFP | 09134922013' is present and correctly preserved.",
+        "No hard-reject elements: no third hose, pipe, drip tape, cable, fitting, valve, bottle, or infrastructure; distant crop rows and soil texture are acceptable."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
     }
   ],
-  "approved_image": null
+  "approved_image": "مشخصات-فنی-لوله-تاشو-90-میلیمتر-راهنمای-انتخاب-کاربرد-عملی.webp"
 }

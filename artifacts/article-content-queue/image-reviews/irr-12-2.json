@@ -1,0 +1,85 @@
+{
+  "id": "irr-12",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The image clearly contains a male farmer/worker squatting and handling the product, which is a hard reject based on the rule requiring zero people or human body parts.",
+        "The product's height (approximately 18%) is greater than its width (approximately 15%), making it appear like a small canister or bucket rather than a wide, low cylindrical roll where diameter should be 1.5 to 1.9 times its height."
+      ],
+      "correction_prompt": "Regenerate the image completely removing the man. Show a wide, low cylindrical drip-tape roll lying naturally on the soil. Ensure the roll's width is significantly larger than its height (1.5-1.9 ratio) and position it off-center on the lower third.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 27.0,
+      "product_height_percent": 22.0,
+      "product_x_center_percent": 38.0,
+      "reasons": [
+        "The product width is exactly at the 27% hard-reject threshold, making the roll appear too dominant and not strictly secondary as required.",
+        "The crop in the foreground and background has morphology that strongly resembles an invasive species (e.g., bindweed), which carries a high risk of tripping the 'clearly identifiable different species' rejection rule for an article focusing on a specific domestic crop."
+      ],
+      "correction_prompt": "Reduce the drip-tape roll width to strictly under 25% of the frame. Replace the foreground crops with more indistinct, generic early-stage seedlings or bare soil to avoid the invasive species look, while keeping the field context and tractor/barn background intact.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: The image contains two people, violating the strict constraint of zero people or human body parts.",
+        "Hard reject: The product is depicted as a small white canister with a blue label, which is not the required 'wide low cylindrical drip-tape carton roll'.",
+        "Geometry violation: The product's aspect ratio (diameter to height) does not match the required wide and low cylindrical shape; it is too tall relative to its width.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image to show exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll on soil with zero people, ensuring the roll width is approximately 20% of the frame width and height is under 32%. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 21,
+      "product_height_percent": 31,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Contains visible human body parts: hands, arms, and legs of a worker in the background are present.",
+        "Contains a hand shovel (agricultural tool) not explicitly allowed in the restricted item list.",
+        "The prompt requires zero people and zero human body parts, which is violated."
+      ],
+      "correction_prompt": "Remove the human figure (arms, legs) and hand shovel. Keep only the white-and-blue 'AFP' drip-tape roll and the young crop seedlings in the background soil.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 23,
+      "product_height_percent": 22,
+      "product_x_center_percent": 29,
+      "reasons": [
+        "The image shows a single white and blue cylindrical carton roll, which matches the specified product description.",
+        "The roll is wide, low, and cylindrical, with visible dimensions and proportions consistent with a tape roll (visible diameter is roughly 1.5 times its visible height).",
+        "The roll is positioned in the lower-left third of the frame, which aligns with the required off-center placement.",
+        "The product is naturally placed on soil and is secondary to the main scene, which includes young crop plants and a shovel.",
+        "There are no people, human body parts, or silhouettes visible, meeting the zero-person requirement.",
+        "The background shows a farm context with prepared soil and young crop rows, consistent with an agronomic context.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No prohibited objects (such as bottles, second rolls, pipes, or impossible geometry) are present.",
+        "The crop in the image is identifiable as a common agricultural crop (likely corn/maize), but at a young stage, which aligns with the instruction that neutral young vegetation may pass."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "راهنمای-جامع-آبیاری-باغ-میوه-کاربرد-عملی.webp"
+}

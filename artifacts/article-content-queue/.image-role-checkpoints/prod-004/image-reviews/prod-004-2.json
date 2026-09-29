@@ -3,7 +3,7 @@
   "kind": 2,
   "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
@@ -94,7 +94,87 @@
       ],
       "correction_prompt": "Regenerate with exactly two flat lay coils (one packaged AFP, one bare black) occupying 12-15% frame width in the lower third. Completely remove all people and human body parts. Keep bottom-right watermark 'AFP | 09134922013'.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 95,
+      "product_width_percent": 24,
+      "product_height_percent": 18,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The image displays exactly two approved layflat objects: one packaged coil (left) and one bare black woven coil (right).",
+        "The layout is on the lower third, off-center, and the objects are flat on the ground.",
+        "The watermark 'AFP | 09134922013' is present in the bottom right corner.",
+        "Zero people or human body parts are visible in the image.",
+        "Product width is approximately 24% of the frame width, slightly exceeding the 12-15% ideal, but well within the 15% hard rejection threshold. The objects are not centered.",
+        "No prohibited items (valves, bottles, round pipes, etc.) are present; only the two layflat coils are visible.",
+        "Both products are clearly separate and fully visible.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 24% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 24% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 15,
+      "reasons": [
+        "Presence of two humans (a man and a woman) is a hard reject criterion; the image must contain zero people or human body parts.",
+        "The products (hose coils) are not in the required lower-third, off-center position; they are in the extreme bottom-left corner and partially cropped.",
+        "The product pair is not separated and flat on the ground as requested; the coils are clustered and overlapping, with the bare coil sitting beneath the packaged coil rather than beside it."
+      ],
+      "correction_prompt": "Remove all humans and human silhouettes. Place one packaged AFP coil and one bare black woven coil flat and separate on the ground in the lower third of the frame, off-center to the left, occupying 12-15% of the frame width. Ensure both are fully visible and not merged.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 88,
+      "product_width_percent": 24,
+      "product_height_percent": 15,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The image contains exactly two objects: one packaged AFP coil and one bare black woven coil.",
+        "Both objects are flat on the ground and fully visible.",
+        "No people, body parts, or silhouettes are visible.",
+        "The required bottom-right watermark is present.",
+        "Product width is approximately 24% of the frame width, which exceeds the strict 15% maximum cap, but is acceptable given it is in the lower third and off-center, not centered. Score is adjusted down for slight width violation but passes overall.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 24% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 24% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 20,
+      "product_height_percent": 8,
+      "product_x_center_percent": 15,
+      "reasons": [
+        "Hard reject: Image contains a human person (woman crouching in the foreground), which violates the zero people/body parts constraint.",
+        "The product pair is not centered in the lower third as required; the products appear in the bottom-left corner while the human occupies the lower-center/right.",
+        "The presence of the human figure interferes with the required 'unattended' context."
+      ],
+      "correction_prompt": "Remove the crouching woman completely. Ensure the scene is unattended with no human body parts. Reposition the packaged AFP coil and bare black woven coil to the lower third of the frame (bottom center), scaling them down so the combined width is only 12-15% of the image. Ensure they are flat and separate on the ground.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 20,
+      "product_height_percent": 15,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Contains required AFP watermark",
+        "No people or human silhouettes present",
+        "Displays two distinct layflat coils (one packaged, one bare black)",
+        "Both coils are flat on the ground and fully visible",
+        "Image is clear with good agricultural context"
+      ],
+      "correction_prompt": "",
+      "attempt": 5
     }
   ],
-  "approved_image": null
+  "approved_image": "نگهداری-از-لوله-تاشو-90-میلیمتر-برای-عمر-مفید-بیشتر-کاربرد-عملی.webp"
 }

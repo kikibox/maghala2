@@ -3,66 +3,87 @@
   "kind": 1,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": true,
+  "approved": false,
   "attempts": [
     {
       "pass": false,
-      "score": 10,
-      "product_width_percent": 12,
-      "product_height_percent": 18,
-      "product_x_center_percent": 22,
-      "reasons": [
-        "Presence of two people (farmers) violates the strict 'zero people' rule",
-        "The crop shown is a fruit tree (peach/apricot), which is a clearly identifiable different species and fails the cantaloupe requirement",
-        "The product object appears to be a generic industrial drum, not clearly identifiable as the specific drip-tape carton roll",
-        "The product does not appear to be a wide, low cylindrical shape, instead looking like a taller cylindrical drum",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
-      ],
-      "correction_prompt": "Remove all human figures. Replace the fruit tree with cantaloupe vines featuring lobed leaves and netted fruit. Replace the generic drum with an AFP white-and-blue wide, low cylindrical drip-tape roll (width 20-23%, height <32%, aspect ratio ~1.7) placed on soil in the lower-third, off-center. Ensure the 'AFP | 09134922013' watermark is present. Enlarge the product group from 12% to 13-27% of frame width.",
-      "attempt": 1
-    },
-    {
-      "pass": false,
-      "score": 0,
+      "score": 15,
       "product_width_percent": 0,
       "product_height_percent": 0,
       "product_x_center_percent": 0,
       "reasons": [
-        "The central fruit shown is botanically identifiable as a Cucurbita species (likely pumpkin or squash) rather than a netted cantaloupe (Cucumis melo), which triggers the hard rejection for a clearly identifiable different species.",
+        "Person/farmer visible in the image",
+        "Missing the required white-and-blue cylindrical drip-tape carton roll",
+        "Contains a coiled black tube instead of the required white/blue roll",
+        "A melon and stool are present instead of the required cantaloupe vines",
         "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate the crop background to show cantaloupe vines with lobed leaves and netted fruit attached to the vine, instead of the visible squash/pumpkin species. Enlarge the product group from 0% to 13-27% of frame width.",
+      "correction_prompt": "Remove all human figures. Replace the black coiled tube with exactly one white-and-blue wide low cylindrical drip-tape roll placed on soil in the lower third, off-center. Ensure cantaloupe vines with netted fruit are visible. Add the required 'AFP | 09134922013' watermark in the bottom right. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 19.8,
+      "product_height_percent": 25.1,
+      "product_x_center_percent": 28.9,
+      "reasons": [
+        "Hard reject due to the presence of visible people (multiple human silhouettes/farmers in the background)"
+      ],
+      "correction_prompt": "Regenerate the image completely removing all people or human silhouettes in the background. Retain the cantaloupe farm context, the drip-tape carton in the foreground, and the required watermark.",
       "attempt": 2
     },
     {
       "pass": false,
-      "score": 35,
-      "product_width_percent": 14,
-      "product_height_percent": 16,
-      "product_x_center_percent": 38,
+      "score": 20,
+      "product_width_percent": 22,
+      "product_height_percent": 26,
+      "product_x_center_percent": 25,
       "reasons": [
-        "Crop species mismatch: The prominent netted fruit in the foreground displays distinct dark green vertical stripes and the foliage features large, deeply palmately-lobed leaves, which are characteristic of watermelon (Citrullus lanatus) rather than cantaloupe (Cucumis melo var. cantalupensis).",
-        "The presence of a clearly identifiable different species constitutes a hard reject according to the agronomic specificity of the article.",
-        "The orange pumpkin in the background further muddies the botanical context of the cantaloupe crop."
+        "Hard reject: A person (male farmer) is clearly visible in the background of the image. The requirements strictly forbid any people, human body parts, or silhouettes."
       ],
-      "correction_prompt": "Replace the netted fruit with a small, green cantaloupe (melon) showing restrained netting and no stripes; modify the surrounding foliage to display the characteristic deeply lobed leaves of a cantaloupe vine; remove the background orange pumpkin.",
+      "correction_prompt": "Regenerate the image without the person in the background, showing only the farm field and the drip-tape roll on the soil.",
       "attempt": 3
     },
     {
-      "pass": true,
-      "score": 85,
-      "product_width_percent": 14,
-      "product_height_percent": 10,
-      "product_x_center_percent": 14,
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 38,
       "reasons": [
-        "Product geometry and placement are acceptable; the roll is off-center in the lower third and remains secondary in the composition.",
-        "The background effectively establishes the article-specific context for cantaloupe ('تالبی') with netted fruit and characteristic vines.",
-        "No forbidden human presence or prohibited items are visible.",
-        "The required bottom-right watermark is present and correct."
+        "The required bottom-right watermark 'AFP | 09134922013' is missing (the image shows an invalid '09134922012').",
+        "The visible fruit lacks the netted texture characteristic of the specific article crop (cantaloupe), making it identifiable as a different melon species."
       ],
-      "correction_prompt": "",
+      "correction_prompt": "Regenerate the image to feature distinctly netted cantaloupe fruit and replace the incorrect watermark with the exact string 'AFP | 09134922013' in the bottom-right corner.",
       "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 20,
+      "product_height_percent": 12,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product type is wrong: the image shows a solid cylindrical spool, not a flat drip-tape carton roll.",
+        "Background crop is wrong: the large fruit and leaves resemble a gourd or cucurbit with smooth leaves, not the specific netted cantaloupe morphology required (lobed leaves, netted skin on the vine)."
+      ],
+      "correction_prompt": "Replace the spool with a flat white drip-tape roll carton and replace the foreground fruit with a netted cantaloupe on the vine with lobed leaves.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 21,
+      "product_height_percent": 30,
+      "product_x_center_percent": 53,
+      "reasons": [
+        "Contains a clear commercial netting/mesh enclosure around the fruit, which violates the requirement to reject extra commercial products.",
+        "The image features pineapple foliage (spiky, rigid leaves) mixed with lobed leaves; the botanical context is inconsistent and not cleanly representing the cantaloupe vine morphology."
+      ],
+      "correction_prompt": "Remove the commercial netting enclosure completely. Clarify the plant foliage to show strictly lobed cantaloupe vine leaves without spiky or unrelated species.",
+      "attempt": 6
     }
   ],
-  "approved_image": "میزان-برداشت-طالبی-در-هکتار-با-نوار-تیپ-تصویر-شاخص.webp"
+  "approved_image": null
 }

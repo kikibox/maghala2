@@ -6,20 +6,53 @@
   "approved": true,
   "attempts": [
     {
-      "pass": true,
-      "score": 88,
-      "product_width_percent": 14,
-      "product_height_percent": 18,
-      "product_x_center_percent": 31,
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 25,
       "reasons": [
-        "Product is the correct AFP white-and-blue cylindrical drip-tape carton roll placed off-center on the lower third of the frame.",
-        "The product dimensions are within the acceptable range, remaining secondary to the crop context.",
-        "The background clearly depicts the 'Lapeh' crop with the required yellow flowers, green stems, and drip lines on the soil.",
-        "The required watermark 'AFP | 09134922013' is correctly positioned in the bottom-right corner.",
-        "The image contains no people, human body parts, or prohibited extra commercial products (like jars or buckets)."
+        "The image is a collage containing multiple panels rather than a single cohesive scene.",
+        "The top-right panel displays a flower that does not match the article's subject of yellow split-pea crops, violating the background context requirement.",
+        "The bottom-right panel features a coiled plastic tube (likely drip tape material or a hose) which conflicts with the requirement for exactly one visible product carton; the prompt explicitly hard-rejects extra commercial products or layflat hoses/pipes.",
+        "The product carton in the bottom-left is positioned at the bottom of the frame (approx 80% x-center) rather than on the 'lower third' (approx 66%), making it centered at the bottom edge rather than naturally placed on the soil band.",
+        "The product bounding box width is estimated at 12%, which falls slightly below the acceptable 13-27% range (though close).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Generate a single non-collage image showing one white and blue cylindrical drip-tape carton placed on the lower-third of the frame in a farm field. The background must clearly depict a yellow split-pea crop (or neutral prepared bed), not a flower or collage. Do not include any coiled hoses, pipes, or extra commercial products in the frame. Ensure the product is secondary in size but clearly visible. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 23,
+      "product_height_percent": 30,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The crop in the background consists of yellow blooming flowers (resembling daffodils or narcissus), which is botanically incorrect for a لپه (yellow split-pea) field.",
+        "The image displays a clear flowering ornamental crop rather than the herbaceous legumes or agronomic context of a split-pea farm.",
+        "The crop does not match the article topic (yellow split-pea crop), failing the requirement to make the crop recognizable in a topic-specific farm context."
+      ],
+      "correction_prompt": "Regenerate the image with the AFP white and blue drip tape roll on soil in a field of yellow split-pea plants (pods, green stems, small yellow flowers). Remove the large blooming daffodils. Keep the 'AFP | 09134922013' watermark at the bottom right. Ensure the drip tape roll is the primary product with no people visible.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 75,
+      "product_width_percent": 14,
+      "product_height_percent": 12,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The AFP roll is present, white and blue, cylindrical, and off-center vertically.",
+        "Zero people or body parts visible.",
+        "Watermark 'AFP | 09134922013' is present in the bottom right corner.",
+        "Product width is within the acceptable range of 13-27%.",
+        "Product height is well below the 32% limit.",
+        "Product is placed naturally on the soil.",
+        "Crop context allows for the specified role."
       ],
       "correction_prompt": "",
-      "attempt": 1
+      "attempt": 3
     }
   ],
   "approved_image": "مقدار-بذر-لپه-در-هکتار-راهنمای-جامع-کاربرد-عملی.webp"

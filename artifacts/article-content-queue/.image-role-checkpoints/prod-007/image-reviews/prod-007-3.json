@@ -1,9 +1,9 @@
 {
   "id": "prod-007",
   "kind": 3,
-  "family": "tape20",
+  "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
@@ -86,7 +86,46 @@
       ],
       "correction_prompt": "Regenerate the image without the person/farmer. The tractor should be unattended or have the driver's seat empty. Keep the product roll in the same position on the soil in the foreground. Ensure no body parts or silhouettes are visible anywhere in the frame.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8.3,
+      "product_height_percent": 8.3,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Human presence detected (a person is clearly visible in the image).",
+        "Missing the required pair of products: only one coil is visible, but the image must contain exactly two layflat objects (one packaged AFP coil and one bare black woven coil).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8.3% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with no humans or silhouettes visible. Include exactly two small layflat coils—one wrapped/packaged and one bare black woven coil—both flat and distinct on the ground. The pair should occupy approximately 15% of the frame width, be positioned off-center in the lower third, and leave the rest of the scene open. Preserve the exact bottom-right watermark. Enlarge the product group from 8.3% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 40,
+      "product_height_percent": 25,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product pair is too wide (approx 40% of frame) compared to the required 12-15%",
+        "Product staging is centered rather than off-center on the lower third",
+        "Product objects appear partially cropped or distorted at the bottom edge",
+        "machine-enforced bounding-box check failed: Reduce the product group from 40% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with the two coils significantly smaller (occupying only ~13% of the frame width). Shift the coils off-center to the left or right on the lower third of the image. Ensure both coils are fully visible, complete, and resting flat on the soil without being cut off. Reduce the product group from 40% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 17.0,
+      "product_height_percent": 14.0,
+      "product_x_center_percent": 35,
+      "reasons": [],
+      "correction_prompt": "",
+      "attempt": 3
     }
   ],
-  "approved_image": null
+  "approved_image": "نگهداری-از-لوله-نخدار-160-میلیمتر-برای-عمر-مفید-بیشتر-جزئیات-فنی.webp"
 }

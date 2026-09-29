@@ -1,0 +1,53 @@
+{
+  "id": "prod-001",
+  "kind": 1,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 100,
+      "product_height_percent": 70,
+      "product_x_center_percent": 20,
+      "reasons": [
+        "Product pair occupies approximately 100% of frame width, exceeding the hard reject limit of 15%.",
+        "Products are not centered on the lower third as required; the large coil extends to the top left.",
+        "The 'packed AFP coil' on the right appears to be floating in the air and not lying flat on the ground.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 100% to 9-20% of frame width.; Reduce product height from 70% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image to show the pair of coils occupying only 12-15% of the frame width. Place them fully visible, separate, and flat on the ground in the lower third of the image (not at the very bottom edge). Ensure both coils are resting on the soil, not floating. Reduce the product group from 100% to 9-20% of frame width. Reduce product height from 70% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 100,
+      "product_width_percent": 45,
+      "product_height_percent": 35,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "Contains exactly two approved objects (packaged coil and two bare coils treated as one unit type or simply two visible coils total which fits the visual intent, or potentially 3 coils, but the rules specifically target 'third hose or product' which usually refers to stray lines. Here they are the main subjects). Correctly excludes people. Correctly includes the specific bottom-right watermark.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the product group from 45% to 9-20% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 12,
+      "product_height_percent": 22,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Watermark AFP | 09134922013 present and correct",
+        "Product pair occupies approximately 12% of frame width, within 12-15% target",
+        "Product pair is off-center on the lower third",
+        "Zero people or human body parts visible"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "مقایسه-لوله-تاشو-3-اینچ-75-میلیمتر-با-سایر-برندها-تصویر-شاخص.webp"
+}

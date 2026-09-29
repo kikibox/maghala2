@@ -1,0 +1,107 @@
+{
+  "id": "crop-297",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 22,
+      "product_height_percent": 25,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: Presence of a person and human body parts (farmer crouching, hands holding the product) in the image.",
+        "Product geometry error: The roll's diameter is not approximately 1.5 to 1.9 times its visible height; it appears roughly square or too tall.",
+        "Composition error: The product is centered and being actively held by a person, violating the 'off-center and naturally placed on soil' requirement."
+      ],
+      "correction_prompt": "Remove all humans and body parts from the scene. Place the AFP drip-tape roll naturally on the soil in the lower-left third of the frame, ensuring the roll's diameter is clearly larger than its height (approx 1.7x). Keep the cotton rows and background but ensure no people are visible.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 82,
+      "product_width_percent": 18,
+      "product_height_percent": 30,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "The image is high quality, features the correct product (AFP drip tape roll), correct context (farm field), no people, and includes the mandatory watermark. However, the product violates the specific geometric ratio requirement: its visible diameter (width) is only about 1.2 times its visible height, falling short of the required 1.5 to 1.9 times ratio."
+      ],
+      "correction_prompt": "Regenerate the image with the AFP drip tape roll having a wider diameter relative to its height, ensuring the visible width is 1.5 to 1.9 times the visible height while maintaining the current position and context.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: The image contains a full human figure (torso, arms, legs, hands), which violates the 'zero people' constraint.",
+        "Hard reject: There are multiple small drip tape rolls scattered on the soil in the foreground, violating the 'single roll' constraint."
+      ],
+      "correction_prompt": "Regenerate without any people. Ensure only one large drip tape roll is visible and remove all scattered small rolls. The main roll must be white and blue, placed on the soil in the foreground.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 26,
+      "product_height_percent": 38,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Product height is approximately 38 percent of the frame, significantly exceeding the maximum allowable limit of 32 percent.",
+        "Product-to-height diameter ratio is visually too wide (roughly 1.2:1) rather than the preferred 1.5 to 1.9 times its height.",
+        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Rescale the drip tape roll to be less tall (max 30 percent of frame) while maintaining an elongated horizontal profile with a width-to-height ratio of at least 1.5:1; keep it off-center on the lower third and strictly maintain zero human presence. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 10,
+      "product_height_percent": 15,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer) is strictly prohibited.",
+        "Hard reject: Product shape is incorrect; it is a short cylindrical tub/canister, not a wide low cylindrical roll of drip-tape.",
+        "Hard reject: Product appearance is incorrect; the required product is a white-and-blue drip-tape roll, not a small white container.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts. Replace the container with a wide, low cylindrical roll of white-and-blue drip-tape (diameter 1.5-1.9x its height) placed naturally off-center on the soil in the lower third. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 38,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: Presence of a person (male figure in the background).",
+        "Hard reject: Product height exceeds the 32% limit (estimated ~38%).",
+        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the man in the background completely. Reduce the vertical size of the drip-tape roll to ensure it is no taller than 32% of the frame height while maintaining the correct aspect ratio. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 6
+    },
+    {
+      "pass": true,
+      "score": 84,
+      "product_width_percent": 14,
+      "product_height_percent": 24,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "The carton roll is the only commercial product shown and displays the required 'AFP | 09134922013' watermark.",
+        "Product placement is in the lower half, naturally situated on the soil, and is clearly off-center.",
+        "The drip line running through the field provides the necessary root-zone evidence, and the generic young seedlings are acceptable as they are not clearly a wrong species.",
+        "The image contains no people or human body parts, and no other forbidden items."
+      ],
+      "correction_prompt": "",
+      "attempt": 1
+    }
+  ],
+  "approved_image": "نگهداری-مارچوبه-با-نوار-تیپ-نکات-کلیدی-کاربرد-عملی.webp"
+}

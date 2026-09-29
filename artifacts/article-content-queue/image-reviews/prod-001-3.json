@@ -1,0 +1,59 @@
+{
+  "id": "prod-001",
+  "kind": 3,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Critical rejection: Human figures (a crouching person, hands, and legs) are clearly visible in the scene, which strictly violates the 'zero people/human body parts' requirement.",
+        "Product Count Error: The image features one large coil in the center and two small inserted thumbnails (one packaged, one bare) in the bottom-left, rather than the required 'exactly two approved objects' placed flat on the ground.",
+        "Object Positioning: The main coil is centered horizontally and occupies significantly more than the required 12-15% of the frame width; the pair is not positioned in the lower third.",
+        "Visual Artifacts: The image contains floating white panels with technical text and diagrams that obscure the ground and interfere with the natural 'layflat on the ground' staging.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate a scene of a city family field showing exactly two flat coils (one packaged, one bare) resting on the soil in the lower third, off-center. The pair must be small, occupying 12-15% of the image width. All human figures, hands, and thumbs are completely removed. Remove all floating text panels and diagrams. Maintain the 'AFP | 09134922013' watermark in the bottom right. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 38,
+      "product_height_percent": 25,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Product pair is too wide, occupying approximately 38% of frame width instead of the required 12-15%.",
+        "Products are placed too centrally on the ground plane instead of being off-center on the lower third.",
+        "The required bottom-right watermark 'AFP | 09134922013' is missing.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the two layflat coils sized to occupy only 12-15% of the total frame width. Move the pair off-center to the lower third area (left or right) and add the exact bottom-right watermark 'AFP | 09134922013'. Reduce the product group from 38% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 13,
+      "product_height_percent": 22,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Pair contains exactly one packaged AFP coil and one bare black coil.",
+        "Product pair occupies ~13% of frame width (within 12–15% target).",
+        "Pair is off-center on the lower third (x-center ~58%).",
+        "Coils are separate, flat, fully visible, and grounded.",
+        "Zero people, hands, faces, legs, or human silhouettes.",
+        "Background tractor and barn infrastructure are unattended; no extra commercial products.",
+        "Watermark 'AFP | 09134922013' present bottom-right."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "مقایسه-لوله-تاشو-3-اینچ-75-میلیمتر-با-سایر-برندها-جزئیات-فنی.webp"
+}

@@ -7,63 +7,34 @@
   "attempts": [
     {
       "pass": false,
-      "score": 25,
-      "product_width_percent": 28,
-      "product_height_percent": 30,
-      "product_x_center_percent": 31,
+      "score": 40,
+      "product_width_percent": 30,
+      "product_height_percent": 28,
+      "product_x_center_percent": 30,
       "reasons": [
-        "The image contains a second distinct irrigation product (the filter/valve unit next to the crop), which is a hard reject rule.",
-        "There is visible crop planting (green seedling) that is not strictly neutral and risks contradicting the specific crop context requirements.",
-        "The main roll width is approximately 28% of the frame, which exceeds the maximum 27% limit for the product width.",
-        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+        "Product width exceeds the 27% hard reject limit",
+        "Second package and drip tape roll are visible in the split frame, triggering a hard reject for extra commercial product",
+        "Product is positioned near the bottom center, violating the requirement for off-center lower third placement",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate to show ONLY one white-and-blue cylindrical drip-tape roll. Remove the second hardware item (filter/valve) completely. Ensure the crop plants are absent or visually neutral to maintain a hardware-focused context. Reduce the width of the main roll to be less than 25% of the image width. Reduce the product group from 28% to 13-27% of frame width.",
+      "correction_prompt": "Single shot of a small white and blue wide cylindrical AFP drip-tape roll placed on soil in the lower right third of the frame. No plants or coiled tape on the ground. Product must be secondary to the farm background. Ensure the roll's width is strictly under 27 percent of the frame and height is under 32 percent. Include the watermark 'AFP | 09134922013' in the bottom right. Reduce the product group from 30% to 13-27% of frame width.",
       "attempt": 1
-    },
-    {
-      "pass": false,
-      "score": 58,
-      "product_width_percent": 17,
-      "product_height_percent": 25,
-      "product_x_center_percent": 50,
-      "reasons": [
-        "The product is centered horizontally, violating the 'off-center' and 'lower third' staging requirements.",
-        "The crop visible in the foreground (tall grass/monocot) clearly contradicts the required 'lupin/yellow split-pea' (broadleaf) crop morphology.",
-        "The roll's height is slightly high relative to its width (ratio < 1.5), looking less like a 'wide low' roll and more like a standard tube."
-      ],
-      "correction_prompt": "Shift the roll to the bottom-left or bottom-right (off-center). Replace the grass-like crop with broadleaf yellow split-pea/lupin foliage. Make the roll slightly wider and flatter (aspect ratio 1.5-1.9).",
-      "attempt": 2
-    },
-    {
-      "pass": false,
-      "score": 55,
-      "product_width_percent": 20,
-      "product_height_percent": 25,
-      "product_x_center_percent": 72,
-      "reasons": [
-        "The product roll is not wide enough (approximately 13% width, target 20-23%).",
-        "The product diameter-to-height ratio is incorrect; it is not 'wide low' (diameter ~2.5x height, target 1.5-1.9x).",
-        "The crop shown is clearly yellow tulips, which is a decorative flower and does not match the 'city, family' context nor the specific agricultural profile, although not a direct contradiction to split peas, it is off-subject."
-      ],
-      "correction_prompt": "Regenerate showing a wide, low-profile white and blue irrigation drip tape roll with a diameter approximately 1.5 times its height. The roll must be wider, occupying 20-23 percent of the frame width. Position the roll off-center in the lower third on the soil. Keep the water and irrigation hardware aesthetic clean, and ensure no crop rows are immediately adjacent to the roll to allow focus on the infrastructure. Include the exact 'AFP | 09134922013' watermark in the bottom right.",
-      "attempt": 3
     },
     {
       "pass": true,
       "score": 92,
-      "product_width_percent": 22,
-      "product_height_percent": 28,
-      "product_x_center_percent": 46,
+      "product_width_percent": 18,
+      "product_height_percent": 21,
+      "product_x_center_percent": 62,
       "reasons": [
-        "Exactly one AFP white-and-blue drip-tape roll is visible.",
-        "Product is a wide, low cylindrical roll consistent with the specification.",
-        "Placement is on soil in the lower half of the frame, slightly off-center.",
-        "Farm context is visible (field, barn) and crop is neutral/absent, which fits Role 3.",
-        "No people or human body parts are present.",
-        "Required AFP watermark is present and correctly formatted."
+        "Product is a white-and-blue wide low cylindrical drip-tape carton roll",
+        "Background is a farm field with soil and sparse plants, consistent with hardware story",
+        "Zero visible people or body parts",
+        "Watermark AFP | 09134922013 is present",
+        "Product is off-center on the lower third and naturally placed on soil"
       ],
       "correction_prompt": "",
-      "attempt": 4
+      "attempt": 2
     }
   ],
   "approved_image": "مقدار-بذر-لپه-در-هکتار-راهنمای-جامع-جزئیات-فنی.webp"

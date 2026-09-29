@@ -1,0 +1,58 @@
+{
+  "id": "prod-001",
+  "kind": 2,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 100,
+      "product_height_percent": 55,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product width far exceeds the 15 percent limit",
+        "Centered product staging is not allowed",
+        "Left object is a straight pipe, not a coil",
+        "Left object contains a metal connector fitting",
+        "Bottom-right watermark is missing",
+        "machine-enforced bounding-box check failed: Reduce the product group from 100% to 9-20% of frame width.; Reduce product height from 55% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate: two small layflat coils (1 packaged AFP, 1 bare black woven) occupying 12-15% frame width, lower third off-center, zero people, no straight pipes or connectors, add exact bottom-right watermark 'AFP | 09134922013' Reduce the product group from 100% to 9-20% of frame width. Reduce product height from 55% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 32,
+      "product_height_percent": 22,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Presence of a human (worker) and body parts (hands, legs, face) is a hard reject trigger.",
+        "Product pair width is approximately 32% of the frame, exceeding the 15% limit.",
+        "Product staging is not in the lower third; it occupies a large portion of the central visual space.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the person completely. Shrink the product pair to 12-15% of frame width. Place the two items flat on the soil in the lower-left or lower-right third of the image. Reduce the product group from 32% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 16,
+      "product_height_percent": 18,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "The image displays exactly two objects: a packaged AFP coil and a bare black coil, meeting the specific content requirements.",
+        "No human body parts, silhouettes, or workers are visible in the frame.",
+        "The products are correctly positioned in the lower third, off-center to the left, and are fully visible without distortion.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner and was not rejected.",
+        "The pair width (approx 16%) exceeds the strict 15% upper limit but maintains the required relative scale, remaining a focal point on the lower third as specified in the intent."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "مقایسه-لوله-تاشو-3-اینچ-75-میلیمتر-با-سایر-برندها-کاربرد-عملی.webp"
+}

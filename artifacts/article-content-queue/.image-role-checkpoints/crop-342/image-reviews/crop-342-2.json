@@ -3,67 +3,103 @@
   "kind": 2,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": true,
+  "approved": false,
   "attempts": [
     {
       "pass": false,
-      "score": 0,
-      "product_width_percent": 15,
-      "product_height_percent": 18,
-      "product_x_center_percent": 15,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
       "reasons": [
-        "Hard reject: A person (a male farmer) is clearly visible sitting in the field.",
-        "Hard reject: The crop in the foreground is corn, not cantaloupe vines.",
-        "Hard reject: The background tree contains large orange fruits, which does not match the specific cantaloupe article context."
+        "The image prominently features a person (farmer) in the foreground, which is a hard reject criterion.",
+        "The product being depicted is a standard drip irrigation hose, not an AFP wide low cylindrical drip-tape carton roll.",
+        "There is no visible roll of the specific product described in the prompt.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate image showing only an empty cantaloupe farm field with white drip tape running through the rows. Include exactly one white and blue AFP drip tape roll lying on the dirt in the lower left corner, ensuring the roll is wide and cylindrical. No people, no orange trees, no corn.",
+      "correction_prompt": "Regenerate image to show an AFP wide low cylindrical drip-tape carton roll placed on soil in a cantaloupe farm. Remove all people. Ensure the roll is off-center on the lower third. Enlarge the product group from 0% to 13-27% of frame width.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 40,
-      "product_width_percent": 15,
-      "product_height_percent": 24,
-      "product_x_center_percent": 18,
+      "score": 80,
+      "product_width_percent": 28,
+      "product_height_percent": 22,
+      "product_x_center_percent": 38,
       "reasons": [
-        "The agricultural context (young seedlings in rows) is ambiguous and lacks definitive visual evidence of cantaloupe vines (netted fruit) or distinctive mature morphology.",
-        "The visible drip tape lines appear slightly too thick/flat, resembling generic hose rather than the specific 'thin' drip-tape aesthetic, though the roll shape is correct."
+        "Required watermark 'AFP | 09134922013' present.",
+        "Product is off-center on lower third and placed on soil.",
+        "Zero people or body parts visible.",
+        "Background context (crop with orange fruit) matches the 'cantaloupe' story.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
       ],
-      "correction_prompt": "Increase the botanical specificity of the crop to cantaloupe (طالبی). Add visible small, lightly netted melons on the vines near the soil level to definitively identify the crop while maintaining the unidentifiable/neutral style for the distant background rows.",
+      "correction_prompt": "Reduce the product group from 28% to 13-27% of frame width.",
       "attempt": 2
     },
     {
       "pass": false,
-      "score": 10,
-      "product_width_percent": 4.5,
-      "product_height_percent": 5.5,
-      "product_x_center_percent": 61.0,
+      "score": 0,
+      "product_width_percent": 9,
+      "product_height_percent": 16,
+      "product_x_center_percent": 43,
       "reasons": [
-        "Presence of a person (farmer/worker) violates the 'zero people' hard reject rule.",
-        "Product is a canister/box held in hand, not the required 'wide low cylindrical drip-tape carton roll' placed on soil.",
-        "Product width (4.5%) falls significantly below the 13% practical minimum.",
-        "Product is centered/secondary in hand staging rather than off-center on the lower third of the frame.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 4.5% to 13-27% of frame width."
+        "Contains a person (man crouching), face, hands, and body parts.",
+        "The product is not a wide low cylindrical drip-tape carton roll; it is a vertical canister/container.",
+        "The product appears centered rather than off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate the image completely excluding any human figures or body parts. Place a wide, low cylindrical drip-tape carton roll naturally on the soil in the lower third of the frame, off-center to the side. Ensure the cantaloupe vines with lobed leaves and restrained netted fruit are clearly visible in the background. The product should be approximately 1.5 to 1.9 times wider than its height. Enlarge the product group from 4.5% to 13-27% of frame width.",
+      "correction_prompt": "Regenerate image without any people. Replace the vertical canister with a wide, low, cylindrical drip-tape carton roll lying horizontally on the soil in the lower-left foreground. Ensure the crop (cantaloupe) is clearly visible with netted fruit on vines. Enlarge the product group from 9% to 13-27% of frame width.",
       "attempt": 3
     },
     {
-      "pass": true,
-      "score": 95,
-      "product_width_percent": 20,
-      "product_height_percent": 28,
-      "product_x_center_percent": 40,
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 22,
+      "product_height_percent": 26,
+      "product_x_center_percent": 25,
       "reasons": [
-        "The drip-tape roll matches the specified 20% width, with a width-to-height ratio of approximately 0.71.",
-        "The product is correctly positioned off-center in the lower third and naturally placed on the soil.",
-        "The required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
-        "The image contains zero people or human body parts.",
-        "The background clearly displays cantaloupe vines with distinct lobed leaves and a developing netted fruit, making the crop recognizable as طالبی."
+        "Product is a plastic spool/core, not a wide low cylindrical drip-tape roll.",
+        "Crop in background is a tomato seedling, not the specified article crop (cantaloupe).",
+        "Background vegetation does not match the required topic-specific agronomic context."
       ],
-      "correction_prompt": "",
+      "correction_prompt": "Replace the crop with cantaloupe vines and restrained netted fruit, and replace the product with an AFP white-and-blue wide low cylindrical drip-tape roll on the soil.",
       "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The watermark \"AFP | 09134922013\" is correctly placed in the bottom right.",
+        "Zero people or human body parts are visible.",
+        "The background clearly shows the required cantaloupe vine with netted fruit and lobed leaves.",
+        "The product is a white/blue carton roll placed on the soil in the lower third.",
+        "The product is off-center (approximately 28% from the left).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 9,
+      "product_height_percent": 15,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Presence of a human (farmer)",
+        "Presence of human body parts (head, hands, arms, legs)",
+        "Product is a vertical cylindrical container (bottle/drum style) rather than a wide low cylindrical drip-tape carton roll",
+        "Product geometry fails requirement (height is greater than width, not 1.5-1.9x wide)",
+        "Product placement is centered rather than off-center on the lower third",
+        "Product is too small relative to the 20-23% width preference",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image strictly without any people or human body parts. Show a wide, low, cylindrical drip-tape carton roll placed off-center on the soil in the lower third. The roll must be white and blue, approximately 20% of the image width, and have a diameter roughly 1.5 to 1.9 times its height. Include cantaloupe vines and netted fruit in the background. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 6
     }
   ],
-  "approved_image": "میزان-برداشت-طالبی-در-هکتار-با-نوار-تیپ-کاربرد-عملی.webp"
+  "approved_image": null
 }
