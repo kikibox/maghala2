@@ -72,6 +72,95 @@
       ],
       "correction_prompt": "Regenerate the image with a field of young, green legume plants specifically matching the morphology of yellow split-pea/chickpea (compound trifoliate leaves and short stems) instead of broad-leafed crops.",
       "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 26,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Hard reject: The image contains visible human body parts (arms, hands, legs, boots) and a person crouching, which violates the strict 'zero people and zero human body parts' rule.",
+        "Hard reject: A second person's arm/torso is visible in the top left background, further violating the no-person constraint.",
+        "The roll is not lying naturally on the soil; it is being held by hands, which is inconsistent with the 'naturally placed on soil' requirement for an unattended setup."
+      ],
+      "correction_prompt": "Regenerate the image to show the AFP drip-tape carton roll placed alone on the soil in a farm context. Remove all people, farmers, and human body parts (hands, arms, legs) from the entire frame, including the background.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 75,
+      "product_width_percent": 28.0,
+      "product_height_percent": 18.0,
+      "product_x_center_percent": 38.0,
+      "reasons": [
+        "Image contains one white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product is naturally placed on soil in a farm field context.",
+        "Background features crop rows and a distant barn, fitting a general farm context.",
+        "No visible people, faces, or human body parts.",
+        "Required 'AFP | 09134922013' watermark is present in the bottom right corner.",
+        "No hard reject triggers such as bottles, jars, or second packages are visible.",
+        "Product width is slightly above the preferred secondary threshold (27%) but within the acceptable 'practical estimate' limit (28%).",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 4,
+      "product_height_percent": 9,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Presence of a person (hard reject)",
+        "Crop is sunflowers, not yellow split-pea (hard reject)",
+        "Product is a small canister, not a large cylindrical drip-tape roll (hard reject)",
+        "Product is not wide or low cylindrical",
+        "Product is centered in the frame rather than off-center on the lower third",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with a person, removing the farmer entirely. Replace the sunflowers with yellow split-pea (لپه) plants. Replace the small canister with a large, wide, low cylindrical white-and-blue drip-tape carton roll placed on the soil in the lower third, off-center, taking up 20-23% of the frame width. Enlarge the product group from 4% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 52,
+      "product_width_percent": 20,
+      "product_height_percent": 23,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Background crop is clearly sunflowers, not yellow split-pea (lupin/pea family) as required; this is a clearly identifiable different species which is a hard reject."
+      ],
+      "correction_prompt": "Regenerate the image with a field of yellow split-pea crops (lupin/pea family) instead of sunflowers. Keep the white-and-blue AFP drip-tape roll positioned on the soil in the lower-left area, off-center, with a wide low cylindrical shape. Ensure the 'AFP | 09134922013' watermark is visible in the bottom right. Remove any people or human body parts.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25,
+      "product_height_percent": 22,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: The crop shown is clearly identifiable sunflowers (Helianthus annuus), which is a clearly identifiable different species from the required yellow split-pea crop (لپه).",
+        "Hard reject: The article title/summary context is yellow split-pea, but the background mismatch (sunflowers vs. legumes) violates the requirement that the background must visibly match the article."
+      ],
+      "correction_prompt": "Regenerate image showing a drip tape roll in a field of yellow split-pea (چনা لپه) with pinnate leaves and hanging racemes, not sunflowers. Keep the roll on the soil in the lower-left.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 16,
+      "product_height_percent": 22,
+      "product_x_center_percent": 29,
+      "reasons": [
+        "Wrong crop context: The background clearly shows sunflowers, which is a hard reject against the required 'yellow split-pea' (lepeh) context.",
+        "Second roll/product violation: The image contains a spool of irrigation tubing in the foreground to the right of the carton. The prompt explicitly requires 'exactly one... drip-tape carton roll' and hard rejects a 'second roll'.",
+        "Species identification: The article-specific crop (yellow split-pea) is missing and replaced by a clearly identifiable different species (sunflowers)."
+      ],
+      "correction_prompt": "Regenerate with yellow split-pea (lepeh) crops in the background instead of sunflowers. Remove the separate spool of orange tubing on the ground, leaving only the single white AFP carton. Keep the carton roll on the lower-left.",
+      "attempt": 6
     }
   ],
   "approved_image": null

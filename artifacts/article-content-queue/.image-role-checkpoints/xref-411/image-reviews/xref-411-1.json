@@ -1,0 +1,83 @@
+{
+  "id": "xref-411",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Hard reject: The image contains a clearly identifiable person (a male worker/farmer) who is the main subject of the photo, violating the 'zero people' rule.",
+        "The product is being held by a human hand, which is a hard reject violation (human body part).",
+        "The product is not placed naturally on the soil; it is elevated and held in the air.",
+        "The product size is significantly below the minimum 13% width requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image removing the person entirely; show the AFP drip tape roll placed flat on the soil among the rosemary crops; increase the roll size to be at least 13% of the frame width; keep the bottom-right watermark. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 22,
+      "product_height_percent": 20,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: The crop shown in the background (tall, broad-leafed green plants) is clearly identifiable as a different species (e.g., corn, hemp, or a bramble) and is inconsistent with the required 'rosemary' (woody low shrubs with needle-like dark-green leaves) article topic."
+      ],
+      "correction_prompt": "Regenerate the background to show woody low shrubs with needle-like dark-green leaves to match the rosemary article topic.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 7,
+      "product_height_percent": 9,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Presence of multiple people (two adult males crouching).",
+        "Product is held by human hands, not placed independently on the soil.",
+        "Product size is significantly smaller than the required minimum width (approx 13%) and height.",
+        "Image role is compromised by the human staging.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and body parts. Ensure the image contains only the agricultural landscape with the specific AFP drip-tape roll placed naturally on the soil. Enlarge the product group from 7% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 19,
+      "product_height_percent": 17,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The product height (estimated ~17%) is disproportionately small relative to the product width (estimated ~19%), failing the 'wide low cylindrical' geometry requirement where diameter should be roughly 1.5 to 1.9 times the height.",
+        "The central plant is not visually identifiable as rosemary; while it is a woody shrub, the leaf shape is too broad and sparse to confidently match the 'needle-like dark-green leaves' definition required for a hard pass.",
+        "A small indistinct dark shape visible in the barn entrance in the background risks failing the 'zero people/human silhouette' strict rejection criteria."
+      ],
+      "correction_prompt": "Generate a wide-low cylindrical drip-tape roll (width 1.5 to 1.9 times taller) in a rosemary field with visible woody rosemary shrubs (needle-like dark green leaves), ensuring the roll is off-center on the lower third. Verify the barn in the background is clearly empty with no silhouettes. Keep the exact bottom-right watermark 'AFP | 09134922013'.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product is a clearly recognizable AFP white-and-blue drip-tape roll with required bottom-right watermark and authentic package print",
+        "Crop shows low rows of leafy plants with an irrigation context that supports the rosemary drip-tape article",
+        "No people or body parts, no extra commercial products, no fake text",
+        "Watermark and label are authentic"
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-رزماری-کاربردها-تصویر-شاخص.webp"
+}

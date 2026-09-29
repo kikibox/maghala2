@@ -1,0 +1,94 @@
+{
+  "id": "xref-414",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 11,
+      "product_height_percent": 20,
+      "product_x_center_percent": 51,
+      "reasons": [
+        "Product geometry is a standing cylinder rather than a wide low cylindrical carton roll (impossible geometry)",
+        "Product width is too small (below the acceptable 13% minimum)",
+        "Product aspect ratio fails the 'width ~1.5-1.9 times height' requirement for a wide low roll",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to show a wide, flat, low cylindrical roll (disc-like shape) of drip tape lying horizontally on the soil, ensuring the width is between 15-25% of the frame and the aspect ratio is wider than it is tall. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 18,
+      "product_height_percent": 27,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Missing the required bottom-right watermark \"AFP | 09134922013\"."
+      ],
+      "correction_prompt": "Re-render the image with the exact black text watermark \"AFP | 09134922013\" placed in the bottom-right corner; keep all other product and crop context elements exactly the same.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 9,
+      "product_height_percent": 14,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: The image contains multiple visible human body parts (arms, hands, legs, torso) which are strictly prohibited.",
+        "Product geometry: The visible roll is far too narrow (~9% width) compared to the required minimum of 13%.",
+        "Product geometry: The visible roll is too tall relative to its width (height is ~14%, making the diameter/height ratio ~0.64, whereas the requirement is 1.5-1.9).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image showing only a wide, low cylindrical drip-tape carton roll (width ~20% of frame) placed on the soil. Include the text 'AFP | 09134922013' at the bottom-right. Remove all human figures and body parts completely. Ensure the roll is positioned in the lower third, off-center. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 68,
+      "product_width_percent": 31,
+      "product_height_percent": 42,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product height exceeds 32% limit",
+        "Product width exceeds 27% limit",
+        "Product is centered instead of off-center on the lower third",
+        "machine-enforced bounding-box check failed: Reduce the product group from 31% to 13-27% of frame width.; Reduce product height from 42% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce product height to under 32% and width to under 27%, move product off-center to the lower third, keep one AFP white-and-blue wide low cylindrical drip-tape carton roll in lettuce farm context, zero people, retain AFP watermark Reduce the product group from 31% to 13-27% of frame width. Reduce product height from 42% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: The image contains two prominent adult males, which violates the requirement for zero people and zero human body parts.",
+        "The drip tape roll is positioned in the center of the frame rather than off-center on the lower third.",
+        "The product's diameter-to-height ratio appears too tall (approximately 1.1x) relative to the required 1.5-1.9x cylindrical profile.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image removing all human figures. Widen and flatten the drip tape roll to achieve a diameter-to-height ratio of ~1.7. Reposition the roll so it is off-center on the bottom third of the frame, maintaining the AFP watermark and the lettuce field context. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Person or human silhouette detected in the background"
+      ],
+      "correction_prompt": "Remove all people and human silhouettes from the background.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

@@ -1,0 +1,57 @@
+{
+  "id": "xref-412",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 5,
+      "product_height_percent": 15,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: Image contains a visible person (farmer) and human body parts (face, hands, arms, legs).",
+        "Hard reject: The product is a small fertilizer/pesticide container held in the hand, not an AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Hard reject: Product size is far below the minimum 13% width threshold.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll on soil in the lower third of the frame. Zero people. Background must show leafy vegetable crop beds. No hand-held items or buckets. Enlarge the product group from 5% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 22.0,
+      "product_height_percent": 18.0,
+      "product_x_center_percent": 45.0,
+      "reasons": [
+        "Hard reject: Image contains multiple visible people/farmers (faces, hands, arms, legs, silhouettes).",
+        "Hard reject: Contains prohibited containers (orange bucket and grey bucket in the crop rows).",
+        "Crop morphology suggests a specific leafy vegetable (e.g., lettuce) rather than a botanically neutral prepared bed, which combined with the buckets violates the 'no extra commercial product' rule."
+      ],
+      "correction_prompt": "Regenerate with zero people or human body parts. Remove all buckets and containers. Replace the specific crop rows with a botanically neutral prepared soil bed. Keep the single white-and-blue AFP cylindrical drip-tape roll off-center in the lower third, naturally placed on soil.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 20,
+      "product_height_percent": 27,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Watermark 'AFP | 09134922013' is present in the bottom right corner.",
+        "The roll is a white and blue AFP drip-tape carton, oriented correctly (cylindrical).",
+        "The product dimensions are within acceptable limits (width approx 20%, height approx 27%).",
+        "The product is placed naturally on soil in the lower center/left region, off-center enough to avoid 'centered product staging' rejection while remaining secondary to the field context.",
+        "Zero people or human body parts are visible.",
+        "The background shows prepared soil with young vegetation. While the crop is not definitively leafy vegetables (sabzi) in its mature stage, it is a biologically plausible young vegetable crop (sprouting stage) in a farm context, which is acceptable for 'neutral young vegetation' where exact mature morphology is unavailable. The irrigation line is visible, supporting the drip-tape context.",
+        "Text on the product is legible and not gibberish."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-رانشی-در-کشت-گشنیز-چالشها-تصویر-شاخص.webp"
+}

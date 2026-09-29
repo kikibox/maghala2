@@ -1,0 +1,83 @@
+{
+  "id": "xref-417",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 38,
+      "product_height_percent": 35,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Image contains a prominent human male (farmer) sitting in the field, which is a hard reject.",
+        "Product roll dimensions are too large (wider than 27% and taller than 32% of the frame).",
+        "Product placement is centered rather than on the lower third or off-center as required.",
+        "Scene includes a person actively interacting with the product, which contradicts the hardware-story requirement for no human presence.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 13-27% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image to strictly exclude any human figures. Position a single AFP drip-tape roll off-center on the lower third, resting on dry soil. Ensure the roll's width is under 27% of the frame and its height is under 32%. Add fixed irrigation hardware like a manifold or pressure gauge to emphasize the hardware-story role without a person. Reduce the product group from 38% to 13-27% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 23,
+      "product_height_percent": 22,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Product height exceeds the 32 percent limit by a small margin (estimated at 22-25 percent)",
+        "Product geometry (diameter to height ratio) is too close to 1:1 (approximately 1.0-1.1), whereas the requirement specifies 1.5-1.9",
+        "The inclusion of the large manifold valve in the foreground distracts from the specific role of showing the drip-tape carton"
+      ],
+      "correction_prompt": "Regenerate to show a flatter, wider cylindrical drip-tape roll (1.5-1.9 aspect ratio) that occupies the lower-left third, reducing its height to below 30 percent of the frame. The roll should appear wider and more elongated relative to its height. Keep the hardware context (filter/valve) but ensure the roll is the primary focus in that area.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 26,
+      "product_height_percent": 34,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Hard reject: human body parts present (farmer's face, hands, arms, legs clearly visible).",
+        "Product height is approximately 34% of the frame, exceeding the 32% maximum limit.",
+        "Product is not off-center (currently at 27%, well inside the lower-left central quadrant rather than the extreme lower-left required for off-center staging).",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the farmer entirely. Make the drip-tape roll flatter and wider (low cylindrical aspect ratio of ~1.7:1) so it does not exceed 30% of frame height. Position the roll further into the bottom-left corner. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 13.0,
+      "product_height_percent": 22.0,
+      "product_x_center_percent": 22.0,
+      "reasons": [
+        "Presence of a person (farmer) in the background operating a tractor",
+        "Presence of a human silhouette (distant figure) in the background"
+      ],
+      "correction_prompt": "Regenerate the image removing all people and human silhouettes. Keep the AFP drip-tape carton roll in the foreground and the farm setting with soil, but ensure the background is unattended or only shows static infrastructure.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 25,
+      "product_height_percent": 18,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The image displays exactly one wide, low cylindrical drip-tape carton roll matching the 'hardware story' description with the product placed on soil.",
+        "No people or human silhouettes are visible in the frame.",
+        "The background features a farm tractor, silo, and barn, which aligns with the context of agricultural infrastructure.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-سورگوم-هزینه-در-مزرعه-جزئیات-فنی.webp"
+}

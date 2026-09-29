@@ -1,0 +1,56 @@
+{
+  "id": "xref-391",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The image shows a vertical planter canister or bucket (which is explicitly hard-rejected), not a wide low cylindrical drip-tape roll.",
+        "There is a physical pipe/tube laid through/around the base, which is a hard-reject element.",
+        "The crop shown is potted in a canister rather than a field crop, violating the farm context requirement.",
+        "The product (canister) is centered horizontally rather than off-center in the lower third."
+      ],
+      "correction_prompt": "Regenerate with a wide, low cylindrical drip-tape roll (20% width, 15% height) placed off-center in the lower third on soil. Ensure no canisters, buckets, pipes, or human body parts are visible. Show the specific crop growing naturally in the soil bed.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 22,
+      "product_height_percent": 34,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "The product x_center is near 47%, which is too central (staging centered product)",
+        "The product bounding box height is estimated at 34%, exceeding the hard limit of 32%",
+        "The crop in the image (small seedlings) is not explicitly the named crop from the article title (Family Tape20 likely refers to vegetables such as tomatoes, cucumbers, or peppers which are not clearly identifiable in this early stage)",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shift the product roll to the far left or far right (x < 25% or x > 75%). Reduce the bounding box height to under 30%. Replace seedlings with mature rows of the specific article crop (e.g. tomatoes) to ensure botanical recognizability. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 22,
+      "product_height_percent": 14,
+      "product_x_center_percent": 75,
+      "reasons": [
+        "The product is a white-and-blue wide low cylindrical drip-tape carton roll that is clearly visible and naturally placed on soil.",
+        "The background shows a tomato farm with both mature fruit and young seedlings, which aligns with the crop-specific context without being overly generic.",
+        "There are no people or human body parts visible in the image, satisfying the zero-human requirement.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and correctly formatted.",
+        "The product bounding box falls within the acceptable width (20-23%), height (≤32%), and off-center position in the lower third of the frame."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-مارچوبه-مزایا-کاربرد-عملی.webp"
+}

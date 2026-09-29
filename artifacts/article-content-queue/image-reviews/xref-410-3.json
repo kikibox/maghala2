@@ -1,0 +1,81 @@
+{
+  "id": "xref-410",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: 'Second package' identified. There is a glass bottle containing a clear liquid situated to the right of the drip tape roll, which violates the constraint against extra commercial products or containers.",
+        "Hard reject: 'Gibberish text' on the product packaging. The text 'DIRG TREGVSS 238Y' beneath the 'AFP' logo is meaningless gibberish.",
+        "Background context: The visible green crops appear to have broad, compound leaves, which visually contradicts the specified crop context of garden cress (شاهی), though the primary failure is the extra object."
+      ],
+      "correction_prompt": "Regenerate the image with ONLY one white and blue cylindrical drip-tape roll on the soil. Remove the glass bottle completely. Ensure the text on the roll is readable or generic. Keep the background farm context.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 82,
+      "product_width_percent": 26,
+      "product_height_percent": 19,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "The roll is not a 'wide low cylindrical' drip-tape carton; it is shown as a standard tall roll, appearing taller than it is wide, which contradicts the geometry requirement where diameter should be 1.5 to 1.9 times the visible height."
+      ],
+      "correction_prompt": "Change the product packaging to a wide, flat cylindrical carton roll (diameter approx 1.5x its height) while maintaining the same position and background.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 23,
+      "product_height_percent": 31,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Presence of a human (farmer) in the image, which violates the strict prohibition on people, body parts, or human silhouettes.",
+        "Image role 3 (Hardware) should feature infrastructure (filters, pumps, manifolds) but instead features a human element, which is not aligned with the prompt's intent to have zero people."
+      ],
+      "correction_prompt": "Remove the person entirely. Replace the human with fixed irrigation hardware (e.g., a manifold with filters and pressure gauge or a regulator) on the soil. Keep the drip tape roll in the same position. Ensure no human body parts are visible.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 38,
+      "product_height_percent": 45,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: A distant person (human silhouette) is clearly visible in the background on the right side.",
+        "Hard reject: The image shows two stacked rolls (second package/roll), whereas the requirement is for exactly one roll.",
+        "Product too large: The stacked rolls occupy roughly 38-45% of the frame dimensions, exceeding the maximum allowed height of 32%.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 13-27% of frame width.; Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a single (not stacked) white and blue wide cylindrical drip-tape roll placed on the soil. Remove the person from the background. Ensure the roll is smaller, with a height under 32% of the frame, and positioned in the lower third. Reduce the product group from 38% to 13-27% of frame width. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 98,
+      "product_width_percent": 21,
+      "product_height_percent": 16,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product dimensions are within the 13-27% width and <32% height acceptance range.",
+        "Visible diameter is approximately 1.3x the height, which aligns with the 'wide low' cylindrical requirement.",
+        "Product is off-center on the lower third (x-center at 38%) and naturally placed on soil.",
+        "The 'crop plants' present are low-density, neutral sprouts consistent with garden cress context.",
+        "Zero people, body parts, or human silhouettes are visible in the frame.",
+        "The required watermark 'AFP | 09134922013' is clearly visible in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-رانشی-در-کشت-شاهی-نکات-کلیدی-جزئیات-فنی.webp"
+}

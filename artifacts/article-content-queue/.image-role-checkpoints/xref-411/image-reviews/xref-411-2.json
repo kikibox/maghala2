@@ -1,0 +1,57 @@
+{
+  "id": "xref-411",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 4,
+      "product_height_percent": 8,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: The image contains a clearly visible person (a male farmer) crouching in the field.",
+        "Hard reject: The product is being held in human hands, violating the zero-person/zero-human-body-part requirement.",
+        "Hard reject: The product is a small cylindrical container (bottle/jar/canister type), not a large wide low cylindrical drip-tape carton roll.",
+        "Hard reject: The product size is significantly too small; it does not meet the required width range of 13-27% of the frame.",
+        "Hard reject: The required bottom-right watermark text 'AFP | 09134922013' is missing from this image.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with zero people and no body parts visible. Show a large white-and-blue cylindrical drip-tape carton roll placed on soil in a rosemary farm. The roll should be wide and low (approx 20% frame width, <15% frame height) and positioned in the lower-third off-center. Add the required text 'AFP | 09134922013' in the bottom right corner. Enlarge the product group from 4% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 23,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Background crop shows identifiable flowering plants (likely hibiscus or mallow) which is a hard reject, as the crop must be recognizable as rosemary (woody low shrubs with needle-like dark-green leaves) or a botanically neutral prepared bed.",
+        "Product x_center is at 42% (near center), failing the 'off-center on the lower third' staging requirement.",
+        "The crop is clearly a different species than the target rosemary."
+      ],
+      "correction_prompt": "Replace the flowering crop background with low woody rosemary shrubs featuring needle-like dark green leaves. Move the drip-tape roll significantly to the left or right to satisfy the off-center requirement.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 18,
+      "product_height_percent": 28,
+      "product_x_center_percent": 68,
+      "reasons": [
+        "Product is a low cylindrical drip-tape roll with white and blue branding, placed naturally on soil in the lower-right third.",
+        "Product dimensions (width < 27%, height < 32%, width ~ 1.5x height) and off-center placement are compliant.",
+        "Crop shown is recognizable as rosemary (needle-like dark-green leaves, woody low shrubs), matching the article title and summary.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right and legible.",
+        "No people, human body parts, or prohibited second commercial products are visible in the frame."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-رزماری-کاربردها-کاربرد-عملی.webp"
+}

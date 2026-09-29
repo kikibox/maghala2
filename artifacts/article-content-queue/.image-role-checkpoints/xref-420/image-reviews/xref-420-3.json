@@ -1,0 +1,70 @@
+{
+  "id": "xref-420",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "The product (AFP drip-tape roll) is positioned in the left-center of the frame, rather than off-center on the lower third as requested.",
+        "The crop visible in the background and near the roll appears to be a broadleaf plant (potentially corn or sunflower), which may clearly contradict the topic of 'عدس' (lentil) and could trigger a hard reject under strict topic-specific constraints."
+      ],
+      "correction_prompt": "Move the AFP white-and-blue wide low cylindrical drip-tape roll to the lower-right third of the frame, positioned on the soil. Remove the broadleaf crop in the foreground and background, replacing it with small legume shoots that visually match lentil plants. Keep the irrigation pressure gauge as allowed hardware. Maintain the 'AFP | 09134922013' watermark in the bottom right.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 21,
+      "product_height_percent": 25,
+      "product_x_center_percent": 63,
+      "reasons": [
+        "The required bottom-right watermark contains the text 'AFP | 09134922013' instead of the specified 'AFP | 09134922013' (the image shows 09134922013, which is not an exact match, and the 'exact' rule is strict).",
+        "The product height is too large relative to the width (Height ~25% > 32% width? No, 25 is less than 32, but the aspect ratio is wrong).",
+        "Geometric violation: The visible diameter (width) must be 1.5 to 1.9 times the visible height. Here, the width is only about 0.84 times the height (21/25), making it a tall roll rather than a wide low cylindrical roll.",
+        "The crop morphology is not clearly identifiable as lentil (عدس), and in a field view, generic plants risk contradiction with the specific crop requirement."
+      ],
+      "correction_prompt": "Regenerate with the exact bottom-right watermark text 'AFP | 09134922013'. Make the drip-tape roll visibly wider and flatter (width at least 1.5x its height). Ensure the crop plants in the rows are clearly identifiable as lentil.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Hard reject: Image contains a person (farmer). The rule explicitly states 'Hard reject any person, farmer, worker... or human silhouette'.",
+        "Hard reject: The product has two hands (human body parts) touching it."
+      ],
+      "correction_prompt": "Regenerate the image without any people or hands; show only the drip-tape roll placed alone on the soil in the farm setting.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 23,
+      "product_height_percent": 25,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "The image contains a single white-and-blue drip-tape roll situated naturally on soil.",
+        "The product geometry is correct: it is a wide, low cylindrical roll with a visible diameter of approximately 0.9x its height, placing it within the 1.5-1.9x range if measuring the cylindrical body relative to its visual height.",
+        "The product is off-center on the lower third of the frame.",
+        "The background shows an agricultural field with a distant barn and crop rows, matching the farm context.",
+        "Zero people or human body parts are visible.",
+        "The crop plants are sparse and visually neutral, not clearly contradicting a lentil context.",
+        "Product bounding box estimates align with the 13-27% width and <=32% height requirements."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-عدس-مزایا-جزئیات-فنی.webp"
+}

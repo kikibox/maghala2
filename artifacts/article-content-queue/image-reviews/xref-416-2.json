@@ -1,0 +1,72 @@
+{
+  "id": "xref-416",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 9,
+      "product_height_percent": 9,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Hard reject: A person is prominently visible in the image, actively holding the product, which violates the 'zero people' rule.",
+        "Hard reject: A roll is being handled by a hand; the product is not 'naturally placed on soil' but in a person's hands.",
+        "The product width is approximately 9% of the frame, which is significantly below the 13% minimum for a practical pass range.",
+        "The product is positioned roughly in the center of the image, not in the lower third as required.",
+        "The background context (generic green plants in a greenhouse) does not clearly identify a specific crop from a title, although it is agronomic.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people. Place a white and blue cylindrical drip-tape roll on the soil in the lower-third region, off-center (either left or right). The roll should be approximately 18% of the frame width. The background must clearly show a specific crop field (e.g., rows of tomatoes, melons, or vegetables) without the human figure. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 14,
+      "product_height_percent": 16,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The required bottom-right watermark is 'AFP | 09134922013' (with a space and single vertical bar), whereas the image displays 'AFP | 09134922013' (no space, with two vertical bars), which is a hard reject due to gibberish text.",
+        "Excessive commercial clutter: The image includes numerous fully grown fruits (tomatoes, squash, gourds) scattered on the ground and attached to plants. The crop morphology (tomatoes) does not match the 'city, family' or specific article context, and the excessive 'second packages/products' on the ground violate the requirement for a clean context.",
+        "The product roll has a central hole that appears too large relative to the roll dimensions, resembling a 'tall narrow drum' or 'giant roll' geometry rather than a standard wide cylindrical drip-tape roll."
+      ],
+      "correction_prompt": "Regenerate with the exact watermark 'AFP | 09134922013' (space included). Remove all scattered fruits and vegetables from the soil to avoid commercial clutter. Adjust the drip tape roll to have a smaller central core and a wider, flatter cylindrical shape (width 1.5x-1.9x height). Ensure the background crop is botanically accurate for the specific article title.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Contains a clearly visible person (farmer crouching and planting).",
+        "Product (drip tape roll) is too small (width < 13%).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image removing the person/farmer. Enlarge the white-and-blue drip tape roll carton to be 20-23% of the frame width, placing it naturally on the soil in the lower third. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 24,
+      "product_height_percent": 17,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Product is a single wide, low cylindrical carton roll positioned on the soil in the lower third of the frame.",
+        "Product width (24%) and height (17%) fall within the acceptable practical ranges.",
+        "Image contains no people or human body parts.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present.",
+        "Background shows prepared agricultural beds with young seedlings, consistent with a general farming context.",
+        "Product is not centered and does not obstruct the background context."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-گلخانهای-در-کشت-مارچوبه-هزینه-در-مزرعه-کاربرد-عملی.webp"
+}

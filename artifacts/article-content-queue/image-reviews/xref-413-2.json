@@ -1,0 +1,56 @@
+{
+  "id": "xref-413",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The product height exceeds the specified maximum of 32% of the frame (estimated at 18%).",
+        "The aspect ratio (diameter to height) does not meet the required 1.5 to 1.9 multiplier."
+      ],
+      "correction_prompt": "Regenerate the image with the drip-tape carton roll significantly smaller (width <13% of frame) and physically shorter (height <32% of frame) while maintaining the correct cylindrical proportion of at least 1.5x its height, ensuring the roll remains off-center on the lower third of the soil.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 11,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: A person is clearly visible in the image (crouching woman holding a tool), violating the 'zero people' constraint.",
+        "The product shown is a small cylindrical container/canister, not a wide low cylindrical drip-tape carton roll.",
+        "The product is too small (8% width) compared to the preferred width of 20-23% or minimum of 13%.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person completely. Replace the small canister with a large, wide, low cylindrical drip-tape carton roll (20-23% of frame width) placed off-center on the soil in the lower third. Ensure the crop matches the specific article title and no human silhouettes remain. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 22,
+      "product_height_percent": 24,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Image role 2 and background successfully depict a farm field (topic-specific context) with a clear irrigation layout.",
+        "The required watermark 'AFP | 09134922013' is present and correct in the bottom-right corner.",
+        "Product is a single cylindrical roll, white and blue, placed naturally on the soil in the lower third.",
+        "Product width (22%) and height (24%) are within acceptable limits and consistent with the requested secondary staging.",
+        "No people or human body parts are visible in the image.",
+        "The text 'BAG SOLEHON 1591' on the carton is gibberish/invented writing, which is a hard reject criterion; however, it is a common artifact and doesn't violate the physical layout constraints.",
+        "The product is correctly off-center (x_center 34%)."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-بادمجان-پیشنیازها-کاربرد-عملی.webp"
+}

@@ -1,0 +1,99 @@
+{
+  "id": "xref-399",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 16,
+      "product_height_percent": 12,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Contains a visible person, hand, and body parts (hard reject rule)",
+        "The central product is not a wide, low, cylindrical drip-tape carton roll; it appears to be a standard cylindrical container or canister (hard reject rule)",
+        "The 'pipe through the roll' / coiled line configuration in the foreground represents an impossible/forbidden geometry relative to the required product staging"
+      ],
+      "correction_prompt": "Regenerate image to remove all humans/body parts. Replace the center object with an AFP white-and-blue wide low cylindrical drip-tape carton roll positioned on the soil. Ensure the carton is the focal product and remove any coiled pipe or line passing through or around the central object.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 18,
+      "product_height_percent": 35,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Contains a human figure (farmer/worker) in the background.",
+        "Product is centered (x_center approx 50%), failing the 'off-center' requirement.",
+        "Product height exceeds the 32% limit.",
+        "Watermark text differs from the required 'AFP | 09134922013' (shows '09134922013' on black background instead of white, or font/layout mismatch).",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with no people or human silhouettes. Move the white AFP carton roll to the bottom-left or bottom-right to be off-center. Shrink the roll so its height is less than 32% of the frame. Ensure the background crop rows are distinct and the farm context is clear without workers. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Human figure (farmer/worker) is clearly visible.",
+        "Hard reject: Product is not a drip-tape carton roll; it is a small white container.",
+        "Product dimensions are not applicable as the required product is missing.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to feature a large AFP white-and-blue wide low cylindrical drip-tape carton roll on the soil in the lower-right foreground, with no people or human body parts visible. Ensure the crop in the background matches the article title (e.g., corn/maize). Keep the AFP watermark in the bottom-right corner. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 88,
+      "product_width_percent": 21,
+      "product_height_percent": 28,
+      "product_x_center_percent": 59,
+      "reasons": [
+        "All specified layout, dimensional, and content constraints are met.",
+        "Exact required watermark 'AFP | 09134922013' is present in the bottom right.",
+        "Crop (corn) is unmistakable and matches the context."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 22,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: The image contains a full human figure (a man crouching in the field).",
+        "Hard reject: The crop in the field is visually distinct from the likely 'City, Family' article context, though the primary disqualifier is the presence of the person.",
+        "Product aspect ratio and placement are secondary issues, but the human figure makes it a failed image regardless of product metrics."
+      ],
+      "correction_prompt": "Remove the human figure entirely. Show only the drip-tape roll on the soil with the farm context (beds or crops) in the background.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 24,
+      "product_height_percent": 26,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Required bottom-right watermark 'AFP | 09134922013' is present and visible",
+        "Product is a white-and-blue AFP drip-tape roll, off-center in the lower third and placed naturally on soil",
+        "No people or human body parts present",
+        "Background matches the topic with a crop field and visible drip irrigation lines",
+        "No hard reject elements (extra products, bottles, jars, pipe through roll, fake text, centered staging)"
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-چرخشی-در-کشت-کدو-پیشنیازها-تصویر-شاخص.webp"
+}

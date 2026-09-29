@@ -1,0 +1,72 @@
+{
+  "id": "xref-409",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 88,
+      "product_width_percent": 24,
+      "product_height_percent": 26,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The exact bottom-right watermark is 'AFP | 09134922013' but the required string is 'AFP | 09134922013' (discrepancy in prompt vs image verification: prompt requires '09134922013' but image shows '09134922013' - wait, let's look closer. The prompt says required is 'AFP | 09134922013'. The image has 'AFP | 09134922013'. Actually, looking at the prompt again: 'AFP | 09134922013'. The image has 'AFP | 09134922013'. They match. Wait, I see the prompt says '09134922013' and the image says '09134922013'. Okay, they match.",
+        "The product is a drip-tape roll, but it is not 'wide low cylindrical' as specified for Role 3; it appears to be a standard vertical tape roll, not a wide flat one.",
+        "Role 3 specifies 'hardware story' where crop plants may be absent or neutral. The prominent leafy plants in the foreground might be considered 'identifiable crop' which could be a hard reject if they clearly contradict 'سبزی' (leafy vegetables). Since they are leafy, they do not contradict 'سبزی', so they are acceptable, but they compete for attention with the product.",
+        "The product bounding box estimation: The roll is roughly from x=220 to x=420 (width 200px). The image width is roughly 1280px. 200/1280 is ~15%. Height is roughly y=650 to y=930 (280px). The image height is roughly 720px. 280/720 is ~38%. This exceeds the 32% height limit.",
+        "The product appears vertically oriented (standing up) rather than 'wide low cylindrical' as specified in the first sentence of the prompt."
+      ],
+      "correction_prompt": "Regenerate the image with a wide, low-profile drip-tape roll (width significantly greater than height) placed on the soil. The roll should be secondary to the scene, not the main focus. The visible diameter (width) should be about 1.5 to 1.9 times its visible height. Keep the unattended tractor and irrigation hardware in the background. Ensure the crop plants are visually neutral or small enough not to dominate the frame. Maintain the exact bottom-right watermark 'AFP | 09134922013'.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 28,
+      "product_height_percent": 26,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: Multiple people (farmers) are visible in the background",
+        "Hard reject: A second human silhouette is sitting on the tractor",
+        "Product width exceeds the 27% maximum threshold",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image removing all human figures and silhouettes from the background and tractor; ensure the white drip-tape roll in the foreground occupies less than 27 percent of the total frame width while maintaining its placement in the lower-left foreground. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 12,
+      "product_height_percent": 28,
+      "product_x_center_percent": 17,
+      "reasons": [
+        "Presence of a human (farmer crouching in the middle of the field).",
+        "The product is not a wide low cylindrical drip-tape carton roll, but rather appears to be a vertical white cylinder or container.",
+        "The height of the product (approx 28%) is excessive relative to the width (approx 12%), violating the 1.5-1.9 aspect ratio requirement for a low wide roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person completely. Regenerate the product as a wide, low cylindrical white and blue drip-tape roll placed off-center on the soil in the lower third. The roll must have a diameter significantly larger than its height (aspect ratio approx 1.5-1.9). Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 21,
+      "product_height_percent": 23,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Watermark 'AFP | 09134922013' present in bottom-right corner.",
+        "Product is off-center and positioned in the lower third of the frame.",
+        "Zero people or human body parts visible.",
+        "Background context (farm with tractors and soil) is consistent with the drip-tape topic.",
+        "Product dimensions and aspect ratio fall within acceptable limits."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-زیرسطحی-در-کشت-سبزی-راهنمای-جامع-جزئیات-فنی.webp"
+}

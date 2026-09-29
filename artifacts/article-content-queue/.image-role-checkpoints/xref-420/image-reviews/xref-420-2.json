@@ -1,0 +1,87 @@
+{
+  "id": "xref-420",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 6,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer). The prompt explicitly requires zero people and zero human body parts.",
+        "Hard reject: Product positioning. The roll is centered in the frame (x-center ~48%), but it must be off-center on the lower third.",
+        "Hard reject: Product dimensions. The roll is too small (width <13%) relative to the frame, failing to meet the minimum 13% practical estimate requirement.",
+        "Hard reject: Crop identity. The background plants show large leaves and prominent pink flowers, which is inconsistent with lentil (عدس) morphology (fine-textured, small paired pinnate leaflets, no large flowers like this).",
+        "Minor: Product is being held by hands rather than 'naturally placed on soil' (though the primary failure is the human presence).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the human farmer completely. Place exactly one small white and blue cylindrical drip tape roll on the soil in the lower-left third of the image. Increase roll size to ~18% width. Change background crops to low, fine-textured bushy legumes with small pinnate leaves (lentils), removing large pink flowers. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 21,
+      "product_height_percent": 26,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "The article crop is defined as 'lentil', which should have 'absolutely no... brassica flowers'. The image clearly shows purple and pink flowers growing in the field, which violates the negative constraint for lentils.",
+        "The watermark phone number '09134922013' does not match the required '0913492201' (missing final digit)."
+      ],
+      "correction_prompt": "Regenerate the image showing lentil plants which must have small flat pods and no flowers. Remove all visible purple or pink blossoms from the crop. Correct the watermark phone number to exactly '0913492201'.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 12,
+      "product_height_percent": 12,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Hard reject: Visible human hand and arm in the frame.",
+        "The product width is approximately 12% of the frame, which is outside the 13% minimum acceptable range for a secondary product.",
+        "The product (drip tape carton roll) is not off-center on the lower third; it is positioned in the right-center foreground.",
+        "The background crop morphology (large smooth green leaves, no fine texture or pinnate leaflets) is clearly identifiable as a different species (e.g., corn or broadleaf), failing the lentil requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero human body parts. Scale the AFP drip-tape roll to approximately 20% width of the frame and move it to the lower third off-center on the soil. Replace the background crop with fine-textured, bushy lentil plants showing thin stems and small pinnate leaflets. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 18,
+      "product_height_percent": 27,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Watermark mismatch: The required exact string is 'AFP | 09134922013' (phone code), but the image displays 'AFP | 09134922013' (longer number).",
+        "Lack of required product labeling: The product is identified as a generic 'Drip Irrigation tape' rather than the specified 'wide low cylindrical drip-tape carton roll' in a white-and-blue AFP packaging.",
+        "Crop morphology mismatch: While the young plants are acceptable as neutral sprouts, the leaf shape is too broad and grassy; it lacks the distinct fine pinnate oval leaflets required for lentil identification."
+      ],
+      "correction_prompt": "Regenerate the image: Replace the crop with lentil seedlings showing small paired pinnate oval leaflets and fine stems. The drip tape roll must be in a white and blue cylindrical carton with an AFP logo. The bottom-right watermark must exactly match the string: 'AFP | 09134922013'.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "The image features a white and blue cylindrical drip-tape carton roll (AFP) on the soil.",
+        "The roll is off-center in the lower third of the frame.",
+        "The product's width and height are within acceptable limits, and its aspect ratio (width/height) is approximately 0.83 (25/30), which is a wide low cylinder consistent with drip tape packaging.",
+        "The crop visible in the foreground is a young legume seedling with pinnate leaves, consistent with lentil or a related legume, and no prohibited species are clearly identifiable.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "There are no people or human body parts in the image."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-عدس-مزایا-کاربرد-عملی.webp"
+}
