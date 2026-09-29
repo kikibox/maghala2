@@ -1,0 +1,69 @@
+{
+  "id": "xref-600",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 10,
+      "product_height_percent": 15,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject: The image contains a person (male farmer) interacting with the product.",
+        "The crop visible on the vine appears to be tomatoes or a different species, not the required cantaloupe (طالبی).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove the person. Ensure the crop in the background is clearly identifiable as cantaloupe vines with lobed leaves and netted fruit, not tomatoes. Keep the drip-tape roll off-center in the lower third. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 16.5,
+      "product_height_percent": 15,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "The image displays tomato plants, which are clearly identifiable as a different species. The requirement explicitly asks for cantaloupe vines with lobed leaves and netted fruit, or at minimum a botanically neutral context that doesn't contradict the article. The presence of mature tomatoes violates the 'Hard reject a clearly identifiable different species' rule."
+      ],
+      "correction_prompt": "Replace the tomato plants with mature cantaloupe vines featuring characteristic lobed leaves and netted fruit, or remove the crop entirely to show only the irrigation infrastructure on a neutral prepared bed.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 16.5,
+      "product_height_percent": 15.5,
+      "product_x_center_percent": 45.0,
+      "reasons": [
+        "The plant shown is clearly identifiable as a different species (okra) with characteristic pods and palmate leaves, whereas the target crop is cantaloupe (طالبی) which should feature vines, lobed leaves, and netted fruits.",
+        "The product roll is centered in the lower middle of the frame rather than being off-center on the lower third.",
+        "The background crop does not match the required cantaloupe agronomic story."
+      ],
+      "correction_prompt": "Replace the okra plant with a cantaloupe (طالبی) vine featuring netted fruit and lobed leaves. Move the drip-tape roll to the left or right side of the lower third. Ensure the background is a cantaloupe field with typical netted fruits and vines.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 69,
+      "reasons": [
+        "Single AFP white-and-blue wide low cylindrical drip-tape carton roll is visible and correctly placed on soil in the lower-right third, off-center.",
+        "Product dimensions are within the preferred 20-23% width and acceptable height limits.",
+        "Visible diameter is about 1.5-1.9 times its visible height.",
+        "Crop is recognizable as cantaloupe (طالبی) with lobed leaves and netted fruit attached to the vine, fitting the article crop requirement.",
+        "Zero people or human body parts are present.",
+        "Background farm context matches the article topic.",
+        "Required bottom-right watermark \"AFP | 09134922013\" is present and correct.",
+        "No forbidden items (bottles, jars, second rolls, people, fake text, etc.) are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-زیرسطحی-در-کشت-طالبی-پیشنیازها-کاربرد-عملی.webp"
+}

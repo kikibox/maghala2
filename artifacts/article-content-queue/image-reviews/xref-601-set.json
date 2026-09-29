@@ -1,0 +1,43 @@
+{
+  "id": "xref-601",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "history": [
+    {
+      "pass": false,
+      "score": 20,
+      "duplicate_roles": [
+        3
+      ],
+      "reasons": [
+        "Image 1 fails the 'crop-identity overview' role by depicting purple lupine flowers instead of coffee trees.",
+        "Image 3 fails the 'irrigation-system story' role by showing red/pink cosmos flowers (not coffee), and depicts a dry, open field with a tractor rather than an installed irrigation layout.",
+        "None of the three images successfully visualize the subject of the article, which is specifically 'Espas' (Coffee) cultivation."
+      ],
+      "correction_prompt": "Replace Image 3 with a macro close-up of the soil and root zone of a young coffee tree, specifically showing a brown drip irrigation tape and filter to illustrate the irrigation system.",
+      "set_attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "duplicate_roles": [],
+      "reasons": [
+        "Identity Mismatch: All three images clearly depict lupin fields (characteristic purple spires and trifoliate leaves), whereas the article is specifically about the cultivation of saffron (کشت اسپرس). Using lupin photos for a saffron article is a hard reject due to contradictory crop identity.",
+        "Irrigation Missing: The article focuses on 'pivot irrigation' (آبیاری محوری). The images display standard rolls of drip tape (AFD style) on the ground without any visible pivot infrastructure, rotating arm, or large-scale irrigation layout, failing to represent the specific topic mentioned in the summary."
+      ],
+      "correction_prompt": "Replace all three images with scenes featuring Saffron crocus fields (Crocus sativus) at various stages of the growing cycle. Ensure one image specifically depicts a Pivot Irrigation system (large rotating arm with sprinklers) situated over the saffron field to address the specific irrigation topic.",
+      "set_attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "duplicate_roles": [],
+      "reasons": [
+        "The three images fulfill their intended editorial roles distinctly: image 1 provides a detailed crop-identity overview with a prominent young plant; image 2 demonstrates a wide-scale agronomic view showing row layout and field evidence; and image 3 presents an environmental setting with a tractor and barn that supports the irrigation-system narrative.",
+        "While all images share the same AFP product and general field environment, they are not near-duplicates in camera angle, layout, or technical narrative, and therefore do not constitute redundant roles.",
+        "The set successfully integrates the crop, product, and irrigation context without hard contradictions or prohibited elements."
+      ],
+      "correction_prompt": "Ensure future iterations maintain unique camera perspectives for each role while preserving the shared product and crop identity.",
+      "set_attempt": 3
+    }
+  ]
+}

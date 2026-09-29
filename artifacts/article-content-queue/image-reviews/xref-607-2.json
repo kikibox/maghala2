@@ -1,0 +1,54 @@
+{
+  "id": "xref-607",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Product dimensions violate specification: The drip tape roll occupies approximately 20% of the frame width, which is within the acceptable range, but it is centered horizontally (approx 50% x-axis) rather than off-center on the lower third as required.",
+        "Geometry violation: The product appears as a standard commercial 'bottle' or vertical roll shape. The visible height is roughly 30-35% of the width, making it too tall relative to the width (fails the 1.5:1 width-to-height aspect ratio constraint which requires the product to be very wide and low).",
+        "Staging violation: The product is not positioned off-center to the left or right in the lower third; it is relatively central.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with a wide, flat, low-profile drip tape roll that is very wide horizontally (approx 1.8 times its height). The roll should be positioned clearly off-center (left or right) on the soil in the lower third of the image. Remove any vertical bottle-like proportions. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 20.5,
+      "product_height_percent": 35.0,
+      "product_x_center_percent": 32.5,
+      "reasons": [
+        "The visible height of the product roll is estimated at 35% of the image frame, which exceeds the strict maximum limit of 32%.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image so that the width-to-height ratio of the drip-tape roll is significantly greater (flatter/wider relative to its height), reducing the visible height to under 30% of the frame while maintaining the same 20% width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 21,
+      "product_height_percent": 29,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Product is a single wide cylindrical drip-tape roll, white and blue, positioned off-center on the lower third.",
+        "Product width and height proportions meet the specified limits (1.5-1.9 aspect ratio).",
+        "Background correctly depicts saffron crocus plants with purple flowers and narrow leaves in a farm context.",
+        "Contains zero people or human body parts.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-در-کشت-زعفران-هزینه-در-مزرعه-کاربرد-عملی.webp"
+}

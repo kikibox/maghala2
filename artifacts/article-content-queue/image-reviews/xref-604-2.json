@@ -1,0 +1,86 @@
+{
+  "id": "xref-604",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 9,
+      "product_height_percent": 12,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Presence of a human figure (male worker) and visible hands, which is a hard reject condition.",
+        "The product (drip tape roll) is held by the person, violating the requirement that it be naturally placed on the soil.",
+        "The image contains multiple unrelated crop rows and a painting tool, detracting from the specific article focus.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts. Place the white and blue drip tape roll independently on the soil surface in a low, wide cylindrical orientation. Keep the AFP watermark in the bottom right corner. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 29.5,
+      "product_height_percent": 22.0,
+      "product_x_center_percent": 38.0,
+      "reasons": [
+        "The product width (~29.5%) exceeds the strict maximum limit of 27% of the frame width specified in the guidelines.",
+        "The product is centered horizontally rather than positioned off-center in the lower third as required.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 29.5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Shrink the white and blue drip-tape roll significantly to a width of less than 27% of the frame and shift it to the left or right side so it is off-center in the lower third. Reduce the product group from 29.5% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "The article title/specific crop is not clearly defined in the prompt context to verify exact morphology match.",
+        "The visual presence of the 'drip-tape' product is too subtle (a small white line near the base of the sunflower) to be clearly identified as an AFP white-and-blue wide low cylindrical carton roll.",
+        "The product does not appear to be 'naturally placed on soil' as a visible, distinct packaging object as required, instead appearing as an infrastructure element or absent.",
+        "A prominent sunflower in the center distracts from the product, which should be secondary but clearly visible.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Place a clearly visible AFP white and blue wide low cylindrical drip-tape carton roll in the lower third, off-center on the soil. Ensure it is wide (20-23% of frame width) and visibly distinct from the background. Maintain the farm context. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 27,
+      "product_height_percent": 28,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Product width is estimated at 27% of the frame, which is at the upper limit of acceptable but slightly wider than the 20-23% target, causing it to appear somewhat dominant.",
+        "The product x-center is estimated at 43%, which is too close to the center. The prompt requires the product to be off-center on the lower third.",
+        "While the product height is 28% (acceptable), the width-to-height ratio (27:28) fails the requirement of the visible diameter being 1.5 to 1.9 times its visible height."
+      ],
+      "correction_prompt": "Shrink the drip-tape roll by 15% to make the product width approximately 20% of the frame. Move the roll further to the left (approximately 30% x-center) so it is clearly off-center. Ensure the roll is clearly wider than it is tall to match the specified cylindrical geometry.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 27,
+      "product_height_percent": 28,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "The product is a single white-and-blue wide low cylindrical drip-tape roll positioned off-center in the lower-left on soil, naturally placed.",
+        "The crop shown (a plant with red blossoms and broad leaves) is botanically neutral and not clearly a different identifiable species, which is acceptable per the instructions regarding young or neutral vegetation.",
+        "The background shows a farm context with fields and structures matching the role requirements.",
+        "The mandatory watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "There are zero people or human body parts in the image.",
+        "The product height is within the limit (no more than 32% of the frame height)."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-گلخانهای-در-کشت-هویج-کاربردها-کاربرد-عملی.webp"
+}

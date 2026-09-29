@@ -1,0 +1,95 @@
+{
+  "id": "xref-595",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 34,
+      "product_height_percent": 38,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Product bounding box exceeds hard limits (width ~34%, height ~38% vs max 27%/32%)",
+        "Product is positioned too large relative to the frame, violating the secondary product requirement",
+        "Product staging is slightly off the preferred lower-third composition",
+        "machine-enforced bounding-box check failed: Reduce the product group from 34% to 13-27% of frame width.; Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with the drip-tape roll significantly smaller (18-22% width) and positioned lower on the soil, keeping the tractors and hardware in the background Reduce the product group from 34% to 13-27% of frame width. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Presence of multiple people: A man is crouching in the foreground, a man is standing near the tractor, and a worker is visible in the background.",
+        "Human body parts are clearly visible, which is a hard reject condition.",
+        "Product is not a roll, but a box/carton (drip tape may be in it, but visual is a box)."
+      ],
+      "correction_prompt": "Regenerate the image with the drip tape roll on the soil in the lower third, off-center. Completely remove all people and body parts. Ensure the roll is white and blue, wide, low, and cylindrical. Keep the tractor and farm background, but strictly no humans.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 27,
+      "product_height_percent": 24,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "A human figure is visible standing near the tractor in the background, which is a hard reject criterion.",
+        "The product width (27%) exceeds the practical upper limit and is right at the hard reject threshold."
+      ],
+      "correction_prompt": "Regenerate with no people or human silhouettes visible anywhere in the background; reduce the product roll width to under 25% of the frame.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 18,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Presence of a human worker in the immediate foreground interacting with the product is a hard reject condition, as the image must contain zero people and zero body parts."
+      ],
+      "correction_prompt": "Regenerate the image showing only the white and blue AFP drip-tape roll resting on the tilled soil in the bottom-left foreground. Completely remove the crouching man and ensure the background remains an empty field with a distant red tractor.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 19,
+      "product_height_percent": 22,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "Multiple hard reject triggers present: an 'extra commercial product' is visible to the right (a white box/standee with '0-F'), and a 'second roll' of blue hose is laid flat on the ground, violating the single-product requirement.",
+        "The presence of a small potted plant and a white robotic unit creates visual clutter and constitutes multiple extra objects in the foreground.",
+        "The product placement is not 'off-center on the lower third' in a solitary manner; it is part of a crowded group of items in the foreground center-right."
+      ],
+      "correction_prompt": "Regenerate the image showing only a single AFP drip-tape roll on the soil in the bottom-left third. Remove the blue hose roll, the potted plant, the white robotic unit, and the '0-F' box/standee. Ensure the background remains a farm field with a distant tractor.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 24,
+      "product_height_percent": 22,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Product is correctly identified as a wide, low cylindrical drip-tape roll in white and blue.",
+        "The roll is placed on soil in the lower third, off-center, which fits the required geometry.",
+        "Width and height are within acceptable ranges for a secondary product in frame.",
+        "Zero visible people or human body parts.",
+        "Required AFP phone number watermark is present in the bottom-right corner and is authentic.",
+        "Background with tractor and soil is consistent with the hardware topic and allows the product to be shown as infrastructure-related without contradiction."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-ارزن-هزینه-بهینه-جزئیات-فنی.webp"
+}

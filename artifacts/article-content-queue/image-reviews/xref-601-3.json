@@ -1,0 +1,72 @@
+{
+  "id": "xref-601",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 3,
+      "product_height_percent": 5,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The image contains two human subjects (a crouching man and a standing man), which is a hard reject criterion requiring zero people or body parts.",
+        "The product shown is a white canister (pump/filter housing) rather than the specified wide, low, cylindrical drip-tape carton roll.",
+        "The crop context consists of tulips, which clearly contradicts the 'sainfoin' requirement; identifiable crops that contradict the target crop result in a hard reject.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 3% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image showing a single white and blue wide low cylindrical drip-tape carton roll placed on soil in a sainfoin farm field. Remove all human figures and replace the canister with the correct tape roll. Ensure the roll is approximately 20-23% of the frame width and off-center on the lower third. Enlarge the product group from 3% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 95,
+      "product_width_percent": 28,
+      "product_height_percent": 22,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Meets all core requirements: single AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Zero human persons or body parts present.",
+        "Background (farm field, barn, soil) matches role 3 and topic.",
+        "Watermark 'AFP | 09134922013' present in bottom right.",
+        "Crop morphology is neutral/indistinct and does not clearly contradict sainfoin (sainfoin leaves are pinnate; these are generic rosettes, so no hard reject).",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 22,
+      "product_height_percent": 26,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Hard reject: Two people are clearly visible in the foreground, which violates the zero-human rule.",
+        "Product geometry: The roll appears slightly tall (26% height vs 22% width is a 1:0.84 ratio, falling below the required 1.5-1.9 range), though width and position are acceptable."
+      ],
+      "correction_prompt": "Regenerate the image removing all humans and bodies completely. Show only the single drip-tape roll in the field. Ensure the roll is clearly wide and low (roughly 1.7x wider than it is tall) and remains the secondary focus on the soil.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 19,
+      "product_height_percent": 16,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Correct product (drip-tape roll) with 'AFP' branding.",
+        "Product geometry meets width (19%) and height (16%) criteria; diameter is approx 1.2x height.",
+        "Product is off-center and placed naturally on soil in the lower third.",
+        "Watermark 'AFP | 09134922013' is correctly positioned bottom-right.",
+        "No people or human body parts visible.",
+        "Background shows an unattended tractor, which is allowed as hardware infrastructure."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-اسپرس-کاربردها-جزئیات-فنی.webp"
+}

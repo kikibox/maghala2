@@ -1,0 +1,95 @@
+{
+  "id": "xref-599",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 14,
+      "product_height_percent": 28,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Hard reject: visible human presence (farmer/worker crouching in the frame).",
+        "The product is not a wide, low cylindrical drip-tape roll; the depicted item appears to be a standard canister or container, violating the specified product geometry and form factor."
+      ],
+      "correction_prompt": "Regenerate the image to strictly exclude all people or human body parts. The subject must be a wide, low, cylindrical drip-tape roll (white and blue with an 'AFP' label) lying on the soil, sized between 13-27% of the frame width, positioned off-center in the lower third.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 24.8,
+      "product_height_percent": 31.7,
+      "product_x_center_percent": 47.5,
+      "reasons": [
+        "Two people (farmers/figures) are visible in the background on the left, which is a hard reject condition.",
+        "The product is centered (product_x_center_percent ~47.5%), violating the requirement for an off-center placement in the lower third."
+      ],
+      "correction_prompt": "Regenerate the image with absolutely zero people or human silhouettes anywhere in the frame. Move the AFP drip-tape roll to the bottom-right or bottom-left to ensure it is off-center. Keep the roll secondary to the farm background context.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 20,
+      "product_height_percent": 15,
+      "product_x_center_percent": 20,
+      "reasons": [
+        "Hard reject: Image contains a visible farmer/person (full body).",
+        "Hard reject: A second roll of drip tape is visible on the ground near the bottom center.",
+        "Hard reject: The main product roll is placed at the bottom-left corner, not in the 'off-center lower third' (typically center-lower area as required for Role 3)."
+      ],
+      "correction_prompt": "Regenerate the image removing the farmer and the second roll on the ground. Place the single large drip tape roll in the lower third, slightly left or right of center, sitting on the soil. Keep the background with the barn and field. Ensure the bottom-right watermark 'AFP | 09134922013' is present.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 24.5,
+      "product_height_percent": 40.5,
+      "product_x_center_percent": 43.0,
+      "reasons": [
+        "Product height exceeds the 32% maximum limit (estimated at ~40.5%)",
+        "Product placement is too close to the center, failing the 'off-center' requirement",
+        "Truncated crop at the bottom edge violates the requirement for a complete, naturally placed object",
+        "machine-enforced bounding-box check failed: Reduce product height from 40.5% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with a significantly smaller drip-tape roll placed further to the left, ensuring it is fully visible on the soil and does not touch the bottom edge. Reduce product height from 40.5% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Hard reject: A person (farmer) is clearly visible, which violates the strict 'zero people' requirement.",
+        "Hard reject: There is a small cylindrical container in the foreground held by a hand; this is an extra commercial product/object, not permitted infrastructure."
+      ],
+      "correction_prompt": "Regenerate the image with no people or human parts visible. Remove the extra container, keeping only the large AFP drip-tape roll placed on the soil with unattended irrigation hardware in the background.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 38.0,
+      "product_height_percent": 34.0,
+      "product_x_center_percent": 38.0,
+      "reasons": [
+        "Product visible diameter ratio (approx 1.12) falls outside the required 1.5 to 1.9 range (the roll is too wide and short).",
+        "Product width is estimated at 38%, which exceeds the maximum hard-reject threshold of 27%.",
+        "Product height is estimated at 34%, which exceeds the maximum hard-reject threshold of 32%.",
+        "The product is positioned in the center-left rather than the preferred off-center lower third.",
+        "There is an extra unbranded commercial device (controller/box) sitting on the soil next to the roll, which violates the 'single product' constraint.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 13-27% of frame width.; Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a single, taller white-and-blue drip-tape roll (cylindrical) at approx 20% width and <32% height. Place it on the lower-right third of the frame on soil. Remove the black controller box. Keep the unattended tractor and barn in the background. Retain the 'AFP | 09134922013' watermark. Reduce the product group from 38% to 13-27% of frame width. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

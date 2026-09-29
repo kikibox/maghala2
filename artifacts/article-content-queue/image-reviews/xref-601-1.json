@@ -1,0 +1,55 @@
+{
+  "id": "xref-601",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 33,
+      "product_height_percent": 42,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Two humans visible in the frame (hard reject)",
+        "Product is a wheel with drip tape, not the specific AFP white-and-blue wide low cylindrical drip-tape carton roll",
+        "Background is a tulip flower field, not an Aspalathus (سپرس) farm context",
+        "Product bounding box exceeds the maximum allowed width (33% > 27%) and height (42% > 32%)",
+        "machine-enforced bounding-box check failed: Reduce the product group from 33% to 13-27% of frame width.; Reduce product height from 42% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate to show exactly one wide, low, white-and-blue cylindrical drip-tape carton roll on the soil of an Aspalathus (سپرس) field. The roll should be small (under 27% width, under 32% height) and positioned in the lower third off-center. Ensure there are absolutely no people, farmers, or human body parts in the frame. Reduce the product group from 33% to 13-27% of frame width. Reduce product height from 42% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 12,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: The image contains a prominent person (farmer) crouching next to the product, which violates the strict 'zero people' rule."
+      ],
+      "correction_prompt": "Regenerate the image to remove the person/farmer completely. Keep only the AFP drip-tape roll on the soil with the young crop in the background.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 23,
+      "product_height_percent": 30,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "The image correctly displays a single wide, low cylindrical drip-tape carton roll with AFP branding in a farm context.",
+        "The background shows prepared soil beds with unidentifiable seedlings, which fits the requirement for the sainfoin crop story without hard-rejecting based on immature morphology.",
+        "Product placement is in the lower third and off-center, maintaining a secondary role relative to the field environment.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present.",
+        "No people or human body parts are visible in the scene.",
+        "The geometry of the roll is natural and realistic."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-اسپرس-کاربردها-تصویر-شاخص.webp"
+}

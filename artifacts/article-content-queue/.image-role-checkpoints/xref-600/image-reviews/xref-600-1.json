@@ -1,0 +1,92 @@
+{
+  "id": "xref-600",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Hard reject: A person is clearly visible in the image, which violates the zero-person rule.",
+        "Hard reject: The product is a tall cylindrical canister or container (likely for liquid) rather than a wide low cylindrical drip-tape carton roll.",
+        "Hard reject: The product geometry is incorrect; it is tall and narrow, not the required wide low roll.",
+        "The product is not wide enough and is not placed naturally as a roll on the soil.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Replace the container with a wide, low cylindrical white-and-blue drip-tape carton roll placed on the soil, off-center in the lower third. Ensure the roll is not tall or narrow. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Crop species mismatch: The background vegetation is clearly identifiable as corn/maize (distinct broad leaves in the background and seedling shape), whereas the article requires cantaloupe (vines, lobed leaves)."
+      ],
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 14,
+      "product_height_percent": 15,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Hard reject: The image contains a person (farmer/worker) squatting and touching the product, which violates the rule requiring zero people or body parts."
+      ],
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Contains a visible person (farmer) crouching and touching the product, violating the zero-person rule.",
+        "The product is a canister or bucket (fertilizer/pesticide style) instead of a drip-tape carton roll.",
+        "Missing the required wide low cylindrical drip-tape carton roll product.",
+        "Vines show smooth oblique oval leaves and smooth red fruit; this is a different species (likely melon/cucumber) and does not satisfy the cantaloupe morphology criteria.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll off-center in the lower third on soil (product width 13-23% of frame, height max 32%). Use a cantaloupe farm background showing lobed leaves and netted fruit on vines. Remove the person and the canister completely. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Species mismatch: The fruit attached to the vines are smooth-skinned, whereas the article crop (cantaloupe/netted melon) requires fruit with a distinct netted texture. The fruit shown resembles a butternut squash or non-netted melon.",
+        "Product Positioning: The product x_center_percent is approximately 45%, which places it too close to the horizontal center. The spec requires the product to be off-center on the lower third."
+      ],
+      "correction_prompt": "Regenerate with netted cantaloupe fruit clearly visible on the vines. Move the drip tape roll further to the right to offset it from the center.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "The product shown is a cylindrical white drum/canister, which is explicitly listed as a hard reject (bottle, jar, canister, bucket).",
+        "The product is a tall drum, not the required 'wide low cylindrical drip-tape carton roll'.",
+        "There is no visible drip-tape coming off the product, which is inconsistent with a drip-tape roll in the context of the family.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Replace the tall white cylindrical drum with a wide, short, white-and-blue AFP drip-tape carton roll. The roll should be off-center on the lower third, placed on the soil, and have a width no greater than 27 percent of the image height. Ensure no other commercial containers are visible. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

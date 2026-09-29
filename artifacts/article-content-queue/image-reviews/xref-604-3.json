@@ -1,0 +1,99 @@
+{
+  "id": "xref-604",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The image contains a person, which is a hard reject condition.",
+        "The product is being held by a person, violating the 'naturally placed on soil' requirement.",
+        "The product is not in the lower third of the image; it is centered vertically.",
+        "The product is a small drip tube spool, not a wide low cylindrical drip-tape carton roll as required.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image showing one white and blue wide cylindrical drip-tape carton roll resting on soil. Zero people or body parts. Product must be in lower third, off-center, and approx 20% of frame width. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 28,
+      "product_height_percent": 21,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product is the correct wide low cylindrical drip-tape carton with AFP branding in white and blue.",
+        "Zero people or human body parts are visible.",
+        "Background matches a farm context with soil, crop rows, and an unattended tractor, aligning with the hardware story role.",
+        "The required AFP watermark is present in the bottom-right corner.",
+        "Product geometry is natural with correct diameter-to-height ratio, placed on soil in the lower third.",
+        "Product width is slightly wider than the preferred maximum (28% vs 27%), but remains secondary to the scene, so it passes.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: The image contains a full-body human figure (a crouching male farmer/worker) which strictly violates the 'zero people' and 'zero human body parts' rule."
+      ],
+      "correction_prompt": "Remove the crouching farmer entirely; retain only the lone white-and-blue drip-tape carton roll on the soil with the unattended tractor in the background and the AFP watermark in the bottom-right.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 15,
+      "product_height_percent": 35,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product height exceeds 32% threshold",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Scale down the drip tape roll to ensure it is smaller and less dominant, ensuring it fits within 32% of the frame height. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: Human figure/farmer visible on tractor in the background (upper right quadrant).",
+        "Hard reject: Commercial tractor (vehicle) is visible in the background, contradicting the strict hardware-only infrastructure allowance or creating a conflicting focal point."
+      ],
+      "correction_prompt": "Regenerate the image to ensure the background farm is completely empty of people, workers, or tractors. Show only the wide, white-and-blue drip-tape roll on the soil with distant crop rows or neutral hardware.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 27,
+      "product_height_percent": 31,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The image contains exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "The background of tilled rows matches the required farm context for a hardware story.",
+        "There are zero people or human body parts visible in the image.",
+        "The bottom-right watermark 'AFP | 09134922013' is present and correctly formatted.",
+        "The product is naturally placed on the soil and remains secondary to the field context.",
+        "Dimensions are within the acceptable practical limits (width 27%, height 31%)."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-گلخانهای-در-کشت-هویج-کاربردها-جزئیات-فنی.webp"
+}

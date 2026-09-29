@@ -1,0 +1,94 @@
+{
+  "id": "xref-606",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 14,
+      "product_height_percent": 22,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: Presence of two people (workers) is a strict violation.",
+        "Product Mismatch: The item in hand is a cylindrical canister/brush pot, not the wide low cylindrical drip-tape carton roll described.",
+        "Centering Violation: The product (canister) is held centrally, failing the 'off-center on the lower third' requirement.",
+        "Prohibited Item: The white plastic bottle/container on the ground is a prohibited element."
+      ],
+      "correction_prompt": "Remove all people, faces, and body parts completely. Replace the canister with a wide, low cylindrical drip-tape carton roll (AFP branding) resting naturally on the soil in the bottom-left or bottom-right third. Remove the white plastic bottle. Ensure the roll is secondary in size (approx. 20% frame width).",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 24,
+      "product_height_percent": 33,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Product geometry fails: visible diameter (~0.95x height) is not within the 1.5–1.9x range; the roll appears more like a tall/cylindrical carton or drum rather than a wide, low drip-tape roll.",
+        "Crop context is not clearly a crop-specific article; the field shows generic seedlings without a botanically identifiable, unmistakable crop morphology.",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate as a clearly wide, low cylindrical drip-tape roll on soil with diameter ≈ 1.5–1.9x its height, secondary in frame (width 20–23%), off-center on the lower third. Use a topic-specific crop with recognizable mature morphology (or clear agronomic story). No people. Keep AFP | 09134922013. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 12,
+      "product_x_center_percent": 53,
+      "reasons": [
+        "Hard reject: Human person (farmer) and hands are visible touching the product.",
+        "The product is being handled by a person, violating the 'zero people' and 'naturally placed' rules."
+      ],
+      "correction_prompt": "Regenerate without any person, hands, or human body parts. Show only the solitary drip-tape roll placed on the soil in the field with the crop background.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Crop shown is clearly identifiable young corn/maize, which does not match the required named crop",
+        "Second package detected in background (white carton block behind the drip tape roll)",
+        "Watermark reads 09134922013, which does not exactly match the required AFP | 09134922013"
+      ],
+      "correction_prompt": "Regenerate with: exact named crop from article title, single AFP drip-tape roll with no secondary packages or cartons, product width approx 13-27% and height <=32%, off-center lower third, exact bottom-right watermark \"AFP | 09134922013\", no people.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 8,
+      "product_height_percent": 15,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Presence of people: Two individuals are clearly visible (one female, one male) crouching in the frame. This is an immediate hard reject per the 'zero people' and 'zero human body parts' instruction.",
+        "Product Geometry and Scale: The visible drip tape container is a small cylindrical canister or spool (approx. 8% width), which violates the requirement for a 'wide low cylindrical drip-tape carton roll' with a preferred width of 20-23% and visible diameter 1.5-1.9x height.",
+        "Product Positioning: The product is centered between the two people rather than being naturally placed in the lower third and off-center.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people and zero human silhouettes. The farm scene must feature a large, wide, low-profile drip-tape carton roll (width approx 20-25% of frame) lying on the soil in the foreground. The background should be a vegetable field (e.g., corn or leafy greens) to match the 'tape20' topic. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 75,
+      "product_width_percent": 26,
+      "product_height_percent": 35,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Product height exceeds the strict hard-reject limit of 32% of the frame (estimated at 35%), failing the specific geometry constraint despite being near the preferred width range.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the vertical height of the drip-tape carton roll so it does not exceed 32% of the frame, keeping it wider than it is tall and in its current off-center position on the soil. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

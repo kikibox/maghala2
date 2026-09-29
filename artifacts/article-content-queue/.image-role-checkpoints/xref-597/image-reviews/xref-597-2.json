@@ -1,0 +1,78 @@
+{
+  "id": "xref-597",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 7,
+      "product_height_percent": 13,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The image contains two prominent humans (farmers) crouching in the foreground, which is a hard reject requirement.",
+        "The product is a small white container or spool held in the hands, not the required 'wide low cylindrical drip-tape carton roll'.",
+        "The product is not placed on the soil; it is being handled by a person, violating the 'naturally placed on soil' requirement.",
+        "The product dimensions are significantly too small (width < 13%) compared to the preferred range.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes. Replace the held container with a large, wide, low cylindrical AFP white-and-blue drip-tape carton roll placed directly on the soil in the lower third. The roll should be roughly 20% of the frame width and 25% of the frame height, with a diameter approx 1.7 times its height. Keep the 'AFP | 09134922013' watermark at the bottom right. Ensure the background shows sesame crop context (upright stems, narrow leaves) or a neutral prepared bed without distinct people. Enlarge the product group from 7% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 24.8,
+      "product_height_percent": 28.0,
+      "product_x_center_percent": 49.5,
+      "reasons": [
+        "The product is staged on the central axis (centered product staging hard reject).",
+        "The crop context appears to be a monocot with broad leaves, which is a hard reject for a required article crop of an upright sesame with narrow lance-shaped leaves."
+      ],
+      "correction_prompt": "Reframe to position the wide cylindrical drip-tape roll off-center on the lower third of the soil. Replace the background crop with rows of upright, narrow-leafed sesame plants and seed capsules to correctly define the agricultural context.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Fail crop topic: The background clearly shows grain panicles (likely rice or millet) which conflicts with the required 'sesame' (narrow leaves/seed capsules) context."
+      ],
+      "correction_prompt": "Replace the background grain field with a sesame field (upright stems with narrow leaves or seed capsules). Ensure the crop matches the article title.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 10,
+      "product_height_percent": 8,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Presence of a person (male farmer) violates the hard reject rule for people and body parts.",
+        "The object being held is a container/canister, not a wide low cylindrical drip-tape carton roll.",
+        "Product staging is off-center and secondary, but the presence of the person and wrong product type causes immediate rejection.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image showing a wide low cylindrical drip-tape carton roll on soil without any people. The crop must be identifiable as sesame (upright stems, narrow lance-shaped leaves, elongated seed capsules). Ensure no human figures or body parts are visible. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The background crop is not sesame. The visible plants have long brown seed heads that are characteristic of sorghum or grain millet, not the elongated seed capsules of sesame. This is a hard reject for a clearly identifiable different species."
+      ],
+      "correction_prompt": "Replace the sorghum-like background crop with sesame (کنجد), which is defined by narrow lance-shaped leaves and distinct elongated seed capsules (bolls), not brown grass-like seed heads. Keep the AFP drip-tape carton roll in the foreground.",
+      "attempt": 5
+    }
+  ],
+  "approved_image": null
+}

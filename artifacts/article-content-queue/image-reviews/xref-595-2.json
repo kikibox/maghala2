@@ -1,0 +1,54 @@
+{
+  "id": "xref-595",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Human body parts (arms and hands) are clearly visible on the right side of the image, which is a hard reject.",
+        "Multiple commercial containers (drums/cans) are visible, violating the 'exactly one product' and 'no extra commercial products' constraints.",
+        "The product staging is centered and involves multiple items rather than a single secondary off-center roll.",
+        "A second roll/seedling structure with a container is present, creating a confusing 'extra commercial product' violation.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human hands and body parts from the right side of the frame. Ensure exactly one cylindrical white-and-blue drip-tape carton roll is visible on the lower-left or lower-right (off-center), placed directly on the soil. Remove all other containers, cans, or multiple rolls. Ensure the background clearly matches the specified crop context. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 82,
+      "product_width_percent": 25,
+      "product_height_percent": 16,
+      "product_x_center_percent": 23,
+      "reasons": [
+        "The product roll is lying horizontally on the soil. The requirement specifies a 'wide low cylindrical drip-tape carton roll', which implies an upright orientation. A horizontal roll typically resembles a 'giant roll' or is considered an incorrect product orientation in this specific QA context."
+      ],
+      "correction_prompt": "Regenerate the image with the AFP white and blue wide low cylindrical drip-tape carton roll standing vertically (upright) on the soil, rather than lying on its side.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 23,
+      "product_height_percent": 25,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "Product is an AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product is off-center on the lower third and naturally placed on soil.",
+        "Background shows a farm context with crop rows, matching the city/family/crop theme without identifying a different species.",
+        "Zero people or body parts visible.",
+        "Watermark 'AFP | 09134922013' is present in the bottom right."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-ارزن-هزینه-بهینه-کاربرد-عملی.webp"
+}

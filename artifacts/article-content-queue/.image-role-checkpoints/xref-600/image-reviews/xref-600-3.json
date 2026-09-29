@@ -1,0 +1,43 @@
+{
+  "id": "xref-600",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Contains a visible human (farmer/worker) in the image, which is a hard reject.",
+        "The human is interacting with the product, violating the zero people rule.",
+        "Product is not the dominant focus as required for the specific hardware story context with a person present.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person and regenerate the image showing only the drip-tape roll in the farm setting without any humans or body parts. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 22,
+      "product_height_percent": 18,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner as required.",
+        "Zero people, human silhouettes, or body parts visible in the image.",
+        "Product is a single white and blue cylindrical roll, consistent with the drip-tape specification.",
+        "Product dimensions are within the acceptable range (width ~22%, height ~18%).",
+        "Product is positioned off-center on the lower third of the frame and placed naturally on the soil.",
+        "Background context (farm field with crop rows) is consistent with a hardware/crop story.",
+        "Visible crop morphology is generic and does not clearly contradict the topic of cantaloupe."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آبیاری-زیرسطحی-در-کشت-طالبی-پیشنیازها-جزئیات-فنی.webp"
+}
