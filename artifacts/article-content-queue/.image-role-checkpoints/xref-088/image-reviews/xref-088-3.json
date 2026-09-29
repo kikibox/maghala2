@@ -3,26 +3,86 @@
   "kind": 3,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": true,
+  "approved": false,
   "attempts": [
     {
-      "pass": true,
-      "score": 88,
-      "product_width_percent": 21,
-      "product_height_percent": 18,
-      "product_x_center_percent": 32,
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 8,
+      "product_x_center_percent": 86,
       "reasons": [
-        "Product (drip tape roll) is correctly positioned off-center on the lower third.",
-        "Product dimensions (width ~21%, height ~18%) are within the required acceptable ranges.",
-        "Diameter-to-height ratio (~1.6x) is appropriate for a wide, low cylindrical roll.",
-        "Background infrastructure (soil, crop rows, pressure gauges, barn) matches the 'hardware story' role for family tape20.",
-        "Crop rows are visually neutral and do not hard-reject based on the 'yellow split-pea' contradiction rule.",
-        "Required watermark 'AFP | 09134922013' is present in the bottom right.",
-        "Zero people or human body parts visible."
+        "Presence of a person (farmer) and human body parts (hands, face) in the main scene and inset, which is a hard reject.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
       ],
-      "correction_prompt": "",
+      "correction_prompt": "Remove all people and human hands from the image; show a field with drip tape infrastructure only. Enlarge the product group from 8% to 13-27% of frame width.",
       "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 23,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Presence of multiple people in the background (left and right side) triggers a hard reject according to the zero people constraint."
+      ],
+      "correction_prompt": "Remove all human figures, faces, and body parts from the entire image, including background areas, keeping only unattended tractors, hardware, and the drip tape roll.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: A person (farmer) is visible in the image. The rules explicitly state to hard reject any person, farmer, face, hand, arm, leg, body part or human silhouette.",
+        "The primary subject of the image is the farmer interacting with the crop, which violates the requirement that the product must be the main visual focus without human interference."
+      ],
+      "correction_prompt": "Remove the farmer entirely from the scene. Keep the irrigation drip tape roll in the foreground (lower-left third) and the unattended red tractor in the background. The scene must contain zero people.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Identifiable crops (tulips) clearly contradict the required lentil (yellow split-pea) context, triggering hard reject criteria.",
+        "Product shape is a vertical canister/drum rather than the required wide low cylindrical drip-tape carton roll (diameter-to-height ratio is incorrect)."
+      ],
+      "correction_prompt": "Replace vertical canister with wide low cylindrical drip-tape carton roll (diameter approx 1.5-1.9x height). Remove tulips; use yellow split-pea crop rows or neutral soil. Ensure roll is off-center in lower third, approx 20% frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 22,
+      "product_height_percent": 25,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Presence of a visible person (farmer) interacting with the product",
+        "Product is being handled/touched by a hand, violating the 'zero human body parts' rule",
+        "Composition relies on human interaction rather than a standalone product shot in a farm context"
+      ],
+      "correction_prompt": "Remove the person/farmer entirely. Regenerate to show only the AFP drip-tape roll placed on the soil between crop rows, ensuring no hands or silhouettes are visible.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product is centered horizontally instead of being off-center on the lower third.",
+        "Product height (25%) is too tall relative to its width, violating the required wide low aspect ratio of 1.5-1.9x."
+      ],
+      "correction_prompt": "Move the drip-tape roll to the lower left or lower right third of the frame to remove it from the center. Reduce the vertical height of the roll to make it wider and flatter (aspect ratio approx 1.7:1 width to height).",
+      "attempt": 6
     }
   ],
-  "approved_image": "آبیاری-زیرسطحی-در-کشت-لپه-مزایا-جزئیات-فنی.webp"
+  "approved_image": null
 }

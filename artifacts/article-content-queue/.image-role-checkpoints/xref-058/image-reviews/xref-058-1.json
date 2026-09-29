@@ -3,39 +3,88 @@
   "kind": 1,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": true,
+  "approved": false,
   "attempts": [
     {
       "pass": false,
-      "score": 25,
-      "product_width_percent": 17,
-      "product_height_percent": 15,
-      "product_x_center_percent": 40,
+      "score": 42,
+      "product_width_percent": 13,
+      "product_height_percent": 21,
+      "product_x_center_percent": 33,
       "reasons": [
-        "Hard reject: clearly identifiable wrong species (sunflowers) instead of لپه (yellow split-pea crop).",
-        "Background and crop must match the article crop; sunflower morphology conflicts with the required article crop.",
-        "Product geometry and placement are acceptable, but the image must regenerate with a yellow split-pea crop context."
+        "The background features clearly identifiable sunflowers, which constitutes a hard reject for a required 'yellow split-pea' (Lapa) crop context.",
+        "The drip-tape roll is not a wide low cylindrical shape; it is a standard vertical cylinder with a height greater than its width.",
+        "The roll's width of 13% is on the absolute lower limit of the acceptable range, making it too small for the preferred 20-23% target."
       ],
-      "correction_prompt": "Replace the sunflower background with a yellow split-pea (لپه) field: botanically correct pea foliage, stems, and rows in a prepared agricultural bed; keep the single white-and-blue AFP drip-tape roll off-center on the soil (lower third), no people, and keep the bottom-right watermark 'AFP | 09134922013'.",
+      "correction_prompt": "Regenerate the image with a background of a young yellow split-pea (Lapa) crop showing characteristic pinnate leaves rather than sunflowers. Replace the vertical drip-tape roll with a wide, low, cylindrical drum shape (diameter approximately 1.8x its height). Increase the visible width of the drum to occupy approximately 22% of the image frame while maintaining its position on the lower-left soil.",
       "attempt": 1
     },
     {
-      "pass": true,
-      "score": 95,
-      "product_width_percent": 16,
-      "product_height_percent": 14,
-      "product_x_center_percent": 35,
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 23,
+      "product_height_percent": 25,
+      "product_x_center_percent": 25,
       "reasons": [
-        "Image contains exactly one AFP white-and-blue cylindrical drip-tape carton roll placed on soil.",
-        "The crop visible in the background matches the target yellow split-pea (lappe) context with accurate foliage and growth habit.",
-        "The product is correctly positioned off-center on the lower third of the frame and remains secondary to the farm background.",
-        "The roll's visible diameter to height ratio is approximately 1.4, within the required range of 1.5-1.9 times visible height.",
-        "The required watermark 'AFP | 09134922013' is present at the bottom right.",
-        "No people, human body parts, or disallowed items like extra packages or containers are visible."
+        "Crop mismatch: The image clearly displays a sunflower field, whereas the article crop is لپه (yellow split-pea). This is a hard reject for a clearly identifiable different species.",
+        "Geometry: The cylindrical roll's height is roughly equal to its diameter (1:1 ratio), which violates the required 1.5 to 1.9 diameter-to-height ratio for a wide, low roll."
       ],
-      "correction_prompt": "",
+      "correction_prompt": "Replace the sunflowers with mature yellow split-pea (لپه) plants showing correct botanical morphology. Reshape the drip tape roll to be wider and flatter, ensuring its diameter is 1.5 to 1.9 times its height. Keep the roll in the lower-left foreground.",
       "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 20,
+      "reasons": [
+        "Clearly identifiable different species (sunflowers) instead of لپه (yellow split-pea crop)"
+      ],
+      "correction_prompt": "Replace the sunflowers with لپه (yellow split-pea crop) or a botanically neutral prepared bed with tiny seedlings to match the article topic.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Presence of a person: The image clearly shows a man (farmer/worker) crouching in the frame. Per the hard reject criteria, any person, face, hand, or body part must be strictly rejected, as the image must contain zero people or human silhouettes.",
+        "Wrong crop species: The background features a field of sunflowers, which does not match the required 'yellow split-pea crop' (lephe). While the article-specific crop needs to be recognizable, using a completely different botanical species is a hard reject unless it's a botanically neutral prepared bed with unidentifiable seedlings.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate without any people or human silhouettes. Replace the sunflowers in the background with a botanical illustration or depiction of yellow split-pea (Lupine) crop at harvest stage. Place the single AFP white-and-blue cylindrical drip-tape carton roll on the soil in the lower third of the frame, ensuring it is off-center and sized between 20-23% width and <32% height. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 17,
+      "product_height_percent": 21,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Background crop is clearly identifiable as tulips, not لپه (yellow split-pea crop), triggering hard reject for a clearly different species."
+      ],
+      "correction_prompt": "Replace the background crop with لپه (yellow split-pea crop) at the appropriate growth stage; retain the off-center white-and-blue drip-tape carton roll on soil with the exact bottom-right AFP | 09134922013 watermark and no people.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 23,
+      "product_height_percent": 38,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Product height (38%) exceeds the 32% hard reject threshold.",
+        "Crop botanically incorrect: image shows flowering plants with large broad leaves and yellow blooms (similar to snapdragon), which does not match the growth habit of لپه (yellow split-pea).",
+        "Product is 'staged' in the foreground rather than naturally placed in a drip-tape distribution context (e.g., alongside a long drip line).",
+        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a crop of yellow split-pea (Lupin or pea) showing green foliage and small pods, no large flowers. Reduce the carton roll height to 25% of the frame and place it naturally in the soil row. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 6
     }
   ],
-  "approved_image": "آبیاری-باغ-میوه-در-کشت-لپه-مقایسه-تصویر-شاخص.webp"
+  "approved_image": null
 }

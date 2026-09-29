@@ -1,0 +1,111 @@
+{
+  "id": "xref-047",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 16,
+      "product_height_percent": 18,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: The image contains two people (farmers/workers).",
+        "Hard reject: The image clearly shows faces, arms, hands, and legs, violating the 'zero people and zero human body parts' rule."
+      ],
+      "correction_prompt": "Regenerate the image with no people, workers, or human body parts visible. Ensure the scene contains only the product and the farm environment.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 24,
+      "product_height_percent": 35,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Hard reject: A person (a child/farmer) is clearly visible in the frame, interacting with the plants.",
+        "Hard reject: A human body part (arms, hands, legs, face) is present, violating the 'zero people' constraint.",
+        "Height constraint violation: The product height is estimated at ~35% of the frame, which exceeds the 32% maximum limit.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the person entirely. Regenerate with only the drip-tape roll on soil and the farm background. Reduce the product's relative height to under 32% of the frame. Maintain the off-center composition and the required watermark. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 23,
+      "product_height_percent": 27,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The product x_center is at 48%, which places the roll in the middle of the frame; the prompt explicitly hard-rejects centered product staging.",
+        "The bottom-right text is a 'phone number' watermark, not the required 'phone watermark' (implying a standard news agency credit), failing the specific text check."
+      ],
+      "correction_prompt": "Shift the drip tape roll to the lower-left or lower-right third of the frame to avoid centering. Update the bottom-right text overlay to read 'AFP | 09134922013'.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 23.8,
+      "product_height_percent": 20.5,
+      "product_x_center_percent": 36.5,
+      "reasons": [
+        "Hard reject: Image contains a person (male farmer) crouching and interacting with the product."
+      ],
+      "correction_prompt": "Regenerate image showing ONLY the white-and-blue AFP drip-tape roll resting on the soil. Remove all human figures, faces, and body parts completely.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 28.0,
+      "product_height_percent": 25.0,
+      "product_x_center_percent": 45.0,
+      "reasons": [
+        "Product width is 28% of the frame, exceeding the 27% hard reject limit",
+        "Product center (45%) is not in the lower third of the frame (should be >66%)",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Move the product roll down into the lower third of the frame (y > 66%) and resize it so its width is less than 27% of the total frame width. Ensure the roll maintains a wide, low cylindrical profile. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The image contains a person (hard reject).",
+        "The product roll is not positioned on the lower third and lacks the required off-center placement.",
+        "The product is too small (width/height) to be the primary or clearly secondary focus as requested.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image removing the person entirely. Place a single AFP white-and-blue wide cylindrical drip-tape carton roll on the soil in the lower third, slightly off-center. Ensure the roll is visibly wider than tall. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 6
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 25,
+      "product_height_percent": 18,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product is an AFP white-and-blue drip-tape carton roll placed naturally on soil.",
+        "Exactly one roll is visible, no extra commercial products or containers are present.",
+        "No people, human body parts, or silhouettes are visible; unattended tractor is acceptable infrastructure.",
+        "Product width (25%) and height (18%) are within the 13-27% and <32% ranges respectively, and its aspect ratio is consistent with the required proportions.",
+        "The roll is positioned in the lower third of the frame and is off-center (x-center ~45%).",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Visuals are neutral with no identifiable crop morphology that contradicts 'lentil'.",
+        "Background matches the farm context described."
+      ],
+      "correction_prompt": "",
+      "attempt": 1
+    }
+  ],
+  "approved_image": "آبیاری-خرسابی-در-کشت-عدس-راهنمای-جامع-جزئیات-فنی.webp"
+}

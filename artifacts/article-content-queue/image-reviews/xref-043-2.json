@@ -1,0 +1,85 @@
+{
+  "id": "xref-043",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 12,
+      "product_height_percent": 13,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: Image contains a person (hands, arms, and legs are clearly visible).",
+        "Product size: The drip-tape roll is significantly smaller than the recommended width (13-27%), estimated at ~12%.",
+        "Product shape: The roll is too small to clearly be a 'wide low cylindrical' carton; it looks more like a small cap or container.",
+        "Product position: The roll is centered on the main drip line in the middle of the frame rather than being off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with NO humans or body parts. Show a large, wide cylindrical drip-tape roll (20-25% frame width, off-center lower third) on the soil. The background must match the specific crop topic. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 23,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: three people and multiple body parts are present.",
+        "The product is positioned in the lower-left rather than the lower-third off-center (right).",
+        "The crop morphology does not match a specific named article title."
+      ],
+      "correction_prompt": "Remove all humans. Move the AFP drip-tape roll to the lower-right third of the frame on bare soil. Replace the generic seedlings with the exact article-specific crop morphology.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 88,
+      "product_width_percent": 19,
+      "product_height_percent": 17,
+      "product_x_center_percent": 78,
+      "reasons": [
+        "The product visible in the foreground is a cylindrical tape roll, not a 'wide low' roll. The prompt required a wide low roll, but the actual image shows a vertical cylinder that does not meet the 1.5 to 1.9 times height ratio criteria.",
+        "The product is identified as 'tape20' but the visual evidence shows a cylindrical shape rather than the required wide low cylinder."
+      ],
+      "correction_prompt": "Replace the vertical cylindrical roll in the foreground with a wide low cylindrical drip-tape carton roll that has a diameter 1.5 to 1.9 times its height, while maintaining the farm context and all other composition elements.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 19,
+      "product_height_percent": 24,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject: Image contains two clearly visible people (farming/inspecting), which violates the strict 'zero people' rule.",
+        "The product packaging features large, illegible gibberish text at the bottom next to the logo, failing the authenticity check.",
+        "Two separate hands are explicitly placed on top of the product, constituting clear human interaction.",
+        "The product is not positioned off-center on the lower third but rather in the center-lower third."
+      ],
+      "correction_prompt": "Remove all people, hands, and faces completely. Ensure the white cylindrical drip-tape carton roll stands on the soil, off-center on the lower third. The roll width should be ~20% of frame width, height ~20%. Clean up all packaging text (only legible logo/watermark). Background: rows of mature crop (botanically accurate for the title).",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The image contains exactly one roll of drip tape positioned on the soil as required.",
+        "Zero people or human body parts are visible in the frame.",
+        "The required watermark 'AFP | 09134922013' is correctly placed in the bottom-right corner.",
+        "The product is correctly off-center and remains secondary relative to the farm context.",
+        "The crop morphology (seedlings) is botanically consistent with the neutral young vegetation allowance.",
+        "Product proportions (width/height) and placement meet all criteria."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-در-کشت-پیاز-چالشها-کاربرد-عملی.webp"
+}

@@ -1,0 +1,67 @@
+{
+  "id": "xref-045",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 10,
+      "product_height_percent": 13,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: A person (farmer/worker) is clearly visible in the foreground",
+        "Hard reject: A human silhouette and body parts (head, arms, legs) are present",
+        "The presence of a human violates the strict rule of zero people or body parts",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the farmer/worker from the frame completely; retain only the AFP drip-tape roll on the soil within the farm context Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 28,
+      "product_height_percent": 22,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Presence of five extra commercial containers (bottles) violates the 'zero extra commercial product' requirement.",
+        "Product width is estimated at 28%, which exceeds the maximum practical estimate of 27%.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the row of five small colored bottles from the soil near the cartons. Resize the white cartons to occupy approximately 22% of the image width. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "Hard reject: A full human figure (farmer) is clearly visible in the right-center of the frame.",
+        "The image violates the strict rule of containing zero people or body parts."
+      ],
+      "correction_prompt": "Regenerate the image completely without any people or human silhouettes. Show only the AFP white-and-blue cylindrical drip-tape carton roll on the soil in the lower-left, with an empty farm background containing a distant tractor and a red barn.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 22,
+      "product_height_percent": 25,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "The image clearly displays a white and blue cylindrical drip-tape carton roll with the correct 'AFP' branding and required watermark.",
+        "The product is naturally placed on soil in the lower-left, which aligns with the 'hardware story' role and farm context.",
+        "The roll's proportions meet the width and height constraints (width 22%, height 25%).",
+        "Zero people or human body parts are present; background elements like the unattended tractor and barn provide an authentic farm context without contradicting the article."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-با-رانش-در-کشت-لپه-نکات-کلیدی-جزئیات-فنی.webp"
+}

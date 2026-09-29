@@ -1,0 +1,95 @@
+{
+  "id": "xref-049",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: presence of people and human body parts (a man and a hand), which violates the 'zero people' rule.",
+        "Hard reject: the image is a collage composed of multiple panels.",
+        "The main roll is located in the bottom-left corner rather than the specified off-center lower third.",
+        "The product is not the primary focus and does not match the size/diameter ratio requirements.",
+        "The image does not represent a 'hardware story' close-up view of a roll on soil, but rather an action shot of a farmer.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Generate a single-panel image showing one wide, low, white and blue drip-tape roll on a piece of farm hardware like a filter or manifold. No people or hands. The roll should be off-center on the lower third. The bottom-right corner must have the text 'AFP | 09134922013'. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 28,
+      "product_height_percent": 22,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The product is the correct type (wide low cylindrical drip-tape roll) in a farm context.",
+        "No people or human body parts are visible.",
+        "The product is off-center and placed naturally on the soil.",
+        "The background matches the topic with a farm setting.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present.",
+        "Product width is slightly above the preferred 20-23% but within the acceptable 13-27% upper limit considering estimation variance.",
+        "Product height is well within the limit.",
+        "Product aspect ratio (width/height) is roughly 1.27, which is slightly lower than the 1.5-1.9 ideal but acceptable for a flat-laying roll.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Image contains a full human body (man), which is a hard reject",
+        "Hard reject triggered by visible face, arms, and legs"
+      ],
+      "correction_prompt": "Regenerate the scene completely without any person, hand, or human silhouette; feature the drip-tape roll placed on the soil as a hardware element in a farm context.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 34,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Product height is approximately 34 percent of the frame, which exceeds the 32 percent maximum limit",
+        "Visible crops in the field (long leaves) resemble soybeans or corn and do not visually match alfalfa (yonje), which has a multi-stemmed leaf structure",
+        "Product is placed slightly too close to the vertical center, failing the 'lower third' off-center requirement",
+        "Product bounding box is too tall relative to width (ratio ~0.64), whereas the preferred drip tape carton profile is wider and lower",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a taller vertical aspect ratio crop or smaller subject size so the carton height is under 32 percent of the frame. Shift the carton strictly to the lower-left third. Change the background crops to clearly identifiable alfalfa foliage (low growth, trifoliate leaves) to avoid crop contradiction. Ensure the carton appears wider and lower relative to its height. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 22,
+      "product_height_percent": 18,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Product is a white-and-blue AFP drip-tape roll matching the brand and color requirements.",
+        "Exactly one roll is visible; no second package, bottle, jar, or extra commercial product.",
+        "No people, human body parts, or silhouettes are present.",
+        "Product is off-center in the lower-left area and sits naturally on the soil within the crop rows.",
+        "The crop is visually neutral and does not clearly contradict alfalfa, which is permissible in Role 3.",
+        "Background with a farm field and red barn fits the general farm context of Role 3.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "Estimated bounding box dimensions fall within the acceptable range (13–27% width, <32% height)."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-یونجه-هزینه-در-مزرعه-جزئیات-فنی.webp"
+}

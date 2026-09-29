@@ -1,0 +1,54 @@
+{
+  "id": "xref-067",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 14,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Person visible (kneeling worker, face partially visible)",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the worker/person; show only the drip-tape roll on soil in a farm context. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 33,
+      "product_height_percent": 34,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "A visible person (human silhouette) is present in the background, which is a hard reject.",
+        "The product width (33%) and height (34%) both exceed the acceptable maximum limits (27% and 32% respectively).",
+        "machine-enforced bounding-box check failed: Reduce the product group from 33% to 13-27% of frame width.; Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with a farm background that contains absolutely no human silhouettes. Shrink the drip-tape carton roll so that its width and height are both under 30% of the frame to match the required proportions. Reduce the product group from 33% to 13-27% of frame width. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 20,
+      "product_height_percent": 18,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product is a single AFP white-and-blue wide low cylindrical drip-tape roll placed on soil.",
+        "Product dimensions are within the acceptable 13-27% width and <32% height range.",
+        "Product is off-center (lower-left) rather than centered.",
+        "Background is a topic-specific farm context (crop field and barn).",
+        "Watermark 'AFP | 09134922013' is correctly present in the bottom-right.",
+        "No people, human body parts, or forbidden extra commercial products are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-باقلا-کاربردها-جزئیات-فنی.webp"
+}

@@ -1,0 +1,55 @@
+{
+  "id": "xref-049",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Presence of two human figures (male and female) and clear human body parts (faces, hands, arms, legs) violates the zero-person and zero-body-part requirement.",
+        "Hard reject: The crop shown in the top-right panel has large, broad, palmately-lobed leaves (resembling squash or cucumber), which is a clearly identifiable species other than alfalfa (trifoliate).",
+        "Hard reject: The drip tape roll in the bottom-right panel is tightly coiled rather than cylindrical, and appears too small (not meeting the preferred width of 13-27% of the frame).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures and body parts completely. Remove the wide-leafed plants in the top-right; replace with a close-up of alfalfa showing dense trifoliate leaflets or a botanically neutral prepared soil bed. Ensure the lower-right drip tape roll is a distinct cylindrical shape placed naturally on the soil and occupies a more substantial portion of the frame (approx. 20% width) without being centered. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 52,
+      "product_width_percent": 24,
+      "product_height_percent": 25,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "The visible diameter of the roll is too small relative to its height (approx. 1.0:1 ratio), whereas it must be about 1.5 to 1.9 times its visible height.",
+        "The background plant morphology (visible on the right) features large, broad leaves and does not match the requirement for dense fine trifoliate leaflets (alfalfa)."
+      ],
+      "correction_prompt": "Regenerate with a wide, low-profile drip tape roll (diameter at least 1.6 times its height) sitting on the soil. Ensure the background crop shows distinct small, three-lobed trifoliate leaves characteristic of alfalfa, avoiding any plants with large, broad, simple leaves.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 25,
+      "product_height_percent": 26,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product matches requirements: Single AFP white-and-blue wide low cylindrical drip-tape roll.",
+        "Product sizing: Width (~25%) and height (~26%) are within acceptable limits and height <= 32%.",
+        "Placement: Placed on soil on the lower third, slightly off-center.",
+        "Context: Farm context (crop field) with no visible human figures.",
+        "Watermark: Required 'AFP | 09134922013' watermark present in bottom-right.",
+        "Negative Constraints: No large broad-leaf species present to falsely reject; the generic crop seedlings are acceptable for the agronomic story."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-یونجه-هزینه-در-مزرعه-کاربرد-عملی.webp"
+}

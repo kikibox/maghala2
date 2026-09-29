@@ -91,6 +91,85 @@
       ],
       "correction_prompt": "Reduce the product group from 30% to 13-27% of frame width.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "The image contains multiple people (a woman in the foreground and a man in the background), which is a hard reject.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures and body parts from the scene. Ensure the white cylindrical drip tape roll is clearly visible on the soil without any people. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 16,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: The image contains a full-body human figure (a crouching man), which violates the 'zero people' rule."
+      ],
+      "correction_prompt": "Remove the man entirely from the scene. Ensure the background shows only the farm context (soil, crops, or hardware) with no people, hands, or body parts visible. Keep the AFP drip tape roll exactly as it is in the current image, and retain the bottom-right watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 25,
+      "product_height_percent": 17,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: visible person (farmer) in the background with arms and torso clearly identifiable."
+      ],
+      "correction_prompt": "Regenerate without any human silhouettes, faces, arms, or body parts in the background; keep the farmer completely out of the frame.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 10,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Presence of a visible person (farmer kneeling and placing the roll) triggers immediate hard reject",
+        "Product is too small (approx 8% width) and fails to meet the 13-27% secondary product requirement",
+        "Product is centered in the lower-third area; it should be off-center",
+        "Product is cylindrical and upright, not the 'wide low' geometry required",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes. Generate a wide low cylindrical drip-tape roll (approx 15-20% width) off-center in the lower third, placed naturally on soil, with a farm background matching the article title. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 33,
+      "product_height_percent": 28,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The product width is approximately 33 percent of the frame, which exceeds the strict 27 percent limit for hard rejection.",
+        "The text on the carton below 'AFP' is gibberish (invented writing) rather than authentic, legible package print, which constitutes a hard rejection.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 33% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the crop width to approximately 20 percent of the frame and correct the gibberish text below the logo to be legible, authentic packaging. Reduce the product group from 33% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 20,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The image contains a person, which is strictly prohibited by the 'zero people' and 'zero human body parts' rules."
+      ],
+      "correction_prompt": "Regenerate the image to show only the drip-tape roll on the soil without any human presence, hands, or body parts. Ensure the roll is positioned off-center in the lower third of the frame, with no other human elements visible.",
+      "attempt": 6
     }
   ],
   "approved_image": null

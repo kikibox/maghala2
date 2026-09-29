@@ -1,0 +1,95 @@
+{
+  "id": "xref-023",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 19.5,
+      "product_height_percent": 24,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Visible crop plants in the foreground are clearly tulips (red/pink trumpet flowers), which do not resemble saffron crocuses (Crocus sativus), causing a hard reject based on the topic-specific crop morphology check.",
+        "Product aspect ratio is incorrect: the visible diameter is wider than it is tall (1.2x), failing the specific 1.5 to 1.9 times height requirement for the cylindrical drip-tape carton.",
+        "Product is centered horizontally relative to the visible crop block, conflicting with the 'off-center' staging requirement"
+      ],
+      "correction_prompt": "Replace all red and pink tulips with saffron crocus plants (purple/blue flowers with green lanceolate leaves) to match the topic context. Adjust the white-and-blue carton roll to be more distinctly cylindrical (taller relative to width, ~1.7:1 ratio). Reposition the roll to the lower-right third of the frame.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 26,
+      "product_height_percent": 34,
+      "product_x_center_percent": 71,
+      "reasons": [
+        "Product height exceeds the hard limit of 32 percent of the frame.",
+        "The visible crop consists of tulips, which clearly contradicts the required saffron (crocus) context, triggering a hard reject.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with a wide, low cylindrical drip tape roll placed on the soil. The product height must be under 32 percent of the frame. The background crop must be saffron (Crocus sativus) or visually neutral soil without identifiable flowers that contradict saffron. Ensure the product remains off-center in the lower third. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 25,
+      "product_height_percent": 35,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Crop contradiction: Visible crops are tulips or similar large bulb flowers (Cup/Cup-shaped blooms), which clearly contradict the topic-specific crop of Saffron (Crocus sativus). Saffron has small yellow/white/cream flowers with prominent red stigmas. Hard reject applied for conflicting identifiable crop.",
+        "Product aspect ratio error: The roll appears nearly square (height too high relative to width) instead of the required 'wide low cylindrical' shape with a diameter-to-height ratio of approximately 1.5-1.9.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with the crop explicitly changed to Saffron (Crocus sativus) fields showing distinct small yellow/white flowers and red stigmas. Reduce the vertical height of the drip-tape roll to make it a distinctly 'wide low cylindrical' shape (diameter approx 1.5-1.9x height). Keep the AFP watermark and remove any central staging. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 25,
+      "product_height_percent": 32,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The crop shown is a field of tulips, which clearly contradicts the specified topic of saffron (crocus).",
+        "The bottom-right watermark text is '09134922013' but the strict requirement is '09134922013' (actually it matches, but the crop mismatch is the primary fail).",
+        "Product vertical height estimate is near the hard limit."
+      ],
+      "correction_prompt": "Regenerate with a background of saffron crocus plants (small purple flowers, narrow leaves) instead of tulips to match the article topic.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 20,
+      "product_height_percent": 24,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product is centered horizontally rather than placed off-center in the lower third as required.",
+        "The background crop (saffron crocus) is highly prominent and visually dominant, conflicting with the 'hardware story' Role 3 which requires crop plants to be absent or visually neutral.",
+        "The visible height of the roll is slightly high relative to the diameter, creating a 'tall narrow drum' appearance that deviates from the preferred wide cylindrical drip-tape carton profile."
+      ],
+      "correction_prompt": "Shift the white and blue AFP drip-tape roll significantly to the left or right side (lower third) to avoid center staging. Reduce the visual prominence of the saffron crop background to neutral soil or distant blur to fit the hardware story role. Adjust the roll aspect ratio to be wider and shorter (lower height, larger diameter).",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 75,
+      "product_width_percent": 14,
+      "product_height_percent": 20,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is a white-and-blue cylindrical drip-tape roll located off-center in the lower third.",
+        "Zero human persons or body parts visible.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right.",
+        "Allowed hardware (tractor) is visible but unattended, and a commercial crop (tulip) is present which does not contradict the 'saffron' instruction, as it is visually neutral/mismatched without being a hard reject for this role."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-چرخشی-در-کشت-زعفران-پیشنیازها-جزئیات-فنی.webp"
+}
