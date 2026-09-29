@@ -1,0 +1,95 @@
+{
+  "id": "xref-222",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 20,
+      "product_height_percent": 18,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "A person (farmer) is clearly visible sitting on the tractor in the background, which is a hard reject."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove the person from the tractor in the background, ensuring no humans or human silhouettes are visible anywhere in the scene.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 29,
+      "product_height_percent": 34,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Second commercial product (metallic reel/coil) is present in the image.",
+        "Product height (34%) exceeds the hard reject threshold of 32%.",
+        "Product width (29%) exceeds the hard reject threshold of 27%.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 29% to 13-27% of frame width.; Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate without the extra metallic reel on the right; significantly reduce the scale of the white cartoned roll so its width is ~20% and height is <32% of the frame. Reduce the product group from 29% to 13-27% of frame width. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Presence of a human figure (crouching male farmer) in the foreground, which is a hard reject condition.",
+        "Visible human face, hands, arms, and legs.",
+        "Product is not the sole focus due to the presence of the person.",
+        "Human silhouette/hard reject triggers are clearly visible."
+      ],
+      "correction_prompt": "Regenerate the image with zero people, workers, farmers, faces, hands, or body parts. Show only a white-and-blue wide low cylindrical drip-tape carton roll in a farm field with soil. Ensure the roll is off-center, low, and naturally placed on the ground with no human presence.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 25,
+      "product_height_percent": 20,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject: The image contains visible people (two standing in the center background and two near the tractor on the right), which violates the zero-people requirement."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove all human figures and workers from the background while keeping the tractor, soil, and AFP drip-tape roll unchanged.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Contains two alarm clocks next to the roll, which act as 'extra commercial products' or inanimate objects not matching the hardware context",
+        "The background contains a tractor, but no visible filter, manifold, or pressure gauge/irrigation infrastructure to support the 'hardware story' role 3 context",
+        "The crop plants visible in the field rows may contradict a strict 'no crop' or 'neutral' requirement for this specific role"
+      ],
+      "correction_prompt": "Regenerate the image to show exactly one AFP drip-tape carton roll on soil. Remove all alarm clocks. Place a visible irrigation manifold, pressure gauge, or filter next to the roll to establish the hardware context. Ensure no other people or commercial items are present.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 27,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product is a wide cylindrical drip-tape roll matching description",
+        "Product is off-center in the lower third on soil",
+        "Tractor in background is acceptable as infrastructure",
+        "No people visible",
+        "Required watermark is present",
+        "Text on roll and gauge appears authentic"
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-زیرسطحی-در-کشت-پیازچه-نکات-کلیدی-جزئیات-فنی.webp"
+}

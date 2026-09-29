@@ -1,0 +1,67 @@
+{
+  "id": "xref-224",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 12,
+      "product_height_percent": 11,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Human figures (farmers) are visible in the background, which is a hard reject",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures and silhouettes from the image, including those in the background. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The image fails the article crop requirement: the melon shown is a large, smooth green fruit resembling a honeydew or immature watermelon, whereas the required crop is 'طالبی' (cantaloupe/muskmelon), which must exhibit netted/ridged skin even when restrained.",
+        "The crop appears upright and somewhat bushy; authentic cantaloupe vines are prostrate and should be clearly visible on the ground with lobed leaves and netted fruit attached to the vine.",
+        "The fruit is not visually identifiable as cantaloupe, which is a hard reject per instructions."
+      ],
+      "correction_prompt": "Regenerate the image to show a prostrate cantaloupe vine on the soil with characteristic deep-lobed leaves and a netted, beige-gold cantaloupe melon still attached to the vine. Remove the large smooth green fruit and the tall upright plant structure. Ensure the melon is netted and the vine is on the ground. Keep the AFP drip tape roll, soil context, and watermark exactly as they are.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Contains human-made text gibberish on the product label",
+        "Watermark in the bottom-right corner contains an incorrect phone number (extra digit '0') compared to the required string"
+      ],
+      "correction_prompt": "Regenerate the image with the product label text clearly legible and correct the bottom-right watermark to exactly read 'AFP | 09134922013'.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 21,
+      "product_height_percent": 15,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The image contains the required 'AFP | 09134922013' watermark in the bottom right corner.",
+        "No people or human body parts are visible.",
+        "The crop shown is clearly cantaloupe, consistent with the topic.",
+        "The product is correctly placed on the soil, off-center in the lower third.",
+        "The product dimensions (width ~21%, height ~15%) and aspect ratio are within acceptable practical limits.",
+        "The background farm context matches the article role."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-در-کشت-طالبی-کاربردها-تصویر-شاخص.webp"
+}

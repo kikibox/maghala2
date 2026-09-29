@@ -1,0 +1,66 @@
+{
+  "id": "xref-219",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 13,
+      "product_height_percent": 16,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Multiple packages/rolls present (4 visible), violating 'exactly one roll' and 'no second package' rule",
+        "Crop is visible (young corn/plants); image role 3 is hardware/close-up and requires crop to be absent or visually neutral, not a distinct crop field view"
+      ],
+      "correction_prompt": "Regenerate to show a single AFP white-and-blue drip tape roll on the soil in a hardware close-up view. Remove the extra small rolls and the crop field; focus on the unattended irrigation hardware (filter/manifold). Keep the AFP | 09134922013 watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 78,
+      "product_width_percent": 30,
+      "product_height_percent": 28,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "The product (drip-tape carton roll) is centered in the frame, violating the requirement to be off-center on the lower third.",
+        "The visible width of the product is estimated at 30%, which exceeds the hard limit of 27% for the product's bounding box width.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to position the roll off-center to the left or right on the lower third of the frame and reduce its apparent size relative to the frame so that the product width is under 27%. Reduce the product group from 30% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: Image contains a person (farmer) crouching in the field.",
+        "Hard reject: Image contains visible human body parts (face, hands, arms, legs)."
+      ],
+      "correction_prompt": "Regenerate the image with the farmer removed. Leave the drip tape roll in the lower-left foreground on the soil, maintaining the corn field background and 'AFP | 09134922013' watermark.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 19,
+      "product_height_percent": 18,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "The image displays exactly one wide, low cylindrical drip-tape carton roll as required for Role 3.",
+        "The product is correctly positioned on the soil in the lower left, keeping the main subject secondary to the farm context.",
+        "The 'AFP | 09134922013' watermark is visible in the bottom-right corner as required.",
+        "There are no people, hands, or human silhouettes present in the image.",
+        "The background context of young corn/sorgho rows is consistent with a farm hardware story and does not contradict the product type."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-رانشی-در-کشت-گلرنگ-راهنمای-جامع-جزئیات-فنی.webp"
+}

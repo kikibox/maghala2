@@ -1,0 +1,70 @@
+{
+  "id": "xref-233",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 17,
+      "product_height_percent": 22,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: A prominent human figure (farmer) with visible face, arms, and legs is in the image",
+        "Hard reject: Presence of a person violates the strict 'zero people' requirement for Role 3",
+        "Hard reject: Product is placed next to a crouching human hand"
+      ],
+      "correction_prompt": "Regenerate without any people or human silhouettes. Show only the drip tape roll placed on the soil in a farm field context.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 48,
+      "product_width_percent": 27.8,
+      "product_height_percent": 35.2,
+      "product_x_center_percent": 49.5,
+      "reasons": [
+        "Product width exceeds 27% frame limit (27.8%)",
+        "Product height exceeds 32% frame limit (35.2%)",
+        "Product x-center is near 49.5%, violating off-center requirement on lower third",
+        "machine-enforced bounding-box check failed: Reduce the product group from 27.8% to 13-27% of frame width.; Reduce product height from 35.2% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with smaller carton roll: width 21%, height 29%, and shift x-center to 38% for lower-left off-center placement. Reduce the product group from 27.8% to 13-27% of frame width. Reduce product height from 35.2% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: image contains a visible person (farmer) and human body parts.",
+        "Product is not a wide low cylindrical drip-tape roll; it appears to be a canister or bottle.",
+        "Product does not meet the shape and packaging specifications.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people. Generate exactly one wide low cylindrical drip-tape roll with blue and white print on soil, off-center, no other products. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 21,
+      "product_height_percent": 27,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The image features a single wide, low, cylindrical drip-tape carton roll positioned in the lower-left foreground, naturally placed on the soil.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "There are no people, human body parts, or silhouettes visible in the frame.",
+        "The product dimensions (width and height) and off-center positioning meet the specified constraints for a hardware-focused context.",
+        "The background includes a tractor and farm, which are acceptable infrastructure elements consistent with a practical farm context without violating rejection criteria."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-نوار-تیپ-در-کشت-ریحان-هزینه-بهینه-جزئیات-فنی.webp"
+}

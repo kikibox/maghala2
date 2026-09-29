@@ -1,0 +1,74 @@
+{
+  "id": "xref-226",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 32,
+      "product_height_percent": 24,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Contains clearly identifiable people and farmers (left panel).",
+        "Contains visible human hands and body parts (top-right and bottom-right panels).",
+        "Composite/collage image instead of a single scene with one roll.",
+        "Multiple product instances visible (main panel and top-right inset).",
+        "Product roll is wider than the maximum 27% frame width and taller than the maximum 32% height.",
+        "Product is not off-center on the lower third; it is centered/staged.",
+        "Contains a coiled drip line/hose rather than a standalone roll in the bottom-right panel.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate a single wide-angle farm scene: one white-and-blue cylindrical drip-tape roll resting naturally on soil in a triticale field with young wheat-like shoots; remove all people, hands, collage panels and extra rolls; place the roll in the lower third, off-center, with width ~20-23% and height ≤32% of the frame; keep the exact bottom-right watermark 'AFP | 09134922013'. Reduce the product group from 32% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 22,
+      "product_height_percent": 20,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "The product is a cylindrical roll, which is explicitly hard-rejected as a 'tall narrow drum'. The required geometry is a wide, low cylinder (diameter ~1.5-1.9 times height).",
+        "The product is too tall relative to its width; it appears more like a standard spool/drum rather than a flat drip tape carton roll.",
+        "The crop is tiny, unidentifiable seedlings; while agronomic context is clear (grain crop), the hard reject of the wrong product geometry overrides this."
+      ],
+      "correction_prompt": "Regenerate with a wide, flat, low cylindrical drip-tape roll (diameter 1.5-1.9x height) instead of a tall drum/spool. Maintain the small grain seedlings (triticale) context, lower the product height, and keep the AFP watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 21,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Hard reject: image contains a visible person (farmer) with head, arms, hands, and legs.",
+        "Product height (approx 21%) is slightly too high for a 'low' cylinder profile (should be <=16%).",
+        "Product width is on the lower end of the acceptable range (14%).",
+        "Background context shows generic seedlings, but the crop context is partially obscured by the human figure."
+      ],
+      "correction_prompt": "Remove the human figure entirely. Keep the crop of tiny unidentifiable seedlings on prepared soil. Regenerate the AFP white and blue wide low cylindrical drip-tape carton roll. Ensure the roll is placed on the soil, off-center to the lower left. Reduce the roll's height significantly to make it look very flat (wide low cylinder) while maintaining the 14% width. Ensure the required watermark 'AFP | 09134922013' remains visible in the bottom right.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 23,
+      "product_height_percent": 26,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "Product is a cylindrical drip-tape roll matching the specified white-and-blue AFP branding.",
+        "Product is placed off-center on the lower left on soil.",
+        "Image contains zero people or human body parts.",
+        "Background shows young crops and farm infrastructure consistent with an agronomic story.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom right."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-تریتیکاله-نکات-کلیدی-کاربرد-عملی.webp"
+}

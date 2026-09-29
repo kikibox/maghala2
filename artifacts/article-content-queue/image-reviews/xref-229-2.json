@@ -1,0 +1,54 @@
+{
+  "id": "xref-229",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 10.4,
+      "product_height_percent": 12.5,
+      "product_x_center_percent": 46.5,
+      "reasons": [
+        "Hard reject: The image contains a person (a farmer), including a face, arms, hands, and legs, which is strictly prohibited.",
+        "The product size is significantly smaller than the required 13-27% width range.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10.4% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image showing only the white and blue 'AFP' drip-tape roll on the soil in a lentil field. Remove the person entirely. Make the roll larger, representing at least 13% of the image width, and keep it off-center on the lower third. Enlarge the product group from 10.4% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 68,
+      "product_width_percent": 26,
+      "product_height_percent": 21,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The product x_center_percent is approximately 50%, indicating it is centered in the frame rather than placed off-center in the lower third as required.",
+        "The article crop is lentil (عدس). The background vegetation shows seedlings with broad, large, simple leaves characteristic of a different legume (like soybeans or broad beans) rather than lentils, which are defined by fine-textured bushy branching stems and small paired pinnate leaflets."
+      ],
+      "correction_prompt": "Reposition the carton roll to be off-center in the lower third of the image (e.g. x_center around 35% or 65%) and not in the middle. Change the background crop specifically to young lentil seedlings which have a fine, bushy texture with small paired pinnate oval leaflets, distinct from the large broad leaves currently shown.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 20,
+      "product_height_percent": 27,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "The product is a single AFP white-and-blue cylindrical drip-tape carton roll with appropriate proportions (diameter is ~1.6 times the height).",
+        "The product is positioned off-center in the lower third, naturally placed on the soil, and occupies roughly 20% of the frame width (within the preferred 20-23% range).",
+        "The background crop consists of neutral, young seedlings with a generic cotyledon structure that is unidentifiable; this satisfies the 'botanically neutral prepared bed' criteria for lentil agronomy without hard-rejecting prohibited mature species like brassica flowers or bean leaves.",
+        "Contains zero people, body parts, or human silhouettes.",
+        "The required bottom-right watermark 'AFP | 09134922013' is clearly visible and authentic.",
+        "Product text 'AFP' and 'Drip' is clearly visible and not gibberish; no extra commercial containers or piping are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-رانشی-در-کشت-عدس-هزینه-بهینه-کاربرد-عملی.webp"
+}

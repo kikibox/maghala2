@@ -1,0 +1,73 @@
+{
+  "id": "xref-232",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 14,
+      "product_height_percent": 26,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Secondary commercial product present: An orange tool handle and a packaged box (containing a filter or nozzle) are visible next to the roll, which violates the 'zero extra commercial product' rule.",
+        "Product geometry incorrect: The drip tape roll is tall and cylindrical (like a spool) rather than a 'wide low cylindrical' carton roll. The diameter-to-height ratio is not in the 1.5:1.9 range (it is roughly 1:1 or taller).",
+        "Product size too small: The roll width is only ~14% of the frame, below the preferred 20-23% range."
+      ],
+      "correction_prompt": "Remove the tool and package to the right. Replace the tall spool with a single wide, low cylindrical white and blue carton roll of drip tape (diameter 1.5-1.9 times its height). Enlarge the roll to occupy 20% of the frame width and ensure it is off-center on the lower third. Keep the tobacco seedling background.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 82,
+      "product_width_percent": 20,
+      "product_height_percent": 30,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Image shows a generic crop row context without the specific morphology required for 'City, Family Tape 20' (a specific crop article is not provided, making the 'topic-specific farm context' weakly matched to a named crop)",
+        "Product is centered on the lower third rather than naturally placed off-center as required",
+        "Product width is approximately 20% and height 30%, which falls within the acceptable 13-27% width range but is borderline for the secondary role"
+      ],
+      "correction_prompt": "Reposition the drip tape roll to the lower-left or lower-right third of the frame instead of the center; add more specific visual cues of the named crop morphology rather than generic seedling rows; maintain the exact AFP watermark 'AFP | 09134922013' in the bottom-right corner.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 7,
+      "product_height_percent": 12,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Hard reject: Image contains a visible person (farmer) and human body parts (hands, legs), violating the zero-person requirement.",
+        "Product size violation: The drip-tape roll is much smaller than the required 13-27% width range; it appears to be approximately 7% of the frame width.",
+        "Product geometry violation: The roll is not cylindrical/low-profile as required; the aspect ratio (height vs width) does not meet the 1.5-1.9x diameter requirement.",
+        "Product color violation: The carton is white, but the AFP product is specified as white-and-blue.",
+        "Staging violation: The product is being actively held/handled by the person rather than naturally placed on soil.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Place a wide, low, cylindrical white-and-blue carton roll of drip tape on the soil bed. The roll must be off-center to the lower-left, occupying 15-20% of the frame width and 10-15% of frame height. Ensure no humans or body parts are visible. Retain the exact bottom-right watermark \"AFP | 09134922013\". Enlarge the product group from 7% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 22.5,
+      "product_height_percent": 14,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Product is a single white-and-blue AFP drip-tape roll",
+        "Watermark 'AFP | 09134922013' is present in bottom-right corner",
+        "No people or human body parts are visible",
+        "Product is placed off-center on the lower left on soil",
+        "Visible diameter (width) is approximately 1.6 times the height, within acceptable ratio",
+        "Background features generic farm field with seedlings, consistent with family farm/agricultural context",
+        "Product width (~22.5%) and height (~14%) are within acceptable limits"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-در-کشت-شوید-راهنمای-جامع-کاربرد-عملی.webp"
+}

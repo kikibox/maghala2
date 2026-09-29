@@ -1,0 +1,56 @@
+{
+  "id": "xref-223",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Hard reject: There is a visible person (driver) inside the tractor cab in the background.",
+        "The product roll contains gibberish/invented text ('Dug Durgu...'), violating the authenticity constraint.",
+        "The product roll and adjacent metal valve/irrigation hardware appear to be artificially staged or superimposed rather than naturally placed."
+      ],
+      "correction_prompt": "Remove the person inside the tractor and replace it with a clean empty cab; regenerate the text on the roll to clearly and correctly read 'Drip Tape' and 'AFP'; integrate the roll and irrigation valve naturally into the soil without artificial superimposition effects.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 24,
+      "product_height_percent": 35,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product height exceeds the 32 percent maximum limit",
+        "The presence of a large tractor makes the drip tape roll appear secondary rather than the primary focus of the frame",
+        "There is a second small drip-irrigation item on the ground which counts as an extra commercial product/second roll",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image to feature only the single AFP drip tape roll as the primary subject. Remove the tractor and the small secondary drip component from the foreground. Ensure the roll's height is less than 32 percent of the frame. Keep the bottom-right watermark exactly as it is. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 21,
+      "product_height_percent": 26,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll is present.",
+        "Product is correctly placed off-center on the lower third of the frame on soil.",
+        "The farm context matches the hardware story role (field with tractor, barn), with crop plants appropriately absent/neutral.",
+        "Required bottom-right watermark is present.",
+        "No people, human body parts, or hard-reject items detected.",
+        "Product dimensions and aspect ratio (width ~21%, height ~26%) fall within the specified ranges."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-چرخشی-در-کشت-پنبه-مزایا-جزئیات-فنی.webp"
+}

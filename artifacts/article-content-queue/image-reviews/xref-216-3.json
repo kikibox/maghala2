@@ -1,0 +1,73 @@
+{
+  "id": "xref-216",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 13,
+      "product_height_percent": 20,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "The image contains two human workers/farmers.",
+        "Visible human body parts (hands, arms, faces, legs) are clearly present.",
+        "Role 3 requires the crop to be absent or visually neutral; here the people and the large green plants are the primary focus, not just neutral background.",
+        "The hardware is being actively staged by hands, preventing it from being a natural, unattended infrastructure setup."
+      ],
+      "correction_prompt": "Regenerate the image showing only the white and blue AFP drip-tape carton roll placed on the soil. Ensure no people, hands, or human silhouettes are visible in the frame. Set the background to a simple soybean farm landscape with unattended irrigation hardware to match a hardware-focused context.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 29,
+      "product_height_percent": 38,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product roll is wider than the 27 percent frame limit.",
+        "Product height exceeds the 32 percent frame limit.",
+        "Image contains a second hardware item (inline valve/fan unit) adjacent to the required carton roll.",
+        "Identifiable background crop rows appear to contradict the soybean theme.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 29% to 13-27% of frame width.; Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate a wide low cylindrical drip-tape carton roll on a single farm background. The roll must be no more than 27 percent of the frame width and 32 percent of the frame height, placed off-center in the lower third. Remove all extra hardware and keep the farm context neutral or soybean-consistent with no people. Reduce the product group from 29% to 13-27% of frame width. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The crop visible in the background is clearly corn/maize, which contradicts the 'soybean' topic as per the hard reject rule.",
+        "The product is positioned horizontally centered, violating the requirement to be off-center.",
+        "The AFP phone number in the required watermark is incorrect (shows 09134922013 instead of 09134922013)."
+      ],
+      "correction_prompt": "Regenerate with a soybean crop field background instead of corn. Move the drip-tape roll to the right or left of the center line. Correct the AFP phone number in the bottom-right watermark to 09134922013.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 19,
+      "product_height_percent": 21,
+      "product_x_center_percent": 56,
+      "reasons": [
+        "The product matches the specified AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "The crop appears to be soybean, which is consistent with the topic.",
+        "The image contains zero people or human body parts.",
+        "The background shows a farm context (field and barn) suitable for a hardware story.",
+        "The exact required watermark 'AFP | 09134922013' is present in the bottom right.",
+        "The product is off-center on the lower third and placed on soil.",
+        "No hard reject triggers (like people, second packages, or impossible geometry) are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-در-کشت-سویا-هزینه-در-مزرعه-جزئیات-فنی.webp"
+}

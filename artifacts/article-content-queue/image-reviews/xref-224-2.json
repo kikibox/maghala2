@@ -1,0 +1,106 @@
+{
+  "id": "xref-224",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 8,
+      "product_height_percent": 22,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Hard reject: A human (male farmer) is clearly visible in the foreground, occupying a significant portion of the frame.",
+        "Hard reject: Human body parts (face, hands, arms, legs, torso) are explicitly present.",
+        "Product geometry fail: The visible cylindrical drip-tape carton roll is significantly taller than it is wide (height approx 22%, width approx 8%), violating the 1.5-1.9 times width-to-height ratio requirement.",
+        "Product placement fail: The roll is being held by a person and is not naturally placed on the soil.",
+        "Product size fail: The visible roll is very small relative to the frame (approx 8% width), falling outside the acceptable 13-27% range.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image showing a large, wide cylindrical drip-tape carton roll lying flat on the farm soil in the lower right foreground. The roll should have a wide low profile (width 2.5x height) and occupy approximately 20% of the image width. The background must show cantaloupe vines with netted fruit. Remove all human figures, faces, and body parts completely. Keep the 'AFP | 09134922013' watermark in the bottom right corner. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 33.4,
+      "product_height_percent": 30.9,
+      "product_x_center_percent": 55.5,
+      "reasons": [
+        "A human figure is clearly visible in the background; hard reject for any person.",
+        "The product width (~33%) exceeds the strict maximum limit of 27%.",
+        "The visible fruit hanging on the vine does not match the specified 'restrained netted fruit' (it is wrapped in a protective mesh bag instead).",
+        "The leaf morphology of the foreground plant does not match the specified 'lobed leaves' of a cantaloupe (they appear to be a different species).",
+        "The product is not placed in the lower third; it is centered in the middle-lower section.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 33.4% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes from the background. Shrink the product roll so its width is 23% of the frame. Place the roll in the extreme bottom-left or bottom-right third of the image. Replace the background foliage with true cantaloupe vines featuring lobed leaves and small, netted fruit growing naturally without mesh bags. Reduce the product group from 33.4% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 18,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: image contains a person (farmer) with visible face, hands, arms, legs, and body silhouette",
+        "Product is standing upright (cylindrical) rather than laid horizontally as a wide low roll",
+        "Product width appears too small relative to frame (~18% of image width, below preferred 20-23%)"
+      ],
+      "correction_prompt": "Regenerate with zero people. Show one horizontal AFP white-and-blue drip-tape roll laid on soil, wide and low profile, in a cantaloupe field with visible vines and netted fruit on plants. Product should be off-center on lower third, 20-23% frame width, max 32% height, diameter ~1.7x height. Background shows cantaloupe vines with lobed leaves and restrained netted fruit. Keep AFP | 09134922013 watermark bottom-right.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 34,
+      "product_height_percent": 27,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product width is estimated at 34% of the frame width, which exceeds the hard reject threshold of 27%.",
+        "The product x-center is located at approximately 45% of the frame width, which is too close to the center; it must be off-center.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 34% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Shrink the drip-tape roll significantly so its width is under 25% of the frame. Move the roll horizontally to the right to place it clearly in the lower-right third. Regenerate the farm scene with the smaller roll. Reduce the product group from 34% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 18,
+      "product_width_percent": 6,
+      "product_height_percent": 13,
+      "product_x_center_percent": 64,
+      "reasons": [
+        "Hard reject: The image contains a prominent human figure (a farmer) in the foreground, violating the requirement for zero people or human body parts.",
+        "Hard reject: The drip tape container is a short vertical canister or pail, not a wide low cylindrical carton roll.",
+        "Product geometry: The visible height of the container significantly exceeds its width, failing the 1.5 to 1.9 aspect ratio requirement for a flat-lying roll.",
+        "Background crop: The visible plants are young sunflowers (tall stems, distinct flowers), which is a clearly identifiable different species from the required cantaloupe (vines with lobed leaves).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the human figure entirely. Replace the vertical canister with a wide, flat, cylindrical drip-tape carton roll lying on the soil (width 1.5-1.9x height). Replace the sunflowers with cantaloupe vines featuring lobed leaves and small netted fruit. Keep the farm context and AFP watermark. Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 23,
+      "product_height_percent": 27,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product geometry is acceptable: width is within the 13-27% range, height is under 32%, and the diameter/height ratio matches the requirements (approx 1.5x).",
+        "The product is correctly placed on the soil in the lower third of the frame.",
+        "The product is off-center and does not dominate the composition.",
+        "The crop shown is clearly a cucurbit vine with lobed leaves and small developing fruit attached, consistent with the definition for cantaloupe (طالبی).",
+        "The image contains zero people or human body parts.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom right corner.",
+        "Visual style (AI generation) and minor packaging text gibberish are acceptable based on the provided instructions."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-در-کشت-طالبی-کاربردها-کاربرد-عملی.webp"
+}
