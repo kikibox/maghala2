@@ -1,0 +1,92 @@
+{
+  "id": "prod-033",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 22,
+      "product_height_percent": 30,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The image contains two distinct product items (a large roll and a smaller roll with tape), violating the 'exactly one' requirement.",
+        "The 'exactly one' rule is breached by the presence of the second smaller package/roll visible next to the main product."
+      ],
+      "correction_prompt": "Regenerate with exactly one large wide low cylindrical drip-tape carton roll. Remove the second small roll with the sprout and the loop of tape. Keep the large roll off-center in the lower third on soil, with the farm context background.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 25,
+      "product_height_percent": 20,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: A human figure is clearly visible in the background interacting with the tractor.",
+        "Product is centered on the vertical axis rather than being off-center on the lower third as specified.",
+        "Gibberish text is visible on the product packaging (the text below the AFP logo is illegible/invented)."
+      ],
+      "correction_prompt": "Regenerate without any people or human silhouettes in the background. Move the drip-tape roll to be off-center horizontally. Ensure all text on the carton is authentic, legible English.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 23,
+      "product_height_percent": 28,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Hard reject: The image contains visible people (a crouching person and a standing person) in the background, violating the zero-person rule.",
+        "Hard reject: The package text contains gibberish characters under the 'AFP' logo, failing the text authenticity requirement."
+      ],
+      "correction_prompt": "Remove all people, farmers, and human figures from the background completely. Replace all illegible, gibberish, or invented text on the product roll with clear, professional English labels or minimal neutral details. Keep the product size and position secondary but visible on the soil.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 25,
+      "product_height_percent": 22,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The image background features a large tractor actively plowing a field. The 'tape20' drip tape product is a micro-irrigation component specifically designed for crop irrigation systems (typically placed on ridges or between rows), not for deep tillage or primary land preparation. This creates a functional mismatch between the hardware shown (tractor) and the specific hardware story required for Role 3 (drip irrigation infrastructure)."
+      ],
+      "correction_prompt": "Regenerate with a background of tilled ridges specifically prepared for irrigation. Include visible drip lines, emitters, or irrigation pipes on the soil ridges to establish the specific drip irrigation context, keeping the white and blue AFP tape roll in the foreground.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "The crop plants and drip tape infrastructure are not clearly visible on the soil surface directly around the product in the lower third, which weakens the 'topic-specific farm context' required for the hardware story role.",
+        "The tractor and farm building in the background are too visually prominent and high-contrast, making the scene look like a general farm shot rather than a tight hardware infrastructure close-up."
+      ],
+      "correction_prompt": "Regenerate the image to show white drip tape lines and a visible hardware connector (like a manifold or flush point) directly on the soil in the foreground next to the AFP carton roll. Reduce the visual prominence and size of the tractor in the background to ensure the focus remains strictly on the irrigation hardware infrastructure. Do not include any people or human body parts.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 23,
+      "product_height_percent": 18,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "The main product (drip tape roll) is present and clearly off-center on the lower third, naturally placed on soil.",
+        "The product dimensions are within acceptable bounds (approx. 23% width, 18% height), matching the preferred 20-23% width and the <32% height constraint.",
+        "The background contains an unattended tractor and plowed soil, which matches a farm context and constitutes allowed infrastructure.",
+        "Zero people or human body parts are visible in the image.",
+        "The 'AFP | 09134922013' watermark is correctly present in the bottom-right corner.",
+        "The image fits the 'hardware story' role by showing the roll and a flush-point connector without identifying crop plants."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "مشخصات-فنی-نوار-تیپ-20-سانتی-رول-1000-متری-راهنمای-انتخاب-جزئیات-فنی.webp"
+}

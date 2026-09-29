@@ -3,7 +3,7 @@
   "kind": 3,
   "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
@@ -89,7 +89,56 @@
       ],
       "correction_prompt": "Regenerate image: Remove the person completely. Position one packaged AFP coil and one bare black woven coil on the ground. The pair must be flat, off-center in the lower third, and occupy approximately 12-15% of the frame width. No people or human body parts allowed. Reduce the product group from 45% to 9-20% of frame width.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 30,
+      "product_height_percent": 14,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The complete product pair is too wide, occupying approximately 30% of the frame width instead of the required 12-15%.",
+        "The products are not positioned in the lower third of the frame; they are centered vertically.",
+        "The packaged AFP coil appears to be a 3D box shape rather than a flat layflat coil.",
+        "The product pair is centered horizontally rather than staying off-center.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Shrink the product pair significantly to occupy only 12% of the frame width. Position the pair in the bottom third of the image, off-center. Ensure the packaged coil looks like a flat layflat rather than a 3D box. Reduce the product group from 30% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 28,
+      "product_height_percent": 22,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The combined width of the two product coils exceeds 15% of the frame width (estimated ~28%).",
+        "The product pair is centered in the lower third instead of the required off-center position.",
+        "The image lacks the exact required watermark 'AFP | 09134922013' in the bottom-right corner.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the total width of the two coils to 12-15% of the frame width, move the pair to an off-center position on the lower third, and add the watermark 'AFP | 09134922013' in the bottom-right corner. Reduce the product group from 28% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The image contains exactly two layflat objects: one packaged AFP coil and one bare black woven coil.",
+        "The pair occupies approximately 12% of the frame width, satisfying the 12-15% requirement.",
+        "Objects are positioned off-center on the lower third, fully visible, separate, and flat on the ground.",
+        "No people, human body parts, or silhouettes are visible.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present.",
+        "Unattended tractor in the background is accepted as infrastructure.",
+        "No prohibited items (round pipe, drip tape, third coil, etc.) are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
     }
   ],
-  "approved_image": null
+  "approved_image": "اندازهگیری-لوله-تاشو-160-میلیمتر-برای-مزرعه-جزئیات-فنی.webp"
 }

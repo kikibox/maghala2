@@ -1,0 +1,128 @@
+{
+  "id": "prod-041",
+  "kind": 2,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Contains a visible person/farmer, which is a hard reject condition",
+        "Contains a human silhouette and body parts",
+        "Crop in the field is clearly distinguishable (looks like sunflowers or similar broad-leaf plant), which may conflict with the 'family tape' context if a neutral crop was expected, though the main failure is the human",
+        "Product height is slightly high relative to width (cylindrical roll should be wider than tall)",
+        "Product width is at the lower limit of acceptable range"
+      ],
+      "correction_prompt": "Regenerate the image to strictly exclude any humans or body parts. Ensure the drip tape roll is clearly wide and low (diameter 1.5-1.9x height). Keep the AFP watermark. Use a neutral crop or empty bed if the crop is not identifiable as the specific article subject.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 14,
+      "product_height_percent": 17,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Hard reject: The image contains a clearly visible person (farmer) interacting with the product, which violates the strict 'zero people' requirement."
+      ],
+      "correction_prompt": "Regenerate the image with zero people. Place the white and blue AFP drip-tape roll off-center on the lower-left third of the frame, on the soil surface. Ensure the background shows the farm crop rows without any human figures, workers, or body parts.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Presence of multiple human figures in the image (foreground farmer and two workers in the background), which is an immediate hard reject."
+      ],
+      "correction_prompt": "Regenerate the image removing all human figures and silhouettes. Keep the farm field, crop rows, and the AFP white-and-blue wide low cylindrical drip-tape carton roll on the soil. Ensure the product is off-center on the lower third, maintains the white and blue color scheme, and includes the 'AFP | 09134922013' watermark in the bottom-right corner.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 25,
+      "product_height_percent": 22,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Product is centered in the frame (x_center ~46%), which violates the hard requirement that it must be off-center on the lower third.",
+        "Text 'DRIP' is clearly visible at the bottom right of the image; this counts as unapproved text outside the authentic package print or the required watermark, which is a hard reject criterion."
+      ],
+      "correction_prompt": "Move the AFP drip-tape roll off-center to the left or right (e.g., 20% or 80% x position) to avoid centered staging, and remove the 'DRIP' text from the bottom right corner.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 6,
+      "product_height_percent": 8,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Contains multiple visible people (hard reject).",
+        "Product is not a wide low cylindrical drip-tape carton roll.",
+        "Product is far too small relative to the frame.",
+        "Product is not off-center on the lower third as required.",
+        "Product is centered between two people rather than placed on soil as primary focus.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people. Show one wide low cylindrical AFP drip-tape carton roll placed on the soil in the lower third of the frame. The roll should occupy 20-23% of the frame width. Keep the farm context and AFP watermark. Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 75,
+      "product_width_percent": 32,
+      "product_height_percent": 25,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Image shows an AFP carton roll of drip tape.",
+        "Watermark 'AFP | 09134922013' is present and correct.",
+        "Product is placed on soil, off-center.",
+        "Background shows agricultural rows and a barn, suitable for a farm context.",
+        "No people or body parts are visible.",
+        "Product width (approx 32%) slightly exceeds the preferred 27% limit but is practically acceptable in context.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 32% to 13-27% of frame width.",
+      "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Image contains a full-body human (worker/farmer)",
+        "Hard reject: Human body parts (hands, arms, legs) are actively touching the product",
+        "Product pair is not off-center in the lower third",
+        "Pair staging is too large relative to frame width"
+      ],
+      "correction_prompt": "Remove all people and body parts. Position exactly one packaged AFP coil and one bare black woven coil in the lower third, slightly off-center. The pair must be small (12-15% of frame width), flat on the ground, with no humans present.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 14,
+      "product_height_percent": 12,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "All required visual constraints are met: zero people, zero body parts, correct pair of two layflat coils (one packaged, one bare black), correctly positioned on the lower third off-center, fully visible, and separate.",
+        "Product pair occupies approximately 14% of the frame width, which falls within the required 12-15% range.",
+        "Required watermark 'AFP | 09134922013' is correctly present in the bottom-right corner.",
+        "No hard reject elements detected (no third hose, no fitting, no round pipe, no floating/merged objects)."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "راهنمای-جامع-خرید-لوله-نخدار-125-میلیمتر-نکات-انتخاب-و-قیمت-کاربرد-عملی.webp"
+}

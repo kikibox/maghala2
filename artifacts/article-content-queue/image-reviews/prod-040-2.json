@@ -1,0 +1,122 @@
+{
+  "id": "prod-040",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 18,
+      "product_width_percent": 13,
+      "product_height_percent": 25,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: The image contains multiple people (hands, arms, legs, and torsos are visible), which violates the strict 'zero people and zero human body parts' rule.",
+        "Hard reject: The product geometry is incorrect; a pipe is passing through the center of the roll, which is listed as an impossible geometry and hard reject condition.",
+        "Product placement: The product is centered in the lower third rather than being off-center as required.",
+        "Product scale: The visible diameter of the roll is not approximately 1.5 to 1.9 times its visible height."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or body parts. Remove any pipes or hardware passing through the roll. Ensure the carton is an intact, off-center object placed on soil in the lower third, with its diameter clearly 1.5 to 1.9 times its height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "Hard reject: The image contains two people (an adult man and a boy), which strictly violates the 'zero people' rule."
+      ],
+      "correction_prompt": "Remove all human figures and faces completely. Regenerate the image showing only the white-and-blue AFP drip-tape roll on the soil. Keep the farm background and crop rows identical.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 24,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Hard reject: Visible human figures (farmers/workers) in the background (top-left and center).",
+        "Product placement is too high; the roll is not 'naturally placed on soil' at the required lower-third level and appears to be slightly elevated.",
+        "Text below the main 'AFP' logo on the carton is gibberish."
+      ],
+      "correction_prompt": "Remove all human figures and silhouettes from the background completely. Lower the drip tape carton so it sits firmly on the soil in the bottom third of the frame. The carton width is acceptable but height must be reduced to fit the geometry constraints (wider than tall). Replace gibberish text on the carton with clean or no legible text. Ensure the background is a farm field with a red barn but zero people.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 20,
+      "product_height_percent": 20,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Failed topic-specific crop matching: The image shows small green seedlings or sprouts in the field which do not resemble the specific crop named in the article title. According to the strict rules, a clearly different or unrecognizable species must be rejected.",
+        "Crop ambiguity: The young plants in the image are generic and do not provide the 'botanically accurate, unmistakable morphology' required for a pass when a specific crop is named in the title."
+      ],
+      "correction_prompt": "Regenerate the image to clearly show the specific article-named crop in the field rather than generic green seedlings. The crop must be botanically accurate and unmistakable. Maintain the existing farm context and product placement.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: Image contains a person (farmer/worker) and human body parts, which is explicitly forbidden.",
+        "Product aspect ratio: The roll is taller than it is wide, violating the 1.5-1.9 width-to-height requirement (it looks roughly 1:1.5).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate without any people or body parts. The drip-tape roll should be placed naturally on the soil in the foreground, wider than it is tall, and positioned off-center. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 25,
+      "product_height_percent": 32,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Lack of visible drip tape infrastructure (lines or emitters) running through the crop rows, which is required for the 'topic-specific farm context' of a drip tape article."
+      ],
+      "correction_prompt": "Add visible black or clear drip tape lines running parallel to the crop rows in the furrows to establish the drip irrigation context, maintaining the roll's size and position.",
+      "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Image contains a visible human farmer and worker",
+        "Image shows a bottle/jar instead of a wide cylindrical carton roll",
+        "Product is centered and not placed on soil off-center on lower third",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any human figures, replacing the bottle with a wide blue-and-white cylindrical drip-tape carton roll placed on the soil, off-center on the lower third of the frame, maintaining the farm context. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 75,
+      "product_width_percent": 27,
+      "product_height_percent": 21,
+      "product_x_center_percent": 39,
+      "reasons": [
+        "Diameter-to-height ratio is approximately 1.3. While slightly below the ideal 1.5-1.9 range, the physical shape remains a cylindrical carton roll and does not trigger hard reject criteria like a 'tall narrow drum' or 'giant roll'.",
+        "Product is positioned off-center in the lower third of the frame.",
+        "Product width estimate is at the 27% hard reject boundary limit, but the roll is visually acceptable in scale relative to the surrounding field and seedlings.",
+        "Watermark is present in the bottom-right corner.",
+        "No human body parts or silhouettes are visible.",
+        "No prohibited bottles, jars, or extra commercial packaging are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "مقایسه-نوار-تیپ-20-سانتی-رول-1000-متری-با-سایر-برندها-کاربرد-عملی.webp"
+}

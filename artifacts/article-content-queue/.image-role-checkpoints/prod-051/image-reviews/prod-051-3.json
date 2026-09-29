@@ -3,7 +3,7 @@
   "kind": 3,
   "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
@@ -92,7 +92,85 @@
       ],
       "correction_prompt": "Remove all people and human silhouettes. Reposition the pair of layflat objects (one packaged AFP coil, one bare black coil) to the far left or far right of the lower third of the frame. Scale the pair down so the total width is approximately 12-14% of the image width. Keep the objects separate, flat, and fully visible. Reduce the product group from 30% to 9-20% of frame width.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 24,
+      "product_height_percent": 18,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Image contains a human figure (farmer/worker) crouching in the frame.",
+        "Visible human face and body parts (arms, legs, torso).",
+        "Product pair is excessively wide relative to frame (>15%).",
+        "Products are not positioned on the lower third; they are in the middle-lower section alongside the person.",
+        "Product staging is not off-center in the required manner due to the presence of the person.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 24% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts from the image. Reposition the two coils (packaged AFP and bare black) to be flat on the ground in the lower third, off-center. Ensure the pair occupies only 12-15% of the frame width. Maintain the watermark. Reduce the product group from 24% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 38,
+      "product_height_percent": 22,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "The pair of products occupies approximately 38% of the frame width, which violates the hard requirement that they must occupy only 12 to 15 percent.",
+        "The product staging is positioned near the bottom center of the frame rather than off-center in the lower third.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Shrink the pair of layflat coils to occupy 12-15% of the frame width and move the pair clearly off-center (left or right) in the lower third. Reduce the product group from 38% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 35,
+      "product_height_percent": 40,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: A person (farmer) is prominently visible in the image, which violates the 'zero people' and 'zero human body parts' constraint.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 9-20% of frame width.; Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image without any people or human silhouettes. The image must contain only the two layflat coils (one packaged, one bare) on the ground, with no workers, farmers, or body parts visible. Reduce the product group from 35% to 9-20% of frame width. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 55,
+      "product_height_percent": 45,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Hard reject: People are clearly visible (kneeling woman and standing person) with faces, hands, arms, and legs present in the frame.",
+        "The required 'packaged AFP coil' is missing; the object on the left is a wrapped package, not a coil.",
+        "The two products (the wrapped object and the black coil) occupy approximately 55% of the frame width, failing the requirement to stay between 12% and 15%.",
+        "The product pair is centered in the frame rather than staying off-center.",
+        "The product pair does not remain in the lower third, occupying a large central portion of the image.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 55% to 9-20% of frame width.; Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate a landscape field scene with absolutely zero people, faces, or human silhouettes. Place exactly two objects on the ground in the lower right quadrant: one bare black flat coiled hose and one small packaged coil. These two objects must be very small, combined together occupying only 12 to 15 percent of the total image width. They must be separate and flat on the dirt. Include the text watermark 'AFP | 09134922013' in the bottom right corner. Reduce the product group from 55% to 9-20% of frame width. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 13,
+      "product_height_percent": 18,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Image contains exactly two approved layflat objects: a packaged AFP coil and a bare black woven coil.",
+        "Both objects are separate, fully visible, and placed flat on the ground.",
+        "No people, human body parts, or human silhouettes are visible in the image.",
+        "The pair of products occupies approximately 13 percent of the frame width and is positioned in the lower third, slightly off-center.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and correct.",
+        "Background infrastructure (farm, soil) is acceptable and contains no prohibited products or figures."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
     }
   ],
-  "approved_image": null
+  "approved_image": "مراحل-نصب-لوله-تاشو-110-میلیمتر-در-سیستم-آبیاری-جزئیات-فنی.webp"
 }

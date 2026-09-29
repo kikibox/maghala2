@@ -1,0 +1,97 @@
+{
+  "id": "prod-047",
+  "kind": 2,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Person (farmer/worker) is visible",
+        "Hard reject: No layflat hose or coil objects are present",
+        "Hard reject: Contains a bucket (prohibited commercial product/object)",
+        "Hard reject: Product is not staged as a pair on the ground",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with no people or human silhouettes. Show exactly two objects: one packaged AFP coil and one bare black woven coil. The pair must be flat on the ground in the lower-third off-center position, occupying only 12-15% of the frame width. Ensure the 'AFP | 09134922013' watermark is present in the bottom right. Remove the bucket. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 52,
+      "product_height_percent": 30,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The image shows exactly two layflat objects: a packaged coil on the left and a bare black woven coil on the right.",
+        "No people, human silhouettes, or body parts are visible.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "The objects are flat on the ground, separate, and fully visible with no distortion or intersecting elements.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 52% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 52% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 25,
+      "product_x_center_percent": 15,
+      "reasons": [
+        "Hard reject: The image contains a person (a woman) interacting with the product, which violates the requirement for zero people or human body parts.",
+        "Hard reject: The product pair is located in the bottom-left corner rather than the off-center lower third as specified."
+      ],
+      "correction_prompt": "Regenerate the image showing only the two layflat coils on the ground in a field, ensuring no people, hands, or human silhouettes are present anywhere in the frame. Position the pair in the lower third, off-center, occupying approximately 15% of the frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 36,
+      "product_height_percent": 24,
+      "product_x_center_percent": 39,
+      "reasons": [
+        "The pair of products is centered horizontally instead of being placed off-center in the lower third.",
+        "The pair occupies approximately 36 percent of the frame width, exceeding the hard limit of 15 percent.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 36% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Shift the two coils to the lower-right or lower-left third and drastically shrink the products so the combined bounding box is less than 15 percent of the total frame width. Reduce the product group from 36% to 9-20% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 15,
+      "product_height_percent": 13,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The pair of layflat coils is located at the very bottom of the frame, with a significant portion of the objects being cut off by the image boundary; they are not 'fully visible'.",
+        "The products are positioned directly on the bottom edge rather than staying 'off-center on the lower third' with full visibility."
+      ],
+      "correction_prompt": "Regenerate image: Shift the two layflat coils upward so they sit comfortably within the lower third, ensuring they are fully visible with no cropping at the bottom edge.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 43,
+      "product_height_percent": 33,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Product pair is centered rather than placed off-center on the lower third",
+        "Combined product width is approximately 43% of frame, exceeding the 12-15% limit",
+        "Packaged coil appears to have an impossible structural intersection (strap passing through the object)",
+        "machine-enforced bounding-box check failed: Reduce the product group from 43% to 9-20% of frame width.; Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with the two layflat coils positioned far to the right side of the lower third, significantly smaller (occupying only 12-15% of the total frame width). Ensure both objects are clearly separate, fully visible, and do not have any physical intersections. The packaged coil on the left should be wrapped in paper/plastic, and the bare black coil on the right. Remove the centered composition. Reduce the product group from 43% to 9-20% of frame width. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

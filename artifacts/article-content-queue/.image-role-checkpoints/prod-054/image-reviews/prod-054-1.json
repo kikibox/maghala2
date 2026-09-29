@@ -3,7 +3,7 @@
   "kind": 1,
   "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
@@ -94,7 +94,40 @@
       ],
       "correction_prompt": "Remove all people and regenerate the image showing only two flat layflat coils (one packaged, one bare black) lying separate on the ground. Place them on the far left or far right (lower third), ensuring they occupy only 12-15% of the image width and are fully visible without any hands or figures. Reduce the product group from 38% to 9-20% of frame width. Reduce product height from 45% to at most 32% of frame height.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 60,
+      "product_height_percent": 45,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The product pair occupies significantly more than the required 12-15% of the frame width.",
+        "The product pair is centered in the composition rather than off-center.",
+        "The product is not placed on the lower third of the frame as required.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 60% to 9-20% of frame width.; Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Resize the two layflat coils to occupy only 12-15% of the frame width. Shift the entire pair to the off-center position in the bottom third of the frame. Keep the background and watermark exactly the same. Reduce the product group from 60% to 9-20% of frame width. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 98,
+      "product_width_percent": 13,
+      "product_height_percent": 14,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Correctly displays exactly two approved layflat objects: one packaged AFP coil and one bare black woven coil.",
+        "Products are placed flat on the ground in the lower third of the frame.",
+        "Products are off-center, separate, and fully visible.",
+        "The combined width of the product pair is approximately 13% of the frame, well within the 12-15% requirement.",
+        "No people or human body parts are present.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No hard reject triggers detected (no third products, pipes, or hardware)."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
     }
   ],
-  "approved_image": null
+  "approved_image": "مراحل-نصب-لوله-تاشو-160-میلیمتر-در-سیستم-آبیاری-تصویر-شاخص.webp"
 }

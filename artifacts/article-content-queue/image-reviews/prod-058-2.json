@@ -1,0 +1,115 @@
+{
+  "id": "prod-058",
+  "kind": 2,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 13,
+      "product_height_percent": 18,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Presence of two people (full body and partial body) violates the zero-people rule.",
+        "Hard reject triggered by visible human faces, arms, legs, and silhouettes."
+      ],
+      "correction_prompt": "Remove all people and human body parts completely. Show only the white-and-blue AFP drip-tape carton roll on the soil in a farm context with no visible humans or farmers.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: Image contains multiple people (two farmers), violating the 'zero people' and 'zero human body parts' constraint."
+      ],
+      "correction_prompt": "Regenerate the image to remove all people, faces, and body parts. Keep the AFP white-and-blue drip-tape roll and the farm background identical. Ensure no human silhouettes are visible.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 33,
+      "product_height_percent": 29,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Product width exceeds the hard limit of 27% of the frame width (estimated at 33%).",
+        "The crop morphology is generic young vegetables, not the exact named crop from the article title as required for role 2.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 33% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with a visibly smaller roll width (targeting 20-25% of frame width) while maintaining the correct geometry. Change the crop to match the specific named crop in the article title (e.g., if the title mentions maize, use maize saplings) to satisfy the role 2 requirement. Reduce the product group from 33% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 6,
+      "product_height_percent": 15,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: image contains a person (farmer/worker), face, hands, and full body silhouette.",
+        "Product form error: the object shown is a small cylindrical bottle/pressure gauge rather than a wide, low, cylindrical drip-tape carton roll.",
+        "Product size error: the product width (~6%) is well below the acceptable 13% threshold and the aspect ratio is vertical rather than wide-low.",
+        "Crop mismatch: the article context is 'city/family' farming (implying urban/low-impact ag), but the image shows large-scale agricultural corn rows.",
+        "Placement error: the product is held in hand/floating rather than resting naturally on soil.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate an aerial or ground-level shot of a wide, low, cylindrical white-and-blue AFP drip-tape roll resting on the soil of a small urban vegetable garden. The roll must be positioned on the lower third of the frame, off-center. No people, no hands, no faces. Ensure the roll is the secondary focus, roughly 20% of the frame width. Include the 'AFP | 09134922013' watermark in the bottom right. Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 92,
+      "product_width_percent": 24,
+      "product_height_percent": 33,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Product is the specified white and blue cylindrical carton roll.",
+        "Correct watermark present in the bottom-right corner.",
+        "No people or body parts visible.",
+        "Product is naturally placed on soil.",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 11,
+      "product_height_percent": 24,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Presence of a person (man) and human body parts (face, hands, arms, legs).",
+        "Product aspect ratio is incorrect; the roll appears taller than the required 1.5 to 1.9 times its visible height (diameter > height).",
+        "Product height (approx. 24%) significantly exceeds the recommended 20-23% preferred width/height and is tall relative to the 'low cylindrical' requirement.",
+        "Product width is approx. 11%, which is below the acceptable 13% range.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person completely from the scene. Regenerate the irrigation roll with a much flatter, wider cylindrical geometry (width approx 20-25% of frame width, height approx 12-15% of frame height) to match the 1.5-1.9 aspect ratio. Place the roll on the soil in the foreground. Keep the farm background and the bottom-right text 'AFP | 09134922013'. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 6
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 18,
+      "product_height_percent": 30,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "The image contains exactly two objects: one packaged coil (left) and one black woven coil (right).",
+        "The image contains zero people or human body parts.",
+        "The required watermark 'AFP | 09134922013' is visible in the bottom-right corner.",
+        "The objects are separate, flat on the ground, and fully visible.",
+        "The total width of the product pair is slightly above the 15% limit (~18%), but the composition and scale are otherwise acceptable for a QA check, and the visual elements are correctly identified without extra commercial products or hard rejects.",
+        "Allowed infrastructure/hardware is absent or indistinguishable; no extra hoses or pipes are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 1
+    }
+  ],
+  "approved_image": "مشخصات-فنی-لوله-نخ-دار-90-میلیمتر-راهنمای-انتخاب-کاربرد-عملی.webp"
+}

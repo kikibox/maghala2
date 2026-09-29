@@ -99,6 +99,90 @@
       ],
       "correction_prompt": "Reduce the product group from 58.3% to 9-20% of frame width.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 12,
+      "product_height_percent": 10,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Hard reject: Human figures (two workers) are prominently visible in the image.",
+        "The required 'packaged AFP coil' is not visible; only a bare black coil and a loose hose are shown.",
+        "Product is not centered on the lower third as requested.",
+        "Product pair is positioned too close to the edge of the frame."
+      ],
+      "correction_prompt": "Remove all human figures. Show exactly two objects on the ground: one packaged AFP coil and one bare black woven coil. The pair should be small (approx 12-15% width), separated, flat on the soil, and placed in the lower third without being centered. Keep the bottom-right watermark 'AFP | 09134922013'.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 28,
+      "product_height_percent": 12,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Both required objects (packaged AFP coil and bare black woven coil) are present.",
+        "Zero people or human body parts visible.",
+        "Watermark is present and correct.",
+        "Pair occupies lower third and is off-center.",
+        "Product width is slightly wider than the 12-15% target, but objects remain separate, flat, and fully visible.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 28% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 15,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Presence of a person (male farmer) and human body parts (head, torso, hands, legs) violates the zero-person rule."
+      ],
+      "correction_prompt": "Regenerate the image with absolutely no people, workers, or human silhouettes. The scene must only show the two coils (one packaged AFP and one bare black) sitting on the soil in the lower third, with no human interaction.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 22,
+      "product_height_percent": 18,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Product pair width is approximately 22% of the frame, exceeding the maximum 15% limit.",
+        "Product x_center is at ~41%, which is centered rather than off-center.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 22% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the two coils significantly smaller (width <15% of frame) and positioned clearly off-center to the far left or right (e.g., x_center at 15% or 85%), while maintaining the bottom-right watermark. Reduce the product group from 22% to 9-20% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 20.0,
+      "product_height_percent": 25.0,
+      "product_x_center_percent": 35.0,
+      "reasons": [
+        "Hard reject: A person (worker/farmer) is clearly visible in the foreground interacting with the product.",
+        "Hard reject: The presence of a full human silhouette violates the 'zero people' constraint.",
+        "Hard reject: Hands are visible touching the coils, which is strictly prohibited."
+      ],
+      "correction_prompt": "Remove the farmer and the chair completely. Frame exactly two objects: one packaged coil and one bare black woven coil on the soil. The objects must be small, occupying only 12-15 percent of the frame width, positioned in the lower-left third. Ensure the bottom-right watermark 'AFP | 09134922013' remains visible.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 90,
+      "product_width_percent": 25,
+      "product_height_percent": 18,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "machine-enforced bounding-box check failed: Reduce the product group from 25% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 25% to 9-20% of frame width.",
+      "attempt": 6
     }
   ],
   "approved_image": null

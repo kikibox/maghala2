@@ -191,6 +191,101 @@
       ],
       "correction_prompt": "Generate a wide-angle landscape shot of a city or family layflat field. Remove all people. Place one packaged AFP coil and one bare black woven coil separate and flat on the ground in the lower-right third. Ensure the pair occupies less than 15% of the total frame width. Reduce the product group from 32.5% to 9-20% of frame width.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 28,
+      "product_height_percent": 24,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product pair is centered in the frame, not off-center",
+        "Product pair width is approximately 28%, significantly exceeding the 12-15% maximum limit",
+        "Product pair height is approximately 24%, exceeding the expected small size for 12-15% width",
+        "Required watermark 'AFP | 09134922013' is not present in the bottom-right corner",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate: Move the two layflat coils (packaged AFP and bare black woven) to the far left or far right (off-center), ensure they occupy only 12-15% of the total image width, and add the watermark 'AFP | 09134922013' in the bottom-right corner. Reduce the product group from 28% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 30,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Image contains people (two male workers visible in the background and mid-ground).",
+        "Image contains human body parts and faces (arms, hands, legs, and torsos visible).",
+        "Product staging violates the constraint of 'off-center on the lower third' as the subjects are in the mid-ground, though the products are low, the presence of the figures invalidates the shot."
+      ],
+      "correction_prompt": "Regenerate the image with no people or workers. Show only the two layflat hoses (one packaged, one black) placed on the lower third of the frame. Ensure the hoses are small (approx 12-15% width) and far apart, keeping the ground empty of humans.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 25,
+      "product_height_percent": 15,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Image contains multiple people (two men in the field), which is a hard reject criteria.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 25% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human figures from the image completely. Ensure only the two layflat coils are visible in the lower third, off-center, occupying 12-15% of frame width, with zero people or body parts anywhere in the frame. Reduce the product group from 25% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 92,
+      "product_width_percent": 26,
+      "product_height_percent": 15,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Includes exactly one packaged AFP coil and one bare black woven coil",
+        "Zero people, human body parts, or silhouettes visible",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner as required",
+        "Products are laid flat on the ground in the lower third of the frame",
+        "No extraneous commercial products, third hoses, or hardware clutter present",
+        "machine-enforced bounding-box check failed: Reduce the product group from 26% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 26% to 9-20% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Two people (a man and a woman) are clearly visible in the foreground interacting with plants.",
+        "Hard reject: No approved layflat products are visible in the scene.",
+        "The image depicts a field inspection/gardening scenario rather than the required isolated product shot of layflat coils.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Generate an image showing exactly two layflat coils (one packaged AFP coil and one bare black woven coil) placed flat on the ground in a city or farm setting. The pair must be small, occupying only 12-15% of the frame width, positioned off-center on the lower third. Ensure zero people or human body parts are present anywhere in the frame. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 78,
+      "product_width_percent": 38,
+      "product_height_percent": 35,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Exact required watermark 'AFP | 09134922013' present and legible.",
+        "Zero people or human body parts detected.",
+        "Correct object types: one packaged AFP coil and one bare black woven coil.",
+        "Products are separate, unmerged, and flat on the ground.",
+        "Pair is located in the lower third of the frame.",
+        "Product pair is off-center (left of absolute center), not a centered staging.",
+        "No forbidden items (round pipes, drip tape, valves, buckets) visible.",
+        "Minor failure: The combined product width (~38%) significantly exceeds the 15% frame width limit.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the product group from 38% to 9-20% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 6
     }
   ],
   "approved_image": null

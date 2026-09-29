@@ -3,7 +3,7 @@
   "kind": 3,
   "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
@@ -138,7 +138,51 @@
       ],
       "correction_prompt": "Remove the person entirely. Show only two small irrigation coils (one packaged AFP coil and one bare black woven coil) placed flat on soil in the lower-left or lower-right area, occupying 12-15% of frame width. Include the bottom-right watermark 'AFP | 09134922013'. No people, no human silhouettes, no extra products. Reduce the product group from 40% to 9-20% of frame width.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Presence of a full human figure (kneeling worker) and visible face, which is a hard reject condition.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the human figure completely. Generate exactly two objects on the ground: one packaged AFP coil and one bare black woven coil. The pair must be small (12-15% width), placed in the lower third, and separated. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 20,
+      "product_height_percent": 15,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Centered product staging (product pair is centered in the bottom third rather than off-center).",
+        "The packaged coil appears to be in an upright drum shape, violating the 'flat on the ground' and 'layflat' requirements.",
+        "Product pair occupies approx. 20% of frame width, exceeding the 15% limit."
+      ],
+      "correction_prompt": "Shift the two flat product coils significantly to the right to create off-center composition. Reduce the width of the product pair to occupy less than 15% of the frame. Flatten the packaged coil so it is not in an upright drum shape. Ensure both coils are laid flat on the soil.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 13.5,
+      "product_height_percent": 14.0,
+      "product_x_center_percent": 48.0,
+      "reasons": [
+        "Exactly two layflat objects: one packaged AFP coil and one bare black woven coil.",
+        "Pair is off-center, positioned in the lower third of the frame, and lies flat on the soil.",
+        "Both objects are fully visible, separate, and non-occluding.",
+        "Zero people or human body parts visible.",
+        "The unattended tractor in the background is permitted infrastructure and does not trigger a rejection.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
     }
   ],
-  "approved_image": null
+  "approved_image": "نگهداری-از-لوله-نخی-2-اینچ-50-میلیمتر-برای-عمر-مفید-بیشتر-جزئیات-فنی.webp"
 }

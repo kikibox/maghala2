@@ -3,7 +3,7 @@
   "kind": 3,
   "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
@@ -93,7 +93,51 @@
       ],
       "correction_prompt": "Shrink the two coils by 60% so the combined width is less than 15% of the frame width. Reposition the pair horizontally to the left, strictly within the lower third of the image to ensure they are off-center. Reduce the product group from 32% to 9-20% of frame width.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 15,
+      "product_height_percent": 12,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "Presence of a human body parts (worker, face, hands, legs, body) which is a hard reject criterion",
+        "Centered product staging relative to the human figure",
+        "Product and human do not meet the 'lower third, off-center, 12-15% width' requirement as a pair"
+      ],
+      "correction_prompt": "Remove all people and human silhouettes. Show only a packaged AFP coil and one bare black woven coil as the sole focus, placed on the ground in the lower third, occupying 12-15% of the frame width, with no other objects or people.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 42,
+      "product_height_percent": 12,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product pair width is approximately 42% of frame, significantly exceeding the 15% maximum limit",
+        "The pair is centered horizontally rather than positioned on the lower third off-center as required",
+        "Objects are too large relative to the frame width",
+        "machine-enforced bounding-box check failed: Reduce the product group from 42% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Shrink the two coils to occupy 12-15% of frame width, move them off-center to the lower third, ensure they are separate and flat on the ground, and maintain the required watermark in the bottom right. Reduce the product group from 42% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 15,
+      "product_height_percent": 25,
+      "product_x_center_percent": 23,
+      "reasons": [
+        "Zero human figures or body parts visible",
+        "Contains the required packaged AFP coil and bare black woven coil",
+        "Exact bottom-right watermark 'AFP | 09134922013' is present and intact",
+        "Pair is off-center on the lower third and remains fully visible, separate, and flat on the ground"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
     }
   ],
-  "approved_image": null
+  "approved_image": "توافق-لوله-نخی-2-اینچ-50-میلیمتر-با-نوار-تیپ-و-قطرهچکان-جزئیات-فنی.webp"
 }
