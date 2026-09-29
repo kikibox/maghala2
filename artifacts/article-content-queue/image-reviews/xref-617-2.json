@@ -1,0 +1,58 @@
+{
+  "id": "xref-617",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 6,
+      "product_height_percent": 9,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: Image contains two visible people (farmers) kneeling in the field.",
+        "Product type mismatch: The required 'white-and-blue wide low cylindrical drip-tape carton roll' is missing; the image instead shows a small blue/white canister (incorrect product form) and loose black drip tape.",
+        "Scale violation: The visible product is extremely small (less than 10% of the frame width), failing the preferred 20-23% and acceptable 13-27% width requirements.",
+        "Watermark placement: The mandatory 'AFP | 09134922013' watermark is incorrectly placed within a smaller sub-panel on the right side, not on the main full-frame view.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate a single cohesive wide-angle farm scene containing exactly one white-and-blue wide cylindrical drip-tape carton roll placed on soil, off-center on the lower third (width ~22%, height ~15%). Ensure no people or body parts are visible. Show leek (تره) crop context with botanically accurate stems/leaves. Place the 'AFP | 09134922013' watermark directly in the bottom-right corner of the main image. Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 25,
+      "product_height_percent": 38,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The product height (approx. 38%) exceeds the maximum limit of 32%.",
+        "The product diameter is approximately 1.4 times its height, falling short of the required 1.5-1.9 ratio.",
+        "The visible crop (young corn) is a clearly identifiable different species from the required leek (تره).",
+        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Replace the crop with young leek plants. Reduce the size of the drip tape roll so its height is under 30% of the frame and its diameter is 1.7 times its height. Keep the roll low and off-center to the left. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 21,
+      "product_height_percent": 28,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product is correctly identified as a white and blue wide low cylindrical drip-tape carton roll.",
+        "The product is off-center on the lower third and naturally placed on soil.",
+        "The crop context shows young leek (تره) plants in a farm setting, which is acceptable even without mature morphology.",
+        "No people or human body parts are visible in the image.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Product dimensions (21% width, 28% height) are within acceptable ranges."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-تره-نکات-کلیدی-کاربرد-عملی.webp"
+}

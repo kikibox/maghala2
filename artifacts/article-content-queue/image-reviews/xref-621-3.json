@@ -1,0 +1,53 @@
+{
+  "id": "xref-621",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 28,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "A person (farmer) is clearly visible in the background.",
+        "A second package (smaller drip tape roll) is present near the plant, violating the 'exactly one roll' rule."
+      ],
+      "correction_prompt": "Remove all human figures from the background and delete the small second drip tape roll near the center plant. Maintain the large AFP roll on the soil and the unattended tractor in the distance.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25,
+      "product_height_percent": 40,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The product height (approximately 40% of the frame) violates the hard reject criteria of 'taller than 32 percent of the frame'.",
+        "The roll appears as a thick canister rather than a 'low cylindrical drip-tape carton roll'; its proportions do not match the requirement for the visible diameter to be 1.5 to 1.9 times its visible height.",
+        "Product height is too tall and does not meet the secondary product sizing requirements.",
+        "machine-enforced bounding-box check failed: Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the vertical height of the drip-tape roll significantly to under 30% of the frame height; increase the diameter-to-height ratio to make it appear as a wide, low cylindrical roll; ensure it is placed on the soil at the lower third. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is a single AFP wide low cylindrical drip-tape carton roll.",
+        "Product is off-center in the lower third and naturally placed on soil.",
+        "No people or human body parts are visible; background hardware (tractor) is acceptable infrastructure.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-مرزه-پیشنیازها-جزئیات-فنی.webp"
+}

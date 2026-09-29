@@ -1,0 +1,60 @@
+{
+  "id": "xref-620",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 6,
+      "product_height_percent": 12,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: The image contains two people (farmers) clearly visible, which violates the 'zero people' and 'zero human body parts' requirement.",
+        "Product Mismatch: The product shown is a small cylindrical canister/bucket, not the required 'wide low cylindrical drip-tape carton roll'.",
+        "Geometry Mismatch: The object does not meet the specific aspect ratio requirements (diameter 1.5-1.9 times height) and is not wide/low as requested.",
+        "Staging Issue: The product is centered and staged in a unnatural way.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people and zero human silhouettes. Replace the canister with a single AFP white-and-blue wide low cylindrical drip-tape carton roll (diameter approx 1.5-1.9x its height) placed naturally on the soil in the lower third, off-center. The product should occupy approximately 20-23% of the frame width. The background must show a farm field with sainfoin (اسپرس) context and unattended tractor/irrigation infrastructure allowed but no humans. Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 20,
+      "product_height_percent": 26,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "The image contains a clearly visible human figure (farmer) inside the tractor cab in the background, which is a hard reject per the 'zero people' rule.",
+        "The crop shown is not botanically consistent with Sainfoin (espars). It displays large, vibrant red and yellow flowers that resemble wildflowers (like cornflowers or poppies) rather than the typical fine-leaved green Sainfoin.",
+        "The drip tape roll's geometry (height vs. width) makes it look somewhat tall or vertical, not explicitly the 'wide, low cylindrical' shape required."
+      ],
+      "correction_prompt": "Regenerate with no human visible inside the tractor cab (cab must be empty or blurred without figures). Change the crops to match Sainfoin: small, feathery, pinnate green foliage in dense rows without large red or yellow flowers. Ensure the AFP drip tape roll is explicitly wide and low (cylindrical), placed on the soil.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product is a white and blue wide low cylindrical drip-tape carton roll",
+        "Product width is approximately 20%, within the preferred 20-23% range",
+        "Product height is approximately 25%, well within the <32% limit",
+        "Visible diameter is roughly 1.6x the visible height",
+        "Product is off-center (x=45%) and placed on the soil in the lower third of the frame",
+        "Watermark 'AFP | 09134922013' is present in the bottom right corner",
+        "Zero people or human body parts visible in the image",
+        "Tractor in the background is an allowed infrastructure element and not a rejected object",
+        "The low-lying green vegetation with red flowers matches the 'sainfoin' article context; red flowers are consistent with Sainfoin (Onobrychis viciifolia)"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-اسپرس-مزایا-کاربرد-عملی.webp"
+}

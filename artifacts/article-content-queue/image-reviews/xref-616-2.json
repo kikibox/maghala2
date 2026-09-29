@@ -1,0 +1,82 @@
+{
+  "id": "xref-616",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 13,
+      "product_height_percent": 20,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The product is centered horizontally in the image, which violates the requirement to be off-center on the lower third.",
+        "The visible width of the drip-tape roll is approximately 13%, which falls below the preferred 20-23% range and is near the lower limit of acceptance, making the product appear too small."
+      ],
+      "correction_prompt": "Move the drip tape roll to the right side of the frame (off-center) and increase its scale so that its visible width occupies roughly 20-25% of the frame width. Keep the background and crop context identical.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 27,
+      "product_height_percent": 31,
+      "product_x_center_percent": 74,
+      "reasons": [
+        "The crop shown in the foreground has a broad, lobed leaf structure, which is not botanically consistent with the target crop, Sainfoin (which typically has narrow, pinnate leaves).",
+        "The background crop appears to be a flowering brassica or similar plant with red and purple flowers, which does not match the visual expectation of a sainfoin field at harvest stage.",
+        "The product width is at the extreme upper limit of the acceptance range (27%), making it slightly dominant relative to the crop context."
+      ],
+      "correction_prompt": "Replace the foreground crop with botanically accurate sainfoin, featuring narrow pinnate leaves and small yellow flowers. Ensure the background shows a crop consistent with sainfoin, not red/purple flowering brassicas. Reduce the product width to 24% of the frame while keeping it at the bottom right.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 11,
+      "product_height_percent": 10,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: Visible human body parts (legs and hands) present in the image.",
+        "The product width (11%) is below the acceptable range of 13% to 27%.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to strictly exclude any human body parts (legs, hands, arms) or silhouettes. Increase the width of the white and blue drip-tape carton roll to 20% of the frame width. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Presence of a human figure (farmer) in the image, which triggers a hard reject according to the prompt instructions.",
+        "Inclusion of a human body part (hands and legs) interacting with the crop and tools.",
+        "The crop in the foreground consists of broad-leaf seedlings that do not match the specified 'Sainfoin' (legume with trifoliate leaves), making the agronomic story inaccurate for the specific article."
+      ],
+      "correction_prompt": "Remove the person and hands from the scene. Regenerate the foreground crop as small legume seedlings with trifoliate leaves representing Sainfoin (spars). Keep the drip tape roll on the left, positioned on the soil, with the 'AFP' logo and required phone number watermark in the bottom right corner.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 19.4,
+      "product_height_percent": 31.2,
+      "product_x_center_percent": 22.5,
+      "reasons": [
+        "The product is a single, correctly shaped white and blue drip tape roll.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "The crop shown (sainfoin) is botanically consistent with the article requirements.",
+        "The roll is positioned on the soil in the lower-left area (off-center).",
+        "No people, hands, or other identifying human features are visible.",
+        "The aspect ratio and frame proportions of the roll are within the acceptable range."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-گلخانهای-در-کشت-اسپرس-مقایسه-کاربرد-عملی.webp"
+}

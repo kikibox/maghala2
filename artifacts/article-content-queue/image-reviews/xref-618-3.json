@@ -1,0 +1,68 @@
+{
+  "id": "xref-618",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "The crop plants in the background do not clearly resemble basil (reihaan) and appear to be a generic broad-leafed plant, which constitutes a hard reject for Role 3 when identifiable crops are present.",
+        "The product bounding box dimensions are on the upper edge of the acceptable range, with the width measuring 25%, which is close to the hard reject limit."
+      ],
+      "correction_prompt": "Regenerate the image ensuring the crop plants strictly match the morphology of basil (reihaan) to avoid contradictory crops. The product size and framing are otherwise acceptable.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 19,
+      "product_height_percent": 18,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Multiple products visible (main roll plus two additional coil spools/connectors in foreground), which triggers the hard reject for 'second roll' or 'extra commercial product'.",
+        "A large basil crop is present in the foreground next to the product, which violates the 'hardware story' requirement where crop plants should be absent or visually neutral."
+      ],
+      "correction_prompt": "Regenerate to show a single drip-tape roll on bare soil without any basil or crop plants in the foreground. Ensure all additional coils or hardware accessories are removed to leave only the single required product. Keep the background farm hardware context intact.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 21.5,
+      "product_height_percent": 29.5,
+      "product_x_center_percent": 48.0,
+      "reasons": [
+        "Hard reject: multiple people are visible in the background (one standing, one crouching next to the tractor), which violates the zero-human and zero-body-part rule.",
+        "The crop plant/soil context is visually neutral, which fits Role 3, but the presence of the tractor and farmers suggests a specific planting or field-operation scene rather than a neutral hardware context.",
+        "The product is centered horizontally (x_center ~48%), which violates the 'off-center on the lower third' placement requirement."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes from the background completely. Keep the tractor but move it further into the distance or remove it to emphasize the hardware/infrastructure context. Shift the roll to the right side of the frame (x_center around 75-80%) to meet the off-center requirement. Keep the roll on soil.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 26,
+      "product_height_percent": 20,
+      "product_x_center_percent": 72,
+      "reasons": [
+        "Product dimensions are within the acceptable range of 13-27% width and <32% height.",
+        "Aspect ratio (width to height) is approximately 1.3, which is close to the preferred 1.5-1.9 range and maintains a cylindrical appearance.",
+        "The roll is correctly positioned in the lower-right third, off-center and on the soil.",
+        "The background matches the 'hardware story' context with a visible tractor and plowed field rows.",
+        "No human figures, body parts, or silhouettes are present in the image.",
+        "The required AFP watermark is clearly visible in the bottom-right corner.",
+        "Only one commercial package/roll is present, with no extra containers or conflicting crops."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-با-رانش-در-کشت-ریحان-پیشنیازها-جزئیات-فنی.webp"
+}

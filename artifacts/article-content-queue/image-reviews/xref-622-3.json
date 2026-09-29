@@ -1,0 +1,53 @@
+{
+  "id": "xref-622",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 20.5,
+      "product_height_percent": 28.5,
+      "product_x_center_percent": 38.5,
+      "reasons": [
+        "Crop in foreground is clearly a maize (ذرت) plant, which is required to be absent or visually neutral in Role 3. Its distinct morphology violates the 'absent or visually neutral' instruction for Role 3.",
+        "Product bounding box and framing rules are otherwise acceptable (secondary size, off-center, on soil), but the crop violation is a hard reject."
+      ],
+      "correction_prompt": "Remove the prominent maize plant from the foreground; keep the white-and-blue AFP drip-tape roll on soil, unattended tractor, and farm context without any identifiable crop or human.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Hard reject: A person (farmer) is visible in the background next to the tractor.",
+        "Hard reject: Crop plants (young maize seedlings) are shown in close proximity to the product, violating the 'crop plants may be absent or visually neutral' requirement for a Role 3 hardware story."
+      ],
+      "correction_prompt": "Remove the farmer and the young maize plants from the foreground; replace the plants with bare tilled soil or neutral hardware to maintain the hardware story role.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 23.5,
+      "product_height_percent": 30.5,
+      "product_x_center_percent": 41.5,
+      "reasons": [
+        "Product width and height are within the preferred and acceptable practical ranges.",
+        "The product is appropriately positioned off-center on the lower third of the frame on soil.",
+        "Visible maize seedlings are consistent with the crop topic (maize).",
+        "An unattended tractor in the background provides a suitable farm context for the hardware story without violating negative constraints.",
+        "No people, human silhouettes, or extra commercial products are visible.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-ذرت-راهنمای-جامع-جزئیات-فنی.webp"
+}

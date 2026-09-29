@@ -1,0 +1,72 @@
+{
+  "id": "xref-627",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 22,
+      "product_height_percent": 15,
+      "product_x_center_percent": 85,
+      "reasons": [
+        "Hard reject: The image contains a man in the main frame and a human hand in the top-right inset, violating the zero-people rule.",
+        "Hard reject: The product appears as a 'bucket' or 'canister' style container in the main frame, rather than the required 'wide low cylindrical drip-tape carton'.",
+        "Hard reject: The crop shown is a broadleaf tree/seedling, which is a clearly identifiable different species than the required article crop 'sainfoin' (spars).",
+        "Hard reject: The top-right inset is an unwanted second package/element containing human body parts.",
+        "Hard reject: The main frame image staging feels unnatural with an artificial border around the inset."
+      ],
+      "correction_prompt": "Remove all human figures, hands, and body parts. Remove the top-right inset. Replace the broadleaf tree seedlings with sainfoin crops. Place a single white-and-blue wide, low, cylindrical drip-tape carton roll on the soil in the bottom-right foreground.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 14,
+      "product_height_percent": 13,
+      "product_x_center_percent": 68,
+      "reasons": [
+        "Missing the required bottom-right watermark 'AFP | 09134922013' as specified in the hard requirements (the image currently contains 'AFP | 09134922013' but the instruction demands that specific string is required and the current visual might not align with pixel-perfect exactness or position, however the most critical failure is the product itself)",
+        "The product shown is a tall, narrow cylinder (likely a spool or box) which violates the 'wide low cylindrical' requirement. The instruction requires 'visible diameter about 1.5 to 1.9 times its visible height'. The current object's geometry is inverted (height >= width).",
+        "The product color is predominantly blue/white but lacks the specific 'AFP white-and-blue' branding clarity and the required wide profile.",
+        "Botanical accuracy: The purple flowers and bushy leaves in the foreground are clearly Violets (Viola species), not Sainfoin (Onobrychis viciifolia). Sainfoin is a legume with trifoliate leaves and pink/white flowers. This is a hard reject due to 'clearly identifiable different species'."
+      ],
+      "correction_prompt": "Regenerate the image to replace the purple violets with botanically accurate young Sainfoin (sainfoin) plants showing trifoliate leaves. Change the product in the foreground from a tall cylinder to a wide, low cylindrical drip-tape carton roll (diameter roughly 1.5x height) with white and blue branding. Place the roll off-center on the lower third, sitting naturally on the soil. Ensure the required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 23,
+      "product_height_percent": 29,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "The crop vegetation shown is botanically identifiable as a flowering plant (similar to Verbena) with distinct purple blooms and serrated leaves, which is a 'clearly identifiable different species' from the required Sainfoin crop (article-specific agronomic story missing).",
+        "The product is centered in the lower third (x_center is 46%), whereas the guidelines specify it must be off-center."
+      ],
+      "correction_prompt": "Regenerate with Sainfoin (Cacia arvensis) crop featuring bi-lobed leaves and greenish flower heads in the background; reposition the drip-tape roll to be clearly off-center (e.g., x_center 30% or 70%).",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 15,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product is a white and blue cylindrical drip-tape carton roll.",
+        "Product is off-center and placed on soil in the lower third.",
+        "Product dimensions are within acceptable ranges (width 18%, height 15%).",
+        "The crop shown is consistent with a broadleaf legume or herbaceous plant in a farm setting, providing a clear agronomic context for the product.",
+        "The required watermark 'AFP | 09134922013' is present and legible.",
+        "No people or human body parts are visible in the frame.",
+        "No extraneous commercial products or prohibited items are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-اسپرس-چالشها-تصویر-شاخص.webp"
+}
