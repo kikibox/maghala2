@@ -1,0 +1,56 @@
+{
+  "id": "xref-183",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 10,
+      "product_height_percent": 12,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "The image contains two people (a woman and a man) in the foreground, which is an absolute hard reject.",
+        "The product is not a wide low cylindrical roll; it appears to be a small standard bucket or pail.",
+        "The product is not positioned in the lower third, but near the bottom-left corner instead.",
+        "The product is significantly under-sized relative to the frame requirements (approx 10-12% width).",
+        "The product is not 'wide and low' as specified for the carton roll; it is taller than it is wide.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people from the image. Replace the object with a wide, low, cylindrical white-and-blue drip-tape carton roll positioned off-center on the lower third of the frame. The roll should be clearly visible and larger, taking up approximately 20% of the frame width. Ensure the crop (cucumber vines with tendrils) is visible. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Product position fails constraint: The drip-tape roll is placed at the bottom-center (x_center approx 47%), but the requirement specifies the product must be off-center on the lower third (implying left or right third).",
+        "Geometry anomaly: The cylindrical roll appears to be suspended or floating in the air directly above the soil bed rather than resting naturally on the ground surface."
+      ],
+      "correction_prompt": "Regenerate the image placing the AFP white-and-blue drip-tape roll off-center (either in the left third or right third of the frame) and touching the soil naturally (resting on the ground), not floating. Maintain the farm context with cucumber vines and the bottom-right watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 93,
+      "product_width_percent": 22,
+      "product_height_percent": 24,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "The image features exactly one white-and-blue AFP drip-tape roll, positioned naturally on the soil in the lower-left third of the frame.",
+        "The crop is clearly identifiable as cucumber (خيار) due to the presence of attached green fruit, the distinct morphology of the vine, tendrils, and lobed leaves.",
+        "The product's width (22%) and height (24%) are within the specified practical limits and maintain a natural cylindrical proportion.",
+        "The required watermark 'AFP | 09134922013' is clearly visible in the bottom-right corner.",
+        "The scene is free of any people, human body parts, or prohibited commercial objects, meeting all hard reject criteria."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-در-کشت-خیار-کاربردها-تصویر-شاخص.webp"
+}

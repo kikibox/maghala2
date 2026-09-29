@@ -1,0 +1,70 @@
+{
+  "id": "xref-190",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 24,
+      "product_height_percent": 33,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product height exceeds the hard limit of 32% of the frame height.",
+        "Visible crop is daisy/astroid (Asteraceae), which clearly contradicts the required crop context of Sainfoin (spurry/legume morphology).",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with a crop plant identifiable as Sainfoin (clover-like leaves and purple flower spikes) instead of daisies. Shrink the drip-tape roll vertically to 30% height (keeping width to ~20%) to meet geometric constraints. Keep the unattended tractor and AFP watermark. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 75,
+      "product_width_percent": 9.5,
+      "product_height_percent": 12.5,
+      "product_x_center_percent": 28.0,
+      "reasons": [
+        "Identifiable crop context (lavender in foreground) clearly contradicts the required topic of sainfoin (اسپرس)",
+        "Product roll appears to be standing vertically (cylindrical) rather than laid horizontally, which may be considered 'impossible geometry' or inconsistent with standard drip-tape roll staging",
+        "Product bounding box width (9.5%) falls below the acceptable threshold (13%)",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9.5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with identical AFP white-and-blue drip-tape roll staging (lower-left, secondary scale) but replace lavender foreground with a neutral soil or sainfoin context; add 2 more vertical drip-tape rolls to increase aggregate product width to ~16%. Enlarge the product group from 9.5% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: The image contains a visible human (a man wearing a hat standing near the tractor). The requirements explicitly demand zero people, human body parts, or silhouettes.",
+        "Hard reject: The image contains two rolls of drip tape. The requirements specify 'exactly one AFP... drip-tape carton roll' and explicitly reject a 'second roll'.",
+        "Product bounding box cannot be calculated because the subject specification (exactly one roll) is violated.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image showing exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll on the soil. Remove all human figures and silhouettes. Remove the second roll of tape. Ensure the product is off-center on the lower third. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Exact required AFP bottom-right watermark 'AFP | 09134922013' is present.",
+        "Product is a white and blue cylindrical drip-tape carton roll, correctly placed off-center on the lower third on soil.",
+        "Hardware context (tractor) is appropriate for the 'hardware story' role; no human figures, silhouettes, or body parts are visible.",
+        "Product dimensions are within preferred ranges (width ~22%, height ~28%).",
+        "Crop morphology is neutral; the tractor context fits 'Role 3' (infrastructure/hardware) without contradiction to the topic."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-سطوحی-در-کشت-اسپرس-هزینه-بهینه-جزئیات-فنی.webp"
+}

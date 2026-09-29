@@ -1,0 +1,67 @@
+{
+  "id": "xref-186",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 10,
+      "product_height_percent": 20,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: The image contains a prominent human male crouching in the foreground, which violates the 'zero people' constraint.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any human figures or body parts, showing only the drip-tape roll placed on the soil in the field. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 70,
+      "product_width_percent": 33,
+      "product_height_percent": 22,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The required crop (tape) is not visible; only the carton roll is shown.",
+        "The drip-tape roll is in the foreground and appears too prominent, violating the secondary requirement and width constraint (33% > 27%).",
+        "machine-enforced bounding-box check failed: Reduce the product group from 33% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Move the carton roll to the background and make it smaller (under 27% of the frame width). Show the drip tape extended in the soil rows. Reduce the product group from 33% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 10,
+      "product_height_percent": 13,
+      "product_x_center_percent": 23,
+      "reasons": [
+        "The article title is 'city', but the image shows a vast rural farm setting with a tractor and barn, completely failing the 'topic-specific farm context' requirement for a city environment.",
+        "The required drip-tape carton roll is visible in the bottom-left but is too small (approx 10% width) and fails to meet the required product prominence ratio relative to the frame size for a pass.",
+        "The crop morphology (young indeterminate seedlings) is acceptable as 'neutral young vegetation', but the mismatch between the 'city' title and the rural visuals is a hard reject.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with a dense urban community garden or city rooftop farm context. Ensure the AFP white-and-blue drip-tape carton roll is larger and more prominent (targeting ~15-20% width). Place the roll off-center in the lower third on soil, keeping the background strictly urban to match the 'city' title. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 22,
+      "product_height_percent": 24,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Product matches the AFP white-and-blue cylindrical drip-tape roll specification with natural soil placement",
+        "Zero human elements present; background features a rooftop garden context with young plants and urban skyline",
+        "Product width (22%) and height (24%) are within acceptable limits and preferred ranges",
+        "Watermark 'AFP | 09134922013' is present and correctly formatted in the bottom-right corner"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-سطوحی-در-کشت-مارچوبه-نکات-کلیدی-تصویر-شاخص.webp"
+}

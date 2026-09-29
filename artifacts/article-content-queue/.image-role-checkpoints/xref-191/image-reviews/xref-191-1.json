@@ -1,0 +1,56 @@
+{
+  "id": "xref-191",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 20,
+      "product_height_percent": 55,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "A human arm and hand are visible holding the product (Hard reject: person/human body part)",
+        "The product is a flat, ribbon-like strip rather than a cylindrical carton roll (Hard reject: impossible geometry/wrong format)",
+        "Product height exceeds the 32% maximum limit",
+        "Cucumber species are not visible (no vines, tendrils, or small cucumbers identifiable)",
+        "machine-enforced bounding-box check failed: Reduce product height from 55% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image to show a wide, low, cylindrical white-and-blue drip-tape carton roll lying directly on the soil in a cucumber field. Include visible cucumber vines, angular leaves, and tendrils. Remove the hand and arm; ensure no people or human body parts are visible. Keep the 'AFP | 09134922013' watermark. Reduce product height from 55% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 27,
+      "product_height_percent": 38,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product height exceeds the maximum 32% limit.",
+        "Product width reaches the 27% boundary, which should be secondary to the crop context.",
+        "Product placement is centered, which is a hard reject for staging requirements.",
+        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reposition the drip tape roll to the lower third on the left or right, ensuring it is off-center and the product's total height is less than 32% of the image height. Make the roll appear smaller and more secondary relative to the field. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 18.5,
+      "product_height_percent": 21.5,
+      "product_x_center_percent": 38.0,
+      "reasons": [
+        "The image clearly shows exactly one white-and-blue drip-tape carton roll with the 'AFP' brand and a required 'AFP | 09134922013' watermark in the bottom right corner.",
+        "The product is placed on the soil in the lower third of the image, off-center to the left (x_center ~38%), and its dimensions appear to fall within the acceptable range (width ~18.5%, height ~21.5%).",
+        "The agricultural context shows green cucumber plants with small cucumbers attached, matching the required article-specific crop.",
+        "There are no visible people, hands, or other human body parts in the image, meeting the strict 'zero people' requirement."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-خیار-هزینه-بهینه-تصویر-شاخص.webp"
+}

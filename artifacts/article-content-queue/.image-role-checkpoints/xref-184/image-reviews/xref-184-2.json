@@ -1,0 +1,68 @@
+{
+  "id": "xref-184",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 15,
+      "product_height_percent": 22,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Presence of people (a foreground man crouching to hold the product and a background worker in a yellow hat) is a hard reject condition (zero people/body parts allowed).",
+        "The lentil article recognition fails hard: the visible crop has broad leaves and distinct purple flowers, which do not match the required fine-textured, non-flowering or small-flowering lentil morphology (hard reject for clearly identifiable different species).",
+        "The product is centered and staged by human hands, violating the 'off-center' and 'no human parts' rules."
+      ],
+      "correction_prompt": "Regenerate with zero people or human parts. Replace the crop with clear lentil plants (bushy, thin stems, paired small oval leaflets, no purple flowers). Position the white and blue AFP drip-tape roll on the soil at the lower-left or lower-right (off-center), not touching the crop, and remove the second background worker.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 38,
+      "product_width_percent": 23,
+      "product_height_percent": 34,
+      "product_x_center_percent": 67,
+      "reasons": [
+        "Product height is approximately 34%, which exceeds the hard reject limit of 32%.",
+        "The plants shown in the foreground have large, broad leaves and purple flowers, which are not consistent with the required lentil morphology (thin branching stems, small paired pinnate oval leaflets, small flat pods).",
+        "Lentils are a crop that does not have prominent purple flowers during its typical agricultural stages; the presence of these flowers suggests a different species or a 'wild' plant, failing the 'article crop recognizable' requirement.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a 20-23% wide drip tape roll that is no taller than 32% of the frame (wider aspect ratio). Replace the current plant with young lentil seedlings characterized by small pinnate leaflets and thin green stems, removing all purple flowers. Ensure the 'AFP | 09134922013' watermark remains in the bottom right corner. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 22,
+      "product_height_percent": 24,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The crop in the foreground and background rows does not exhibit the required lentil morphology. Instead of the low, fine-textured bushy legumes with small paired pinnate oval leaflets, the plants appear to have broader, more pointed leaves, resembling common weed seedlings or an unidentified crop species."
+      ],
+      "correction_prompt": "Regenerate the image to clearly show lentil (عدس) crops. The plants must be low, fine-textured bushy legumes with thin branching stems and very small, paired pinnate oval leaflets. Remove the current broad-leafed seedlings.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 19.5,
+      "product_height_percent": 21.0,
+      "product_x_center_percent": 51.5,
+      "reasons": [
+        "The product is a single white-and-blue wide low cylindrical drip-tape carton roll, properly centered horizontally in the lower third of the frame.",
+        "The product dimensions and placement align well with the preferred secondary-to-background aesthetic.",
+        "The 'AFP | 09134922013' watermark is present and correctly positioned in the bottom-right corner.",
+        "Zero people, farmer, worker, or human silhouettes are visible in the image.",
+        "The article-specific crop (lentil) is represented by neutral, low, bushy legume seedlings and a prepared bed context. While fine-textured mature morphology is not fully visible, the agronomic story of young legume plants in irrigation rows is clear, and the hard-reject rule allows neutral young vegetation.",
+        "Background infrastructure and crop rows are consistent with the topic."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-با-رانش-در-کشت-عدس-چالشها-کاربرد-عملی.webp"
+}
