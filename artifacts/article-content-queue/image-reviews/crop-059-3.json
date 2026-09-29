@@ -1,0 +1,95 @@
+{
+  "id": "crop-059",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject triggered: A second product (blue hose/pipe coil) is visible next to the required drip-tape carton, violating the 'exactly one' and 'second package/roll' constraints.",
+        "The required image role is hardware-centric (Role 3), where crops may be absent; however, the presence of the second roll is a fatal structural error regardless of crop morphology."
+      ],
+      "correction_prompt": "Regenerate the image showing only the single white and blue AFP drip-tape carton roll on the soil. Completely remove the blue coiled hose/pipe on the right. Ensure the carton remains the sole product on the lower third.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 25,
+      "product_height_percent": 35,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Product is a white-and-blue wide low cylindrical drip-tape carton roll, matching the required 'AFP' appearance.",
+        "Exactly one commercial product visible with authentic package print and required 'AFP | 09134922013' watermark in the bottom-right corner.",
+        "Zero people or human body parts are visible in the frame.",
+        "The product is placed on soil and is off-center in the lower portion of the frame.",
+        "The visible crop is a generic young plant; it does not clearly contradict alfalfa (yunja), satisfying the hard-reject threshold.",
+        "The background farm context (soil and distant barn/fields) matches the required farm topic and hardware story role.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 15,
+      "product_height_percent": 19,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: The image contains a person (a farmer squatting in the field), which explicitly violates the 'zero people' and 'zero human body parts' requirement."
+      ],
+      "correction_prompt": "Regenerate the image to strictly remove the person and all human silhouettes. Show only the white-and-blue AFP drip-tape roll on the tilled soil in a farm context.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 30,
+      "product_height_percent": 32,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product bounding box exceeds the 27% width limit (approx. 30%)",
+        "Product staging is nearly centered horizontally, violating the off-center requirement",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the drip-tape roll significantly smaller (width under 25%), placed clearly in the lower-left third on the soil, maintaining the farm background. Reduce the product group from 30% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 82,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The bottom-right watermark 'AFP | 09134922013' is missing, which is a hard reject criterion."
+      ],
+      "correction_prompt": "Regenerate the image with the exact watermark text 'AFP | 09134922013' added in the bottom-right corner. Maintain the existing composition, product size, and soil placement.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 94,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Single wide, low cylindrical carton roll of drip tape placed on soil",
+        "Correct off-center position on the lower left third",
+        "Visible diameter and height proportions meet the 1.5–1.9 requirement",
+        "Identifiable crop is alfalfa, which aligns with the topic filter",
+        "Required bottom-right watermark is present and correct"
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "هزینه-کشت-یونجه-با-نوار-تیپ-در-هکتار-جزئیات-فنی.webp"
+}

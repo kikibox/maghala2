@@ -1,0 +1,76 @@
+{
+  "id": "crop-054",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 9,
+      "product_height_percent": 12,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Image contains a prominent person (farmer) in the foreground.",
+        "The presence of the human figure is a hard reject based on the constraint of zero people or body parts.",
+        "The product is positioned centrally relative to the crop rather than off-center on the lower third.",
+        "The crop visible in the background appears to be wheat or oats, not the specified rye (چاودار).",
+        "The roll appears too small (width < 13%) and has incorrect proportions (height/diameter ratio is too tall).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely from the image. Show only a wide, low cylindrical white-and-blue drip-tape carton roll lying off-center on the soil in the lower third of the frame. The roll must be large (approx 20% of frame width) with a diameter 1.5 to 1.9 times its visible height. The background crop should be tall, slender rye with long narrow grain heads. Ensure the exact bottom-right watermark 'AFP | 09134922013' is included. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 28,
+      "product_height_percent": 30,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Product width is estimated at 28 percent of the frame width, which exceeds the hard rejection limit of 27 percent.",
+        "The image is missing the required water/droplet logo on the product, showing a different generic icon instead.",
+        "The text below the main 'AFP' branding appears to be gibberish/non-English, failing the requirement for authentic package print.",
+        "The visible diameter of the roll is roughly 1.2 to 1.4 times its height, failing the required 1.5 to 1.9 aspect ratio geometry.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce product width to 23 percent of the frame and adjust the roll geometry to be approximately 1.7x as wide as it is tall. Ensure the visible water droplet logo and legible English packaging text are present. Maintain the off-center placement on the lower third. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 10,
+      "product_height_percent": 12,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: The image contains two men (farmers/workers) crouching in the field, which violates the 'zero people' rule.",
+        "Hard reject: The product is centered horizontally (near 50%) and is being physically handled by people, failing the 'off-center on the lower third' and 'naturally placed on soil' requirements.",
+        "The presence of the people disrupts the required 'secondary' status of the product; the interaction with the roll makes it the focal point rather than a background element.",
+        "The crop context is ambiguous (mixture of wheat/barley and young green shoots) rather than clearly defining rye.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with an empty farm field containing only a botanically neutral prepared bed or young vegetation. Place a single AFP white-and-blue drip-tape carton roll on the bare soil in the lower-left third of the frame. The roll must be stationary and not being touched. Ensure no people, hands, or body parts are visible anywhere in the image. Add the exact watermark 'AFP | 09134922013' to the bottom-right. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 86,
+      "product_width_percent": 21,
+      "product_height_percent": 22,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "The drip-tape roll is correctly positioned in the lower third, off-center to the left, resting naturally on the soil.",
+        "The roll's dimensions fit within the acceptable range, with a width of ~21% and height of ~22%, maintaining a secondary but clear presence.",
+        "The background features a field with young seedlings and farm buildings, consistent with a farm context; the neutral crop stage is acceptable for rye.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and intact.",
+        "No people, human body parts, or other commercial containers are visible.",
+        "The only issue is minor gibberish on the package label, which does not impact the core subject."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "میزان-برداشت-چاودار-در-هکتار-با-نوار-تیپ-کاربرد-عملی.webp"
+}

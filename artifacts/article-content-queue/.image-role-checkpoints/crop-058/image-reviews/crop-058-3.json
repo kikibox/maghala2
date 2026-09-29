@@ -1,0 +1,57 @@
+{
+  "id": "crop-058",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 31,
+      "product_height_percent": 22,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Product width exceeds the 27% hard limit (estimated ~31%).",
+        "Product height is too tall (estimated ~22%).",
+        "machine-enforced bounding-box check failed: Reduce the product group from 31% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce product width to ~20-23% and height to under 15%. Reduce the product group from 31% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 23,
+      "product_height_percent": 40,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Product height exceeds the 32% maximum limit",
+        "Visible crop plants contradict the 'hardware story' role which requires neutral crops or no crop",
+        "Yellow flowers on the plants do not match the yellow split-pea (لپه) crop, causing a hard reject",
+        "machine-enforced bounding-box check failed: Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate to strictly show only irrigation hardware. Remove all plants and crops. Ensure the carton roll height is reduced to a maximum of 30% of the frame. Keep the product on the soil with no people visible. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 16,
+      "product_height_percent": 14,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Zero people, faces, or body parts present",
+        "Tractor and building in background are acceptable infrastructure/agricultural context without human presence",
+        "Product is the correct wide low cylindrical white and blue carton roll",
+        "Product is off-center in the lower third and placed naturally on soil",
+        "Dimensions are within acceptable thresholds (width 16%, height 14%, height < 32%, not centered)",
+        "Exact required watermark 'AFP | 09134922013' is visible in the bottom-right corner",
+        "No prohibited items like extra packages, pipes through the roll, or fake text detected"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "هزینه-کشت-لپه-با-نوار-تیپ-در-هکتار-جزئیات-فنی.webp"
+}

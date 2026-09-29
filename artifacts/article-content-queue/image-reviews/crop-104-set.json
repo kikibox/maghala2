@@ -1,0 +1,58 @@
+{
+  "id": "crop-104",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "history": [
+    {
+      "pass": false,
+      "score": 60,
+      "duplicate_roles": [],
+      "reasons": [
+        "All three images correctly feature the AFP product and zero people, satisfying mandatory constraints.",
+        "However, the crop morphology in all three images (deeply lobed, fluted leaves) is clearly identifiable as Okra (Abelmoschus esculentus), not Soybean (Glycine max), which is a hard rejection criterion.",
+        "Additionally, Images 1 and 2 are near-duplicates with nearly identical camera angles, composition (product at base, single plant), and technical narrative, resulting in an overlap penalty."
+      ],
+      "correction_prompt": "Replace the crop with authentic Soybean morphology (trifoliate leaves, cylindrical hairless pods) and distinguish the camera angles: use a wide overhead shot for the overview, a tight root-zone macro for the agronomic evidence, and a linear perspective looking down the drip tape line for the irrigation story.",
+      "set_attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "duplicate_roles": [
+        1,
+        2
+      ],
+      "reasons": [
+        "The crop morphology in Image 1 and Image 2 is botanically contradictory to the article topic 'Soybean' (sویا). The plants shown (with large pod-like structures and broad leaves) strongly resemble tobacco or a leafy herbaceous crop, not soybeans (which are legumes with distinct trifoliate leaves and small pods).",
+        "Image 1 and Image 2 are near-duplicates in narrative function: both show the same AFP drip tape product placed next to a 'contradictory' crop in a close-up view, failing to differentiate the 'crop-identity overview' from 'agronomic close evidence' roles.",
+        "Image 3 presents a botanically neutral/contradictory crop (resembling corn/maize) which does not align with the soybean topic, despite showing the irrigation layout."
+      ],
+      "correction_prompt": "Replace the crop with accurate soybean plants (trifoliate leaves, small green pods, bushy growth habit) in Images 1 and 2, and Image 3 should depict a soybean field with visible drip lines or micro-sprinkler tape to match the 'irrigation-system story' role.",
+      "set_attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "duplicate_roles": [],
+      "reasons": [
+        "Image 1 depicts a crop that lacks the compound leaves and stems characteristic of soybeans (Glycine max); the visible foliage resembles a broad-leafed weed or legume such as bean phaseolus, failing the 'exact crop morphology' requirement.",
+        "The set lacks an 'agronomic close evidence' image; while Image 2 shows individual plant health, it is framed as a general 'crop identity' shot alongside the other two.",
+        "Image 3 fails the 'irrigation-system story' role by presenting only a product roll on bare soil with no visible drip lines, micro-sprinklers, or emitter infrastructure to contextualize the management technique."
+      ],
+      "correction_prompt": "Regenerate Image 1 with unmistakable soybean foliage (trifoliate leaves and distinct stem structure). Regenerate Image 3 to clearly feature a sub-surface drip tape line or emitter system layout within the furrow rather than just a standalone product roll.",
+      "set_attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "duplicate_roles": [],
+      "reasons": [
+        "Images fulfill distinct functional roles as requested: Image 1 acts as an overview combining crop, irrigation, and product; Image 2 provides evidence of the irrigation system layout with the crop; and Image 3 focuses on crop identity and root-zone interaction.",
+        "The visible crop morphology in all three images is botanically neutral (young dicot seedlings), which effectively supports the 'Soybean' topic without hard-contradicting the specific crop identity, satisfying the condition that neutral beds or young vegetation may carry the topic.",
+        "Although the AFP product is identical across all three images (which is expected and not considered duplication), the camera angles, framing (close-up vs. wide-angle vs. root-zone), and layout composition are sufficiently different to avoid being flagged as near-duplicates.",
+        "Zero people are present in any of the images, meeting the mandatory requirement."
+      ],
+      "correction_prompt": "If replacement is needed, focus on generating a specific irrigation-system layout close-up that clearly highlights the drip-tape mechanism or root-zone evidence without featuring the product, to maximize agronomic specificity.",
+      "set_attempt": 4
+    }
+  ]
+}

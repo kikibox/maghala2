@@ -1,0 +1,53 @@
+{
+  "id": "crop-061",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 22,
+      "product_height_percent": 25,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "The product bounding box is centered (x=49%), which is a hard reject per the 'centered product staging' rule. The rule specifies it must be off-center on the lower third.",
+        "The product height (25%) to width (22%) ratio is 1.13, which is less than the required 1.5 to 1.9 range. The roll appears too tall/short for the specified cylindrical drip-tape proportion.",
+        "Text on the product label ('Drip', 'irrigation', 'hose') is partially inverted or incorrect, which may constitute 'invented writing' or gibberish text outside authentic package print."
+      ],
+      "correction_prompt": "Shift the product horizontally to the left third (x-center approx 25-35%) to remove centered staging. Reshape the product to be wider relative to its height (aspect ratio 1.6-1.8) to resemble a standard flat drip-tape roll. Fix the label text orientation to be upright and legible, ensuring 'Drip Irrigation' is clearly readable.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 16,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "The visible crop in the foreground contains clearly identifiable peppers (capsicum), which is a hard reject under the instruction to 'Hard reject a clearly identifiable different species' when the article crop is cucumber (خیار)."
+      ],
+      "correction_prompt": "Regenerate the image replacing the foreground pepper plant with a mature cucumber vine featuring angular leaves, tendrils, and attached small cucumbers. Keep the AFP drip-tape roll in the same position and the irrigation background identical.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 17,
+      "product_height_percent": 16,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "The image contains exactly one AFP white cylindrical drip-tape carton placed naturally on the soil.",
+        "Product dimensions are optimal: the width is approximately 17% of the frame width and the height is approximately 16%, fitting the 13-27% acceptance criteria with a diameter-to-height ratio near the preferred 1.5x.",
+        "The background clearly depicts a prepared farm field with cucumber plants, showing angular leaves and small attached cucumbers, which matches the required 'city' crop story.",
+        "Zero people or body parts are present; only unattended infrastructure and crops are visible.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present.",
+        "Text on the product carton is 'AFP' and small gibberish/agricultural text, which is acceptable as authentic package print; no fake headlines or prohibited text are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "فاصله-نوار-تیپ-در-کشت-خیار-استانداردهای-توصیهشده-تصویر-شاخص.webp"
+}

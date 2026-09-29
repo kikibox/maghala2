@@ -3,62 +3,99 @@
   "kind": 3,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": true,
+  "approved": false,
   "attempts": [
     {
       "pass": false,
-      "score": 45,
-      "product_width_percent": 22,
-      "product_height_percent": 29,
-      "product_x_center_percent": 83,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
       "reasons": [
-        "The image fails to show a 'wide low cylindrical drip-tape carton roll' (a flat spool). Instead, it depicts a tall, cylindrical plastic drum/barrel that has been modified or misinterpreted as a roll. This violates the hard reject criteria for a 'tall narrow drum' and fails to meet the specific geometry of a flat drip-tape carton.",
-        "The product height (approx 29%) and width (approx 22%) do not satisfy the required aspect ratio where the visible diameter should be about 1.5 to 1.9 times its visible height. The product in the image is taller than it is wide (height > width), which is the inverse of the required geometry.",
-        "The drip tape is visibly unrolled and running through the scene with a connector, which creates a visual disconnect from the product being a 'carton roll' as requested; it looks like a generic spool rather than a packaged product."
+        "Hard reject: A person (male figure) is clearly visible in the image, specifically crouching in the foreground and also appearing in the bottom-right inset panel.",
+        "Hard reject: The product shown is a white and blue bucket/container, not a wide low cylindrical drip-tape roll.",
+        "Hard reject: The product is held by a hand, which is a hard reject condition for human body parts.",
+        "The image contains multiple inset panels which is not standard for this role.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate with a flat, wide drip-tape carton roll (like a flat pizza roll) lying on the soil. The roll must be significantly wider than it is tall (diameter 1.5-1.9x height). Keep the product in the lower-right off-center position on the soil. Remove the unrolled tape running across the foreground; keep the roll intact and closed. Maintain the saffron crocus context and the 'AFP | 09134922013' watermark.",
+      "correction_prompt": "Regenerate a single view image of a wide, low, cylindrical white-and-blue drip-tape roll lying on soil. Remove all people, hands, and body parts. Ensure no containers or buckets are present. The roll must be off-center to the left or right. Enlarge the product group from 0% to 13-27% of frame width.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 85,
-      "product_width_percent": 24,
-      "product_height_percent": 35,
-      "product_x_center_percent": 52,
+      "score": 95,
+      "product_width_percent": 30,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
       "reasons": [
-        "Product height exceeds the 32% maximum threshold, measuring approximately 35% of the frame.",
-        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+        "Product is correctly positioned off-center on the lower third.",
+        "Drip tape roll is white and blue as requested.",
+        "Saffron crocuses are present and consistent with the 'saffron' crop requirement.",
+        "Zero people or human body parts visible.",
+        "Watermark 'AFP | 09134922013' is present in the bottom right corner.",
+        "Hardware/tractor context is appropriate for the irrigation story.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width."
       ],
-      "correction_prompt": "Shrink the drip-tape carton roll so its height is less than 32% of the frame (around 20-25%); maintain the wide low cylindrical shape and off-center position on the soil. Reduce product height from 35% to at most 32% of frame height.",
+      "correction_prompt": "Reduce the product group from 30% to 13-27% of frame width.",
       "attempt": 2
     },
     {
       "pass": false,
       "score": 25,
-      "product_width_percent": 12,
-      "product_height_percent": 18,
-      "product_x_center_percent": 35,
+      "product_width_percent": 23,
+      "product_height_percent": 31,
+      "product_x_center_percent": 42,
       "reasons": [
-        "Hard reject: Image contains a person (crouching farmer/worker) and human body parts (arms, hands, legs).",
-        "The product (drip-tape roll) is significantly too small, violating the 13-27% width requirement (estimated at ~12%).",
-        "The product's visible height exceeds its width, failing the 1.5-1.9x diameter-to-height ratio requirement.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+        "The visible crop plants resemble tulips, which clearly contradict the required crop morphology for saffron crocus.",
+        "The background contains an unattenuated tractor that does not visually align with the specific hardware or irrigation context required for Role 3."
       ],
-      "correction_prompt": "Remove all people and human silhouettes. Reframe the shot to focus on the AFP drip-tape roll, ensuring it is wide/low and occupies between 20-25% of the frame width. Place the roll off-center on the lower third of the frame directly on the soil, keeping the saffron field in the background but without any human presence. Enlarge the product group from 12% to 13-27% of frame width.",
+      "correction_prompt": "Regenerate the image with saffron crocus flowers instead of tulips and replace the distant tractor with static irrigation hardware or a neutral farm backdrop.",
       "attempt": 3
     },
     {
-      "pass": true,
-      "score": 85,
-      "product_width_percent": 20,
-      "product_height_percent": 19,
-      "product_x_center_percent": 48,
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 19,
+      "product_height_percent": 27,
+      "product_x_center_percent": 33,
       "reasons": [
-        "The product is the correct wide, low cylindrical drip-tape roll."
+        "Crop contradiction: The image shows vibrant tulips (daisy-like flowers with leaves), which clearly contradicts the required saffron (crocus) topic.",
+        "Height violation: The visible height of the roll is approximately 27% of the frame height, exceeding the maximum 32% limit.",
+        "Product Staging: The roll is placed directly on soil in the center-bottom, but the surrounding crop context fails the hard reject rule for identifiable flora."
       ],
-      "correction_prompt": "",
+      "correction_prompt": "Regenerate with saffron crocus plants in the background instead of tulips; reduce the visible height of the drip-tape roll to be less than 25% of the frame height to meet the 32% maximum requirement while keeping the product off-center in the lower third.",
       "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 12,
+      "product_height_percent": 22,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "The visible diameter of the product roll is not approximately 1.5 to 1.9 times its visible height (the roll appears relatively flat/short, with a diameter roughly 1.1x its height).",
+        "The product width is slightly below the acceptable 13-27% range (estimated at ~12%).",
+        "The visible crop (tulips) does not clearly contradict saffron, but the overall farm context leans heavily toward spring flower farming rather than a neutral or saffron-specific setting.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate: Increase the product roll's diameter to be 1.5-1.9 times its height and slightly wider (15-20% of frame). Maintain the off-center, lower-third placement. Soften or remove the prominent tulips to better align with the 'saffron' topic context while keeping a neutral irrigation hardware story. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Hard reject: image contains multiple people (a kneeling figure on the right and a standing figure in the background).",
+        "Hard reject: image contains visible human body parts (arm, legs, face).",
+        "The crop shown (pink tulip-like flowers) is visually contradictory to the target topic 'saffron crocus' (Crocus sativus), which typically has purple flowers and lacks the specific leaf structure shown.",
+        "Strict instruction violation: presence of any person or silhouette requires hard rejection."
+      ],
+      "correction_prompt": "Remove all people and body parts from the scene. Replace the crop with saffron crocus (Crocus sativus), showing low-growing purple flowers and the characteristic lance-shaped leaves of autumn, while keeping the single white and blue drip-tape carton roll on the soil.",
+      "attempt": 6
     }
   ],
-  "approved_image": "میزان-برداشت-زعفران-در-هکتار-با-نوار-تیپ-جزئیات-فنی.webp"
+  "approved_image": null
 }

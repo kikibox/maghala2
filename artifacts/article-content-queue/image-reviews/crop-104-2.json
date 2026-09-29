@@ -1,0 +1,54 @@
+{
+  "id": "crop-104",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 20,
+      "product_x_center_percent": 72,
+      "reasons": [
+        "Human silhouette and body parts visible in the background (hard reject)",
+        "The crop shown has simple, broad leaves and does not match the required soybean morphology (trifoliate leaves)"
+      ],
+      "correction_prompt": "Remove all people and human silhouettes from the background. Replace the crop with young soybean plants that clearly exhibit trifoliate (three-leaflet) leaves.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 12,
+      "product_height_percent": 25,
+      "product_x_center_percent": 10,
+      "reasons": [
+        "The crop in the background is clearly a different species (cotton) and does not match the target crop (soybean).",
+        "The product is a tall, narrow drum rather than the required wide, low cylindrical drip-tape carton roll.",
+        "The product is centered too far to the left, not in the lower third as required.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with a low, wide drip-tape roll in the bottom-right, set in a field of clearly recognizable soybean seedlings (trifoliate leaves), ensuring the product takes up no more than 13% of the frame width. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 17,
+      "product_height_percent": 26,
+      "product_x_center_percent": 72,
+      "reasons": [
+        "Product is a single white cylindrical roll with AFP branding and required bottom-right watermark.",
+        "Crop context features visible young plants with trifoliate leaves and fuzzy branching stems, consistent with the soybean article crop.",
+        "Product dimensions are within acceptable practical estimates (13-27% width, <32% height).",
+        "Product is off-center on the lower third and naturally placed on soil.",
+        "Zero people or human body parts are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-سویا-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

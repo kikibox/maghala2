@@ -1,0 +1,80 @@
+{
+  "id": "crop-055",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 25,
+      "product_height_percent": 20,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject: There are two rolls visible in the image (one large, one smaller to the right), violating the 'exactly one roll' and 'second roll' constraints.",
+        "Hard reject: The product is not positioned in the lower third; it is centered vertically.",
+        "The product is not wide low cylindrical; it appears too tall relative to its diameter."
+      ],
+      "correction_prompt": "Regenerate to show exactly one wide, low cylindrical drip-tape roll in the lower third of the frame, positioned off-center on the soil. Remove the second roll. Ensure the roll height is low and the background is a farm context without people.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 25,
+      "product_height_percent": 22,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Presence of a person (man standing in the background) which is a hard reject trigger for zero people."
+      ],
+      "correction_prompt": "Regenerate the image without any people, workers, or human silhouettes. Ensure the background shows only the farm infrastructure (tractor/soil/crops) without human figures.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 22.5,
+      "product_height_percent": 27,
+      "product_x_center_percent": 27.5,
+      "reasons": [
+        "Visible human operator or silhouette inside the tractor cabin violates the zero-person/zero-silhouette constraint"
+      ],
+      "correction_prompt": "Regenerate to remove any human figures or silhouettes from the tractor cabin; maintain the drip tape roll on soil in the lower-left quadrant with the required bottom-right watermark.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 14,
+      "product_height_percent": 14,
+      "product_x_center_percent": 17,
+      "reasons": [
+        "The image contains a person (farmer) crouching in the center, which is a hard reject under the rule of zero people and zero human body parts.",
+        "The hand is clearly visible touching a small piece of the irrigation line.",
+        "The face and torso of the man are prominent and unmissable."
+      ],
+      "correction_prompt": "Remove the man and his crouching figure entirely. Keep the farm background and the soil texture. Position a single wide white-and-blue drip-tape carton roll on the soil in the lower third, off-center to the left or right, ensuring no people or silhouettes are present.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 19.5,
+      "product_height_percent": 21.5,
+      "product_x_center_percent": 34.5,
+      "reasons": [
+        "Product width and height are within acceptable ranges (13-27% and <=32%)",
+        "Product is off-center on the lower third",
+        "Product is naturally placed on soil",
+        "Required 'AFP | 09134922013' watermark is present in the bottom-right",
+        "No people or human body parts are visible",
+        "Unattended tractor is permitted as infrastructure",
+        "Visible crop plants appear to be consistent with the farm context"
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-شنبلیله-با-آبیاری-قطرهای-جزئیات-فنی.webp"
+}

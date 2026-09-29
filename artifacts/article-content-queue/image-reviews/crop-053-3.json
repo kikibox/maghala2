@@ -1,0 +1,58 @@
+{
+  "id": "crop-053",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 26,
+      "product_height_percent": 24,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Second package/roll visible",
+        "Third package/roll visible",
+        "Product staging is not a single roll",
+        "Contradicts 'exactly one' roll requirement"
+      ],
+      "correction_prompt": "Regenerate to show exactly one AFP drip-tape roll; remove all other rolls or packages; keep the single roll on soil with no people or extra commercial products.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 34,
+      "product_height_percent": 24,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Product width is approximately 34 percent of the frame, which exceeds the 27 percent hard reject limit and the 13-27 percent acceptable range",
+        "Product is centered on the horizontal axis (x-center at 49 percent) instead of being off-center on the lower third",
+        "Background contains identifiable crop rows of plants, which is not preferred for Role 3 (hardware story) where crops should be absent or visually neutral",
+        "Product is placed on soil with crop plants, which is not the optimal 'hardware story' context for Role 3",
+        "machine-enforced bounding-box check failed: Reduce the product group from 34% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the drip-tape roll significantly smaller (width approx 20% of frame) and positioned off-center on the left or right. The background should feature irrigation infrastructure (such as a manifold, filter, or pump) on bare soil, with no visible crop plants, to better match the Role 3 hardware story. Reduce the product group from 34% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 18,
+      "product_height_percent": 14,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The product is a white-and-blue cylindrical drip-tape carton roll positioned off-center on the lower third of the frame.",
+        "The visible diameter of the roll (approx. 18%) is roughly 1.3 times its visible height (approx. 14%), fitting within the acceptable hardware-staging range for a wide, low carton.",
+        "Zero people, human body parts, or human silhouettes are visible in the scene.",
+        "Unattended irrigation hardware (filter, connector) is present but correctly classified as infrastructure rather than extra commercial products.",
+        "The image contains no rejected objects such as bottles, jars, or cans.",
+        "The required watermark 'AFP | 09134922013' is clearly visible in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-تره-با-آبیاری-قطرهای-جزئیات-فنی.webp"
+}

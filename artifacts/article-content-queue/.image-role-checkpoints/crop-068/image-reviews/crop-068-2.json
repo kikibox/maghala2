@@ -92,6 +92,85 @@
       ],
       "correction_prompt": "Regenerate the image with the drip-tape roll lying flat and horizontal on the soil (wide low cylindrical shape). Ensure the visible diameter is roughly 1.75x the visible height and move the product to the lower right third (off-center).",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 30,
+      "product_height_percent": 25,
+      "product_x_center_percent": 60,
+      "reasons": [
+        "Multiple packages: The image contains two distinct drip-tape rolls (one large, one small), which violates the 'exactly one' requirement and the 'second roll' hard reject rule.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to include exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll, removing the second smaller roll. Ensure the single roll is off-center in the lower third on the soil, with the background farm context and AFP watermark preserved. Reduce the product group from 30% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 24,
+      "product_height_percent": 35,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Product height exceeds the maximum 32% constraint (estimated at ~35%).",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Lower the drip-tape roll closer to the ground and widen the frame slightly to ensure the product height is less than 32% of the image, keeping the roll visible but secondary. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: A human figure (farmer/worker) and body parts are clearly visible in the right half of the image."
+      ],
+      "correction_prompt": "Regenerate the image completely excluding any human beings, farmers, or body parts. Show only the white-and-blue AFP drip-tape roll placed naturally on the soil, with the young crops in the background and the required watermark in the bottom right corner.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 28,
+      "product_height_percent": 25,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Product width is approximately 28% of the frame width, which exceeds the maximum acceptable limit of 27% defined in the hard rejection criteria.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Shrink the visual scale of the drip tape roll so its width occupies less than 25% of the total image width, keeping it naturally grounded on the soil in the lower third. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 21,
+      "product_height_percent": 22,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: Image contains a person (farmer) and human body parts (head, hands, legs, torso) which are explicitly forbidden.",
+        "The product is not a wide cylindrical drip-tape carton roll; it appears as a small vertical canister or box, failing the required 'low cylindrical' geometry.",
+        "The product is not an AFP white-and-blue wide low cylindrical drip-tape carton roll; it is a white box with a logo."
+      ],
+      "correction_prompt": "Regenerate image to show a single white and blue AFP wide cylindrical drip-tape carton roll placed on the soil in the foreground (lower third, left or right). Remove the person entirely. The background must show a corn field (based on typical crop for this context) with no other commercial products or containers.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 24,
+      "product_height_percent": 27,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: The product shown is a flat-wound white roll (resembling a toilet paper roll or lay-flat hose) with a wide central opening, not the tight cylindrical drip-tape roll mandated by the prompt.",
+        "Hard reject: The roll shape does not meet the 'wide low cylindrical' geometry requirement; it is too tall and narrow for the specified ratio.",
+        "Hard reject: The crop shown is corn (maize), which does not match the prompt's likely intent (or 'exact named crop' if implied as something else like tomatoes/cucumbers, though even for corn, the product form is the primary disqualifier)."
+      ],
+      "correction_prompt": "Replace the flat-wound roll with a tight, wide, low cylindrical drip-tape roll (white/blue) that is lying naturally on the soil. Ensure the crop in the background matches the specific article topic. Remove any central opening appearance typical of tissue rolls.",
+      "attempt": 6
     }
   ],
   "approved_image": null

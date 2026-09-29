@@ -1,0 +1,54 @@
+{
+  "id": "crop-056",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 24,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: The image contains two prominent people (farmers/inspectors) in the foreground, which is a critical failure. The instructions explicitly state 'zero people and zero human body parts' and to 'Hard reject any person... even distant'.",
+        "Product geometry: The product roll is positioned too high in the frame, appearing at the mid-height rather than strictly in the lower third as required.",
+        "Placement: The product is centrally located (x_center 48%), whereas it must be off-center."
+      ],
+      "correction_prompt": "Regenerate the image with ZERO people or human body parts visible. Remove the two men entirely. The scene must be empty of humans. Reposition the white and blue AFP drip-tape roll so it is off-center and located specifically in the bottom third of the image, resting naturally on the soil between the rows of saffron crocus plants.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 74,
+      "product_width_percent": 16,
+      "product_height_percent": 24,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Crop morphology mismatch: The flowers are large and cup-shaped, resembling common spring crocuses (e.g., C. vernus) rather than Saffron Crocus (C. sativus), which has smaller, typically 6-petaled flowers.",
+        "Product centered: The roll is centered horizontally at 47%, violating the 'off-center on the lower third' placement requirement."
+      ],
+      "correction_prompt": "Redraw the crop as Saffron Crocus with narrow grass-like leaves and sparse small purple flowers; move the white-and-blue drip-tape roll to the lower right (off-center) on the soil.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 62,
+      "reasons": [
+        "Exactly one AFP white-and-blue cylindrical drip-tape roll is present and placed on the soil.",
+        "Background features saffron crocus (purple flowers, grass-like leaves) matching the specific article context.",
+        "Product is off-center on the lower third, maintaining a secondary visual position.",
+        "Bounding box dimensions (width ~18%, height ~22%) fall within the 13-27% width and <32% height acceptance thresholds.",
+        "Required bottom-right watermark 'AFP | 09134922013' is clearly visible.",
+        "Zero people, body parts, or disallowed packaging materials are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "نگهداری-زعفران-با-نوار-تیپ-نکات-کلیدی-تصویر-شاخص.webp"
+}

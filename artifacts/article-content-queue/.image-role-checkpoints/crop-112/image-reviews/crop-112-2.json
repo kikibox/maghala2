@@ -3,136 +3,82 @@
   "kind": 2,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 20,
-      "product_width_percent": 14,
-      "product_height_percent": 12,
-      "product_x_center_percent": 32,
-      "reasons": [
-        "Hard reject: The image contains a human (farmer) with clearly visible hands, arms, legs, and body parts.",
-        "The presence of a person violates the strict 'zero people' and 'zero human body parts' requirement."
-      ],
-      "correction_prompt": "Regenerate the image strictly removing all humans, workers, and body parts. Keep the AFP white-and-blue drip-tape roll and the coriander farm context.",
-      "attempt": 1
-    },
-    {
-      "pass": false,
-      "score": 55,
-      "product_width_percent": 20.5,
-      "product_height_percent": 31.0,
-      "product_x_center_percent": 34.0,
-      "reasons": [
-        "Crop in the foreground is clearly identifiable as a different species (broad leaves, not finely divided feathery coriander leaves)",
-        "The crop is unacceptably prominent (taller than the product roll), competing for focus and reducing product secondary positioning",
-        "Product height is near the hard limit (31%), making the roll feel oversized relative to the frame"
-      ],
-      "correction_prompt": "Replace the central plant with very small, neutral, unidentifiable seedlings (tiny green shoots, not distinct broad leaves). Keep the white-and-blue AFP drip-tape roll at the same off-center lower-third position on soil, but ensure the roll is clearly secondary. Maintain the farm row context, the background farm buildings, and the exact bottom-right watermark 'AFP | 09134922013'.",
-      "attempt": 2
-    },
-    {
-      "pass": false,
       "score": 0,
-      "review_unavailable": true,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 52,
       "reasons": [
-        "article_image_review unavailable after 4 retries: HTTPError"
+        "Person is present",
+        "Contains identifiable human body parts including hands and face",
+        "Product is being actively handled by a person",
+        "Product appears small and secondary relative to the required minimum size",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
       ],
-      "correction_prompt": "Retry strict visual review of the preserved candidate without regenerating it.",
-      "attempt": 3
-    },
-    {
-      "pass": false,
-      "score": 35,
-      "product_width_percent": 18,
-      "product_height_percent": 26,
-      "product_x_center_percent": 38,
-      "reasons": [
-        "The prominent foreground plant in the center-right is clearly identifiable as a different species (resembling a sunflower or thistle seedling with broad, jagged leaves), rather than the finicky feathery coriander specified for the article. This constitutes a clear identifiable different species, triggering a hard reject.",
-        "The background contains crop rows of what appear to be maize (corn) seedlings (broad leaves), which is visually inconsistent with a coriander crop context."
-      ],
-      "correction_prompt": "Regenerate the foreground plant to match coriander with finely divided feathery leaves instead of the current broad-leafed plant. Change background crop rows from maize to a more neutral context or tiny unidentifiable coriander seedlings. Keep the roll off-center and the AFP watermark in the bottom right.",
-      "attempt": "checkpoint-review"
-    },
-    {
-      "pass": false,
-      "score": 45,
-      "product_width_percent": 14,
-      "product_height_percent": 25,
-      "product_x_center_percent": 65,
-      "reasons": [
-        "crop mismatch: the seedling shown has large, jagged leaves, but the required crop (coriander) must be recognizable via finely divided feathery leaves; this is a clear different-species rejection",
-        "the prominent central plant does not match the article's coriander story",
-        "product is off-center and on soil but the crop identification fails"
-      ],
-      "correction_prompt": "Replace the central jagged-leaf seedling with coriander (finely divided feathery leaves) at early stage; keep one white-and-blue AFP wide low cylindrical drip-tape carton roll in the lower-right third on soil; keep the AFP | 09134922013 watermark bottom-right; no people, no other products or containers.",
+      "correction_prompt": "Remove the person and human hands entirely. Show the white and blue drip-tape roll resting naturally on the soil next to the coriander seedlings, increasing its scale to approximately 20% of the frame width while maintaining the off-center placement. Enlarge the product group from 8% to 13-27% of frame width.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 68,
-      "product_width_percent": 19,
-      "product_height_percent": 24,
-      "product_x_center_percent": 65,
+      "score": 45,
+      "product_width_percent": 21,
+      "product_height_percent": 28,
+      "product_x_center_percent": 31,
       "reasons": [
-        "The background crops do not definitively match the specified article 'coriander'; they appear as generic seedlings with broad leaves rather than the required 'finely divided feathery' coriander morphology.",
-        "The crop in the immediate foreground is an indistinguishable broad-leaf seedling, which does not clearly support the 'coriander' agronomic story required for image role 2."
+        "The crop is clearly identifiable as a different species. The seedlings show broad, lobed leaves typical of cucurbits (like squash or cucumber), not the finely divided feathery leaves of coriander required for this role."
       ],
-      "correction_prompt": "Regenerate the farm background to show young coriander plants with distinctive finely divided, feathery leaves. Replace the foreground seedling with a coriander plant to reinforce the topic-specific crop context.",
+      "correction_prompt": "Regenerate the scene with coriander seedlings showing small, finely divided feathery leaves instead of the current broad-leafed plants.",
       "attempt": 2
     },
     {
       "pass": false,
-      "score": 35,
-      "product_width_percent": 18,
-      "product_height_percent": 19,
-      "product_x_center_percent": 38,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 10,
+      "product_x_center_percent": 50,
       "reasons": [
-        "A clearly identifiable different crop species (likely soybean or sunflower with broad lobed leaves) is shown instead of the required coriander (dill/anise type) which must have finely divided feathery leaves."
+        "Hard reject: Visible person (farmer/worker) in the image, including arms, hands, legs, and body.",
+        "Hard reject: The 'roll' in the center has a green plant growing directly out of it, which constitutes impossible geometry and is not the correct product form.",
+        "Crop mismatch: The seedlings in the image have broad, solid leaves (resembling sunflower or cucumber), which does not match the required 'finely divided feathery leaves' of coriander.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate image. CRITICAL: The crop is WRONG. Do NOT use broad lobed leaves (soybean/sunflower). The crop must be CORIANDER. The foliage MUST show finely divided feathery leaves (like dill or carrot leaves). Keep the crop as small seedlings to show the correct leaves. Keep the white AFP drip tape roll on the soil. Keep the 'AFP | 09134922013' watermark.",
+      "correction_prompt": "Regenerate image with absolutely no human figures. Show a close-up of one white and blue AFP drip-tape roll sitting on soil next to young coriander plants (feathery leaves). The roll must not have plants growing out of it. Place the roll off-center on the lower third of the image. Enlarge the product group from 12% to 13-27% of frame width.",
       "attempt": 3
     },
     {
       "pass": false,
-      "score": 45,
-      "product_width_percent": 23,
-      "product_height_percent": 26,
-      "product_x_center_percent": 28,
+      "score": 74,
+      "product_width_percent": 25,
+      "product_height_percent": 23,
+      "product_x_center_percent": 35,
       "reasons": [
-        "The central crop seedling clearly exhibits lobed, palmate leaf morphology characteristic of Cucurbitaceae (e.g., cucumbers, melons, or squash).",
-        "This visual evidence contradicts the required article crop of coriander, which must be recognizable by its finely divided, feathery leaves.",
-        "Hard reject triggered due to the presence of a clearly identifiable different species rather than the target coriander."
+        "The required specific crop article (coriander/گشنیز) is not recognizable in the frame. The surrounding plants exhibit broad, lobe-like leaves which are botanically distinct from the required 'finely divided feathery leaves' of coriander; thus it fails the article-specific story requirement.",
+        "The product packaging display appears to represent a solid roll of material (like film or tape) rather than a recognizable wide low cylindrical 'drip-tape' carton with visible tape threading or loops.",
+        "Minor gibberish/invented text artifacts are visible on the lower label section of the carton, which violates the text constraints."
       ],
-      "correction_prompt": "Replace the central seedling and background crop rows with young coriander plants, ensuring the leaves show a fine, feathery structure instead of broad, lobed foliage. Keep the AFP drip-tape roll and watermark exactly as they are.",
+      "correction_prompt": "Regenerate the crop rows to clearly show coriander seedlings with distinctly finely divided, feathery leaves. Ensure the product is a wide low cylindrical carton specifically containing drip-tape, and clean up the packaging label to remove unreadable gibberish text while keeping the AFP logo and watermark.",
       "attempt": 4
     },
     {
-      "pass": false,
-      "score": 75,
-      "product_width_percent": 25,
-      "product_height_percent": 28,
-      "product_x_center_percent": 33,
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 48,
       "reasons": [
-        "The foreground plant clearly displays broad, toothed leaves, strongly resembling a legume such as mung bean or cowpea. This constitutes a clearly identifiable species that is not coriander (which requires finely divided feathery leaves).",
-        "While the crop identification is the primary issue, the product bounding box is acceptable, with the width and height ratios matching the 'wide low cylindrical' description."
+        "Product is a wide, low cylindrical drip-tape carton roll, white and blue branding matches requirements.",
+        "Watermark 'AFP | 09134922013' is present in bottom-right corner as required.",
+        "Product width and height are within acceptable parameters (13-27% width, <32% height).",
+        "Product is placed naturally on soil, slightly off-center.",
+        "No people or human body parts are visible in the frame.",
+        "Farm context matches irrigation/tape theme, background shows crops and infrastructure consistent with topic."
       ],
-      "correction_prompt": "Regenerate the image with coriander seedlings featuring finely divided feathery leaves instead of the current broad-leaved legume. Retain the wide low cylindrical drip-tape carton roll in the same position on the soil and maintain the 'AFP | 09134922013' watermark in the bottom right.",
+      "correction_prompt": "",
       "attempt": 5
-    },
-    {
-      "pass": false,
-      "score": 68,
-      "product_width_percent": 24.0,
-      "product_height_percent": 31.0,
-      "product_x_center_percent": 33.0,
-      "reasons": [
-        "The crops in the image are broad-leaved and do not match the required description of coriander, which must have finely divided, feathery leaves. This constitutes a clearly identifiable different species, triggering a hard reject."
-      ],
-      "correction_prompt": "Replace the broad-leafed plants with rows of coriander seedlings showing fine, feathery, fern-like foliage to match the article topic. Keep the roll size and placement identical.",
-      "attempt": 6
     }
   ],
-  "approved_image": null
+  "approved_image": "راهنمای-جامع-کاشت-گشنیز-با-آبیاری-قطرهای-کاربرد-عملی.webp"
 }

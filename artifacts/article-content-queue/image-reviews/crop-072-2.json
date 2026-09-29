@@ -1,0 +1,71 @@
+{
+  "id": "crop-072",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 10,
+      "product_height_percent": 16,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Hard reject: Visible human body parts (hands, arms, and legs/boots) are present in the image.",
+        "Hard reject: The product is not the required 'wide low cylindrical drip-tape carton roll'; instead, it depicts a plant growing out of a small canister (prohibited object) and a person holding a different canister.",
+        "Hard reject: Presence of prohibited containers (canisters/buckets) and incorrect product geometry.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with zero people and zero body parts. Feature exactly one white and blue wide, low, cylindrical drip-tape roll carton placed off-center on the soil. Do not use canisters, buckets, or jars. The crop should be the exact named crop with botanically accurate morphology. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "The image displays a standard metal bucket/drum, which is a prohibited 'fertilizer or pesticide container' or 'extra commercial product'.",
+        "The background crop is indistinguishable green foliage, failing the requirement for the 'exact named crop from the article title' to be recognizable.",
+        "The drip tape roll in the foreground is not the wide, low cylindrical carton roll described in the topic (it appears as a small tape spool, likely too small relative to the 20-23% preferred width).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the metal bucket/drum. Generate a farm scene with clearly identifiable crop plants (e.g., leafy greens or specific row crops). Replace the small tape spool with a large, wide, white-and-blue cylindrical drip-tape carton roll that is the primary foreground object. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 18,
+      "product_height_percent": 12,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: Visible people (two individuals) in the image, which is explicitly prohibited.",
+        "Hard reject: The product consists of multiple rolls (one held in hand, one on the ground) rather than exactly one roll.",
+        "Layout violation: The product is associated with the people in the foreground center, rather than being naturally placed off-center on the lower third of the frame."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove all people and human silhouettes. The scene must feature exactly one white-and-blue wide low cylindrical drip-tape carton roll placed on the soil in a farm field. The roll should be positioned off-center on the lower third of the image, with a visible width between 20-23% of the frame and height under 32%. The background must be a family-farm vegetable field with visible crop rows and a distant barn, maintaining a botanical farm context.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 16,
+      "product_height_percent": 22,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Product matches the requested cylindrical drip-tape carton roll (white and blue color, 'AFP' branding visible).",
+        "Product size is well within acceptable limits (16% width, 22% height, secondary to the landscape).",
+        "Placement is correct: off-center, resting on the soil in the lower third.",
+        "Zero people or human body parts visible.",
+        "Watermark 'AFP | 09134922013' is present exactly as required.",
+        "Background context (field with rows and farm) matches the general agronomic story without conflicting species."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-گلرنگ-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

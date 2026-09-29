@@ -1,0 +1,57 @@
+{
+  "id": "crop-104",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 25,
+      "product_x_center_percent": 72,
+      "reasons": [
+        "Hard reject: Image contains two visible people (a man and a woman) with faces, hands, arms, legs, and bodies.",
+        "Hard reject: The crop visible in the foreground and background clearly resembles maize/corn, which contradicts the specified topic of soybean (سویا).",
+        "Hard reject: The product is not a roll of drip tape, but appears to be a white bucket or canister (which is explicitly forbidden).",
+        "Hard reject: The product geometry does not match the specified 'wide low cylindrical drip-tape carton roll' (diameter 1.5-1.9x height)."
+      ],
+      "correction_prompt": "Regenerate the image without any people or human body parts. Replace the bucket/canister with exactly one white and blue wide low cylindrical drip tape carton roll placed naturally on the soil. The product must be off-center on the lower third and occupy roughly 15-20% of the frame width. The crop plants must clearly be soybeans, or the crop should be visually neutral/absent. Ensure the 'AFP | 09134922013' watermark is present in the bottom right.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 24,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: presence of a person (farmer/worker) in the background. The image contains a human figure which is a strict violation.",
+        "Hard reject: presence of an animal (cow/bull) in the background, which generally detracts from the specific hardware topic focus.",
+        "Watermark text error: The required bottom-right watermark is 'AFP | 09134922013', but the image displays 'AFP | 09134922013' with a distinct black box background which is not part of the standard transparent overlay description, though the text itself is present. The primary failure is the human presence."
+      ],
+      "correction_prompt": "Regenerate the image to strictly remove all people and human silhouettes. Remove the animal. Keep the white and blue AFP drip tape roll on the soil in the lower-left, with soybean plants on the right, ensuring the roll is secondary in size (approx 20% width) and the background is a natural farm setting without any human figures.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 96,
+      "product_width_percent": 20,
+      "product_height_percent": 27,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product is a white and blue wide low cylindrical drip-tape roll placed naturally on the soil in the lower left quadrant.",
+        "Product dimensions are within the preferred and acceptable ranges, maintaining a good aspect ratio.",
+        "No identifiable crop (soybean) is present, so the morphology rule for a 'close view' does not apply for a hard reject.",
+        "Zero people or human silhouettes are visible.",
+        "The required watermark 'AFP | 09134922013' is correctly displayed in the bottom-right corner.",
+        "Farm context with a barn matches the city/family tape topic.",
+        "The crop visible is neutral and does not contradict the soybean requirement."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-سویا-با-آبیاری-قطرهای-جزئیات-فنی.webp"
+}
