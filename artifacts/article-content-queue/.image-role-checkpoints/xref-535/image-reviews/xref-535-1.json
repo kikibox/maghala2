@@ -1,0 +1,53 @@
+{
+  "id": "xref-535",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Image contains a person (farmer) which is a hard reject criteria.",
+        "Product is too small and positioned extremely low in the frame.",
+        "Product does not meet minimum width requirements (must be 13-27% of frame).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove the farmer. Keep the field context. Increase the size of the white and blue drip-tape carton so its width is approximately 15 to 20 percent of the image width. Place the carton on the soil in the lower third of the frame, slightly off-center. Ensure the background crop is clearly recognizable as triticale. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 22,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The crop in the background clearly exhibits long, distinct awns (bristles) on the seed heads, which is a characteristic morphology of barley (Hordeum vulgare) rather than triticale, which typically has smooth or very short-awned heads. This fails the requirement for the specific agronomic story of triticale."
+      ],
+      "correction_prompt": "Change the background crop from barley to mature triticale, ensuring the seed heads appear smooth and blunt without long awns, while maintaining the existing product position and lighting.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 21,
+      "product_height_percent": 23,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Visible AFP white-and-blue drip-tape carton roll with correct proportions, off-center lower-left staging, and placed naturally on soil/straw.",
+        "Required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "Zero people or human body parts are visible.",
+        "Background contains golden cereal-grain panicles and a red barn, which aligns with the broad grain-farming context without being a clearly identifiable different species hard-reject.",
+        "Product width and height percentages fall within acceptable bounds (13–27% width, ≤32% height)."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-تریتیکاله-مزایا-تصویر-شاخص.webp"
+}

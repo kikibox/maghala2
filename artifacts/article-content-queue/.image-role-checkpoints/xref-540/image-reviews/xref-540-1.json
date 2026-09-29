@@ -1,0 +1,92 @@
+{
+  "id": "xref-540",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 12,
+      "product_height_percent": 13,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: A person (farmer) is visible in the image.",
+        "Hard reject: Human body parts (face, hands, legs) are visible.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any people or human body parts. Ensure the drip tape roll is a white-and-blue AFP carton, off-center on the lower third, and placed on soil in a field with sesame crops. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 58,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "The crop shown in the foreground is clearly identifiable as wheat (or a similar grass/cereal species), which violates the requirement to feature sesame (upright stems with narrow lance-shaped leaves and elongated seed capsules).",
+        "Because the specific article crop (sesame) is missing and replaced by a clearly identifiable different species, the image fails the topic-specific farm context requirement."
+      ],
+      "correction_prompt": "Regenerate the image to clearly show young sesame (کنجد) plants with their specific narrow leaves and upright stems instead of wheat. Keep the AFP drip-tape roll in the lower-left position with the required width, height, and watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 17,
+      "reasons": [
+        "The crop depicted in the image is clearly wheat (a cereal grain with spike heads), which conflicts with the required 'sesame' (کُنجد) context.",
+        "Sesame is defined in the role description by 'narrow lance-shaped leaves and elongated seed capsules,' neither of which are present in this wheat field.",
+        "Since the crop is a clearly identifiable different species, this triggers a hard reject based on the agronomic accuracy rules."
+      ],
+      "correction_prompt": "Replace the wheat field with a sesame crop field showing narrow lance-shaped leaves and upright stems. Keep the white AFP drip-tape roll on the lower-left and the exact bottom-right phone number watermark.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 20,
+      "product_height_percent": 17,
+      "product_x_center_percent": 18,
+      "reasons": [
+        "The background crop (likely wheat or barley) is clearly identifiable as a different species from the required article crop, sesame (کنجد).",
+        "Sesame stems are upright with narrow lance-shaped leaves and elongated seed capsules, which are not visible in the image; the background is a dense field of wide-leaved cereal.",
+        "The prompt requires the article crop to be recognizable or at least not a clearly identifiable different species; this image violates the hard reject rule for the wrong crop species."
+      ],
+      "correction_prompt": "Regenerate the image showing exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll placed off-center on the lower left third. The background must show a sesame field with identifiable upright sesame stems, narrow lance-shaped leaves, and elongated seed capsules. The crop must not be wheat, barley, or a generic cereal. Ensure the background vegetation is botanically consistent with sesame or a neutral prepared bed with very young, unidentifiable seedlings if mature morphology is not visible, but avoid clearly identifiable different species like wheat.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 22,
+      "product_height_percent": 35,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "The crop shown is clearly wheat or barley (note the spike panicle), which is a hard reject because it is a clearly identifiable different species from the required article crop, sesame (کنجد).",
+        "The product is partially cropped at the bottom of the frame, violating the requirement that it be 'naturally placed on soil' in a complete manner.",
+        "The roll's height exceeds the 32% maximum limit when accounting for the cropped section.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with a sesame field (showing narrow lance-shaped leaves and elongated seed capsules, or tiny unidentifiable seedlings) instead of wheat. Ensure the white and blue AFP drip-tape roll is fully visible on the soil in the lower-left third, with a height of less than 32% of the frame. Maintain the 'AFP | 09134922013' watermark in the bottom-right corner. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 22,
+      "product_height_percent": 26,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The visible crop in the foreground strongly resembles a grass, cereal, or maize seedling due to the long, arching, blade-like leaves. This morphology is not characteristic of sesame, which has broader, lance-shaped leaves on upright stems, failing the article-specific crop requirement."
+      ],
+      "correction_prompt": "Regenerate the image to replace the grassy foreground crop with clearly identifiable young sesame plants, featuring upright stems and broader, distinct lance-shaped leaves. Keep the white and blue AFP drip-tape roll exactly as positioned.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

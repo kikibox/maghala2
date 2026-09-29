@@ -1,0 +1,93 @@
+{
+  "id": "xref-535",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: The image contains a visible person (male farmer/worker) with head, hands, and legs.",
+        "Hard reject: The presence of human body parts and a face in the frame explicitly violates the requirement for zero people."
+      ],
+      "correction_prompt": "Remove the person entirely. Place a white-and-blue AFP drip-tape roll on the soil in a farm context. Ensure no human silhouettes, hands, or faces are visible.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 23,
+      "product_height_percent": 33,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "The product is centered horizontally in the frame (x_center 47%) instead of being off-center on the lower third.",
+        "The product height slightly exceeds the 32% limit.",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Move the carton roll to the right or left side to create an off-center composition, and reduce its height by 10% to fit within the 32% limit while maintaining the farm background. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Presence of a prominent human figure (farmer) and visible hands/arms.",
+        "Hard reject due to people or body parts."
+      ],
+      "correction_prompt": "Regenerate the image without any people or human body parts, focusing only on the hardware and soil context.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 22,
+      "product_height_percent": 20,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Hard reject: A person is present in the image (farmer crouching next to the roll).",
+        "The rule 'zero people and zero human body parts' was violated.",
+        "The presence of a human figure is not allowed under any circumstances, even in a secondary position."
+      ],
+      "correction_prompt": "Regenerate the image without the person. Keep the drip tape roll on the soil, maintaining the same dimensions and position. Ensure no human figures or body parts are visible.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 19,
+      "product_height_percent": 27,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: Human presence. The image contains a clear view of a person (male farmer/installer) including face, torso, arms, and legs.",
+        "Hard reject: Human body parts. Multiple hands and feet are visible."
+      ],
+      "correction_prompt": "Regenerate the image strictly excluding any people or human body parts. Ensure the irrigation tape roll is displayed on the farm soil with no workers present. Maintain the 'AFP | 09134922013' watermark.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 88,
+      "product_width_percent": 35,
+      "product_height_percent": 35,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Product is off-center (bottom-right quadrant) and placed naturally on soil.",
+        "Zero people or human body parts present.",
+        "Hardware-only context appropriate for Role 3.",
+        "AFP watermark is present and correctly formatted.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 13-27% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the product group from 35% to 13-27% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

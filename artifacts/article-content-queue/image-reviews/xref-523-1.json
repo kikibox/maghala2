@@ -1,0 +1,52 @@
+{
+  "id": "xref-523",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 18,
+      "product_height_percent": 16,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The product bounding box is centered on the lower third (x_center approx. 50% instead of off-center <40% or >60%).",
+        "The crop appears to be maize/corn rather than melon (khurboozeh), but the generic field context is neutral enough not to trigger a hard reject for species."
+      ],
+      "correction_prompt": "Move the product off-center to the lower left or lower third of the frame; do not center the roll in the image.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 19,
+      "product_height_percent": 18,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "The central plant and crop rows clearly resemble okra (broad, palmate leaves) or young sunflowers, which are hard rejects as they are clearly identifiable different species to the required melon (خربزه).",
+        "The product does not exhibit the wide, low cylindrical geometry required (2.0-2.5cm diameter to height ratio); it appears too vertical, resembling a standard tall roll."
+      ],
+      "correction_prompt": "Regenerate the image using a crop with botanically accurate flat melon (خربزه) leaves or a neutral prepared soil bed. Change the product shape to a distinct wide, low cylindrical roll where the diameter is approximately 1.5 to 1.9 times its height, and ensure the roll is placed on the lower-left third.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 21.5,
+      "product_height_percent": 24.0,
+      "product_x_center_percent": 27.0,
+      "reasons": [
+        "Image contains exactly one AFP white and blue drip-tape carton roll placed on soil in a farm context.",
+        "Watermark AFP | 09134922013 is clearly visible in the bottom right as required.",
+        "The product is located off-center in the lower-left third of the frame, which is acceptable.",
+        "The surrounding green crop is consistent with the young growth stage of melon, and no clearly different species are identifiable.",
+        "Zero people or human body parts are present in the scene."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-زیرسطحی-در-کشت-خربزه-مزایا-تصویر-شاخص.webp"
+}

@@ -1,0 +1,54 @@
+{
+  "id": "xref-533",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 40,
+      "product_height_percent": 35,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Hard reject: Presence of a second roll (the spool in the lower right corner), violating the 'exactly one roll' constraint.",
+        "Hard reject: Product width (~40%) exceeds the 27% maximum limit and is centered.",
+        "Hard reject: Missing the required exact bottom-right watermark text 'AFP | 09134922013' (only the phone number is visible).",
+        "machine-enforced bounding-box check failed: Reduce the product group from 40% to 13-27% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the extra spool/roll from the bottom-right. Shrink the main roll width to approximately 20% of the frame and move it to the left (off-center). Ensure the full text 'AFP | 09134922013' appears in the bottom right. Ensure no people are present. Reduce the product group from 40% to 13-27% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: The image contains two visible people (farmers/workers) sitting in the crop, violating the strict requirement for zero people or human body parts.",
+        "The crop shown is a low-growing leafy green, but the image fails entirely due to the presence of humans which disqualifies it regardless of crop specificity."
+      ],
+      "correction_prompt": "Remove both people from the image completely. Keep only the crop field, the background barn, and the AFP product roll placed on the soil in the foreground.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 86,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "The product is correctly placed in the lower third and is off-center.",
+        "The 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "The image shows a white and blue roll consistent with a drip-tape carton, placed naturally on the soil.",
+        "There are no people or human body parts visible in the frame.",
+        "The background shows crop rows and a farm setting, fitting the spinach article context."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-اسفناج-راهنمای-جامع-تصویر-شاخص.webp"
+}
