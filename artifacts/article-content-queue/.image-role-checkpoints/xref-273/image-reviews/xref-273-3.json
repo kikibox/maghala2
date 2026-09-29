@@ -1,0 +1,69 @@
+{
+  "id": "xref-273",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Hard reject: Human body parts (arm, hand, and leg) are clearly visible in the right portion of the image.",
+        "Presence of a person or human silhouette is strictly prohibited for this image role."
+      ],
+      "correction_prompt": "Regenerate the image removing all people and human body parts; maintain the unattended drip-tape roll and hardware in the farm context.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 32,
+      "product_height_percent": 24,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Presence of a second package (the smaller white roll with black label to the right) is a hard reject for extra commercial products.",
+        "The main white roll is too wide, estimated at ~32% of the frame, exceeding the strict 27% upper limit.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the second smaller roll on the right so only one wide white AFP roll is visible. Reduce the scale of the main roll to be strictly under 30% of the frame width. Reduce the product group from 32% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 20,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Hard reject: Image contains a person, farmer, face, hands, arms, and legs, which is explicitly forbidden by the rules.",
+        "Product is being touched by a human hand, violating the 'zero people' and 'naturally placed' constraints."
+      ],
+      "correction_prompt": "Regenerate the image showing a single AFP white and blue wide low cylindrical drip-tape carton roll on the soil in a farm context. Remove all people and human body parts completely. The product should be secondary to the scene, off-center in the lower third, and placed naturally on the soil without any interaction from a person. Include the exact bottom-right watermark 'AFP | 09134922013'.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 25,
+      "product_height_percent": 19,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Product is an AFP white-and-blue wide low cylindrical drip-tape roll placed on soil.",
+        "No people, body parts, or human silhouettes are visible.",
+        "Product is off-center in the lower third (estimated x_center ~43%).",
+        "Estimated width (25%) falls within the acceptable 13-27% practical range.",
+        "Estimated height (19%) is well below the 32% maximum limit.",
+        "Visible diameter (~25%) to height (~19%) ratio is ~1.3, which is slightly below the 1.5-1.9 ideal but acceptable given the off-axis perspective.",
+        "Background matches the farm context with tilled soil and crop rows; identifiable crop morphology is not clearly contradictory to maize (likely generic seedlings), and close view rules apply.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-یونجه-مقایسه-جزئیات-فنی.webp"
+}

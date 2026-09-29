@@ -1,0 +1,80 @@
+{
+  "id": "xref-279",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 75,
+      "product_width_percent": 16,
+      "product_height_percent": 22,
+      "product_x_center_percent": 67,
+      "reasons": [
+        "A second, detached product (a white drip-line connector/fertigation injector device with 'AFP' print) is visible next to the roll. The instructions explicitly state to 'Hard reject... second package, second roll, extra commercial product' and that only 'ordinary fixed irrigation hardware' is allowed, which this detached accessory is not."
+      ],
+      "correction_prompt": "Remove the detached white connector/injector device lying next to the drip tape roll; ensure only the single AFP white-and-blue drip-tape carton roll is present.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The product is centered (x=48%), violating the requirement to be off-center on the lower third.",
+        "Diameter/height ratio is ~0.8 (width < height), failing the 1.5-1.9x cylindrical roll requirement."
+      ],
+      "correction_prompt": "Place the white and blue drip tape roll on the left lower third of the frame (off-center) with a wide cylindrical shape (diameter significantly larger than height, ~1.7x ratio). Keep the leek context and AFP watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 14,
+      "product_height_percent": 43,
+      "product_x_center_percent": 17,
+      "reasons": [
+        "Product height exceeds the maximum threshold of 32% of the frame height",
+        "Product aspect ratio (diameter/height) is approximately 1:1, falling below the required 1.5:1 to 1.9:1 ratio for a wide cylindrical carton roll",
+        "machine-enforced bounding-box check failed: Reduce product height from 43% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with the drip-tape roll positioned as a very wide, flat cylinder (aspect ratio approx 1.8:1) located in the lower-left corner. The roll's height must be restricted to 25-30% of the total frame height to maintain proper perspective and meet size constraints. Reduce product height from 43% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 16,
+      "product_height_percent": 14,
+      "product_x_center_percent": 20,
+      "reasons": [
+        "Hard reject: The image contains visible human body parts (hands, arms, legs, shoes) and a person, violating the zero people/human body parts rule.",
+        "The product is shown as a small standing roll rather than a 'wide low cylindrical' carton roll that matches the specified geometry (diameter roughly 1.5-1.9 times height).",
+        "The background context shows a person actively installing the drip tape, which is not a neutral farm context and fails the 'zero human silhouette' requirement."
+      ],
+      "correction_prompt": "Regenerate the image to remove all people and human body parts completely. Show a wide, low cylindrical white-and-blue drip tape carton roll placed on the soil in the lower third. The roll should be approximately 1.5 to 1.9 times its height in diameter. Keep the leek crop in the foreground and the farm context, but ensure no human presence.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 19,
+      "product_height_percent": 28,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "The image features exactly one cylindrical drip-tape carton roll placed naturally on the soil.",
+        "The product color scheme (white and blue) and branding (AFP) match the requirements.",
+        "The crop in the foreground exhibits a leek-like growth habit (botanically accurate to the 'terah' article) with neutral young vegetation in the rows.",
+        "The bottom-right watermark 'AFP | 09134922013' is clearly visible and required.",
+        "The composition is clean with zero people, zero human body parts, and zero extra commercial products.",
+        "Product proportions are within the acceptable ranges: width is ~19% (13-27%), height is ~28% (<32%), and it is off-center in the lower third."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-تره-راهنمای-جامع-کاربرد-عملی.webp"
+}

@@ -1,0 +1,60 @@
+{
+  "id": "xref-272",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 54,
+      "reasons": [
+        "A person is visible, which is a hard reject.",
+        "The drip tape roll is being held by a human hand, violating the 'no human body parts' rule.",
+        "The product is held in the air rather than naturally placed on the soil.",
+        "The crop in the background appears to be tulips, which are clearly identifiable as a different species and are not neutral/unclear.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and hands from the image. Place the drip tape roll directly on the soil in the lower third. Replace the tulips with neutral prepared soil or sparse, unidentifiable young vegetation. Ensure the product is secondary to the crop context. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 19,
+      "product_height_percent": 16,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The crop shown is clearly identifiable as tulips (Tulipa sp.), not saffron (Crocus sativus).",
+        "Saffron crocus is defined as having narrow grass-like leaves and sparse purple flowers; tulips have broader leaves and large multi-colored (red/purple) blooms, which is a clearly identifiable different species.",
+        "The image violates the strict requirement that the crop be recognizable as saffron crocus."
+      ],
+      "correction_prompt": "Regenerate the image to show a saffron crocus farm with narrow, grass-like leaves and sparse purple flowers instead of tulips. Keep the white and blue AFP drip-tape roll in the lower-left foreground on the soil, maintaining the exact 'AFP | 09134922013' watermark in the bottom-right corner and ensuring zero people or human body parts are visible.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 19,
+      "product_height_percent": 24,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Successfully includes the required 'AFP | 09134922013' watermark in the bottom-right corner.",
+        "Product is an AFP white-and-blue cylindrical drip-tape roll.",
+        "The background (crocus/saffron farm with purple flowers and narrow grass-like leaves) accurately matches the specific crop context.",
+        "The crop is clearly identifiable as saffron crocus, showing the required morphological traits.",
+        "Product geometry is correct: diameter is approximately 1.5 to 1.9 times its height, and it is placed in the lower-left third rather than the center.",
+        "Product width is 19% of the frame, which falls within the acceptable 13-27% range while maintaining a secondary role to the background.",
+        "Product height is 24%, well below the 32% maximum limit.",
+        "Contains zero people or human body parts.",
+        "Product is naturally placed on the soil surface."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-چرخشی-در-کشت-زعفران-چالشها-کاربرد-عملی.webp"
+}

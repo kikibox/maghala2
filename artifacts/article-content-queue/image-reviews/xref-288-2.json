@@ -1,0 +1,60 @@
+{
+  "id": "xref-288",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 10,
+      "product_height_percent": 12,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Hard reject: Human presence (person crouching in the field)",
+        "Hard reject: Human body parts visible (head, torso, arms, hands, legs, boots)",
+        "Hard reject: Product type mismatch (product is a filter, not a wide cylindrical drip-tape carton roll)",
+        "Hard reject: Product size too small (<13% of frame width)",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 11,
+      "product_height_percent": 20,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Presence of three prominent people (farmers) interacting with the crop and product.",
+        "Product height (20%) exceeds width (11%), violating the geometric requirement that the visible diameter should be 1.5 to 1.9 times its height.",
+        "Product is nearly centered rather than positioned in the lower third off-center.",
+        "Product is too small (11% width) to be the preferred focal point (20-23%).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people. Regenerate a close-up shot of a white and blue AFP wide drip-tape roll placed on the soil in a melon field. The roll should be wider than it is tall (approx 1.5:1 ratio) and positioned in the lower-left or lower-right off-center area, taking up about 20% of the frame width. No human body parts should be visible. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Product is a white and blue cylindrical roll with visible 'AFP' branding, consistent with the required drip-tape carton roll.",
+        "No people, farmers, workers, or human body parts are visible in the frame.",
+        "The product is placed off-center on the lower third of the image, sitting naturally on the soil.",
+        "The estimated product width (22%) and height (28%) fall within the acceptable 13-27% and <32% ranges.",
+        "The background shows young green crop rows that are botanically neutral, consistent with the article crop (melon) at an early growth stage.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "No hard reject elements such as second packages, buckets, or impossible geometry are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-زیرسطحی-در-کشت-خربزه-نکات-کلیدی-کاربرد-عملی.webp"
+}

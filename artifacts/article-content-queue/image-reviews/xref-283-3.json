@@ -1,0 +1,72 @@
+{
+  "id": "xref-283",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 45,
+      "product_height_percent": 32,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product bounding box width (~45%) significantly exceeds the hard limit of 27%.",
+        "Product is centered horizontally instead of being off-center on the lower third.",
+        "A crop (dandelion) is visible in the bottom-left inset/overlay, which is not required and creates visual clutter.",
+        "The image contains an inset overlay in the bottom-left, violating the requirement for a clean, natural context without fake/invented compositions.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the bottom-left inset overlay. Shrink the drip-tape roll significantly so it is under 20% of frame width and place it off-center on the lower third. Do not center the product. Reduce the product group from 45% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: Image contains a full-body human figure (farmer) crouching in the foreground, violating the zero-person rule.",
+        "Hard reject: A second package/roll of drip tape is visible in the person's hand, violating the 'exactly one roll' constraint.",
+        "The product is placed on dry soil rather than within a specific farm infrastructure context (e.g., near a manifold) that would typically be required for a hardware story without people."
+      ],
+      "correction_prompt": "Regenerate the image removing the human figure and the extra roll in hand. Show exactly one white and blue AFP drip tape roll resting on the soil in the lower third, off-center. The background should feature farm infrastructure like a manifold or unattended tractor, with no people present.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 52,
+      "product_width_percent": 19,
+      "product_height_percent": 36,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product height exceeds the maximum threshold of 32% of the frame.",
+        "Product is centered rather than being positioned off-center on the lower third.",
+        "The aspect ratio of the visible roll (width to height) is approximately 1.0 to 1.1, which falls short of the required 1.5 to 1.9 times visible height.",
+        "machine-enforced bounding-box check failed: Reduce product height from 36% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with the drip-tape roll positioned clearly to the left or right on the lower third. Make the roll visually wider and flatter (low profile) to ensure its diameter is roughly 1.5 to 1.9 times its height, and reduce its total vertical height so it does not exceed 32% of the frame height. Reduce product height from 36% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 91,
+      "product_width_percent": 21,
+      "product_height_percent": 28,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The single white and blue cylindrical drip-tape roll is clearly visible in a farm context on the soil.",
+        "The product is off-center on the lower left, meeting the staging requirements.",
+        "The width-to-height ratio is appropriate for the cylindrical shape.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom right.",
+        "No people or human body parts are visible in the image.",
+        "The background shows a farm setting with distant crops that do not contradict the clover topic in a hardware-focused story."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-در-کشت-شبدر-هزینه-در-مزرعه-جزئیات-فنی.webp"
+}

@@ -1,0 +1,58 @@
+{
+  "id": "xref-287",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 10,
+      "product_height_percent": 12,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Presence of two visible people (farmers/workers), which is a hard reject criterion.",
+        "Product is not placed off-center on the lower third; it is centered in the mid-foreground.",
+        "The product shape is a tall roll (likely a hose/spool) rather than the required wide, low, cylindrical drip-tape carton.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and body parts. Place a wide, low cylindrical white-and-blue drip-tape carton roll (diameter ~1.5x height) off-center on the lower third. The roll must be white with a blue label. The background should be a neutral melon farm field or seedling bed without any farmers or workers. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 26,
+      "product_height_percent": 34,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The image contains multiple visible people in the background, which is a hard reject criterion (zero people allowed).",
+        "The product's visible height exceeds the 32% limit (estimated at ~34% of the frame height).",
+        "The product is not wide enough to be considered 'wide' in the context of the roll's specific geometry.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes from the background. Reduce the vertical height of the drip-tape roll so it occupies no more than 32% of the frame height. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 22,
+      "product_height_percent": 18,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Zero people or body parts present.",
+        "Drip tape carton matches AFP white/blue wide low cylindrical description.",
+        "Product dimensions fall within acceptable width (13-27%) and height (<32%) limits.",
+        "Product is off-center in the lower third on soil.",
+        "Exact bottom-right watermark 'AFP | 09134922013' is present and legible.",
+        "Vegitation matches acceptable seedling stage for melon (botanically consistent with cucurbit seedlings).",
+        "Background matches farm context with irrigation layout evidence."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-خربزه-راهنمای-جامع-کاربرد-عملی.webp"
+}

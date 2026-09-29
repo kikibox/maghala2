@@ -1,0 +1,93 @@
+{
+  "id": "xref-272",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 7,
+      "product_height_percent": 8,
+      "product_x_center_percent": 63,
+      "reasons": [
+        "Contains a person/farmer (hard reject).",
+        "Contains visible human hands and face.",
+        "Product is not the requested wide cylindrical drip-tape carton roll; it is a small canister.",
+        "Product is off-center on the right instead of the left lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts. Replace the small canister with an AFP white-and-blue wide low cylindrical drip-tape carton roll. Place the roll off-center on the lower left third of the frame. The crop should be neutral soil or saffron crocus. Enlarge the product group from 7% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Crop morphology hard reject: The image features identifiable red and white tulips. Per strict QA rules, an identifiable crop that clearly contradicts the specified context (سفاfron/saffron crocus) triggers a hard reject, even if it's just a 'family tape' context.",
+        "Watermark format mismatch: The required specific text 'AFP | 09134922013' is not present; instead, the '091349' prefix is missing from the ID number in the visual badge.",
+        "Text gibberish: The product label contains unrecognizable, invented gibberish text ('Bing terquara Cera') instead of authentic, legible package print."
+      ],
+      "correction_prompt": "Regenerate with a background of saffron crocus fields or generic soil. Replace the tulips with saffron flowers. Fix the bottom-right watermark to read exactly 'AFP | 09134922013'. Make the text on the drip-tape roll clean, legible English technical data, removing the gibberish strings.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 27,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Identifiable crop (tulips) is present which contradicts the saffron crocus context"
+      ],
+      "correction_prompt": "Replace the tulips with soil and saffron-specific neutral elements, or remove crops entirely to maintain a hardware-focused close-up of the drip-tape.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 25,
+      "product_height_percent": 31,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "The image contains identifiable tulips, which clearly contradict the required saffron crocus crop context, violating the hard reject condition for contradicting crops."
+      ],
+      "correction_prompt": "Remove all tulips and replace them with small, neutral saffron crocus leaves in the soil to align with the required crop context without contradicting the article topic.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 54,
+      "reasons": [
+        "Hard reject: Human body parts visible (hands, arms, legs, and torso of a crouching person are clearly present in the frame).",
+        "Product is a cylindrical drum rather than the specified wide low 'drip-tape carton roll'.",
+        "Visible crop is tulips, which clearly contradicts the required topic of saffron crocus."
+      ],
+      "correction_prompt": "Regenerate image showing a wide, low white-and-blue drip tape carton roll on saffron crocus farm soil. No humans or body parts visible. Include the 'AFP | 09134922013' watermark in the bottom right.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 24,
+      "product_height_percent": 33,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Hard reject: The background shows identifiable crop plants (tulips) which clearly contradict the specified topic of saffron crocus.",
+        "Hard reject: The bottom-right watermark text is illegible gibberish ('AFP | 09134922013' is not clearly readable or formatted correctly), and the required exact string is not present.",
+        "Product height estimate is at the upper limit/maximum allowed (33% vs 32% cap), making the product composition less than ideal.",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a saffron farm context featuring crocus plants (not tulips). Ensure the bottom-right watermark exactly matches the required string 'AFP | 09134922013'. Ensure the tape roll height is strictly under 32% of the image height. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}
