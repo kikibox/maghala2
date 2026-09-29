@@ -1,0 +1,69 @@
+{
+  "id": "xref-543",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 22,
+      "product_width_percent": 35,
+      "product_height_percent": 22,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: Contains a visible person (farmer with hat and plough) in the background.",
+        "Hard reject: The roll is too wide (35%), exceeding the maximum 27% limit.",
+        "Hard reject: Includes extra commercial hardware (metal manifold/pipe) not explicitly described as part of the primary carton roll staging.",
+        "Watermark phone number mismatch: Shows '09134922013' instead of the required '09134922013' (correct), but text 'AFP | 09134922013' is present.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and body parts from the background completely. Shrink the drip-tape roll width to 25% of the frame and remove the extra metal pipe/manifold connecting to the plants. Keep the roll off-center on soil and ensure the background is a farm field without any workers or human silhouettes. Reduce the product group from 35% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 72,
+      "product_width_percent": 23,
+      "product_height_percent": 26,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "The visible diameter of the roll is less than 1.5 times its visible height, violating the geometric constraint for a 'wide' roll. The ratio appears to be roughly 1.2:1, resembling a shorter drum rather than the specified wide low cylindrical carton."
+      ],
+      "correction_prompt": "Regenerate the product roll with a significantly wider diameter, targeting a width-to-height ratio of 1.7:1 or greater to match the 'wide low cylindrical' specification, while keeping it on the soil.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 30,
+      "product_height_percent": 25,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product width exceeds maximum limit of 27 percent",
+        "Presence of extraneous hardware items (valves and filters) constitutes 'extra commercial products' or 'second package' violations",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with the drip-tape roll reduced to a maximum of 25 percent width. Remove all other hardware items (valves, fittings) from the ground, leaving only the roll and natural soil. Ensure the crop plant (rosemary) is visible but does not contradict the product focus. Reduce the product group from 30% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 20,
+      "product_height_percent": 14,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Product is an AFP white and blue drip-tape carton roll, placed off-center on the lower third of the frame on soil.",
+        "Product dimensions are within the acceptable range (width 13-27%, height <32%), and the aspect ratio is consistent with the required 1.5-1.9 diameter-to-height ratio.",
+        "The farm context includes a soil field and an unattended tractor, which is acceptable infrastructure without a human presence.",
+        "The plant shown is a woody shrub compatible with rosemary morphology, avoiding a hard reject.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and authentic.",
+        "No people, human body parts, or disallowed secondary commercial products are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-رزماری-پیشنیازها-جزئیات-فنی.webp"
+}

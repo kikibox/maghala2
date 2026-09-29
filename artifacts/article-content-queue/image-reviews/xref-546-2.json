@@ -1,0 +1,65 @@
+{
+  "id": "xref-546",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 13,
+      "product_height_percent": 15,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: presence of a person (worker) and human body parts (hands, legs, torso)."
+      ],
+      "correction_prompt": "Remove the farmer and all human body parts. Ensure the scene shows only the field, crops, and the drip tape roll without any human presence.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 24,
+      "product_height_percent": 22,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Image contains an extra commercial product: a second unrolled piece of drip tape lying on the soil (explicitly hard-rejected as a 'second roll/package').",
+        "Crop morphology mismatch: The leaves in the foreground are broad, ovate, and serrated (resembling basil or similar herb), which is a hard reject against the defined botanical profile for summer savory (marzaha), which requires narrow, elliptical to linear leaves."
+      ],
+      "correction_prompt": "Remove the unrolled drip tape strip on the soil; regenerate the foreground crop as summer savory (marzaha) with accurate narrow leaves and stems; retain the single rolled drip tape on the left and all other context.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 19,
+      "product_height_percent": 26,
+      "product_x_center_percent": 20,
+      "reasons": [
+        "Presence of a person (farmer) violates the 'zero people' rule",
+        "Human hands, arms, legs, and silhouette are clearly visible in the frame"
+      ],
+      "correction_prompt": "Remove the farmer and all human body parts. Regenerate the scene with only the drip-tape roll and summer savory seedlings in the farm context.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 16,
+      "product_height_percent": 15,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Product is the correct wide, low cylindrical drip-tape roll (white and blue AFP).",
+        "Product dimensions meet all specifications: width (16%) is within the 13-27% acceptable range, height (15%) is under the 32% limit, and the aspect ratio (~1.5) is correct.",
+        "Placement is off-center in the lower third on natural soil.",
+        "The watermark 'AFP | 09134922013' is present in the bottom-right corner as required.",
+        "Zero people or human body parts are visible in the frame.",
+        "The farm context (irrigation field) is appropriate for the topic. While the specific crop 'summer savory' is not explicitly identifiable in the seedlings, the neutral bed and tiny vegetation are permitted under the agronomic-story exception."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-مرزه-مزایا-کاربرد-عملی.webp"
+}

@@ -1,0 +1,69 @@
+{
+  "id": "xref-530",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: A person (farmer) is prominently featured in the image, violating the rule of zero people.",
+        "Hard reject: Human body parts (hands, face) are visible interacting with the product.",
+        "The product is being staged by a person, which disqualifies it from being 'naturally placed on soil'.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any people or human body parts. The white-and-blue cylindrical drip-tape roll must be placed alone on the soil bed in the farm context. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 26,
+      "product_height_percent": 20,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product is centered horizontally rather than off-center as required by the image role specifications.",
+        "Product width (26%) and height (20%) do not match the specified 1.5-1.9 diameter-to-height aspect ratio (ratio is 1.3)."
+      ],
+      "correction_prompt": "Regenerate image with the white-and-blue drip tape roll positioned clearly off-center on the lower third. Ensure the visible diameter of the roll is approximately 1.5 to 1.9 times its visible height to match the required wide low cylindrical shape. Keep the width between 20-23% of the frame.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 28,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Hard reject: Image contains two visible people (farmers/figures) in the background.",
+        "Background crop morphology (purple flowers) does not match the article title crop ('city'), suggesting a mismatch between context and topic."
+      ],
+      "correction_prompt": "Remove all people and figures from the scene. Regenerate the background crop to accurately reflect the 'city' context or align with a specific named crop. Keep the AFP white-and-blue drip-tape roll in the foreground.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The image shows exactly one wide, low cylindrical drip-tape carton roll with the correct white-and-blue AFP color scheme.",
+        "The product bounding box falls within acceptable limits: width is ~22% (within 13-27% acceptable range) and height is ~28% (below the 32% hard limit).",
+        "The roll is naturally placed on the soil and positioned on the lower third, off-center to the left (~30% horizontal).",
+        "The background shows a clearly defined field context, but uses a city skyline as requested by the 'city' tag; the vegetation is agronomically neutral (young seedlings in rows).",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and correct.",
+        "There are zero people or human body parts in the frame.",
+        "The product geometry is consistent and not impossible; no extra commercial products or piping issues."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-کدو-مقایسه-تصویر-شاخص.webp"
+}

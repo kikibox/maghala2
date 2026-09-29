@@ -1,0 +1,59 @@
+{
+  "id": "xref-542",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 11,
+      "product_height_percent": 14,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Two people (farmers/workers) are present in the image, which is a hard reject",
+        "The crop shown is corn/maize, not sorghum as required",
+        "The product appears to be a cylindrical canister or bucket, not a wide low drip-tape carton roll",
+        "Product height (14%) exceeds its width (11%), failing the 1.5-1.9 diameter-to-height ratio requirement",
+        "Product is centered rather than off-center on the lower third",
+        "Product staging appears unnatural with direct human interaction (holding/touching)",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people completely. Replace corn with botanically accurate sorghum crops. Replace the canister/bucket with exactly one wide, low, cylindrical drip-tape carton roll that is white and blue with AFP branding. Ensure the roll is positioned off-center on the lower third, resting naturally on soil, with width significantly larger than height (1.5-1.9 ratio), occupying 15-20% of frame width and less than 12% of frame height. Keep the AFP | 09134922013 watermark in bottom-right. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Clear reject: The crop shown in the background is clearly identifiable as corn (maize), evidenced by the characteristic ears with cobs and husks, not the required sorghum crop.",
+        "Product geometry fail: The object appears to be a cylindrical tub or drum rather than a wide cylindrical drip-tape carton roll with the required proportions.",
+        "Background mismatch: The image context does not match the required article crop of sorghum."
+      ],
+      "correction_prompt": "Regenerate the image showing a wide cylindrical drip-tape carton roll in a sorghum field. Replace the corn with mature sorghum (characterized by panicles of seed heads rather than ears/cobs). Ensure the carton roll has the correct white and blue design and is low/wide, not a tall drum.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The image features exactly one AFP white-and-blue drip-tape roll as requested.",
+        "The crop is correctly identified as sorghum (Sorghum bicolor), showing the characteristic panicles and growth habit of a maturing crop.",
+        "The product is positioned off-center on the lower third and placed naturally on the soil between crop rows.",
+        "The 'AFP | 09134922013' watermark is present in the bottom right corner.",
+        "The image contains no people, human body parts, or silhouettes.",
+        "The background farm context is consistent with the article's topic."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-در-کشت-سورگوم-هزینه-بهینه-کاربرد-عملی.webp"
+}

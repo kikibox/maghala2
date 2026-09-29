@@ -8,34 +8,31 @@
     {
       "pass": false,
       "score": 10,
-      "product_width_percent": 5,
-      "product_height_percent": 11,
-      "product_x_center_percent": 32,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 30,
       "reasons": [
-        "Hard reject: presence of 3 people (farmers/workers) with visible faces, hands, and bodies.",
-        "Hard reject: wrong product morphology; instead of a wide cylindrical roll, the image shows small vertical containers (jars/tubes) held by the workers.",
-        "Product size is severely out of range (width <13%, height >32% ratio issues).",
-        "Background crop is generic green rows, not specifically identifiable as summer savory (مرزه).",
-        "Zero people/human body parts requirement violated.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
+        "Hard reject: The image contains two people (a man and a woman), which violates the requirement for zero people and zero human body parts.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate the image with zero people. Replace the vertical containers with a single wide, low, cylindrical white-and-blue drip-tape roll placed off-center on the soil. The roll should be secondary in the frame (width ~20%). Show young summer savory plants (مرزه) in the background farm context. Keep the 'AFP | 09134922013' watermark in the bottom-right corner. Enlarge the product group from 5% to 13-27% of frame width.",
+      "correction_prompt": "Remove the man and woman entirely; replace the cornfield background with a leek crop field; ensure the AFP drip-tape roll remains the secondary focus in the lower third. Enlarge the product group from 12% to 13-27% of frame width.",
       "attempt": 1
     },
     {
       "pass": true,
-      "score": 85,
-      "product_width_percent": 23,
-      "product_height_percent": 28,
-      "product_x_center_percent": 39,
+      "score": 94,
+      "product_width_percent": 22,
+      "product_height_percent": 17,
+      "product_x_center_percent": 48,
       "reasons": [
-        "The image displays exactly one white-and-blue wide low cylindrical drip-tape carton roll placed naturally on the soil.",
-        "The product's visible diameter is approximately 1.5x to 1.9x its height, and it is positioned off-center on the lower third.",
-        "The background is a neutral farm context with a red barn and crop rows; the 'city' tag in the user prompt is likely a transcription error for 'clear' given the explicit description of 'topic-specific farm context' and the visible rural setting which includes a barn.",
-        "The article crop 'مرزه (summer savory)' is recognizable through the visible young herbaceous seedlings, which fits the botanically accurate leaves and stems for a harvest-stage check without requiring a fully mature bush.",
-        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
-        "There are zero people, human body parts, or human silhouettes in the frame.",
-        "No second packages, bottles, or extraneous commercial products are visible."
+        "Exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll is visible.",
+        "Product is naturally placed on the soil surface in a farm context.",
+        "Product width (~22%) and height (~17%) are within the acceptable limits.",
+        "Visible diameter ratio (aspect ~1.3x height) is structurally consistent with a wide drip-tape roll.",
+        "Product is positioned in the lower third of the frame.",
+        "No people or human body parts are present in the image.",
+        "Required bottom-right watermark 'AFP | 09134922013' is clearly present.",
+        "Background features crop rows consistent with a farm/agricultural context; no conflicting product types or impossible geometry detected."
       ],
       "correction_prompt": "",
       "attempt": 2

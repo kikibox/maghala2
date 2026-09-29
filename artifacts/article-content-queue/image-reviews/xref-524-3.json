@@ -1,0 +1,70 @@
+{
+  "id": "xref-524",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 10,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Presence of a crouching human figure (farmer) in the foreground, which is a hard reject condition (zero people allowed).",
+        "The visible drip tape roll appears too small relative to the frame (approx. 8% width), failing to meet the preferred 20-23% and minimum 13% width requirements for this role.",
+        "Product staging is not off-center on the lower third; the roll is placed on the soil but the human presence disrupts the composition requirements.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image strictly following the 'zero people' constraint: remove the human farmer completely. Show a close-up of a wide cylindrical drip-tape roll on the soil of a triticale field. The roll must occupy approximately 20% of the frame width, be wide/low, off-center, with the 'AFP' watermark in the bottom-right. Background must show crop rows but no human figures. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 75,
+      "product_width_percent": 24.0,
+      "product_height_percent": 28.0,
+      "product_x_center_percent": 45.0,
+      "reasons": [
+        "The AFP phone watermark in the bottom right reads 'AFP | 09134922013', but the text 'AFP' appears cut off/cropped at the bottom edge, failing the 'exact' requirement.",
+        "Product geometry is slightly off the lower third guideline (centered vertically at ~64% of the height, which is in the mid-60s rather than strictly the lower third).",
+        "Extra text gibberish/gibberish label text on the product face is barely legible."
+      ],
+      "correction_prompt": "Redraw the bottom right corner to ensure the text 'AFP | 09134922013' is fully visible and not cropped. Move the cylindrical roll slightly lower so it sits strictly in the bottom third of the image frame. Ensure the small text on the roll is clean and legible.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The product's visible diameter is approximately 1.2 times its height, which does not meet the 1.5 to 1.9 aspect ratio requirement.",
+        "The carton roll appears upright rather than laid down on the soil, failing the 'naturally placed on soil' constraint."
+      ],
+      "correction_prompt": "Regenerate the image showing the wide low cylindrical drip-tape carton roll lying flat on its side on the soil. Ensure the roll's visible diameter is approximately 1.5 to 1.9 times its thickness. Keep the roll off-center on the lower third of the frame.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 22.5,
+      "product_height_percent": 16.8,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Product is a single white-and-blue wide low cylindrical drip-tape carton roll",
+        "No people, faces, or human body parts are visible",
+        "Product is placed on soil in the lower half of the frame, off-center",
+        "Product width and height are within the acceptable 13-27% and <32% limits respectively",
+        "Background shows an agricultural context with a tractor and crop rows, consistent with an irrigation hardware story",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner",
+        "No hard rejects identified (no prohibited containers, second products, or impossible geometry)"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-گلخانهای-در-کشت-تریتیکاله-کاربردها-جزئیات-فنی.webp"
+}

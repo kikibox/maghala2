@@ -6,22 +6,88 @@
   "approved": true,
   "attempts": [
     {
-      "pass": true,
-      "score": 94,
-      "product_width_percent": 24.4,
-      "product_height_percent": 24.5,
-      "product_x_center_percent": 36.1,
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 9,
+      "product_height_percent": 13,
+      "product_x_center_percent": 48,
       "reasons": [
-        "Product is exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll.",
-        "Product width is 24.4%, within the preferred range of 20-23%.",
-        "Product height is 24.5%, well below the 32% limit.",
-        "The product is off-center on the lower third, naturally placed on soil.",
-        "The image contains zero people or human body parts.",
-        "The background matches the farm context with visible crop rows, a tractor, and a barn.",
-        "The required bottom-right watermark 'AFP | 09134922013' is present and correct."
+        "Hard reject: image contains a person, violating the 'zero people' and 'zero human body parts' requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people and zero human body parts. Show only one white-and-blue cylindrical drip-tape roll (20–23% of the frame width, ~1.5–1.9× its height) placed off-center on the lower third of the farm field soil. No hands, faces, silhouettes, or workers. Preserve the required bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25,
+      "product_height_percent": 18,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject due to the presence of human figures in the background: one person operating a tool on the left and one person standing next to a tractor on the right.",
+        "The watermark text in the bottom right corner reads '09134922013', which does not match the required 'AFP | 09134922013' specification."
+      ],
+      "correction_prompt": "Remove all people and human figures from the background. Correct the bottom-right watermark to 'AFP | 09134922013'.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 23.5,
+      "product_height_percent": 26.5,
+      "product_x_center_percent": 38.0,
+      "reasons": [
+        "The visible diameter of the roll is not approximately 1.5 to 1.9 times its visible height (aspect ratio is closer to 1:1 or 0.9:1).",
+        "The roll appears to be sitting on the flat top surface of the image rather than being naturally placed within the soil context on the ground level."
+      ],
+      "correction_prompt": "Regenerate the image to show the drip-tape roll with a wider aspect ratio (width roughly 1.5-1.9x height) and position it firmly on the dirt ground, not on the top edge of the frame.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 35,
+      "product_height_percent": 42,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product width is approximately 35% of the frame, which exceeds the 27% hard-reject threshold.",
+        "Product height is approximately 42% of the frame, which exceeds the 32% hard-reject threshold.",
+        "Product is centered horizontally rather than being off-center in the lower third as required.",
+        "The visible diameter-to-height ratio is inconsistent with the required 1.5-1.9 aspect for a wide, low roll, making the object appear too tall and vertical.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 13-27% of frame width.; Reduce product height from 42% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with the drip-tape roll much smaller and flatter, ensuring it is off-center on the lower left or right, strictly maintaining secondary size relative to the farm background. Reduce the product group from 35% to 13-27% of frame width. Reduce product height from 42% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 17,
+      "product_height_percent": 18,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer/man) and human body parts.",
+        "Product is not clearly identifiable as a 'wide low cylindrical drip-tape carton roll' as specified."
+      ],
+      "correction_prompt": "Regenerate the image to remove the person and all human silhouettes completely. Keep the background context (tractor, farm) but ensure the focus is on the hardware and the environment without any human presence.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 22,
+      "product_height_percent": 16,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "The product is a wide cylindrical drip-tape carton roll matching the white-and-blue requirements.",
+        "Product is off-center in the lower third on soil and remains secondary to the farm context.",
+        "Unattended tractor is permitted infrastructure and no people or body parts are visible.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "Ratio of diameter to height (~1.5) and frame dimensions fall within acceptable limits."
       ],
       "correction_prompt": "",
-      "attempt": 1
+      "attempt": 6
     }
   ],
   "approved_image": "آبیاری-رانشی-در-کشت-کاملینا-پیشنیازها-جزئیات-فنی.webp"

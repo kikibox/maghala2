@@ -1,0 +1,53 @@
+{
+  "id": "xref-541",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 25,
+      "product_height_percent": 12,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: The image contains a visible person (face, hands, and body parts), which strictly violates the zero-human requirement.",
+        "Hard reject: The product is not a white-and-blue wide low cylindrical drip-tape carton roll; it is an unrolled white flat strip with black holes and a small container, which conflicts with the required product shape and geometry."
+      ],
+      "correction_prompt": "Remove the person entirely and replace the unrolled strip with a wide low cylindrical white-and-blue drip-tape carton roll placed on the soil without hands or human silhouettes.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 25.0,
+      "product_height_percent": 38.0,
+      "product_x_center_percent": 38.0,
+      "reasons": [
+        "Product height exceeds the 32% limit (approx 38%)",
+        "Human silhouette visible in the background near the barn",
+        "Product is not off-center on the lower third (positioned too centrally)",
+        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the distant human silhouette. Reduce the product's height to under 32% of the frame. Shift the product bounding box further to the left or right to ensure it is clearly off-center. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 24.0,
+      "product_height_percent": 26.0,
+      "product_x_center_percent": 29.0,
+      "reasons": [
+        "Product geometry and placement are correct (off-center, lower third, on soil)",
+        "Watermark is correct",
+        "Zero people or body parts",
+        "Background matches farm context"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-سطوحی-در-کشت-پنبه-چالشها-جزئیات-فنی.webp"
+}

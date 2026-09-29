@@ -7,35 +7,84 @@
   "attempts": [
     {
       "pass": false,
-      "score": 10,
+      "score": 15,
       "product_width_percent": 18,
-      "product_height_percent": 19,
-      "product_x_center_percent": 32,
+      "product_height_percent": 10,
+      "product_x_center_percent": 45,
       "reasons": [
-        "Presence of two people (a woman and a man) in the foreground, which is a hard reject condition.",
-        "Human body parts (hands, legs, torsos) are clearly visible and interacting with the crop/plants.",
-        "Product height is approximately 19% of the frame (acceptable), but the primary violation is the human presence.",
-        "Product is off-center and on soil, which are positive, but cannot override the hard reject of people."
+        "Hard reject: Image contains a person (male farmer)."
       ],
-      "correction_prompt": "Remove both the man and woman from the foreground. Keep the white and blue AFP drip-tape roll on the soil on the left. Ensure the image contains zero human silhouettes or body parts.",
+      "correction_prompt": "Remove the person/farmer and show only the unattended irrigation hardware.",
       "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Crop plant is clearly not a leek, hard reject",
+        "The text on the carton appears to be gibberish",
+        "A second commercial package (hose spool) is visible in the background"
+      ],
+      "correction_prompt": "Remove the background hose spool and the crop plant. Use legible, authentic packaging text. Ensure the carton is placed on bare soil without identifiable leeks.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 26,
+      "product_height_percent": 28,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "Presence of a person and human body parts (face, hands, legs, boots) violates the strict 'zero people' requirement."
+      ],
+      "correction_prompt": "Regenerate the image with exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll placed on soil. Remove all people, human body parts, and silhouettes. Place the roll off-center on the lower third (left side) in a farm context. Add the exact bottom-right watermark \"AFP | 09134922013\".",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 28.5,
+      "product_height_percent": 29.0,
+      "product_x_center_percent": 30.5,
+      "reasons": [
+        "The width of the product exceeds the maximum allowable limit of 27 percent of the frame width.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28.5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image, ensuring the drip-tape roll's width is reduced to no more than 27 percent of the total frame width. Reduce the product group from 28.5% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 13,
+      "product_height_percent": 13,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Hard reject: multiple people and human body parts are clearly visible in the image, violating the zero-person requirement.",
+        "The product (drip-tape roll) is not placed on bare soil but rather in a tilled field with human interaction.",
+        "The presence of two distinct individuals compromises the 'hardware story' role 3 context, which mandates no human silhouettes or body parts."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove all people and human body parts. Place the single AFP white-and-blue drip-tape roll off-center on the lower third of the frame, resting directly on plain soil. Ensure the background shows neutral farm infrastructure (e.g., a distant unattended tractor or irrigation hardware) without any human presence, and maintain the 'AFP | 09134922013' watermark in the bottom right.",
+      "attempt": 5
     },
     {
       "pass": true,
       "score": 95,
-      "product_width_percent": 20,
-      "product_height_percent": 25,
-      "product_x_center_percent": 25,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 51,
       "reasons": [
-        "The image contains a white and blue wide low cylindrical carton roll of drip tape matching the product description.",
-        "The product is correctly positioned off-center on the lower third of the frame.",
-        "The background shows a farm context with rows of crops and an unattended tractor, which is appropriate for a hardware story role.",
-        "There are no people or human body parts visible in the image.",
-        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
-        "The visible crops are indistinct/neutral and do not clearly contradict summer savory, fitting the crop-optional requirement."
+        "The image contains exactly one white-and-blue AFP drip-tape roll with the required watermark 'AFP | 09134922013'.",
+        "Zero people or human body parts are visible; the tractor in the background is unattended and serves as acceptable irrigation/agricultural infrastructure.",
+        "The product is positioned on natural soil, is off-center within the lower third of the frame, and has the correct wide, low cylindrical geometry.",
+        "The visible width (24%) and height (30%) are within the acceptable and preferred ranges.",
+        "The visible diameter is approximately 1.6 times the visible height, matching the specified proportions."
       ],
       "correction_prompt": "",
-      "attempt": 2
+      "attempt": 6
     }
   ],
   "approved_image": "آبیاری-بارانی-با-رانش-در-کشت-مرزه-نکات-کلیدی-جزئیات-فنی.webp"

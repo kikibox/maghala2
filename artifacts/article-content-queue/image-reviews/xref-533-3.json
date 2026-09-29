@@ -1,0 +1,84 @@
+{
+  "id": "xref-533",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 40,
+      "product_height_percent": 30,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "The roll is too wide, measuring approximately 40 percent of the frame width, which exceeds the 27 percent hard reject threshold.",
+        "The roll is not off-center; it is centered horizontally on the main product focus, violating the 'off-center on the lower third' requirement.",
+        "The crop plants in the foreground (spinach/leafy greens) are visually prominent and active, contradicting the instruction that crop plants should be 'absent or visually neutral' for a Role 3 hardware story.",
+        "The unrolling portion of the tape makes the total product bounding box extremely wide.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 40% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the drip-tape roll centered at roughly 22% of frame width. Place it off-center to the left or right in the lower third. Remove the unrolling loop. Keep the foreground crop plants very small, distant, or absent to maintain visual neutrality for the hardware role. Reduce the product group from 40% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 24,
+      "product_height_percent": 26,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "The image contains a prominent person (farmer/worker) crouching next to the product, which is a hard reject criterion.",
+        "Zero people or human body parts are allowed in the image."
+      ],
+      "correction_prompt": "Remove the person entirely. Retain the AFP drip-tape roll and the farm background with tractors, ensuring no human silhouettes or workers are visible.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 38,
+      "product_width_percent": 36,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Visible crop in the foreground clearly contradicts the mandatory 'spinach' (اسفناج) morphology (hard reject on crop contradiction).",
+        "Two rolls/pieces of irrigation hardware visible in the foreground instead of exactly one (a roll on the left and a spoked disc on the right).",
+        "Product width estimated at ~36% of frame, exceeding the 27% hard reject limit.",
+        "The object on the right has impossible geometry for a drip-tape roll (spoked disc shape) which conflicts with the specified white-and-blue wide low cylindrical roll.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 36% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with exactly one white-and-blue cylindrical drip-tape roll on the left (width <27%, off-center in lower third). Remove the spoked disc on the right entirely. Ensure foreground crop morphology strictly matches spinach. Maintain the 'AFP | 09134922013' bottom-right watermark. Reduce the product group from 36% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer/worker) visible in the foreground and holding a second carton."
+      ],
+      "correction_prompt": "Regenerate the image with zero people, zero human body parts, or human silhouettes. The image must show exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll on the soil, off-center on the lower third. The background should show the farm context (spinach or generic soil) without any human figures.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 24,
+      "product_height_percent": 24,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Visible 'AFP' branding and correct white-and-blue cylindrical roll format",
+        "Bottom-right 'AFP | 09134922013' watermark is present and exact",
+        "Product is off-center (approx. 41%) and grounded naturally on soil in lower third",
+        "Geometry is consistent: wide, low, cylindrical",
+        "Unattended tractor is permitted as infrastructure; no people or body parts are visible",
+        "Crop leaves are generic/neutral; no hard contradiction with spinach context"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-اسفناج-راهنمای-جامع-جزئیات-فنی.webp"
+}
