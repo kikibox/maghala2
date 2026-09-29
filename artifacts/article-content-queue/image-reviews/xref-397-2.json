@@ -1,0 +1,69 @@
+{
+  "id": "xref-397",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 22,
+      "product_height_percent": 24,
+      "product_x_center_percent": 18,
+      "reasons": [
+        "Product geometry violation: The roll's visible height is greater than its diameter. The prompt requires the visible diameter to be about 1.5 to 1.9 times its visible height (wide low cylindrical roll), but this image shows a roll that is as tall as it is wide, or taller.",
+        "Product color violation: The roll is white with blue printing. The prompt explicitly requires an 'AFP white-and-blue' roll; however, looking at the label, the dominant color of the roll face is white with blue text. This is acceptable based on the 'white-and-blue' description, but the geometry is the primary failure.",
+        "Product placement violation: The roll is placed at the very bottom left corner, partially cut off. While it is off-center, the 'wide low' aspect ratio is completely missing."
+      ],
+      "correction_prompt": "Regenerate the drip-tape roll to be significantly wider than it is tall (wide/flat aspect ratio, approx 1.7:1 width-to-height). Ensure it is positioned on the soil in the lower third, off-center, and remains a secondary element in the composition. The roll should look like a flat spool, not a tall drum.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 25,
+      "product_height_percent": 26,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject due to visible human figures (farmers/workers) and body parts (arms/legs) in the background, violating the zero-person rule."
+      ],
+      "correction_prompt": "Regenerate the image with no people, human silhouettes, or body parts visible. Keep the drip-tape roll and chickpea crop context but replace all humans with landscape or equipment elements.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 6,
+      "product_height_percent": 9,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Hard reject: The image contains a visible person (farmer/man) crouching in the field.",
+        "Product shape mismatch: The item held by the person appears to be a handheld device or a small box, not a wide low cylindrical drip-tape carton roll.",
+        "Product size violation: The candidate product is much smaller than the required width of 20-27% of the frame.",
+        "Crop mismatch: The vegetation in the foreground has broad, lobed leaves inconsistent with the tiny serrated leaflets of chickpea (nakhud).",
+        "Role violation: The presence of a human makes it unsuitable for the 'city, family' or generic landscape roles required by the 'family tape20' brief without a person.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image showing ONLY a white and blue wide cylindrical drip-tape roll placed on soil in a chickpea field. NO PEOPLE, NO HUMAN SILHOUETTES. The roll must be off-center, occupying roughly 20% of the frame width. Background must be a farm with chickpea plants. Add watermark 'AFP | 09134922013' in bottom right corner. Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 20,
+      "product_height_percent": 30,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Product is a white and blue drip tape roll (AFP branding), positioned off-center in the lower third on the soil.",
+        "No people or human body parts are visible.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom right corner.",
+        "The background shows crop rows that are consistent with the required context, though the specific 'chickpea' leaf morphology is not clearly distinguishable at this scale (acceptable as neutral young vegetation).",
+        "There are no disallowed objects like second rolls, buckets, or distinct extra commercial products."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-قطرهچکان-در-کشت-نخود-هزینه-بهینه-کاربرد-عملی.webp"
+}

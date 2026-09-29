@@ -1,0 +1,53 @@
+{
+  "id": "xref-397",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 22,
+      "product_height_percent": 18,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: The image clearly contains human body parts, including two hands holding a device in the foreground and a seated person on the right, which violates the 'zero people and zero human body parts' constraint.",
+        "Hard reject: There is a second distant human figure standing in the background field, violating the prohibition of any person, farmer, or worker even in the distance.",
+        "Product Staging Violation: The drip tape roll is not 'naturally placed' on the soil; it is sitting on top of a small wooden cardboard box.",
+        "Crop Contradiction: The crops shown in the foreground appear to be tomatoes, which clearly contradicts the specified 'chickpea' (نخود) requirement, triggering the hard reject for identifiable crop contradiction."
+      ],
+      "correction_prompt": "Regenerate the image to include exactly one AFP white-and-blue drip tape roll placed directly on the soil (do not place on a box) with zero people or human body parts. Remove the seated person, the distant worker, and the hands in the foreground. If crop plants are included, ensure they clearly match chickpea morphology to avoid contradiction, or remove them to create a neutral hardware context.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: A person (farmer) with identifiable body parts (hat, torso, legs, hands) is clearly visible in the background, which violates the strict requirement for zero people or human silhouettes."
+      ],
+      "correction_prompt": "Remove the human figure and background crops entirely. Regenerate to show only the AFP drip-tape roll on bare soil with distant irrigation infrastructure. Keep the roll off-center (lower third) and secondary to the hardware context.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 23,
+      "product_height_percent": 14,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product is a wide low cylindrical drip-tape roll with correct AFP branding and required watermark present",
+        "Product dimensions and aspect ratio meet the 1.5-1.9 width-to-height requirement",
+        "Product is correctly placed off-center in the lower third on natural soil",
+        "No visible people, human silhouettes, or body parts in the image",
+        "Background contains agricultural infrastructure (tractor, barn) consistent with hardware story role"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-قطرهچکان-در-کشت-نخود-هزینه-بهینه-جزئیات-فنی.webp"
+}

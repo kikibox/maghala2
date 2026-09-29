@@ -1,0 +1,92 @@
+{
+  "id": "xref-398",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 17,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Presence of a person (hard reject): A man is visible in the foreground touching the product.",
+        "Centered product staging (hard reject): The roll is positioned centrally between the person and the left edge, not 'off-center on the lower third' as required.",
+        "Pipe through the roll (hard reject): A black irrigation hose/pipe is visible passing through the center hole of the carton roll, which is explicitly prohibited.",
+        "Geometry (hard reject): Due to the pipe and the central hole, the geometry is not acceptable."
+      ],
+      "correction_prompt": "Remove the person and hands completely. Remove the pipe passing through the center of the roll. Move the roll to the bottom left corner to be off-center. Keep the tractor and crop field background.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 25,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "The drip-tape roll is not a wide low cylindrical shape; it appears tall and narrow (closer to a vertical drum or container), failing the required aspect ratio of 1.5 to 1.9 diameter-to-height. In fact, the height is greater than the width, which contradicts the 'wide low' geometry constraint.",
+        "The roll appears to be a standard vertical cylindrical container rather than a horizontally oriented, wide, low-lying roll that would show the spool face."
+      ],
+      "correction_prompt": "Regenerate the image to feature a wide, low cylindrical drip-tape roll lying on the soil. The roll should be significantly wider than it is tall (diameter ~1.5x height), white with blue labeling and AFP logo, placed off-center in the lower-left third. Maintain the wheat field and green tractor background, ensuring zero visible people.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 26,
+      "product_height_percent": 31,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Image contains a visible person (farmer) standing in the background, which is a hard reject condition (zero people/human body parts).",
+        "The text on the product packaging is gibberish and illegible, which is a hard reject condition (no invented writing).",
+        "The product (drip-tape roll) is positioned very high in the frame, making it look like it is floating or standing on an unseen surface rather than lying naturally on the soil.",
+        "The product is not placed in the lower third; it is centered vertically, violating the spatial requirement."
+      ],
+      "correction_prompt": "Remove the human figure in the background completely. Ensure the drip-tape roll is lying flat on the soil surface in the lower third of the frame (lower-left or lower-right), not floating. Fix the text on the carton to be clearly legible 'AFP' without gibberish. Keep the tractor in the background as infrastructure.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 20,
+      "product_height_percent": 24,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: Presence of a human body part (a person in blue clothing standing next to the tractor).",
+        "Hard reject: Presence of a human silhouette inside the tractor cab."
+      ],
+      "correction_prompt": "Regenerate the image with absolutely no people, human silhouettes, or body parts visible anywhere in the scene. Ensure the tractor is unattended and no one is visible in the cab. Maintain the product size, position, and farm context.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 14,
+      "product_height_percent": 13,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Human body visible in the foreground: a man is clearly standing between the tractor and the drip-tape roll, touching the equipment, which is a hard reject under Role 3 'no people' and 'no human body parts'.",
+        "Product bounding box does not contain exactly one wide cylindrical roll as required: the roll is present but the scene fails due to the human subject and non-empty correction need for a hardware-only scene."
+      ],
+      "correction_prompt": "Regenerate with zero people and zero human body parts; keep a single AFP white-and-blue wide low cylindrical drip-tape carton roll on soil, off-center on the lower third, 20-23% width, height <=32%, width:height ~1.5-1.9, with unattended irrigation hardware and a farm context matching Role 3; preserve bottom-right watermark AFP | 09134922013 exactly.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 14,
+      "product_height_percent": 22,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: two human figures present in the frame, which violates the strict requirement for zero people or human body parts.",
+        "The main product is a tall, narrow canister, not the required wide, low cylindrical drip-tape carton roll."
+      ],
+      "correction_prompt": "Regenerate the image with no people or human figures. Replace the canister with a wide, low cylindrical drip-tape carton roll, colored white and blue with 'AFP' branding. The roll must be positioned off-center on the lower third of the frame, placed naturally on the soil, and its visible diameter should be roughly 1.5 to 1.9 times its visible height.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

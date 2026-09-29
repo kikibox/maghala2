@@ -1,0 +1,81 @@
+{
+  "id": "xref-399",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 25,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Image contains a second roll (a miniature roll visible next to the main carton roll), which is a hard reject trigger.",
+        "An object is placed directly to the right of the main roll which is not allowed in the composition."
+      ],
+      "correction_prompt": "Remove the small miniature roll next to the main carton roll to ensure only the single drip-tape roll is visible.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 20.0,
+      "product_height_percent": 28.0,
+      "product_x_center_percent": 30.0,
+      "reasons": [
+        "Hard reject: Presence of a person/farmer in the foreground."
+      ],
+      "correction_prompt": "Regenerate the image removing all people and human body parts, keeping only the white and blue drip-tape roll on the soil in the farm field context.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 28,
+      "product_height_percent": 27,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product is a single wide, low cylindrical drip-tape carton roll consistent with the hardware story role.",
+        "Roll has the required white-and-blue color scheme and visible AFP branding.",
+        "Image contains zero people, faces, or human body parts.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present and correct.",
+        "Product is placed naturally on soil in a farm context.",
+        "Visible diameter-to-height ratio is appropriate (approx. 1.6:1).",
+        "Crop morphology is not clearly contradictory to the specific article subject.",
+        "Product width and height are within acceptable practical bounds.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 15,
+      "product_height_percent": 12,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: The image contains a person (male farmer) interacting with the product, violating the 'zero people' constraint.",
+        "Hard reject: Human body parts (face, hands, legs) are clearly visible.",
+        "Product geometry: The roll's diameter (width-to-height ratio) appears too low; it looks cylindrical/short rather than the required wide 'donut' shape (1.5-1.9 ratio)."
+      ],
+      "correction_prompt": "Regenerate image to remove the person and all human body parts completely. Ensure the drip tape roll is wide (low profile) with a 1.5:1 width-to-height ratio, placed off-center on soil.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Hard reject: Presence of a human silhouette (driver) visible inside the tractor in the background. The image must contain zero people or body parts."
+      ],
+      "correction_prompt": "Regenerate the image ensuring the background tractor is unoccupied and no driver or human silhouette is visible.",
+      "attempt": 5
+    }
+  ],
+  "approved_image": null
+}

@@ -1,0 +1,87 @@
+{
+  "id": "xref-406",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 10,
+      "product_height_percent": 15,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Product width is roughly 10% of the frame, below the practical 13% minimum threshold; it does not meet the preferred 20-23% width target.",
+        "Product height is roughly 15% of the frame, which is within the 32% limit.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Enlarge the drip-tape carton roll so its width occupies 20-23% of the image frame while maintaining the lower-third, off-center composition and farm context. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 15,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: A person (farmer) is clearly visible in the foreground.",
+        "Hard reject: A hand and arm are visible interacting with a tool.",
+        "The product is not off-center on the lower third as required; it is too central.",
+        "The product height is disproportionate to its width."
+      ],
+      "correction_prompt": "Regenerate without any people or human body parts. Ensure the drip-tape carton roll is off-center in the lower third and its aspect ratio matches the requirements.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 15,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Hard reject: The image contains two prominent farmers (people), which violates the 'zero people' constraint.",
+        "The product roll is too small and not in the 'secondary' position; it is tucked at their feet rather than off-center on the lower third of the frame.",
+        "The composition focuses on the human subjects rather than the drip-tape product as required for this image role.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to include exactly one wide low cylindrical drip-tape carton roll placed off-center on the lower third of a farm field. Remove all people, hands, and faces. Ensure the product is 13-27% of the frame width and remains secondary to the crop context. Maintain the 'AFP | 09134922013' watermark. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 33,
+      "product_height_percent": 42,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Product width is approximately 33% of the frame, exceeding the hard limit of 27% and failing to be secondary",
+        "Product height is approximately 42% of the frame, exceeding the hard limit of 32%",
+        "Product is centered in the frame rather than off-center on the lower third",
+        "Product geometry is a standard spool with equal height and width, failing the required 1.5:1 to 1.9:1 wide low cylindrical aspect ratio",
+        "machine-enforced bounding-box check failed: Reduce the product group from 33% to 13-27% of frame width.; Reduce product height from 42% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shrink the drip tape roll to under 25% width to make it secondary. Change the roll shape to a wide, low cylinder with a 1.8:1 width-to-height ratio. Move the roll off-center to the left in the bottom third of the frame. Keep the AFP watermark and farm context. Reduce the product group from 33% to 13-27% of frame width. Reduce product height from 42% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "No human body parts or silhouettes present.",
+        "Background shows corn (maize) field matching the likely article crop.",
+        "Product is a white cylindrical roll placed naturally on soil.",
+        "Product size and aspect ratio (width < height) are within acceptable practical limits.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom right.",
+        "Product is off-center on the lower third."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-گلخانهای-در-کشت-کدو-پیشنیازها-تصویر-شاخص.webp"
+}

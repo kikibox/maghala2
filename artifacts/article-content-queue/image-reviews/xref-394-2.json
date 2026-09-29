@@ -1,0 +1,54 @@
+{
+  "id": "xref-394",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 14,
+      "product_height_percent": 15,
+      "product_x_center_percent": 54,
+      "reasons": [
+        "The image contains a person (a male farmer) crouching and handling the product, which is a hard reject per the 'zero people' and 'zero human body parts' constraint.",
+        "The required watermark 'AFP | 09134922013' is located in the bottom right but is on a black box rather than a transparent overlay, and the presence of the person prevents any pass regardless of watermark style.",
+        "The product is being held by hands, not naturally placed on the soil as required."
+      ],
+      "correction_prompt": "Remove the man completely. Regenerate the image to show only the AFP drip-tape roll resting on the soil in the fava bean field. The product must be placed on the ground, off-center, and the scene must contain absolutely no people or human body parts. Ensure the watermark 'AFP | 09134922013' is present in the bottom right.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 24,
+      "product_height_percent": 32,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The crop shown is clearly tobacco (Nicotiana tabacum), identified by its large, entire, sessile, alternate leaves with prominent venation. This does not match the article crop fava bean (broad paired leaflets, visible pods), which requires hard rejection as a clearly identifiable different species."
+      ],
+      "correction_prompt": "Replace the tobacco plants with fava bean crops (broad paired leaflets on thick stems). Maintain the specific AFP drip-tape roll size and position, and keep the AFP watermark exactly as is.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 15,
+      "product_height_percent": 24,
+      "product_x_center_percent": 23,
+      "reasons": [
+        "The product is a white cylindrical drip-tape carton roll, appearing wide and low relative to its height.",
+        "The crop is recognizable as fava bean (broad paired leaflets, thick stems, elongated pods visible).",
+        "The roll is naturally placed on the soil, off-center on the lower third of the frame.",
+        "Zero people or human body parts are visible in the image.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present.",
+        "The background (farm field) matches the article context.",
+        "The roll's diameter (width) is approximately 1.7 times its height, within the acceptable range."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-رانشی-در-کشت-باقلا-هزینه-در-مزرعه-کاربرد-عملی.webp"
+}

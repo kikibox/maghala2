@@ -1,0 +1,65 @@
+{
+  "id": "xref-402",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 13,
+      "product_height_percent": 9,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "The product is not a wide low cylindrical roll; it appears as a small, tall, narrow vertical canister (similar to a paint tin or small drum), violating the geometry requirement for a wide drip-tape roll (diameter ~1.5-1.9 times height).",
+        "Product width is approximately 13%, which is on the absolute lower limit and combined with the incorrect shape, makes the product look like a standard container rather than the required roll.",
+        "The product appears to be standing vertically on the soil rather than lying horizontally as a roll would be staged."
+      ],
+      "correction_prompt": "Regenerate the image showing a wide, cylindrical drip-tape roll lying horizontally on the soil. The roll must be white and blue, significantly wider than its height (aspect ratio ~1.5-1.9), and positioned in the lower-left area. Do not make it look like a vertical canister.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 26,
+      "product_height_percent": 40,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Product is a drum/canister rather than the required wide low cylindrical drip-tape carton roll (violates hard reject for 'tall narrow drum' and product geometry).",
+        "Product height (40%) exceeds the maximum allowable 32% of the frame.",
+        "machine-enforced bounding-box check failed: Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Replace the tall drum with a wide, low cylindrical drip-tape carton roll (diameter ~1.7x height). Ensure the roll's height is under 32% of the frame and width is between 13-27%. Keep the product off-center in the lower third on soil. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 20.5,
+      "product_height_percent": 26.0,
+      "product_x_center_percent": 30.0,
+      "reasons": [
+        "The visible crop in the foreground is clearly identifiable as a Solanaceae species (likely tomato seedlings with heart-shaped leaves and branching stems) rather than cantaloupe. This violates the 'Hard reject a clearly identifiable different species' rule.",
+        "The image fails to make the required article crop (cantaloupe) recognizable as specified in Roles 1 and 2."
+      ],
+      "correction_prompt": "Replace the foreground tomato seedlings with clearly identifiable cantaloupe vines. Ensure the leaves are lobed and the small fruit or root-zone evidence matches cantaloupe morphology. Keep the white and blue drip-tape roll in the lower-left foreground, and retain the 'AFP | 09134922013' watermark in the bottom-right corner.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 75,
+      "product_width_percent": 18,
+      "product_height_percent": 18,
+      "product_x_center_percent": 19,
+      "reasons": [
+        "The image shows the required AFP white-and-blue drip-tape carton roll in a farm context with drip lines and seedlings.",
+        "The background includes a large field and barn, matching the farm context. The seedlings are generic young vegetation, which is acceptable for role 2 as a neutral agronomic story.",
+        "The required bottom-right watermark is present. There are no people, human silhouettes, or extra commercial products visible in the frame."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-رطوبتی-در-کشت-طالبی-هزینه-در-مزرعه-تصویر-شاخص.webp"
+}
