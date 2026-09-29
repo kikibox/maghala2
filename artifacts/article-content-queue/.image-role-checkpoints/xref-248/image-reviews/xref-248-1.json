@@ -1,0 +1,88 @@
+{
+  "id": "xref-248",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 39,
+      "reasons": [
+        "Crop species mismatch: The image displays tall plants with serrated, palmately compound leaves and distinct terminal flower spikes. This morphology is characteristic of hemp or cannabis, whereas the required 'sesame' crop must feature simple narrow lance-shaped leaves and elongated seed capsules.",
+        "Product geometry rejection: The visible product (the white cylindrical carton) has a height (approx. 18%) greater than its width (approx. 15%). The specification requires a 'wide low cylindrical' shape where the diameter (width) is 1.5 to 1.9 times the height. This vertical cylinder fails the geometry check."
+      ],
+      "correction_prompt": "Replace the hemp/cannabis plants with upright sesame crops featuring narrow lance-shaped leaves and small seed capsules. Ensure the white and blue drip-tape roll is a wide, low cylinder (height less than half the width) placed on the soil.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 15,
+      "product_height_percent": 14,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The central crop is clearly identifiable as cannabis (distinct palmate leaves), not the required sesame (narrow lance-shaped leaves and elongated seed capsules), which constitutes a hard reject for a clearly identifiable different species.",
+        "The watermarked text reads '09134922013' instead of the required '09134922013' typo check (wait, actually the required is 09134922013. Let me re-read. Requirement: 'AFP | 09134922013'. Image: 'AFP | 09134922013'. Okay, that part is fine. However, the crop rejection is fatal."
+      ],
+      "correction_prompt": "Regenerate the image replacing the central cannabis plant with rows of upright sesame plants featuring narrow lance-shaped leaves and visible elongated seed capsules. Ensure the drip-tape roll remains in the foreground on the soil.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 64,
+      "product_width_percent": 23,
+      "product_height_percent": 38,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product height is estimated at 38% of the image, which exceeds the maximum limit of 32%. The cylinder is also visually distorted, as its height is nearly equal to its width, failing the 1.5 to 1.9x width-to-height aspect ratio requirement.",
+        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the roll to be a wider, shorter 'drip-tape carton roll' shape. Ensure the height is strictly under 30% of the image frame and the diameter is about 1.8x the height. Maintain the off-center position on the lower-left third. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 21,
+      "product_height_percent": 21,
+      "product_x_center_percent": 23,
+      "reasons": [
+        "The product geometry is incorrect; it is a narrow vertical roll, violating the requirement for a wide, low cylindrical roll (diameter approx. 1.5-1.9x height).",
+        "The image background shows plants that are clearly identifiable as corn/maize (wide leaves, distinct tassel/ear structures), which conflicts with the required article crop 'sesame' (narrow lance-shaped leaves and elongated seed capsules)."
+      ],
+      "correction_prompt": "Regenerate the image with a wide, low cylindrical drip-tape roll placed naturally on the soil. The background crops must be identifiable as sesame plants with narrow leaves and elongated capsules, not corn or maize.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 26,
+      "product_height_percent": 30,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The crop visible is clearly millet or a related grass species (characterized by drooping/panicle seed heads and wide blades), which is a hard reject for a sesame (kenje) article that requires narrow lance-shaped leaves and elongated seed capsules.",
+        "The product roll is positioned too high and centered (approx. 45% x-axis), violating the requirement for the product to be off-center on the lower third.",
+        "The text on the roll is gibberish and does not accurately represent the required 'AFP' branding or the mandatory bottom-right watermark."
+      ],
+      "correction_prompt": "Regenerate with a sesame crop (narrow leaves, upright seed capsules) and a white-and-blue wide cylindrical AFP drip-tape roll on the lower left (off-center). Ensure the bottom-right watermark 'AFP | 09134922013' is present.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "The crop in the background is clearly maize (corn), identified by the distinct tassel structures and ear cobs, not the required sesame (sesame has narrow lance-shaped leaves and elongated seed capsules, not the morphology seen here). This constitutes a clearly identifiable different species, which is a hard reject."
+      ],
+      "correction_prompt": "Replace the maize field background with sesame plants (upright stems, narrow lance-shaped leaves) to match the article topic while keeping the AFP drip-tape roll in the same lower-left off-center position.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

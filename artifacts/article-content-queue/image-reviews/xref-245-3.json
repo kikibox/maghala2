@@ -1,0 +1,51 @@
+{
+  "id": "xref-245",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Presence of a human farmer/worker in the foreground and a second human figure in the bottom-right insert (hard reject rule: zero people or body parts allowed).",
+        "Multiple instances of human figures present (two people total, including one in the inset image).",
+        "Product roll appears upright or incorrectly oriented in the bottom-left corner rather than lying flat on soil as specified for a wide low cylindrical roll."
+      ],
+      "correction_prompt": "Remove all human figures (both the main subject and the inset person). Regenerate a single wide, low cylindrical white and blue AFP drip-tape roll lying flat on the soil in a farm field without any people or body parts visible. Ensure the 'AFP | 09134922013' watermark remains in the bottom right.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "reasons": [
+        "Contains multiple commercial products: a tractor in the background and a red barn structure",
+        "machine-enforced bounding-box check failed: Return numeric product_width_percent, product_height_percent and product_x_center_percent."
+      ],
+      "correction_prompt": "Regenerate image with the AFP drip tape roll as the only commercial product in the foreground on soil. Remove the tractor and barn from the background to maintain a clean, topic-specific farm hardware context. Ensure the roll is off-center in the lower third and maintains the required proportions. Return numeric product_width_percent, product_height_percent and product_x_center_percent.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll is shown.",
+        "Product is correctly placed on soil in the lower third and off-center to the left.",
+        "Proportions are acceptable: diameter to height ratio approx 1.5-1.6x, width approx 24%, height approx 28%.",
+        "No people or human body parts are visible.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "The background shows a farm context with a red barn, which is visually neutral for a hardware story and does not contradict the topic."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-نوار-تیپ-در-کشت-یونجه-پیشنیازها-جزئیات-فنی.webp"
+}

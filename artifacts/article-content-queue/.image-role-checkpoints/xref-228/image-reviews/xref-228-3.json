@@ -1,0 +1,94 @@
+{
+  "id": "xref-228",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 52,
+      "product_width_percent": 30,
+      "product_height_percent": 45,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product width is approximately 30%, exceeding the maximum allowed limit of 27%.",
+        "Product height is approximately 45%, significantly exceeding the maximum limit of 32%.",
+        "The product's visible diameter (height) does not meet the required 1.5-1.9x aspect ratio of its width, appearing too tall.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width.; Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image to make the drip tape roll significantly smaller and wider, ensuring the width is under 27% of the frame and the height is under 32%, with a diameter ratio between 1.5 and 1.9x the height. Keep the soil placement and lower-third off-center positioning. Reduce the product group from 30% to 13-27% of frame width. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 12,
+      "product_height_percent": 14,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Hard reject: presence of a human figure (a crouching farmer) and a human hand.",
+        "The product is being touched and staged by a person, which is explicitly forbidden.",
+        "Product width is slightly below the 13% minimum acceptable threshold.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person and their hands completely. Stage the AFP white and blue cylindrical drip-tape roll naturally on the soil surface in the farm field without any human presence, ensuring the roll's width is slightly larger and it is positioned off-center on the lower third of the frame. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 22,
+      "product_height_percent": 20,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The crop plants visible in the rows (tall grass-like shoots) clearly contradict the topic of 'sesame' (kenjed); sesame seedlings have a distinct multi-lobed leaf morphology that is not present here, triggering the hard reject for contradictory crops.",
+        "The product roll is not positioned in the lower third of the frame; it is placed in the middle-lower section, violating the 'off-center on the lower third' constraint.",
+        "The product is not clearly off-center to the left or right; it is nearly centered on the crop row, which conflicts with the required 'off-center' positioning."
+      ],
+      "correction_prompt": "Regenerate the image placing the white and blue AFP drip tape roll strictly in the lower third of the frame, off-center (left or right). Remove the tall grass-like crop rows; if crops are shown, ensure they are clearly identifiable as sesame (sesame leaves are broad and divided). Keep the unattended tractor in the background.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Hard reject: Human body part (driver silhouette) is clearly visible inside the tractor, violating the zero-person constraint",
+        "Geometry mismatch: The visible diameter-to-height ratio of the roll is approximately 1.1, failing the 1.5-1.9 requirement for a 'wide low' roll",
+        "Product staging: The roll is nearly centered on the x-axis (46%), which conflicts with the off-center preference for Role 3",
+        "Crop context: While sesame is permitted, the close-up vegetation is generic and the background tractor does not specifically match the hardware/manifold focus"
+      ],
+      "correction_prompt": "Regenerate with a hardware-centric close-up of a drip manifold or filter on soil with a wide low (aspect 1.5-1.9) AFP drip-tape roll on the right third. Ensure the background is free of any visible drivers or human silhouettes, only unattended equipment. Use a wider roll shape.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 30,
+      "product_x_center_percent": 62,
+      "reasons": [
+        "The image contains a second piece of commercial product (a manifold, filter, or connector assembly) placed on the soil next to the main carton roll.",
+        "The background crop context appears to be corn/maize (broad leaves), which creates a hard reject scenario against the specific 'sesame' (kenaf/kenj) topic, as it clearly contradicts the required crop morphology."
+      ],
+      "correction_prompt": "Regenerate with only a single AFP drip-tape carton roll on the soil. Remove the extra manifold/filter assembly entirely. Replace the background crop rows with small, narrow-leafed sesame seedlings. Maintain the required 'AFP | 09134922013' watermark and the tractor in the background.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 75,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The watermark 'AFP | 09134922013' in the bottom-right corner has a black background box. The strict requirement is for the text to be directly visible (white text) without the intrusive black box formatting seen in this generation."
+      ],
+      "correction_prompt": "Regenerate the image ensuring the bottom-right watermark 'AFP | 09134922013' is white text only without a black background box. Ensure the blue text on the product label is legible, not gibberish.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

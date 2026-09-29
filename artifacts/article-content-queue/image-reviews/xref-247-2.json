@@ -1,0 +1,71 @@
+{
+  "id": "xref-247",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 7,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Presence of a person (farmer) directly interacting with the product",
+        "Visible human body parts (face, torso, arms, hands, legs, feet)",
+        "Product roll is centered rather than placed on the lower third",
+        "Product roll size is too small relative to frame specifications",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes. Reposition the AFP white-and-blue drip tape roll to the lower third, off-center, making it slightly larger relative to the frame while maintaining a natural farm context. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 11,
+      "product_height_percent": 15,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: The image contains a person (farmer). The rules explicitly state 'zero people and zero human body parts' and 'Hard reject any person... or human silhouette'.",
+        "The product bounding box width (~11%) is below the minimum acceptable range of 13% to 27%.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any people or human body parts. Increase the visual scale of the white and blue drip tape roll so it occupies approximately 15-20% of the frame width while maintaining the natural farm context. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 9,
+      "product_height_percent": 11,
+      "product_x_center_percent": 51,
+      "reasons": [
+        "The image contains multiple people (one female and one male farmer), which violates the hard reject rule for any visible person, face, body part, or human silhouette.",
+        "The drip tape roll is being held in the hands of a person, which is a prohibited element.",
+        "The background crop has broad, heart-shaped leaves, not the dense fine trifoliate leaflets required for the specified alfalfa topic.",
+        "The product roll appears smaller than the preferred width range and is placed centrally in the frame rather than off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to remove all human figures and body parts. Show exactly one AFP white-and-blue wide cylindrical drip-tape roll placed naturally on the soil in the lower third of the frame, positioned off-center. Set the background to a farm field with visible alfalfa characterized by fine trifoliate leaflets, or a neutral prepared bed with young seedlings. Ensure the product roll width is approximately 20-23% of the image and that the 'AFP | 09134922013' watermark is present in the bottom right. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 22.5,
+      "product_height_percent": 30.0,
+      "product_x_center_percent": 45.0,
+      "reasons": [
+        "Product size and placement (width/height %) fall within acceptable bounds.",
+        "Crop is botanically neutral young vegetation, which passes as the agronomic story of irrigation is clear.",
+        "Required watermark 'AFP | 09134922013' is present.",
+        "No obvious large or clearly identifiable different crop species."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-چرخشی-در-کشت-یونجه-راهنمای-جامع-کاربرد-عملی.webp"
+}

@@ -1,0 +1,68 @@
+{
+  "id": "xref-246",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 72,
+      "product_width_percent": 20,
+      "product_height_percent": 18,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Image contains identifiable crop plants (young corn/maize seedlings) which clearly contradict the topic 'melon'."
+      ],
+      "correction_prompt": "Regenerate the image with the crop plants removed or replaced with bare soil and irrigation hardware (drip tape, emitters, pipes) to maintain visual neutrality and avoid crop contradiction for the melon topic.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: The image contains a visible person (a female farmer crouching next to the tape roll), which directly violates the absolute requirement for zero people and zero human body parts."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human silhouettes. Place the single AFP white and blue drip tape roll off-center in the lower third of the frame on the soil, ensuring it appears secondary (approx 18-20% width). Include a large spool of drip tubing laid out next to it to represent the hardware story. Keep the farm context but remove all persons.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 60,
+      "product_height_percent": 35,
+      "product_x_center_percent": 68,
+      "reasons": [
+        "Presence of a second product: A separate spool of blue tubing is displayed next to the carton, violating the 'second package, second roll, extra commercial product' hard reject rule.",
+        "Product size: The visible product bounding box (combining the carton and the blue tubing) exceeds the acceptable width limit of 27%.",
+        "Product width: The combined product width is estimated at 60% of the frame width.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 60% to 13-27% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image showing ONLY a single AFP white-and-blue drip-tape carton roll on the soil, removing the separate blue tubing spool. Ensure the product fits within 27% of the frame width. Reduce the product group from 60% to 13-27% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 23,
+      "product_height_percent": 29,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is a white and blue wide low cylindrical drip tape roll.",
+        "The product is placed off-center on the lower third of the image and is sitting naturally on the soil.",
+        "The product dimensions are within the preferred range (width ~23%, height ~29%) and the aspect ratio is correct.",
+        "The background contains crop rows that are visually neutral and do not contradict the melon topic.",
+        "The unattended tractor and barn in the background serve as allowed hardware/infrastructure context.",
+        "Zero people or human body parts are visible.",
+        "The required AFP watermark is present in the bottom-right corner.",
+        "No hard reject elements such as bottles, jars, or extra commercial products are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-سطوحی-در-کشت-ملون-راهنمای-جامع-جزئیات-فنی.webp"
+}

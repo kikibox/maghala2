@@ -1,0 +1,94 @@
+{
+  "id": "xref-238",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 4,
+      "product_height_percent": 4,
+      "product_x_center_percent": 82,
+      "reasons": [
+        "Hard reject: The image contains two prominent human figures (a man and a woman) crouching in the field. The requirements explicitly forbid zero people, zero human body parts, and zero silhouettes.",
+        "The product is extremely small (a small spool or container on the ground) and does not clearly meet the requirements for a wide low cylindrical drip-tape carton roll to be visible at the recommended size scale.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the two people. Place a large, white and blue cylindrical drip-tape roll on the soil in the lower third, off-center. The roll should be secondary to the scene but clearly visible (approx 20-23% of frame width). Ensure the crop is clearly identifiable as canola (broad bluish-green rosettes). Maintain the AFP watermark in the bottom right. Enlarge the product group from 4% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 22,
+      "product_height_percent": 26,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Visible flowers are purple/blue with narrow pointed petals, resembling Crocus or Iris, which are strictly prohibited as 'clearly identifiable different species' (neither canola rosettes nor brassica yellow flowers)",
+        "Product is centered horizontally (~47%), violating the 'off-center' requirement",
+        "Canola at establishment should be low bluish-green broad lobed leaves, not purple flowers"
+      ],
+      "correction_prompt": "Replace purple crocus flowers with low bluish-green rosettes of broad, round, lobed brassica canola leaves. Move the AFp roll off-center to the right side. Maintain the farm context and irrigation layout.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 17,
+      "product_height_percent": 18,
+      "product_x_center_percent": 76,
+      "reasons": [
+        "Crop species mismatch: The background shows purple-flowering plants (resembling grape hyacinths or similar ornamental brassicas) which are not canola (rapeseed) and do not match the article subject.",
+        "Product aspect ratio failure: The product appears to have a height nearly equal to its width (height ~18%, width ~17%), which fails the requirement that the diameter (width) be 1.5 to 1.9 times the height.",
+        "Product positioning: The product is placed in the middle-right band of the image, not distinctly in the lower third as preferred, though this is less critical than the morphology issues."
+      ],
+      "correction_prompt": "Regenerate with the drip tape roll placed in the lower-left or lower-right foreground on the soil, ensuring the roll is clearly low and wide (aspect ratio width > 1.5x height). Replace the purple flowers with low, bluish-green rosettes of canola/rapeseed seedlings in the background.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 25,
+      "product_height_percent": 22,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The visible crop is not recognizable as canola (rapeseed); the plants shown appear to be blue-flowered species (resembling Forget-me-not or similar) rather than the required brassica rosettes or yellow four-petal flowers.",
+        "The crop does not match the article title/summary context for canola.",
+        "Hard reject due to a clearly identifiable different species in the primary foreground vegetation."
+      ],
+      "correction_prompt": "Regenerate image showing the AFP drip-tape roll on soil in a field specifically planted with canola (rapeseed). The plants must show bluish-green broad lobed brassica rosettes or slender stems with yellow four-petal flowers. Remove any blue or red flowers and replace with correct canola morphology.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The background crop is clearly identifiable as sunflowers (yellow composite flowers with large seed heads), not canola/rapeseed. The prompt explicitly requires the article crop to be recognizable as canola (low bluish-green rosettes or small yellow four-petal flowers) and states 'Hard reject a clearly identifiable different species'."
+      ],
+      "correction_prompt": "Regenerate the image with the background crop showing canola (rapeseed) in a topic-specific farm context, specifically displaying low bluish-green rosettes of broad lobed brassica leaves or slender branching stems with small yellow four-petal flowers, instead of sunflowers.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 6,
+      "product_height_percent": 10,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Presence of a human (farmer) which is a hard reject trigger",
+        "Product is not a wide low cylindrical drip-tape carton roll but a smaller canister",
+        "Product size is far below the 13-27% width requirement",
+        "Product aspect ratio is incorrect (not 1.5-1.9x wider than tall)",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people, replace the small canister with a large wide low cylindrical drip-tape carton roll (white-and-blue) placed on soil in the lower third, off-center, with a width of roughly 20% of the frame, and no one present in the scene Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

@@ -1,0 +1,103 @@
+{
+  "id": "xref-245",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: The image contains a prominent crouching person (farmer) on the right side, violating the 'zero people' rule.",
+        "Hard reject: The crop species shown has large, broad leaves (resembling soybean or sunflower seedlings), which clearly fails the requirement for dense fine trifoliate leaflets typical of alfalfa.",
+        "Fail: The drip tape is unrolled across the soil with the end being held by a hand, which adds clutter to the product staging."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human body parts. Change the crop to young alfalfa with dense trifoliate leaflets (small, serrated, three-part leaves). Ensure the crop does not have large broad leaves. Place the single drip tape roll on the soil without unrolling it.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 8,
+      "product_height_percent": 10,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer) and visible human body parts (face, arms, legs) violates the requirement for zero people.",
+        "Product size failure: The drip-tape roll is too small (width ~8% vs required 13-27%).",
+        "Background mismatch: The crop shown consists of broad-leafed plants, which is a hard reject for 'alfalfa' (must be trifoliate/fine-leafed or neutral).",
+        "Missing geometry: The roll does not exhibit the required wide cylindrical aspect ratio (1.5x-1.9x diameter to height).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the woman completely; ensure no humans are visible. Generate a wide white-and-blue cylindrical drip-tape roll lying on soil in the lower third, off-center. Set crop to recognizable alfalfa (trifoliate) or unidentifiable seedlings. Ensure the roll is secondary in size (approx 20% width) and correctly proportioned. Keep the bottom-right watermark. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 20,
+      "product_height_percent": 30,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Missing required exact bottom-right watermark 'AFP | 09134922013'",
+        "Visible plant morphology shows broad-leafed seedlings that are not identifiable as trifoliate alfalfa (clover/family Fabaceae); hard reject for clearly identifiable different species context or ambiguous crop story",
+        "Product staging is too low in the frame, occupying roughly the bottom 15-25% rather than the specified lower-third region",
+        "Text printed on the carton appears as gibberish/invented writing outside authentic package print"
+      ],
+      "correction_prompt": "Regenerate with bottom-right watermark 'AFP | 09134922013'. Replace broad-leaf seedlings with fine trifoliate alfalfa vegetation (or neutral soil with visible drip tape). Move the AFP roll higher to the lower third. Ensure crop rows match alfalfa article.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 4,
+      "product_height_percent": 8,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: A full human figure (farmer/worker) is present, which violates the zero people/human body parts constraint.",
+        "The product is not placed on the soil; it is being held by a person in mid-air.",
+        "The crop visible consists of large broad leaves, which conflicts with the requirement for 'dense fine trifoliate leaflets' of alfalfa.",
+        "Product size is too small and not staged as a prominent secondary element in the foreground.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person completely. Place a large white and blue AFP drip-tape carton roll lying on the soil in the lower foreground (off-center). The background must show young alfalfa with small trifoliate leaves in a field. Do not include any people, hands, or tools. Enlarge the product group from 4% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 25,
+      "product_height_percent": 38,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product height exceeds the maximum limit of 32% (approx 38%)",
+        "Product geometry is a compact cylindrical carton with a height ratio close to 1:1 (0.8x wide), which is inconsistent with a wide cylindrical drip-tape roll requiring a 1.5-1.9x aspect ratio",
+        "Background crop morphology does not clearly match the trifoliate leaves required for alfalfa",
+        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate image showing a wide, flattened cylindrical drip-tape roll on a farm bed. Ensure roll width is 1.5 to 1.9 times its height, height is under 32% of frame width, and crop background shows small trifoliate leaves. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 26,
+      "product_height_percent": 28,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Required bottom-right AFP phone watermark is visible.",
+        "Product (drip tape carton) is correctly positioned in the lower-left/lower-center third.",
+        "Product dimensions (width ~26%, height ~28%) fall within the acceptable practical ranges.",
+        "No visible people, human silhouettes, or body parts.",
+        "No prohibited extra commercial products or containers.",
+        "Vegetation is consistent with the neutral/young seedling allowance; background shows farm context."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-نوار-تیپ-در-کشت-یونجه-پیشنیازها-کاربرد-عملی.webp"
+}
