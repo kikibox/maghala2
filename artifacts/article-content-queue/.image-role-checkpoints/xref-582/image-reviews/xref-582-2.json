@@ -1,0 +1,90 @@
+{
+  "id": "xref-582",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 8.5,
+      "product_height_percent": 14.5,
+      "product_x_center_percent": 28.5,
+      "reasons": [
+        "Visible human silhouette (farmer) in the background",
+        "Product (drip tape roll) is under 13% width, violating the 'practical estimate' minimum",
+        "Crop in the foreground is clearly corn/maize (broad stalks and large leaves) which contradicts the 'spinach' requirement",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8.5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate without any people or human silhouettes. Replace the corn in the foreground with a spinach crop characterized by dense low rosettes of dark-green oval leaves. Scale up the white and blue drip tape roll to approximately 15-20% of the frame width while maintaining its position in the lower-left area. Enlarge the product group from 8.5% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 16,
+      "product_height_percent": 22,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: presence of two distinct human figures (a man in the foreground and a woman in the background) violates the requirement for zero people and zero human body parts.",
+        "The product placement is compromised by the presence of farmers, which contradicts the strict 'unattended infrastructure' rule."
+      ],
+      "correction_prompt": "Regenerate the image to strictly remove all human figures and body parts. Keep the single AFP drip-tape roll in the same low-foreground position on the spinach farm, ensuring only the crop, soil, and farm landscape remain visible alongside the product.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 17,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The drip tape roll is cylindrical with a height visibly greater than 35% of its own width. The product spec requires a wide, low roll where the diameter is approximately 1.5 to 1.9 times the height (i.e., much wider than it is tall).",
+        "The crop shown is more likely beetroot, chard, or celery (characterized by long petioles and cup-like leaves) rather than the specified spinach (which should have low rosettes of smooth, oval/arrow-shaped leaves)."
+      ],
+      "correction_prompt": "Regenerate the image replacing the drip tape roll with a wide, low-profile cylindrical carton (diameter approx 1.7x height). Change the foreground crop to spinach with dense, low rosettes of smooth, dark-green, arrow-shaped leaves. Ensure no tall stalks or cup-like leaf structures are visible.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: A person (farmer/worker) is clearly visible in the image, violating the zero-person constraint.",
+        "Hard reject: Human body parts (hands, face, legs, etc.) are present.",
+        "Product aspect ratio mismatch: The roll is oriented vertically (height > width), whereas the requirements specify a wide low cylindrical roll where diameter is 1.5-1.9x height."
+      ],
+      "correction_prompt": "Regenerate the image to remove the farmer entirely. Ensure the scene shows only the farm environment. Replace the held roll with a single white-and-blue cylindrical drip-tape carton roll resting on the soil. Orient the roll horizontally (wide and low) in the lower-left foreground, making it secondary to the spinach crop rows.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "The image contains a visible person in the background, which violates the hard constraint for zero people or body parts."
+      ],
+      "correction_prompt": "Regenerate the image without any visible people or workers; keep the AFP drip tape roll and the farm context.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 13,
+      "product_height_percent": 22,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: The image contains a second, extra package (a coiled piece of tape lying next to the main carton roll).",
+        "Hard reject: The crop foliage is too broad, rounded, and uniform to clearly define 'spinach' (dense low rosettes of arrow-shaped leaves); it resembles generic leafy greens or spinach seedlings but lacks the specific mature morphology required to pass strict botanical verification without hard-rejecting a different species."
+      ],
+      "correction_prompt": "Remove the coiled tape lying next to the main roll. Keep only one AFP white-and-blue wide low cylindrical drip-tape carton roll in the foreground, off-center on the lower third of the frame. Ensure the crop foliage specifically resembles spinach (low rosettes, arrow/oval leaves) or is a neutral prepared bed. No human silhouettes. Watermark in bottom-right.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

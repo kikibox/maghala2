@@ -1,0 +1,42 @@
+{
+  "id": "xref-583",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 28,
+      "product_height_percent": 26,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Human silhouette/figure is clearly visible operating the tractor in the background, which is a hard reject.",
+        "There is a second package/roller component (a small spool) next to the main tape roll, violating the 'exactly one roll' constraint.",
+        "The main roll width is estimated at ~28% of the frame, which exceeds the hard reject threshold of 27%.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the human silhouette in the tractor and the secondary spool next to the main roll. Shrink the main roll slightly to fit within the 27% width limit while maintaining its 1.5-1.9x aspect ratio. Ensure the product remains off-center on the lower third. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 21,
+      "product_height_percent": 14,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Contains exactly one AFP white and blue cylindrical drip-tape roll in a farm context.",
+        "Product is off-center on the lower third and naturally placed on soil.",
+        "Zero people or human body parts visible.",
+        "Watermark 'AFP | 09134922013' is present and correctly formatted.",
+        "Background shows agricultural field with crop rows, matching farm hardware/drip-irrigation context.",
+        "Product dimensions within acceptable bounds (width ~21%, height ~14%); height-to-diameter ratio consistent with wide low cylinder."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آبیاری-چرخشی-در-کشت-خربزه-کاربردها-جزئیات-فنی.webp"
+}

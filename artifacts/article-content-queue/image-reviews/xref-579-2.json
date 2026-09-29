@@ -1,0 +1,57 @@
+{
+  "id": "xref-579",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 9,
+      "product_height_percent": 11,
+      "product_x_center_percent": 71,
+      "reasons": [
+        "Hard reject: Two human figures (faces, arms, legs, full bodies) are clearly visible in the foreground.",
+        "Product geometry mismatch: The roll is extremely small and appears to have a height-to-width ratio closer to 1:1, failing the 1.5-1.9 ratio requirement.",
+        "Product scale too small: The roll is only ~9% of the frame width, well below the 13% practical minimum.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures and silhouettes completely. Increase the size of the white and blue drip-tape roll significantly so its width is 20-23% of the frame width and its height is no more than 32% of its width. Reposition the roll to be off-center in the lower third of the frame while retaining the 'city, family' crop context. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 16,
+      "product_height_percent": 18,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The image contains a visible person (a man crouching in the field), which triggers a hard reject criterion requiring zero people and zero human body parts.",
+        "The product is currently being handled by human hands rather than being naturally placed off-center on the soil independently.",
+        "The presence of the person obscures the intended composition where the drip-tape carton roll should be the secondary focus on the ground."
+      ],
+      "correction_prompt": "Regenerate the image with the man completely removed; show only a single white and blue AFP drip-take carton roll resting naturally on the soil in the lower third, off-center, in a farm setting with crop rows, ensuring no human figures or body parts are visible.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 21,
+      "product_height_percent": 25,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "The product is a white and blue wide, low cylindrical carton roll positioned on the soil.",
+        "The product width is 21% of the frame and height is 25%, fitting within the preferred 13-27% width range and the <32% height limit.",
+        "The roll is off-center and located in the lower half of the frame as required.",
+        "The image contains zero people or human body parts.",
+        "The required watermark 'AFP | 09134922013' is present and correct in the bottom-right corner.",
+        "The background shows a prepared farm field with young crop rows and a barn, matching the agricultural context.",
+        "No hard reject elements such as extra commercial products, bottles, or impossible geometry are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-رانشی-در-کشت-ارزن-مقایسه-کاربرد-عملی.webp"
+}

@@ -1,0 +1,69 @@
+{
+  "id": "xref-581",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 21,
+      "product_height_percent": 27,
+      "product_x_center_percent": 29,
+      "reasons": [
+        "The image contains a second irrigation hardware unit (a reel/flush manifold) in the lower right, which conflicts with the requirement for exactly one product/roll and risks being flagged as a second commercial product.",
+        "The crop plant in the foreground has a morphology that does not visually align with 'melon' (it resembles a leafy green or tomato seedling rather than a melon vine), triggering the contradiction check.",
+        "The product width is on the higher end of the acceptable range (21%), and the visual balance is disrupted by the plant and reel taking up significant foreground space, making the product less dominant or 'secondary' in the intended context."
+      ],
+      "correction_prompt": "Remove the black reel/manifold and the large foreground plant. Replace the plant with a low, vining melon plant or remove vegetation to keep the focus on the hardware. Ensure only the single white/blue drip tape roll is the primary subject on the soil.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 14,
+      "product_height_percent": 11,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Hard reject: A human figure (farmer/worker) is clearly visible in the background, which violates the requirement for zero people or body parts."
+      ],
+      "correction_prompt": "Remove the farmer/worker from the background entirely. Keep only the inanimate irrigation infrastructure and crop rows.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 33,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The product roll appears to have a pipe or black tube going through its core.",
+        "The product is centered horizontally, violating the off-center requirement.",
+        "The product height is slightly above the 32% limit.",
+        "The product height relative to width is nearly 1.1x, failing the 1.5-1.9x aspect ratio requirement.",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with the drip tape roll positioned off-center to the left or right. Remove any visible pipe going through the roll core and flatten the cylinder to ensure it is wider than it is tall (aspect ratio ~1.7). Ensure the product height stays under 32% of the frame. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Single AFP white-and-blue wide low cylindrical drip-tape roll is clearly visible on the soil.",
+        "The roll is off-center on the lower third of the frame.",
+        "No people, human silhouettes, or body parts are visible.",
+        "No other commercial products, bottles, or extra rolls are present.",
+        "Required watermark 'AFP | 09134922013' is correctly visible in the bottom-right corner.",
+        "Product dimensions fall within acceptable practical estimates (13–27% width)."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-زیرسطحی-در-کشت-ملون-راهنمای-جامع-جزئیات-فنی.webp"
+}

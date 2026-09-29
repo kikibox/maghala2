@@ -1,0 +1,53 @@
+{
+  "id": "xref-577",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: The main image contains two visible people (a man and a woman) crouching in the field, which violates the zero-human-body-parts requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human figures from the main image; keep the drip-tape roll secondary, lower-left, in a leek field context with the AFP watermark intact. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Hard reject: The image contains a second package, bottle, or canister (a white cylindrical container) on the right side of the frame, violating the 'single package' requirement.",
+        "Hard reject: The article crop تره (leek) is not clearly identifiable; the crop rows are generic and neutral, lacking distinct leek morphology (broad, flat blades)."
+      ],
+      "correction_prompt": "Remove the cylindrical white container on the right side of the frame so that only the single blue-and-white AFP drip-tape roll remains. Enhance the foreground crop rows to clearly display the broad, flat, and distinct leaves of mature leeks.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 14,
+      "product_height_percent": 20,
+      "product_x_center_percent": 51,
+      "reasons": [
+        "Presence of required bottom-right watermark 'AFP | 09134922013'",
+        "Absence of people or human body parts",
+        "Product width (14%) and height (20%) are within acceptable limits (13-27% and <32% respectively)",
+        "Product is naturally placed on soil in a farm context",
+        "Product geometry (cylindrical roll) is correct",
+        "Background context (crop rows) is agronomic and matches role requirements"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-تره-مقایسه-تصویر-شاخص.webp"
+}

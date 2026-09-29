@@ -1,0 +1,101 @@
+{
+  "id": "xref-574",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 11,
+      "product_height_percent": 12,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Critical hard reject: The image contains visible human body parts (hands, arms, legs, torsos) of two individuals, which is strictly prohibited.",
+        "Product size violation: The drip tape roll is too small, occupying only ~11% of the frame width, falling below the minimum 13% threshold.",
+        "Product shape violation: The visible diameter of the roll is roughly 0.9 times its height, failing the requirement to be 1.5 to 1.9 times as wide as it is tall (should be a wide, low cylinder).",
+        "Product position violation: The roll is centered in the lower-middle area rather than being placed off-center on the lower third.",
+        "Crop ambiguity: While the plants have broad leaves, the presence of humans and the incorrect product geometry makes the image unusable for the specific 'melon' crop role.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes entirely. Redesign the irrigation roll to be wide and low (diameter 1.8x height) and larger (approx 15% of frame width). Place the roll off-center on the soil in the lower third of the frame. Keep the melon crop context and bottom-right watermark. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 21,
+      "product_height_percent": 22,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Presence of three visible people (farmers) violating the hard reject rule",
+        "The image depicts a large, fully developed melon and mature leafy plants instead of the required 'preliminary young vegetation' (tiny unidentifiable seedlings) or a neutral prepared bed.",
+        "The presence of a fully grown melon suggests a crop maturity stage that might be inconsistent with 'drip-tape installation' context which is usually done early in the season or at planting, though the specific hard rejects are the humans."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes. Replace the mature melon and large plants with a prepared soil bed, tiny unidentifiable seedlings, or just the irrigation tape layout to focus on the infrastructure and early agronomic stage.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 12,
+      "product_height_percent": 14,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: Human figures are present; multiple people are visible in the scene.",
+        "Product size violation: The roll width (12%) is below the required minimum threshold of 13%.",
+        "Product staging violation: The product is held by a hand, violating the requirement to be placed naturally on soil off-center.",
+        "Product geometry: The visible aspect ratio of the roll appears too square (approx 1:1) instead of the required wide low cylindrical shape (1.5-1.9 width-to-height ratio).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts completely. Increase the drip-tape roll size to at least 13% of the frame width. Reposition the roll to sit directly on the soil surface in the lower third, off-center. Change the roll geometry to be significantly wider than it is tall (1.5x aspect ratio). Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 70,
+      "product_width_percent": 22,
+      "product_height_percent": 31,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Background crop morphology (large, lobed leaves) clearly identifies a different species (likely sunflower or soybean) rather than the required article crop خربزه (melon).",
+        "The image lacks the specific visual context of melon cultivation (such as melon vines, netting, or the characteristic melon leaf structure) and instead shows a generic broad-leaf crop context.",
+        "Botanically neutral young vegetation rules are not applied because the visible crop is a clearly identifiable different species with developed foliage."
+      ],
+      "correction_prompt": "Regenerate the image to ensure the crop plants visually represent a melon farm (خربزه) with characteristic melon vines and leaves; remove any plants that clearly resemble sunflowers, corn, or broad-leaf soybeans.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 20,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The crop shown clearly features small red fruit hanging from vines, which does not match the required article 'Khoubzeh' (melon).",
+        "The product is placed in the exact center of the frame, violating the 'off-center on the lower third' rule.",
+        "The drip tape emerging from the roll looks thick and stiff like a pipe, which could be considered 'impossible geometry' for a flexible tape."
+      ],
+      "correction_prompt": "Replace the tomato plants with a crop that clearly represents melon, such as large netted fruits on the ground with broad melon leaves. Move the roll of drip tape to the lower left or lower right (off-center) and make the tape emerging from it very thin and flexible.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 23,
+      "product_height_percent": 22,
+      "product_x_center_percent": 68,
+      "reasons": [
+        "The image features a single white and blue cylindrical drip-tape carton roll positioned in the lower-right area on the soil.",
+        "The product size is appropriate (approx 23% width, 22% height) and it is not centered.",
+        "The bottom-right watermark 'AFP | 09134922013' is clearly visible and correctly formatted.",
+        "The background shows a farm context with melons and young seedlings, matching the article topic without identifying different species.",
+        "No people, human body parts, or conflicting objects (bottles, jars, etc.) are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-خربزه-پیشنیازها-کاربرد-عملی.webp"
+}

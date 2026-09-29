@@ -1,0 +1,99 @@
+{
+  "id": "xref-590",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 22.0,
+      "product_height_percent": 35.5,
+      "product_x_center_percent": 50.0,
+      "reasons": [
+        "Product height exceeds the 32% frame maximum.",
+        "Product is centered horizontally instead of being off-center.",
+        "Text on the carton is gibberish rather than authentic package print.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35.5% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the product height to under 30% of the frame width, shift it slightly to the left to break symmetry, and replace the illegible text with realistic, readable drip tape packaging labels. Reduce product height from 35.5% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 10,
+      "product_height_percent": 18,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Hard reject: Human (farmer/worker) and hands are present in the image.",
+        "The drip tape roll is partially cut off at the bottom of the frame.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any humans. Place the AFP drip tape roll fully visible and off-center on the soil in the lower third, showing the farm context but no person or body parts. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 15,
+      "product_height_percent": 23,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The product is placed too centrally in the frame; the guidelines require it to be off-center in the lower third.",
+        "The background crop is botanically neutral/indistinguishable; the article title implies a specific crop that should ideally be recognizable in the context."
+      ],
+      "correction_prompt": "Shift the drip-tape roll to the far left or right lower third to make it off-center. Enhance the crop detail so the specific plant named in the article is more clearly visible and distinguishable.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 19.0,
+      "product_height_percent": 27.0,
+      "product_x_center_percent": 66.0,
+      "reasons": [
+        "The roll's height (approx 27%) exceeds the preferred secondary product ratio, making it feel too prominent for its width.",
+        "The roll appears to be floating above the soil rather than resting on it due to lack of grounding contact.",
+        "The drip tape itself is not visible inside the roll, failing to show the specific product material."
+      ],
+      "correction_prompt": "Regenerate with the roll height strictly under 25% to maintain secondary scale. Ensure the roll sits firmly on the soil with a soft contact shadow. Show a loop of drip tape hanging from the bottom of the roll to clearly identify it as drip tape.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 18,
+      "product_height_percent": 18,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Botanically neutral crop: The image shows indistinct, generic young seedlings. For the specific article context, the crop morphology is not recognizable or 'unmistakable', failing the role requirement for the named crop.",
+        "Geometry issue: The visible diameter of the roll (width) is approximately equal to its visible height (ratio ~1.0), whereas the requirement specifies the diameter should be 1.5 to 1.9 times the height (wider/low profile).",
+        "Layout issue: The product appears too centered; it should be more off-center to the lower third.",
+        "Extra element: There is a coil of tube/hose in the foreground which may be considered 'layflat hose' or an extra element that distracts from the roll being the sole focus.",
+        "Watermark: The 'AFP | 09134922013' watermark is correctly present."
+      ],
+      "correction_prompt": "Regenerate with a roll that is visibly wider than it is tall (aspect ratio 1.5:1). Place the roll more distinctly off-center to the left. Replace the generic seedlings with visually identifiable mature crops matching the article title. Remove the extra coiled hose in the foreground.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 18.5,
+      "product_height_percent": 17.4,
+      "product_x_center_percent": 34.5,
+      "reasons": [
+        "Exactly one white-and-blue wide low cylindrical drip-tape roll",
+        "Placed on soil and off-center in the lower third of the frame",
+        "No visible people or human body parts",
+        "Required bottom-right 'AFP | 09134922013' watermark present",
+        "No bottles, jars, cans, or extra commercial products",
+        "Background shows an agronomic farm context with crop rows"
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-رطوبتی-در-کشت-پیازچه-کاربردها-تصویر-شاخص.webp"
+}

@@ -1,0 +1,67 @@
+{
+  "id": "xref-577",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 17.0,
+      "product_height_percent": 30.0,
+      "product_x_center_percent": 20.0,
+      "reasons": [
+        "Contains a person (male farmer) in the top half of the image, violating the zero-persons rule.",
+        "Crop species appears to be corn (wide, parallel-veined leaves) rather than leek (narrow, strap-like leaves)."
+      ],
+      "correction_prompt": "Remove the person and top crop row; show a leek field context in the bottom image with the AFP carton placed off-center on soil.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product bounding box appears square (width equals height), violating the required diameter-to-height ratio of 1.5 to 1.9 times and the requirement for a wide low cylindrical shape.",
+        "Product height at 24 percent is higher than the recommended 13 to 18 percent range for a secondary drip-tape roll, making the roll appear unusually tall and wide relative to the frame.",
+        "The AFP phone watermark required in the bottom right is missing; the visible text is gibberish/invented writing outside authentic package print and not the exact string \"AFP | 09134922013\"."
+      ],
+      "correction_prompt": "Regenerate with a wide, low cylindrical drip-tape roll (diameter about 1.5-1.9x height) sized to 15-20% of frame width and under 20% of frame height, off-center in the lower third on soil; add exact bottom-right watermark 'AFP | 09134922013'; keep zero people and maintain leek/farm context.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Presence of a person (farmer) kneeling in the field, including visible arms, hands, and legs."
+      ],
+      "correction_prompt": "Remove the person completely. Keep only the AFP drip tape roll and the leek field background. Ensure no human body parts or silhouettes are visible.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 21,
+      "product_height_percent": 23,
+      "product_x_center_percent": 23,
+      "reasons": [
+        "Product is a white and blue wide low cylindrical drip-tape carton roll",
+        "Product is off-center on the lower third and naturally placed on soil",
+        "Product width is within the practical estimate range",
+        "Product height does not exceed the maximum limit",
+        "Required AFP watermark is present in the bottom right",
+        "No people, human body parts, or extra commercial products are visible",
+        "Vegetation is botanically neutral young growth in a farm context"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-محوری-در-کشت-تره-مقایسه-کاربرد-عملی.webp"
+}
