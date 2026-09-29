@@ -1,0 +1,42 @@
+{
+  "id": "xref-650",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 5,
+      "product_height_percent": 12,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: A person (farmer) is present in the image, including hands and a full body silhouette.",
+        "Product size violation: The drip-tape roll is significantly smaller than the required 13-27% width and has an inverted aspect ratio (height is greater than width instead of the required 1.5-1.9x).",
+        "Crop mismatch: The vegetation shown in the foreground and background consists of large broad-leafed plants, which contradicts the requirement for the fine trifoliate leaflets of alfalfa.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with exactly one AFP white-and-blue wide low cylindrical drip-tape roll that is roughly 20% of the frame width, positioned off-center on soil in the lower third. The crop must be clearly recognizable alfalfa with dense fine trifoliate leaflets. Remove all people, farmers, hands, or body parts from the scene. Keep the bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 5% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 19,
+      "product_height_percent": 28,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Product is a white-and-blue wide low cylindrical drip-tape carton roll, correctly positioned off-center on the lower third of the image and placed naturally on soil.",
+        "Product dimensions are within the acceptable practical range: width (19%) is between the preferred 20-23% and the strict 13-27% limit; height (28%) is below the 32% maximum.",
+        "Visible diameter is approximately 1.6 times the visible height, matching the required ratio (1.5-1.9x).",
+        "Zero people or human body parts are visible in the scene.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present and legible.",
+        "Background shows a farm field with green crop rows that are consistent with young alfalfa (trifoliate appearance), allowing the article-specific agronomic story to be clear without hard rejection of the crop species."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آبیاری-خرسابی-در-کشت-یونجه-مزایا-تصویر-شاخص.webp"
+}

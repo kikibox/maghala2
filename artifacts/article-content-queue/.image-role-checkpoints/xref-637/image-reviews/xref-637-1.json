@@ -3,38 +3,93 @@
   "kind": 1,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": true,
+  "approved": false,
   "attempts": [
     {
       "pass": false,
-      "score": 5,
-      "product_width_percent": 10,
-      "product_height_percent": 13,
-      "product_x_center_percent": 44,
+      "score": 45,
+      "product_width_percent": 28,
+      "product_height_percent": 28,
+      "product_x_center_percent": 15,
       "reasons": [
-        "Hard reject: The image contains two prominent people (farmers/workers) crouching and handling the product, which violates the 'zero people' rule.",
-        "Hard reject: The product is being held/touched by hands, rather than being naturally placed on the soil independent of human interaction.",
-        "Product dimensions are too small relative to the frame.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+        "Product width exceeds the maximum 27% limit",
+        "Presence of coiled hose/tube next to the roll triggers the 'layflat hose' rejection criteria",
+        "Watermark text appears as '09134922013' instead of the required '09134922013'",
+        "Product roll appears too wide relative to its height",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate the image to show only the empty farm field and crop beds with the white and blue drip-tape roll placed securely on the soil (no hands, no people). The roll should be roughly 20% of the frame width, positioned off-center in the lower third, and the background should match the article context without any human figures. Enlarge the product group from 10% to 13-27% of frame width.",
+      "correction_prompt": "Remove the coiled hose next to the roll; shrink the drip-tape carton roll to 18% width; correct the bottom-right watermark text to 'AFP | 09134922013'. Reduce the product group from 28% to 13-27% of frame width.",
       "attempt": 1
     },
     {
-      "pass": true,
-      "score": 98,
-      "product_width_percent": 22,
-      "product_height_percent": 25,
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 8,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: Image contains a person (farmer/worker) and human body parts, which is strictly forbidden.",
+        "Hard reject: The object in hand is a small canister/bucket, not the required wide low cylindrical drip-tape carton roll.",
+        "Hard reject: The required 'AFP white-and-blue wide low cylindrical drip-tape carton roll' is not visible in the image.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with zero people. Show a wide low cylindrical white-and-blue AFP drip-tape carton roll on the soil (off-center, lower third) next to corn seedlings. The roll must be clearly visible as the primary subject. Keep the exact bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "Text on the side of the carton roll contains gibberish/unintelligible characters, which violates the hard reject rule against gibberish text outside authentic package print."
+      ],
+      "correction_prompt": "Regenerate with clean, legible technical text on the carton roll instead of gibberish characters.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 10,
+      "product_height_percent": 15,
       "product_x_center_percent": 48,
       "reasons": [
-        "The product is an AFP white-and-blue drip tape roll, positioned naturally on the soil in the lower third of the frame.",
-        "The surrounding crop morphology is botanically accurate for wheat, consistent with the family topic.",
-        "Dimensions are within acceptable limits: the product width (22%) is between the preferred 20-23% and the practical 13-27% range; the height (25%) is below the 32% limit.",
-        "The aspect ratio (width/height) is approximately 0.88, which satisfies the 'about 1.5 to 1.9 times' height requirement when interpreted as the visible profile of a cylindrical roll."
+        "Hard reject: Image contains two prominent people (farmers).",
+        "Hard reject: Hard reject: Two visible people/farmers in frame.",
+        "The two men are interacting directly with the product, violating the 'zero people' and 'naturally placed' requirements.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
       ],
-      "correction_prompt": "",
-      "attempt": 2
+      "correction_prompt": "Regenerate the image showing only the irrigation tape roll on the soil with no people visible. Keep the background farm scene and the roll in the lower center, ensuring the roll is white and blue (AFP). Remove all farmers/worker figures and human body parts completely. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 26,
+      "product_height_percent": 23,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Hard reject: Image contains multiple visible people (farmers/workers) and human body parts.",
+        "Hard reject: The product roll is centered in the frame rather than off-center on the lower third.",
+        "Hard reject: The article crop (likely sunflower given the title context) shows mature foliage, but the role requires specific crop visibility which conflicts with the severe violation of the 'zero people' rule."
+      ],
+      "correction_prompt": "Regenerate with zero people and zero human body parts. Move the drip-tape roll to the left or right side (off-center) and place it in the lower third of the frame. Ensure the background farm context remains visible.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 13,
+      "product_height_percent": 18,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "A person is visible in the image (kneeling man in the foreground).",
+        "The presence of a person or human silhouette is a hard reject."
+      ],
+      "correction_prompt": "Regenerate the image without any people, faces, or human silhouettes. Show only the drip-tape roll placed on the soil in the farm context.",
+      "attempt": 6
     }
   ],
-  "approved_image": "آبیاری-رطوبتی-در-کشت-بامیه-چالشها-تصویر-شاخص.webp"
+  "approved_image": null
 }
