@@ -1,0 +1,71 @@
+{
+  "id": "xref-304",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Human presence (farmer/worker) is clearly visible with full body, face, and hands.",
+        "Hard reject: Product is a small white canister or bucket held by a person, not the required wide low cylindrical white-and-blue drip-tape carton roll.",
+        "Hard reject: Product is not placed naturally on soil and is off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts. Replace the canister with a large white-and-blue wide low cylindrical drip-tape carton roll placed naturally on the soil in the lower third (off-center). Ensure the roll width is 20-23% of the frame and height is <32%. Keep the farm context and AFP | 09134922013 watermark. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 23,
+      "product_height_percent": 22,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Missing required bottom-right watermark 'AFP | 09134922013'",
+        "Background is a generic farm field, not topic-specific to a named crop",
+        "Crop morphology (young seedlings) does not clearly match a specific article title",
+        "Product geometry (width/height ratio) is closer to 1.05:1, slightly violating the 1.5:1 to 1.9:1 target ratio",
+        "Product placement is in the lower-middle rather than clearly off-center on the lower third as preferred"
+      ],
+      "correction_prompt": "Regenerate image with a topic-specific farm context clearly matching a named crop article. Ensure the crop morphology is botanically accurate. Add the mandatory bottom-right watermark 'AFP | 09134922013'. Adjust the drip tape roll to be wider and flatter (width 1.5-1.9x height) and place it clearly off-center on the lower third.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 12,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: A person (farmer) is visible in the image",
+        "Product shape error: The roll is depicted as a short cylinder (canister-like) rather than the required wide low cylindrical carton roll",
+        "The required product morphology (wide low cylindrical drip-tape carton roll) is not present"
+      ],
+      "correction_prompt": "Remove the person entirely. Replace the short cylindrical canister with a wide, low, cylindrical drip-tape carton roll (diameter approx. 1.5-1.9 times its height) positioned on the lower third of the frame. Ensure the product appears as a wide white and blue roll, not a tall or narrow container.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 21,
+      "product_height_percent": 28,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Watermark 'AFP | 09134922013' is correctly present in the bottom-right corner.",
+        "The product (white and blue AFP drip-tape roll) is correctly placed off-center on the lower third.",
+        "Product dimensions (width ~21%, height ~28%) fall within the preferred practical ranges.",
+        "No people, human body parts, or silhouettes are visible.",
+        "The background farm context (seedlings, soil rows, distant barn) is botanically neutral and consistent with the required drip-tape article role."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-سطوحی-در-کشت-کینوا-مزایا-کاربرد-عملی.webp"
+}

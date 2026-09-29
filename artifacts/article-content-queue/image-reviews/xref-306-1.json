@@ -1,0 +1,56 @@
+{
+  "id": "xref-306",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 9,
+      "product_height_percent": 9,
+      "product_x_center_percent": 54,
+      "reasons": [
+        "The image contains a person (a male farmer), which is a hard reject requirement.",
+        "The person's face, hands, arms, legs, and body parts are clearly visible and interacting with the product, violating the 'zero people and zero human body parts' rule.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image showing only the white-and-blue wide low cylindrical AFP drip-tape carton roll on the soil. Remove the person completely. Place the roll off-center on the lower third of the frame, approximately 20-25% of the frame width, in a farm context (e.g., young vegetable rows). Ensure the roll is the only product visible and the 'AFP | 09134922013' watermark remains in the bottom-right corner. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 33,
+      "product_height_percent": 30,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Product width exceeds the 27% maximum threshold (estimated at 33%), violating the size constraints which state the product must remain secondary.",
+        "The product is described as 'AFP white-and-blue', but the roll in the image is predominantly white with only a blue logo/stripe, failing the specific color description requirement.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 33% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the drip tape roll significantly smaller (width approx 20-23% of image width) and featuring a white-and-blue patterned surface. Keep the farm context and watermark exactly as is. Reduce the product group from 33% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 16,
+      "product_height_percent": 16,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product is a single white-and-blue wide low cylindrical drip-tape carton roll",
+        "Correct off-center positioning on the lower-left third",
+        "Proportions match requirements: wide low cylinder, diameter ~1.5x height",
+        "Background shows farm context with rows of young seedlings",
+        "Zero people or human body parts visible",
+        "Required watermark 'AFP | 09134922013' present in bottom right",
+        "Product size and placement are practical and compliant"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-خرسابی-در-کشت-جعفری-هزینه-در-مزرعه-تصویر-شاخص.webp"
+}

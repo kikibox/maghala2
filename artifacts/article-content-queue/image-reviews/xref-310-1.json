@@ -1,0 +1,99 @@
+{
+  "id": "xref-310",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 9,
+      "product_height_percent": 16,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: The image contains two visible people (farmers/workers) and multiple human body parts, violating the zero people/human body parts constraint.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any people, humans, or body parts. Ensure the AFP water drip-tape roll is placed on the soil in the lower third, off-center, with no human presence. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Article title mentions 'city', but the image depicts a rural farm with a red barn and open fields, creating a hard mismatch with the specific topic requirement.",
+        "The crop morphology is slightly unclear and blends into the soil; while not strictly a different species, it does not meet the requirement for 'unmistakable morphology' defined in the article title."
+      ],
+      "correction_prompt": "Update the background to a dense urban city farm setting with visible city infrastructure (buildings/roads) and clearer crop rows to match the article title.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 14.2,
+      "product_height_percent": 18.0,
+      "product_x_center_percent": 35.5,
+      "reasons": [
+        "Hard reject: A male person is clearly visible crouching in the foreground, holding the product.",
+        "Hard reject: A human hand is gripping the side of the product roll.",
+        "Product staging: The roll is being held by a person rather than naturally placed on the soil.",
+        "Context: The presence of a farmer contradicts the requirement for zero people or human body parts."
+      ],
+      "correction_prompt": "Regenerate the image with the exact same 'AFP' branded drip-tape roll resting flat on the soil in the lower third of the frame. Completely remove the male farmer. The background should remain the urban farm with the city skyline and rows of crops. Keep the 'AFP | 09134922013' watermark exactly as is.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 48,
+      "product_width_percent": 30,
+      "product_height_percent": 27,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The watermark is incorrect: the image shows 'AFP | 09134922013' whereas the strict requirement is 'AFP | 09134922013' (extra digit '2' and different suffix).",
+        "The product is centered horizontally (~48%), violating the 'off-center' requirement.",
+        "The product appears too wide (~30%), exceeding the maximum allowed width of 27 percent of the frame.",
+        "The product is not 'naturally placed on soil' but appears staged on a flat surface with an artificial rim/shadow effect.",
+        "The crop in the image (young leafy plants) is not botanically identifiable as the specific named crop 'city, family tape20' from the title, failing the 'recognizable' requirement for the article crop.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the bottom-right watermark exactly 'AFP | 09134922013'. Move the white-and-blue AFP drip-tape roll to the lower-left or lower-right third so it is clearly off-center. Reduce the roll's width to approximately 18-23% of the frame width while maintaining a visible height of no more than 32%. Place the roll naturally on the tilled soil surface without artificial shadows. Use a crop that clearly matches the 'city, family tape20' article context (or a highly distinguishable crop if 'family' is interpreted as a specific variety, otherwise use a generic but high-quality row crop). Reduce the product group from 30% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 19,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The required exact bottom-right watermark 'AFP | 09134922013' is present, but the roll is a standard drip-tape cartridge (likely 12 inch/305mm inner diameter) that is proportioned too large to represent a 20mm (tape20) line.",
+        "The crop in the background is clearly corn/maize, not the specific 'city, family' context requested for the title.",
+        "The product bounding box is slightly too tall, approaching the 32% hard limit, and the roll's proportions suggest a standard drip tape spool rather than a thin 20mm tape roll."
+      ],
+      "correction_prompt": "Regenerate with a 20mm drip tape roll (smaller visual diameter) placed on the soil in a small-scale family vegetable garden (tomato or lettuce) instead of a large maize field; maintain the bottom-right watermark 'AFP | 09134922013'.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 75,
+      "product_width_percent": 17,
+      "product_height_percent": 15,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Product is the single AFP white-and-blue wide low cylindrical drip-tape carton roll, placed naturally on the soil.",
+        "Product dimensions are within acceptable practical ranges (width 17%, height 15%) and correctly oriented.",
+        "Placement is off-center on the lower third as required.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present and legible.",
+        "Zero people or human body parts are visible.",
+        "Background contains tomato plants and a general farm context; while 'family tape20' is specific, the visible tomato morphology provides a recognizable crop story, and the bed itself is not hard-reject territory for this specific crop type."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-سطوحی-در-کشت-پیازچه-پیشنیازها-تصویر-شاخص.webp"
+}

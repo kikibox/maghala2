@@ -1,0 +1,53 @@
+{
+  "id": "xref-296",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 26,
+      "product_height_percent": 42,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product bounding box height (42%) exceeds the maximum limit of 32%.",
+        "The visible diameter is not approximately 1.5 to 1.9 times the visible height.",
+        "Product staging is centered/lower-third but the height violation is the primary hard fail.",
+        "machine-enforced bounding-box check failed: Reduce product height from 42% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with the drip tape roll significantly smaller so its height is under 32% of the frame and its width-to-height ratio is 1.5:1. Ensure the roll is positioned lower on the soil, off-center, and remains secondary to the farm context. Keep the exact watermark. Reduce product height from 42% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 15,
+      "product_height_percent": 25,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The 'carton roll' specification is violated; the image displays a roll of white tubing/tape on a spool, not a cylindrical carton roll.",
+        "The required bottom-right watermark 'AFP | 09134922013' is missing (incorrect watermark 'AFP | 09134922013' is not visible)."
+      ],
+      "correction_prompt": "Regenerate with a white and blue cylindrical drip-tape carton roll placed on soil (no tubing spool) and add the exact bottom-right watermark 'AFP | 09134922013'.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 22,
+      "product_height_percent": 27,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Product shape and orientation are correct (wide cylindrical roll).",
+        "Product placement and scale are appropriate (lower third, off-center, correct relative size).",
+        "Background shows farm context (tillage, equipment) matching a hardware story.",
+        "Required watermark is present and correct."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-سورگوم-مقایسه-جزئیات-فنی.webp"
+}

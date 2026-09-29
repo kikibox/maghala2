@@ -1,0 +1,57 @@
+{
+  "id": "xref-298",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 11,
+      "product_height_percent": 20,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Hard reject: Visible person (farmer) and human body parts including face, hands, arms, legs, and boots are present in the image",
+        "Hard reject: The drip tape roll is being physically handled/placed by a human hand, violating the 'zero people' requirement",
+        "Product placement is in the center of the frame rather than off-center on the lower third",
+        "The crop shown is not identifiable as melon (ملون) based on leaf morphology",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove the person/hands and any visible human body parts. Ensure the AFP drip-tape roll is placed naturally on the soil in the bottom-left third, not held by anyone. Change the crop to a prepared soil bed or neutral young seedlings to satisfy the melon context without showing wrong leaves. Ensure the roll is white-and-blue. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "The prompt explicitly requires the 'required article crop ملون (melon)' to be recognizable in roles 1 and 2.",
+        "The image features tiny, generic seedlings that do not botanically resemble melon plants (which typically have large, broad, lobed leaves and a sprawling habit rather than the narrow-leaved, upright seedlings shown here).",
+        "The background contains a field of bright orange flowers (resembling marigolds), which does not match the agricultural context of a melon farm.",
+        "The product is a generic 'Drip' branded roll, not the specific 'white-and-blue wide low cylindrical drip-tape carton' described in the hard constraints."
+      ],
+      "correction_prompt": "Regenerate the image to replace the generic seedlings with clearly identifiable young melon plants (botanically accurate broad lobed leaves) and remove the orange flowers from the background. Replace the generic white roll with a specific wide, low, cylindrical drip-tape carton roll with white and blue branding, placed on the soil.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 78,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "The image features a prominent AFP branded drip tape roll, which is positioned correctly in the lower-left (off-center) and placed naturally on the soil.",
+        "The product dimensions are consistent with requirements, with a width of ~20% and height of ~22% of the frame, maintaining the appropriate cylindrical aspect ratio.",
+        "The farm context and crop are agronomically consistent with young melon (ملون) seedlings/vegetation in a drip-irrigated field, which is acceptable for a young growth stage.",
+        "No hard-reject human figures, extra commercial products, or gibberish text are visible.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom right."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-نوار-تیپ-در-کشت-ملون-نکات-کلیدی-کاربرد-عملی.webp"
+}

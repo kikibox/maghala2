@@ -1,0 +1,90 @@
+{
+  "id": "xref-292",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22.0,
+      "product_height_percent": 34.5,
+      "product_x_center_percent": 34.0,
+      "reasons": [
+        "The crop plant visible in the foreground has a panicle that strongly resembles sorghum or millet, which clearly contradicts the specified topic of sesame (کنجد), triggering a hard reject.",
+        "The text on the product packaging is gibberish and invented writing, violating the hard reject criteria.",
+        "The required watermark 'AFP | 09134922013' appears as an intrusive black rectangular box at the bottom right, whereas it should be an integrated transparent watermark.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34.5% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the visible crop plant entirely. Ensure the text on the white cylindrical drip-tape carton roll is clean and authentic (not gibberish). Change the watermark to a transparent, integrated text 'AFP | 09134922013' at the bottom right without a black background box. Reduce product height from 34.5% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 10,
+      "product_height_percent": 15,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Hard reject: Presence of a person (a man crouching in the foreground).",
+        "Hard reject: Presence of human body parts (face, hands, arms, legs).",
+        "Product sizing: The roll is positioned in the lower center rather than the required off-center lower third.",
+        "Geometry: The roll appears too small and narrow relative to the strict width requirements for the role.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the man and all human presence from the scene. Reposition the AFP drip-tape roll to the lower-left or lower-right third of the frame. Increase the roll's width to approximately 20-23% of the frame. Ensure the roll sits naturally on the soil with a visible white and blue design. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 24,
+      "product_height_percent": 34,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product vertical height is approximately 34% of the frame, exceeding the hard reject limit of 32%.",
+        "Visible diameter/width of the roll is approximately 24% of its height, failing the required 1.5 to 1.9 aspect ratio (too flat/wide).",
+        "Product placement is low-center; the prompt specifies off-center on the lower third, but the primary blocking issue is the dimension violations.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the roll's vertical height to 30% or less and flatten the roll to make it at least 1.7x wider than it is tall (shorter and wider cylinder). Move the roll slightly to the left so it is clearly off-center within the lower third. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 14,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject: Image contains a person (farmer/worker) and visible human body parts (arms, legs, boots).",
+        "The presence of a human violates the rule 'Hard reject any person... or human silhouette.'",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without the person. Show only the white and blue AFP drip-tape roll on the soil. Remove the farmer and focus solely on the product placement in the farm field context. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 25,
+      "product_height_percent": 20,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Exact bottom-right watermark 'AFP | 09134922013' is present and preserved as required.",
+        "Product is a single white-and-blue wide low cylindrical drip-tape roll placed naturally on soil.",
+        "No people, human body parts, or silhouettes are visible.",
+        "Product is off-center on the lower third of the frame as requested.",
+        "Dimensions are within acceptable bounds: width ~25% and height ~20% (well under the 32% limit).",
+        "The low wide aspect ratio (diameter ~1.75x height) matches the target geometry.",
+        "Visible crop sprouts are visually neutral and do not clearly contradict a sesame context in a hardware/drip-tape infrastructure role.",
+        "Unattended tractor and barn in the background qualify as farm infrastructure and are acceptable.",
+        "No hard rejects found (no bottles, extra commercial products, pipes through the roll, gibberish text, or impossible geometry)."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-کنجد-چالشها-جزئیات-فنی.webp"
+}

@@ -1,0 +1,63 @@
+{
+  "id": "xref-300",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 27.4,
+      "product_height_percent": 34.5,
+      "product_x_center_percent": 29.0,
+      "reasons": [
+        "Product width exceeds the 27% hard reject limit.",
+        "Product height exceeds the 32% hard reject limit.",
+        "Extraneous object present: A clock/stopwatch is placed next to the product, which acts as an unwanted commercial or foreign object in the product staging.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 27.4% to 13-27% of frame width.; Reduce product height from 34.5% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the clock. Regenerate the image so the drip tape roll is smaller, occupying less than 25% of the width and height, ensuring it appears secondary in the frame. Reduce the product group from 27.4% to 13-27% of frame width. Reduce product height from 34.5% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 16,
+      "product_height_percent": 18,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: Image contains multiple people (faces, bodies, and limbs), which explicitly violates the rule of zero people or human body parts."
+      ],
+      "correction_prompt": "Regenerate the image with no people or human silhouettes; show only the AFP drip-tape roll on soil with background farm hardware.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 26,
+      "product_height_percent": 28,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Presence of two human figures (farmers/worker) in the background, which is a hard reject criterion.",
+        "Product is located on the lower-left rather than the specific lower-third off-center placement required.",
+        "Presence of a metal hand fork (tool) next to the product, which may violate the 'extra commercial product' or hardware-only constraint."
+      ],
+      "correction_prompt": "Regenerate the image with the two people in the background completely removed. Remove the metal hand fork. Ensure the drip tape roll is positioned off-center in the lower third of the frame on the soil. Maintain the 'AFP | 09134922013' watermark.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 22,
+      "product_height_percent": 16,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "All requirements met: single AFP white-and-blue wide low cylindrical drip-tape roll off-center on the lower third, naturally placed on soil; zero people or body parts; product size (width 22%, height 16%) and aspect ratio (1.5:1) fall within acceptable limits; required bottom-right watermark 'AFP | 09134922013' is present; farm context (soil, tractor, barn, young crops) matches the irrigation hardware story (Role 3), and no visible crops clearly contradict garden cress."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-قطرهچکان-در-کشت-شاهی-مقایسه-جزئیات-فنی.webp"
+}

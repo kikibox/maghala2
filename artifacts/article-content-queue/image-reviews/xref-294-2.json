@@ -1,0 +1,64 @@
+{
+  "id": "xref-294",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 13.5,
+      "product_height_percent": 18.0,
+      "product_x_center_percent": 21.0,
+      "reasons": [
+        "Presence of a person (male farmer) in the field",
+        "Visible human body parts (face, hands, arms, legs) violating the zero-people rule"
+      ],
+      "correction_prompt": "Remove the man from the image, keeping the field, crop, and product exactly as they are.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 16,
+      "product_height_percent": 17,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The product appears roughly as tall as it is wide (aspect ratio ~1.0), failing the required aspect ratio of 1.5 to 1.9 times wider than its visible height."
+      ],
+      "correction_prompt": "Regenerate with a wide, low cylindrical drip-tape roll (diameter roughly 1.5-1.9x its height), positioned off-center in the lower third, keeping the same farm context and watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 17,
+      "product_height_percent": 22,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The drip-tape carton roll is too tall relative to the frame; its height (approx. 22% of the frame) violates the requirement for a wide, low, cylindrical appearance and fails the 32% maximum height constraint relative to its width. A 'wide low' roll must be much flatter (wider than it is tall).",
+        "The visible shape is a standard tall spool/carton, not a wide low cylindrical roll (where diameter is 1.5-1.9x the visible height). The proportions here are nearly 1:1 or taller."
+      ],
+      "correction_prompt": "Regenerate the drip-tape carton roll to be significantly flatter and wider. The roll should have a wide, low cylindrical profile (visible diameter 1.5 to 1.9 times its height) to fit the 'low cylindrical' description, placed on the lower third on the soil next to the maize.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 19,
+      "product_height_percent": 14,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "The product is exactly one AFP white-and-blue cylindrical drip-tape carton roll, off-center in the lower third, placed naturally on soil.",
+        "The background clearly matches the 'maize' crop topic, showing tall upright stalks and long blade leaves consistent with young maize.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and authentic.",
+        "No people, human body parts, or silhouettes are visible.",
+        "No extra commercial products, bottles, or impossible geometry present."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-رطوبتی-در-کشت-ذرت-کاربردها-کاربرد-عملی.webp"
+}

@@ -1,0 +1,57 @@
+{
+  "id": "xref-295",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 29,
+      "product_height_percent": 35,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product is too large (29% wide and 35% high), violating hard limits (max 27% width, max 32% height).",
+        "Product is centered on the vertical midline rather than placed on the lower third.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 29% to 13-27% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Significantly reduce the scale of the white and blue cylindrical drip-tape carton roll so it is approximately 15% of the frame width and 20% height. Position it clearly on the left side in the lower third of the image. Reduce the product group from 29% to 13-27% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 16,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "Hard reject: Image contains a person (farmer) crouching in the foreground.",
+        "Hard reject: Visible human body parts including head, torso, arms, hands, and legs.",
+        "Product is not an AFP carton roll; it is depicted as a small, dark ring/washer held by the person.",
+        "The required bottom-right watermark text is missing, replaced by a timestamp-style watermark.",
+        "The product (if the carton is considered) is not the primary focus of the hardware story context due to the human element."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human body parts. Show a single white and blue AFP drip-tape carton roll lying off-center on the soil in the lower left foreground. The roll must be wide and low (diameter 1.5-1.9x height). Keep the tractor and farm background. Ensure the product is secondary to the scene but clearly visible. Add the required watermark 'AFP | 09134922013' in the bottom right corner.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 22.5,
+      "product_height_percent": 26,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Product is a single AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product is placed off-center on the lower third and naturally on soil.",
+        "Aspect ratio (diameter ~1.7x height) and size (width < 27%, height < 32%) are within acceptable limits.",
+        "Background features an unattended tractor and farm hardware, which are allowed as infrastructure without human silhouettes.",
+        "Zero people or human body parts are visible in the frame.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-زیرسطحی-در-کشت-بادمجان-چالشها-جزئیات-فنی.webp"
+}

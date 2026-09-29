@@ -1,0 +1,96 @@
+{
+  "id": "xref-294",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 20,
+      "product_height_percent": 30,
+      "product_x_center_percent": 20,
+      "reasons": [
+        "The product is positioned in the bottom-left corner rather than the specified off-center lower third.",
+        "The crop visible in the background appears to be rice (with visible root crowns in soil), which is not the required maize crop.",
+        "The image does not clearly depict the topic-specific maize farm context required for role 1."
+      ],
+      "correction_prompt": "Regenerate the image showing the AFP drip tape roll placed in the lower-center to lower-right third of the frame. Replace the rice crop background with a maize field showing distinct tall stalks and long blade leaves.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 18.5,
+      "product_height_percent": 15.5,
+      "product_x_center_percent": 52.5,
+      "reasons": [
+        "The crop morphology in the background is visually identifiable as sorghum (Sorghum bicolor), characterized by its distinct paniculate inflorescence (seed heads) at the top of the stalks. This is a different species from the required maize (corn) crop. The prompt explicitly requires hard rejection of a clearly identifiable different species."
+      ],
+      "correction_prompt": "Regenerate the background to clearly depict a maize (corn) crop with characteristic cob tassels at the top and broad leaves, removing the sorghum-like panicles.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 11,
+      "product_height_percent": 13,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is too small (width <13%, height <20%)",
+        "Product is not a wide low cylindrical drip-tape carton roll (appears as a narrow canister/bucket)",
+        "Product is centered rather than off-center on the lower third",
+        "Geometry does not match the required drip tape roll specification",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with a wide low cylindrical drip-tape carton roll (width 20-23% of frame, height <32%, diameter ~1.5-1.9x height) off-center on the lower third, placed on soil in the maize field. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 24,
+      "product_height_percent": 18,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product is centered, violating the 'off-center' requirement",
+        "Product width is 24% which exceeds the preferred 20-23% range",
+        "Roll diameter to height ratio is incorrect (approx 1.33:1 instead of required 1.5-1.9:1)"
+      ],
+      "correction_prompt": "Move the roll off-center to the lower left or right third of the frame. Reduce the roll width to approximately 20% of the frame. Increase the vertical height of the roll relative to its width to achieve a diameter-to-height ratio of approximately 1.6:1.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 16,
+      "product_height_percent": 14,
+      "product_x_center_percent": 29,
+      "reasons": [
+        "Presence of a person (woman crouching in the field) - hard reject",
+        "Product bounding box estimation: width ~16%, height ~14%, x_center ~29%",
+        "Product is in the lower-left, which is off-center, but the human presence is the critical failure"
+      ],
+      "correction_prompt": "Regenerate the image with exactly one AFP white-and-blue drip-tape carton roll on the soil, maize crop background, zero people or human body parts. Keep the crop as maize, ensuring no human silhouettes are present anywhere in the frame. Ensure the product width is between 13-27% of the frame and height under 32%. Maintain the bottom-right watermark.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 94,
+      "product_width_percent": 21,
+      "product_height_percent": 28,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Exactly one white-and-blue AFP cylindrical drip-tape carton roll is present and placed naturally on soil.",
+        "The crop is clearly identifiable as maize (corn) with tall stalks and long blade leaves, matching the requested 'ذرت' (maize) article.",
+        "Product dimensions are within acceptable parameters: width is ~21% (preferred 20-23), height is ~28% (max 32), and it is off-center in the lower third.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and legible.",
+        "Zero people or body parts visible; no disallowed hardware or extra commercial products present."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-رطوبتی-در-کشت-ذرت-کاربردها-تصویر-شاخص.webp"
+}

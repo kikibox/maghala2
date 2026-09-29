@@ -1,0 +1,89 @@
+{
+  "id": "xref-305",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 12,
+      "product_height_percent": 14,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Background crop is clearly identifiable sunflowers, which is a hard reject for an article about 'yellow split-pea' (لپه).",
+        "The product is centered horizontally (47%) rather than off-center in the lower third as preferred.",
+        "The product roll is very small relative to the frame (approx 12% width), falling below the 13-27% acceptable range.",
+        "The roll appears to have text and graphics ('AFP' and a logo) that look like a generic container rather than a specific drip-tape roll, though the watermark is present.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Replace the sunflower background with a field of yellow split-pea (chickpea) plants or a prepared soil bed. Increase the size of the white and blue drip-tape roll to approximately 20% of the frame width and shift it to the left to be off-center. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 22,
+      "product_height_percent": 24,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: Image contains a visible person (farmer/worker) crouching in the field, violating the zero-person rule.",
+        "Hard reject: The crop shown is clearly a flower field (tall yellow tulips) rather than 'لپه' (yellow split-pea crop). Split peas are a low-growing legume, not a vertical flower crop.",
+        "Product geometry hard reject: The drip tape roll is too tall (24%) relative to its width (22%). It appears as a squarish short roll rather than the required 'wide' cylindrical roll where diameter is ~1.5-1.9x the height.",
+        "The roll is a bit too short/square to represent a standard large 'wide' carton roll."
+      ],
+      "correction_prompt": "Regenerate with strictly ZERO people and ZERO human body parts. Remove the person and the tulip field. Background must be a low-growing yellow split-pea (field pea) crop. Replace the roll with a wide white-and-blue cylindrical drip-tape carton roll placed off-center on the lower-left soil. The roll must be significantly wider than it is tall (diameter approx 1.7x height), occupying approx 20% of frame width. Keep the 'AFP | 09134922013' watermark in the bottom right.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 27,
+      "product_height_percent": 34,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: The crop in the image is clearly yellow tulips, not yellow split-pea (لپه). The requirement explicitly states to hard reject a clearly identifiable different species.",
+        "The product height is estimated at 34% of the frame, which exceeds the maximum limit of 32%.",
+        "The product width is at the upper limit (27%) and combined with the excessive height, the product is not proportioned correctly.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Replace the tulips with yellow split-pea (chickpea) plants showing botanically accurate pods and leaves. Reduce the vertical height of the carton roll to fit within 30% of the frame height. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 15,
+      "product_height_percent": 14,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Contains a person (farmer), which is a hard reject",
+        "Contains multiple human body parts (face, hands, legs), which is a hard reject",
+        "Product roll is centered on the horizontal axis (50%) rather than off-center",
+        "Background crop consists of yellow tulips, which is a clearly identifiable different species and not لپه (split-peas) or a neutral prepared bed",
+        "Product packaging appears to be a potted cylindrical container rather than a wide low drip-tape carton roll"
+      ],
+      "correction_prompt": "Regenerate image showing a single wide white-and-blue drip-tape roll on the soil in a crop row of yellow split-pea plants (dwarf stage) or a neutral tilled field. Ensure the product is off-center (left or right third) and strictly zero people or human body parts are visible. The 'AFP | 09134922013' watermark remains in the bottom right.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product width (24%) is within the preferred 20–23% range and acceptable 13–27% range.",
+        "Product height (30%) is within the 32% maximum.",
+        "Product is off-center on the lower third (center_x at 50%).",
+        "Watermark 'AFP | 09134922013' is present in the bottom right.",
+        "No people or human body parts are visible.",
+        "Crop is yellow, consistent with split-pea, with no hard reject species identified."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-در-کشت-لپه-راهنمای-جامع-کاربرد-عملی.webp"
+}

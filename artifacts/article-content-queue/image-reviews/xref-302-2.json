@@ -1,0 +1,58 @@
+{
+  "id": "xref-302",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 28,
+      "product_height_percent": 33,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Critical geometry violation: The drip-tape roll is shown in a vertical 'standing' orientation rather than the required 'wide low cylindrical' laying orientation (where the tape's width would be the height). This makes the product appear as a tall canister or bucket, violating the 'wide low' and 'off-center' placement rules.",
+        "The product bounding box is centered (x-center 50%), violating the requirement for off-center staging in the lower third.",
+        "Impossible logic: The crop seedling is shown growing out of the top center of the product roll, which implies the roll is a planter pot, contradicting the 'carton roll' specification.",
+        "The product width and height estimates (~28-30%) exceed or are at the edge of the allowed maximum limits (27% width, 32% height) for the 'practical' range.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width.; Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reposition the white-and-blue AFP drip-tape roll so it lies horizontally on the soil in the lower-right off-center area (wide low cylindrical shape). Remove the crop growing out of the product. Ensure the roll is secondary in scale (width < 25% of frame). Reduce the product group from 28% to 13-27% of frame width. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 18,
+      "product_height_percent": 15,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: There is a clearly visible person (a farmer crouching) in the background field, which violates the 'zero people' and 'zero human body parts' constraints.",
+        "The product roll appears to be standing vertically on its edge (flat side facing the camera) rather than lying horizontally with the cylindrical drum face visible. The requirement specifies a 'wide low cylindrical' roll where the visible diameter should be 1.5-1.9 times the visible height, implying a horizontal orientation."
+      ],
+      "correction_prompt": "Remove the person in the background entirely. Regenerate the drip tape roll so it is lying horizontally on the soil (wide low profile) with the cylindrical face visible, positioned off-center in the lower third.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The image displays exactly one wide, low cylindrical drip-tape roll with the required white-and-blue AFP branding.",
+        "The product is positioned off-center on the lower third and sits naturally on the soil.",
+        "The bounding box dimensions are within acceptable limits: width is 24% (within the 13-27% range) and height is 30% (below the 32% limit).",
+        "The roll's diameter-to-height ratio is consistent with the 1.5-1.9x requirement.",
+        "The background shows young crop rows which are botanically neutral and consistent with the 'image role 2' description.",
+        "The required text watermark 'AFP | 09134922013' is clearly visible in the bottom-right corner.",
+        "The image contains zero people or human body parts.",
+        "No forbidden items (bottles, second rolls, pipes) are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-خرسابی-در-کشت-پنبه-چالشها-کاربرد-عملی.webp"
+}
