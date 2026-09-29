@@ -1,0 +1,58 @@
+{
+  "id": "xref-209",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 15,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: The image contains a person (farmer/workerman) visible on the right side, including torso, arms, legs, hands, and feet.",
+        "Hard reject: The visible commercial product is a short canister/jar, not the required 'wide low cylindrical drip-tape carton roll' (1.5-1.9 diameter-to-height ratio).",
+        "Product proportions are incorrect: The product width is ~8% of the frame (below the 13% minimum threshold), and it is positioned centrally rather than in the lower-left third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to remove the farmer and all human body parts completely. Replace the canister with a wide, low, cylindrical drip-tape roll (1.5-1.9x wider than it is tall) placed off-center on the soil. The roll's visible width must be approximately 20% of the frame width. Ensure the background shows a specific farm context for melon cultivation without people. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 24,
+      "product_height_percent": 22,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The visible crop foliage in the field does not clearly exhibit the botanically accurate characteristics of a melon crop (e.g., characteristic lobed leaves and sprawling vining habit); it is neutral or appears to be a different species.",
+        "The drip tape roll is centered horizontally (50% mark) rather than off-center on the lower third as required.",
+        "The package text is not clearly legible as authentic print, resembling AI-generated gibberish, and the required 'white-and-blue' color profile is not strictly adhered to in the packaging design."
+      ],
+      "correction_prompt": "Regenerate with a clear off-center composition (left or right) for the AFP drip tape roll, and ensure the background vegetation explicitly displays the distinct lobed leaves and tendrils of a young melon plant.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Product is a clearly visible white-and-blue AFP drip-tape carton roll.",
+        "Exactly one roll is present, placed naturally on soil.",
+        "Product width and height are within acceptable ranges.",
+        "Product is off-center in the lower third.",
+        "Zero people or human body parts are visible.",
+        "Background shows a farm context with young green vegetation (neutral agronomic story).",
+        "Required watermark 'AFP | 09134922013' is present and correct.",
+        "No forbidden objects (containers, extra rolls, hoses, etc.) are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-ملون-چالشها-کاربرد-عملی.webp"
+}

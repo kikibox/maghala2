@@ -1,0 +1,60 @@
+{
+  "id": "xref-196",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 10,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: The image contains a full human figure (a man crouching and holding the product), which violates the strict requirement for zero people or human body parts.",
+        "Crop mismatch: The plants visible in the field are not leafy vegetables (سبزی); they appear to be flowers or ornamental plants, which does not match the required article context.",
+        "Product Geometry: The product is a small spool held by the person, not a wide cylindrical drip-tape carton roll placed naturally on the soil.",
+        "Product Sizing: The product width is only ~12% of the frame, falling below the preferred and even the acceptable minimum threshold of 13%.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image: A farm scene with leafy vegetable crops (سبزی) in the background. In the foreground, a white and blue wide cylindrical drip-tape carton roll lies on the soil, off-center to the left. No people or human body parts are visible. The roll must be large enough to occupy at least 20% of the image width. Include the exact watermark 'AFP | 09134922013' at the bottom-right. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 33,
+      "product_height_percent": 38,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: Image contains human silhouettes/people in the background.",
+        "Product dimensions are too large: Estimated width is ~33% and height is ~38%, exceeding the 27% width and 32% height limits.",
+        "Centering/Positioning: The product is centered horizontally in its row rather than off-center on the lower third.",
+        "The crop visible is leafy, but the presence of people is an immediate disqualifier.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 33% to 13-27% of frame width.; Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image without any people or workers visible in the background. Ensure the drip-tape roll is significantly smaller in the frame (width <25%, height <30%), positioned off-center on the lower third, placed on soil next to leafy vegetables. Keep the bottom-right watermark exactly as 'AFP | 09134922013'. Reduce the product group from 33% to 13-27% of frame width. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 18,
+      "product_height_percent": 17,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is an AFP white-and-blue wide low cylindrical drip-tape carton roll with correct shape and geometry.",
+        "Product width (~18%) is within the preferred 20-23% range and acceptable 13-27% range.",
+        "Product height (~17%) is well below the 32% maximum.",
+        "Product is off-center on the lower third and placed naturally on soil.",
+        "Background shows leafy vegetables (سبزی) which is recognizable and botanically plausible (lettuce/arugula type greens), matching the crop requirement without hard reject.",
+        "Watermark 'AFP | 09134922013' is present in the bottom right as required.",
+        "No people or human body parts are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-در-کشت-رزماری-نکات-کلیدی-کاربرد-عملی.webp"
+}

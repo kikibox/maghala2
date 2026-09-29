@@ -1,0 +1,56 @@
+{
+  "id": "xref-196",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 8,
+      "product_height_percent": 25,
+      "product_x_center_percent": 56,
+      "reasons": [
+        "The image contains a prominent person (a man) in the center frame.",
+        "The image contains visible human body parts (face, hands, arms, legs).",
+        "The product shown is a small white bottle, not a 'wide low cylindrical drip-tape carton roll'.",
+        "The product's geometry and appearance are incorrect for the required item (Role 3 hardware: crop plants may be neutral, but no identifiable contradictory crops are seen; however, the presence of a bottle/fertilizer container is a hard reject).",
+        "The product width is approximately 8% of the frame width, which is far below the accepted range of 13-27%.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person, body parts, and bottle completely. Regenerate the scene showing only one 'AFP white-and-blue wide low cylindrical drip-tape carton roll' placed on soil. Ensure the roll width is between 13-27% of the frame, height is under 32%, and it is off-center on the lower third. Keep the farm context without any people. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Required 'AFP | 09134922013' watermark is missing in the bottom-right corner",
+        "Product is centrally placed rather than offset to the lower third"
+      ],
+      "correction_prompt": "Add the watermark 'AFP | 09134922013' in the bottom-right corner and shift the product roll horizontally to ensure it is clearly off-center.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 21.5,
+      "product_height_percent": 30.5,
+      "product_x_center_percent": 34.2,
+      "reasons": [
+        "Product is the correct AFP white-and-blue drip tape roll with required bottom-right watermark",
+        "No people, human body parts, or silhouettes present",
+        "Roll is placed naturally on soil in the lower-left third",
+        "Crop is small, neutral, and does not contradict the leafy vegetable context",
+        "Background with barn and tractor matches an unattended hardware/field story"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-در-کشت-رزماری-نکات-کلیدی-جزئیات-فنی.webp"
+}

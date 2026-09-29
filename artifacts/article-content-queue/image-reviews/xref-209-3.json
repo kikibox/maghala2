@@ -1,0 +1,80 @@
+{
+  "id": "xref-209",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 27,
+      "product_height_percent": 32,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Second roll or extra commercial product is visible",
+        "Image contains multiple package units instead of exactly one AFP wide low cylindrical drip-tape carton roll"
+      ],
+      "correction_prompt": "Regenerate to show exactly one AFP white-and-blue wide low cylindrical drip-tape roll in the foreground, removing the smaller secondary roll. Keep the farm context, the tractors, the soil, and the 'AFP | 09134922013' watermark.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Human figures are clearly visible inside the cabs of both tractors in the background, violating the 'zero people' and 'zero human body parts' constraint."
+      ],
+      "correction_prompt": "Regenerate the image with the tractors in the background completely empty and unmanned, ensuring no silhouettes, faces, or hands are visible in the cabs or anywhere else in the frame.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 16,
+      "product_height_percent": 14,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The crop plant in the foreground clearly contradicts the 'melon' topic, which triggers a hard reject. The visible plant morphology does not align with melon (which typically features specific vine/leaf structures).",
+        "The product is a wide, low cylindrical roll, but the visible diameter-to-height ratio is approximately 1.14, falling below the required 1.5 to 1.9 range."
+      ],
+      "correction_prompt": "Regenerate the image keeping the same tractor and farm infrastructure but replacing the foreground plant with something visually neutral (generic soil) or specifically identifiable as melon vines. Increase the vertical height of the drip-tape roll to be at least 1.5x smaller than its width to meet geometry requirements.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 15,
+      "product_height_percent": 15,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: The image contains two people (farmers/workers) in the foreground.",
+        "Hard reject: A white-and-blue wide cylindrical roll of drip tape is not visible in the image (instead, a blue canister with the AFP logo is visible).",
+        "The presence of people immediately disqualifies the image based on the 'zero people' constraint."
+      ],
+      "correction_prompt": "Regenerate the image with an unattended farm scene containing no people or human silhouettes. Include an AFP white-and-blue wide low cylindrical drip tape roll on the soil. Ensure the roll is off-center on the lower third, with a width of 20-23% of the frame.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 21,
+      "product_height_percent": 29,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Product is a white-and-blue cylindrical drip-tape carton roll with AFP branding, matching the description.",
+        "Roll is positioned on soil in the lower third of the frame and is off-center.",
+        "Product width is 21% and height is 29%, fitting within the preferred and acceptable dimensions.",
+        "Visible aspect ratio (width ~21 vs height ~29) is close to the preferred 1.5-1.9 range for a wide low roll.",
+        "Zero people or human body parts are visible in the image.",
+        "Background features a farm context with soil, fence, and buildings, consistent with a practical agriculture story.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present and clearly visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-ملون-چالشها-جزئیات-فنی.webp"
+}

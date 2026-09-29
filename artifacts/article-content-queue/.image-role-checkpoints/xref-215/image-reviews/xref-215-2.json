@@ -1,0 +1,54 @@
+{
+  "id": "xref-215",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Hard reject: Presence of a person and human body parts (face, hands, arms, legs) violates the strict zero-person rule.",
+        "Hard reject: Wrong product type; the item shown is a container or canister, not a wide low cylindrical drip-tape roll.",
+        "Crop inconsistency: The visible plants have lobed leaves and thick stems resembling sunflowers, not fava beans (which require paired leaflets and pods)."
+      ],
+      "correction_prompt": "Regenerate the image to strictly follow the zero-person rule. Remove the woman entirely. Replace the canister with an off-center, wide, low cylindrical white-and-blue drip-tape roll lying on the soil in the lower third of the frame. Replace the sunflower-like plants with fava bean plants featuring thick upright stems and paired leaflets.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 24,
+      "product_height_percent": 34,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The image prominently features a plant with broad, lobed leaves (resembling cucumber or a gourd seedling), which is a clearly identifiable species different from fava bean (vetch); fava beans have compound leaves with oval leaflets, not these broad leaves.",
+        "The central foreground plant is a clearly identifiable different crop species, violating the article-specific crop requirement for fava bean.",
+        "The product height appears to be approximately 34% of the frame height (from y~610 to y~870), which exceeds the hard reject threshold of 32%.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with fava bean plants (thick stems, paired oval leaflets, no large lobed leaves) and ensure the drip tape roll's height is under 30% of the frame height. Reduce the central plant height to make the product appear smaller. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 21,
+      "product_height_percent": 20,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The drip tape carton roll is clearly visible, positioned off-center in the lower half of the frame, and appropriately scaled relative to the image.",
+        "The crop visible in the background consists of young, low-lying green plants, which are botanically consistent with early-stage fava bean (باقلا) seedlings.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "No people, body parts, or extraneous commercial containers are visible in the scene."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-باقلا-راهنمای-جامع-کاربرد-عملی.webp"
+}

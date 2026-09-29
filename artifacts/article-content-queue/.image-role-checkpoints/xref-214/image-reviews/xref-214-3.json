@@ -1,0 +1,98 @@
+{
+  "id": "xref-214",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Human presence: The image contains a person (hands, arms, legs, and torso visible on the right side), which is an automatic hard reject.",
+        "Product geometry: The roll appears to be standing vertically (height exceeds or equals width), failing the required aspect ratio of 1.5 to 1.9 (width to height). The 'wide low cylindrical' orientation described in the instructions suggests it should be lying on its side, but the image shows an upright roll."
+      ],
+      "correction_prompt": "Regenerate image with a wide low cylindrical drip-tape roll lying flat on the soil in the lower-left foreground. Remove all people. Show irrigation hardware. Ensure the roll is significantly wider than it is tall.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 28,
+      "product_height_percent": 28,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "The product is too wide (approx 28% of the frame); the maximum allowed width is 27 percent.",
+        "The product is too tall (approx 28% of the frame); the maximum allowed height is 32 percent, but the aspect ratio requirement is that the visible diameter (width) should be 1.5 to 1.9 times the visible height. Here, the width and height are nearly equal, violating the required 1.5-1.9 aspect ratio.",
+        "The product is centered on the bottom-left; while off-center is required, the aspect ratio violation is the primary issue.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to show the drip-tape roll with a wider aspect ratio (width 1.5 to 1.9 times the height) and a total width under 27 percent of the frame. Keep the roll positioned on the soil in the lower third, off-center, with the farm context in the background. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 15,
+      "product_height_percent": 45,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The product is perfectly centered horizontally, violating the requirement for off-center placement.",
+        "The product's vertical height is approximately 45% of the frame, exceeding the strict 32% limit.",
+        "The product is placed on the bottom center, creating the forbidden 'centered product staging' look.",
+        "machine-enforced bounding-box check failed: Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shift the cartridge significantly to the left so its center is in the lower-left third, and lower it so its top edge is below the vertical midpoint. Ensure the product height is less than 30% of the image height. Keep the bottom-right watermark exactly as 'AFP | 09134922013'. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Presence of a person (farmer) in the foreground, violating the zero-person constraint",
+        "Visible human body parts (face, arms, legs) are present, which is a hard reject condition",
+        "The product is not positioned in the lower third as required; it is partially obscured by the person's hand",
+        "The crop appears to be corn/maize, which may contradict the specific melon (خربزه) context if strict crop morphology is required, though the primary failure is the human presence",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the man/farmer entirely. Show only the AFP white-and-blue drip-tape roll placed on the soil in the lower third. Ensure the roll is off-center. Use a melon farm context or neutral soil. Maintain the bottom-right watermark. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18.5,
+      "product_height_percent": 24.0,
+      "product_x_center_percent": 41.0,
+      "reasons": [
+        "The crop plants clearly contradict the required 'خربزه (melon)' topic; the image depicts tomatoes and pumpkins rather than melons.",
+        "The prominent 'pumpkin' on the soil is identifiable but conflicts with the strict melon-only requirement for this filter role.",
+        "Additional gibberish/invented text appears on the bottom label of the carton roll ('Hey ba qnua tre'), which violates the 'no fake headline or invented writing' rule."
+      ],
+      "correction_prompt": "Regenerate with a farm context showing melon plants and melons on the ground. Remove all tomatoes, pumpkins, and extraneous text from the carton roll, retaining only the 'AFP' logo.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 16,
+      "product_height_percent": 14,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Contains a visible person (farmer) which is a hard reject requirement",
+        "Contains human body parts (head, hands, legs, silhouette) which is a hard reject requirement",
+        "Product is not off-center on the lower third but rather centered",
+        "Product is not 'naturally placed on soil' in the required secondary manner; it is actively being handled by a person, violating the 'no people' constraint"
+      ],
+      "correction_prompt": "Remove all humans and body parts. Place the AFP drip-tape roll on soil in the lower-right off-center position, unattended, ensuring no persons are visible. Maintain farm background context.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

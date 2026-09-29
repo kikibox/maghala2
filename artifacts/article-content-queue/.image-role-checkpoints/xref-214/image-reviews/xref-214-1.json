@@ -1,0 +1,84 @@
+{
+  "id": "xref-214",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 9,
+      "product_height_percent": 12,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The image contains a person (human figure) in the background on the left, which is a hard reject condition.",
+        "The drip-tape roll is too small (width approx 9%) and does not meet the preferred width range of 20-23% (or the minimum acceptable of 13%).",
+        "The product does not have a visible diameter that is 1.5 to 1.9 times its visible height.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image removing the human figure in the background completely. Increase the size of the AFP white-and-blue drip-tape roll to occupy 20-23% of the frame width while maintaining the correct aspect ratio (width approx 1.5-1.9x height). Keep the melon context. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 15,
+      "product_height_percent": 21,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Product shape error: The image shows a cylindrical tape reel (with visible depth/wound tape) instead of the required 'wide low cylindrical drip-tape carton roll'.",
+        "Species error: The prominent fruit next to the product is botanically a winter squash, not a melon (خربزه), and the background red fruit on trees are apples, not a melon crop.",
+        "Watermark error: The required 'AFP | 09134922013' watermark in the bottom right is overlaid on a large black box, violating the instruction for the exact watermark.",
+        "Product width: The visible width of the reel is approximately 15%, which is below the preferred 20-23% range."
+      ],
+      "correction_prompt": "Regenerate with a wide, flat, low-profile white and blue cylindrical carton roll of drip tape (no visible winding depth) placed on the soil in the lower left third (20% width). The crop context must be a melon field with clear melon leaves and stems on the ground; remove the large squash. Replace the black box with a transparent/watermark style 'AFP | 09134922013' in the bottom right.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 68,
+      "product_width_percent": 21,
+      "product_height_percent": 22,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Product height (22%) exceeds the maximum allowed 32% relative to width",
+        "Roll geometry is too square; width should be 1.5 to 1.9 times the height",
+        "Visible diameter does not match the required wide low cylindrical drip-tape carton proportions"
+      ],
+      "correction_prompt": "Reshape the drip tape roll into a wide, low, flattened cylinder where the diameter is clearly 1.5 to 1.9 times taller than the height. Flatten the roll horizontally and stretch it wider to meet the specified aspect ratio.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 19,
+      "product_height_percent": 16,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: The visible crop is clearly tomatoes (Solanum lycopersicum), which is a different botanical species from the required article crop, melon (خربزه).",
+        "The crop morphology (leaf structure and fruit type) does not match the agronomic story for melon."
+      ],
+      "correction_prompt": "Regenerate the image to feature melon plants (Cucumis melo) with accurate broad, lobed leaves and appropriate growth habit instead of tomato plants. Keep the drip-tape roll in the lower-left on soil, ensuring no people are visible.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 75,
+      "product_width_percent": 16,
+      "product_height_percent": 13,
+      "product_x_center_percent": 24,
+      "reasons": [
+        "The product is a white and blue cylindrical carton roll located in the lower-left, off-center, placed naturally on soil.",
+        "The roll dimensions are within the acceptable 13-27% width and <32% height ranges.",
+        "The crop shown is clearly melon (خربزه) with characteristic leaves and developing fruit.",
+        "The exact required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Zero people or human body parts are visible; the scene is free of prohibited items.",
+        "Practical QA allows for minor variations in product width (20-23% ideal, 13-27% acceptable)."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-خربزه-نکات-کلیدی-تصویر-شاخص.webp"
+}

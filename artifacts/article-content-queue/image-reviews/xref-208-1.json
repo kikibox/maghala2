@@ -1,0 +1,55 @@
+{
+  "id": "xref-208",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 12,
+      "product_height_percent": 20,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: The image contains a prominent person (farmer) crouching and touching the product, violating the strict zero-person policy.",
+        "Product Size: The drip-tape roll is too small; it is only ~12% wide and ~20% tall, falling below the 13-27% width and 20-23% preferred width thresholds.",
+        "Product Geometry: The object appears roughly square (diameter not 1.5-1.9x height), failing the specified aspect ratio.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or body parts. Place the single white-and-blue drip-tape roll on the soil in the lower-left third of the frame, with no human interaction. The roll should be wider (approx 20-25% of frame width) with a low cylindrical shape (diameter 1.5-1.9x the height). Maintain the farm background and exact watermark 'AFP | 09134922013' in the bottom right. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 25,
+      "product_height_percent": 25,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: The product visible diameter is not 1.5 to 1.9 times its visible height (aspect ratio is roughly 1:1, far wider than a flat drip-tape carton).",
+        "Hard reject: The 'AFP' logo and 'Bug Prevention Unit' text on the carton are gibberish/invented writing and not authentic package print.",
+        "The crop shown (generic leafy seedling) does not clearly match a specific named crop from an article title, failing the 'recognizable' criteria."
+      ],
+      "correction_prompt": "Regenerate using a wide, thin, cylindrical drip-tape roll (diameter approx 1.8x height) with a flat blue and white label on the side. Remove gibberish text, place the roll off-center in the lower third on a prepared farm bed with young crop rows, and retain the bottom-right watermark exactly.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 18.3,
+      "product_height_percent": 21.8,
+      "product_x_center_percent": 49.5,
+      "reasons": [
+        "Product is a single white-and-blue drip tape roll with AFP branding",
+        "Image contains zero people or human body parts",
+        "Required watermark 'AFP | 09134922013' is present and correct in the bottom-right corner",
+        "Product is naturally placed on soil and off-center",
+        "Background shows a farm field with crop rows, matching the article role context"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-رطوبتی-در-کشت-شنبلیله-مقایسه-تصویر-شاخص.webp"
+}

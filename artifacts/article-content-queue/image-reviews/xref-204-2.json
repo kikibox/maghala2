@@ -1,0 +1,64 @@
+{
+  "id": "xref-204",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 21,
+      "product_height_percent": 28,
+      "product_x_center_percent": 54,
+      "reasons": [
+        "Hard reject: The image contains a human figure (farmer/worker), which violates the 'zero people and zero human body parts' requirement.",
+        "The article title specifies 'Strawberry' production, but the crop shown in the image resembles tobacco (wide, lance-shaped leaves with prominent petioles), not the morphology of strawberries."
+      ],
+      "correction_prompt": "Regenerate the image to remove the person completely. Replace the tobacco-like plants with rows of recognizable strawberry plants. Maintain the white and blue cylindrical drip-tape roll (AFP branding) off-center on the soil. Keep the bottom-right watermark 'AFP | 09134922013' visible.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 16,
+      "product_height_percent": 13,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Product height violates the 'wide' geometry requirement: the visible diameter (width) is only approximately 1.2x the visible height (16/13 = 1.23), which is significantly less than the required 1.5 to 1.9 ratio for a wide low cylindrical roll.",
+        "Product placement is centered (47% x-center) rather than 'off-center on the lower third' as specified, failing the staging requirement."
+      ],
+      "correction_prompt": "Regenerate the drip-tape carton roll to be significantly flatter and wider (low profile cylinder) where the diameter is 1.5-1.9 times the height, and shift the product to an off-center position on the soil in the lower third.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 17,
+      "product_height_percent": 28,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Hard reject: Human body parts (arms, legs, hands, feet) and person silhouette are clearly visible in the image, which is strictly prohibited."
+      ],
+      "correction_prompt": "Remove all human figures and body parts from the scene. Retain the agricultural background context and the AFP drip-tape roll.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product width and height are within acceptable ranges and it is off-center on the lower third of the frame, placed naturally on the soil.",
+        "The background clearly shows crop rows and farm context consistent with a topic-specific farm scene, with no identifiable different crop species that would cause a hard reject.",
+        "Zero people or human body parts are visible.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and intact.",
+        "No prohibited extra products, containers, or unrealistic geometry are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-گلخانهای-در-کشت-شنبلیله-مقایسه-کاربرد-عملی.webp"
+}

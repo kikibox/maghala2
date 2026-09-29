@@ -1,0 +1,55 @@
+{
+  "id": "xref-211",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 29,
+      "product_height_percent": 28,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Crop contradiction: A melon fruit is clearly visible sitting next to the product. Per Role 3, identifiable crops must be visually neutral. While this does not contradict the context of 'melon', an extra item like a melon implies a harvest result, which is inconsistent with the 'filter/manifold/flush-point' infrastructure focus of a hardware story.",
+        "Product width out of range: Estimated width is 29%, which exceeds the hard reject limit of 27%.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 29% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate to strictly exclude any melon fruit or produce from the foreground. Reduce the product width to 20% of the frame width. Ensure the crop in the background is visually indistinct or neutral to avoid contradiction. Reduce the product group from 29% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 14,
+      "product_height_percent": 17,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The image contains a man crouching in the field, which violates the hard reject rule for any person or human body part.",
+        "The man is holding a small white spherical object that is not an AFP drip tape roll.",
+        "Role 3 requires a hardware story with crop plants absent or neutral; the presence of the man actively tending to plants and objects is inconsistent with the role description."
+      ],
+      "correction_prompt": "Regenerate the image to remove the man entirely. Show only the AFP white-and-blue wide low cylindrical drip-tape carton roll on the soil in a farm context. The background should feature farm infrastructure like irrigation manifolds or pipes, or just open fields, but strictly no people, farmers, or workers.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 25,
+      "product_height_percent": 24,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Meets 'hardware story' role 3: focus is on the drip tape and field infrastructure (irrigation pipes, soil) with neutral crops and no identifiable contradiction to the 'melon' topic.",
+        "Product is a white-and-blue wide low cylindrical carton roll placed on soil, off-center on the lower third.",
+        "Contains zero people or human body parts.",
+        "Background shows an unattended tractor and farm buildings, correctly matching the context without violating the 'no people' constraint.",
+        "The required watermark 'AFP | 09134922013' is clearly visible in the bottom-right corner.",
+        "Product dimensions are within the acceptable ranges (width ~25%, height ~24%, diameter ratio ~1.5x)."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-ملون-هزینه-در-مزرعه-جزئیات-فنی.webp"
+}

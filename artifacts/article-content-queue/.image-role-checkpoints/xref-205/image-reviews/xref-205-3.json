@@ -1,0 +1,85 @@
+{
+  "id": "xref-205",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Hard reject: presence of an extra, unattended commercial product (blue and white patterned connector/fitting) lying next to the carton roll.",
+        "Hard reject: the second object violates the requirement for exactly one product and falls under 'extra commercial product' or 'second package' restrictions.",
+        "Product geometry: The ratio of the visible diameter to height is slightly too low (approx 1.3x instead of the required 1.5-1.9x range).",
+        "Placement: Product is placed slightly too low in the frame, near the bottom edge, rather than naturally on the soil in the lower third."
+      ],
+      "correction_prompt": "Regenerate to show only the AFP white-and-blue drip-tape carton roll on the soil. Remove the blue/white connector/fitting entirely. Ensure the roll is off-center in the lower third of the frame with a proper diameter-to-height ratio. Maintain the background of farm rows, barn, and sky.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 38,
+      "product_height_percent": 30,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product width (approx 38%) exceeds the hard reject limit of 27%.",
+        "Product is centered in the frame rather than off-center on the lower third as required.",
+        "The product dominates the foreground (too large) instead of being a secondary element.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with the drip-tape roll much smaller (less than 20% of the frame width) and placed strictly in the lower-left or lower-right quadrant. Keep the red barn in the background but reduce the roll's visual dominance so it fits the 'hardware story' secondary role. Reduce the product group from 38% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 13,
+      "product_height_percent": 20,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Person/farmer present in the foreground",
+        "Human body parts visible (arms, legs)",
+        "Yellow hand-carry container/prop (bucket/pesticide style) present in scene"
+      ],
+      "correction_prompt": "Regenerate without the person, the yellow container, or any human silhouettes. Place only the AFP drip-tape roll on the soil in the lower-left third of the frame, with the farm context and required bottom-right watermark.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 14,
+      "product_height_percent": 19,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: Presence of a person (male farmer) sitting in the field.",
+        "Hard reject: Visible human body parts including face, torso, arms, legs, hands, and shoes.",
+        "Product is not centered correctly but the presence of the human figure disqualifies the image regardless of other geometry."
+      ],
+      "correction_prompt": "Remove the man sitting in the field completely; keep the AFIP roll on the soil as the primary subject without any human presence.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 25,
+      "product_height_percent": 24,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "No human persons or body parts visible",
+        "Watermark 'AFP | 09134922013' present in bottom right",
+        "Product is a single wide cylindrical carton roll placed on soil",
+        "Dimensions are within the acceptable ranges (width 25%, height 24%)",
+        "Off-center staging in the lower third",
+        "Hardware context matches farm context without contradicting a specific crop title"
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-با-رانش-در-کشت-پیاز-پیشنیازها-جزئیات-فنی.webp"
+}

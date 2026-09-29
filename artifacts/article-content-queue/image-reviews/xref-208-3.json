@@ -1,0 +1,95 @@
+{
+  "id": "xref-208",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Image contains a second, smaller commercial roll/package (the small white and green AFP roll on the right)",
+        "Image contains extra commercial products/hardware (metal filter, connector, and pressure gauge) alongside the main carton"
+      ],
+      "correction_prompt": "Regenerate the image showing only the single large AFP drip-tape carton roll on the soil. Remove the second small roll, the metal filter, the connector, and the pressure gauge from the scene. Keep the farm background and the main carton roll.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 33,
+      "product_height_percent": 45,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Product width is approximately 33% of the frame, which exceeds the maximum acceptable threshold of 27%.",
+        "Product height is approximately 45% of the frame, which exceeds the maximum acceptable threshold of 32%.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 33% to 13-27% of frame width.; Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a significantly smaller, more distant roll of drip tape to meet the secondary product requirement (width <27%, height <32%). Reduce the product group from 33% to 13-27% of frame width. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 14,
+      "product_height_percent": 16,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "The required text watermark in the bottom-right corner is missing; the current text 'AFP | 09134922013' is located in the bottom-center and the required 'AFP | 09134922013' watermark is not present."
+      ],
+      "correction_prompt": "Replace the text in the bottom-center with the specific watermark 'AFP | 09134922013' positioned in the bottom-right corner.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 15,
+      "product_height_percent": 22,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Presence of a person (farmer) and human body parts (hands, arms, legs, face) which are hard rejects.",
+        "The person is interacting with the product (touching the top) rather than the product sitting unattended on soil."
+      ],
+      "correction_prompt": "Regenerate the image showing the AFP drip-tape roll sitting unattended on the soil. Completely remove the man, his hands, and any human figures from the scene.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 28,
+      "product_height_percent": 30,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Product width (approx. 28%) exceeds the maximum limit of 27%",
+        "Product height (approx. 30%) exceeds the preferred limit of 32% and is too dominant relative to the width",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the drip tape roll significantly smaller (under 27% width), positioned more clearly in the lower third to appear more natural and less prominent against the soil. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 15,
+      "product_height_percent": 14,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Contains exactly one white and blue cylindrical roll of drip tape.",
+        "Product is positioned off-center on the lower third, resting on soil.",
+        "Product dimensions are within acceptable limits (width <23%, height <32%).",
+        "Diameter-to-height ratio is appropriate for a low cylindrical roll.",
+        "Background matches 'city, family, farm' context with a red barn and tractor visible.",
+        "No people or human body parts are visible.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present and correct.",
+        "No forbidden objects (bottles, cans, extra rolls) or gibberish text are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-رطوبتی-در-کشت-شنبلیله-مقایسه-جزئیات-فنی.webp"
+}
