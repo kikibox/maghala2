@@ -3,7 +3,7 @@
   "kind": 3,
   "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
@@ -96,7 +96,95 @@
       ],
       "correction_prompt": "Generate a wide landscape shot of an open agricultural field with soil and distant crop rows. Place two objects (one bare black coiled hose and one packaged coiled hose) together on the ground in the lower third, offset to the left. The pair must be very small (occupying only 12-15% of frame width) and completely unattended. Ensure no humans, faces, or limbs are visible anywhere in the frame. Include the text 'AFP | 09134922013' in the bottom right corner. Reduce the product group from 38% to 9-20% of frame width.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 92,
+      "product_width_percent": 30,
+      "product_height_percent": 22,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Two approved layflat objects identified: one packaged coil and one bare black woven coil.",
+        "Objects remain separate and fully visible on the ground.",
+        "No people, body parts, or human silhouettes are visible anywhere in the frame.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 30% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Image contains two people (a man and a woman).",
+        "Products do not occupy 12-15% of frame width; they are very small and scattered.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove all people. Place one packaged coil and one bare black coil side-by-side. Ensure the pair is compact (occupying ~12% of width) and positioned in the lower third, away from center. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 32,
+      "product_height_percent": 18,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Product pair is too wide (32%) - exceeds the 15% maximum limit",
+        "Products are in the bottom-center rather than off-center lower third as required",
+        "Coils appear vertical/standing up rather than flat on the ground",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Shrink the two product objects (packaged coil and black coil) to occupy only ~12% of the frame width, place them off-center on the lower third, and lay them completely flat on the soil surface. Reduce the product group from 32% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 88,
+      "product_width_percent": 22,
+      "product_height_percent": 15,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "machine-enforced bounding-box check failed: Reduce the product group from 22% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 22% to 9-20% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 45,
+      "product_height_percent": 35,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: Presence of a person (male worker) and human body parts (hands, arms, legs, face) is strictly forbidden for this image role.",
+        "Product pair occupies roughly 45% of the frame width, vastly exceeding the 12-15% requirement.",
+        "The products are positioned under the hands of the person, violating the 'unattended' infrastructure context implied by the zero-person rule.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes. Scale down the pair of coils (one wrapped, one bare) to occupy 12-15% of the frame width. Position the coils off-center on the lower third, flat on the ground with no human interaction. Maintain the bottom-right watermark 'AFP | 09134922013'. Reduce the product group from 45% to 9-20% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 13,
+      "product_height_percent": 15,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Contains exactly two approved layflat objects: one packaged AFP coil and one bare black woven coil.",
+        "Pair is off-center on the lower third, fully visible, separate, and flat on the ground.",
+        "Contains zero people or human body parts.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner as required.",
+        "Background elements (tractor, farm buildings, hay bales) are permitted infrastructure; no prohibited items present."
+      ],
+      "correction_prompt": "",
+      "attempt": 6
     }
   ],
-  "approved_image": null
+  "approved_image": "توافق-لوله-تاشو-2-اینچ-63-میلیمتر-با-نوار-تیپ-و-قطرهچکان-جزئیات-فنی.webp"
 }

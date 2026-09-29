@@ -3,7 +3,7 @@
   "kind": 1,
   "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
@@ -94,7 +94,54 @@
       ],
       "correction_prompt": "Remove all people and human silhouettes; scale the two coils down to 12-15% of the total frame width and reposition the pair to an off-center location in the lower third of the image. Reduce the product group from 42% to 9-20% of frame width. Reduce product height from 38% to at most 32% of frame height.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Human silhouette and body parts present",
+        "Hard reject: Worker/Person is the central focus of the image",
+        "Hard reject: Only one bare coil visible, missing packaged AFP coil",
+        "Hard reject: Product staging is not on lower third",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Generate a landscape shot of a field with no people. Place a packaged AFP coil and a bare black woven coil on the soil in the lower-right third of the frame. Ensure the pair occupies only ~15% of the width and remain separate. Add 'AFP | 09134922013' watermark bottom-right. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 23,
+      "product_height_percent": 28,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "A person (man) is present in the image",
+        "Human body parts including face, hands, and legs are visible",
+        "The product pair is centered rather than off-center",
+        "machine-enforced bounding-box check failed: Reduce the product group from 23% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Reposition the packaged AFP coil and bare black woven coil to the lower third, off-center left or right. Ensure the combined pair occupies only 12 to 15 percent of frame width. Reduce the product group from 23% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 14,
+      "product_height_percent": 28,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Contains the required pair of objects: one packaged AFP coil and one bare black woven coil.",
+        "Product pair is off-center in the lower third and fully visible/flat.",
+        "Pair width is within the 12-15% target.",
+        "Contains the required bottom-right watermark 'AFP | 09134922013'.",
+        "No people, human silhouettes, or body parts are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
     }
   ],
-  "approved_image": null
+  "approved_image": "نگهداری-از-لوله-تاشو-125-میلیمتر-برای-عمر-مفید-بیشتر-تصویر-شاخص.webp"
 }

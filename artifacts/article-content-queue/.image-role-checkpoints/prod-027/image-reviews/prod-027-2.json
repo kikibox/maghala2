@@ -3,7 +3,7 @@
   "kind": 2,
   "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
@@ -98,7 +98,56 @@
       ],
       "correction_prompt": "Regenerate the image to show exactly two layflat objects (one packaged and one bare) that occupy 12-15% of the frame width, positioned in the lower third and off-center, on a clean background with zero people, hands, or body parts. Enlarge the product group from 0% to 9-20% of frame width.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 90,
+      "product_width_percent": 47.5,
+      "product_height_percent": 34.2,
+      "product_x_center_percent": 42.5,
+      "reasons": [
+        "Zero people or human body parts visible.",
+        "Contains exactly two approved layflat objects: one packaged AFP coil and one bare black woven coil.",
+        "Objects are fully visible, separate, and flat on the ground.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Position is lower third, though slightly larger than the ideal 15% width constraint.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 47.5% to 9-20% of frame width.; Reduce product height from 34.2% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the product group from 47.5% to 9-20% of frame width. Reduce product height from 34.2% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 18,
+      "product_x_center_percent": 15,
+      "reasons": [
+        "Presence of a human subject (farmer/worker) in the center frame, which is a hard reject.",
+        "The image contains a human hand reaching toward the ground.",
+        "The product staging includes a human body part occupying the lower-right area of the product zone.",
+        "The product pair is not entirely unattended."
+      ],
+      "correction_prompt": "Regenerate the image showing only the packaged AFP coil and the bare black woven coil flat on the ground, strictly without any people, workers, or human body parts.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 19,
+      "product_height_percent": 16,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Both required objects are present: packaged AFP coil on the left and bare black woven coil on the right.",
+        "Zero people, human body parts, or silhouettes are visible.",
+        "Watermark 'AFP | 09134922013' is correctly displayed in the bottom right corner.",
+        "Objects are flat on the ground and fully visible.",
+        "Composition is off-center in the lower third.",
+        "Product width slightly exceeds the 15% ideal target at ~19%, but within a reasonable visual tolerance for a 'practical QA' pass score of 88."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
     }
   ],
-  "approved_image": null
+  "approved_image": "مقایسه-لوله-تاشو-2-اینچ-63-میلیمتر-با-سایر-برندها-کاربرد-عملی.webp"
 }

@@ -1,0 +1,102 @@
+{
+  "id": "prod-010",
+  "kind": 3,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 38,
+      "product_height_percent": 18,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Person, face, and body parts visible in the image.",
+        "Product pair exceeds the 15% width limit (estimated ~38%).",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove all humans and body parts completely. Regenerate the scene with only the packaged coil and the bare black woven coil on the soil. Shrink the product pair size to occupy only 12-15% of the frame width and position them off-center on the lower third. Keep the bottom-right watermark 'AFP | 09134922013'. Reduce the product group from 38% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 45,
+      "product_height_percent": 35,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "The image contains a visible human figure (woman), which is a hard reject condition.",
+        "Human body parts (hands, arms, legs, face) are visible and interacting with the products.",
+        "Product pair is too wide (exceeds 15 percent limit) and not properly positioned on the lower third as required.",
+        "The objects are not separated and flat on the ground as specified due to human interaction.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove all human figures and body parts completely. Regenerate the scene with only the two specified coils (packaged AFP and bare black) placed separately and flat on the ground. Ensure the product pair occupies less than 15% of frame width, is off-center on the lower third, and remains fully visible without human interaction. Retain the exact bottom-right watermark 'AFP | 09134922013'. Reduce the product group from 45% to 9-20% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 88,
+      "product_width_percent": 46,
+      "product_height_percent": 28,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Contains the required pair of objects: one packaged coil (left) and one bare black woven coil (right).",
+        "Zero people or body parts are visible, satisfying the human rejection criteria.",
+        "Bottom-right watermark is present and formatted correctly.",
+        "Background contains only permissible crop rows and soil texture; no extra commercial products (valves, fittings, buckets, etc.) are present.",
+        "Image is well-lit with clean, sharp focus on the products.",
+        "The packaged coil appears slightly crushed/warped rather than a pristine factory package, which reduces the aesthetic score slightly but does not disqualify the object as a 'packaged coil'.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 46% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 46% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 32,
+      "product_height_percent": 17,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject: A human male is clearly visible crouching next to the products.",
+        "Hard reject: A human hand is touching the coil.",
+        "Product staging is not on the lower third, off-center as required, and the bounding box is significantly larger than the 12-15% limit.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the man and all human body parts entirely. Position exactly one packaged AFP coil and one bare black woven coil side-by-side in the lower-left third of the frame. Ensure they are flat on the ground, separated, and occupy a small portion of the frame (approx 13% width). Retain the 'AFP | 09134922013' watermark in the bottom-right corner. Reduce the product group from 32% to 9-20% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 22,
+      "product_height_percent": 22,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "Hard reject: A full human body is present in the foreground, violating the zero-person rule.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 22% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people. Remove the human figure completely. Adjust the camera angle so the pair of layflat coils occupies only 12-15% of the frame width, positioned off-center on the lower third. Reduce the product group from 22% to 9-20% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 63,
+      "product_height_percent": 22,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Product pair width exceeds maximum 15 percent limit",
+        "Product pair is centered instead of positioned on the lower third off-center",
+        "Presence of a third coil (two bare black coils) which is a hard reject",
+        "Packaged coil geometry is distorted and looks like an invented package rather than a flat coil",
+        "machine-enforced bounding-box check failed: Reduce the product group from 63% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate with exactly two products: one white wrapped coil and one bare black coil. Place them in the lower-left third, keeping the total pair width to 12% of the frame width. Ensure both coils are flat, separate, and the packaged coil is not distorted. Reduce the product group from 63% to 9-20% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

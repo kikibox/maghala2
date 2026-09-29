@@ -94,6 +94,91 @@
       ],
       "correction_prompt": "Scale down the layflat coils to occupy only 12% of the frame width. Group the two coils tightly together in the lower-left third of the image, reducing the foreground size significantly to meet the 15% width limit. Reduce the product group from 72% to 9-20% of frame width. Reduce product height from 65% to at most 32% of frame height.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 15,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Watermark text '09134922013' is incorrect (extra digit, must be 0913492201).",
+        "Product pair width is too wide (approx. 18% of frame, exceeds 15% limit).",
+        "Left object appears to be a loose crumpled bag/foam rather than a packaged AFP coil."
+      ],
+      "correction_prompt": "Regenerate with correct watermark 'AFP | 09134922013' (remove last digit). Shrink the coil pair to occupy 12% of frame width. Ensure the left object is clearly a packaged AFP coil, not a loose bag. Position strictly on the lower third.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 18,
+      "product_height_percent": 12,
+      "product_x_center_percent": 18,
+      "reasons": [
+        "Product width exceeds the 15 percent maximum limit",
+        "Pair appears centered on the lower third rather than off-center"
+      ],
+      "correction_prompt": "Shrink the products to occupy 12 to 15 percent of the frame width and shift them off-center on the lower third; keep both layflat coils flat on the ground with no third product.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 44.5,
+      "product_height_percent": 58.2,
+      "product_x_center_percent": 63.8,
+      "reasons": [
+        "The combined width of the product pair (packaged AFP coil and the large black coil) is approximately 44.5% of the frame, which is significantly wider than the mandatory 12-15% range. This triggers a hard reject for a pair wider than 15 percent.",
+        "The large black coil is standing on its side edge, whereas the instruction specifies that the objects must be flat on the ground.",
+        "The large standing coil exhibits impossible proportions (a large outer diameter with a very small inner core), suggesting a generation defect.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 44.5% to 9-20% of frame width.; Reduce product height from 58.2% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with the product pair occupying only 12-15% of the frame width. Both the packaged AFP coil and the bare black coil must be lying flat on the ground. Place the pair off-center on the lower third. Ensure the large black coil is not standing on its edge and has natural, proportional dimensions. Reduce the product group from 44.5% to 9-20% of frame width. Reduce product height from 58.2% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 35,
+      "product_height_percent": 20,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The pair of coils is centered in the frame, violating the 'off-center' requirement (must be in the lower third, off-center).",
+        "The product pair occupies approximately 35% of the frame width, exceeding the hard reject limit of 15%.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Move the two coils to the far left and far right bottom corners of the frame, ensuring the entire assembly is small and far away from the center. Regenerate to place the pair strictly in the lower third but significantly off-center (left or right). Reduce the product group from 35% to 9-20% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 26,
+      "product_height_percent": 14,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The product pair is too wide (estimated 26% of frame width) and violates the maximum 15% constraint.",
+        "The product pair is placed in the bottom center rather than staying off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 26% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image so the pair of coils is much smaller, occupying less than 15% of the frame width, and moved to the bottom right or bottom left to remain off-center. Reduce the product group from 26% to 9-20% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Human presence detected (face, hands, legs, body).",
+        "Hard reject: Missing required 'two approved layflat objects' (only one small black coil is visible).",
+        "Hard reject: Missing 'packaged AFP coil' required object.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with zero people or body parts. Show exactly two layflat coils (one packaged AFP, one bare black woven) separate and flat on the ground. They must be small (12-15% frame width), positioned in the lower third off-center. Keep 'AFP | 09134922013' watermark in bottom right. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 6
     }
   ],
   "approved_image": null

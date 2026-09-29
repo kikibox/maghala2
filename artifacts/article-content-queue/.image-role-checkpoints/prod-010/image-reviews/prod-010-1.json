@@ -1,0 +1,40 @@
+{
+  "id": "prod-010",
+  "kind": 1,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Person/farmer/worker/face/hand/arm/body part present (hard reject)",
+        "Human silhouette clearly visible",
+        "Contains only a single black coil (missing required packaged AFP coil), failing the 'exactly two' rule",
+        "Third product/hose visible (drip tape/line running through crop rows)",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove the person, the crop rows, and the running hose. Place exactly one packaged AFP coil and one bare black woven coil flat on the ground, off-center on the lower third. Pair should be small (12-15% width). Include the 'AFP | 09134922013' watermark. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 15,
+      "product_height_percent": 28,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Contains exactly two approved layflat objects: one packaged AFP coil and one bare black woven coil.",
+        "Zero people and zero human body parts.",
+        "Required watermark is present at the bottom right."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "اندازهگیری-لوله-نخ-دار-75-میلیمتر-برای-مزرعه-تصویر-شاخص.webp"
+}

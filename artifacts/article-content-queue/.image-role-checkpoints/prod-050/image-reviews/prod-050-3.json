@@ -3,7 +3,7 @@
   "kind": 3,
   "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
@@ -89,7 +89,67 @@
       ],
       "correction_prompt": "Remove all human figures and body parts entirely. Display exactly two layflat coils (one packaged AFP, one bare black woven) on the ground, occupying 12-15% of frame width, separated and flat in the lower third. Enlarge the product group from 0% to 9-20% of frame width.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 45,
+      "product_height_percent": 35,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The product bounding box spans approximately 45% of the frame width, which significantly exceeds the strict requirement of 12-15%.",
+        "The two coils (packaged and bare) are placed adjacent to each other, causing their bounding boxes to overlap and effectively merging the visual footprint of the pair.",
+        "The pair does not appear sufficiently small relative to the wide field background, failing the 'occupy only about 12 to 15 percent of frame width' constraint.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shrink the two product objects significantly to occupy only ~15% of the total frame width. Increase the distance between them so they do not visually merge. Keep the pair on the lower third and maintain the bottom-right watermark. Reduce the product group from 45% to 9-20% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 24,
+      "product_height_percent": 15,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: Presence of a person (male worker) crouching next to the products.",
+        "Hard reject: Product pair is too wide; it occupies roughly 24% of the frame width (exceeds the max 15% limit).",
+        "Hard reject: Product staging is located in the center-lower third rather than off-center.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 24% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate without any people or human body parts. Show only one packaged AFP coil and one bare black woven coil placed flat on the ground. The pair must be compact, occupying less than 15% of the frame width, and positioned off-center in the lower third. Keep the bottom-right watermark 'AFP | 09134922013'. Reduce the product group from 24% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 35,
+      "product_height_percent": 25,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The total width of the product pair exceeds the maximum allowed limit of 15% of the frame.",
+        "The products are centered in the frame rather than being placed off-center in the lower third.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the combined width of the products to under 15% of the frame, shift the pair to an off-center position on the right, and keep both coils small and flat on the ground. Reduce the product group from 35% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 20,
+      "product_height_percent": 14,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Correct object pair: packaged AFP coil and bare black woven coil.",
+        "Zero human figures, body parts, or silhouettes visible.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present.",
+        "Infrastructure (distant tractor) is acceptable and unattended.",
+        "Products are flat, separate, and fully visible on the ground."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
     }
   ],
-  "approved_image": null
+  "approved_image": "راهنمای-جامع-خرید-لوله-تاشو-160-میلیمتر-نکات-انتخاب-و-قیمت-جزئیات-فنی.webp"
 }

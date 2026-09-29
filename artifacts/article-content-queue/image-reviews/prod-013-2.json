@@ -1,0 +1,55 @@
+{
+  "id": "prod-013",
+  "kind": 2,
+  "family": "layflat",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Multiple visible people (crops/farmers/technicians)",
+        "Visible hands, arms, and legs violate 'zero people' requirement",
+        "Human silhouettes and body parts present in the frame"
+      ],
+      "correction_prompt": "Regenerate the image to completely remove all people, workers, and body parts. Focus solely on two flat layflat coils (one packaged, one bare) in the lower-third off-center.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 35,
+      "product_height_percent": 25,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The pair of coils is too wide, occupying approximately 35% of the frame width, which exceeds the hard limit of 15%.",
+        "The products are placed almost center-frame rather than off-center on the lower third as required.",
+        "The left-hand coil appears to be standing upright or angled rather than flat on the ground.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with the two coils (one packaged, one black) significantly smaller, occupying less than 15% of the width. Move the pair to the bottom-right or bottom-left corner, ensure they are lying completely flat on the soil, and maintain the specified watermark. Reduce the product group from 35% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 13,
+      "product_height_percent": 10,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Contains exactly two layflat objects: one coiled AFP and one bare black coil",
+        "Zero people, body parts, or silhouettes visible",
+        "Watermark 'AFP | 09134922013' present in bottom-right",
+        "Pair is off-center and located in the lower third",
+        "Approximate product width fits the 12-15% requirement"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "مراحل-نصب-لوله-تاشو-3-اینچ-75-میلیمتر-در-سیستم-آبیاری-کاربرد-عملی.webp"
+}

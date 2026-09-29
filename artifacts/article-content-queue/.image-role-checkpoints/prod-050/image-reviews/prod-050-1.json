@@ -3,7 +3,7 @@
   "kind": 1,
   "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
@@ -100,7 +100,81 @@
       ],
       "correction_prompt": "Remove the man. Place a packaged AFP coil and a bare black woven coil on the ground. Keep them in the lower third, off-center, and occupying 12-15% of frame width. Enlarge the product group from 0% to 9-20% of frame width.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 38,
+      "product_height_percent": 30,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The product pair is centered in the frame, violating the 'off-center on the lower third' requirement.",
+        "The total width of the pair is approximately 38% of the frame, which significantly exceeds the 15% limit.",
+        "The layout does not match the 'stay off-center' constraint.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the two coils placed on the right side of the frame (roughly x=70%). Scale the objects down so the combined width of the pair occupies only 12-15% of the image width. Keep them in the lower third. Reduce the product group from 38% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 28,
+      "product_height_percent": 22,
+      "product_x_center_percent": 78,
+      "reasons": [
+        "Product pair occupies roughly 28% of frame width, exceeding the 15% maximum.",
+        "Coils are not flat on the ground; they are standing upright with visible vertical height.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate with the pair of coils laid flat on the ground. The entire pair must be much smaller, occupying approximately 12-13% of the frame width, while staying in the lower-right off-center position. Reduce the product group from 28% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 28,
+      "product_height_percent": 22,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "The product pair occupies approximately 28% of the frame width, significantly exceeding the hard limit of 15%.",
+        "The subject is centered horizontally (approx 50% x-position) instead of being off-center on the lower third as required.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Shrink the layflat coils to occupy only 12-15% of the frame width and move the pair to the lower left or lower right corner, keeping them fully visible and flat on the ground. Reduce the product group from 28% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "The combined product pair is positioned too far to the left relative to the image center, whereas the 'lower third' constraint typically implies horizontal centering or a safe neutral zone, but primary failure is the width.",
+        "The total width of the product pair (both coils combined) exceeds the strict 12-15% maximum limit.",
+        "The packaged coil (left) appears somewhat distorted, resembling a wrapped stack rather than a standard flat, circular coil."
+      ],
+      "correction_prompt": "Scale down the two coils to occupy only 12-15% of the total frame width and center them horizontally. Regenerate the left packaged coil to be a perfect flat circle matching the geometry of the right bare coil. Maintain the bottom-right watermark and empty field background.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 15.2,
+      "product_height_percent": 24.1,
+      "product_x_center_percent": 42.3,
+      "reasons": [
+        "The image shows exactly two required objects: one packaged AFP coil and one bare black woven coil.",
+        "There are zero people or human body parts visible in the image.",
+        "The complete product pair occupies approximately 15.2% of the frame width and is positioned in the lower third of the frame.",
+        "The product pair is off-center and remains fully visible, flat on the ground, with no overlapping or merging.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner as specified.",
+        "No extra commercial products, fake labels, or prohibited objects are visible; only allowable unattended irrigation infrastructure is present."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
     }
   ],
-  "approved_image": null
+  "approved_image": "راهنمای-جامع-خرید-لوله-تاشو-160-میلیمتر-نکات-انتخاب-و-قیمت-تصویر-شاخص.webp"
 }

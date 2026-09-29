@@ -3,7 +3,7 @@
   "kind": 2,
   "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
@@ -96,7 +96,70 @@
       ],
       "correction_prompt": "Reduce the size of the coil and packaging pair to occupy approximately 12-15% of the frame width. Ensure both items are sitting flat and fully visible on the surface, not buried in the soil. Position the pair distinctly off-center on the lower third. Keep the background and watermark unchanged. Reduce the product group from 33% to 9-20% of frame width. Reduce product height from 38% to at most 32% of frame height.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 38,
+      "product_height_percent": 28,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product pair occupies too much frame width (approx 38%, target is 12-15%)",
+        "Product pair is centered on the horizontal axis, not off-center on the lower third",
+        "Contains a third object (the upright white/gray container) which is not one of the two specified layflat coils",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image showing exactly two layflat coils (one packaged, one bare) occupying only 12-15% of the frame width, placed on the far right side of the lower third of the ground, with no additional objects. Reduce the product group from 38% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 38,
+      "product_height_percent": 22,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "The complete product pair occupies roughly 38% of the frame width, exceeding the 12–15% requirement.",
+        "The two coils are centered in the lower third rather than positioned off-center.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Scale down both the packaged AFP coil and the bare black woven coil so the combined width is 12–15% of the frame. Keep them separate and flat on the soil, move the pair off-center to the left or right within the lower third, and keep the bottom-right AFP | 09134922013 watermark visible. Reduce the product group from 38% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 22,
+      "product_height_percent": 14,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The image contains exactly two objects: one packaged AFP coil and one bare black woven coil.",
+        "Both objects are fully visible, separate, and resting flat on the ground.",
+        "The image contains zero people and zero human body parts.",
+        "The 'AFP | 09134922013' watermark is present in the bottom right corner.",
+        "The product pair is located in the lower third of the frame and is off-center.",
+        "The product width (approx 22%) slightly exceeds the preferred 12-15% range, resulting in a minor deduction.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 22% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 22% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 80,
+      "product_width_percent": 13,
+      "product_height_percent": 12,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Successfully displays exactly two approved layflat objects: one packaged coil and one bare black woven coil.",
+        "The product pair is positioned off-center in the lower third, occupying roughly 13% of the frame width.",
+        "The objects are fully visible, separate, and flat on the ground.",
+        "No people or human body parts are visible in the scene.",
+        "The required bottom-right watermark is present and correct."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
     }
   ],
-  "approved_image": null
+  "approved_image": "مراحل-نصب-لوله-نخی-2-اینچ-50-میلیمتر-در-سیستم-آبیاری-کاربرد-عملی.webp"
 }

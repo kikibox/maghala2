@@ -96,6 +96,91 @@
       ],
       "correction_prompt": "Regenerate the image to show exactly one packaged AFP coil and one bare black woven coil lying flat on the ground. The pair must be very small (occupying roughly 12-15 percent of the frame width) and located off-center on the lower third. The image must contain zero people. Ensure the required watermark is visible in the bottom right. Reduce the product group from 55% to 9-20% of frame width. Reduce product height from 45% to at most 32% of frame height.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 58,
+      "product_width_percent": 26,
+      "product_height_percent": 15,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "The complete product pair occupies approximately 26% of the frame width, which exceeds the strict 12-15% limit.",
+        "The bare black coil on the right appears to be a round pipe rather than a flat woven tape/hose, violating the 'layflat' requirement.",
+        "The product pair is not positioned entirely within the lower third of the frame; it extends too high into the mid-ground.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 26% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Shrink the pair of coils to occupy only 12% of the frame width. Ensure both are positioned strictly in the bottom 10% of the image height. Flatten the right-hand black object to look like a wide flat woven tape, not a round pipe. Move the pair to be off-center on the left. Reduce the product group from 26% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 20,
+      "product_height_percent": 12,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "The pair of objects (product bounding box) is too wide, occupying approximately 20% of the frame width instead of the required 12-15%.",
+        "The objects are positioned in the far bottom-left corner rather than being 'off-center on the lower third' (which typically implies centered laterally but low vertically).",
+        "The objects appear to be resting on the soil rather than being 'flat on the ground' (hard surface)."
+      ],
+      "correction_prompt": "Scale down the two coils so the combined pair occupies only 13% of the frame width. Center the pair horizontally in the lower third of the image. Ensure the ground is flat. Keep the 'AFP | 09134922013' watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 36,
+      "product_height_percent": 26,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "The image is rejected because the pair of products is centered horizontally (at ~47%), which violates the strict requirement to keep them 'off-center on the lower third' as part of the composition.",
+        "The combined width of the product pair is estimated at 36% of the frame width, significantly exceeding the maximum threshold of 15%.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 36% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Move the two layflat coils significantly to the right side (off-center), reduce their scale so the total width is approximately 12-15%, and keep them flat on the soil in the bottom-right quadrant. Reduce the product group from 36% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 16,
+      "product_height_percent": 20,
+      "product_x_center_percent": 74,
+      "reasons": [
+        "The product pair width is estimated at 16%, exceeding the 15% hard reject limit.",
+        "The packaged coil exhibits distorted, faceted dimensions with inconsistent geometry."
+      ],
+      "correction_prompt": "Reduce the combined width of the two coils to 13% of the frame width. Replace the faceted packaging with a flat, rolled AFP coil package. Maintain the bottom-right position and ensure the pair remains separate and flat on the ground.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 45.0,
+      "product_height_percent": 28.0,
+      "product_x_center_percent": 48.0,
+      "reasons": [
+        "Product pair width (~45%) exceeds the hard-reject 15% frame-width limit.",
+        "Products are staged center-frame rather than off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Regenerate: place one packaged AFP coil and one bare black woven coil tightly together, occupying only 12–15% of frame width; position them off-center on the lower third; keep them separate and flat on the ground; ensure zero people/human silhouettes; retain bottom-right watermark “AFP | 09134922013” exactly. Reduce the product group from 45% to 9-20% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 45,
+      "product_height_percent": 15,
+      "product_x_center_percent": 65,
+      "reasons": [
+        "Product pair is centered rather than offset to the lower third",
+        "The pair is far wider than the 12-15% requirement, occupying roughly 45% of the frame",
+        "The left object is a package, not a packaged AFP coil",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Shift the pair to the lower right third of the frame and significantly reduce its width so the total bounding box spans only 12-15% of the frame width. Keep both objects flat on the soil and ensure the left object is clearly a packaged coil. Reduce the product group from 45% to 9-20% of frame width.",
+      "attempt": 6
     }
   ],
   "approved_image": null

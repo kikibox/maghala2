@@ -98,6 +98,97 @@
       ],
       "correction_prompt": "Regenerate the image with zero humans or body parts. Show exactly one small packaged AFP coil and one small bare black woven coil. The complete pair must be flat on the ground, located in the lower-right third, occupying only about 12-15% of the frame width. Maintain the 'AFP | 09134922013' watermark in the bottom-right corner. Reduce the product group from 40% to 9-20% of frame width.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Major presence of a human (farmer) in the frame, which is an absolute hard reject.",
+        "The black woven coil is being held upright by the person rather than lying flat on the ground as required.",
+        "The two products are not properly staged off-center; they are placed in the lower mid-ground, but the person disrupts the staging.",
+        "The presence of a person makes it impossible to accurately estimate the product bounding box percentage for this specific layout.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove all people, faces, and hands from the image. Place one packaged AFP coil and one bare black woven coil lying flat on the ground, positioned in the lower-left third of the frame so the pair occupies only 12-15% of the frame width. Ensure the coils are fully visible and not held by anyone. Retain the bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 38,
+      "product_height_percent": 18,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The product pair is significantly wider than the 15 percent frame limit (approx 38%).",
+        "The pair is not placed off-center on the lower third; it is positioned on the left-center.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the size of the two coils to be very small (approx 15% width). Move the pair to the far right side of the lower third, keeping them flat and separated. Maintain the exact bottom-right watermark. Reduce the product group from 38% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: A male farmer/worker is clearly visible holding the product coil.",
+        "Hard reject: The image contains a person, violating the 'zero people' and 'zero body parts' rule.",
+        "Fail: The required pair of products (packaged AFP coil and bare black woven coil) is not present; only one bare coil is visible being handled by a person.",
+        "Fail: The product is not flat on the ground independently; it is being held by the worker."
+      ],
+      "correction_prompt": "Regenerate the image to show a field with exactly two approved layflat objects: one packaged AFP coil and one bare black woven coil. The pair must be placed flat on the ground, occupying only 12-15% of the frame width and staying off-center on the lower third. The image must contain no people, farmers, workers, or body parts.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 55,
+      "product_height_percent": 40,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Product pair is significantly wider than 15% of frame width (est. ~55%)",
+        "Products are positioned centrally along the horizontal axis rather than strictly off-center",
+        "The left packaged coil contains visible text labels which may conflict with the 'fake label' constraint",
+        "Watermark is present but slightly misaligned with strict bottom-right corner requirement",
+        "machine-enforced bounding-box check failed: Reduce the product group from 55% to 9-20% of frame width.; Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shrink product size to 12-15% width, shift entire pair off-center in lower third, ensure left coil is clean without text, move watermark strictly to bottom-right corner Reduce the product group from 55% to 9-20% of frame width. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 15.0,
+      "product_height_percent": 15.0,
+      "product_x_center_percent": 28.0,
+      "reasons": [
+        "Contains a visible male person/farmer (full body).",
+        "Hard reject: Human body parts (face, hands, arms, legs) are prominently visible.",
+        "Center of gravity for the product pair is not in the lower third."
+      ],
+      "correction_prompt": "Regenerate the image showing only the two layflat coils (one packaged AFP, one bare black) on the ground in the lower third. Remove the person entirely. Ensure the product pair occupies roughly 12-15% of the frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 100,
+      "product_width_percent": 34,
+      "product_height_percent": 31,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Exactly two layflat coils present: one packaged and one bare black",
+        "No people or human body parts visible",
+        "Product pair is flat on the ground and fully visible",
+        "Required watermark 'AFP | 09134922013' is present in bottom-right",
+        "machine-enforced bounding-box check failed: Reduce the product group from 34% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 34% to 9-20% of frame width.",
+      "attempt": 6
     }
   ],
   "approved_image": null

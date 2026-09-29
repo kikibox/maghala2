@@ -3,7 +3,7 @@
   "kind": 1,
   "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
@@ -95,7 +95,50 @@
       ],
       "correction_prompt": "Regenerate the image showing exactly one packaged AFP coil and one bare black woven coil. Remove all people, human silhouettes, and body parts. Position the pair in the lower third, off-center (right), occupying only 12-15% of the total frame width. Ensure the products are separate, flat on the ground, and fully visible. Keep the exact bottom-right watermark 'AFP | 09134922013'. Reduce the product group from 82% to 9-20% of frame width. Reduce product height from 41% to at most 32% of frame height.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 42,
+      "product_height_percent": 35,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Product pair is significantly too large, exceeding the strict 12-15% width limit.",
+        "The left product is not a standard wrapped 'AFP coil' but appears to be a distorted, faceted, or 'hexagonal' shape, failing the 'exactly two approved layflat objects' requirement.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 42% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Generate an image showing one standard cylindrical wrapped irrigation hose coil and one bare black hose coil. Make the pair very small, occupying only 15% of the image width. Place them off-center in the bottom third. No distorted shapes or extra objects. Reduce the product group from 42% to 9-20% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 32,
+      "product_height_percent": 15,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The product pair occupies significantly more than 15 percent of the frame width, appearing too large.",
+        "The products are centered rather than off-center in the lower third.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Shrink the two coiled objects to occupy only 12 percent of the frame width. Shift the pair off-center to the left or right side and position them flat on the ground. Maintain the exact bottom-right watermark. Reduce the product group from 32% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 13.5,
+      "product_height_percent": 15.0,
+      "product_x_center_percent": 49.0,
+      "reasons": [
+        "Contains exactly two layflat objects: one packaged AFP coil and one bare black woven coil.",
+        "The product pair occupies approximately 12-15% of the frame width and is positioned on the lower third of the image.",
+        "Zero people or human body parts are visible in the scene.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
     }
   ],
-  "approved_image": null
+  "approved_image": "مقایسه-لوله-تاشو-2-اینچ-63-میلیمتر-با-سایر-برندها-تصویر-شاخص.webp"
 }
