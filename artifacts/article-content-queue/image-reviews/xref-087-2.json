@@ -1,0 +1,55 @@
+{
+  "id": "xref-087",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 9,
+      "product_height_percent": 12,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: Contains a visible person (male farmer/crouching figure) which is explicitly prohibited by the 'zero people' constraint.",
+        "Product geometry: The product is a short cylindrical canister/drum, not the wide, low profile required for the target drip-tape roll.",
+        "Product size: The product width is significantly below the 13% practical minimum and does not occupy the required visual space.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and body parts from the image. Replace the short blue canister with a wide, low, cylindrical white-and-blue drip-tape roll (20-23% width). The roll must be off-center in the lower third and naturally placed on the soil. Ensure the crop context remains visible in the background. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 52,
+      "product_width_percent": 25,
+      "product_height_percent": 26,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Visible diameter-to-height ratio is approximately 1.0 (square/vertical cylinder profile), failing the required 1.5-1.9:1 aspect ratio for a wide low cylindrical roll.",
+        "Role 2 crop morphology in the foreground is too broad-leafed and lacks the distinct three-leaflet structure of clover (شبدر), appearing more generic like lettuce or cabbage."
+      ],
+      "correction_prompt": "Reduce the height of the drip tape roll to create a wide, flat cylindrical shape with a diameter-to-height ratio of 1.5:1. Replace the foreground plants with identifiable young clover seedlings featuring distinct three-part leaves. Ensure the roll is off-center on the lower third.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Clover with unmistakable three-leaflet leaves is clearly visible in the foreground.",
+        "The white and blue AFP carton roll is positioned in the lower-left third and is off-center.",
+        "The physical dimensions of the roll are within the acceptable 20-23% width preference and under the 32% height limit.",
+        "The specific AFP phone watermark is present and correctly formatted in the bottom-right corner.",
+        "The farm context with a barn and field rows matches the agricultural agronomic story.",
+        "Zero people, human silhouettes, or hand-placed objects are visible in the frame."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-رطوبتی-در-کشت-شبدر-چالشها-کاربرد-عملی.webp"
+}

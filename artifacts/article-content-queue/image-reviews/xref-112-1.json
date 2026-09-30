@@ -1,0 +1,86 @@
+{
+  "id": "xref-112",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 9,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Hard reject: The image contains a clearly visible person (farmer/worker) and human body parts (hands), which is prohibited.",
+        "Hard reject: The drip-tape carton roll is too small (product width is only ~8% of the frame) and fails to meet the 13-27% width requirement.",
+        "The background layout is a split-grid montage, which prevents the product from being naturally placed on the soil as a single coherent scene.",
+        "The crop in the top-right panel appears to be a broad-leafed seedling (likely a tomato or similar), which contradicts the requirement for 'tiny unidentifiable seedlings' or botanically neutral prepared beds without large broad leaves.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Generate a single wide-angle shot of an alfalfa field with tiny green seedlings. Place one white-and-blue cylindrical drip-tape carton roll on the soil in the lower third, off-center. The roll must be large (width approx 20% of frame). No people or hands. Include the bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 25,
+      "product_height_percent": 22,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The required bottom-right watermark 'AFP | 09134922013' is not present in the image; a different watermark/phone number ('09134922013') is displayed, which fails the strict 'exact required watermark' constraint.",
+        "The product text on the carton ('Drip Irigation Unit') is gibberish/misspelled, violating the rule against invented writing or gibberish text on the package.",
+        "The crop in the image appears to have broad leaves, which risks rejection as a clearly identifiable different species rather than the required fine trifoliate leaflets of alfalfa."
+      ],
+      "correction_prompt": "Regenerate with the exact watermark 'AFP | 09134922013' in the bottom right. Replace the gibberish text on the roll with authentic 'AFP Drip Tape 20' branding. Ensure the seedlings have the dense, fine trifoliate leaflets of alfalfa, and slightly reduce the roll's width to be under 23% of the frame.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 14,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The crop in the foreground has large, compound, toothed leaves that are botanically incompatible with the required alfalfa (trifoliate leaves).",
+        "The background contains clearly identifiable red flowers (likely poppies), which are a different species and do not match the alfalfa article title.",
+        "Hard reject: clearly identifiable different species present in the scene."
+      ],
+      "correction_prompt": "Regenerate image with foreground crop showing dense, fine trifoliate leaves (alfalfa) instead of broad-leafed plants. Remove red flowers from the background; use neutral green alfalfa rows. Keep the white and blue AFP drip-tape roll on the soil in the lower left.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 18,
+      "product_height_percent": 21,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Hard reject: The crop shown in the foreground has large, broad, and distinct leaves (resembling squash or cucurbit foliage), which contradicts the requirement for alfalfa (defined as having dense fine trifoliate leaflets and no large broad leaves).",
+        "The image displays a clearly identifiable different species rather than the required specific crop.",
+        "The crop morphology is botanically inconsistent with the article subject."
+      ],
+      "correction_prompt": "Regenerate the image showing a farm field with young alfalfa plants featuring fine trifoliate leaflets and no large broad leaves. Keep the white-and-blue AFP drip-tape carton roll on the lower left soil area. Ensure the bottom-right watermark 'AFP | 09134922013' is present.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 24,
+      "product_height_percent": 26,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Product correctly identified as a single AFP white-and-blue drip-tape carton roll.",
+        "Proportions are within acceptable limits: width is 24% (preferred range) and height is 26% (under the 32% limit).",
+        "Product is positioned on the lower third and off-center on the left, placed naturally on the soil.",
+        "Crop context is appropriate for young alfalfa; visible seedlings have fine leaflets and no large broad leaves, avoiding hard rejection for different species.",
+        "Zero people or human body parts are visible in the image.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No prohibited items (bottles, extra packages, layflat hoses, etc.) are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-در-کشت-یونجه-هزینه-در-مزرعه-تصویر-شاخص.webp"
+}

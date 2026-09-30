@@ -1,0 +1,71 @@
+{
+  "id": "xref-112",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 11,
+      "product_height_percent": 9,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: Image contains two visible human figures (farmers) kneeling in the main section and visible hands/legs in the top-right section.",
+        "Hard reject: Multiple panels in the image; the drip tape roll is not the sole focus.",
+        "Hard reject: Additional commercial product containers (sprayers and cans) visible in the bottom-right section.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate a single unedited image showing one wide low white-and-blue AFP drip-tape roll (no humans, no hands, no sprayers, no cans) placed on soil in an alfalfa field. The roll should occupy 20-23% of the frame width and no more than 32% of the frame height. Ensure the bottom-right watermark 'AFP | 09134922013' is clearly visible. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 26,
+      "product_height_percent": 22,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Hard reject: The vegetation in the foreground clearly displays large, broad, lobed leaves, which is an explicitly identified 'clearly identifiable different species' from the required 'dense fine trifoliate leaflets' of alfalfa (یونجه).",
+        "Hard reject: The text on the front of the carton roll appears to be gibberish or invented writing rather than authentic package print or clear legible text.",
+        "Fail: The product's x_center_percent (33%) is too close to the frame's center; the rules specify it must be 'off-center on the lower third', suggesting it should be more distinctly to the left (approx. <30%) or right (approx. >70%) of the vertical center."
+      ],
+      "correction_prompt": "Replace the broad-leafed foreground plants with visible rows of dense, fine trifoliate leaflets characteristic of young alfalfa. Ensure the product is a wide, low cylindrical drip-tape carton. Move the carton further to the left so its x-coordinate is firmly in the third quarter of the image. Replace all gibberish text on the roll with clean, readable placeholder text or standard packaging designs. Keep the farm context and required watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 10,
+      "product_height_percent": 12,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: image contains a human body (farmer).",
+        "Product size is too small and not the wide cylindrical roll described.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll placed on the soil in an alfalfa farm. Remove all people and human parts. Ensure the roll width is approximately 20-25% of the frame width, height is below 32%, and the bottom-right watermark is visible. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 22.5,
+      "product_height_percent": 20.0,
+      "product_x_center_percent": 33.3,
+      "reasons": [
+        "Product is a single white-and-blue AFP carton roll, off-center on the lower third.",
+        "No visible people or human body parts.",
+        "Product width is within the 13-27% acceptable range (estimated ~22.5%).",
+        "Product height is within the 32% limit (estimated ~20%).",
+        "Geometry of the roll (diameter vs height) appears consistent with a wide low cylindrical object.",
+        "Watermark 'AFP | 09134922013' is present and correct.",
+        "Crop is young/seedling stage (botanically neutral), which is acceptable per instructions."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-در-کشت-یونجه-هزینه-در-مزرعه-کاربرد-عملی.webp"
+}

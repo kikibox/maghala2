@@ -1,0 +1,91 @@
+{
+  "id": "xref-148",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 13,
+      "product_height_percent": 14,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Hard reject: Contains a clearly identifiable human face and full body (farmer).",
+        "Hard reject: Multiple crops visible (sunflowers in the foreground/background and a different plant profile on the right), creating an incoherent or split composition.",
+        "Product aspect ratio and placement deviate from the strict requirements.",
+        "The image appears to be a composite or multi-panel layout rather than a single unified farm context."
+      ],
+      "correction_prompt": "Regenerate a single, continuous view of a sunflower farm with the drip-tape roll placed off-center on the soil. Remove all people and human body parts. Remove the split-screen profile on the right and ensure the crop context is uniform and consistent.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 22,
+      "product_height_percent": 25,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The roll is too vertically centered (mid-frame) and is not positioned on the lower third of the image.",
+        "The roll's height (25%) is very close to its width (22%), violating the required wide, low cylindrical aspect ratio (which should be 1.5-1.9 times wider than it is tall)."
+      ],
+      "correction_prompt": "Move the carton roll down so its base sits clearly on the bottom soil line, and make the roll wider and flatter (wider aspect ratio) to match a large drip-tape spool.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 24,
+      "product_height_percent": 22,
+      "product_x_center_percent": 29,
+      "reasons": [
+        "Hard reject due to the presence of a person (the woman) in the image."
+      ],
+      "correction_prompt": "Remove the person from the farm context. Ensure the drip-tape roll is the primary focus on the soil in the lower-left third.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: Image contains a visible person (farmer) in the midground, violating the 'zero people' rule."
+      ],
+      "correction_prompt": "Remove the person in the background. Retain the white-and-blue AFP drip-tape carton roll in the foreground on the soil, keeping it off-center.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 24,
+      "product_height_percent": 34,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Product height (34 percent) exceeds the maximum allowable threshold of 32 percent.",
+        "Product aspect ratio is too small (approx. 1.3 vs required 1.5-1.9), making it look like a drum or bucket rather than a wide cylindrical drip-tape roll.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a flatter, wider cylindrical drip-tape roll; ensure the product height is no more than 32 percent of the frame and the visible diameter is 1.5 to 1.9 times its height, while keeping the roll off-center on the lower third. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 10,
+      "product_height_percent": 14,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The image contains a person (a man), which triggers an immediate hard reject as the requirements specify zero people and zero human body parts.",
+        "The drip tape roll is standing vertically, but the image role requires a 'wide low cylindrical' roll that is 'naturally placed on soil' and wider than it is tall.",
+        "Hard reject triggered for any person, worker, face, hand, arm, leg, or body part visible in the frame.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the man from the scene entirely. Position a wide, low cylindrical drip tape roll (diameter 1.5-1.9 times height) flat on the soil. Ensure the background clearly shows a city farm context with visible crops. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

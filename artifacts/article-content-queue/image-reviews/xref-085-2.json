@@ -1,0 +1,109 @@
+{
+  "id": "xref-085",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 10,
+      "product_height_percent": 10,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Presence of a person (hard reject)",
+        "Crop is apple trees, not sainfoin",
+        "Watermark text is in bottom-left instead of bottom-right",
+        "Product height relative to frame may be borderline but width is too small",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person. Replace apple trees with sainfoin (spers). Move the AFP watermark to the bottom-right corner. Increase the width of the drip tape carton roll to 20% of the frame. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Wrong crop species: The article is 'سپرس' (sainfoin), but the image shows a fruit tree orchard (likely apple or pear) with flowering herbaceous ground cover, not sainfoin.",
+        "Missing required watermark: The bottom-right black watermark 'AFP | 09134922013' is missing. (Note: The prompt explicitly requires the white watermark 'AFP | 09134922013' at the bottom-right, which appears to be missing or obscured in this generation).",
+        "Product size: The roll is small relative to the recommended width of 20-23% (estimated at 14%)."
+      ],
+      "correction_prompt": "Regenerate with a field of flowering sainfoin (Medicago sativa subsp. falcata) growing on the ground, removing the trees. Add the white watermark 'AFP | 09134922013' in the bottom-right corner. Increase the size of the drip tape roll to take up roughly 20% of the frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: The image contains a person/farmer sitting in the background.",
+        "Hard reject: The image contains human body parts (legs/arms) in the background.",
+        "Botanical mismatch: The crops shown are flowering ornamental annuals (resembling Pansies), not Sainfoin (Onobrychis viciifolia), which does not grow in these distinct rows with large purple flowers.",
+        "Composition: The product is positioned too close to the center of the frame rather than in the lower-third off-center position."
+      ],
+      "correction_prompt": "Regenerate with zero people or body parts in the background. Replace the ornamental flowers with a field of sainfoin (Onobrychis viciifolia) plants with botanically accurate foliage. Move the drip-tape roll slightly to the left so it is clearly off-center in the lower third. Keep the white-and-blue roll secondary to the crop context.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 23,
+      "product_height_percent": 20,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: Background crop is not Sainfoin (اسپرس); instead shows clearly identifiable flowers resembling poppies or cornflowers, which violates the requirement for the article-specific crop to be recognizable or the bed to be neutral/young seedlings only."
+      ],
+      "correction_prompt": "Regenerate the field background to remove all blooming flowers. Replace with young, low-lying Sainfoin (Onobrychis viciifolia) seedlings showing characteristic pinnate leaves (with many leaflets) or a neutral loose soil bed with tiny generic green sprouts. Ensure the drip-tape roll remains white and blue, off-center in the lower third.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 19,
+      "product_height_percent": 34,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "The product bounding box height is approximately 34% of the image, which exceeds the hard limit of 32%.",
+        "The text on the front of the carton is gibberish and unrecognizable, which is a hard reject criterion.",
+        "The roll is positioned in the lower-left quadrant rather than the requested off-center on the lower third, though this is a minor issue.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Scale the drip tape roll down so its height is strictly under 30% of the frame. Replace all gibberish text on the carton with sharp, legible 'AFP' logo and 'Drip Tape' text. Move the roll horizontally to the right (center of lower third) or slightly up to fit within the height constraint. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 25,
+      "product_height_percent": 12,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "A person is present in the image, which is a hard reject requirement."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove the person (farmer/worker) and their body parts, ensuring the drip-tape roll is naturally placed on the soil without human interaction.",
+      "attempt": 6
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 19,
+      "product_height_percent": 18,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product geometry is correct with a visible diameter ratio of approximately 1.1 to height, appearing low and wide as specified.",
+        "The product is a single white and blue carton roll positioned off-center in the lower third of the frame on soil.",
+        "Zero people or human body parts are visible in the scene.",
+        "The background shows young green vegetation consistent with the acceptable article crop context, and the required bottom-right watermark is present."
+      ],
+      "correction_prompt": "",
+      "attempt": 1
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-اسپرس-کاربردها-کاربرد-عملی.webp"
+}

@@ -1,0 +1,57 @@
+{
+  "id": "xref-133",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: The image contains a fully visible person (farmer/worker) squatting and handling the product, which is strictly prohibited (zero people rule).",
+        "Hard reject: The product appears to be a cylindrical tub or bucket rather than a wide, low, flat drip-tape carton roll.",
+        "Product is centered (approx 45% width) rather than placed off-center on the lower third as required.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with no people or human body parts visible. Show only a single wide, low, white-and-blue cylindrical drip-tape carton roll lying flat on the soil. The roll must be off-center in the lower third of the frame, with a farm field background containing no humans. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 25,
+      "product_height_percent": 35,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The product bounding box height is approximately 35% of the frame, exceeding the maximum limit of 32%.",
+        "The visible diameter-to-height ratio is approximately 1.4, falling short of the required 1.5 to 1.9 geometric ratio.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the product height to under 32% of the frame and slightly increase the diameter to achieve a 1.5-1.9 aspect ratio, ensuring the roll appears as a wider, lower cylinder. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Image features the required AFP white-and-blue drip tape carton roll.",
+        "Product is placed in a farm context with visible crops and soil.",
+        "Product width and height are within acceptable practical limits.",
+        "Product is off-center in the lower third, resting naturally on soil.",
+        "Watermark 'AFP | 09134922013' is correctly positioned in the bottom-right.",
+        "No people, hands, or other disallowed elements are present.",
+        "Image matches the selected role 1 with a farm context."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-در-کشت-کینوا-مزایا-تصویر-شاخص.webp"
+}
