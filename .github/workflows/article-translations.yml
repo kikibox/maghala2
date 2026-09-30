@@ -43,6 +43,9 @@ jobs:
       GENERATED_TRANSLATION_BATCH_SIZE: '24'
       MAX_TRANSLATION_BACKLOG_SOURCES: '25'
       TRANSLATION_WORKERS: '8'
+      # Keep handoff eligibility aligned with the user-approved second
+      # bounded retry cycle in the Persian queue.
+      FAILED_RETRY_CYCLES: '2'
     steps:
       - uses: actions/checkout@v7
         with:
