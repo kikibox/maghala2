@@ -81,6 +81,87 @@
       ],
       "correction_prompt": "Regenerate the image featuring a field of mature sesame crops with visible elongated seed capsules instead of grass. Ensure the AFP drip-tape roll width is reduced to 20-23% of the frame, placed in the lower-left third, with the required watermark bottom-right. Reduce the product group from 28% to 13-27% of frame width.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 20,
+      "reasons": [
+        "Hard reject: Presence of a human (man) in the image.",
+        "Crop mismatch: The visible crop with tassels appears to be corn/maize, not the required sesame (kenje) which should have narrow lance-shaped leaves and elongated capsules.",
+        "Crop context: The crop is mature and dense, whereas the article title suggests 'newly sown' conditions.",
+        "Watermark missing: The exact required bottom-right watermark string 'AFP | 09134922013' is absent (bottom right is blank)."
+      ],
+      "correction_prompt": "Regenerate: Remove the man completely. Replace the crop with newly sown sesame showing narrow lance-shaped leaves and upright stems on a prepared bed. Place a single white-and-blue AFP drip-tape roll (wide/low cylindrical) on the soil in the lower-left third. Add the text 'AFP | 09134922013' in the bottom right corner.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 24,
+      "product_height_percent": 19,
+      "product_x_center_percent": 29,
+      "reasons": [
+        "The crop in the foreground is clearly a cereal (wheat or barley) with broad parallel-veined leaves and inflorescence, which hard-rejects the required article crop of sesame (narrow lance-shaped leaves and elongated seed capsules)."
+      ],
+      "correction_prompt": "Replace the prominent foreground crop plant with a young sesame plant displaying narrow lance-shaped leaves and upright stems. Keep the background as neutral prepared soil or unidentifiable tiny seedlings to maintain agronomic clarity without misidentifying the crop species.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 18,
+      "reasons": [
+        "Botanical mismatch: The foreground plant is clearly identifiable as a non-sesame species (resembling Amaranth or a broadleaf weed due to the large, broad leaf morphology), which violates the requirement for recognizable sesame stems with narrow lance-shaped leaves or neutral young vegetation.",
+        "Product geometry: The roll is shaped as a tall cylinder rather than a wide, low flat roll (diameter is not 1.5 to 1.9 times the height)."
+      ],
+      "correction_prompt": "Replace the foreground plant with narrow-leaved sesame seedlings or neutral soil texture. Reshape the drip tape roll to be wide and low (flattened cylinder) with a visible diameter 1.5-1.9x its height, positioned on the soil in the lower third.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 14,
+      "product_height_percent": 19,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Product aspect ratio (height/width) is approximately 1.3, which exceeds the maximum acceptable ratio of 1.25 (1.9/1.5) specified for a wide cylindrical roll.",
+        "Crop identified in the background as corn (maize), not sesame (konjod) or a clearly defined neutral seedling, violating the requirement for the article-specific crop to be recognizable or strictly neutral."
+      ],
+      "correction_prompt": "Generate a wide cylindrical drip tape roll on soil with a height-to-width ratio of at least 0.53. Background must show sesame seedlings or a neutral agricultural bed, strictly avoiding corn/maize.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 31.2,
+      "product_height_percent": 38.5,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The crop shown is clearly identifiable as corn (maize) with broad leaves and characteristic tassels, which contradicts the specific requirement for sesame (narrow leaves and seed capsules).",
+        "The product width is approximately 31.2% of the frame, which exceeds the maximum practical limit of 27%. The roll is too large relative to the frame.",
+        "The product height is approximately 38.5% of the frame, which exceeds the maximum limit of 32%. The roll's aspect ratio appears too tall, resembling a bucket more than the specified wide low cylindrical roll.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 31.2% to 13-27% of frame width.; Reduce product height from 38.5% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a field of young sesame plants (narrow leaves) instead of corn. Scale down the irrigation roll significantly so its width is under 25% of the frame and its height is under 30% to achieve the correct wide, low cylinder shape. Keep the product off-center in the lower-left. Reduce the product group from 31.2% to 13-27% of frame width. Reduce product height from 38.5% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 23,
+      "product_height_percent": 24,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "The product is a standard cylindrical canister/drum (like a paint or filter can), not the required wide, low cylindrical drip-tape carton roll with the specified 1.5-1.9 aspect ratio.",
+        "The background crop is clearly identifiable as corn/maize (tassels, stalk shape), which violates the instruction to hard-reject a clearly identifiable different species when the article is about sesame."
+      ],
+      "correction_prompt": "Replace the standard canister with a wide, low, flat cylindrical drip-tape carton roll (aspect ratio width 1.5x-1.9x height) and replace the maize crop in the background with recognizable sesame stems (narrow lance-shaped leaves and elongated seed capsules).",
+      "attempt": 6
     }
   ],
   "approved_image": null

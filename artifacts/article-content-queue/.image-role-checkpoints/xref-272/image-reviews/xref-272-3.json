@@ -7,85 +7,80 @@
   "attempts": [
     {
       "pass": false,
-      "score": 15,
-      "product_width_percent": 7,
-      "product_height_percent": 8,
-      "product_x_center_percent": 63,
+      "score": 25,
+      "product_width_percent": 19,
+      "product_height_percent": 14,
+      "product_x_center_percent": 25,
       "reasons": [
-        "Contains a person/farmer (hard reject).",
-        "Contains visible human hands and face.",
-        "Product is not the requested wide cylindrical drip-tape carton roll; it is a small canister.",
-        "Product is off-center on the right instead of the left lower third.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+        "Hard reject: A human silhouette (man standing next to the tractor) is clearly visible in the upper-right background, violating the zero-person rule."
       ],
-      "correction_prompt": "Remove all people and human body parts. Replace the small canister with an AFP white-and-blue wide low cylindrical drip-tape carton roll. Place the roll off-center on the lower left third of the frame. The crop should be neutral soil or saffron crocus. Enlarge the product group from 7% to 13-27% of frame width.",
+      "correction_prompt": "Remove the human silhouette standing near the tractor in the background. Keep the red/green tractor unattended. Maintain the off-center product placement in the bottom-left on the soil, surrounded by the saffron crop and drip tape.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 35,
-      "product_width_percent": 22,
-      "product_height_percent": 28,
-      "product_x_center_percent": 28,
+      "score": 25,
+      "product_width_percent": 17,
+      "product_height_percent": 26,
+      "product_x_center_percent": 25,
       "reasons": [
-        "Crop morphology hard reject: The image features identifiable red and white tulips. Per strict QA rules, an identifiable crop that clearly contradicts the specified context (سفاfron/saffron crocus) triggers a hard reject, even if it's just a 'family tape' context.",
-        "Watermark format mismatch: The required specific text 'AFP | 09134922013' is not present; instead, the '091349' prefix is missing from the ID number in the visual badge.",
-        "Text gibberish: The product label contains unrecognizable, invented gibberish text ('Bing terquara Cera') instead of authentic, legible package print."
+        "Hard reject: presence of a human (farmer/worker) in the foreground; strict rule forbids any people, faces, hands, or body parts.",
+        "Hard reject: presence of a second commercial product (tractor) in the background, which violates the 'extra commercial product' prohibition."
       ],
-      "correction_prompt": "Regenerate with a background of saffron crocus fields or generic soil. Replace the tulips with saffron flowers. Fix the bottom-right watermark to read exactly 'AFP | 09134922013'. Make the text on the drip-tape roll clean, legible English technical data, removing the gibberish strings.",
+      "correction_prompt": "Regenerate the image with zero people or human silhouettes. Remove the tractor and any other commercial products. Show only the AFP drip-tape roll on the soil in a saffron field context, keeping the roll off-center in the lower third and maintaining the required dimensions.",
       "attempt": 2
     },
     {
       "pass": false,
-      "score": 45,
-      "product_width_percent": 27,
-      "product_height_percent": 25,
-      "product_x_center_percent": 35,
+      "score": 30,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 45,
       "reasons": [
-        "Identifiable crop (tulips) is present which contradicts the saffron crocus context"
+        "The crop in the field is identifiable as tulips. Tulips clearly contradict the required 'saffron crocus' context, triggering a hard reject.",
+        "The product is centered horizontally (around 45-50%) instead of being off-center on the lower third."
       ],
-      "correction_prompt": "Replace the tulips with soil and saffron-specific neutral elements, or remove crops entirely to maintain a hardware-focused close-up of the drip-tape.",
+      "correction_prompt": "Replace the tulips with saffron crocus flowers (small yellow/orange, not large and colorful like tulips) or a neutral crop/soil background. Shift the product roll to be clearly off-center on the lower third of the frame.",
       "attempt": 3
     },
     {
       "pass": false,
-      "score": 42,
-      "product_width_percent": 25,
-      "product_height_percent": 31,
-      "product_x_center_percent": 34,
+      "score": 55,
+      "product_width_percent": 19.0,
+      "product_height_percent": 20.0,
+      "product_x_center_percent": 33.0,
       "reasons": [
-        "The image contains identifiable tulips, which clearly contradict the required saffron crocus crop context, violating the hard reject condition for contradicting crops."
+        "Identifiable crop is clearly tulip, not saffron crocus; hard reject due to crop contradiction with زعفران (saffron crocus) topic context"
       ],
-      "correction_prompt": "Remove all tulips and replace them with small, neutral saffron crocus leaves in the soil to align with the required crop context without contradicting the article topic.",
+      "correction_prompt": "Regenerate with saffron crocus plants (stout narrow leaves, purple-red crocus flowers, no tulip blooms) instead of tulips, keeping all other elements unchanged.",
       "attempt": 4
     },
     {
       "pass": false,
-      "score": 12,
-      "product_width_percent": 14,
-      "product_height_percent": 18,
-      "product_x_center_percent": 54,
+      "score": 45,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 42,
       "reasons": [
-        "Hard reject: Human body parts visible (hands, arms, legs, and torso of a crouching person are clearly present in the frame).",
-        "Product is a cylindrical drum rather than the specified wide low 'drip-tape carton roll'.",
-        "Visible crop is tulips, which clearly contradicts the required topic of saffron crocus."
+        "Product aspect ratio violation: The visible diameter (width) of the roll is approximately 0.9 times its height, failing the required 1.5 to 1.9 ratio.",
+        "Product centering violation: The product x-center is at 42%, placing it too close to the horizontal center (50%) instead of the required off-center lower-third positioning.",
+        "Product height violation: The roll's height (22%) exceeds the allowed limit relative to its diameter, failing the geometry check."
       ],
-      "correction_prompt": "Regenerate image showing a wide, low white-and-blue drip tape carton roll on saffron crocus farm soil. No humans or body parts visible. Include the 'AFP | 09134922013' watermark in the bottom right.",
+      "correction_prompt": "Reshape the product into a wide, flat cylindrical cartonnage with a diameter 1.5x its height, and move it significantly to the right (approx. 75% x-center) to ensure it is clearly off-center.",
       "attempt": 5
     },
     {
       "pass": false,
-      "score": 15,
-      "product_width_percent": 24,
-      "product_height_percent": 33,
-      "product_x_center_percent": 34,
+      "score": 25,
+      "product_width_percent": 22,
+      "product_height_percent": 21,
+      "product_x_center_percent": 57,
       "reasons": [
-        "Hard reject: The background shows identifiable crop plants (tulips) which clearly contradict the specified topic of saffron crocus.",
-        "Hard reject: The bottom-right watermark text is illegible gibberish ('AFP | 09134922013' is not clearly readable or formatted correctly), and the required exact string is not present.",
-        "Product height estimate is at the upper limit/maximum allowed (33% vs 32% cap), making the product composition less than ideal.",
-        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+        "Hard reject: Image contains a child (human) sitting in the field. The prompt explicitly requires zero people, faces, or body parts.",
+        "Product staging is not centered/lower-third as required; it is placed in the middle-right alongside the person.",
+        "Crop shown appears to be tulips rather than saffron, which contradicts the specific context, although the main failure is the presence of the person."
       ],
-      "correction_prompt": "Regenerate with a saffron farm context featuring crocus plants (not tulips). Ensure the bottom-right watermark exactly matches the required string 'AFP | 09134922013'. Ensure the tape roll height is strictly under 32% of the image height. Reduce product height from 33% to at most 32% of frame height.",
+      "correction_prompt": "Remove the child from the field. Place the white and blue cylindrical drip-tape roll in the lower third (slightly off-center). Ensure the background shows a saffron farm context. Keep the required watermark.",
       "attempt": 6
     }
   ],

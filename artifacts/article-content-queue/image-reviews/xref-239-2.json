@@ -1,0 +1,58 @@
+{
+  "id": "xref-239",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 8,
+      "product_height_percent": 15,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Hard reject: The image contains a person (farmer crouching in the field).",
+        "Hard reject: The image contains human body parts (arms, legs, face).",
+        "Product geometry error: The visible drip-tape roll is too small (approx 8% width vs 13-27% target).",
+        "Product geometry error: The roll appears to be a narrow drum rather than the required wide cylindrical carton roll (Diameter/Height ratio is incorrect).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate to remove all people and human parts completely. Ensure the drip-tape roll is a wide, flat cylindrical carton, off-center in the lower third, sized to occupy 15-20% of the frame width. Keep the specific farm background context. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 10,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Presence of a person (farmer/worker) in the foreground, which is a hard reject condition.",
+        "Presence of human body parts (arms, legs, face, hands).",
+        "Multiple instances of the product (two rolls visible: one on the ground and one being held)."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove the person and all human body parts. Remove the roll being held, leaving only a single carton roll placed on the soil in the lower third. Ensure the background crop matches the article context and no other products or text are present.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "The required bottom-right watermark 'AFP | 09134922013' is present and legible.",
+        "The image contains zero people or human body parts.",
+        "The drip tape carton roll is a cylindrical product placed naturally on the soil, off-center, in the lower third of the frame.",
+        "The product width is approximately 18% of the frame and height is approximately 22%, within the specified acceptable ranges.",
+        "The ratio of the product's diameter (width) to its height is approximately 0.8, which is slightly less than the preferred 1.5-1.9 range (it is flatter than a wide cylinder), but the geometry is natural and plausible.",
+        "The background features a crop field with rows of young, generic-looking green seedlings, which serves as a botanically neutral prepared bed consistent with the irrigation context.",
+        "No prohibited items (like bottles, people, or multiple rolls) are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-در-کشت-شوید-نکات-کلیدی-کاربرد-عملی.webp"
+}

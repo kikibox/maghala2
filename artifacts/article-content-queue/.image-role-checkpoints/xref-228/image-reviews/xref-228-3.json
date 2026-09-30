@@ -3,7 +3,7 @@
   "kind": 3,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
@@ -88,7 +88,67 @@
       ],
       "correction_prompt": "Regenerate the image ensuring the bottom-right watermark 'AFP | 09134922013' is white text only without a black background box. Ensure the blue text on the product label is legible, not gibberish.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 13,
+      "product_height_percent": 16,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The image contains a full human figure (a man) interacting with the product, which is a hard reject for 'Zero people or human body parts'."
+      ],
+      "correction_prompt": "Remove the human figure completely; ensure the drip tape roll sits alone on the soil in the farm setting with no people or body parts visible.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Required bottom-right watermark \"AFP | 09134922013\" is missing",
+        "Visible crop morphology resembles tomato or another leafy vegetable rather than sesame (kenje), which is a hard reject condition under Role 3",
+        "Text on the roll below the main 'AFP' logo appears as gibberish/invented writing rather than authentic package print",
+        "Product width is estimated at roughly 27-30% of the frame width, exceeding the 27% maximum limit",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with a hardware-focused scene: keep the white and blue AFP drip-tape roll off-center on bare soil, completely remove the green crop seedling to avoid contradicting the sesame topic or appearing wrong, ensure the roll occupies less than 27% of the image width, replace the sub-text with authentic brand details or blank space, and add the exact bottom-right watermark \"AFP | 09134922013\". Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25,
+      "product_height_percent": 38,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Product height exceeds the maximum 32% constraint",
+        "Product diameter/height ratio is incorrect (too tall/cylindrical, does not meet the 1.5-1.9x wide low requirement)",
+        "Product x-center is too close to the middle (centered staging)",
+        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with a wider, low cylindrical drip-tape roll where the height is less than 30% of the frame width and the roll diameter is roughly 1.6x its height. Move the roll horizontally to the left or right so it is clearly off-center (e.g., around x=30% or x=70%), and ensure it is placed naturally on the soil surface. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 25,
+      "product_height_percent": 16,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Product is the correct AFP white-and-blue wide low cylindrical drip-tape roll.",
+        "Product size is within acceptable bounds (width 25%, height 16%).",
+        "Product is off-center on the lower third and naturally placed on soil.",
+        "Zero people or human body parts visible.",
+        "Background shows a farm context with crops and machinery, matching the topic.",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
     }
   ],
-  "approved_image": null
+  "approved_image": "آبیاری-محوری-در-کشت-کنجد-نکات-کلیدی-جزئیات-فنی.webp"
 }

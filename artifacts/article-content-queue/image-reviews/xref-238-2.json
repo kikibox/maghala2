@@ -1,0 +1,54 @@
+{
+  "id": "xref-238",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 18,
+      "product_height_percent": 35,
+      "product_x_center_percent": 17,
+      "reasons": [
+        "Product height is approximately 35 percent of the frame, which exceeds the maximum allowed limit of 32 percent.",
+        "The visible diameter-to-height ratio is approximately 1.1, which fails the requirement of 1.5 to 1.9 times its visible height (the roll is not wide enough).",
+        "The plant shown with broad green leaves and small tubular-shaped flowers is not botanically identifiable as canola/rapeseed, which requires either rosettes with lobed brassica leaves or slender stems with four-petal yellow flowers.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with a much wider and shorter drip tape roll (height < 32%, width > 25%, aspect ratio ~1.6:1). Ensure the roll is placed on soil in the bottom-left third. Change the background crop to clearly recognizable canola with broad lobed brassica leaves and small four-petal yellow flowers. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 27,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "The background crop displays cup-shaped yellow flowers with broad oval leaves, which is characteristic of tulips or a similar non-brassica bulb, rather than the small four-petal flowers and lobed leaves of canola (rapeseed).",
+        "The crop morphology constitutes a 'clearly identifiable different species' relative to the required canola, violating the hard reject criteria for the article context."
+      ],
+      "correction_prompt": "Regenerate the background to show a field of blooming canola (rapeseed) with slender branching stems, small four-petal yellow flowers, and broad lobed green leaves. Remove the current tulip-like cup flowers and broad oval leaves. Maintain the white-and-blue AFP drip-tape roll position and the exact bottom-right watermark.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 17,
+      "product_height_percent": 16,
+      "product_x_center_percent": 60,
+      "reasons": [
+        "The image correctly displays a white and blue drip tape roll with the required 'AFP' branding and 'AFP | 09134922013' watermark.",
+        "The crop is recognizable as canola (rapeseed) with small yellow flowers and appropriate foliage.",
+        "The product is off-center and placed naturally on the soil within the farm context.",
+        "There are zero people or human body parts visible in the image.",
+        "The aspect ratio of the roll (approx 1.5-1.7x) and its relative size (secondary to the landscape) meet the specified constraints."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-کلزا-هزینه-در-مزرعه-کاربرد-عملی.webp"
+}

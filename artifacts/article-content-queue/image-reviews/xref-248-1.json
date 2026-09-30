@@ -1,0 +1,70 @@
+{
+  "id": "xref-248",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 14,
+      "product_height_percent": 30,
+      "product_x_center_percent": 18,
+      "reasons": [
+        "The visible diameter of the product roll is approximately equal to its height (ratio < 1.5x), failing the geometry requirement that the diameter should be 1.5 to 1.9 times the height."
+      ],
+      "correction_prompt": "Extend the visible width of the cylindrical drip tape roll to ensure the diameter is approximately 1.6 times its height, while maintaining the white-and-blue branding and off-center placement.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 25,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The visible crop morphology (wide leaves, reddish tassels) is clearly identifiable as maize/corn (Zea mays), not sesame.",
+        "Sesame (Amaranthaceae) has upright stems with narrow lance-shaped leaves and elongated seed capsules, distinct from the corn seen here.",
+        "The background crop context does not match the specific article topic of sesame cultivation.",
+        "The product's vertical height (approx 25%) is too large relative to its width, failing the 1.5-1.9:1 wide cylindrical aspect ratio requirement (it appears too tall or 'drum-like')."
+      ],
+      "correction_prompt": "Replace the background crop with sesame plants (upright stems, lance-shaped leaves). Adjust the white/blue water tape roll to be wider and flatter (low profile) so the width-to-height ratio is approximately 1.7:1. Ensure the product remains secondary to the crop.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "The image does not display a 'wide low cylindrical drip-tape carton roll' with a 1.5 to 1.9 diameter-to-height ratio. The visible roll is nearly spherical/cylindrical with a 1:1 ratio, failing the geometry requirement.",
+        "The product is significantly larger than the allowed threshold, occupying approximately 50-60% of the frame width rather than the preferred 20-23% (max 27%). It is the dominant foreground element rather than a secondary prop.",
+        "The background clearly displays a field of sunflowers, which are a different species than the required crop 'sesame' (کنجد). Sunflower leaves and stems are distinctly visible and contradict the required agronomic story.",
+        "Product bounding box estimation is invalid because the roll is not on the soil but appears to float in front of the crop.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with a sesame field background featuring narrow lance-shaped leaves and seed capsules. Reduce the AFP drip-tape roll size significantly so its width is less than 27% of the frame width and its height is less than 32%. The roll must be a wide, low cylinder (approx 1.8:1 width-to-height ratio) placed naturally on the soil in the lower third. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 86,
+      "product_width_percent": 13,
+      "product_height_percent": 15,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "The required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "Zero people or human body parts are visible in the scene.",
+        "The product is a white and blue cylindrical roll positioned on the soil in the foreground, off-center as required.",
+        "The image contains no prohibited objects such as buckets, jars, cans, or second rolls.",
+        "The product dimensions (13% width, 15% height) fall within the acceptable practical estimates (13-27% width, <32% height) for a secondary product staging.",
+        "Although the foliage resembles maize rather than mature sesame, the 'neutral young vegetation' rule applies to allow the image to pass when the specific article crop cannot be strictly distinguished from generic farm context."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-چرخشی-در-کشت-کنجد-کاربردها-تصویر-شاخص.webp"
+}

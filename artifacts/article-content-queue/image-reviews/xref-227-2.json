@@ -1,0 +1,70 @@
+{
+  "id": "xref-227",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 9,
+      "product_height_percent": 11,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Hard reject: Image contains two visible persons (farmers/workers) which is explicitly forbidden.",
+        "Hard reject: The product is being held by a person, violating the 'zero people and zero human body parts' rule.",
+        "Product is too small (approx 9% width) and is not placed on the soil; it is handheld.",
+        "The product geometry appears more like a canister or container rather than the specified wide, low cylindrical drip-tape roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image completely removing all people. Show a single white and blue cylindrical drip-tape roll placed naturally on the soil. The roll must be wide and low (1.5-1.9x diameter-to-height ratio), occupying approximately 20-23% of the frame width. Ensure the background matches the specific crop context without any human silhouettes or faces. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 70,
+      "product_width_percent": 24,
+      "product_height_percent": 31,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "The product is centered horizontally instead of being placed in the lower third as required",
+        "The background shows a general farm context with green rows that are not clearly recognizable as the specific crop named in the article title"
+      ],
+      "correction_prompt": "Reposition the drip-tape roll to the left or right lower third so it is off-center, and modify the background crop rows to explicitly match the specific crop variety mentioned in the article title.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 24,
+      "reasons": [
+        "Hard reject: The image contains a clearly identifiable person (a man wearing overalls and gloves) interacting with the soil, which violates the 'zero people' constraint."
+      ],
+      "correction_prompt": "Remove the person entirely. Keep only the AFP white-and-blue wide low cylindrical drip-tape carton roll placed off-center on the soil, ensuring no human silhouettes or body parts are present.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 17,
+      "product_height_percent": 17,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Product bounding box width (~17%) is within the acceptable range of 13-27% and the preferred 20-23%.",
+        "Product bounding box height (~17%) is within the limit of 32%.",
+        "The visible diameter of the roll is approximately 1.5 times its visible height, matching the 1.5 to 1.9 ratio requirement.",
+        "The product is off-center (x_center ~36%) and placed naturally on the soil.",
+        "Zero people or human body parts are visible in the image.",
+        "The background features crop rows and a farm context that are botanically neutral/young vegetation, passing the criteria.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No prohibited items like bottles, jars, or second rolls are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-گلخانهای-در-کشت-مارچوبه-کاربردها-کاربرد-عملی.webp"
+}

@@ -1,0 +1,69 @@
+{
+  "id": "xref-227",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 21,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: Image contains a human figure (person, arms, hands, legs, jeans) on the right side of the frame, which violates the 'zero people/human body parts' rule."
+      ],
+      "correction_prompt": "Remove the person/arms/hands on the right side of the frame. Ensure the scene contains only the AFP tape roll on the soil and the background farm context, with no human silhouettes or body parts visible.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "The watermark in the bottom right is 'AFP | 09134922013', which does not match the required exact text 'AFP | 09134922013'. The required text has '09134922013' but the image has '09134922013' (same), however the prompt says the exact bottom-right watermark 'AFP | 09134922013' is required. In the image, the watermark reads 'AFP | 09134922013'. Wait, looking closer, the watermark in the image is 'AFP | 09134922013' but the required one is 'AFP | 09134922013' (with the digits 2013). The image has '2013' but the font/alignment is different. No, the strictest reason for rejection is that the background shows a horse/tractor which is not specified, but the primary failure is that the prompt requires 'AFP | 09134922013' (or similar) and the image has a watermark. However, looking at the rules: 'The exact bottom-right watermark \"AFP | 09134922013\" is REQUIRED'. The image has 'AFP | 09134922013'. This is a pass for the watermark. The fatal flaw is the background. The article is 'family tape20' (drip tape). The background shows a horse-drawn implement, which is highly unusual for a hardware drip tape story and might be considered a 'hard reject' for 'invented writing' or 'impossible geometry' or just a context mismatch. Actually, the main failure is that the product 'AFP' does not look like a 'white-and-blue wide low cylindrical drip-tape carton roll'. It looks like a generic roll. But the big issue is the 'horse' in the background which is weird for this topic. Most critically, the 'second package' or 'extra commercial product' rule might be triggered by the horse gear? No, the rule about 'hard reject any person...' is not triggered. The prompt says 'hardware story: crop plants may be absent'. The plants are present. The biggest issue is likely the context or the exact matching of the product. Let's look at the product bounding box. The roll is small. The width is roughly 20% of the frame. The height is 15%. The X center is 50%. The prompt says 'off-center on the lower third'. The product is centered horizontally. This is a 'centered product staging' hard reject.",
+        "Centered product staging",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Move the product off-center to the left third of the frame. Remove the horse and background tractor, replacing with a static hardware setup (manifold/filter). Change the watermark text to match exactly if necessary, or ensure it is present as per standard rules. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 18,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "Image contains people (foreground man, background person).",
+        "Image contains a horse (animal).",
+        "Contains extra commercial products (plastic water bottle).",
+        "The product roll appears as a small spool rather than a wide cylindrical drip-tape roll, and it is sitting on a table instead of soil.",
+        "The required 'AFP | 09134922013' watermark is present, but the presence of multiple hard rejects overrides this."
+      ],
+      "correction_prompt": "Remove all people, animals, and non-irrigation commercial items like water bottles. Show exactly one wide, low, cylindrical white and blue AFP drip-tape roll on the ground (soil) next to a low-standing irrigation manifold. Ensure the roll is off-center on the lower third and roughly 20 percent wide relative to the frame. Do not include any people or animals.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 17,
+      "product_height_percent": 16,
+      "product_x_center_percent": 24,
+      "reasons": [
+        "Product geometry is correct (cylindrical roll with ~1.5-1.9 aspect ratio)",
+        "Product size is within practical limits",
+        "Product is placed off-center on the lower third",
+        "Product is naturally placed on soil",
+        "Background context matches farm setting with crop plants",
+        "Required watermark 'AFP | 09134922013' is present"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-گلخانهای-در-کشت-مارچوبه-کاربردها-جزئیات-فنی.webp"
+}
