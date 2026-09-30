@@ -14,6 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
       - name: Dispatch only when the serialized pipeline is idle
         shell: bash
         env:
@@ -26,9 +29,36 @@ jobs:
             count="$(gh run list --workflow "$workflow" --limit 30 --json status --jq '[.[] | select(.status == "queued" or .status == "in_progress" or .status == "waiting" or .status == "pending" or .status == "requested")] | length')"
             active=$((active + count))
           done
-          if [ "$active" -eq 0 ]; then
-            echo "Article pipeline is idle; dispatching the translation gate."
-            gh workflow run article-translations.yml --ref main
-          else
+          if [ "$active" -gt 0 ]; then
             echo "Article pipeline already has $active active/queued run(s); watchdog is a no-op."
+            exit 0
+          fi
+
+          read -r generation_remaining translation_remaining rebuild_remaining <<<"$(python - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, 'automation')
+          import article_content_queue as queue
+          root = Path('artifacts/article-content-queue')
+          state = json.loads((root / 'queue.json').read_text(encoding='utf-8'))
+          translations = json.loads((root / 'translation-status.json').read_text(encoding='utf-8')) if (root / 'translation-status.json').exists() else {}
+          rebuild_path = root / 'image-rebuild-reference-rerender-3d-v12-family-aware-layflat-repair.json'
+          rebuild = json.loads(rebuild_path.read_text(encoding='utf-8')) if rebuild_path.exists() else {}
+          eligible = sum(1 for item in state.get('items', []) if queue.is_retry_eligible(item))
+          print(eligible, int(translations.get('pending_translation_units', 0)), int(rebuild.get('remaining_candidates', 0)))
+          PY
+          )"
+
+          if [ "$translation_remaining" -gt 0 ]; then
+            echo "$translation_remaining translation units remain; dispatching translations."
+            gh workflow run article-translations.yml --ref main
+          elif [ "$rebuild_remaining" -gt 0 ]; then
+            echo "$rebuild_remaining image repairs remain; dispatching the rebuild."
+            gh workflow run rebuild-all-article-images.yml --ref main
+          elif [ "$generation_remaining" -gt 0 ]; then
+            echo "$generation_remaining generation/retry items remain; dispatching the Persian queue."
+            gh workflow run article-content-queue.yml --ref main
+          else
+            echo "Article pipeline is fully complete; watchdog will not dispatch any workflow."
           fi
