@@ -6,20 +6,37 @@
   "approved": true,
   "attempts": [
     {
-      "pass": true,
-      "score": 85,
-      "product_width_percent": 24,
-      "product_height_percent": 20,
-      "product_x_center_percent": 30,
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 11,
+      "product_height_percent": 14,
+      "product_x_center_percent": 49,
       "reasons": [
-        "Product is a single AFP white-and-blue drip-tape carton roll positioned off-center on the lower third naturally on soil.",
-        "No people, human body parts, or human silhouettes are visible.",
-        "Background infrastructure (unattended tractor) is allowed and fits the farm context without violating hardware role constraints.",
-        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
-        "Visible crop morphology is neutral/indistinct, avoiding hard rejection for sainfoin contradiction."
+        "Hard reject: Two people (farmers/workers) are clearly visible in the main image.",
+        "Hard reject: The drip-tape roll is being held by a person rather than resting naturally on the soil.",
+        "Hard reject: The image is a collage with inset panels (top-right, bottom-right), which is not the requested single-shot image format.",
+        "The product width (approx. 11%) is below the acceptable 13% threshold.",
+        "The product x_center (approx. 49%) is centered, whereas the requirement specifies off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Generate a single cinematic shot of a wide low cylindrical white and blue AFP drip-tape carton roll placed directly on the soil in a sainfoin farm field. The roll must be off-center in the lower third (around x=30%), representing 20% of the frame width and no more than 12% height. Include only inorganic hardware (like a small unattended filter or manifold) nearby if necessary. Remove all human figures, hands, and faces. No inset panels or collages. Include the 'AFP | 09134922013' watermark in the bottom-right. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 24,
+      "product_height_percent": 22,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Exact watermark 'AFP | 09134922013' is present in bottom right.",
+        "Product is a white-and-blue wide low cylindrical carton roll positioned off-center on the lower third.",
+        "Roll dimensions are within the acceptable 13-27% width and 32% height thresholds.",
+        "No human presence or body parts detected.",
+        "Hardware context is established with a connector visible next to the roll, and crop context is visually neutral."
       ],
       "correction_prompt": "",
-      "attempt": 1
+      "attempt": 2
     }
   ],
   "approved_image": "آبیاری-چرخشی-در-کشت-اسپرس-هزینه-در-مزرعه-جزئیات-فنی.webp"

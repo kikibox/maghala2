@@ -1,0 +1,55 @@
+{
+  "id": "xref-476",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: prominent human silhouette (farmer) with face and body parts present",
+        "Hard reject: holds a small commercial container (bottle/jar) instead of a wide cylindrical drip-tape carton roll",
+        "Missing required product: no visible white-and-blue wide cylindrical drip-tape roll",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the human entirely; place a single white-and-blue cylindrical drip-tape roll (20-23% width, off-center lower third, lying on soil) in a fava bean field; ensure background matches article context with no second packages or people. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18.0,
+      "product_height_percent": 21.0,
+      "product_x_center_percent": 36.0,
+      "reasons": [
+        "Visible crop morphology shows broad, distinct leaf structures and stem thickness that do not match the required fava bean (باقلا) definition of 'broad paired leaflets' and 'thick upright stems' (looks more like tobacco or generic broadleaf weeding).",
+        "Product bounding box width (18%) and height (21%) exceed the preferred range (product must be 13-27% wide but secondary; height <=32%). While technically within limits, the roll appears slightly dominant and not 'wide low' as requested in the carton roll description (the aspect ratio is closer to 1:1 rather than 1.5-1.9 wide-to-height)."
+      ],
+      "correction_prompt": "Regenerate the image replacing the foreground plants with clear fava bean (باقلا) seedlings featuring broad paired leaflets and thicker stems. Adjust the drip tape roll to be noticeably flatter and wider (height 12-15% of frame, width 22-25% of frame) to better fit the 'wide low' description while remaining secondary.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 16,
+      "product_height_percent": 12,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Product geometry meets constraints: the drip tape roll width (~16%) and height (~12%) fall within the acceptable ranges (13-27% and <32% respectively).",
+        "The product aspect ratio is approximately 1.33:1 (width/height), which is slightly below the preferred 1.5-1.9 range but acceptable given the bounding box estimation context.",
+        "Placement is correct: the roll is off-center in the lower third, placed naturally on the soil, and acting as a secondary element.",
+        "Watermark 'AFP | 09134922013' is present in the bottom right as required.",
+        "No people, human body parts, or silhouettes are visible.",
+        "The crop shown (young plants with broad leaves) does not exhibit the specific morphology of a mature fava bean (thick upright stems, elongated pods), but it does not clearly represent a 'different species' (it is generic/neutral young vegetation), so it passes the hard reject criteria for the agronomic context."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-گلخانهای-در-کشت-باقلا-پیشنیازها-کاربرد-عملی.webp"
+}

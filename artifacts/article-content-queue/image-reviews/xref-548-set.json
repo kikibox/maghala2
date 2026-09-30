@@ -4,18 +4,46 @@
   "history": [
     {
       "pass": false,
-      "score": 20,
+      "score": 52,
       "duplicate_roles": [
-        1,
-        2
+        2,
+        3
       ],
       "reasons": [
-        "The article specifies 'greenhouse cultivation' (کشت گلخانه‌ای), but all three images depict open-field environments without greenhouse structures.",
-        "Image 1 and Image 2 are near-duplicates that repeat the same composition (product roll + close vegetation) in the foreground, failing to provide distinct narrative roles.",
-        "The 'irrigation-system story' (e.g., showing drip lines or subsurface tubing) is completely missing from all images."
+        "All three images depict open-field agriculture, which visually contradicts the article title and summary specifically focusing on 'Greenhouse' (گلخانه‌ای) cultivation.",
+        "The crop morphology in images 2 and 3 resembles broad-leaved weeds or legume seedlings rather than coriander, failing the preference for exact crop identity without becoming a hard reject.",
+        "Images 2 and 3 represent near-duplicate agronomic roles, showing the same AFP roll on soil with similar young seedling stages and an identical red barn background, lacking distinct technical narratives."
       ],
-      "correction_prompt": "Replace all images with scenes depicting an indoor greenhouse environment. For the 'irrigation-system story' image, explicitly show the drip line or tape running underneath the soil or connecting to the pipe.",
+      "correction_prompt": "Replace images 2 and 3 with close-up shots inside a greenhouse, showing coriander seedlings or drip irrigation lines laid over raised soil beds, clearly distinguishing these views from the wide-open field perspective of image 1.",
       "set_attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "duplicate_roles": [
+        1,
+        3
+      ],
+      "reasons": [
+        "The article explicitly discusses greenhouse (گلخانه‌ای) cilantro cultivation, but all three images depict open-field environments with no greenhouse structure, failing the crop-identity context requirement.",
+        "Image 2 clearly features a plant with the characteristic 'hand' of three broad, lobed leaflets, which is botanically contradictory to cilantro (feather-like foliage); this represents a hard reject identifiable crop.",
+        "The three images are highly redundant in their technical narrative: they all show the same AFP irrigation tape in an open field with cilantro-adjacent crops, failing to provide the distinct functional roles (overview vs close evidence vs system story) requested."
+      ],
+      "correction_prompt": "Recreate all three images in a clear greenhouse environment (visible glass/polycarbonate structure) featuring accurate cilantro morphology (feathery foliage), with Image 1 as an environmental overview, Image 2 as a close-up of the plant and tape interaction, and Image 3 showcasing the irrigation system layout.",
+      "set_attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "duplicate_roles": [],
+      "reasons": [
+        "The three images successfully fulfill their distinct functional roles: Image 1 provides a crop-identity overview showing rows of coriander; Image 2 offers agronomic close evidence focusing on a single plant; and Image 3 presents the irrigation-system story with a different perspective.",
+        "Although all three images share the same AFP product and general agricultural environment, they present different camera angles, framing, and narrative focuses (wide view, macro view, and layout view), so they are not considered near-duplicates.",
+        "Zero people are visible in any of the images, meeting the mandatory safety requirement.",
+        "The depicted crops are morphologically consistent with coriander, fulfilling the topic requirements."
+      ],
+      "correction_prompt": "Generate a new Image 3 featuring a close-up of an active drip irrigation line watering a root zone of coriander, explicitly showing water droplets and soil moisture, without the red barn in the background.",
+      "set_attempt": 3
     }
   ]
 }

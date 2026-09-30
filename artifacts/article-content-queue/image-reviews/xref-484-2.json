@@ -1,0 +1,84 @@
+{
+  "id": "xref-484",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 14,
+      "product_height_percent": 26,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Impossible geometry: A living plant is shown growing directly out of the top center of the roll. The product is a closed carton roll, not a planter pot.",
+        "Impossible geometry / Physical impossibility: The drip tape hose connects to the bottom of the roll, which is physically impossible for a cardboard/paper container.",
+        "The plant morphology suggests a Solanaceae (like tomato or pepper), but the bed is generic and the geometry violations are fatal.",
+        "Hard reject due to impossible geometry involving the product and the crop."
+      ],
+      "correction_prompt": "Remove the plant growing out of the roll. The drip tape must remain contained or lead from the end of the roll, not 'plugged in' to the bottom. Ensure the plant is a separate entity next to the roll, not interacting physically with it.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 20,
+      "product_height_percent": 15,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The central crop exhibits impossible botanical morphology with leaves and a stem growing directly out of the top of the drip-tape roll rather than the soil bed.",
+        "The crop visible in the foreground has a distinct morphology (broad-leaved) that does not match the row crops seen in the background, and the article crop appears to be a seedling, which is botanically neutral but obscured by the 'impossible' placement."
+      ],
+      "correction_prompt": "Regenerate the image to remove the impossible crop growing out of the drip-tape roll. Ensure the top of the roll is empty or covered only by the tape. Place the crop in the soil bed adjacent to the roll, maintaining a realistic, separate root zone.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 23,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Severe geometry violation: A plant is shown growing out of the top of the roll (physically impossible for a solid product).",
+        "Incorrect product aspect ratio: The roll is taller than wide, whereas a low cylindrical tape roll should be much wider than it is tall."
+      ],
+      "correction_prompt": "Remove the plant growing from the top of the roll, place a standard low, wide cylindrical drip tape carton on the soil instead, ensure the roll is roughly 1.7x wider than it is tall, and maintain the farm background.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 15,
+      "product_height_percent": 38,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Human body parts (hands and arms) are clearly visible in the foreground, which violates the 'zero people and zero human body parts' rule.",
+        "Hard reject: The product geometry is a 'tall narrow drum' or upright cylinder, not the required 'wide low cylindrical' shape; its height (38%) violates the max 32% constraint.",
+        "The product width (15%) is on the low end of the acceptable range and the object is not wide enough to be 'secondary' in the preferred sense compared to its height.",
+        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate without any people or body parts; crop out the left side where the hand and arm are visible. Change the product to a wide, low cylindrical roll lying on its side or flattened profile; reduce the vertical height of the roll to under 32% of the frame. Ensure the roll is wider than it is tall and off-center on the lower third. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 20,
+      "product_height_percent": 18,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Contains exactly one white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product is placed off-center on the lower third directly on soil.",
+        "Product dimensions are within the preferred and acceptable ranges (width ~20%, height ~18%).",
+        "Visible diameter/height ratio is appropriate for a cylindrical roll.",
+        "Image contains zero people or human body parts.",
+        "Background shows a farm context with crop rows that serve as neutral young vegetation.",
+        "Required 'AFP | 09134922013' watermark is present in the bottom right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-خرسابی-در-کشت-بامیه-هزینه-بهینه-کاربرد-عملی.webp"
+}

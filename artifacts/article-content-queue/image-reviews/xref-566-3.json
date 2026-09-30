@@ -1,0 +1,113 @@
+{
+  "id": "xref-566",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 23,
+      "product_height_percent": 25,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Visible crops in the image do not match the 'lentil' specified in the article title, which triggers a hard reject for role 3.",
+        "The presence of a drip emitter in the foreground acts as a second commercial product/distraction, conflicting with the 'exactly one product' requirement."
+      ],
+      "correction_prompt": "Regenerate with background showing distant generic lentil stands or bare soil only, removing the foreground drip emitter and the small green plant in the center to maintain focus on the single carton roll.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 19,
+      "product_height_percent": 24,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "The image contains a person (a crouching farmer), which is a hard reject condition. Role 3 specifically requires zero people and zero human body parts.",
+        "The product is being touched by the person's hands, violating the constraint of the product being 'naturally placed on soil' and free of human contact."
+      ],
+      "correction_prompt": "Remove the person entirely; show the drip tape roll sitting naturally on the soil in a farm context without any human interaction.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 28,
+      "product_height_percent": 20,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The product width is approximately 28 percent of the frame, which exceeds the hard reject threshold of 27 percent.",
+        "There are extra commercial hardware items (soil moisture meters/fertigation valves) visible on the right side of the image, which violates the requirement to show exactly one carton roll.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the extra hardware items on the right. Resize the drip-tape roll to be exactly 22 percent of the frame width, maintaining its natural position on the soil in the lower-left area. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 12,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Contains a human (a person crouching in the field)",
+        "Contains a second commercial product (a small white package/canister next to the roll)"
+      ],
+      "correction_prompt": "Regenerate the image without any human figures or extra commercial products. Ensure the scene contains only the single wide low cylindrical AFP drip-tape roll on the soil in a farm context.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 29,
+      "product_height_percent": 22,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "The product is a single white-and-blue wide low cylindrical drip-tape carton roll matching the specified branding.",
+        "The crop plant in the background appears neutral or non-contradictory to a hardware story, and no specific crop mismatch is visible.",
+        "The roll is off-center in the lower third and placed naturally on the soil.",
+        "Unattended tractors and infrastructure are present in the background but do not contain any human silhouettes or visible body parts.",
+        "Exact bottom-right watermark 'AFP | 09134922013' is present and correct.",
+        "The product's visible diameter is consistent with a ratio of 1.5 to 1.9 times its visible height.",
+        "Although the product width (approx 29%) slightly exceeds the 27% preferred cap, it remains secondary to the wide background infrastructure, allowing for a high practical pass score.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 29% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 29% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Second package: There is a distinct black/gray cylindrical product to the right of the main white and blue roll. The guidelines explicitly require 'exactly one' product roll and hard reject 'second package' or 'second roll'.",
+        "Hardware Role Mismatch: Role 3 is a hardware story. While crop plants are allowed, a separate container of seedlings (the black cylinder) is a secondary commercial product, which is not permitted."
+      ],
+      "correction_prompt": "Remove the black cylinder of seedlings on the right. Retain only the single white and blue AFP drip tape roll on the soil.",
+      "attempt": 6
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 16,
+      "product_height_percent": 14,
+      "product_x_center_percent": 39,
+      "reasons": [
+        "Visually confirms zero people and zero body parts (including no silhouettes or drivers in the distant tractor).",
+        "The product is a white and blue wide, low cylindrical carton roll of drip-tape.",
+        "The product is placed naturally on soil in the lower-left third (off-center), with a visible aspect ratio of approximately 1.15x width-to-height.",
+        "The product width is approximately 16% and height is approximately 14% of the frame, keeping it secondary yet clearly visible.",
+        "The watermark 'AFP | 09134922013' is present and accurately formatted in the bottom-right corner.",
+        "The background shows a topic-specific farm context with an unattended tractor and prepared field, consistent with hardware story requirements.",
+        "The visible 'AFP' logo on the package is authentic context-printing, not rejected."
+      ],
+      "correction_prompt": "",
+      "attempt": 1
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-در-کشت-شنبلیله-هزینه-در-مزرعه-جزئیات-فنی.webp"
+}

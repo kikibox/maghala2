@@ -3,93 +3,41 @@
   "kind": 2,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 20,
-      "product_width_percent": 6,
-      "product_height_percent": 9,
-      "product_x_center_percent": 36,
+      "score": 5,
+      "product_width_percent": 4,
+      "product_height_percent": 8,
+      "product_x_center_percent": 39,
       "reasons": [
-        "Presence of three human subjects (hard reject rule)",
-        "Product is not the required wide cylindrical roll but a small canister or spool",
-        "Product width and height are far below the required minimums (width < 13%, height mismatch)",
-        "Product is not off-center on the lower third in the required wide-roll format",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+        "Contains a person and multiple human body parts, which is a hard reject",
+        "The drip tape roll is significantly under-sized (4% width vs 13-27% acceptable range)",
+        "The roll is placed centrally on the foreground soil, not positioned in the lower third as a secondary element",
+        "The crops do not resemble rosemary (woody low shrubs with needle-like leaves); they appear to be purple spire-like flowers (possibly hyssop or salvia)",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate image with exactly one wide, low cylindrical drip-tape roll (width 20-23% of frame, off-center lower third, natural soil placement) in a rosemary farm context. Remove all people and human body parts. Ensure the roll is white-and-blue with AFP branding and the specific bottom-right watermark. Enlarge the product group from 6% to 13-27% of frame width.",
+      "correction_prompt": "Remove all people and body parts. Increase drip tape roll size to 15-20% width. Position the roll in the lower third off-center. Replace crops with identifiable rosemary bushes (needle-like leaves, woody structure). Enlarge the product group from 4% to 13-27% of frame width.",
       "attempt": 1
     },
     {
-      "pass": false,
-      "score": 15,
-      "product_width_percent": 23.0,
-      "product_height_percent": 31.0,
-      "product_x_center_percent": 45.0,
-      "reasons": [
-        "Centered product staging (product_x_center_percent is 45%, violating the off-center lower third requirement)",
-        "Hard reject: The required watermark text '09134922013' is present in the image, but the rule explicitly forbids it ('...never reject or request removal', implying it must be absent in a valid image where the watermark isn't specified as a 'fake headline'). Actually, re-reading: 'The exact bottom-right watermark \"AFP | 09134922013\" is REQUIRED'. Wait, if it's required, I should not reject for its presence. Let me re-read carefully. 'Hard reject... fake headline, caption, gibberish text or invented writing outside authentic package print and the AFP phone watermark.' This implies the AFP phone watermark is allowed. However, the instruction says 'The exact bottom-right watermark \"AFP | 09134922013\" is REQUIRED'. This is contradictory or a specific instruction. I will assume the watermark is fine. But I will reject for the centered product."
-      ],
-      "correction_prompt": "Move the drip-tape carton roll to the left side of the frame (x-center approx 25-30%) to make it off-center in the lower third. Ensure it remains secondary to the crop context.",
-      "attempt": 2
-    },
-    {
-      "pass": false,
-      "score": 55,
-      "product_width_percent": 24,
-      "product_height_percent": 32,
-      "product_x_center_percent": 22,
-      "reasons": [
-        "The required bottom-right watermark text is 'AFP | 09134922013', but the image shows 'AFP | 09134922013' with a slight variation in the digit sequence (or layout) that does not match the exact required string for this specific task ID (the prompt requires 09134922013, the image has 09134922013... wait, looking closely at the image text, it ends in 013, but the prompt requires 09134922013. Actually, let's re-read the prompt: 'AFP | 09134922013'. The image has 'AFP | 09134922013'. They match. Okay, rejecting that thought.)",
-        "The product (drip tape roll) does not match the 'wide low cylindrical' aspect ratio requirement. The visible diameter-to-height ratio is roughly 1:1 (square profile) rather than the required 1.5-1.9:1 (wide/low).",
-        "The specific phone number format in the watermark might be slightly off from the exact instruction, but the geometry is the main issue."
-      ],
-      "correction_prompt": "Regenerate with a 'wide' or 'low' profile drip-tape roll to achieve a diameter-to-height ratio of 1.5-1.9; strictly place the 'AFP | 09134922013' watermark in the bottom right.",
-      "attempt": 3
-    },
-    {
-      "pass": false,
-      "score": 15,
-      "product_width_percent": 11,
-      "product_height_percent": 21,
-      "product_x_center_percent": 51,
-      "reasons": [
-        "Hard reject: The image contains a full-person human silhouette (farmer kneeling in the field).",
-        "Hard reject: The product (drip-tape carton/roll) is centered horizontally (51%) instead of being off-center on the lower third.",
-        "Hard reject: The product's height (21%) exceeds the 32% maximum limit, making it the primary subject rather than secondary.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
-      ],
-      "correction_prompt": "Regenerate the image without any people or human body parts. Move the AFP white-and-blue drip-tape roll to the bottom-left or bottom-right corner, ensuring it is significantly smaller (approx 15-18% width) and off-center. Keep the background as a rosemary farm. Enlarge the product group from 11% to 13-27% of frame width.",
-      "attempt": 4
-    },
-    {
-      "pass": false,
-      "score": 15,
-      "product_width_percent": 4,
-      "product_height_percent": 8,
-      "product_x_center_percent": 45,
-      "reasons": [
-        "Presence of three people in the foreground and one person in the background (hard reject requirement)",
-        "The drip tape roll is not the primary 'AFP white-and-blue wide low cylindrical drip-tape carton roll' specified; it appears to be a small white roll without the correct branding or packaging geometry",
-        "The product roll is not positioned on the lower third as specified (it is in the bottom-left, but the people's presence is the main disqualifier)",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
-      ],
-      "correction_prompt": "Regenerate the image to show a single white and blue AFP drip tape roll placed on the soil in a rosemary field. Ensure the field contains no people, workers, or human silhouettes. The roll should be approximately 20% of the frame width and positioned in the lower third of the image. Maintain the 'AFP | 09134922013' watermark in the bottom right corner. Enlarge the product group from 4% to 13-27% of frame width.",
-      "attempt": 5
-    },
-    {
-      "pass": false,
-      "score": 55,
-      "product_width_percent": 22,
-      "product_height_percent": 26,
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 14,
+      "product_height_percent": 16,
       "product_x_center_percent": 42,
       "reasons": [
-        "The crop plants in the foreground and background clearly show broad, ovate leaves, which are hard reject for a rosemary article that requires needle-like foliage; the specified rosemary agronomic story is not visible."
+        "The product is an AFP white and blue cylindrical drip-tape carton roll placed naturally on the soil.",
+        "The surrounding crop clearly shows rosemary morphology (woody stems, needle-like dark green leaves), matching the article topic.",
+        "Zero people or human body parts are visible in the frame.",
+        "Product dimensions are within the acceptable 13–27% width range and under the 32% height limit.",
+        "The required bottom-right watermark 'AFP | 09134922013' is present and correctly formatted.",
+        "The background farm context with a red barn and tilled rows supports the specific crop story without any hard-reject elements."
       ],
-      "correction_prompt": "Regenerate the background to show low, woody rosemary shrubs with small needle-like dark green leaves instead of broad-leafed plants.",
-      "attempt": 6
+      "correction_prompt": "",
+      "attempt": 2
     }
   ],
-  "approved_image": null
+  "approved_image": "آبیاری-قطرهای-با-نوار-تیپ-در-کشت-رزماری-چالشها-کاربرد-عملی.webp"
 }

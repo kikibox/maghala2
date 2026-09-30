@@ -7,34 +7,60 @@
   "attempts": [
     {
       "pass": false,
-      "score": 20,
-      "product_width_percent": 0,
-      "product_height_percent": 0,
-      "product_x_center_percent": 0,
+      "score": 55,
+      "product_width_percent": 19,
+      "product_height_percent": 18,
+      "product_x_center_percent": 72,
       "reasons": [
-        "Hard reject: The image clearly shows a person's arm, hand, and legs interacting with the scene.",
-        "Extra object: A black handheld digital device is present in the foreground, which counts as an extra commercial product prohibited by the rules.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+        "The crop morphology is completely wrong for the title (asparagus is shown in a broad-leafed field context, suggesting a mismatch or a generic background that does not represent the specific named crop context as required), and the packaging text on the roll is gibberish/reversed ('Drip Irragaaoo') rather than the required authentic print."
       ],
-      "correction_prompt": "Regenerate the image to strictly exclude any people or human body parts and remove the black handheld device, keeping only the drip tape roll in the farm context. Enlarge the product group from 0% to 13-27% of frame width.",
+      "correction_prompt": "Regenerate the image with a botanically accurate crop matching the title (likely carrots given the 'family' context or specific named crop). Ensure the drip tape roll has correct legible English packaging and remove the giant asparagus spear.",
       "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 19,
+      "product_height_percent": 15,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Required bottom-right watermark is 'AFP | 09134922013', but the image displays '09134922013' without the hyphen.",
+        "The crop morphology in the foreground (broad-leaf plants) is botanically distinct from the specific crop context required, which implies a neutral prepared bed or identifiable named crop rather than a hard reject of a clearly different species like mint or lettuce."
+      ],
+      "correction_prompt": "Change the watermark text in the bottom-right corner to exactly 'AFP | 09134922013'. Ensure the foreground plants are botanically neutral or clearly match the specific article title crop, avoiding distinct broad-leaf varieties if they contradict the article.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 16,
+      "product_height_percent": 14,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The product's horizontal center (48%) is too close to the vertical midpoint, appearing as centered staging rather than distinctly off-center.",
+        "The cylindrical diameter-to-height ratio is too close to 1.0; the shape appears to be approximately 1.15:1, failing the 1.5-1.9x requirement.",
+        "The crop morphology (small, upright, broad-leafed seedlings) lacks the specific visual markers of tomatoes (indeterminate vs. determinate branching, leaf texture, or fruit) making it an ambiguous 'neutral' match rather than an unmistakable identification.",
+        "The drip tape connections appear to float or are obscured by the soil texture immediately below the roll, lacking clear integration with the visible crop rows."
+      ],
+      "correction_prompt": "Regenerate the image with the roll placed distinctly off-center (x=30% or 70%), increasing the visible diameter to 1.6x its height. Change the crop morphology to clearly identifiable tomatoes with characteristic leaves and stems. Ensure the roll is firmly grounded on the soil.",
+      "attempt": 3
     },
     {
       "pass": true,
       "score": 85,
-      "product_width_percent": 24,
-      "product_height_percent": 28,
-      "product_x_center_percent": 42,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 34,
       "reasons": [
-        "Product is a white-and-blue wide low cylindrical drip-tape carton roll",
-        "Correct bottom-right AFP watermark present",
-        "Zero people or human body parts",
-        "Product is off-center on the lower third and placed naturally on soil",
-        "Background crop context matches article-specific farm setting",
-        "Product dimensions and framing are within acceptable thresholds"
+        "Required watermark 'AFP | 09134922013' is present.",
+        "Product geometry and width (18%) are within acceptable range.",
+        "Product is off-center and placed naturally on soil.",
+        "Crop morphology (tomatoes) matches article requirements.",
+        "No persons, faces, or body parts visible.",
+        "Only one roll/product visible."
       ],
       "correction_prompt": "",
-      "attempt": 2
+      "attempt": 4
     }
   ],
   "approved_image": "آبیاری-هوشمند-در-کشت-مارچوبه-هزینه-در-مزرعه-تصویر-شاخص.webp"

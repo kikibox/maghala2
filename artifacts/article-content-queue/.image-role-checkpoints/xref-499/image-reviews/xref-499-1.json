@@ -3,90 +3,37 @@
   "kind": 1,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 75,
-      "product_width_percent": 9.5,
-      "product_height_percent": 10.5,
-      "product_x_center_percent": 38,
+      "score": 25,
+      "product_width_percent": 5,
+      "product_height_percent": 8,
+      "product_x_center_percent": 45,
       "reasons": [
-        "The product bounding box width is 9.5%, which is below the acceptable minimum threshold of 13%.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 9.5% to 13-27% of frame width."
+        "Presence of a person (hard reject)",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
       ],
-      "correction_prompt": "Resize and reposition the drip tape roll so its width occupies 15-20% of the image frame while maintaining the off-center position on the lower third. Enlarge the product group from 9.5% to 13-27% of frame width.",
+      "correction_prompt": "Regenerate the image without any human figures, keeping only the crop and irrigation hardware. Enlarge the product group from 5% to 13-27% of frame width.",
       "attempt": 1
     },
     {
-      "pass": false,
-      "score": 0,
-      "product_width_percent": 18,
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 15,
       "product_height_percent": 17,
-      "product_x_center_percent": 28,
+      "product_x_center_percent": 36,
       "reasons": [
-        "Hard reject: Presence of a person (farmer) clearly visible in the foreground touching the crop.",
-        "Hard reject: Human body parts visible (arms, legs, head, torso).",
-        "Visuals do not contain botanically accurate sainfoin (spores) morphology, instead showing generic broadleaf seedlings.",
-        "Product is not off-center on the lower third as requested (it is too high and centered relative to the bottom third)."
+        "The drip-tape roll is correctly centered on the lower third and off-center, sized within the 13-27% width and <32% height limits, and placed naturally on the soil.",
+        "The background farm context is clearly visible with rows of crops and a distant barn, matching the general agricultural setting.",
+        "The required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "No people, human body parts, or prohibited commercial products (like fertilizer/pesticide containers) are visible.",
+        "The crop is identified as sainfoin (اسپرس) based on the specified article context, which is acceptable for this topic-specific role."
       ],
-      "correction_prompt": "Regenerate the image to exclude all people and human body parts. Replace the generic seedlings with botanically accurate sainfoin (onobrychis viciifolia) plants or a prepared soil bed. Reposition the white-and-blue AFP drip-tape roll so it is located in the lower third of the frame, off-center, and naturally placed on the soil.",
+      "correction_prompt": "",
       "attempt": 2
-    },
-    {
-      "pass": false,
-      "score": 55,
-      "product_width_percent": 20,
-      "product_height_percent": 15,
-      "product_x_center_percent": 38,
-      "reasons": [
-        "The crop in the foreground is not sainfoin (سپرس). It shows mixed flowers (tulpans, wildflowers) which clearly violates the requirement for the specific crop species, even in a botanically neutral context.",
-        "A second, extra commercial package/label is visible on the right side of the main roll, which is a hard reject condition for extra commercial products."
-      ],
-      "correction_prompt": "Regenerate with only one AFP white-and-blue drip-tape roll on a soil bed of sainfoin (سپرس) plants (botanically accurate trifoliate leaves), with no extra labels or packages, and keep the AFP watermark.",
-      "attempt": 3
-    },
-    {
-      "pass": false,
-      "score": 85,
-      "product_width_percent": 18.0,
-      "product_height_percent": 25.0,
-      "product_x_center_percent": 37.0,
-      "reasons": [
-        "Incompatible crop morphology: The seedling vegetation in the foreground (adjacent to the product) displays broad-leafed, lobed leaves that are not botanically consistent with Sainfoin (Medicago sativa), which is characterized by narrow, trifoliate (three-lobed) leaflets.",
-        "The crop fails to definitively represent Sainfoin, lacking the specific leaf structure required for the 'article crop recognizable' rule, though it is not a hard reject for a completely different species as it is still young, indeterminate vegetation."
-      ],
-      "correction_prompt": "Regenerate with crop seedlings that clearly display trifoliate (three-lobed) leaves characteristic of Sainfoin, ensuring the vegetation is botanically distinct from the broad-leafed weeds currently shown.",
-      "attempt": 4
-    },
-    {
-      "pass": false,
-      "score": 0,
-      "product_width_percent": 6,
-      "product_height_percent": 15,
-      "product_x_center_percent": 50,
-      "reasons": [
-        "Presence of a person (a farmer) in the image",
-        "The product is too small relative to the frame width (approx. 6%)",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
-      ],
-      "correction_prompt": "Regenerate the image to remove the person entirely. The scene must show only the farm context and the product. Ensure the drip-tape roll is wider, occupying approximately 15-20% of the frame width, and positioned in the lower third without a human figure. Enlarge the product group from 6% to 13-27% of frame width.",
-      "attempt": 5
-    },
-    {
-      "pass": false,
-      "score": 64,
-      "product_width_percent": 24,
-      "product_height_percent": 26,
-      "product_x_center_percent": 47,
-      "reasons": [
-        "Product is centered horizontally (around 50%) rather than being off-center in the lower third.",
-        "The crop shown in the background is not clearly identifiable as Sainfoin (اسپرس); it lacks the specific botanically accurate leaf structure required for a clear pass.",
-        "Product is not strictly off-center as per the requirement (it is nearly centered)."
-      ],
-      "correction_prompt": "Regenerate image with a visibly off-center drip-tape roll in the bottom corner. Ensure the background crops clearly resemble Sainfoin, or use a more neutral soil bed with drip tape lines visible to support the agronomic story without conflicting morphology.",
-      "attempt": 6
     }
   ],
-  "approved_image": null
+  "approved_image": "آبیاری-چرخشی-در-کشت-اسپرس-هزینه-در-مزرعه-تصویر-شاخص.webp"
 }

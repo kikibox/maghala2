@@ -6,20 +6,63 @@
   "approved": true,
   "attempts": [
     {
-      "pass": true,
-      "score": 95,
-      "product_width_percent": 13,
-      "product_height_percent": 21,
-      "product_x_center_percent": 51,
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 48,
       "reasons": [
-        "Product is the correct AFP drip-tape carton roll and fits the requested off-center lower-third layout.",
-        "Crop context matches Rosemary (Rozmari), showing the characteristic needle-like foliage and low growth habit.",
-        "Zero people or body parts are visible in the frame.",
-        "The required 'AFP | 09134922013' watermark is present in the bottom right.",
-        "No rejected elements such as bottles, extra rolls, or impossible geometry."
+        "Hard reject: Visible person (farmer) squatting in the frame.",
+        "Hard reject: Human body parts (face, hands, arms, legs) are clearly visible.",
+        "Product geometry mismatch: The roll appears too tall and cylindrical (drum-like) rather than wide and low.",
+        "Context mismatch: The crop shown is broad-leafy (resembling mint or similar) rather than the specified woody rosemary shrubs."
+      ],
+      "correction_prompt": "Regenerate with zero people, wide low cylindrical roll on soil, woody rosemary shrubs background",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 17,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The image contains a person (farmer/worker) squatting next to the product, which is a hard reject condition.",
+        "The person's hands, face, arms, and legs are visible, violating the 'zero people' and 'zero human body parts' requirements.",
+        "The person is interacting with the product, breaking the requirement for the product to be 'naturally placed' without human staging or manipulation."
+      ],
+      "correction_prompt": "Remove the person and hands completely. Regenerate to show only the wide cylindrical drip-tape carton roll resting naturally on the soil in the rosemary field. Ensure no people, faces, or body parts are visible in the frame.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 26,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Background crop rows do not visually match the specific rosemary article requirements (woody shrubs/needle-like leaves); the vegetation shown appears to be generic young plants or a different species, failing the requirement to make rosemary recognizable.",
+        "Product geometry violates the specified aspect ratio constraints: the visible diameter is roughly 1.4x the visible height, whereas it must be between 1.5 and 1.9 times the height to pass."
+      ],
+      "correction_prompt": "Regenerate the image replacing the background crop with clearly identifiable rosemary shrubs (woody, low, needle-like dark green leaves). Adjust the drip-tape carton to be slightly wider (diameter 1.6x height) and ensure it sits off-center on the lower third.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 16,
+      "product_height_percent": 14,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "The image displays a single white-and-blue AFP drip-tape roll situated naturally on the soil in a farm context.",
+        "The background shows woody low shrubs with needle-like dark-green leaves, clearly recognizable as rosemary.",
+        "Product dimensions are within the preferred ranges: width is approximately 16% and height is approximately 14% of the frame.",
+        "The product is positioned in the lower third, off-center to the left, and the diameter is consistent with a low cylindrical roll.",
+        "The image is free of any people, human body parts, or disqualifying commercial objects like extra containers.",
+        "The required watermark 'AFP | 09134922013' is correctly present in the bottom-right corner."
       ],
       "correction_prompt": "",
-      "attempt": 1
+      "attempt": 4
     }
   ],
   "approved_image": "آبیاری-قطرهای-با-نوار-تیپ-در-کشت-رزماری-چالشها-تصویر-شاخص.webp"

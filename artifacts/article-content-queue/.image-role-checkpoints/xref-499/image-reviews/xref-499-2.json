@@ -3,55 +3,96 @@
   "kind": 2,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": true,
+  "approved": false,
   "attempts": [
     {
       "pass": false,
       "score": 15,
-      "product_width_percent": 0,
-      "product_height_percent": 0,
-      "product_x_center_percent": 0,
+      "product_width_percent": 8,
+      "product_height_percent": 8,
+      "product_x_center_percent": 48,
       "reasons": [
-        "Presence of people: A man and a child are clearly visible in the frame.",
-        "Missing required product: There is no white-and-blue cylindrical drip-tape roll.",
-        "Incorrect product: The man is holding a white handheld device (likely a soil sensor or meter), which is not the required drip tape.",
-        "Human body parts: Faces, hands, and bodies are prominent features of the image.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+        "Hard reject: Presence of a person (male farmer) and multiple human body parts (face, hands, arms, legs, feet).",
+        "Hard reject: Presence of a second package/carton (visible in the bottom-right inset).",
+        "Hard reject: The main product roll is centered rather than off-center on the lower third.",
+        "Hard reject: The product width is approximately 8% of the frame, which is below the 13-27% acceptable range.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
       ],
-      "correction_prompt": "Remove all people. Include one white-and-blue cylindrical drip-tape roll placed naturally on the soil in the lower third, off-center. The roll should be wide and low (cylindrical), approximately 20% of the frame width. Show the farm context with sainfoin crops. Enlarge the product group from 0% to 13-27% of frame width.",
+      "correction_prompt": "Regenerate the image without any people or human body parts. Place exactly one white and blue drip tape roll on the soil, off-center in the lower third of the frame, with a width of approximately 20% of the image height. Ensure the crop is clearly sainfoin (spars) with correct foliage. Remove any secondary packages or inset windows. Ensure the AFP watermark is present in the bottom right. Enlarge the product group from 8% to 13-27% of frame width.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 12,
-      "product_width_percent": 18,
-      "product_height_percent": 21,
-      "product_x_center_percent": 42,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
       "reasons": [
-        "Hard reject: clearly identifiable different species in foreground",
-        "Hard reject: flower bed with tulips and purple blossoms (lupine-like) is not sainfoin (سپرس)",
-        "Sainfoin has pinnate compound leaves and a completely different growth habit than the shown flower bed",
-        "Background does not match article context"
+        "Product shape is not cylindrical; the item shown is a flat square box or block, not a roll.",
+        "Background context shows a flower garden, which is clearly identifiable and does not match the required topic of Sainfoin (a legume crop).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
       ],
-      "correction_prompt": "Replace flower bed with sainfoin crop: pinnate compound leaves, soft silvery foliage, growing in neat rows on prepared farm soil, with the single AFP drip-tape roll on the foreground soil",
+      "correction_prompt": "Regenerate image featuring a white and blue cylindrical drip-tape roll sitting on soil. The background must show sainfoin plants (legume with trifoliate leaves) or a prepared field bed, not a flower garden with sunflowers or lavender. The roll must be cylindrical, not a square box. Enlarge the product group from 0% to 13-27% of frame width.",
       "attempt": 2
     },
     {
-      "pass": true,
-      "score": 85,
-      "product_width_percent": 20.0,
-      "product_height_percent": 23.5,
-      "product_x_center_percent": 30.0,
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 24,
+      "product_height_percent": 21,
+      "product_x_center_percent": 36,
       "reasons": [
-        "Product is a white cylindrical drip tape roll (width ~20%, height ~23.5%) placed in the lower-left third (x-center 30%), resting naturally on soil.",
-        "The crop rows show a legume in bloom with small red/purple flowers, which is botanically consistent with sainfoin (spars) rather than a clearly different species; it passes the neutral young vegetation/agronomic story rule.",
-        "The background (farm field, barn, distant tree) is generic and does not contradict the crop topic.",
-        "The mandatory bottom-right watermark 'AFP | 09134922013' is present.",
-        "No people, body parts, or extra commercial products (bottles, cans, buckets, pipes) are visible; zero hard rejects triggered."
+        "The product's visible diameter is less than 1.5 times its visible height, failing the required 1.5-1.9x geometry constraint.",
+        "The flowering crop shown (likely cornflowers) does not match the target article, which is Sainfoin (an alfalfa relative)."
       ],
-      "correction_prompt": "",
+      "correction_prompt": "Replace the flowering crop with low, bushy sainfoin foliage without visible flowers. Increase the vertical height of the drip-tape roll so its diameter is at least 1.5 times its height.",
       "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 5,
+      "product_height_percent": 9,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer) and human body parts (head, hands, legs) violates the zero people rule.",
+        "The product is a small vertical roll, not the required 'wide low cylindrical' drip-tape carton roll shape.",
+        "The product is too small and low, violating the sizing requirements where the roll should occupy roughly 13-27% of the frame width.",
+        "The product shape (narrow vertical cylinder) is incorrect for the requested wide low profile.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the man completely. Generate a wide, low cylindrical white carton roll of drip tape with blue branding placed on the soil in the foreground, positioned on the lower left third. Ensure the roll's width is about 20% of the frame width and its diameter is roughly 1.5-1.9 times its height. Maintain the farm background context. Enlarge the product group from 5% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Presence of a person (farmer) in the background (top center), which is a hard reject condition.",
+        "The crop is not clearly identifiable as Sainfoin (spars), though the agronomic story is present."
+      ],
+      "correction_prompt": "Regenerate the image ensuring zero people or human silhouettes are visible anywhere in the frame (including the background). Ensure the crop visually suggests Sainfoin (broadleaf/legume-like) rather than generic row crops.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 11,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer) and human body parts.",
+        "The product shown is a small container/box, not a wide cylindrical drip-tape carton roll.",
+        "The product is not in the required off-center lower-third position.",
+        "Product dimensions do not meet the minimum width requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image removing the person completely. Place a wide, low, cylindrical drip-tape carton roll (white and blue) off-center on the lower third of the frame, on the soil. Ensure the roll is roughly 20% of the frame width. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 6
     }
   ],
-  "approved_image": "آبیاری-چرخشی-در-کشت-اسپرس-هزینه-در-مزرعه-کاربرد-عملی.webp"
+  "approved_image": null
 }

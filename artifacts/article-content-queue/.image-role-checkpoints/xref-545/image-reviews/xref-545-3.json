@@ -7,15 +7,89 @@
   "attempts": [
     {
       "pass": false,
+      "score": 5,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Multiple people (faces, bodies, hands, arms) are clearly visible in the foreground and mid-ground.",
+        "The product is being held by a person rather than resting independently on the soil.",
+        "Violation of the strict rule requiring zero people and zero human body parts."
+      ],
+      "correction_prompt": "Remove all human figures and body parts. Place the white-and-blue AFP drip-tape carton roll directly on the soil surface in the lower third, keeping it off-center and secondary to the background. Ensure the background context is visible without any human presence or hands.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 16,
+      "product_height_percent": 22,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Product geometry is incorrect: the roll appears as a wide cylindrical carton with a 1:1 width-to-height ratio, failing the 1.5-1.9x requirement (likely a layflat tape roll instead of a drip tape roll).",
+        "Missing mandatory bottom-right watermark 'AFP | 09134922013'.",
+        "Product is placed too low, nearly touching the bottom frame edge, rather than being naturally staged on the soil in the lower third.",
+        "Text on the packaging (non-AFP characters) appears gibberish/unreadable."
+      ],
+      "correction_prompt": "Regenerate with a wide, low cylindrical drip tape roll (approx 1.5-1.9x wider than tall). Place it off-center on the soil. Ensure the exact text 'AFP | 09134922013' is clearly visible in the bottom-right corner. Make packaging text legible.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
       "score": 10,
-      "product_width_percent": 21,
-      "product_height_percent": 19,
+      "product_width_percent": 28,
+      "product_height_percent": 45,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Human figures (farmers/workers) are clearly visible in the background on the right side, which violates the zero-person rule.",
+        "The product's bounding box is centered too close to the middle frame rather than being off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width.; Reduce product height from 45% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human silhouettes. Shift the drip-tape roll further to the right and lower to achieve the required off-center framing. Reduce the product group from 28% to 13-27% of frame width. Reduce product height from 45% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 6,
+      "product_height_percent": 4,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Hard reject: The image contains multiple visible people, which explicitly violates the 'zero people' constraint.",
+        "Hard reject: The product visible in the foreground (held by a person) is a small, cylindrical canister, not the required wide low cylindrical drip-tape roll.",
+        "Product size is significantly undersized (6% width vs 13-27% acceptable range).",
+        "Product is centered or held by hand rather than naturally placed on soil as required for a hardware story.",
+        "The presence of human silhouettes and close-up interaction is prohibited for this role.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate: A close-up of a white-and-blue wide low cylindrical drip-tape carton roll placed on the soil in a farm field. The roll must be off-center on the lower third, approx 20% of the image width. Zero people, zero faces, zero hands. Background shows a farm with a distant barn and tractor (hardware context). Watermark 'AFP | 09134922013' in bottom-right. Enlarge the product group from 6% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 22,
+      "product_height_percent": 18,
+      "product_x_center_percent": 39,
+      "reasons": [
+        "The watermarked phone number in the bottom right corner is 09134922013, which contradicts the strict requirement for the exact watermark 09134922012."
+      ],
+      "correction_prompt": "Regenerate the image with the exact bottom-right watermark text 'AFP | 09134922012'.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 18,
       "product_x_center_percent": 35,
       "reasons": [
-        "A human figure (farmer/worker) is clearly visible in the background near the tractor. This triggers a hard reject due to the 'zero people' constraint."
+        "Hard reject: The image contains a human figure (farmer) crouching in the field.",
+        "Hard reject: Visible human body parts including face, hands, arms, and legs are present.",
+        "The product appears to be a fertilizer/soil container with a penetrometer tool rather than a standard drip-tape roll."
       ],
-      "correction_prompt": "Remove the human figure from the background completely. Keep the tractor and farm context but ensure no people or silhouettes are visible.",
-      "attempt": 1
+      "correction_prompt": "Remove the human figure entirely. Replace the soil penetrometer container with a wide, low cylindrical AFP drip-tape roll placed naturally on the soil. Ensure no human silhouettes or body parts are visible in the background or foreground.",
+      "attempt": 6
     }
   ],
   "approved_image": null
