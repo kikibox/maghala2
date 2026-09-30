@@ -187,13 +187,39 @@ jobs:
             echo "An image-family rebuild is queued; it owns the next pipeline handoff."
             exit 0
           fi
+          read -r generation_remaining translation_remaining rebuild_remaining <<<"$(python - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, 'automation')
+          import article_content_queue as queue
+          root = Path('artifacts/article-content-queue')
+          state = json.loads((root / 'queue.json').read_text(encoding='utf-8'))
+          translations = json.loads((root / 'translation-status.json').read_text(encoding='utf-8')) if (root / 'translation-status.json').exists() else {}
+          rebuild_path = root / 'image-rebuild-reference-rerender-3d-v12-family-aware-layflat-repair.json'
+          rebuild = json.loads(rebuild_path.read_text(encoding='utf-8')) if rebuild_path.exists() else {}
+          eligible = sum(1 for item in state.get('items', []) if queue.is_retry_eligible(item))
+          print(eligible, int(translations.get('pending_translation_units', 0)), int(rebuild.get('remaining_candidates', 0)))
+          PY
+          )"
+          if [ "$generation_remaining" -eq 0 ] && [ "$translation_remaining" -eq 0 ] && [ "$rebuild_remaining" -eq 0 ]; then
+            echo "All Persian articles, translations, and image repairs are complete; stopping without dispatch."
+            exit 0
+          fi
           set +e
           python automation/translate_generated_articles.py --check-backlog
           rc=$?
           set -e
           if [ "$rc" -eq 0 ]; then
-            echo "Translation backlog is below the safety threshold; dispatching the next Persian article batch."
-            gh workflow run article-content-queue.yml --ref main
+            if [ "$generation_remaining" -gt 0 ]; then
+              echo "Translation backlog is below the safety threshold; dispatching the next Persian article batch."
+              gh workflow run article-content-queue.yml --ref main
+            elif [ "$rebuild_remaining" -gt 0 ]; then
+              echo "Persian generation is complete; dispatching the remaining image repair."
+              gh workflow run rebuild-all-article-images.yml --ref main
+            else
+              echo "No Persian generation or image repair remains; stopping without dispatch."
+            fi
           elif [ "$rc" -eq 2 ]; then
             echo "Translation backlog remains at the safety threshold; cooling down and dispatching the next translation slice."
             sleep 60

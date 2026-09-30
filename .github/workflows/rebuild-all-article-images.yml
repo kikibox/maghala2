@@ -136,13 +136,30 @@ jobs:
           print(int(data.get('remaining_candidates',0)), int(data.get('consecutive_no_progress_runs',0)))
           PY
           )"
-          if [ "$remaining" -gt 0 ] && [ "$stalled" -lt 3 ]; then
-            echo "$remaining image sets remain; yielding to translation and fresh generation before the next repair slice."
+          read -r generation_remaining translation_remaining <<<"$(python - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, 'automation')
+          import article_content_queue as queue
+          root = Path('artifacts/article-content-queue')
+          state = json.loads((root / 'queue.json').read_text(encoding='utf-8'))
+          translations = json.loads((root / 'translation-status.json').read_text(encoding='utf-8')) if (root / 'translation-status.json').exists() else {}
+          eligible = sum(1 for item in state.get('items', []) if queue.is_retry_eligible(item))
+          print(eligible, int(translations.get('pending_translation_units', 0)))
+          PY
+          )"
+          if [ "$translation_remaining" -gt 0 ]; then
+            echo "$translation_remaining translation units remain; yielding to translations."
             gh workflow run article-translations.yml --ref main
+          elif [ "$generation_remaining" -gt 0 ]; then
+            echo "$generation_remaining generation/retry items remain; resuming Persian generation."
+            gh workflow run article-content-queue.yml --ref main
+          elif [ "$remaining" -gt 0 ] && [ "$stalled" -lt 3 ]; then
+            echo "$remaining image sets remain after all content work; dispatching the next repair slice."
+            gh workflow run rebuild-all-article-images.yml --ref main
           elif [ "$remaining" -gt 0 ]; then
-            echo "::warning::$remaining quarantined image sets remain after $stalled no-progress runs; preserving diagnostics and releasing the translation gate instead of deadlocking the pipeline."
-            gh workflow run article-translations.yml --ref main
+            echo "::warning::$remaining image sets are quarantined after $stalled no-progress runs; preserving diagnostics and stopping automatic dispatch instead of looping forever."
           else
-            echo "Family-aware image repair is complete; resuming translations before Persian generation."
-            gh workflow run article-translations.yml --ref main
+            echo "All articles, translations, and image repairs are complete; stopping without dispatch."
           fi
