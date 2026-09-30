@@ -1,0 +1,70 @@
+{
+  "id": "xref-198",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 9,
+      "product_height_percent": 10,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The central roll is placed near the center of the frame, violating the requirement for off-center staging (left or right).",
+        "The roll's width and height are significantly below the minimum preferred dimensions (13-27% width and 32% max height preferred), making it look like an accessory rather than the main subject.",
+        "The background shows corn, which contradicts the crop topic mentioned in the article title.",
+        "A coiled black hose is placed on the soil next to the roll, cluttering the scene and acting as a competing visual element.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with the AFP white and blue roll placed on the left or right third of the frame (off-center), sized to approximately 20% of the width. Remove the coiled hose and ensure the crops in the background match the article's specific crop topic without showing human figures. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 27,
+      "product_height_percent": 26,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Critical failure: Image contains visible people (farmers) in the background, which is a strict hard reject.",
+        "Product width is at the absolute maximum limit and likely slightly exceeds 27% of the frame width."
+      ],
+      "correction_prompt": "Remove all human figures and workers from the background entirely. Reposition the carton roll slightly to the left to reduce its width relative to the frame to approximately 20-23%.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 68,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "Second commercial product (hardware/manifold fixture) present on the ground next to the roll. The instructions specify exactly one carton roll and explicitly reject a 'second package' or 'extra commercial product'.",
+        "Tractor in the background contains a visible human operator/driver, violating the hard reject criteria for zero people and zero human body parts."
+      ],
+      "correction_prompt": "Regenerate image with a single AFP drip-tape carton roll on soil. Remove the hardware fixture next to the roll and remove the human driver from the background tractor or replace the tractor with static hardware/field context.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 18,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is a single white and blue cylindrical drip-tape roll with AFP branding",
+        "No people or human body parts are visible in the image",
+        "Product is placed naturally on the soil in the lower-left off-center position",
+        "Ratio of product width to height is approximately 1.7, which falls within the required 1.5-1.9 range",
+        "Background shows a farm context with a tractor and tilled soil, consistent with a hardware/agriculture theme",
+        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner",
+        "There are no prohibited containers, second rolls, or contradictory crop elements visible"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-در-کشت-کینوا-کاربردها-جزئیات-فنی.webp"
+}

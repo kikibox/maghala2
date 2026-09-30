@@ -1,63 +1,65 @@
 {
   "id": "prod-101",
   "kind": 3,
-  "family": "tape20",
+  "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
   "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 35,
-      "product_width_percent": 18,
-      "product_height_percent": 32,
-      "product_x_center_percent": 38,
+      "score": 10,
+      "product_width_percent": 27,
+      "product_height_percent": 24,
+      "product_x_center_percent": 53,
       "reasons": [
-        "Second commercial product present: A coiled tube/drip tape lies to the right of the carton, violating the 'exactly one roll' requirement.",
-        "The coiled tube is a 'layflat hose' or pipe, which is explicitly in the hard reject list for extra products/hoses.",
-        "Gibberish/illegible text on the side label of the carton violates the 'invented writing' rule."
+        "Contains a third prohibited product (metallic manifold/valve) instead of a packaged AFP coil.",
+        "Product pair is centered in the frame, violating the 'off-center' requirement.",
+        "Product pair occupies approximately 27% of frame width, exceeding the strict 15% limit.",
+        "Visible objects fail to match the required 'packaged AFP coil and bare black woven coil' specification.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 27% to 9-20% of frame width."
       ],
-      "correction_prompt": "Remove the coiled tube on the right, leaving only the single white and blue carton roll on the soil. Ensure the text on the carton is legible and authentic.",
+      "correction_prompt": "Regenerate the image to feature ONLY one packaged AFP coil and one bare black woven coil on the ground. Remove all metallic valves and manifolds. Shift the pair to the lower-left corner to keep it off-center. Scale the pair down to occupy exactly 12% of the frame width. Ensure the 'AFP | 09134922013' watermark remains visible in the bottom-right corner and no human parts are included. Reduce the product group from 27% to 9-20% of frame width.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 10,
-      "product_width_percent": 15,
-      "product_height_percent": 25,
+      "score": 42,
+      "product_width_percent": 38,
+      "product_height_percent": 24,
       "product_x_center_percent": 28,
       "reasons": [
-        "Hard reject: The image contains a full-person (crouching farmer with face and body parts clearly visible), which is explicitly prohibited by the 'zero people and zero human body parts' rule."
+        "The combined product bounding box is approximately 38% of frame width, which violates the strict 12-15% width limit.",
+        "The products are in the bottom-left corner, not off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 38% to 9-20% of frame width."
       ],
-      "correction_prompt": "Regenerate the image completely removing the person. Focus on a wide, low cylindrical AFP drip-tape carton roll placed on the tilled soil in a farm field, ensuring no human silhouettes or body parts are present.",
+      "correction_prompt": "Regenerate: Shrink the bounding box of the two layflat coils to occupy 12-15% of the image width. Move the combined pair off-center to the right in the lower third. Ensure the pair is small, clearly separated, and fully visible on the ground, maintaining the bottom-right watermark. Reduce the product group from 38% to 9-20% of frame width.",
       "attempt": 2
     },
     {
       "pass": false,
-      "score": 45,
-      "product_width_percent": 26,
-      "product_height_percent": 34,
-      "product_x_center_percent": 48,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 5,
+      "product_x_center_percent": 35,
       "reasons": [
-        "Product height is too high relative to the frame (>32%), appearing as a giant roll rather than a secondary item.",
-        "Product is centered horizontally (x_center approx 48%) instead of being off-center.",
-        "The crop in the field is clearly a corn/maize seedling, which contradicts the exact named crop in the article title 'Lentil crop'.",
-        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+        "Presence of a full human body (person crouching in the foreground)",
+        "Violates the hard reject rule for zero people and zero human body parts",
+        "Person is interacting with the products using hands and arms",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 9-20% of frame width."
       ],
-      "correction_prompt": "Reduce the product size so the height is under 30 percent of the frame and move the roll to the lower left third (off-center). Replace the corn seedlings in the background with generic green leafy lentil plants. Reduce product height from 34% to at most 32% of frame height.",
+      "correction_prompt": "Regenerate image removing the crouching man entirely. Show only the two coiled hoses on the ground. Keep the pair in the lower third, occupying roughly 12-15% of frame width. Retain the bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 8% to 9-20% of frame width.",
       "attempt": 3
     },
     {
       "pass": true,
-      "score": 92,
-      "product_width_percent": 21,
-      "product_height_percent": 17,
-      "product_x_center_percent": 28,
+      "score": 85,
+      "product_width_percent": 17,
+      "product_height_percent": 8,
+      "product_x_center_percent": 42,
       "reasons": [
-        "The required watermark 'AFP | 09134922013' is present and legible in the bottom-right corner.",
-        "The product roll is correctly positioned in the lower-left third, off-center and naturally placed on soil.",
-        "Dimensional estimates are within the acceptable 13-27% width and <32% height bounds, maintaining the secondary role requirement.",
-        "Zero human figures or silhouettes are visible.",
-        "The background (farm context with crop rows) is visually neutral and consistent with role 3."
+        "Product pair is located on the lower third, off-center, and is fully visible",
+        "The image contains zero people or human body parts",
+        "The bottom-right watermark is present as required"
       ],
       "correction_prompt": "",
       "attempt": 4

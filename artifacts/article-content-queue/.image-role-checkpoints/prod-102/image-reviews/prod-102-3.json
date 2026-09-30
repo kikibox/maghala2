@@ -3,7 +3,7 @@
   "kind": 3,
   "family": "layflat",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
@@ -96,7 +96,79 @@
       ],
       "correction_prompt": "Regenerate the image with zero people or human body parts. Remove the worker entirely. Display exactly two layflat coils (one packaged, one bare black) that are small, occupying less than 15% of frame width, positioned off-center in the lower third, and fully visible on the ground. Reduce the product group from 32% to 9-20% of frame width.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 88,
+      "product_width_percent": 30,
+      "product_height_percent": 12,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Zero people, body parts, or silhouettes visible (farm, face, limbs, etc. are rejected, but this image is clean).",
+        "Watermark \"AFP | 09134922013\" is clearly visible in the bottom right corner.",
+        "Scene contains unattended hardware/infrastructure which is allowed, no 'extra commercial products' (bottles, jugs, etc.).",
+        "Minor layout deviation: Product pair is centered (approx. 58% x-axis) and spans ~30% width instead of the requested <15% width and off-center lower-third positioning.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 30% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: presence of two people (faces, hands, bodies) in the scene",
+        "Hard reject: only one visible coil (bare black) instead of the required pair (one packaged AFP coil and one bare black woven coil)",
+        "Hard reject: product staging is centered and occupies a significant portion of the frame (approx 25-30% width), failing the 12-15% width constraint",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures completely. Show exactly two layflat objects (one packaged coil, one bare black coil) flat on the ground in the lower third, off-center to the right. Reduce product size to occupy approximately 15% of frame width. Keep the bottom-right watermark. Enlarge the product group from 0% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 30,
+      "product_height_percent": 18,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "The combined width of the two products is approximately 30% of the frame, exceeding the 15% maximum limit.",
+        "The product pair is centered horizontally; the specification requires an off-center placement.",
+        "The two products appear to be standing vertically on the soil rather than lying completely flat (the packaged coil in particular looks like a 3D cylinder).",
+        "The packaged coil appears to be a 'fake' or generated package that does not look like a standard wrapped AFP hose coil.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Shrink the two objects to occupy only 12-15% of the frame width. Move the pair off-center to the far left or far right within the bottom third. Ensure both objects are lying completely flat on the ground surface, appearing small and distant to satisfy the scale requirements. Reduce the product group from 30% to 9-20% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 42,
+      "product_height_percent": 28,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Pair is centered instead of off-center on the lower third",
+        "The product pair is too wide, occupying approximately 42% of the frame instead of 12-15%",
+        "The products appear to be standing up rather than lying flat on the ground",
+        "machine-enforced bounding-box check failed: Reduce the product group from 42% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Shrink the two coils to occupy only 12-15% of the frame width. Move them to the lower right or lower left third of the image, not the center. Ensure they are lying completely flat on the soil. Reduce the product group from 42% to 9-20% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 13,
+      "product_height_percent": 20,
+      "product_x_center_percent": 45,
+      "reasons": [],
+      "correction_prompt": "",
+      "attempt": 5
     }
   ],
-  "approved_image": null
+  "approved_image": "مقایسه-لوله-تاشو-125-میلیمتر-با-سایر-برندها-جزئیات-فنی.webp"
 }

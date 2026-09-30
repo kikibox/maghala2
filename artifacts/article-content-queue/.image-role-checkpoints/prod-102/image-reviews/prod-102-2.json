@@ -94,6 +94,98 @@
       ],
       "correction_prompt": "Regenerate to show zero people. Place exactly two layflat coils (one packaged AFP, one bare black) flat on the soil in the lower third, off-center. They must occupy only 12-15% of the frame width. Ensure no humans, hands, or silhouettes are present.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 88,
+      "product_width_percent": 40,
+      "product_height_percent": 28,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Both required objects are present: one packaged AFP coil and one bare black woven coil",
+        "Zero people or human body parts visible",
+        "Exact required watermark present in bottom-right corner",
+        "No rejected extra products, round pipes, or floating/merged geometry",
+        "Scene is ordinary field/crop rows, which is allowed",
+        "machine-enforced bounding-box check failed: Reduce the product group from 40% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 40% to 9-20% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 28,
+      "product_height_percent": 12,
+      "product_x_center_percent": 15,
+      "reasons": [
+        "Hard reject: Multiple people and full human bodies visible in the frame.",
+        "Hard reject: Human hands and faces are clearly visible interacting with the products.",
+        "Product staging is not fully separated and flat; one product is being held by a hand.",
+        "Product pair is too large, occupying significantly more than the 15% width limit.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Remove all people, faces, hands, and human body parts. Replace the person with empty field background. Keep only the two coils on the ground, sized to occupy <15% of frame width in the lower-right third. Reduce the product group from 28% to 9-20% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 30,
+      "product_height_percent": 35,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Visible person (woman) is present, violating the zero-human rule",
+        "Product pair width is approximately 30% of frame, exceeding the 15% limit",
+        "Product staging is off-center to the right rather than the lower third",
+        "machine-enforced bounding-box check failed: Reduce the product group from 30% to 9-20% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove all people completely; re-stage two coils (one packaged, one black) in the bottom-center occupying less than 15% of the frame width; ensure flat placement without any human presence. Reduce the product group from 30% to 9-20% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 100,
+      "product_width_percent": 25,
+      "product_height_percent": 15,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "machine-enforced bounding-box check failed: Reduce the product group from 25% to 9-20% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 25% to 9-20% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 25,
+      "product_height_percent": 40,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "Hard reject: The image contains a prominent person (worker) handling a product, violating the zero-human rule.",
+        "Hard reject: The product pair is centered around a person's actions rather than being laid flat and off-center on the lower third as an independent staging.",
+        "Hard reject: The presence of a human figure (face, body, limbs) is a hard reject condition in this specific protocol, regardless of infrastructure context.",
+        "The product width is too large relative to the 12-15% requirement and is not a simple flat lay of two separate coils.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 25% to 9-20% of frame width.; Reduce product height from 40% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image completely without any people, workers, or human silhouettes. Show only two layflat objects (one packaged AFP coil and one bare black woven coil) placed on the ground in the lower left third. The objects must be small, occupying only 12-15% of the frame width, with no other products or hands visible. Reduce the product group from 25% to 9-20% of frame width. Reduce product height from 40% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 48,
+      "product_height_percent": 38,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Hard reject: Multiple people (human silhouettes and visible body parts) are present in the background and midground.",
+        "Product pair occupies approximately 48 percent of frame width, exceeding the maximum 15 percent limit.",
+        "Products are located in the bottom-left corner rather than the lower third off-center position, and appear in the foreground rather than at a distance.",
+        "The packaged coil has an irregular, non-standard shape that does not represent a layflat coil.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 48% to 9-20% of frame width.; Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image showing exactly two layflat coils (one white packaged, one black woven) small (12-15% width) and off-center on the ground. Remove all people and human figures from the background and midground. Ensure the products are fully visible and separate. Reduce the product group from 48% to 9-20% of frame width. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 6
     }
   ],
   "approved_image": null

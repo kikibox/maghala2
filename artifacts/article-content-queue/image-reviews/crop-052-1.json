@@ -1,0 +1,57 @@
+{
+  "id": "crop-052",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 10,
+      "product_height_percent": 18,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Hard reject: Presence of two people (farmers/workers) and visible body parts (faces, hands, legs).",
+        "Hard reject: The product shown is a small upright spool/canister, not a wide, low, cylindrical drip-tape carton roll as requested.",
+        "Placement violation: The product is centered in the frame and being held/handled by the subjects, violating the requirement for an off-center, naturally placed item on soil.",
+        "Watermark violation: The visible watermark text 'AFP | 09134922013' does not match the required string 'AFP | 09134922013' exactly (the number sequence is duplicated).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people. Show a single wide, low, cylindrical white-and-blue drip-tape carton roll resting on the soil off-center in the lower third. The roll must be at least 13% wide. Update the bottom-right watermark to exactly 'AFP | 09134922013'. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 25,
+      "product_height_percent": 35,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The image is from a 'family' context which is explicitly rejected in the instructions.",
+        "The product appears centered rather than naturally placed on the lower third off-center.",
+        "The crop morphology is botanically neutral/unidentifiable seedlings, which is acceptable, but the combination of being a 'family' context and centering causes the fail.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image to explicitly exclude 'family' elements (use a standard commercial farm context). Move the drip-tape roll to the lower-left or lower-right (off-center) position on the soil. Ensure the roll width is under 25% and height under 32% of the frame. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 80,
+      "product_width_percent": 22,
+      "product_height_percent": 20,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product is a white-and-blue cylindrical drip tape roll matching the description.",
+        "Product is off-center on the lower third and placed naturally on soil.",
+        "Image contains zero people or human body parts.",
+        "The AFP watermark is correctly present in the bottom right.",
+        "Crop morphology shows young seedlings, which is acceptable for a young stage in a farm context."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "میزان-برداشت-مارچوبه-در-هکتار-با-نوار-تیپ-تصویر-شاخص.webp"
+}

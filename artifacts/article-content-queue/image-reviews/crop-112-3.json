@@ -1,0 +1,106 @@
+{
+  "id": "crop-112",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Visible human subject (man crouching in the right side of the frame).",
+        "The rules explicitly state to hard reject any person, arm, hand, leg, or body part, even distant ones.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Show the AFP white-and-blue wide low cylindrical drip-tape roll lying on the soil in a farm context with plants, with no people or human body parts visible in the shot. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 26,
+      "product_height_percent": 36,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Presence of multiple people (farmer, workers) and a horse in the background violates the 'zero people and zero human body parts' rule.",
+        "Product height (~36% of frame) exceeds the maximum threshold of 32%.",
+        "The roll's visible diameter-to-height ratio is less than 1.5, making it appear too tall and not matching the 'wide, low' requirement.",
+        "machine-enforced bounding-box check failed: Reduce product height from 36% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove all human figures and the horse from the background. Reduce the height of the drip tape roll to be below 32% of the frame height while increasing its relative width to maintain a ratio of at least 1.5:1. Maintain the off-center placement on the soil. Reduce product height from 36% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The product (drip-tape carton roll) is cropped at the bottom of the frame, failing the requirement to be 'naturally placed on soil' where the base is visible and stable.",
+        "The product is placed in the immediate foreground, making it a dominant visual element rather than secondary in a hardware story context, despite its width being within the acceptable 13-27% range.",
+        "The required 'wide low cylindrical' shape is not achieved due to the vertical cropping; the roll appears more like a vertical canister than a wide roll."
+      ],
+      "correction_prompt": "Regenerate to show the complete drip-tape roll fully within the frame, placed naturally on the soil surface (not cut off at the bottom edge). Ensure the roll is clearly wide and low (width approx 1.5-1.9x height) and positioned in the mid-ground to appear secondary to the farm context.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 21.5,
+      "product_height_percent": 30.5,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: Presence of a human (farmer/worker) violating the 'zero people' constraint."
+      ],
+      "correction_prompt": "Remove all human figures, hands, and body parts completely. Keep the white-and-blue AFP drip-tape roll on the soil and the unattended tractor in the background.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 18,
+      "product_height_percent": 17,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The visible diameter of the roll is nearly equal to its visible height (1:1 ratio), but the specification requires a ratio of 1.5 to 1.9 times as wide as it is tall (it should look flatter/wider).",
+        "The product is centered in the bottom third instead of being strictly off-center on that line."
+      ],
+      "correction_prompt": "Regenerate with a visibly wider, flatter drip tape roll where the diameter is 1.5-1.9 times the vertical height, and shift the product further to the left or right so it is clearly off-center along the bottom third of the frame.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 21,
+      "product_height_percent": 28,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Hard reject: Image contains multiple people (workers/farmers) in the background, which is strictly prohibited by the rules."
+      ],
+      "correction_prompt": "Regenerate the image strictly without any people, human silhouettes, or body parts; keep only the unattended tractor and the AFP drip tape roll in the foreground.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 18,
+      "product_height_percent": 19,
+      "product_x_center_percent": 26,
+      "reasons": [
+        "One wide low cylindrical white-and-blue drip-tape carton roll with AFP print, naturally placed on soil",
+        "Zero people or human body parts visible; unattended tractor is acceptable infrastructure",
+        "Product is off-center on the lower third and remains secondary to the farm scene",
+        "Crop rows are generic and do not clearly contradict coriander",
+        "Required bottom-right watermark is present and preserved"
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "راهنمای-جامع-کاشت-گشنیز-با-آبیاری-قطرهای-جزئیات-فنی.webp"
+}

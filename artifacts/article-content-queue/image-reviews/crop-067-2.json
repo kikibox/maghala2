@@ -1,0 +1,56 @@
+{
+  "id": "crop-067",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 10,
+      "product_height_percent": 11,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The drip tape carton is too small, failing to meet the minimum 13% width threshold (approx 10% width).",
+        "The product is not off-center on the lower third but is located in the lower center.",
+        "The roll is sitting on a wooden border rather than naturally on the soil.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Enlarge the white and blue AFP drip tape carton to 18% of the frame width. Position it off-center in the bottom right quadrant, placed directly on the soil rather than the wooden border. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 30,
+      "product_x_center_percent": 58,
+      "reasons": [
+        "Hard reject: Contains visible people (a woman and a second person's arms/legs) which strictly violates the zero people and zero human body parts requirement.",
+        "Product geometry: The roll has a 1:1 aspect ratio (width ~ height) instead of the required 1.5-1.9:1 (wide cylindrical shape).",
+        "Product form: Appears to be a standard vertical spool rather than a wide low flat roll.",
+        "Crop visibility: The article mentions 'family farm' context but the crop is unidentifiable seedlings without specific botanical morphology (though neutral young vegetation is allowed, the people make this a hard fail)."
+      ],
+      "correction_prompt": "Regenerate: Completely remove the human woman and the second person; keep only the farmland, tractor in distance, and young crop rows. Replace the vertical spool with a wide, flat, cylindrical drip-tape roll (20% frame width, 12% height) positioned off-center on the soil in the lower third. Include the specific text 'AFP | 09134922013' in the bottom-right corner.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "The product is a white cylindrical drip tape carton roll positioned on the soil in the lower-left third of the frame, satisfying the off-center requirement.",
+        "The width (approx 14%) and height (approx 18%) fall within the acceptable range, and the visible diameter-to-height ratio is correct.",
+        "The farm context (prepared beds, crop rows, unattended tractor) clearly supports an agronomic story without any visible people, human body parts, or prohibited second commercial products.",
+        "The exact required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "The crop morphology is consistent with the image role 2 requirements."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آفات-و-بیماریهای-کاملینا-با-آبیاری-قطرهای-کاربرد-عملی.webp"
+}

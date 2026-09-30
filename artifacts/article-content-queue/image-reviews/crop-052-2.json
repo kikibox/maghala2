@@ -1,0 +1,69 @@
+{
+  "id": "crop-052",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 11.5,
+      "product_height_percent": 15.0,
+      "product_x_center_percent": 53.5,
+      "reasons": [
+        "Presence of human body parts: The image clearly includes the lower body (waist down) of a person standing next to the product, which is a hard reject. The rules explicitly forbid any person, worker, or human silhouette.",
+        "Product placement/size: While the product is off-center, its bounding box appears slightly smaller than the preferred optimal width, though this is secondary to the hard reject.",
+        "Background Context: The crop context (young corn/maize) is good, but fails due to the human subject.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11.5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Ensure no human body parts (feet, legs, waist) are visible. The product roll must remain off-center in the lower third of the frame, placed naturally on the soil next to the crop rows. Enlarge the product group from 11.5% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 14,
+      "product_height_percent": 22,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The product geometry is incorrect; it is not a 'wide low' cylindrical roll, appearing too tall and narrow relative to its width.",
+        "The required visible diameter-to-height ratio of roughly 1.5 to 1.9 times was not met, failing the geometry check for a standard drip-tape carton."
+      ],
+      "correction_prompt": "Regenerate the image with a significantly wider, flatter, and more cylindrical drip-tape roll to match the specified wide, low proportions.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 42,
+      "reasons": [
+        "Critical failure: Image contains a person (crouching farmer), which triggers a hard reject. The prompt explicitly requires zero people and zero human body parts.",
+        "Product Form Failure: The object is a tall canister/cylinder, not the required wide low cylindrical drip-tape carton roll.",
+        "Aspect Ratio Failure: The product's visible height is roughly equal to its diameter (approx. 1:1), failing the requirement of 1.5 to 1.9 times visible height.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with NO PEOPLE or hands. Replace the tall canister with a wide, short, cylindrical drip-tape carton roll (white and blue, 1.5-1.9x wider than high). Ensure the product sits on the soil in the lower third, off-center, in a farm context with young crops. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 19,
+      "product_height_percent": 17,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Product is a single white-and-blue cylindrical drip-tape roll (AFP)",
+        "Exactly one roll present; no extra products, people, or containers",
+        "Roll is off-center and naturally placed on soil in a farm setting",
+        "Background shows rows of young crop seedlings, matching a farm crop context (neutral young vegetation)",
+        "Watermark 'AFP | 09134922013' is present in bottom-right"
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "میزان-برداشت-مارچوبه-در-هکتار-با-نوار-تیپ-کاربرد-عملی.webp"
+}

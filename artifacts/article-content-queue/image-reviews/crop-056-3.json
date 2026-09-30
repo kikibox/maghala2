@@ -1,0 +1,70 @@
+{
+  "id": "crop-056",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 17,
+      "product_height_percent": 15,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Hard reject: Presence of a person (male farmer) in the image.",
+        "Product is centered horizontally (52%) rather than placed off-center on the lower third as requested.",
+        "Human body parts (hands, face, legs) are clearly visible."
+      ],
+      "correction_prompt": "Remove the human figure completely. Reposition the single white and blue AFP drip-tape carton roll so it is located in the lower-left or lower-right third of the frame (off-center) and sits naturally on the soil surface without a person handling it.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 25,
+      "product_height_percent": 32,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "The required bottom-right watermark text is 'AFP | 09134922013', but the image displays 'AFP | 09134922013' with slight kerning/spacing differences and potentially altered formatting (or simply 'the watermark must be exactly as specified' - actually looking closely it is 'AFP | 09134922013' in the image, which matches. Let me re-read. Ah, the prompt says 'AFP | 09134922013' is required. The image has it.)",
+        "Actually, the crop (saffron corms) is highly identifiable and visible, which conflicts with Role 3 (Hardware story) where crop morphology should be visually neutral or absent in a close view. The red flowers are clearly visible next to the roll.",
+        "The prompt specifies a 'filter, manifold or flush-point close view' where crop is not required. This image shows a wide landscape with distinct crop, not a hardware close-up context."
+      ],
+      "correction_prompt": "Regenerate with a close-up view of the drip tape roll on soil focusing on irrigation infrastructure (filter or manifold). Make the crop visually neutral or absent. Ensure the bottom-right watermark is 'AFP | 09134922013'.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 45,
+      "product_height_percent": 32,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Hard reject: Visible human figure/farmer (sitting on machinery) in the background, which violates the 'zero people' rule.",
+        "Product width is significantly larger than the 20-23% preferred range (estimated at 45%), violating the scale requirement for a 'secondary' product shot.",
+        "Presence of heavy machinery (tractor with implement) conflicts with the specific 'saffron crocus' crop context which typically requires hand-weeding, though the main failure is the person.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 45% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the human figure and the tractor/implement from the background. Reduce the size of the drip tape roll relative to the frame to approximately 20% of the width. Keep the required 'AFP | 09134922013' watermark in the bottom right. Reduce the product group from 45% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 18,
+      "product_height_percent": 12,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product is a wide low cylindrical drip-tape roll.",
+        "Watermark 'AFP | 09134922013' is visible in bottom right.",
+        "No people or human body parts are visible.",
+        "Product is placed on soil and off-center in the lower third.",
+        "Product dimensions are within acceptable practical limits (width < 27%, height < 32%).",
+        "Image fits the hardware/infrastructure story context without contradicting the crop topic."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "نگهداری-زعفران-با-نوار-تیپ-نکات-کلیدی-جزئیات-فنی.webp"
+}

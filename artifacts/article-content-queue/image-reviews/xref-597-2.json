@@ -1,0 +1,54 @@
+{
+  "id": "xref-597",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer) is explicitly prohibited.",
+        "Hard reject: The product shown is a cylindrical tin or canister, not a wide, low, cylindrical drip-tape roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to remove the person completely. Replace the tin with a wide, low cylindrical roll of drip tape placed on the soil in a sesame field (upright stems with narrow leaves and seed capsules). Ensure the roll is off-center in the lower third with the required AFP watermark in the bottom right. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 28,
+      "product_width_percent": 16,
+      "product_height_percent": 20,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The article crop is defined as sesame (narrow lance-shaped leaves, elongated seed capsules), but the crop in the foreground and field is clearly identifiable as a cereal or corn-like species (broad leaves with visible seed heads/panicles), which triggers a hard reject for a clearly different species.",
+        "The central drip-tape roll is positioned horizontally in the near-center (x ~48%), failing the requirement to be 'off-center'."
+      ],
+      "correction_prompt": "Regenerate the image using a sesame crop field with narrow leaves instead of the current corn-like vegetation. Move the AFP drip-tape roll to the bottom-left or bottom-right third of the frame to ensure it is clearly off-center, and keep the background as a sesame farm with a distant barn.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 72,
+      "reasons": [
+        "Exact bottom-right watermark 'AFP | 09134922013' is present and legible.",
+        "Product is a white and blue cylindrical drip-tape roll placed on soil, off-center in the lower third.",
+        "Product dimensions fall within acceptable ranges (width 13-27%, height <32%), and aspect ratio is appropriate.",
+        "Crop context appears to be young upright stems with narrow leaves, consistent with early growth stage of the target crop.",
+        "Zero people or body parts visible; irrigation hardware is present but unattended.",
+        "No extra commercial products, containers, or impossible geometry detected."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آبیاری-خرسابی-در-کشت-کنجد-مقایسه-کاربرد-عملی.webp"
+}
