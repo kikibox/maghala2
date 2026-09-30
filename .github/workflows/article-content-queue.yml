@@ -44,7 +44,9 @@ env:
   IMAGE_QA_FAST_MODE: '0'
   # Give every exhausted failed article one bounded retry cycle. Completed
   # articles are never selected or regenerated.
-  FAILED_RETRY_CYCLES: '1'
+  # User-approved second bounded retry wave for every terminal failure.
+  # Completed articles are still never selected or regenerated.
+  FAILED_RETRY_CYCLES: '2'
 
 jobs:
   process-next-article:
@@ -250,6 +252,14 @@ jobs:
           print(int(status.get('pending', 0)), sum(1 for item in state.get('items', []) if queue.is_retry_eligible(item)))
           PY
           )"
+          translation_remaining="$(python - <<'PY'
+          import json
+          from pathlib import Path
+          path=Path('artifacts/article-content-queue/translation-status.json')
+          data=json.loads(path.read_text(encoding='utf-8')) if path.exists() else {}
+          print(int(data.get('pending_translation_units',0)))
+          PY
+          )"
           read -r rebuild_remaining rebuild_stalled <<<"$(python - <<'PY'
           import json
           from pathlib import Path
@@ -261,8 +271,8 @@ jobs:
           rebuild_active="$(gh run list --workflow rebuild-all-article-images.yml --limit 20 --json status --jq '[.[] | select(.status == "queued" or .status == "in_progress" or .status == "waiting" or .status == "pending" or .status == "requested")] | length')"
           if [ "$rebuild_active" -gt 0 ]; then
             echo "An image-family rebuild is active or queued; leaving the pipeline handoff to it."
-          elif [ "${{ steps.translation_backlog.outputs.pending }}" = "1" ]; then
-            echo "Translation backlog reached its bound; dispatching the translator before more Persian generation."
+          elif [ "${{ steps.translation_backlog.outputs.pending }}" = "1" ] || [ "$translation_remaining" -gt 0 ]; then
+            echo "Translation backlog has $translation_remaining units after this run; dispatching the translator before more Persian generation."
             gh workflow run article-translations.yml --ref main
           elif [ "$rebuild_remaining" -gt 0 ] && [ "$rebuild_stalled" -lt 3 ] && [ "${{ steps.queue.outcome }}" != "skipped" ]; then
             echo "Fresh generation advanced; dispatching one bounded image-repair slice before the next content batch."
