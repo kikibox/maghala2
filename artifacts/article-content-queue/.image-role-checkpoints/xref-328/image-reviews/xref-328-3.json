@@ -1,0 +1,94 @@
+{
+  "id": "xref-328",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 38,
+      "product_width_percent": 23,
+      "product_height_percent": 35,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Product height exceeds the maximum allowed 32% of the frame",
+        "A second commercial product (metal connector/fitting) is present on the right",
+        "A small human silhouette/figure is visible in the background to the left of the tractor",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the metal connector and background human figure. Rescale the main carton roll so its height is under 32% of the image frame, ensuring it remains secondary to the background scene. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 26,
+      "product_height_percent": 19,
+      "product_x_center_percent": 39,
+      "reasons": [
+        "The visible crop in the foreground is ornamental bedding plants (likely Impatiens) with large broad leaves, which clearly contradicts the specific crop 'rosemary' (an aromatic shrub with narrow needle-like leaves) in a close-up view."
+      ],
+      "correction_prompt": "Regenerate with specific rosemary shrubs (narrow needle leaves) as the foreground plant instead of broad-leafed flowers, or remove the plants entirely to maintain the neutral hardware role.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 15,
+      "product_height_percent": 24,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: image contains a prominent person (farmer/worker) in the foreground, violating the zero-person constraint.",
+        "Hard reject: the product (drip tape roll) is being handled and interacted with by the person, rather than being placed naturally on the soil as required."
+      ],
+      "correction_prompt": "Regenerate image to strictly remove all human figures, faces, and body parts. Place the white-and-blue AFP drip tape roll on the soil in a rosemary field with visible irrigation hardware but no workers present.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 32,
+      "product_height_percent": 22,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Second commercial product/package visible (dripline reel on the right)",
+        "Product width is approximately 32%, exceeding the 27% hard-reject limit",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate to show only the single cartoned roll of drip tape. Remove the black reel and any irrigation hardware. Reduce the roll's width to 20-23% of the frame and keep the background consistent with the rosemary crop. Reduce the product group from 32% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 14,
+      "product_height_percent": 22,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Image contains clearly identifiable crop plants (poppy-like red flowers, daisies, and mixed flower beds) which visually contradict the specified topic of 'rosemary' (رزماری).",
+        "The product roll is not 'wide low' cylindrical; the diameter-to-height ratio is less than 1.0 (width 14% vs height 22%), failing the required 1.5 to 1.9 aspect ratio check."
+      ],
+      "correction_prompt": "Regenerate the image showing a wide, low drip-tape roll placed on soil in a rosemary farm context. Remove the mixed flower beds and red poppies, replacing them with distinct rosemary plants or a neutral soil/field background that does not contradict rosemary. Ensure the product roll's diameter is at least 1.5 times its height.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 22,
+      "product_height_percent": 16,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product identified as white-and-blue wide low cylindrical drip-tape carton roll",
+        "Background matches farm/irrigation context with soil and plants",
+        "Watermark 'AFP | 09134922013' present and correct",
+        "Product dimensions and placement within acceptable parameters",
+        "No hard rejects triggered (no people, correct packaging type)",
+        "Visible crop plants are not clearly contradicting rosemary, and the view is not a close-up requiring strict crop morphology"
+      ],
+      "correction_prompt": "",
+      "attempt": 6
+    }
+  ],
+  "approved_image": "آبیاری-چرخشی-در-کشت-رزماری-هزینه-در-مزرعه-جزئیات-فنی.webp"
+}

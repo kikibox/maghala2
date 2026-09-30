@@ -1,0 +1,108 @@
+{
+  "id": "xref-316",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 13,
+      "product_height_percent": 20,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The image contains a visible person (farmer/worker) touching the product and kneeling in the foreground, which triggers a hard reject.",
+        "The product is a canister or pail rather than a wide, low cylindrical drip-tape roll (tape20) on a carton core.",
+        "The crop visible in the field is sunflowers, which may conflict with the 'baqala' (fava bean) topic depending on strictness, but the primary rejections are the person and product shape.",
+        "Product height appears to exceed the 32% limit due to the canister shape and scale."
+      ],
+      "correction_prompt": "Regenerate as a hardware close-up. Remove all people and human body parts. Replace the canister with a wide, low cylindrical white-and-blue AFP drip-tape carton roll placed on soil in the lower third. Ensure the roll is off-center, secondary in scale (approx 20% width), and does not have a person or crop interference in the foreground.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 68,
+      "product_width_percent": 21,
+      "product_height_percent": 38,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Product height is approximately 38% of the frame, exceeding the 32% maximum limit (likely due to the low-angle camera perspective making the cylindrical roll appear vertically longer).",
+        "Product geometry: The visible height (38%) is greater than the visible width (21%), violating the '1.5 to 1.9 times height' requirement for a wide, low roll (height should be ~15-14%).",
+        "Text quality: The specific text on the product label below the 'AFP' logo appears to be gibberish/unclear, rather than authentic package print.",
+        "machine-enforced bounding-box check failed: Reduce product height from 38% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Strictly limit the product height to less than 30% of the frame (it must be visibly shorter than it is wide). Ensure the drip tape roll is a wide, low cylinder (diameter approx 1.7x height). Keep the roll in the lower third, off-center left. Ensure label text is sharp, legible, and authentic English (no gibberish). Maintain the farm background with young crop rows and zero people. Include the watermark 'AFP | 09134922013' in the bottom right. Reduce product height from 38% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: The image contains a human person (farmer) and human body parts, which is explicitly forbidden for this image role.",
+        "Product geometry: The product appears too tall and narrow; height relative to width exceeds the preferred cylindrical drip-tape profile (required width ~1.5-1.9x height)."
+      ],
+      "correction_prompt": "Remove the human entirely. Regenerate with a single unattended wide, low cylindrical AFP drip-tape carton roll on soil. The roll must be wide and low (aspect ratio approx 1.7:1), off-center on the lower third (x ~35%), without any people or human silhouettes.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 18,
+      "product_height_percent": 25,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Presence of a person (farmer) crouching in the background violates the 'zero people and zero human body parts' hard reject rule."
+      ],
+      "correction_prompt": "Remove the person/farmer completely from the background while keeping the farm context, crop rows, and product placement intact.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 11,
+      "product_height_percent": 14,
+      "product_x_center_percent": 39,
+      "reasons": [
+        "Human presence: A person (farmer) is clearly visible in the image, which is a hard reject constraint for Role 3.",
+        "Product size: The roll width is approximately 11% of the frame, falling below the acceptable 13-27% range.",
+        "Product height: The roll height is approximately 14% of the frame, which is valid, but the roll is too small overall to meet the width requirements.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or human body parts. Increase the size of the AFP drip-tape carton roll to occupy approximately 18-20% of the frame width while maintaining a wide cylindrical low profile on the soil. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 24,
+      "product_height_percent": 27,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Hard reject: Image contains a prominent person (man crouching) with visible face, hands, and body parts, violating the zero-person constraint."
+      ],
+      "correction_prompt": "Regenerate the image strictly without any people, human silhouettes, or body parts. Show only the unattended AFP drip-tape roll on the soil in the farm context.",
+      "attempt": 6
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 25,
+      "product_height_percent": 31,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "The image contains exactly one white-and-blue cylindrical drip-tape carton roll consistent with the AFP brand.",
+        "The background features an unattended tractor in a crop field, serving as infrastructure without any human presence or silhouettes.",
+        "The crop plants visible in the field are broad-leafed, which is visually neutral and does not clearly contradict the fava bean topic.",
+        "The product is correctly off-center in the lower third, positioned naturally on the soil, and its dimensions are within acceptable limits.",
+        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner."
+      ],
+      "correction_prompt": "",
+      "attempt": 1
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-با-رانش-در-کشت-باقلا-نکات-کلیدی-جزئیات-فنی.webp"
+}

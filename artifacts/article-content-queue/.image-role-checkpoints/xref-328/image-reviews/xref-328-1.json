@@ -1,0 +1,91 @@
+{
+  "id": "xref-328",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 19.0,
+      "product_height_percent": 16.0,
+      "product_x_center_percent": 45.0,
+      "reasons": [
+        "The crop shown in the center does not resemble rosemary; it has broad, flat, lance-shaped leaves on upright stems, whereas rosemary consists of a woody low shrub with thin, needle-like dark-green leaves.",
+        "The product appears to be a standard cylindrical spool/carton rather than a wide, low cylindrical drip-tape carton roll."
+      ],
+      "correction_prompt": "Replace the central plant with a low, woody rosemary shrub characterized by short, needle-like dark green leaves. Replace the small standard spool with a wide, low cylindrical drip-tape carton roll positioned on the soil.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 13,
+      "product_height_percent": 18,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Aspect ratio violation: The visible diameter (width) of the roll is approximately 0.7 times its height (height ~18%, width ~13%). Requirement mandates the diameter be about 1.5 to 1.9 times the visible height.",
+        "Scale violation: The product width is estimated at 13% of the frame. This is below the required acceptable range of 13-27% and significantly below the preferred 20-23%."
+      ],
+      "correction_prompt": "Regenerate the image with the drip-tape roll significantly larger (width 20-25% of frame) and flattened (diameter roughly 1.5x its height). Keep it off-center on the lower third on the soil. Do not include any people or bottles.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 24,
+      "product_height_percent": 30,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Visible diameter of the product is approximately equal to its visible height (ratio ~1.0), failing the 1.5-1.9 times requirement; it appears as a vertical cylinder/drum rather than a low wide roll.",
+        "The product shape resembles a tall narrow drum or canister rather than a wide low cylindrical drip-tape carton roll."
+      ],
+      "correction_prompt": "Regenerate the image showing a wide low cylindrical drip-tape roll lying horizontally on the soil. The roll's visible width must be roughly 1.5 to 1.9 times its visible height. It should be a white and blue AFP package, secondary in size, and clearly distinguishable as a flat spool/roll rather than a vertical canister.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 31,
+      "product_height_percent": 26,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product width exceeds maximum acceptable limit (31% width vs 27% max).",
+        "Product width is wider than the preferred range of 20-23%.",
+        "Role 1 article crop recognition failure: The visible plants are not rosemary (they lack needle-like leaves and are not woody); the plants visible are broad-leaf green seedlings or young crops rather than the specific herb requested, making the crop identification unclear or incorrect.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 31% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce product width to under 27% (ideally 20-23%). Replace the broad-leaf plants on the right with identifiable young woody rosemary sprouts (needle-like leaves) to match the article topic. Reduce the product group from 31% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 14,
+      "product_height_percent": 20,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: The image contains a prominent human figure (a man crouching), which violates the 'zero people' constraint.",
+        "Hard reject: The person's face, arms, legs, and hands are clearly visible, which is a mandatory hard reject under any circumstances.",
+        "Hard reject: The product is being held and positioned by human hands, failing the 'unattended' and 'naturally placed on soil' requirements."
+      ],
+      "correction_prompt": "Remove the man completely. Show only the AFP white-and-blue drip-tape carton roll sitting naturally on the soil among the rosemary plants, with no people or human parts visible.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The drip-tape roll is positioned horizontally centered rather than off-center on the lower third, which violates the natural placement requirement.",
+        "Rosemary plants in the background are accompanied by red and pink flowers, making the crop context look like a generic mixed herb or bedding plant field rather than a rosemary-specific agronomic story, leading to a neutral/ambiguous crop identification."
+      ],
+      "correction_prompt": "Regenerate with the AFP roll positioned distinctly off-center on the lower third. Ensure the visible plants are clearly identifiable as woody rosemary shrubs without any unrelated flowers, maintaining the strict drip-tape and farm context.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

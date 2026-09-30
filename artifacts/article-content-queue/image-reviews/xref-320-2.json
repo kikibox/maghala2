@@ -1,0 +1,58 @@
+{
+  "id": "xref-320",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The product (drip tape roll) is centered, violating the requirement for an off-center placement.",
+        "The product is accompanied by a smart irrigation controller (extra commercial product/gadget), which is not allowed.",
+        "The product's visible height is too significant relative to its width, failing the aspect ratio requirement (height should be smaller relative to width for a cylindrical shape)."
+      ],
+      "correction_prompt": "Remove the smart controller/device from the foreground. Reposition the drip tape roll to the left side of the frame (x_center ~30%). Ensure the roll's aspect ratio reflects a wide cylinder (width significantly greater than height).",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Presence of a person (farmer/worker) in the image, which triggers a hard reject.",
+        "Visible human body parts (head, face, arms, hands, legs) violate the zero-person constraint.",
+        "The drip tape roll is visually smaller than the preferred 20-23% width, likely falling below the 13% minimum practical estimate.",
+        "The crop appears to be red cabbage or kale with red flowers, not the required lettuce (کاهو) with broad crinkled green leaves.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the man completely. Replace the red cabbage/flowers with green lettuce heads (low layered rosettes of broad crinkled leaves). Increase the size of the white and blue drip tape roll to occupy 20-23% of the image width, placed off-center in the lower third. Retain the red barn background and the 'AFP | 09134922013' watermark in the bottom right. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Required AFP white-and-blue drip-tape roll is present and appears as a wide, low cylindrical carton.",
+        "Product width is estimated at 20%, falling within the preferred 20-23% range.",
+        "Product height is estimated at 25%, which is below the 32% hard limit.",
+        "The crop context matches 'kahoo' (lettuce) with clearly identifiable low layered rosettes of broad crinkled leaves.",
+        "The bottom-right watermark 'AFP | 09134922013' is present exactly as required.",
+        "Zero people or body parts are visible in the image.",
+        "The product is naturally placed on soil within the farm context."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-کاهو-هزینه-در-مزرعه-کاربرد-عملی.webp"
+}

@@ -1,0 +1,101 @@
+{
+  "id": "xref-323",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 9,
+      "product_height_percent": 15,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "Hard reject: The image contains a full-person human figure (farmer/man kneeling), which is strictly prohibited.",
+        "Hard reject: The image contains multiple human body parts (head, hands, arms, legs, feet).",
+        "The product (drip-tape carton roll) is positioned too close to the center of the frame (approx. 49% x-center) rather than being off-center.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image completely removing the person, face, and body parts. Ensure the AFP drip-tape roll is placed off-center (left or right) on the lower third of the image, resting naturally on the soil in the vegetable crop field. Maintain the bottom-right watermark. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 19,
+      "product_height_percent": 17,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product is centered horizontally instead of being off-center on the lower third",
+        "Product height and width ratio is roughly 0.9 (width = height), failing the 1.5 to 1.9 requirement",
+        "Product appears artificially suspended or floating above the soil texture rather than naturally placed",
+        "Drip tape cartridge is placed too centrally and symmetrically within the crop bed"
+      ],
+      "correction_prompt": "Move the drip tape carton roll to the lower right third of the frame; make the roll wider than it is tall (wide cylinder shape); plant it securely into the soil texture to remove the floating appearance.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 25,
+      "product_height_percent": 22,
+      "product_x_center_percent": 63,
+      "reasons": [
+        "The article crop (likely corn/maize based on the visible seedling morphology) is represented by only one very small seedling in the immediate foreground, while the rows in the background are too blurry/unidentifiable to clearly establish the 'topic-specific farm context' for a corn crop.",
+        "A clearly identifiable different crop species (likely soybean) is visible next to the product, which violates the rule to reject clearly identifiable different species.",
+        "The required bottom-right watermark 'AFP | 09134922013' is missing."
+      ],
+      "correction_prompt": "Add the exact bottom-right watermark 'AFP | 09134922013'. Replace the soybean seedling with a small corn seedling. Regenerate the background crop rows to be more clearly identifiable as corn, or remove background crops if not relevant to ensure the agronomic story is clear without species conflict.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 5,
+      "product_height_percent": 5,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer).",
+        "Hard reject: The required 'wide low cylindrical drip-tape carton roll' is not visible; only a small white pot/object is visible in the hand.",
+        "Hard reject: Product width and height estimates do not match the required 20-23% width and <32% height parameters for the specified cylindrical roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with no people. Show a large white-and-blue wide low cylindrical drip-tape carton roll placed on the soil. Ensure the roll is wide (20-23% of the frame width) and off-center on the lower third. Enlarge the product group from 5% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 28,
+      "product_height_percent": 35,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The product exceeds the maximum width limit (28% > 27%).",
+        "The product exceeds the maximum height limit (35% > 32%).",
+        "The product diameter-to-height ratio is approximately 0.8:1, which violates the requirement of 1.5 to 1.9 times.",
+        "The crop morphology (broadleaf/brassica-type) does not match the article title crop which is maize (corn).",
+        "The product is positioned slightly above the lower third line.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the roll width to 20% and height to 12% to maintain the 1.5-1.9 diameter ratio and stay within limits. Lower the position to the bottom 1/3 of the frame. Change the crop to clearly identifiable young maize (corn) seedlings instead of broadleaf plants. Reduce the product group from 28% to 13-27% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 7,
+      "product_height_percent": 13,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Presence of a person (farmer) and human body parts (hands, face) is a hard reject condition for this role.",
+        "The product (drip-tape carton roll) is not positioned in the lower third or on the soil in a secondary, natural manner; it is being interacted with by the person.",
+        "The article-specific crop morphology (city) is not visually represented or clear in the crop rows.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any people, workers, or human silhouettes. The image must focus on the farm environment and the drip-tape carton roll placed on the soil, ensuring the product is secondary and off-center in the lower third of the frame. Enlarge the product group from 7% to 13-27% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}
