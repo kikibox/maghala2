@@ -3,67 +3,99 @@
   "kind": 2,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": true,
+  "approved": false,
   "attempts": [
     {
       "pass": false,
-      "score": 25,
-      "product_width_percent": 18,
-      "product_height_percent": 15,
-      "product_x_center_percent": 42,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 43,
       "reasons": [
-        "Presence of a human (farmer) and body parts (hands, face, legs) which is a hard reject condition.",
-        "The background crop shows tomatoes, not the required melon (خربزه) article crop.",
-        "The product is being held by a person rather than naturally placed on soil."
+        "Presence of human subjects (people visible in multiple panels)",
+        "Watermark 'AFP | 09134922013' is not in the bottom-right corner as required",
+        "Product roll is not in the specified off-center lower third position",
+        "Multiple panels make it impossible to isolate a single carton roll per instructions",
+        "Product appears too small and not clearly a wide cylindrical drip-tape carton roll",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
       ],
-      "correction_prompt": "Remove the person and their body parts completely. Regenerate the farm background to specifically feature melon vines (خربزه) with botanically accurate leaves. Place the drip tape carton on the soil off-center in the lower third, ensuring it is a secondary element relative to the frame.",
+      "correction_prompt": "Generate a single panel image showing exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll placed off-center on the lower third of the frame on soil in a melon farm. No people. Botanical melon leaves and stems must be visible. Watermark 'AFP | 09134922013' in the bottom-right corner. Enlarge the product group from 12% to 13-27% of frame width.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 55,
-      "product_width_percent": 17,
-      "product_height_percent": 13,
-      "product_x_center_percent": 45,
+      "score": 45,
+      "product_width_percent": 21.5,
+      "product_height_percent": 18.0,
+      "product_x_center_percent": 48.0,
       "reasons": [
-        "The product geometry is incorrect: it is standing vertically (taller than wide) rather than being a low, wide cylindrical carton roll lying on its side.",
-        "The background crop is a climbing vining fruit with indeterminate habit and netted stems, which is botanically inconsistent with the required article crop, خربزه (melon)."
+        "Hard reject: centered product staging (product is horizontally centered at ~48%, not off-center on the lower third as required)",
+        "Hard reject: crop morphology is incorrect - the prominent flowering plants in the row are not melon (خربزه); they appear to be a different species (e.g., cotton or similar), violating the requirement to make the article-specific crop recognizable or maintain a botanically neutral context with clear agronomic story",
+        "Product bounding box: width 21.5% (acceptable 13-27%), height 18.0% (below 32% limit), diameter/height ratio ~1.2 (below the 1.5-1.9 target, suggesting slightly inaccurate cylindrical proportion but not a hard reject)",
+        "Watermark 'AFP | 09134922013' is present and correct"
       ],
-      "correction_prompt": "Lay the white and blue AFP drip-tape roll flat on the soil so its width exceeds its height, and replace the background vining climbing crop with a properly planted field of melon (خربزه) vines with characteristic netting and broad leaves.",
+      "correction_prompt": "Reposition the drip-tape roll to be clearly off-center on the lower third of the frame (e.g., x-center 25% or 75%), and replace the flowering plants with neutral young melon seedlings or a prepared bed with visible irrigation layout; ensure the product is not horizontally centered.",
       "attempt": 2
     },
     {
       "pass": false,
-      "score": 15,
-      "product_width_percent": 14,
-      "product_height_percent": 18,
-      "product_x_center_percent": 48,
+      "score": 30,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 32,
       "reasons": [
-        "Hard reject: The image contains a clearly visible man crouching in the center frame.",
-        "Hard reject: The man's hand is touching the product, which is prohibited (zero people/human body parts).",
-        "The crop shown in the background appears to be tomatoes (with fruit), not melon (خربزه) vines, failing the article-specific crop requirement.",
-        "The product roll is positioned near the center rather than the required lower-third off-center position."
+        "Hard reject: Image contains a clearly visible male farmer/cultivator (head, face, torso, arms, hands, and legs), which violates the 'zero people and zero human body parts' rule."
       ],
-      "correction_prompt": "Regenerate image with absolutely no people or hands. Show one white-and-blue wide low cylindrical drip-tape carton roll in the bottom-left or bottom-right off-center area. The background must feature melon plants (خربزه) with appropriate vining growth habit and leaves, or a neutral prepared field. Ensure the roll is placed on the soil.",
+      "correction_prompt": "Remove the human figure entirely. Show only the drip-tape roll lying on the soil in the lower-left quadrant (off-center) with no people, hands, or silhouettes present.",
       "attempt": 3
     },
     {
-      "pass": true,
-      "score": 78,
-      "product_width_percent": 22,
-      "product_height_percent": 21,
-      "product_x_center_percent": 48,
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 16,
+      "product_height_percent": 14,
+      "product_x_center_percent": 26,
       "reasons": [
-        "Product is a single white-and-blue cylindrical drip-tape carton roll, matching the 'wide low' description.",
-        "Product is placed naturally on soil in the foreground.",
-        "Zero people or human body parts are visible; the background contains only crop rows and infrastructure.",
-        "Watermark 'AFP | 09134922013' is present in the bottom-right.",
-        "Background shows melon plants with visible fruit, fitting the article topic.",
-        "Product width is approximately 22% and height is approximately 21%, within acceptable limits."
+        "The central crop plant is clearly identifiable as a tomato seedling, not a neutral bed or identifiable melon.",
+        "Background shows mature flower bushes (roses), which does not match the melon farm context."
       ],
-      "correction_prompt": "",
+      "correction_prompt": "Replace the tomato plant with either neutral tiny unidentifiable seedlings or a botanically accurate young melon plant (broad lobed leaves). Change the background to agricultural crop rows or bare field, removing the decorative flower bushes.",
       "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 11,
+      "product_height_percent": 15,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Product is a single AFP white-and-blue wide low cylindrical drip-tape carton roll, placed naturally on soil.",
+        "Zero people or human body parts visible.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Background shows a farm context with prepared soil and rows, consistent with the image role.",
+        "The small seedling is botanically neutral (young stage), which is acceptable as per the guidelines allowing neutral young vegetation.",
+        "Product height is ~15% and width is ~11%, which is slightly below the preferred 13% minimum width estimate, but the product remains clearly secondary and off-center on the lower third, making it practically acceptable.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 12,
+      "product_height_percent": 21,
+      "product_x_center_percent": 51,
+      "reasons": [
+        "Hard reject: Image contains human hands and legs, violating the zero-person requirement.",
+        "Hard reject: The drip tape is depicted growing out of the center of the carton roll, which is impossible geometry.",
+        "The product appears too small in the frame relative to the recommended width.",
+        "The background crop and growth habit do not clearly represent melon.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people or body parts visible. Place the white and blue drip tape carton roll on the soil next to a young melon plant, ensuring the drip tape is separate and coiled or on the ground, not growing from the carton. Ensure the carton roll is off-center and appropriately sized. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 6
     }
   ],
-  "approved_image": "آبیاری-گرهای-در-کشت-خربزه-مقایسه-کاربرد-عملی.webp"
+  "approved_image": null
 }

@@ -3,40 +3,92 @@
   "kind": 2,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": true,
+  "approved": false,
   "attempts": [
     {
       "pass": false,
-      "score": 25,
+      "score": 15,
       "product_width_percent": 5,
       "product_height_percent": 8,
       "product_x_center_percent": 48,
       "reasons": [
-        "Contains a prominent human figure (farmer) squatting in the foreground, which is a hard reject condition.",
-        "Fails to feature the required product (wide low cylindrical drip-tape carton roll); instead, it depicts a small white cylindrical container/canister held by the person.",
-        "The product bounding box and dimensions do not meet the specified wide, low, off-center criteria for a drip-tape roll.",
+        "Hard reject: Image contains a person (farmer) crouching in the foreground, violating the 'zero people' rule.",
+        "Product size violation: The product appears to be a standard 1-gallon container (13% width/height), which exceeds the maximum allowed size of 13% width for this specific crop.",
+        "Aspect ratio violation: The container does not match the required wide low cylindrical drip-tape carton roll shape (diameter must be 1.5-1.9 times height).",
+        "Position violation: The product is placed in the center of the frame, violating the 'off-center' requirement.",
         "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate the image with zero people or body parts visible. Show one wide, low cylindrical drip-tape roll (white and blue) placed off-center on the soil in the foreground. The roll's width should be approximately 20% of the frame width and it should not be centered. Enlarge the product group from 5% to 13-27% of frame width.",
+      "correction_prompt": "Regenerate the image showing the greenhouse interior with crop beds. Remove the person completely. Replace the container with a wide, low white-and-blue cylindrical drip-tape carton roll placed on the soil, off-center to the left. The roll should be small, roughly 10% of the image width. Enlarge the product group from 5% to 13-27% of frame width.",
       "attempt": 1
     },
     {
-      "pass": true,
-      "score": 92,
-      "product_width_percent": 24,
-      "product_height_percent": 28,
-      "product_x_center_percent": 48,
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 30,
+      "product_x_center_percent": 23,
       "reasons": [
-        "The product is exactly one white-and-blue cylindrical carton roll (drip-tape) on soil, secondary but visible.",
-        "Image role 2 achieved: the crop visible is corn (Maize), characterized by broad, parallel-veined leaves and thick stalks, which matches a hypothetical article title regarding corn.",
-        "No people, human parts, or prohibited items (bottles, jars, extra packaging) are present.",
-        "The exact required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
-        "Product dimensions are within acceptable limits (width ~24%, height ~28%, width:height ratio ~0.85x which is acceptable for a cylinder viewed at an angle).",
-        "The crop morphology is botanically accurate for maize, and the farm context (barn, fence, rows) is consistent."
+        "Product is resting on a wooden raised bed frame instead of directly on soil",
+        "Product placement is slightly high; height reaches near the 32% limit",
+        "Image context shows potted plants in the background, which creates visual clutter"
       ],
-      "correction_prompt": "",
+      "correction_prompt": "Move the white and blue carton roll so it rests directly on the dark soil surface, lower it slightly to reduce its height percentage, and remove all potted plants from the background to maintain a clean greenhouse vegetable bed context.",
       "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 20,
+      "product_height_percent": 17,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Missing required bottom-right watermark 'AFP | 09134922013'",
+        "The article topic is 'city' (urban agriculture), but the image shows a large commercial-style greenhouse with broad soil beds, which does not visually match the specific urban context implied by the article title"
+      ],
+      "correction_prompt": "Regenerate the image to depict an urban farming context (e.g., a rooftop or city community garden) instead of a commercial greenhouse. Ensure the bottom-right watermark 'AFP | 09134922013' is present.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Presence of a person in the image is a hard reject.",
+        "The product shown is a small white canister/jar, not a wide low cylindrical drip-tape carton roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any people. Replace the small white canister with a large wide low cylindrical drip-tape carton roll placed on soil. Ensure the drip-tape roll is white and blue, positioned off-center in the lower third, and occupies approximately 20% of the frame width. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 24,
+      "product_height_percent": 31,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Hard reject: image contains three clearly visible people (full bodies, faces, hands, legs) crouching in the field.",
+        "Hard reject: rule explicitly forbids any person, farmer, worker, face, hand, arm, leg, body part, or human silhouette, even in the background."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes entirely; keep only the farm field, irrigation tape roll on soil, and background crops/barn.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "The required watermark 'AFP | 09134922013' is missing from the bottom-right corner of the image.",
+        "The product shown is not a 'wide low cylindrical drip-tape carton roll'; instead, it appears to be a standard narrow roll of tape or film, lacking the specified wide, low-profile geometry and carton casing.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to include the required bottom-right watermark 'AFP | 09134922013'. Replace the current product with a wide, low-profile cylindrical drip-tape roll housed in a white and blue carton box. Ensure the roll is positioned in the lower-left third of the frame, placed on the soil, with a farm background featuring a red barn and young crop seedlings. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 6
     }
   ],
-  "approved_image": "آبیاری-گلخانهای-در-کشت-مارچوبه-هزینه-بهینه-کاربرد-عملی.webp"
+  "approved_image": null
 }

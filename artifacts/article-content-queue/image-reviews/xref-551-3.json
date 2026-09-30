@@ -1,0 +1,114 @@
+{
+  "id": "xref-551",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 88,
+      "product_width_percent": 28,
+      "product_height_percent": 35,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product is a single white-and-blue cylindrical drip-tape carton roll",
+        "Product is off-center and placed naturally on soil",
+        "Background matches hardware/irrigation context with unattended tractor and filter visible",
+        "Identifiable young crops are consistent with maize topic",
+        "Required watermark 'AFP | 09134922013' is present",
+        "No people or human body parts visible",
+        "Product dimensions are slightly above the preferred 23% width limit and 32% height limit",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width.; Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the product group from 28% to 13-27% of frame width. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 10,
+      "product_height_percent": 13,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Presence of a person (farmer) in the image, which is a hard reject condition.",
+        "Product width (approx 10%) is significantly below the minimum preferred 13%.",
+        "Product height (approx 13%) is below the preferred 20-23% range.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Increase the relative size of the drip tape roll so its width is between 20-23% of the frame width and its height is between 20-23% of the frame height. Keep the roll positioned off-center in the lower third. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 29,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The product is not positioned in the lower third of the image as requested; it is placed in the lower-middle section.",
+        "The crop visible in the image appears to be corn/maize, which aligns with the 'hard reject only if clearly contradicting' rule, but the prompt specifies a 'city' or 'topic-specific farm context' with role 3 being hardware story where crops are optional/neutral. The presence of a crop here is acceptable but not ideal for a hardware story which should focus on infrastructure. However, the main issue is the placement and the fact that it's a 'family tape' but the image shows a farm with a barn, which is a valid farm context.",
+        "The most significant rejection factor is the placement: it is not in the lower third, which is a hard requirement for the 'naturally placed on soil' aspect combined with the 'off-center on the lower third' instruction."
+      ],
+      "correction_prompt": "Move the AFP drip-tape carton roll to the lower third of the image (bottom 30% of the frame). Keep it off-center (left or right) and placed naturally on the soil. Maintain the farm background with the barn and maize plants, but ensure the roll is lower to satisfy the composition constraint. Keep the watermark 'AFP | 09134922013' in the bottom right.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The 'AFP' text on the front of the roll is mirrored/reversed (appears as 'pʌɟ'), which contradicts the requirement for authentic package print and looks like a visual error.",
+        "The required watermark 'AFP | 09134922013' is missing from the bottom-right corner; a different identifier is present instead."
+      ],
+      "correction_prompt": "Fix the orientation of the 'AFP' logo on the roll so it is not mirrored, and replace the text in the bottom-right corner with the exact string 'AFP | 09134922013'.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 42,
+      "product_width_percent": 27,
+      "product_height_percent": 33,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Second package: There are multiple rolls of drip tape and connectors visible to the right of the main carton.",
+        "Extra commercial product: The scene includes loose coiled tape, filters, and pressure gauges which are not part of the single carton roll required.",
+        "Product Height: The carton appears to occupy nearly 33% of the image height, exceeding the 32% limit.",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove all loose coiled tape, filters, and gauges. Keep only the single large AFP white-and-blue drip tape carton roll. Place it on the soil, off-center. Ensure the product height is under 32% of the frame. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 58,
+      "product_width_percent": 19,
+      "product_height_percent": 21,
+      "product_x_center_percent": 46.5,
+      "reasons": [
+        "Centered product staging: The product is placed almost exactly in the middle of the frame (x-center 46.5%), violating the requirement to be off-center on the lower third."
+      ],
+      "correction_prompt": "Shift the drip-tape carton roll significantly to the left or right so it is clearly off-center, keeping it in the lower third of the frame.",
+      "attempt": 6
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 15,
+      "product_height_percent": 22,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product is an AFP white-and-blue wide low cylindrical drip-tape carton roll with correct off-center placement in the lower-left third.",
+        "The watermark 'AFP | 09134922013' is visible in the bottom-right corner as required.",
+        "No human figures, silhouettes, or body parts are present in the scene.",
+        "The background shows a crop field that is visually neutral and consistent with a farm context without hard-rejecting the maize topic.",
+        "Product dimensions are within acceptable bounds (width ~15%, height ~22%)."
+      ],
+      "correction_prompt": "",
+      "attempt": 1
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-با-رانش-در-کشت-ذرت-پیشنیازها-جزئیات-فنی.webp"
+}

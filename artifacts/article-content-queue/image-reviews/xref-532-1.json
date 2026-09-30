@@ -1,0 +1,55 @@
+{
+  "id": "xref-532",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 24,
+      "product_height_percent": 34,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Product height exceeds 32 percent limit (estimated at 34 percent).",
+        "Text on the carton package ('Drip Droggives Typo') appears to be gibberish/invented writing.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce the vertical height of the drip-tape carton to less than 32 percent of the frame height. Correct the text on the carton to be legible, standard commercial packaging language (no gibberish). Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 9,
+      "product_height_percent": 11,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "The image contains two clearly visible human beings, which is a hard reject.",
+        "The product bounding box height (~11%) significantly exceeds the maximum allowed limit of 32% when calculated relative to the frame width, and the product is positioned too low and small.",
+        "The crop context (young seedlings) is botanically neutral/unidentifiable, which is acceptable only if the story is clear, but the presence of people overrides all other checks.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image without any people or human body parts. Increase the size of the white and blue cylindrical drip-tape roll so its width is between 20% and 23% of the frame. Keep it positioned on the lower third, off-center, on the soil. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 80,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The crop morphology (serrated leaves) is botanically consistent with the named crop 'family tape20' in the context of the image role.",
+        "The product is placed off-center on the lower third and naturally set on the soil.",
+        "The required 'AFP | 09134922013' watermark is correctly present in the bottom right corner.",
+        "No human elements, extra commercial products, or hard reject features are visible.",
+        "The background farm context matches the agronomic story of the article."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-پیاز-کاربردها-تصویر-شاخص.webp"
+}

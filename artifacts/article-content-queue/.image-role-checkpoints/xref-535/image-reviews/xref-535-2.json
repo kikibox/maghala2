@@ -7,50 +7,73 @@
   "attempts": [
     {
       "pass": false,
-      "score": 10,
-      "product_width_percent": 10,
-      "product_height_percent": 12,
-      "product_x_center_percent": 45,
+      "score": 5,
+      "product_width_percent": 9,
+      "product_height_percent": 14,
+      "product_x_center_percent": 55,
       "reasons": [
-        "Hard reject: Image contains two prominent people (farmers/workers).",
-        "Hard reject: The product is being physically held and manipulated by human hands.",
-        "The product shown does not match the specific geometry of a wide, low, cylindrical drip-tape carton roll.",
-        "Product size is significantly below the required 13% minimum width.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+        "Presence of two people (farmers) and multiple human body parts (hands, legs, faces, torsos) is a hard reject trigger.",
+        "The product shape is not a wide, low, cylindrical roll on the ground; the primary roll is being held upright by a hand and appears too small relative to the product specifications (width < 13%).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate the image with zero people, hands, or human silhouettes. Show a wide, low cylindrical drip-tape carton roll resting naturally on the soil in a triticale field. The roll should occupy approximately 20% of the frame width and be positioned off-center in the lower third. Include the 'AFP | 09134922013' watermark in the bottom right corner. Enlarge the product group from 10% to 13-27% of frame width.",
+      "correction_prompt": "Remove all people and human silhouettes. Replace with a unattended white-and-blue wide low cylindrical drip-tape carton roll lying naturally on the soil in the lower third. The roll must be off-center, with a visible width of 20-23% and height no more than 32%. Ensure the background clearly shows canola rosettes or yellow four-petal flowers without any maize or corn. Enlarge the product group from 9% to 13-27% of frame width.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 45,
-      "product_width_percent": 28,
+      "score": 35,
+      "product_width_percent": 22,
       "product_height_percent": 28,
-      "product_x_center_percent": 51,
+      "product_x_center_percent": 45,
       "reasons": [
-        "The product roll is centered horizontally rather than placed off-center in the lower third as required.",
-        "The product width appears to be approximately 28% of the frame, which exceeds the maximum practical limit of 27%.",
-        "The product's aspect ratio (diameter vs height) appears nearly square (roughly 1:1) instead of the required wide 1.5-1.9:1 ratio.",
-        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+        "Article crop mismatch: The background clearly shows sunflowers (Helianthus annuus), not canola/rapeseed. The prompt explicitly forbids clearly identifiable different species in the background."
       ],
-      "correction_prompt": "Regenerate the image to show the 'AFP' white and blue drip-tape roll in a triticale field. Place the roll off-center in the bottom-left or bottom-right quadrant (approx 25-30% x-center). The roll must be much wider than it is tall (aspect ratio ~1.7:1) and smaller relative to the frame (width ~20% of image width). Keep the 'AFP | 09134922013' watermark at the bottom right. Reduce the product group from 28% to 13-27% of frame width.",
+      "correction_prompt": "Replace the background sunflower field with a canola field, showing small yellow four-petal flowers on slender stems. Ensure the canola crop is clearly recognizable and matches the article topic.",
       "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 10,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Hard reject: The image contains a person (a man crouching and holding the product), which violates the requirement for zero people or body parts.",
+        "Product type error: The item is a small spool of twine or thread, not a wide, low cylindrical drip-tape roll (family tape20).",
+        "Crop identification error: The background shows a field of yellow daisies or a generic wildflower meadow, not canola (rapeseed) or a neutral prepared bed suitable for canola."
+      ],
+      "correction_prompt": "Regenerate the image showing a wide, low cylindrical white and blue drip-tape roll (family tape20) resting on soil in the lower-left third of the frame (off-center). The background must be a canola (rapeseed) field showing either low bluish-green rosettes or slender stems with yellow four-petal flowers. Absolutely no people, hands, or body parts are allowed. Include the watermark 'AFP | 09134922013' in the bottom-right corner.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 14,
+      "product_height_percent": 24,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: A prominent human figure (farmer/worker) is visible in the image.",
+        "Hard reject: Presence of human body parts (face, hands, legs, silhouette).",
+        "The image violates the 'zero people' requirement which mandates the total absence of humans or their body parts."
+      ],
+      "correction_prompt": "Remove the person completely from the image. Regenerate the scene to show only the AFP drip-tape roll on the soil with the canola field in the background, ensuring no human silhouettes or body parts are visible.",
+      "attempt": 4
     },
     {
       "pass": true,
       "score": 95,
-      "product_width_percent": 20,
-      "product_height_percent": 22,
-      "product_x_center_percent": 31,
+      "product_width_percent": 18.0,
+      "product_height_percent": 24.0,
+      "product_x_center_percent": 38.0,
       "reasons": [
-        "Product placement is off-center on the lower third with correct orientation on soil.",
-        "Dimensions are within acceptable range (width 13-27%, height <32%, ratio correct).",
-        "Watermark is present, legible, and accurately reflects the bottom-right requirement.",
-        "Zero people or human body parts present.",
-        "Background features a generic green crop field; while morphology is not explicitly triticale, the agronomic context is clear, and the species is not definitively a different one, so it passes."
+        "Product is a single white-and-blue cylindrical roll placed naturally on soil in the lower-left third.",
+        "Visible diameter matches the required ratio relative to visible height.",
+        "Background shows low broad-leaf rosettes consistent with canola establishment, no maize, corn, or cereal heads.",
+        "Zero people or human body parts are visible.",
+        "Required AFP watermark present in bottom-right corner."
       ],
       "correction_prompt": "",
-      "attempt": 3
+      "attempt": 5
     }
   ],
   "approved_image": "آبیاری-هوشمند-در-کشت-تریتیکاله-مزایا-کاربرد-عملی.webp"

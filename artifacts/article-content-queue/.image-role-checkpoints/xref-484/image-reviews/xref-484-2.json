@@ -86,6 +86,89 @@
       ],
       "correction_prompt": "Regenerate the scene completely empty of people; strictly remove the man with the bucket, the man on the right using a tool, and all distant human figures while maintaining the farm context and crop rows.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product is horizontally centered in the frame, violating the requirement to be off-center",
+        "Product bounding box geometry shows a circular roll face (diameter equals height) rather than a wide low cylindrical carton where the diameter should be 1.5 to 1.9 times the visible height"
+      ],
+      "correction_prompt": "Reposition the drip tape carton roll to the left or right side of the frame to remove centering. Ensure the visible cylindrical face is significantly wider than its height (aspect ratio approx 1.6:1) to match wide low carton morphology.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 15,
+      "product_height_percent": 14,
+      "product_x_center_percent": 66,
+      "reasons": [
+        "Hard reject: presence of a person (farmer) violates the zero people/zero body parts requirement.",
+        "The product roll is being held/staged by a person, failing the 'naturally placed on soil' requirement."
+      ],
+      "correction_prompt": "Regenerate the image to remove the human subject entirely. Place the drip-tape carton roll naturally on the soil in the farm bed without any person holding or interacting with it.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 27.5,
+      "product_height_percent": 42.5,
+      "product_x_center_percent": 37.0,
+      "reasons": [
+        "The water carton roll is not a wide, low cylindrical drip-tape carton roll; it is a tall, narrow cylindrical water dispenser carton.",
+        "The product width is 27.5%, exceeding the 27% maximum hard limit.",
+        "The product height is 42.5%, exceeding the 32% maximum hard limit.",
+        "The aspect ratio (diameter vs. height) of the roll does not meet the required 1.5-1.9x specification.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 27.5% to 13-27% of frame width.; Reduce product height from 42.5% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image replacing the tall water carton with a wide, low cylindrical drip-tape carton roll. The roll must have a diameter significantly larger than its height (1.5x ratio) and fit within a 25% width and 30% height bounding box. Reduce the product group from 27.5% to 13-27% of frame width. Reduce product height from 42.5% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 21,
+      "product_height_percent": 25,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "The image contains two full-body people, violating the strict zero-person requirement.",
+        "The product roll is centered horizontally rather than off-center on the lower third."
+      ],
+      "correction_prompt": "Remove the two people completely. Move the white-and-blue drip-tape roll horizontally so it sits off-center in the lower third of the frame.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 13,
+      "product_height_percent": 20,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product aspect ratio (diameter/height) is roughly 0.65:1, failing the requirement of 1.5 to 1.9:1.",
+        "Product width (approx. 13%) is at the very bottom limit of the acceptable range (13-27%)."
+      ],
+      "correction_prompt": "Regenerate the drip-tape roll to be significantly flatter and wider (aspect ratio 1.5:1), making it appear as a wide, low cylinder that takes up at least 20% of the frame width while remaining secondary to the crop context. Ensure the roll is placed naturally on the soil in the lower-left area.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 15,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Hard reject: The image contains a visible person (farmer) crouching in the foreground.",
+        "Hard reject: The image contains human body parts including the face, arms, legs, and hands.",
+        "Product issue: The carton roll is positioned too close to the central axis of the frame; it requires more distinct separation from the person on the right.",
+        "Crop morphology: While the background shows what appears to be tulips, the 'crop' context is compromised by the presence of the person in the foreground."
+      ],
+      "correction_prompt": "Regenerate the scene with zero people, faces, or human body parts. Show only the farm context (soil and tulips) with the AFP drip-tape carton roll in the lower third, positioned to the left. Ensure the 'AFP | 09134922013' watermark remains in the bottom right corner.",
+      "attempt": 6
     }
   ],
   "approved_image": null

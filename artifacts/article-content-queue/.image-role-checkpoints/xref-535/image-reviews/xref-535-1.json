@@ -3,51 +3,91 @@
   "kind": 1,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": true,
+  "approved": false,
   "attempts": [
     {
       "pass": false,
-      "score": 0,
-      "product_width_percent": 0,
-      "product_height_percent": 0,
-      "product_x_center_percent": 0,
+      "score": 20,
+      "product_width_percent": 21,
+      "product_height_percent": 20,
+      "product_x_center_percent": 44,
       "reasons": [
-        "Image contains a person (farmer) which is a hard reject criteria.",
-        "Product is too small and positioned extremely low in the frame.",
-        "Product does not meet minimum width requirements (must be 13-27% of frame).",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+        "Presence of two people (violates zero people rule)",
+        "Presence of multiple rolls on the ground (violates 'exactly one' and 'no second roll' rule)",
+        "Crop morphology resembles cereal or grass rather than the required canola/brassica leaves"
       ],
-      "correction_prompt": "Regenerate the image to completely remove the farmer. Keep the field context. Increase the size of the white and blue drip-tape carton so its width is approximately 15 to 20 percent of the image width. Place the carton on the soil in the lower third of the frame, slightly off-center. Ensure the background crop is clearly recognizable as triticale. Enlarge the product group from 0% to 13-27% of frame width.",
+      "correction_prompt": "Remove all people and workers from the image. Remove the extra drip-tape rolls on the ground, leaving only the single main carton being held. Replace the background crop with low bluish-green rosettes of broad lobed brassica leaves (canola) instead of the current grass-like vegetation.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 55,
-      "product_width_percent": 22,
-      "product_height_percent": 25,
-      "product_x_center_percent": 35,
+      "score": 35,
+      "product_width_percent": 18,
+      "product_height_percent": 24,
+      "product_x_center_percent": 43,
       "reasons": [
-        "The crop in the background clearly exhibits long, distinct awns (bristles) on the seed heads, which is a characteristic morphology of barley (Hordeum vulgare) rather than triticale, which typically has smooth or very short-awned heads. This fails the requirement for the specific agronomic story of triticale."
+        "Hard reject: A man (person) is clearly visible kneeling in the frame, holding the product.",
+        "Hard reject: The crop in the image features prominent purple flowers and green stems that do not match the botanical description for canola/rapeseed (blueish-green rosettes or slender stems with yellow four-petal flowers). The crop appears to be a different species.",
+        "The product is positioned centrally rather than off-center on the lower third."
       ],
-      "correction_prompt": "Change the background crop from barley to mature triticale, ensuring the seed heads appear smooth and blunt without long awns, while maintaining the existing product position and lighting.",
+      "correction_prompt": "Remove the person entirely. Regenerate the crop to show yellow four-petal canola flowers at bloom stage or bluish-green rosettes. Move the white and blue drip-tape carton roll to the lower left third of the frame on the soil, ensuring it is off-center.",
       "attempt": 2
     },
     {
-      "pass": true,
-      "score": 82,
-      "product_width_percent": 21,
-      "product_height_percent": 23,
-      "product_x_center_percent": 28,
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 20,
+      "product_height_percent": 18,
+      "product_x_center_percent": 12,
       "reasons": [
-        "Visible AFP white-and-blue drip-tape carton roll with correct proportions, off-center lower-left staging, and placed naturally on soil/straw.",
-        "Required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
-        "Zero people or human body parts are visible.",
-        "Background contains golden cereal-grain panicles and a red barn, which aligns with the broad grain-farming context without being a clearly identifiable different species hard-reject.",
-        "Product width and height percentages fall within acceptable bounds (13–27% width, ≤32% height)."
+        "The crop shown is clearly sunflower, which does not match the required canola (rapeseed) crop. Canola must be identifiable by low bluish-green rosettes or slender stems with small yellow four-petal flowers, not sunflower morphology.",
+        "The drip tape appears improperly staged: a portion of the tape is suspended in the air/lying unconnected, and the roll geometry appears slightly ambiguous, violating the requirement for a naturally placed cylindrical roll on soil.",
+        "The background crop context is completely wrong for the 'canola' article tag."
       ],
-      "correction_prompt": "",
+      "correction_prompt": "Regenerate the image showing a canola (rapeseed) field with either low bluish-green rosettes or slender stems with small yellow four-petal flowers. Place a single AFP white-and-blue cylindrical drip-tape roll off-center on the soil. Ensure the drip tape is neatly coiled and does not float. Remove sunflowers.",
       "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 19,
+      "product_height_percent": 28,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Background crop consists of bulbous plants with grass-like leaves and red/yellow/purple flowers, strongly resembling a tulip or generic flower field. It is absolutely not canola (rapeseed), which requires broad lobed brassica rosettes or yellow four-petal flowers. The wrong species is clearly identifiable."
+      ],
+      "correction_prompt": "Regenerate image replacing the flower field with a field of blooming canola (rapeseed), featuring slender branching stems and small yellow four-petal flowers. Keep the product position and size. No people.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 8,
+      "product_height_percent": 6,
+      "product_x_center_percent": 62,
+      "reasons": [
+        "Presence of two people violates the strict 'zero people' rule",
+        "Human faces, arms, and hands are clearly visible, which is a hard reject condition",
+        "The product is a small box rather than a wide low cylindrical drip-tape carton roll",
+        "The product is held by a person rather than placed naturally on the soil",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures completely. Place a wide white and blue cylindrical drip-tape carton roll on the soil in the lower right foreground, sized to be approximately 20% of the frame width with a 1.5-to-1.9 aspect ratio, with a canola field in the background. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 16,
+      "product_height_percent": 28,
+      "product_x_center_percent": 70,
+      "reasons": [
+        "Hard reject: Person (farmer/worker) is clearly visible in the image.",
+        "Hard reject: The article crop is identified as canola/rapeseed, but the background field clearly shows sunflowers, which is a clearly identifiable different species."
+      ],
+      "correction_prompt": "Remove the person from the scene entirely. Replace the sunflower crop with rows of low bluish-green canola/rapeseed rosettes. Keep the blue and white AFP drip-tape roll on the soil in the lower right area, maintaining the 'AFP | 09134922013' watermark.",
+      "attempt": 6
     }
   ],
-  "approved_image": "آبیاری-هوشمند-در-کشت-تریتیکاله-مزایا-تصویر-شاخص.webp"
+  "approved_image": null
 }

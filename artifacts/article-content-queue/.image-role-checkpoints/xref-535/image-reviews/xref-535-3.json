@@ -3,91 +3,53 @@
   "kind": 3,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 15,
-      "product_width_percent": 18,
-      "product_height_percent": 22,
-      "product_x_center_percent": 30,
+      "score": 0,
+      "product_width_percent": 9,
+      "product_height_percent": 15,
+      "product_x_center_percent": 45,
       "reasons": [
-        "Hard reject: The image contains a visible person (male farmer/worker) with head, hands, and legs.",
-        "Hard reject: The presence of human body parts and a face in the frame explicitly violates the requirement for zero people."
+        "Two people are prominently visible in the foreground, violating the zero-person and zero-human-silhouette requirement.",
+        "A second drip-tape roll is visible in the bottom-right foreground, violating the single-package constraint.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
       ],
-      "correction_prompt": "Remove the person entirely. Place a white-and-blue AFP drip-tape roll on the soil in a farm context. Ensure no human silhouettes, hands, or faces are visible.",
+      "correction_prompt": "Regenerate the image to show a single AFP white-and-blue drip-tape roll on farm soil with zero visible people, zero human body parts, and no other commercial packages, tools, or rolls in the frame. Enlarge the product group from 9% to 13-27% of frame width.",
       "attempt": 1
-    },
-    {
-      "pass": false,
-      "score": 45,
-      "product_width_percent": 23,
-      "product_height_percent": 33,
-      "product_x_center_percent": 47,
-      "reasons": [
-        "The product is centered horizontally in the frame (x_center 47%) instead of being off-center on the lower third.",
-        "The product height slightly exceeds the 32% limit.",
-        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
-      ],
-      "correction_prompt": "Move the carton roll to the right or left side to create an off-center composition, and reduce its height by 10% to fit within the 32% limit while maintaining the farm background. Reduce product height from 33% to at most 32% of frame height.",
-      "attempt": 2
-    },
-    {
-      "pass": false,
-      "score": 30,
-      "product_width_percent": 22,
-      "product_height_percent": 28,
-      "product_x_center_percent": 25,
-      "reasons": [
-        "Presence of a prominent human figure (farmer) and visible hands/arms.",
-        "Hard reject due to people or body parts."
-      ],
-      "correction_prompt": "Regenerate the image without any people or human body parts, focusing only on the hardware and soil context.",
-      "attempt": 3
     },
     {
       "pass": false,
       "score": 10,
       "product_width_percent": 22,
-      "product_height_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: The image contains two people (a man and a woman) which violates the 'zero people and zero human body parts' constraint.",
+        "Product staging violation: The product is centered in the frame rather than placed off-center on the lower third as required.",
+        "Product form violation: The item shown appears to be a canister or jar rather than a wide low cylindrical drip-tape carton roll.",
+        "Watermark violation: The required watermark 'AFP | 09134922013' is missing from the bottom-right corner."
+      ],
+      "correction_prompt": "Regenerate the image to show exactly one unattended wide, low cylindrical drip-tape carton roll (white and blue) placed naturally on soil in the lower third, offset to the left or right. Remove all people and human silhouettes. The background should show a farm context with canola (rapeseed) crops or neutral soil without any other products. Ensure the text 'AFP | 09134922013' is visible in the bottom-right corner.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 22,
+      "product_height_percent": 17,
       "product_x_center_percent": 36,
       "reasons": [
-        "Hard reject: A person is present in the image (farmer crouching next to the roll).",
-        "The rule 'zero people and zero human body parts' was violated.",
-        "The presence of a human figure is not allowed under any circumstances, even in a secondary position."
+        "The product is a white cylindrical roll with an 'AFP' logo, which matches the required AFP hardware.",
+        "The product is placed off-center in the lower third on soil, keeping the primary focus on the background crops.",
+        "The product dimensions are well within the limits (width 22%, height 17%) and maintain a realistic diameter-to-height ratio for a wide drip-tape roll.",
+        "There are zero people or human silhouettes in the scene.",
+        "The background shows a farm with flowering plants (yellow and purple) which is compatible with the 'canola' topic as it depicts a bloom period without showing an explicitly contradictory crop."
       ],
-      "correction_prompt": "Regenerate the image without the person. Keep the drip tape roll on the soil, maintaining the same dimensions and position. Ensure no human figures or body parts are visible.",
-      "attempt": 4
-    },
-    {
-      "pass": false,
-      "score": 15,
-      "product_width_percent": 19,
-      "product_height_percent": 27,
-      "product_x_center_percent": 38,
-      "reasons": [
-        "Hard reject: Human presence. The image contains a clear view of a person (male farmer/installer) including face, torso, arms, and legs.",
-        "Hard reject: Human body parts. Multiple hands and feet are visible."
-      ],
-      "correction_prompt": "Regenerate the image strictly excluding any people or human body parts. Ensure the irrigation tape roll is displayed on the farm soil with no workers present. Maintain the 'AFP | 09134922013' watermark.",
-      "attempt": 5
-    },
-    {
-      "pass": false,
-      "score": 88,
-      "product_width_percent": 35,
-      "product_height_percent": 35,
-      "product_x_center_percent": 49,
-      "reasons": [
-        "Product is off-center (bottom-right quadrant) and placed naturally on soil.",
-        "Zero people or human body parts present.",
-        "Hardware-only context appropriate for Role 3.",
-        "AFP watermark is present and correctly formatted.",
-        "machine-enforced bounding-box check failed: Reduce the product group from 35% to 13-27% of frame width.; Reduce product height from 35% to at most 32% of frame height."
-      ],
-      "correction_prompt": "Reduce the product group from 35% to 13-27% of frame width. Reduce product height from 35% to at most 32% of frame height.",
-      "attempt": 6
+      "correction_prompt": "",
+      "attempt": 3
     }
   ],
-  "approved_image": null
+  "approved_image": "آبیاری-هوشمند-در-کشت-تریتیکاله-مزایا-جزئیات-فنی.webp"
 }

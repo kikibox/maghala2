@@ -3,94 +3,82 @@
   "kind": 1,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 15,
-      "product_width_percent": 8,
-      "product_height_percent": 12,
-      "product_x_center_percent": 55,
+      "score": 35,
+      "product_width_percent": 19,
+      "product_height_percent": 22,
+      "product_x_center_percent": 42,
       "reasons": [
-        "Hard reject: The image contains a human (a person is clearly visible, including face, arms, and legs), which violates the 'zero people' requirement.",
-        "The visible product is held by a human and does not meet the size requirements (target 20-23% width, actual is approx 8%).",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+        "The background crop is not canola (rapeseed); it displays small yellow flowers that are not the distinct four-petaled bloom of canola and do not match the required botany.",
+        "The drip-tape roll is not the wide low cylindrical carton roll specified in the role description; the product geometry is too tall and narrow relative to the frame.",
+        "The product staging appears centered rather than off-center on the lower third as required.",
+        "The drip-tape emerging from the roll resembles a layflat hose or pipe, which is an explicitly prohibited element."
       ],
-      "correction_prompt": "Regenerate the image with zero people or human body parts. The scene must feature a static shot of a wide, low, white-and-blue AFP drip-tape carton roll placed on the soil in a canola field. The roll should occupy approximately 20-23 percent of the frame width. Retain the bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 8% to 13-27% of frame width.",
+      "correction_prompt": "Replace the background crop with clearly identifiable canola (rapeseed) featuring small yellow four-petal flowers and slender branching stems; replace the current product with a wide, low, cylindrical white-and-blue drip-tape carton roll positioned off-center on the lower third of the frame, ensuring it is wider than it is tall and has no pipe or hose attached.",
       "attempt": 1
     },
     {
       "pass": false,
       "score": 45,
-      "product_width_percent": 24,
-      "product_height_percent": 35,
-      "product_x_center_percent": 43,
+      "product_width_percent": 18,
+      "product_height_percent": 28,
+      "product_x_center_percent": 44,
       "reasons": [
-        "The product height (approx. 35%) exceeds the hard limit of 32%.",
-        "The crop morphology does not match Canola; the presence of red flowers and broad, non-brassica foliage suggests a different crop or generic vegetation.",
-        "The text on the product side is gibberish ('PIM 19045604').",
-        "The ratio of width to height is too low (approx. 0.68), whereas it should be 1.5 to 1.9, making the roll look like a flat canister rather than a wide roll.",
-        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+        "The crop in the background is identifiable as Canola (Rapeseed) at the bloom stage (yellow flowers, slender stems), which aligns with the article context.",
+        "The product (AFP drip-tape roll) is positioned directly in the horizontal center of the image (near 44-50% x-center).",
+        "The prompt explicitly rejects 'centered product staging' and requires the roll to be off-center in the lower third."
       ],
-      "correction_prompt": "Redraw the drip-tape roll as a wide, low cylinder with a visible height of no more than 32% of the frame (ratio width:height approx. 1.7:1). Change the field crop to Canola/Rapeseed (low bluish-green rosettes or small yellow four-petal flowers). Ensure all text on the product label is clear, readable, and authentic; no gibberish. Reduce product height from 35% to at most 32% of frame height.",
+      "correction_prompt": "Move the drip-tape roll significantly to the left or right to avoid centered staging; it must be positioned off-center within the lower third of the frame.",
       "attempt": 2
     },
     {
       "pass": false,
-      "score": 0,
-      "product_width_percent": 16,
-      "product_height_percent": 15,
-      "product_x_center_percent": 38,
+      "score": 74,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 54,
       "reasons": [
-        "Wrong crop species: The image shows a field of yellow flowers with purple accents that is not canola/rapeseed (کلزا). The prompt requires the crop to be recognizable as canola; while the yellow flowers look superficially similar, the overall morphology and density do not match the specific agronomic description of canola at bloom (slender branching stems). It resembles a mixed flower field or a different Brassica that is not strictly acceptable as canola in a hard QA context without more definitive features, or simply a general field that fails the 'recognizable as canola' test."
+        "The roll has gibberish, illegible text (e.g., 'Blgp Lliopopst Tee') on the front of the package which violates the rule against 'invented writing'."
       ],
-      "correction_prompt": "Regenerate the crop field to clearly show canola/rapeseed (Rapace/Cruciferae) with distinct slender branching stems and small yellow four-petal flowers, specifically avoiding generic yellow dandelions or other broad-leaved weeds.",
+      "correction_prompt": "Regenerate image keeping the same composition but ensure all text on the drip-tape roll is clear, legible English (no gibberish or fake lettering). Keep the 'AFP' logo and phone number watermark exactly as is.",
       "attempt": 3
     },
     {
       "pass": false,
-      "score": 15,
-      "product_width_percent": 6,
-      "product_height_percent": 14,
-      "product_x_center_percent": 52,
+      "score": 40,
+      "product_width_percent": 12,
+      "product_height_percent": 18,
+      "product_x_center_percent": 48,
       "reasons": [
-        "Presence of a person (farmer) and human body parts violates hard reject rules.",
-        "Product is a standard cylindrical roll, not the required wide low drip-tape carton.",
-        "Product is centered rather than off-center on the lower third.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 6% to 13-27% of frame width."
+        "Hard reject: clear presence of a human body (person crouching, hands, face, legs).",
+        "Hard reject: crop is maize/corn with tassel-like heads and blade leaves, not canola (rapeseed).",
+        "Product (drip-tape roll) is not placed on the soil off-center in the lower third; it is held by a hand in the center.",
+        "Product height (about 18%) is within limits, but the required off-center lower-third placement on soil is not met due to the hand and staging.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
       ],
-      "correction_prompt": "Remove the person. Replace the product with a wide, low, cylindrical AFP white-and-blue drip-tape carton roll (height <32% width, off-center bottom). Enlarge the product group from 6% to 13-27% of frame width.",
+      "correction_prompt": "Regenerate without any person or body parts; show a canola/rapeseed field (bluish-green rosettes or yellow four-petal flowers, no maize) with a single AFP white-and-blue wide low cylindrical drip-tape carton roll lying on soil in the lower-third off-center, zero extra containers or tools, keeping the required 'AFP | 09134922013' watermark. Enlarge the product group from 12% to 13-27% of frame width.",
       "attempt": 4
     },
     {
-      "pass": false,
-      "score": 25,
-      "product_width_percent": 22,
-      "product_height_percent": 20,
-      "product_x_center_percent": 27,
+      "pass": true,
+      "score": 96,
+      "product_width_percent": 17,
+      "product_height_percent": 15,
+      "product_x_center_percent": 49,
       "reasons": [
-        "The crop in the foreground is clearly identifiable as tobacco or a similar large-leafed solanaceous plant, which is a hard reject against the 'canola (rapeseed)' requirement.",
-        "The background crop context is indistinct and does not specifically depict the required canola rosettes or bloom.",
-        "The product bounding box is too low vertically, appearing to be placed on the bottom edge rather than comfortably in the lower third off-center."
+        "The crop shown is clearly canola (rapeseed) at the bloom stage, identifiable by the low-growing bluish-green rosettes of broad leaves and slender stems with small yellow four-petal flowers.",
+        "The drip-tape roll is the exact correct geometry (wide, low, cylindrical), features the required white and blue color scheme, and is branded 'AFP'.",
+        "The product is correctly staged off-center on the soil (positioned in the lower central third), with a secondary presence. Its visible diameter (roughly 600px) is approximately 1.5x its visible height (roughly 400px), and it measures approximately 17% of the frame width and 15% of the frame height, both within the required bounds.",
+        "The required watermark 'AFP | 09134922013' is visible in the bottom right corner.",
+        "No people or human body parts are present in the image.",
+        "No other forbidden objects (bottles, cans, giant drums, layflat hoses, fake text, etc.) are present in the frame."
       ],
-      "correction_prompt": "Replace the foreground and background crops with recognizable canola (rapeseed) plants featuring bluish-green rosettes or small yellow flowers. Move the white and blue AFP drip-tape roll up slightly into the lower-third off-center position. Ensure no other crop types are visible.",
+      "correction_prompt": "",
       "attempt": 5
-    },
-    {
-      "pass": false,
-      "score": 35,
-      "product_width_percent": 14,
-      "product_height_percent": 19,
-      "product_x_center_percent": 35,
-      "reasons": [
-        "The crop shown in the foreground does not match the botanical definition of canola (rapeseed); the plants display blue and red blossoms which are not characteristic of the Brassica napus species, failing the requirement for recognizable or agronomically clear crop morphology.",
-        "The product is a white-and-blue cylindrical roll rather than a wide low cylindrical drip-tape carton roll as specified.",
-        "Product geometry is inverted; the roll is taller than it is wide (height approx 19% vs width approx 14%), whereas the requirement is for the diameter to be 1.5 to 1.9 times the visible height.",
-        "Watermark text contains an extra digit at the end, differing from the exact required string 'AFP | 09134922013'."
-      ],
-      "correction_prompt": "Regenerate the image showing a wide, low drip-tape roll (width 1.5-1.9x height) in a canola field. The canola plants must display correct yellow four-petal flowers or bluish-green rosettes. Remove red/blue flowers. Ensure the product is off-center on the lower third. The bottom-right watermark must read exactly 'AFP | 09134922013'.",
-      "attempt": 6
     }
   ],
-  "approved_image": null
+  "approved_image": "آبیاری-محوری-در-کشت-کلزا-پیشنیازها-تصویر-شاخص.webp"
 }
