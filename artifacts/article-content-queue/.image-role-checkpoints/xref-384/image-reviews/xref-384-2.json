@@ -3,66 +3,95 @@
   "kind": 2,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": true,
+  "approved": false,
   "attempts": [
     {
       "pass": false,
       "score": 25,
       "product_width_percent": 14,
-      "product_height_percent": 12,
+      "product_height_percent": 22,
       "product_x_center_percent": 45,
       "reasons": [
-        "Hard reject: The image contains two clearly visible people (a crouching woman and a standing man), which violates the strict requirement of zero people or human body parts.",
-        "Hard reject: The crop shown is not botanically accurate for 'yellow split-pea (لپه)'. The plants are long, strappy, and resemble corn or ornamental grasses with yellow spikes, rather than the bushy, pinnate-leaved, green herbaceous nature of split-pea plants.",
-        "Product geometry issue: The drip tape roll is too narrow (estimated 14% width) compared to the preferred 20-23% width range."
+        "Hard reject: Image contains a visible person (arms, hands, torso, legs) and feet, which violates the 'zero people and zero human body parts' rule.",
+        "The drip tape roll is not a wide, low cylindrical carton roll; it appears as a small, possibly open spool rather than the required closed commercial packaging.",
+        "The product does not meet the width requirement (must be 13-27% but ideally 20-23%, and here it is approx 14%).",
+        "The product is not positioned off-center on the lower third; it is near the center line (approx 45%).",
+        "The crop is generic green seedlings, not clearly recognizable as mature 'yellow split-pea' morphology (though neutral seedlings are allowed, the human presence is the primary hard reject)."
       ],
-      "correction_prompt": "Remove all human figures and faces completely. Replace the crop with accurate botanically-correct yellow split-pea (chana/daal) plants (bushy, pinnate green leaves). Enlarge the white-and-blue AFP drip tape roll so it occupies approximately 20-25% of the image width, ensuring it remains a secondary element on the soil.",
+      "correction_prompt": "Regenerate image with zero people or body parts. Show a wide, low, cylindrical white-and-blue drip-tape carton roll (20-25% width) sitting on the soil on the left side (lower third). The roll must be a closed industrial carton, not an open spool. Keep the yellow split-pea crop rows in the background.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 58,
-      "product_width_percent": 14.5,
-      "product_height_percent": 12.8,
-      "product_x_center_percent": 35.2,
+      "score": 35,
+      "product_width_percent": 26.4,
+      "product_height_percent": 30.4,
+      "product_x_center_percent": 26.4,
       "reasons": [
-        "Product aspect ratio (Width:Height ≈ 1.13) is significantly lower than the required 1.5-1.9 range, making the roll appear too short and tall (more cubic/cylindrical) rather than wide and flat.",
-        "The crop shown in the background (tall plants with yellow flowers) is not botanically accurate for yellow split-pea (Labe) at any stage, nor is it a sufficiently neutral prepared bed to pass.",
-        "The placement of the roll is too high vertically, not effectively anchored in the 'lower third'."
+        "Hard reject: The crop context is clearly identifiable as sunflowers (and possibly corn), which are distinct species and not the required 'yellow split-pea' (لپه) crop.",
+        "The article-specific agronomic story for split peas is not present; the dominant visual element contradicts the article topic."
       ],
-      "correction_prompt": "Regenerate with a low, flat white-and-blue drip tape roll (width 1.8x its height) in the bottom-left corner. Set the background to a simple prepared soil bed with very small, early-stage yellow split-pea seedlings or neutral soil texture. Remove the tall flowering plants.",
+      "correction_prompt": "Regenerate the image showing a wide low cylindrical drip-tape carton roll off-center on the lower third. The background must clearly feature a yellow split-pea field with characteristic pea pods and foliage, not sunflowers or corn. Include the 'AFP | 09134922013' watermark in the bottom right. No people.",
       "attempt": 2
     },
     {
       "pass": false,
       "score": 35,
-      "product_width_percent": 24,
-      "product_height_percent": 34,
-      "product_x_center_percent": 22,
+      "product_width_percent": 22,
+      "product_height_percent": 24,
+      "product_x_center_percent": 38,
       "reasons": [
-        "Watermark is missing.",
-        "The crop shown is not a yellow split-pea (Lupin/Labe), but rather a wildflower or weed-like species (resembling dandelions or buttercups), which is a clearly identifiable different species.",
-        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+        "Article crop mismatch: The required crop is yellow split-pea (له) with specific botanical traits. The image clearly shows sunflowers, which is a hard reject for a clearly identifiable different species.",
+        "Product geometry: The roll is placed too upright (near square aspect ratio ~1.0). It needs to be a wide, low cylindrical shape (diameter 1.5–1.9x height).",
+        "Centering: The product is currently at ~38% width (near center). It needs to be off-center on the lower third."
       ],
-      "correction_prompt": "Replace the crop with young yellow split-pea (Labe) seedlings showing botanically accurate leaves and growth habit. Add the required watermark 'AFP | 09134922013' to the bottom-right corner. Keep the product size, position, and soil context consistent. Reduce product height from 34% to at most 32% of frame height.",
+      "correction_prompt": "Replace the background sunflowers with a field of yellow split-pea plants (له) in their harvest stage with botanically accurate leaves and pods. Reshape the drip tape roll to be wide and low (diameter 1.7x its height). Move the roll to the bottom-left or bottom-right (off-center lower third). Keep the AFP watermark at the bottom right.",
       "attempt": 3
     },
     {
-      "pass": true,
-      "score": 88,
-      "product_width_percent": 15,
-      "product_height_percent": 16,
-      "product_x_center_percent": 37,
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 5,
+      "product_height_percent": 7,
+      "product_x_center_percent": 46,
       "reasons": [
-        "Required AFP watermark is present and legible in the bottom-right corner.",
-        "The product is an AFP drip tape roll, positioned on the soil without any human body parts present.",
-        "Product dimensions and aspect ratio (low cylindrical shape) fall within acceptable ranges.",
-        "The background correctly depicts a topic-specific farm context with young seedlings and drip irrigation lines, which is consistent with the article's crop context.",
-        "No disqualifying items (like bottles, jars, or second rolls) or text artifacts are visible."
+        "Presence of a person (male farmer) in the image.",
+        "The crop shown is clearly sunflowers, not لپه (yellow split-pea).",
+        "The drip-tape roll is too small and centered, not placed on the lower third off-center.",
+        "Product width (approx 5%) is far below the acceptable 13-27% range.",
+        "Product height (approx 7%) does not conform to the shape ratio of a wide cylindrical roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
       ],
-      "correction_prompt": "",
+      "correction_prompt": "Regenerate image: show an unattended wide cylindrical white-and-blue AFP drip-tape roll (5-12 inches wide) lying on the soil in the lower-right corner. Background must be a field of yellow split-pea crops. No people, no sunflowers, no hands. Watermark 'AFP | 09134922013' in bottom right. Enlarge the product group from 5% to 13-27% of frame width.",
       "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 64,
+      "reasons": [
+        "The background crop is sunflowers, which is a clearly identifiable different species from the required لپه (yellow split-pea crop).",
+        "Hard reject triggered due to the presence of an incorrect specific crop species in the background."
+      ],
+      "correction_prompt": "Replace the sunflower background with a field of mature yellow split-pea (لپه) plants, keeping the white and blue AFP drip-tape roll exactly in the same position and size in the foreground on the soil.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 20.8,
+      "product_height_percent": 22.0,
+      "product_x_center_percent": 27.5,
+      "reasons": [
+        "Hard reject: The background clearly shows sunflowers, which is a completely different species from the required article crop (yellow split-pea/لپه).",
+        "The crop visible in the foreground rows does not match the botanical morphology of split peas; it resembles a young flower bud or unrelated vegetable, and the background field is explicitly sunflowers.",
+        "The image geometry and background context fail to match the specific article topic."
+      ],
+      "correction_prompt": "Replace the sunflower field and yellow bud seedlings with a field of yellow split peas (چانا) at the harvest stage. Ensure the background rows show botanically accurate split pea plants with their characteristic broad, flat trifoliate leaves and pods. Keep the white-and-blue AFP drip-tape roll in the lower left foreground on the soil.",
+      "attempt": 6
     }
   ],
-  "approved_image": "آبیاری-بارانی-با-رانش-در-کشت-لپه-مقایسه-کاربرد-عملی.webp"
+  "approved_image": null
 }

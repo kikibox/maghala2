@@ -1,0 +1,110 @@
+{
+  "id": "xref-379",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: A person (farmer) is visible in the image.",
+        "Hard reject: A plastic water bottle (extra commercial product/container) is visible.",
+        "Hard reject: The 'Drip Irrigation Tape' text on the carton is missing the required 'Tape 20' specification/wording."
+      ],
+      "correction_prompt": "Regenerate the image removing all people and the plastic water bottle. Ensure the drip tape roll is white and blue, sits on soil, and clearly displays 'Drip Irrigation Tape 20'. Keep the 'AFP | 09134922013' watermark intact.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 22,
+      "product_height_percent": 24,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "The visible crops on the right are clearly bell peppers (large, blocky fruits), which directly contradicts the required 'خیار' (cucumber) context and triggers the hard reject rule for contradictory crops.",
+        "Height aspect ratio is incorrect: the visible diameter (width) is not 1.5-1.9 times the visible height (currently 1:1 ratio), appearing too squat and cylindrical rather than wide/low.",
+        "Missing required bottom-right watermark 'AFP | 09134922013'."
+      ],
+      "correction_prompt": "Replace the bell peppers with cucumber plants bearing visible cucumbers. Reshape the AFP drip tape roll to be wider and flatter (wide low cylinder) so the width is approx 1.5-1.9 times the height. Ensure the 'AFP | 09134922013' watermark is visible in the bottom right.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 22,
+      "product_height_percent": 35,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product is taller than the 32 percent limit (35 percent)",
+        "Product is horizontally centered rather than off-center on the lower third",
+        "Cucumber crop is too prominent and visually active for a hardware story role",
+        "Watermark is slightly offset and does not exactly match the required bottom-right placement",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image with a smaller drip-tape carton roll (height < 32% of frame, width 20-23% of frame) placed off-center on the lower third, in a neutral farm context without prominent cucumber plants, ensuring the 'AFP | 09134922013' watermark is exactly at the bottom-right corner. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 13,
+      "product_height_percent": 20,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "The image contains a person (male figure crouching in the foreground), which is a hard reject criterion.",
+        "The presence of any identifiable human body part (head, torso, limbs) in the frame violates the requirement for zero people and zero human body parts."
+      ],
+      "correction_prompt": "Regenerate the image removing all people and human figures completely. Keep the tractors, irrigation equipment, and soil bed. Ensure the drip tape roll is the only focus near the soil, with no farmers, workers, or hands visible.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 24,
+      "product_height_percent": 31,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Hard reject: Multiple people (two adults, one child) are clearly visible in the background and midground",
+        "Hard reject: Human body parts and full silhouettes are present, violating the zero-people constraint"
+      ],
+      "correction_prompt": "Regenerate the image with zero people, human silhouettes, or body parts anywhere in the frame. Keep the AFP drip-tape roll on the soil in the lower-left foreground with the tractor and crops as background infrastructure/context, ensuring the roll remains secondary and off-center.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 58,
+      "product_width_percent": 21,
+      "product_height_percent": 23,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Product aspect ratio is incorrect (width < height); requirement specifies diameter/height should be 1.5-1.9x",
+        "Hard reject: Human silhouette/face clearly visible inside the tractor cab in the background",
+        "Hard reject: Product height (23%) exceeds recommended secondary status relative to width"
+      ],
+      "correction_prompt": "Remove person from tractor cab; replace cylindrical roll with wide, low flat drip-tape roll (width 20-23%, height <12%, ratio 1.6-2:1); ensure roll sits off-center lower third on soil with clean unoccupied background.",
+      "attempt": 6
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 22,
+      "product_height_percent": 18,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product geometry is correct: wide, low cylindrical roll placed off-center on the lower third of the frame.",
+        "Product size is within the preferred width range (approx. 22%) and well under the 32% height limit.",
+        "Background crop morphology is visually neutral/indeterminate, consistent with Role 3 hardware story.",
+        "The required bottom-right watermark is present.",
+        "No people, human silhouettes, or prohibited items are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 1
+    }
+  ],
+  "approved_image": "آبیاری-هوشمند-در-کشت-خیار-نکات-کلیدی-جزئیات-فنی.webp"
+}

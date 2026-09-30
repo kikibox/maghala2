@@ -3,95 +3,53 @@
   "kind": 3,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 45,
-      "product_width_percent": 22,
-      "product_height_percent": 31,
-      "product_x_center_percent": 33,
+      "score": 10,
+      "product_width_percent": 14.0,
+      "product_height_percent": 18.5,
+      "product_x_center_percent": 63,
       "reasons": [
-        "Presence of a second distinct drip-tape roll lying on the ground (right side), which violates the 'zero second roll' and 'single product' constraint",
-        "The second roll makes the product composition fail the requirement for exactly one visible product"
+        "Image contains a prominent person (farmer/worker) including hands, arms, legs, and body, which is a hard reject condition for Role 3 and the zero-human rule.",
+        "The product is being held in hands rather than placed naturally on the soil."
       ],
-      "correction_prompt": "Delete the second small roll on the right side of the image so that only the main carton roll remains. Keep the AFP white carton roll and the bottom-right watermark.",
+      "correction_prompt": "Regenerate without any people, hands, or human body parts. Show the drip-tape roll resting naturally on the soil. Maintain the wide cylindrical white and blue carton shape, off-center in the lower third. Keep the agricultural context with irrigation lines and crop rows.",
       "attempt": 1
     },
     {
       "pass": false,
       "score": 45,
-      "product_width_percent": 28,
-      "product_height_percent": 33,
-      "product_x_center_percent": 35,
+      "product_width_percent": 33,
+      "product_height_percent": 38,
+      "product_x_center_percent": 43,
       "reasons": [
-        "Product width (28%) exceeds the hard reject threshold of 27%.",
-        "Product height (33%) exceeds the hard reject threshold of 32%.",
-        "The image contains gibberish text ('Dng...') and incoherent writing on the product packaging.",
-        "There is an unidentified orange spherical object attached to the plant, which is impossible geometry/fake element.",
-        "The 'hardware' context (topic 3) is weak; the image shows a crop instead of a filter/manifold close-up, which creates context mismatch for role 3.",
-        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width.; Reduce product height from 33% to at most 32% of frame height."
+        "Product width (~33% of frame) and height (~38% of frame) exceed the maximum limits of 27% width and 32% height specified in the instructions",
+        "The product is centered horizontally rather than being placed 'off-center on the lower third'",
+        "The background depicts corn seedlings, which likely contradicts the specified 'canola (rapeseed)' crop requirement",
+        "machine-enforced bounding-box check failed: Reduce the product group from 33% to 13-27% of frame width.; Reduce product height from 38% to at most 32% of frame height."
       ],
-      "correction_prompt": "Regenerate with the drip-tape roll strictly under 26% width and 30% height, placing it further left on the soil. Remove the orange sphere and gibberish text. Show a close-up of a clean irrigation manifold or filter with the roll beside it to satisfy the 'hardware' role requirement. Reduce the product group from 28% to 13-27% of frame width. Reduce product height from 33% to at most 32% of frame height.",
+      "correction_prompt": "Regenerate the image with the drip tape roll significantly smaller (less than 1/4 of the image width), positioned off-center on the lower third. Change the background to show canola plants instead of corn, and remove the tractor from the background. Reduce the product group from 33% to 13-27% of frame width. Reduce product height from 38% to at most 32% of frame height.",
       "attempt": 2
     },
     {
-      "pass": false,
-      "score": 38,
-      "product_width_percent": 24,
-      "product_height_percent": 31,
-      "product_x_center_percent": 33,
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 45,
       "reasons": [
-        "The white-and-blue AFP drip-tape roll is lying on its side rather than standing upright as a wide low cylindrical carton roll.",
-        "The required bottom-right watermark is 'AFP | 09134922013', but the image contains 'AFP | 09134922013' with an extra trailing zero (12 digits instead of 11), causing a hard reject.",
-        "There is a tall narrow grey canister next to the roll that resembles a prohibited 'tall narrow drum' or 'extra commercial product'; Role 3 should feature unattended filters, gauges, regulators or manifolds, not standalone tall cylinders."
+        "Zero people or human body parts present in the frame.",
+        "Product is correctly identified as a cylindrical drip-tape roll placed on the soil.",
+        "Required 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "Product dimensions (width ~18%, height ~22%) align with acceptable limits (13-27% width, <32% height).",
+        "Product is off-center and positioned in the lower third of the frame.",
+        "Visible crop morphology is generic and does not clearly contradict the 'canola' topic."
       ],
-      "correction_prompt": "Reposition the white-and-blue AFP drip-tape roll so it stands upright as a wide, low cylindrical carton on the soil. Change the bottom-right watermark to exactly 'AFP | 09134922013' with 11 digits. Replace the tall grey canister with a flat or standard-sized unattended irrigation manifold/filter, ensuring no extra commercial products or prohibited tall narrow drums are present.",
+      "correction_prompt": "",
       "attempt": 3
-    },
-    {
-      "pass": false,
-      "score": 10,
-      "product_width_percent": 28,
-      "product_height_percent": 36,
-      "product_x_center_percent": 40,
-      "reasons": [
-        "Product is centered relative to the scene, violating the requirement to be off-center on the lower third",
-        "Extra commercial product (silver bottle/container) is present, which is a hard reject",
-        "Product height (36%) exceeds the 32% limit",
-        "Product width (28%) exceeds the 27% limit",
-        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width.; Reduce product height from 36% to at most 32% of frame height."
-      ],
-      "correction_prompt": "Regenerate with the white and blue AFP drip-tape roll positioned off-center to the bottom left, strictly under 32% image height. Remove the silver bottle entirely. Ensure the roll diameter is not wider than 27% of the frame. Reduce the product group from 28% to 13-27% of frame width. Reduce product height from 36% to at most 32% of frame height.",
-      "attempt": 4
-    },
-    {
-      "pass": false,
-      "score": 35,
-      "product_width_percent": 19,
-      "product_height_percent": 26,
-      "product_x_center_percent": 19,
-      "reasons": [
-        "The visible crop is a red and orange tulip, which clearly contradicts the specified topic of کلزا (canola/rapeseed); per the hard reject rule for visual contradiction, the image fails.",
-        "The product packaging is a rectangular box/carton rather than a cylindrical roll, which does not match the specified 'wide low cylindrical drip-tape carton roll'.",
-        "The product is cut off at the bottom edge of the frame, which compromises the 'naturally placed' requirement.",
-        "Unnecessary visual clutter (tulips) is present on the right side, whereas the hardware story role allows for an empty or crop-neutral soil context."
-      ],
-      "correction_prompt": "Regenerate the image showing an AFP white and blue cylindrical drip tape roll on the soil in a farm field with a red barn in the background. Ensure the soil is empty or features small green canola/rapeseed sprouts instead of tulips. The roll must be fully visible, sitting on the ground, and off-center to the lower left.",
-      "attempt": 5
-    },
-    {
-      "pass": false,
-      "score": 60,
-      "product_width_percent": 19,
-      "product_height_percent": 17,
-      "product_x_center_percent": 32,
-      "reasons": [
-        "The required text 'AFP | 09134922013' does not match the actual watermark visible in the image, which contains non-English gibberish text."
-      ],
-      "correction_prompt": "Regenerate the image ensuring the bottom-right watermark contains exactly 'AFP | 09134922013'.",
-      "attempt": 6
     }
   ],
-  "approved_image": null
+  "approved_image": "آبیاری-قطرهای-با-قطرهچکان-در-کشت-کلزا-هزینه-بهینه-جزئیات-فنی.webp"
 }

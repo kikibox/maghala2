@@ -1,0 +1,56 @@
+{
+  "id": "xref-411",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 20,
+      "product_height_percent": 20,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Human presence. The image prominently features a male farmer/worker crouching in the frame (head, torso, hands visible).",
+        "Hard reject: Product placement. The drip tape roll is being held/staged by the person in the center of the frame, rather than being placed on the soil off-center in the lower third.",
+        "Fail: Cropping issue. The foreground plants are clearly identifiable as pink-flowering crops (physically distinct from rosemary, which is woody and low-lying), violating the article-specific crop requirement."
+      ],
+      "correction_prompt": "Remove the person and hands completely from the image. Ensure exactly one AFP white-and-blue drip-tape roll is naturally resting on the soil in the lower-left or lower-right corner (off-center). Replace the foreground pink-flowering plants with a botanically neutral bed, small unidentifiable seedlings, or clear rosemary evidence. Keep the farm background and the bottom-right watermark 'AFP | 09134922013' intact.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 14,
+      "product_height_percent": 18,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "The crop in the foreground is clearly identifiable as a different species (likely Lantana) with purple flowers, which violates the hard reject rule for wrong crops when the article is specifically about Rosemary.",
+        "The rosemary morphology (woody shrubs with needle-like leaves) is not visible, only a generic flowering plant is shown.",
+        "The required bottom-right watermark contains the text 'AIP' instead of 'AFP'.",
+        "The product geometry (diameter/height ratio) is too small relative to the frame (around 14% width, whereas 20-23% is preferred).",
+        "The drip tape is not clearly visible, making the irrigation layout less effective."
+      ],
+      "correction_prompt": "Regenerate the image to feature woody rosemary plants with needle-like dark-green leaves instead of the purple flowers. Ensure the product is a wide cylindrical roll with a larger visual footprint. Change the bottom-right watermark text from 'AIP' to 'AFP'. Ensure a visible drip line runs past the roll.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 18,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product geometry is consistent with a wide cylindrical drip-tape carton roll.",
+        "Roll is placed on soil in the lower third and off-center.",
+        "Rosemary crop morphology (woody, needle-like leaves) is clearly recognizable.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "No people or human body parts are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-رزماری-کاربردها-کاربرد-عملی.webp"
+}

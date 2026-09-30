@@ -3,25 +3,95 @@
   "kind": 3,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": true,
+  "approved": false,
   "attempts": [
     {
-      "pass": true,
-      "score": 92,
-      "product_width_percent": 20,
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 11,
       "product_height_percent": 23,
-      "product_x_center_percent": 32,
+      "product_x_center_percent": 44,
       "reasons": [
-        "Image contains the required AFP white and blue drip-tape carton roll placed naturally on soil.",
-        "Watermark 'AFP | 09134922013' is correctly present in the bottom right corner.",
-        "The crop morphology (sorghum/corn seedling) is visually neutral and does not contradict the target crop.",
-        "Tractor is in the background but clearly unattended (driver seat is empty), and no human body parts or silhouettes are visible.",
-        "Product dimensions and placement (off-center, lower third) are within acceptable limits for the requested role.",
-        "Background matches the farm hardware context required."
+        "Hard reject: The image contains two people (a man and a girl) which violates the requirement for zero people or human body parts.",
+        "The crop visible in the background appears to be corn (maize) rather than sorghum, and even if neutral, the presence of the people is a disqualifying factor for Role 3 hardware story.",
+        "The product is positioned centrally in the lower frame rather than off-center on the lower third, which conflicts with the preferred composition guidelines.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
       ],
-      "correction_prompt": "",
+      "correction_prompt": "Regenerate the image to remove all people. Show a single AFP white and blue drip tape roll resting on the soil in a sorghum farm field. Ensure the roll is off-center to the left or right in the lower third, with no crops in the immediate foreground. Maintain the AFP | 09134922013 watermark in the bottom right corner. Enlarge the product group from 11% to 13-27% of frame width.",
       "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 27,
+      "product_height_percent": 27,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Product is centered horizontally, violating the requirement to be off-center on the lower third",
+        "Aspect ratio (width/height) is approximately 1.0, which contradicts the required 1.5 to 1.9 ratio for a wide low cylindrical roll",
+        "Product height (27%) is relatively large for the frame"
+      ],
+      "correction_prompt": "Shift the roll horizontally to the left or right side of the frame (lower third rule). Make the roll significantly flatter and wider (aspect ratio >1.5) so the height is reduced.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Second package: There is a second roll of tape (blue/yellow) on the right side of the frame.",
+        "Second commercial product: The presence of a second roll violates the 'exactly one roll' requirement.",
+        "Geometry mismatch: The right-hand roll has an impossible/awkward geometry and is not a standard drip-tape carton.",
+        "Text error: The text on the right-hand roll ('HOT', 'TIN...') is gibberish/fake writing, which is a hard reject trigger."
+      ],
+      "correction_prompt": "Remove the blue and yellow roll on the right. Keep only the single white and blue AFP carton roll on the left, centered in the bottom third.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 14,
+      "product_height_percent": 20,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Presence of a person (man squatting) and human hands, which results in a hard reject.",
+        "The product width (approx 14%) is below the preferred 20-23% range.",
+        "The product height (approx 20%) exceeds the 1.5 to 1.9 aspect ratio requirement when compared to width."
+      ],
+      "correction_prompt": "Remove all people and human body parts completely. Keep the exact AFP white-and-blue wide low cylindrical drip-tape carton roll in the lower third on the soil. Ensure the crop context matches the sorghum theme without including any humans. Keep the product secondary in the frame.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 14,
+      "product_height_percent": 21,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "The product height is significantly excessive relative to its width (21% vs 14%), failing the 1.5-1.9 diameter-to-height aspect ratio requirement.",
+        "Product height of 21% exceeds the acceptable limit for the 'secondary product' role when paired with the specified diameter ratios, looking like a large drum rather than a wide flat roll.",
+        "There is a human silhouette (a person) visible on the tractor in the background, which is a hard reject condition."
+      ],
+      "correction_prompt": "Regenerate with zero people. Make the drip tape roll wide and low (diameter 1.5-1.9x height), reducing the roll's height so it fits under 15% of frame height. Keep the roll in the lower-left.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 16,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "Hard reject: presence of a human figure (crouching male, face, hands, arms, legs, body silhouette) which is explicitly prohibited.",
+        "Product geometry mismatch: the product is standing vertically (cylindrical height greater than width), failing the requirement of a wide low cylindrical roll where diameter should be 1.5-1.9 times its height.",
+        "Context mismatch: the image is a human-centric portrait style shot, not a product-focused scene.",
+        "The identified crop (small green seedlings) appears to be corn/maize, which contradicts the required Sorghum context."
+      ],
+      "correction_prompt": "Remove all human figures and silhouettes. Regenerate the AFP white-and-blue drip-tape roll as a wide, low cylindrical carton lying horizontally on the soil. The roll's diameter must be approximately 1.5 to 1.9 times its height, occupying 20-23% of the frame width. Position the roll off-center on the lower third of the image. Ensure the background shows a farm field with visible Sorghum crop, maintaining a neutral/hardware-focused aesthetic without any people.",
+      "attempt": 6
     }
   ],
-  "approved_image": "آبیاری-بارانی-در-کشت-سورگوم-هزینه-در-مزرعه-جزئیات-فنی.webp"
+  "approved_image": null
 }

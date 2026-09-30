@@ -1,0 +1,80 @@
+{
+  "id": "xref-411",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 11,
+      "product_height_percent": 17,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Image contains a person (crouching man).",
+        "Hard reject: Visible human body parts (head, hands, arms, legs) are present.",
+        "Product is too small relative to frame (width ~11%, height ~17%), failing the 13-27% practical range.",
+        "Product geometry is incorrect; the roll appears taller than wide, failing the required aspect ratio of 1.5-1.9x.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with zero people. Show a white AFP drip-tape carton roll on the soil. The roll must be horizontally wide (aspect ratio > 1.5) and should occupy approximately 20% of the frame width. Place the roll in the lower-left third, naturally sitting on the dirt. Maintain the rosemary farm background with the 'AFP | 09134922013' watermark in the bottom right. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 22,
+      "product_height_percent": 31,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Hard reject: A person (human figure) is clearly visible in the background center, which violates the zero people/body parts rule."
+      ],
+      "correction_prompt": "Remove the human figure from the background entirely to satisfy the zero-person constraint.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 22,
+      "product_height_percent": 20,
+      "product_x_center_percent": 22,
+      "reasons": [
+        "Hard reject: The identifiable green crop in the foreground is morphologically inconsistent with rosemary, displaying broad leaves rather than rosemary's narrow, linear foliage."
+      ],
+      "correction_prompt": "Replace the broad-leaf green plants in the foreground with a visually neutral crop that matches the rosemary theme (or remove them entirely to focus on the hardware), while preserving the exact product placement, scale, and required bottom-right watermark.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The prominent crop plants appear to be cannabis or hemp, which clearly contradicts the target topic of rosemary (رزماری), resulting in a hard reject.",
+        "The image is a hardware role (role 3) context where identifiable crops should be neutral or absent; the visible crop morphology is not neutral and actively conflicts with the topic."
+      ],
+      "correction_prompt": "Regenerate the image keeping the exact AFP white-and-blue drip-tape carton roll in the same position and size. Replace the cannabis-like crop plants with bare soil and irrigation infrastructure to maintain the hardware context. Ensure the required AFP | 09134922013 watermark is present in the bottom right.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 17,
+      "product_height_percent": 24,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is a single white-and-blue wide cylindrical drip-tape carton roll placed off-center on the lower third of the frame on natural soil.",
+        "Watermark 'AFP | 09134922013' is present in the bottom right corner as required.",
+        "The image contains zero people or human body parts.",
+        "No prohibited items such as bottles, jars, cans, or a second roll are visible.",
+        "Product dimensions are within the acceptable practical range (width ~17%, height ~24%).",
+        "The farm context with drip irrigation lines and low crops matches the selected image role and title."
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-رزماری-کاربردها-جزئیات-فنی.webp"
+}

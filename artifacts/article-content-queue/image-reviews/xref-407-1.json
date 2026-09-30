@@ -1,0 +1,55 @@
+{
+  "id": "xref-407",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 5,
+      "product_height_percent": 8,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: The image contains a prominent human figure (a man), which violates the 'zero people' constraint.",
+        "Hard reject: The object held by the man is not the required 'wide low cylindrical drip-tape carton roll' in a properly placed context; it appears to be a canister or small device, and it is not resting on the soil off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people and zero human body parts. Show a single AFP white-and-blue wide low cylindrical drip-tape carton roll sitting naturally on the soil, off-center on the lower third of the frame. The crop must be clearly identifiable (e.g., tomatoes or cucumbers) to match the article context. Ensure the roll's width is approximately 20% of the frame and height is under 32%. The background should be a farm field with drip irrigation lines. Include the bottom-right watermark 'AFP | 09134922013'. Enlarge the product group from 5% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Gibberish text on the product label (fake/invented writing below 'AFP' and on the side panel)",
+        "Crop identified on the left is cucumber (large distinct fruits), not tomato (the crop in the article title); presence of a clearly identifiable different species is a hard reject",
+        "Drip tape appears to be running in parallel straight lines rather than the typical layout between crop rows, and the overall scene feels staged/inconsistent with real drip-tape infrastructure"
+      ],
+      "correction_prompt": "Regenerate image ensuring the crop is definitely tomato. Ensure the product label text is minimal and authentic. Ensure the background matches the article title/summary.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 16,
+      "product_height_percent": 21,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "The image contains the required AFP watermark.",
+        "The product is a white cylindrical drip-tape carton roll placed on soil.",
+        "The background features a farm with crop rows and a recognizable tomato plant (exact crop).",
+        "There are zero people or human body parts visible.",
+        "The product is off-center in the lower half of the frame.",
+        "Product dimensions are within acceptable limits (width < 27%, height < 32%)."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-در-کشت-کاملینا-هزینه-در-مزرعه-تصویر-شاخص.webp"
+}

@@ -7,35 +7,48 @@
   "attempts": [
     {
       "pass": false,
-      "score": 10,
-      "product_width_percent": 4,
-      "product_height_percent": 11,
-      "product_x_center_percent": 46,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 15,
+      "product_x_center_percent": 55,
       "reasons": [
-        "Hard reject: Contains a person (a man crouching and handling the product), which is strictly prohibited.",
-        "Hard reject: The product is not cylindrical or wide/low; it appears to be a narrow, tall drum-like canister.",
-        "Hard reject: The product size is far too small (width ~4%, height ~11%) compared to the acceptable range (13-27% width).",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
+        "The crop shown in the field is clearly maize (corn), identifiable by its characteristic tassels, large cobs, and broad leaves, which is not the required sorghum (sorghum) crop."
       ],
-      "correction_prompt": "Remove the man. Replace the canister with a wide, low cylindrical AFP drip-tape carton roll placed directly on the soil. The roll must be white and blue, with a wide diameter (approx 1.5-1.9 times its height), positioned off-center on the lower third. It should occupy 20-23% of the frame width and no more than 32% of the height. Maintain the sorghum farm background. Enlarge the product group from 4% to 13-27% of frame width.",
+      "correction_prompt": "Replace the maize plants with mature sorghum plants, ensuring distinct botanical morphology such as upright, indeterminate panicles and narrower, textured leaves typical of Sorghum bicolor, to accurately represent the agricultural context.",
       "attempt": 1
     },
     {
-      "pass": true,
-      "score": 85,
-      "product_width_percent": 18,
-      "product_height_percent": 25,
-      "product_x_center_percent": 42,
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 3,
+      "product_height_percent": 12,
+      "product_x_center_percent": 46,
       "reasons": [
-        "The product is correctly identified as a white-and-blue wide low cylindrical drip-tape carton roll.",
-        "The roll geometry is natural and stable, placed on the soil without visible support structures, consistent with the 1.5 to 1.9 times height width ratio.",
-        "The farm context is clearly a crop field with neat rows of young green vegetation. Although the exact species (sorghum) is not definitively identifiable at this stage, the rows and soil preparation are agronomically consistent with drip-tape installation for a field crop, which satisfies the neutral young vegetation criterion.",
-        "The product is off-center and in the lower third of the frame, and its dimensions (approx. 18% width, 25% height) are within the acceptable range for a secondary element.",
-        "The required bottom-right watermark 'AFP | 09134922013' is present and authentic.",
-        "The image is free of any people, faces, or human body parts, and contains no prohibited items like bottles, extra products, or gibberish text."
+        "Presence of a person (human body part) which is a hard reject criterion.",
+        "The product is not a white-and-blue wide low cylindrical drip-tape carton roll.",
+        "The product is a tall, narrow container (bottle/jar/canister) which is a hard reject criterion.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 3% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human body parts. Replace the tall bottle/jar with a white-and-blue wide low cylindrical drip-tape carton roll. Position the roll off-center on the lower third of the frame, placed naturally on the soil. Ensure the roll width is approximately 20-23% of the image width and its height does not exceed 32%. Enlarge the product group from 3% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 20,
+      "product_height_percent": 26,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Presence of required AFP bottom-right watermark",
+        "Single AFP white-and-blue wide low cylindrical drip-tape carton roll correctly identified",
+        "Product is secondary to the scene with correct proportions (width within 13-27%, height under 32%, diameter-to-height ratio approx 0.77)",
+        "Product is off-center on the lower third and naturally placed on soil",
+        "Crop morphology and growth habit are consistent with young sorghum",
+        "Zero people or human body parts visible",
+        "Background context matches the article's farm theme"
       ],
       "correction_prompt": "",
-      "attempt": 2
+      "attempt": 3
     }
   ],
   "approved_image": "آبیاری-بارانی-در-کشت-سورگوم-هزینه-در-مزرعه-تصویر-شاخص.webp"
