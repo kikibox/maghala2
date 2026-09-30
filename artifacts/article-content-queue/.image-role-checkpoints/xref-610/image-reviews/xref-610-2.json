@@ -1,0 +1,99 @@
+{
+  "id": "xref-610",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8,
+      "product_height_percent": 10,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "The image contains a person (a man kneeling and handling the product), which is a hard reject constraint.",
+        "The product is held in the hands rather than placed on the soil, which makes the geometry incorrect.",
+        "The product size is too small relative to the frame; the rules generally allow for a larger secondary product (13-27% width) whereas this is only approx 8%.",
+        "The product is not a standalone 'wide low cylindrical' carton roll visible on the ground; it is a held sample unit.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with no people or human parts visible. Place exactly one wide, low cylindrical white-and-blue AFP drip-tape carton roll on the soil in the foreground (lower third). Ensure the roll has an aspect ratio of approx 1.5:1 (width to height) and occupies approximately 15-20% of the frame width. The background must show staked eggplant crops in a farm field. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 24.5,
+      "product_height_percent": 28.5,
+      "product_x_center_percent": 42.0,
+      "reasons": [
+        "The AFP phone watermark 'AFP | 09134922013' is placed in the bottom-right corner, which strictly violates the requirement for an 'authentic package print' and specific watermark placement, as it appears superimposed on the background soil rather than integrated as a required specific element. (Note: While the rule states the watermark is required, its visual placement here on the soil rather than acting as a specific metadata overlay is often flagged in these strict generation tests; however, the most critical hard reject is the 'impossible geometry' or 'fake text' concern: the text 'AFP' is on the roll, but the prompt requires the specific 'AFP | 09134922013' string. The image *does* have this string in the corner. Re-evaluating: The rule says 'The exact bottom-right watermark... is REQUIRED'. It is present. It is not to be rejected. Therefore, I must look for other failures.)",
+        "The product roll's visible diameter (width) is significantly larger relative to its height compared to a standard drip tape carton roll, appearing nearly cubic or too wide, violating the 1.5-1.9 aspect ratio rule (1.94 actual vs ~1.5-1.9 target).",
+        "The crop plants (likely Hibiscus/Soybean) have a very bushy, broad-leaf morphology that may not 'unmistakably' match the 'exact named crop' if the hidden context implies a different specific row crop, but assuming the generic 'topic-specific' context, the main failure is the watermark/box geometry.",
+        "Wait, looking at the 'Hard reject' list: 'fake headline, caption...'. The text in the corner is a caption-style overlay. The rule says 'invented writing outside authentic package print and the AFP phone watermark'. The string 'AFP | 09134922013' is the allowed watermark. So that passes.",
+        "Re-evaluating aspect ratio: Width is ~220px. Height is ~180px. Ratio is 1.22. This is significantly less than the required 1.5 to 1.9. The roll is too tall/fat.",
+        "Re-evaluating product placement: The product is centered at 42%, which is close to the lower third line but slightly high horizontally.",
+        "Re-evaluating crop: The crop is Hibiscus (Hibiscus rosa-sinensis) or similar. If the title was generic 'vegetable garden', it might pass, but the prompt implies a specific crop check. Assuming 'Hibiscus' was not the title crop, it's a fail. If it was, the aspect ratio is a hard fail."
+      ],
+      "correction_prompt": "Adjust the drip tape roll geometry to be visibly wider and flatter (wider diameter, lower height) to meet the 1.5-1.9 aspect ratio. Move the roll slightly down to ensure it sits firmly in the bottom third. Ensure the crop morphology strictly matches the specific target article.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 25,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Critical reject: The image contains a full human body (a man crouching and placing the product), which is strictly forbidden.",
+        "Critical reject: The product is not naturally placed on the soil, but is being actively held and staged by a human.",
+        "Hard reject triggered due to the presence of a person."
+      ],
+      "correction_prompt": "Regenerate image with zero people. A single white and blue wide low cylindrical drip-tape carton roll must be placed naturally and off-center on the farm soil (lower third). The background should show a prepared bed and the specific article crop with botanically accurate morphology. Include the exact bottom-right watermark 'AFP | 09134922013'.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "The image contains multiple blue/purple drip tubes extending from the roll along the soil, which is not a single 'carton roll' but suggests a layflat hose or pipe layout that may violate the 'pipe through the roll' or 'second package' constraints (specifically 'pipe through the roll' is forbidden, and multiple tubes are visible).",
+        "The visible geometry of the roll appears somewhat cylindrical/drum-like, but the presence of the extruded tubing suggests a 'layflat hose' or 'pipe' configuration which is explicitly forbidden ('layflat hose, pipe through the roll'). The roll is not just a carton; it has hoses coming out of it."
+      ],
+      "correction_prompt": "Remove all visible blue/purple tubing or hoses extending from the roll; the product must be a single, clean, dry white-and-blue wide low cylindrical drip-tape carton roll sitting on soil without any extruded pipes or tubes visible.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "The image contains multiple people (hands, arms, legs, and two full figures), which is a hard reject condition."
+      ],
+      "correction_prompt": "Remove all humans and body parts. Keep the AFP white-and-blue wide low cylindrical drip-tape carton roll on the soil in the lower third, making it the sole product focus. Show only the agricultural context with crops.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 12,
+      "product_height_percent": 25,
+      "product_x_center_percent": 40,
+      "reasons": [
+        "Human legs and upper body visible in the background",
+        "Product width is too small (approx 12%), under the minimum 13% threshold for a secondary product",
+        "Product height is too large relative to its width (approx 2.1x), failing the 1.5-1.9x aspect ratio requirement",
+        "The crop shown (hibiscus/flowers) is likely not the 'article title' crop intended for a general farm context, although without the title it's a guess; the main hard reject is the humans.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate with no people or body parts visible in the background. Increase the drip-tape roll's width to at least 13% of the frame. Adjust the roll's geometry to have a visible diameter 1.5 to 1.9 times its visible height. Maintain the bottom-right watermark. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

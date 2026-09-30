@@ -96,6 +96,90 @@
       ],
       "correction_prompt": "Regenerate the image with a strictly empty background—no people, no tractors, and no silhouettes—featuring only a farm field context. Replace the generic seedlings with mature, botanically accurate yellow split-pea plants showing distinct trifoliate leaves and stems to clearly identify the crop. Reduce product height from 33% to at most 32% of frame height.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 22,
+      "product_height_percent": 34,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The crop shown is a pepper with distinct round yellow fruits, not yellow split-pea (لپه); this fails the botanically accurate crop requirement for the article.",
+        "The product is positioned in the immediate foreground, appearing quite large and close to the primary crop, whereas it should feel more secondary and off-center within the context.",
+        "The crop morphology is a hard reject for the specific agronomic story of yellow split-pea.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the background crop to show yellow split-pea (chickpea) plants with characteristic compound leaves and small yellow pods, not round peppers. Move the white-and-blue drip-tape roll slightly further back or reduce its relative scale to make it appear more secondary within the farm context, keeping it off-center on the lower third. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The crop shown is clearly a pepper plant (Solaceae family) with fruit attached. This is a different species and constitutes a hard reject for the article about لپه (yellow split-pea/Chickpea). The required crop must be recognizable as split-pea or botanically neutral."
+      ],
+      "correction_prompt": "Replace the pepper plants with either a botanically accurate field of yellow split-peas (Chickpeas) or a neutral prepared soil bed with drip tape. Remove all identifiable fruit or vegetables that contradict the article topic.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 14,
+      "product_height_percent": 11,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Clear violation: Image displays identifiable yellow bell peppers instead of yellow split peas, which requires immediate rejection.",
+        "Product geometry error: The drip tape roll is oriented vertically (standing up), failing the requirement to be a 'wide low cylindrical' shape placed horizontally on the soil.",
+        "Product dimension mismatch: Visible diameter (height) is not 1.5 to 1.9 times the visible height (width) of the roll as required.",
+        "Missing visual elements: The roll lacks the required wide, blue color accents."
+      ],
+      "correction_prompt": "Replace the bell peppers with accurate, small yellow split pea pods and green leaves on bushy stems. Place the white-and-blue cylindrical drip tape roll horizontally lying flat on the soil, ensuring its width is 1.5x its height, and keep the layout off-center on the lower third.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 60,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The crop visible in the foreground and background shows a plant with yellow fruits and lobed leaves, which appears to be a yellow pepper or similar Solanaceae species rather than the required لپه (yellow split-pea crop), which should have distinct compound leaves.",
+        "The product roll's visible diameter is approximately 2.0 times its visible height (25% width vs 28% height if considering the tilted face, or visually the cylinder width is significantly larger than its thickness), slightly exceeding the preferred 1.5-1.9 ratio limit.",
+        "The roll is not lying flat on its side (cylindrical axis horizontal); it is tilted/standing on its edge, which is less standard for 'wide low cylindrical drip-tape carton roll' staging."
+      ],
+      "correction_prompt": "Regenerate the image with a farm context specifically featuring yellow split-pea (Lep) plants with distinct small bean-plant leaves (no yellow peppers). Place the AFP white-and-blue roll lying flat on the soil on its side (axis horizontal) so it appears wide and low, with a visible diameter approximately 1.5 to 1.8 times its thickness. Keep the roll off-center in the lower third. Maintain the 'AFP | 09134922013' watermark in the bottom right.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 28,
+      "product_height_percent": 25,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "The crop shown is clearly identifiable as yellow peppers (Capsicum annuum) in the fruiting stage, which is a different species and not the required 'yellow split-pea crop' (Labe). The prompt allows for neutral vegetation but explicitly rejects clearly identifiable different species.",
+        "The product (drip tape roll) is slightly wider than the preferred 27% maximum frame width, appearing closer to 28-30% of the width.",
+        "The crop does not exhibit the correct botanical morphology (leaves/growth habit) for split-peas (Fabaceae) as the primary crop in the field.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with the crop replaced by yellow split-pea plants (Labe) in the early to mid-growth stage with visible green legume stems and leaves. Ensure the crop is not identifiable as peppers or another non-legume species. Maintain the AFP drip tape roll on the soil in the lower-left foreground. Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 20,
+      "product_height_percent": 23,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Product shape incorrect: The drip tape roll is depicted as a short, wide cylindrical block (like a toilet paper roll or canister) instead of the required 'wide low cylindrical drip-tape carton roll' (which implies a large spool on a wider core).",
+        "Crop identification ambiguous: The crop in the background features large yellow trumpet-shaped flowers, which are botanically inaccurate for split-pea (Cicer arietinum) that typically produces small purple/white flowers and yellow pods, not large yellow blooms."
+      ],
+      "correction_prompt": "Regenerate with the product as a large, wide, low-height cylindrical spool roll of drip tape on a wide core, rather than a short block. The crop must be identified as a legume/split-pea with small yellow pods and botanically accurate trifoliate leaves, removing the large trumpet flowers.",
+      "attempt": 6
     }
   ],
   "approved_image": null

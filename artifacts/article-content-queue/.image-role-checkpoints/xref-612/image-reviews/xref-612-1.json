@@ -7,76 +7,47 @@
   "attempts": [
     {
       "pass": false,
-      "score": 10,
-      "product_width_percent": 12,
-      "product_height_percent": 12,
-      "product_x_center_percent": 48,
+      "score": 25,
+      "product_width_percent": 11,
+      "product_height_percent": 22,
+      "product_x_center_percent": 32,
       "reasons": [
-        "Hard reject: Two people (farms/face/hands/body parts) are clearly visible in the frame.",
-        "The product roll is centered in the frame rather than off-center.",
-        "The background shows an indistinct green crop which is not botanically accurate for Sainfoin (specific lack of pinnate trifoliate leaves and characteristic flower heads).",
-        "Product width is under the preferred 20-23% and falls below the 13% practical threshold.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+        "Botanical mismatch: The article specifies 'سپرس' (sainfoin), which has characteristic trifoliate leaves and purple flower spikes. The image prominently features plants with large, simple, ovate leaves that strongly resemble tobacco or sunflower seedlings, which are botanically different from sainfoin.",
+        "Proportion error: The product width (~11%) and height (~22%) fall below the 13-27% width requirement and the 32% height limit is technically met but the overall scale is too small relative to the frame, making it look like a generic prop rather than a wide drip-tape roll.",
+        "Geometry: The product height is nearly equal to its width, whereas the prompt requires the diameter to be 1.5 to 1.9 times the height (wide/low profile).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate the image to include a single white-and-blue drip-tape roll with the text 'AFP | 09134922013' on it, placed off-center on the lower third of a Sainfoin field. Strictly remove all people and human silhouettes. The crop must be visible Sainfoin with its distinct botanical features. Enlarge the product group from 12% to 13-27% of frame width.",
+      "correction_prompt": "Regenerate with 'sainfoin' (Onobrychis viciifolia) crops showing trifoliate leaves and purple flower heads instead of tobacco. Increase the product width to 18% of the frame and reduce the height to 10% to create a wide, low cylindrical aspect ratio. Enlarge the product group from 11% to 13-27% of frame width.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 30,
-      "product_width_percent": 21,
-      "product_height_percent": 33,
-      "product_x_center_percent": 37,
+      "score": 15,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 48,
       "reasons": [
-        "Crop identification error: The flowers shown (pink, cup-shaped, distinct centers) are botanically consistent with Poppies (Papaver somniferum) or similar ornamental plants, NOT Sainfoin (Onobrychis viciifolia). Sainfoin produces small pea-like flowers in racemes and has trifoliate leaves; the image shows large solitary flowers on long stems, which constitutes a 'clearly identifiable different species' hard reject.",
-        "Height slightly exceeds limit: The roll's height appears to be 33-34% of the frame, exceeding the maximum 32% threshold.",
-        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+        "Reject: The image contains the bottom-right watermark 'AFP | 09134922013'. The QA rules explicitly state: 'Hard reject... fake headline, caption, gibberish text or invented writing outside authentic package print and the AFP phone watermark.' and 'The exact bottom-right watermark... is REQUIRED and must never be rejected'. This image contains a caption box or text overlay that is not the required clean watermark format or violates the negative constraint against 'invented writing' if it's considered a caption. However, the primary hard reject is likely the interpretation of 'invented writing' vs 'required watermark'. Wait, the prompt says 'The exact bottom-right watermark... is REQUIRED'. But it also says 'Hard reject... invented writing outside authentic package print and the AFP phone watermark'. The text in the image is 'AFP | 09134922013'. This matches the required watermark exactly. So why reject? Ah, looking closely at the image, there is a black box behind the text. The rule says 'outside authentic package print and the AFP phone watermark'. A black box might be considered a 'fake headline' or 'caption' structure, or 'gibberish' if it's just a box. BUT, the rule says 'must never be rejected...'. This is a contradiction in my reading. Let's re-read: 'Hard reject... fake headline, caption... or invented writing...'. The watermark is required. If the watermark is present, it shouldn't be rejected. Let's look for other reasons. The crop is clearly not sainfoin, but that's soft reject. The roll is centered (x=48), violating 'off-center'. The roll is 'wide low', but looks like a standard roll, not 'drip-tape' (usually long flat or specific shape, but 'cylindrical' is allowed). The 'wide low' description in the prompt implies a flat roll. This roll is 3D. It is a hard reject for 'centered product staging' (Rule: 'Hard reject... centered product staging').",
+        "Reject: Centered product staging. The product x_center is ~48%, which is considered centered. Rule requires off-center on the lower third."
       ],
-      "correction_prompt": "Replace the pink poppy flowers with a field of sainfoin (Onobrychis viciifolia), showing characteristic trifoliate leaves and small pink-purple pea-family flower clusters. Reduce the drip-tape roll height to 30% of the frame height to meet the <32% constraint. Reduce product height from 33% to at most 32% of frame height.",
+      "correction_prompt": "Move the drip tape roll significantly to the left (x_center < 35) or right (x_center > 65) to satisfy the off-center requirement. Ensure the roll is a wide, flat cylindrical shape typical of drip tape, not a tall 3D roll. Remove the black background box behind the AFP watermark, leaving only the white text 'AFP | 09134922013' visible on the bottom right.",
       "attempt": 2
     },
     {
-      "pass": false,
-      "score": 40,
-      "product_width_percent": 24.1,
-      "product_height_percent": 23.5,
-      "product_x_center_percent": 28.0,
-      "reasons": [
-        "Crop context mismatch: The background shows a meadow of mixed wildflowers (vernal grass, poppies, etc.), which does not visually match or support the specific agronomic story of Sainfoin (Espas).",
-        "Botanical identification: The visible flora includes red poppies and tall spiky purple flowers, which are clearly identifiable as different species, not Sainfoin.",
-        "Product Geometry: The roll appears too tall relative to its width. The visible height is roughly equal to the width, violating the requirement for a wide low cylindrical shape with a diameter of 1.5 to 1.9 times its visible height."
-      ],
-      "correction_prompt": "Regenerate the background to strictly show a Sainfoin field with characteristic trifoliate leaves and reddish-purple umbel flower spikes, removing all other wildflowers. Flatten the drip tape carton to be significantly wider than it is tall (diameter approx 1.8x height) while keeping the product width at 20-23% of the frame.",
-      "attempt": 3
-    },
-    {
-      "pass": false,
-      "score": 55,
-      "product_width_percent": 24,
-      "product_height_percent": 26,
-      "product_x_center_percent": 48,
-      "reasons": [
-        "Clearly identifiable different species: The crop features distinct large five-petaled magenta flowers, which is botanically inaccurate for mature Sainfoin (Aspalathus linearis), which typically has small white or yellow flowers and linear leaves. This triggers the hard reject for identifiable wrong species.",
-        "Product staging: The roll is positioned in the center channel (approx 50% x-center), which violates the requirement for the product to be off-center on the lower third."
-      ],
-      "correction_prompt": "Regenerate the image with a crop that is either a neutral prepared bed with unidentifiable young seedlings or a row of small, botanically accurate Sainfoin plants (avoiding the large magenta flowers). Position the white drip-tape carton roll distinctly off-center in the lower third of the frame, placing it naturally on the soil surface. Ensure the 'AFP | 09134922013' watermark is visible in the bottom right corner.",
-      "attempt": 4
-    },
-    {
       "pass": true,
-      "score": 88,
-      "product_width_percent": 21,
-      "product_height_percent": 24,
-      "product_x_center_percent": 37,
+      "score": 82,
+      "product_width_percent": 24,
+      "product_height_percent": 32,
+      "product_x_center_percent": 38,
       "reasons": [
-        "Contains exactly one AFP drip-tape roll with the correct white-and-blue color scheme and wide low cylindrical shape.",
-        "The product is placed naturally on the soil in the lower third and is off-center to the left, avoiding centered staging.",
-        "The field context features small seedlings in a prepared bed, which is a botanically neutral representation of a growing crop that passes the requirements.",
-        "The required watermark 'AFP | 09134922013' is visible in the bottom right corner.",
-        "No people, body parts, or additional commercial products are present in the image."
+        "Product is a single wide low cylindrical drip-tape roll, correctly off-center on the lower third and naturally placed on soil.",
+        "Background features distinct crop rows and prepared soil beds matching a topic-specific farm context.",
+        "Botanical context is acceptable as neutral young vegetation; specific article crop is suggested but not a hard reject.",
+        "Required watermark 'AFP | 09134922013' is clearly present in the bottom right.",
+        "No visible people, human body parts, or forbidden extra commercial products."
       ],
       "correction_prompt": "",
-      "attempt": 5
+      "attempt": 3
     }
   ],
   "approved_image": "آبیاری-هوشمند-در-کشت-اسپرس-مقایسه-تصویر-شاخص.webp"

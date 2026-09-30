@@ -1,0 +1,55 @@
+{
+  "id": "xref-593",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 9,
+      "product_height_percent": 14,
+      "product_x_center_percent": 78,
+      "reasons": [
+        "Presence of a human (farmer) and body parts, which is a hard reject condition.",
+        "The visible product is a small, flat roll (possibly a hose or tape end), not the specified wide, low cylindrical drip-tape carton roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people. Show a single wide, low cylindrical white-and-blue drip-tape roll placed on soil in the lower third, off-center. The roll should be wide (approx 20% of frame width) and short. No crops. Enlarge the product group from 9% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 75,
+      "product_width_percent": 26.0,
+      "product_height_percent": 19.0,
+      "product_x_center_percent": 47.5,
+      "reasons": [
+        "Product x-center is at 47.5%, which is too centered; requirements specify the roll must be off-center.",
+        "The background contains a large crop field (likely sunflowers), which contradicts the rule that crop plants must be visually neutral or absent unless they match the specific crop (sainfoin)."
+      ],
+      "correction_prompt": "Reposition the drip-tape roll significantly to the left or right (approx 25-30% or 70-80% x-axis) to be clearly off-center. Change the background crop to a neutral soil texture or generic greenery that is visually neutral to avoid contradicting the specific 'sainfoin' topic.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 20,
+      "product_height_percent": 13,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The image correctly displays a single AFP white-and-blue wide cylindrical drip-tape carton roll as required for Role 3 (hardware story).",
+        "The product is properly staged off-center on the lower third (estimated x-center 35%), resting naturally on soil.",
+        "Dimensions are acceptable: width is ~20% (within the 13-27% range) and height is ~13% (well below the 32% limit), maintaining the product as a secondary element.",
+        "The background features an unattended tractor, which is explicitly allowed as irrigation infrastructure/hardware.",
+        "The required 'AFP | 09134922013' watermark is present and correct in the bottom-right corner.",
+        "There are zero people or human body parts in the image.",
+        "No prohibited items (bottles, jars, buckets, multiple rolls, or impossible geometry) are present."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-نوار-تیپ-در-کشت-اسپرس-نکات-کلیدی-جزئیات-فنی.webp"
+}

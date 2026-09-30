@@ -1,0 +1,53 @@
+{
+  "id": "xref-578",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Contains a visible person (farmer standing in the greenhouse)",
+        "Product is a cylinder (bottle/drum) rather than a wide low roll",
+        "Product is centered rather than off-center on the lower third",
+        "Product dimensions are too small relative to the frame width",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate without any people or human silhouettes. Place a wide, low, cylindrical drip-tape roll on the soil, positioned off-center in the lower-left. The roll should be larger relative to the frame (approx 20% width) and maintain a low profile (diameter 1.5-1.9x its height). Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 23,
+      "product_height_percent": 31,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Crop identity mismatch: The image shows tomato plants with orange-red fruits and characteristic tomato foliage, not cucumbers (خیار). The prompt explicitly requires cucumber vines with angular leaves and tendrils. Hard reject criteria are met for a clearly identifiable different species."
+      ],
+      "correction_prompt": "Regenerate the image to feature cucumber vines (vining cucumbers with thin tendrils and angular leaves) in a farm field, removing the tomato plants entirely. Ensure the AFP drip-tape roll is white and blue, placed on the soil in the lower-left, with the bottom-right watermark preserved.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 20,
+      "product_height_percent": 30,
+      "product_x_center_percent": 20,
+      "reasons": [
+        "The required product (AFP white and blue wide low cylindrical drip-tape carton roll) is clearly visible, off-center in the lower third, and placed naturally on the soil surface.",
+        "The watermark \"AFP | 09134922013\" is correctly positioned in the bottom-right corner as requested.",
+        "No people, human body parts, or prohibited items (like bottles, jars, or containers) are present in the image.",
+        "The background displays a row of green plants that, while young, are visually consistent with the requested 'neutral young vegetation' for a farm context without being a clearly identifiable, conflicting species."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-خیار-راهنمای-جامع-کاربرد-عملی.webp"
+}

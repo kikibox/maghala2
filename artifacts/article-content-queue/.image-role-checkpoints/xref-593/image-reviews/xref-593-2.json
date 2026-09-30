@@ -1,0 +1,95 @@
+{
+  "id": "xref-593",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": false,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 70,
+      "reasons": [
+        "Hard reject: The image contains a human figure (farmer) and human body parts (hands, arms, legs, feet), which is strictly prohibited.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes completely. Ensure the white and blue AFP drip-tape roll is centered in the lower third of the frame, placed naturally on the soil. Regenerate the background to clearly show a sainfoin farm context with recognizable agronomic elements or young sainfoin seedlings, maintaining the 'AFP | 09134922013' watermark in the bottom right. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 28,
+      "product_height_percent": 24,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Product is a white and blue cylindrical roll placed naturally on the soil",
+        "Required watermark 'AFP | 09134922013' is present in the bottom right",
+        "No people, human silhouettes, or body parts are visible in the image",
+        "The crop shows young seedlings which are botanically neutral and unidentifiable, passing the strict species check for sainfoin",
+        "The product is in the lower third and the farm context matches the irrigation topic",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 7,
+      "product_height_percent": 12,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: The image contains two people (farmers) who are directly handling the product, violating the 'zero people' constraint.",
+        "The product is not off-center on the lower third; it is located in the center-bottom and is being held by hands.",
+        "The product size is significantly smaller than the required minimum width of 13%.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 7% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all human figures and hands. Place exactly one white-and-blue cylindrical drip-tape carton roll on the soil. Ensure the roll is positioned off-center in the lower third of the frame, with a width of at least 15% of the image. The background must show a sainfoin (اسپرس) farm context. Enlarge the product group from 7% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 32,
+      "product_height_percent": 28,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Hard reject: A person (farmer) is clearly visible standing in the background.",
+        "Crop context error: The image displays flowering plants and corn (maize), which are clearly identifiable as different species. The crop must be اسپرس (sainfoin), which in a young/seedling stage would appear as small green shoots, not the mature flowering plants or tall corn seen here.",
+        "Product scaling: The estimated width (32%) exceeds the 27% limit for rejection.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people from the scene. Replace the flowering plants and corn with young sainfoin (اسپرس) seedlings or a neutral prepared soil bed. Reduce the product width to 22% of the frame. Keep the AFP white-and-blue drip-tape roll off-center in the lower third on the soil. Retain the exact watermark. Reduce the product group from 32% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 17,
+      "product_height_percent": 18,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Contains visible human silhouettes in the distant background, which triggers a hard reject."
+      ],
+      "correction_prompt": "Regenerate the image to completely remove all people and human figures, including distant silhouettes on the horizon, keeping only the farm landscape and the product.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 14,
+      "product_height_percent": 17,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: The crop is clearly identifiable as lavender (distinctive purple flower spikes), not the required sainfoin (اسپرس).",
+        "The product bounding box height (~17%) is greater than its width (~14%), causing the roll to appear taller than it is wide. The requirement is that the diameter must be ~1.5-1.9x the height (i.e., it should look clearly wider than it is tall)."
+      ],
+      "correction_prompt": "Regenerate with a crop of sainfoin (sainfoin has small clover-like leaves and yellow flower spikes, not purple). Replace the lavender. The crop should be a prepared bed or tiny unidentifiable seedlings to avoid species mismatch. Reorient the drip tape roll so it is clearly wide and low (width significantly greater than height, approx 1.5x).",
+      "attempt": 6
+    }
+  ],
+  "approved_image": null
+}

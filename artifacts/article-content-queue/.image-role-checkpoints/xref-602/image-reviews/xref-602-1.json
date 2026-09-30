@@ -87,6 +87,88 @@
       ],
       "correction_prompt": "Replace the yellow tulip field with young yellow split-pea (laph) plants; reduce the roll's height to <32% of the frame (aspect ratio ~1.8x width to height); move the roll to the lower-left or lower-right third (x_center <40% or >60%); keep the AFP | 09134922013 watermark exactly as is. Reduce product height from 38% to at most 32% of frame height.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "The background crop consists of large yellow flowers with cup-shaped blooms and broad leaves, which are visually identifiable as tulips or a similar bulbous flower species. This violates the requirement to hard reject clearly identifiable different species for a yellow split-pea (pulse/legume) crop article. The botanical morphology (flowering monocot) is inconsistent with split-pea."
+      ],
+      "correction_prompt": "Regenerate the image with the background crop changed to yellow split-pea plants (pods, yellow flowers, legume leaves, and green bushes) to match the article, while keeping the AFP drip-tape roll, position, size, and watermark exactly the same.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 18,
+      "product_height_percent": 28,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The background crop is clearly identifiable sunflowers (Helianthus annuus), which is a different species than the required yellow split-pea (لپه).",
+        "The drip tape roll is centered in the lower half of the frame rather than placed on the lower third and off-center.",
+        "The product bounding box extends into the vertical center of the frame rather than staying in the bottom third."
+      ],
+      "correction_prompt": "Replace the sunflower background with a yellow split-pea (chickpea) farm context. Reposition the white and blue drip tape roll lower in the frame and to the far left or right, ensuring it stays off-center.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 25,
+      "product_height_percent": 25,
+      "product_x_center_percent": 78,
+      "reasons": [
+        "Article crop mismatch: The background clearly shows sunflowers (Helianthus annuus), not the required yellow split-pea crop (Leph).",
+        "Multiple packages: There are two visible rolls (one on the left and one on the right), whereas the role requires exactly one.",
+        "Geometry and aspect ratio: The roll on the right (the larger one) is not correctly shaped; it appears compressed and does not resemble a wide low cylindrical drip-tape carton roll. Its visible diameter is not 1.5 to 1.9 times its height.",
+        "Product staging: The product is not centered in the lower third as requested; instead, it is positioned towards the right edge."
+      ],
+      "correction_prompt": "Remove the roll on the left, keeping only one roll. Reshape the remaining roll to look like a wide, low cylinder (diameter ~1.5-1.9x height). Replace the sunflower background with rows of yellow split-pea crops. Place the single roll off-center in the lower third on the soil.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 16,
+      "product_height_percent": 14,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Background shows sunflowers, which are a clearly identifiable different species from the required yellow split-pea (لپه) crop. This is a hard reject criterion.",
+        "The text on the product carton is gibberish and not authentic package print (e.g., 'Diz toructo titi'), which is a hard reject.",
+        "Missing required watermark 'AFP | 09134922013' in the bottom-right corner; instead, there is a different phone number."
+      ],
+      "correction_prompt": "Replace the sunflower background with a field of yellow split-pea (لپه) in an appropriate growth stage. Remove all non-English/gibberish text from the carton, retaining only the AFP logo and branding. Add the exact text watermark 'AFP | 09134922013' in the bottom-right corner. Ensure the drip-tape roll is placed on the soil in the lower third, off-center.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 22,
+      "product_height_percent": 32,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "The background crop is clearly identifiable as tulips (distinct leaves and cup-shaped flower morphology), which is a different species from the required yellow split-pea (لپه), triggering a hard reject.",
+        "The product width is estimated at 22%, which is within the acceptable 13-27% range.",
+        "The product height is estimated at 32%, which is at the hard limit for rejection (must be no more than 32%, but often slightly over in AI generation)."
+      ],
+      "correction_prompt": "Regenerate the image with a background crop of yellow split-pea (chickpea-like, pinnate leaves, no cup-shaped flowers) instead of tulips. Ensure the drip-tape roll height is reduced to be strictly less than 32% of the frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Crop mismatch: The field shows yellow tubular flowers (resembling tulips or daffodils), which is a hard reject. The required crop is yellow split-pea (لپه), which should have flat green trifoliate leaves and small pea-like pods, not large flower heads.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Replace the flower field with yellow split-pea crop (لپه) showing broad green trifoliate leaves and small pea pods. Ensure the white-and-blue drip-tape carton roll is larger (approx 20% of frame width), positioned in the lower third, and remains naturally placed on the soil. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 6
     }
   ],
   "approved_image": null
