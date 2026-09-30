@@ -35,7 +35,7 @@ jobs:
             exit 0
           fi
 
-          read -r generation_remaining translation_remaining rebuild_remaining <<<"$(python - <<'PY'
+          read -r generation_remaining translation_remaining translation_sources translation_threshold rebuild_remaining <<<"$(python - <<'PY'
           import json
           import sys
           from pathlib import Path
@@ -47,19 +47,32 @@ jobs:
           rebuild_path = root / 'image-rebuild-reference-rerender-3d-v12-family-aware-layflat-repair.json'
           rebuild = json.loads(rebuild_path.read_text(encoding='utf-8')) if rebuild_path.exists() else {}
           eligible = sum(1 for item in state.get('items', []) if queue.is_retry_eligible(item))
-          print(eligible, int(translations.get('pending_translation_units', 0)), int(rebuild.get('remaining_candidates', 0)))
+          print(
+              eligible,
+              int(translations.get('pending_translation_units', 0)),
+              int(translations.get('articles_missing_any_translation', 0)),
+              max(1, int(translations.get('persian_queue_pause_threshold', 4))),
+              int(rebuild.get('remaining_candidates', 0)),
+          )
           PY
           )"
 
-          if [ "$translation_remaining" -gt 0 ]; then
-            echo "$translation_remaining translation units remain; dispatching translations."
+          # A small failing translation tail must not starve Persian generation.
+          # Pause Persian only at the same source-count threshold recorded by the
+          # translator. When the tail is below that threshold, generation gets
+          # the next turn and its normal handoff can retry translation afterward.
+          if [ "$translation_remaining" -gt 0 ] && [ "$translation_sources" -ge "$translation_threshold" ]; then
+            echo "$translation_remaining translation units across $translation_sources sources reached the pause threshold $translation_threshold; dispatching translations."
             gh workflow run article-translations.yml --ref main
           elif [ "$rebuild_remaining" -gt 0 ]; then
             echo "$rebuild_remaining image repairs remain; dispatching the rebuild."
             gh workflow run rebuild-all-article-images.yml --ref main
           elif [ "$generation_remaining" -gt 0 ]; then
-            echo "$generation_remaining generation/retry items remain; dispatching the Persian queue."
+            echo "$generation_remaining generation/retry items remain; the translation tail is below its pause threshold, so dispatching the Persian queue."
             gh workflow run article-content-queue.yml --ref main
+          elif [ "$translation_remaining" -gt 0 ]; then
+            echo "Persian generation is complete; dispatching the remaining $translation_remaining translation units."
+            gh workflow run article-translations.yml --ref main
           else
             echo "Article pipeline is fully complete; watchdog will not dispatch any workflow."
           fi
