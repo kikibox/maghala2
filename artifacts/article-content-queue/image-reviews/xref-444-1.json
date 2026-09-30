@@ -1,0 +1,81 @@
+{
+  "id": "xref-444",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 11,
+      "product_height_percent": 12,
+      "product_x_center_percent": 37,
+      "reasons": [
+        "Hard reject: The image explicitly contains multiple people (a woman crouching in the foreground and a person standing in the upper-right inset), violating the 'zero people' constraint.",
+        "Hard reject: Human body parts including hands, arms, face, and legs are clearly visible.",
+        "Product geometry: The drip tape roll is a short, stubby cylinder with a height nearly equal to its width, whereas the requirement specifies a 'wide low cylindrical' roll with a diameter 1.5 to 1.9 times its height.",
+        "Product scale: The product width (~11%) is significantly smaller than the preferred range (20-23%) and the acceptable minimum (13%), making the product less prominent than required.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 11% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate a wide-shot agricultural scene showing a prepared field with cucumber seedlings. Place a wide, low, cylindrical blue-and-white drip-tape roll (ratio approx. 1.8:1) on the soil in the lower third, off-center. The roll should be approx. 20% of the frame width. Ensure absolutely no people, body parts, or human silhouettes are visible. Retain the 'AFP | 09134922013' watermark in the bottom right. Enlarge the product group from 11% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 23,
+      "product_height_percent": 24,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "The required watermark 'AFP | 09134922013' is missing from the bottom-right corner; instead, the crop label contains the text '09134922013'.",
+        "The product bounding box height (24%) exceeds the preferred target but is within the 32% hard-reject limit; however, the ratio of width to height (~0.96) is less than 1.0, which violates the geometry requirement that the roll must be wide and low (diameter ~1.5-1.9x height)."
+      ],
+      "correction_prompt": "Regenerate with the exact text 'AFP | 09134922013' placed in a white box in the bottom-right corner. Ensure the drip-tape roll is flattened so its width is significantly greater than its height (ratio > 1.5).",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 25,
+      "product_height_percent": 22,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: Presence of two human subjects (a man and a woman) in the foreground; the image contains full bodies, faces, hands, and arms.",
+        "Crop mismatch: The background shows broad-leaf green plants with red pods (likely soybeans), which contradicts the required 'cucumber' (خیار) article topic."
+      ],
+      "correction_prompt": "Regenerate the image showing only the AFP white-and-blue drip tape roll on the soil in a field of cucumber vines. Remove all people and human body parts completely.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 22.0,
+      "product_height_percent": 28.0,
+      "product_x_center_percent": 48.5,
+      "reasons": [
+        "The background vegetation does not clearly identify a cucumber crop; the article-specific agronomic story is not clear."
+      ],
+      "correction_prompt": "Regenerate the image showing visible cucumber vines, angular leaves, tendrils, or attached cucumbers in the background field to clearly identify the crop.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 78,
+      "product_width_percent": 20.4,
+      "product_height_percent": 22.5,
+      "product_x_center_percent": 38.2,
+      "reasons": [
+        "Product is an AFP white-and-blue wide low cylindrical drip-tape carton roll",
+        "Off-center placement on the lower third, naturally placed on soil",
+        "Image contains zero people and zero human body parts",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner",
+        "The crop context shows cucumbers attached to vines",
+        "Product width and height fall within acceptable practical estimates"
+      ],
+      "correction_prompt": "",
+      "attempt": 5
+    }
+  ],
+  "approved_image": "آبیاری-رانشی-در-کشت-خیار-چالشها-تصویر-شاخص.webp"
+}

@@ -3,53 +3,91 @@
   "kind": 2,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": true,
+  "approved": false,
   "attempts": [
     {
       "pass": false,
-      "score": 35,
+      "score": 5,
       "product_width_percent": 22,
-      "product_height_percent": 28,
-      "product_x_center_percent": 34,
+      "product_height_percent": 20,
+      "product_x_center_percent": 48,
       "reasons": [
-        "The required bottom-right watermark must read exactly 'AFP | 09134922013', but the image displays 'AFP | 091349220135' (containing two extra digits), which constitutes an exact-match failure."
+        "Hard reject: Multiple human figures (two people) are present in the image.",
+        "Hard reject: The product is being held by a person rather than placed on the soil.",
+        "Hard reject: The product is centered rather than off-center on the lower third."
       ],
-      "correction_prompt": "Regenerate the image with the bottom-right watermark text exactly matching 'AFP | 09134922013'.",
+      "correction_prompt": "Regenerate image with zero people. Place exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll naturally on the soil, off-center in the lower third (x-center around 25-35%). The background should be a farm context with leafy vegetables (سبزی). Keep the required watermark at bottom-right.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 15,
-      "product_width_percent": 12,
-      "product_height_percent": 14,
-      "product_x_center_percent": 54,
+      "score": 85,
+      "product_width_percent": 24,
+      "product_height_percent": 33,
+      "product_x_center_percent": 44,
       "reasons": [
-        "Presence of two people (farmers/workers) is a hard reject.",
-        "Product width (approx 12%) is below the acceptable range of 13%.",
-        "Product placement is not naturally on soil; one roll is held in a hand.",
-        "Product is not clearly off-center on the lower third; it is centered between the subjects.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+        "Image is rejected because the product's vertical height and diameter are too large relative to the frame (too close to the camera), violating the specific dimensions required for 'secondary' product placement in the background context.",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
       ],
-      "correction_prompt": "Regenerate with zero people. Place a single white-and-blue wide low cylindrical drip-tape carton roll on the soil in a wheat field. Ensure the roll width is approximately 20% of the frame and it is positioned off-center in the lower third. Enlarge the product group from 12% to 13-27% of frame width.",
+      "correction_prompt": "Move the product further back into the mid-ground or use a wider-angle lens. Keep the product dimensions roughly 20% width and 25% height, ensuring the drip tape roll is clearly secondary to the crop. Reduce product height from 33% to at most 32% of frame height.",
       "attempt": 2
     },
     {
-      "pass": true,
-      "score": 92,
-      "product_width_percent": 24,
-      "product_height_percent": 26,
-      "product_x_center_percent": 39,
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 45,
       "reasons": [
-        "Exactly one AFP white-and-blue wide cylindrical drip-tape roll in a wheat farm context",
-        "Zero people or human body parts present",
-        "Product width 24%, height 26%, and x-center 39% all within acceptable thresholds",
-        "Roll is off-center on the lower third and naturally placed on soil",
-        "Correct mandatory 'AFP | 09134922013' watermark present in bottom-right",
-        "Wheat crop is recognizable with mature compact grain heads and narrow leaves, and agronomic story is clear"
+        "Hard reject: The image contains a visible person (a man) who is crouching and touching the product, which violates the strict 'zero people and zero human body parts' requirement.",
+        "Hard reject: The image is staged with a human interaction (centered around the person's action), failing the requirement for an unattended product shot placed off-center on the lower third.",
+        "The crop appears to be red-flowering leafy plants rather than neutral or typical leafy vegetables, but the primary failure is the human presence."
       ],
-      "correction_prompt": "",
+      "correction_prompt": "Regenerate the image strictly without any people, workers, or human body parts. Show only the AFP drip-tape carton roll placed naturally on the soil in the lower-left or lower-right quadrant, with a leafy vegetable crop background.",
       "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: Human face visible in the bottom right watermark/overlay",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the human face overlay and regenerate the bottom right corner showing only the text watermark 'AFP | 09134922013' on the soil background. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 8,
+      "product_height_percent": 12,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Hard reject: Image contains a visible person (man) interacting with the product.",
+        "Hard reject: The drip tape roll is not wide, low, or cylindrical; it appears as a short, narrow canister with a handle.",
+        "Product dimensions fail: The object is too small (approx. 8% width) relative to the required range of 20-23%.",
+        "Product geometry fail: The aspect ratio (diameter vs height) does not match a wide cylindrical roll; it resembles a bottle or jar.",
+        "Placement fail: The product is centered (approx. 48% x-center) rather than off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image without any people or human body parts. Replace the canister with a wide, low cylindrical drip tape roll with a blue and white AFP label. The roll must be much larger (20-23% of image width) and placed off-center on the lower third of the frame on the soil. The crop should clearly be leafy vegetables. Keep the 'AFP | 09134922013' watermark in the bottom right corner. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Person present in foreground (hard reject rule)"
+      ],
+      "correction_prompt": "Regenerate the image without any person; show the AFP drip-tape roll on the soil with the leafy vegetable crop and farm background only.",
+      "attempt": 6
     }
   ],
-  "approved_image": "آبیاری-محوری-در-کشت-گشنیز-کاربردها-کاربرد-عملی.webp"
+  "approved_image": null
 }

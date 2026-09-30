@@ -1,0 +1,118 @@
+{
+  "id": "xref-444",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 82,
+      "product_width_percent": 22,
+      "product_height_percent": 24,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Hard reject: The required exact watermark 'AFP | 09134922013' is missing from the bottom-right corner. While the crop context and geometry are acceptable for Role 3, the absence of the mandatory identifier triggers rejection.",
+        "Product width (22%) and height (24%) are within acceptable practical ranges, and the roll is correctly positioned off-center on the lower third.",
+        "Background (tractor and soil) and crop morphology (no clear contradiction to cucumber in a 'hardware' role context) are valid."
+      ],
+      "correction_prompt": "Regenerate the image ensuring the exact watermark string 'AFP | 09134922013' is clearly visible in the bottom-right corner while maintaining the current composition and lighting.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 25.0,
+      "product_height_percent": 28.0,
+      "product_x_center_percent": 32.0,
+      "reasons": [
+        "Hard reject: presence of a person and human body parts (face, arms, hands, legs) violates the 'zero people' constraint."
+      ],
+      "correction_prompt": "Remove the person entirely. Place the AFP drip-tape roll on the soil in the lower-left third of the frame without any human interaction or silhouettes.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Identifiable crop (tomato) clearly contradicts the required topic (cucumber), triggering a hard reject despite product geometry being acceptable."
+      ],
+      "correction_prompt": "Regenerate the image replacing the tomato plants with neutral cucumber ground cover or a generic crop background that does not show identifiable fruit or leaves.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 30,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Second package detected: A second, smaller roll with an irrigation filter attached is visible on the soil to the right of the main roll.",
+        "Violation of 'exactly one roll' rule: The scene contains multiple commercial product units."
+      ],
+      "correction_prompt": "Remove the smaller secondary roll and the filter assembly to the right; ensure only a single large carton roll remains on the soil with no other commercial product packaging or hardware in the immediate foreground.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 58,
+      "product_width_percent": 22,
+      "product_height_percent": 33,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Product height is slightly over the 32 percent hard limit.",
+        "The tomato crop visible in the image clearly contradicts the strict 'cucumber' crop requirement for role 3.",
+        "The product is slightly low in the frame rather than strictly off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Shorten the drip-tape roll's vertical dimensions to less than 32% of frame height and replace the tomato plants with cucumbers. Ensure the roll is placed higher in the frame, centered on the lower third. Keep the unattended tractor and the bottom-right watermark. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 13,
+      "product_height_percent": 22,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Product shape fail: The subject is a vertical cylinder or bucket (height greater than width), whereas the requirements mandate a wide, low cylindrical roll with a diameter 1.5–1.9 times its height.",
+        "Position fail: The product is centered horizontally (approx 47% x-center) rather than being off-center.",
+        "Dominance fail: The product is visually dominant and larger than the acceptable 13-27% width range relative to the small bottom positioning."
+      ],
+      "correction_prompt": "Replace the vertical bucket with a wide, low cylindrical drip-tape roll lying flat on the soil. The roll should be off-center, secondary to the scene, with a diameter visibly wider than its height (aspect ratio approx 1.5:1). Maintain the unattended tractor and farm hardware infrastructure without people.",
+      "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 16,
+      "product_height_percent": 19,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Hard reject: Image contains people (one crouching man in foreground and a visible person inside the tractor cabin), which violates the zero people/human body parts constraint."
+      ],
+      "correction_prompt": "Remove the crouching farmer and the person visible inside the tractor cabin completely. Keep the red tractor, farm background, and the AFP drip tape roll positioned off-center in the lower third on the soil.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 75,
+      "product_width_percent": 21,
+      "product_height_percent": 14,
+      "product_x_center_percent": 43,
+      "reasons": [
+        "Product (drip tape roll) is correctly positioned off-center on the lower third and resting on soil.",
+        "Product width (~21%) and height (~14%) are within the acceptable range, and the roll is clearly secondary to the background.",
+        "No identifiable crop contradictions are present; visible red fruits are tomatoes, not conflicting cucumbers, and no crop is visible on the roll itself.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner as required.",
+        "Zero people or human body parts visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آبیاری-رانشی-در-کشت-خیار-چالشها-جزئیات-فنی.webp"
+}

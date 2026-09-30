@@ -3,49 +3,51 @@
   "kind": 2,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": true,
+  "approved": false,
   "attempts": [
     {
       "pass": false,
-      "score": 62,
-      "product_width_percent": 25,
-      "product_height_percent": 21,
-      "product_x_center_percent": 31,
+      "score": 5,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
       "reasons": [
-        "Watermark text and border do not exactly match the required 'AFP | 09134922013' specification.",
-        "Fava bean plants appear to be growing inside the drip-irrigation roll, violating the 'no pipe through the roll' or 'impossible geometry' hard reject criteria."
+        "Presence of 3 people (hard reject)",
+        "Visible human body parts and silhouettes (hard reject)",
+        "Missing the required AFP white-and-blue cylindrical drip-tape roll; instead shows a white bucket (hard reject)",
+        "Background is a greenhouse with generic seedlings, not the required fava bean farm context",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate with an accurate black bottom-right watermark strip containing 'AFP | 09134922013'. Ensure the white-and-blue drip tape roll sits clearly on the soil bed to the left, with no plant stems passing through the cylinder.",
+      "correction_prompt": "Regenerate the image showing a farm field with fava bean plants (thick upright stems, broad leaflets). Place a single white-and-blue wide, low cylindrical drip-tape carton roll off-center on the lower third, resting naturally on the soil. Ensure no people or human body parts are visible anywhere. Maintain the 'AFP | 09134922013' watermark in the bottom right. Enlarge the product group from 0% to 13-27% of frame width.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 40,
-      "product_width_percent": 19.5,
-      "product_height_percent": 22.0,
-      "product_x_center_percent": 21.0,
+      "score": 35,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 34,
       "reasons": [
-        "Crop morphology mismatch: The plants shown have broad, rounded, single leaflets characteristic of vegetables like tomatoes or peppers, rather than the distinct pinnately compound leaves (paired leaflets on a stem) and visible pods required for Fava Beans (باقلا)."
+        "The crop shown in the background (rows of tall, stalk-based plants) is clearly identifiable as maize/corn, which does not match the required article crop of fava beans (باقله).",
+        "The article's required story is about fava bean plants with broad paired leaflets, which are not visible; instead, the tall corn-like plants contradict the required crop context."
       ],
-      "correction_prompt": "Replace the current plants with young Fava bean seedlings featuring pinnately compound leaves with multiple leaflets per stem. Keep the white-and-blue AFP drip-tape roll in the lower-left position.",
+      "correction_prompt": "Regenerate the scene with fava bean plants in the background instead of corn. Fava bean seedlings should have distinct broad leaves. Keep the white and blue AFP drip-tape roll as the foreground subject, maintaining the required framing and bottom-right watermark.",
       "attempt": 2
     },
     {
-      "pass": true,
-      "score": 82,
-      "product_width_percent": 15,
-      "product_height_percent": 12,
-      "product_x_center_percent": 20,
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 23.5,
+      "product_height_percent": 28,
+      "product_x_center_percent": 18.5,
       "reasons": [
-        "The image displays a single AFP white-and-blue wide low cylindrical drip-tape carton roll, matching the required product type.",
-        "The background shows a farm context with young broad-leaf seedlings, which is acceptable as it does not clearly identify a different species.",
-        "The product is correctly positioned in the lower third, off-center, and appears naturally placed on the soil.",
-        "The required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
-        "No people, human body parts, or prohibited extra commercial products are visible."
+        "The product bounding box extends off the bottom edge of the frame, violating the requirement to be 'naturally placed on soil' fully.",
+        "The image geometry suggests the product height is too large relative to the width ratio specified (1.5-1.9x), though the bounding box dimensions are acceptable.",
+        "The primary visible vegetation consists of corn/maize saplings, which are clearly identifiable as a different species than the required fava bean (باقلو) crop."
       ],
-      "correction_prompt": "",
+      "correction_prompt": "Regenerate the image showing a fully visible drip-tape carton roll positioned entirely within the frame on the soil. Replace the corn seedlings with fava bean plants or a neutral young crop context that does not clearly identify as a different species.",
       "attempt": 3
     }
   ],
-  "approved_image": "آبیاری-گلخانهای-در-کشت-باقلا-پیشنیازها-کاربرد-عملی.webp"
+  "approved_image": null
 }

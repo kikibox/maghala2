@@ -1,0 +1,137 @@
+{
+  "id": "xref-470",
+  "kind": 1,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 18,
+      "product_height_percent": 14,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Watermark in the bottom-right corner reads 'AFP | 09134922013' instead of the required 'AFP | 09134922013' (extra digit '0' at the end).",
+        "A second commercial product (a cantaloupe) is prominently staged next to the drip-tape roll, which interferes with the product as the secondary hero and violates the 'single product' requirement."
+      ],
+      "correction_prompt": "Regenerate the image with the correct bottom-right watermark 'AFP | 09134922013' (remove the final 0) and remove the large cantaloupe from the soil to ensure the drip-tape roll is the sole product focus.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 17.5,
+      "product_height_percent": 22,
+      "product_x_center_percent": 41,
+      "reasons": [
+        "Rejecting due to clearly identifiable different species (leaves appear to be sunflower or similar, not lobed cantaloupe).",
+        "Rejecting due to presence of a large, tan, non-bottle object next to the product that violates the 'zero extra commercial product' rule and creates impossible geometry.",
+        "Product is not white-and-blue; the visible face of the carton is solid white with a blue logo only."
+      ],
+      "correction_prompt": "Remove the tan object to the right of the product. Replace the foreground plant with a cantaloupe vine showing clearly lobed leaves. Change the product to a white and blue cylindrical drip-tape carton roll with a white top surface. Ensure the crop bed looks like a cantaloupe field.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 15,
+      "product_height_percent": 14,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The drip tape roll is a tall, narrow cylindrical core (likely for lay-flat tape) which triggers the hard reject for 'tall narrow drum' geometry; it does not match the required 'wide low cylindrical' aspect ratio (diameter approx 1.5-1.9x height).",
+        "The crop plants in the foreground appear to be sunflowers (solid heart-shaped leaves, prominent buds), which is a clearly identifiable different species and does not match the required cantaloupe (vines with lobed leaves and netted fruit).",
+        "The product is centered in the frame rather than placed off-center on the lower third."
+      ],
+      "correction_prompt": "Regenerate with a wide, low cylindrical drip-tape roll (white and blue) placed off-center on the lower right on the soil. The crop must be cantaloupe vines with lobed leaves, not sunflowers. Ensure the roll is clearly wider than it is tall.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 26,
+      "product_height_percent": 35,
+      "product_x_center_percent": 62,
+      "reasons": [
+        "Crops are not recognizable as cantaloupe (vines/lobed leaves/netted fruit absent); they resemble generic small broadleaf seedlings.",
+        "Product height is approximately 35%, exceeding the maximum 32% limit.",
+        "The product is positioned too high in the frame (bottom edge at approx 70%), rather than in the lower third.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate the image to clearly feature young cantaloupe vines with characteristic lobed leaves. Rescale the drip tape roll so its height is under 32% of the image and width is under 27%, and reposition it to the bottom-left corner within the bottom third of the frame while keeping it on the soil. Remove any generic green sprouts that do not look like melon vines. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 30,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The crop in the image is not a prepared bed with tiny unidentifiable seedlings; it shows mature young plants (resembling cucurbit seedlings but possibly too large to pass strict 'young' criteria) that do not resemble the required cantaloupe morphology (lobed leaves/netted fruit) nor the specific topic context sufficiently.",
+        "The background vegetation is not a neutral prepared bed or tiny seedling stage; the plants are quite developed, which might violate the 'botanically neutral' or 'tiny' aspect if the article is about very early growth stages, though the primary rejection is the lack of specific cantaloupe morphology.",
+        "While the product size and placement are good, and the watermark is present, the failure to clearly show the required article crop (cantaloupe) morphology or a strictly neutral bed causes rejection."
+      ],
+      "correction_prompt": "Regenerate image with a prepared soil bed showing tiny cantaloupe seedlings with clearly lobed leaves or visible netted fruit attached to vines, replacing the current generic large seedlings. Keep the drip-tape roll position, size, and watermarks identical.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 18,
+      "product_height_percent": 20,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "The image fails the crop recognition requirement: the visible seedlings are identified as tomatoes (solanaceae) rather than the required cantaloupe (melons require lobed leaves and netted fruit; botanically distinct).",
+        "The background context (open field with barn) is generic and does not visually match the specific 'cantaloupe' article or the drip-tape context (no visible drip tape or specific melon infrastructure)."
+      ],
+      "correction_prompt": "Regenerate with cantaloupe seedlings (distinct lobed leaves) in the foreground or midground, clearly visible drip tape lines on the soil, and a farm context appropriate for melons. Keep the AFP white-and-blue cylindrical drip-tape roll in the lower-left position, off-center on the soil, with correct geometry.",
+      "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 20,
+      "reasons": [
+        "Hard reject: The image contains clearly identifiable people (human figures) in the background (near the structure).",
+        "Hard reject: The background includes a visible agricultural structure (shed/warehouse) with a baled feed/straw roll next to it, which is not part of the 'ordinary fixed irrigation hardware' allowed by the rules.",
+        "The cantaloupe species is not clearly recognizable in its mature form, showing only generic young seedlings.",
+        "The product, while acceptable in position and size, is placed in a context that violates the 'zero people' and 'clean infrastructure' constraints."
+      ],
+      "correction_prompt": "Regenerate the image with zero people and no human silhouettes anywhere in the scene. Remove the background structure and bales. Show only the drip-tape roll in the foreground with a clear view of young cantaloupe seedlings and drip tape on the soil. Ensure the 'AFP | 09134922013' watermark remains in the bottom right.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 24,
+      "product_height_percent": 22,
+      "product_x_center_percent": 27,
+      "reasons": [
+        "Image Role 1 requires the crop (cantaloupe) to be recognizable or to have a clear article-specific agronomic story. The image shows generic 'tiny unidentifiable seedlings' which falls below the threshold of 32% product height.",
+        "Product height (~22%) is close to the 32% limit, but the primary reason for failure is that the background crop is not identifiable as cantaloupe (which should be vines with lobed leaves), and the generic seedlings do not sufficiently establish the article's specific crop context."
+      ],
+      "correction_prompt": "Replace the generic green seedlings with clear, recognizable cantaloupe vines featuring lobed leaves and young netted fruit attached to the ground to align with the specific article requirements.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 84,
+      "product_width_percent": 24,
+      "product_height_percent": 18,
+      "product_x_center_percent": 12,
+      "reasons": [
+        "Required bottom-right watermark 'AFP | 09134922013' is visible and correct.",
+        "Image features one low-cylindrical white-and-blue drip-tape roll made of a cardboard carton base, positioned off-center on the lower third on soil.",
+        "The main crop displays distinct lobed leaves and an early-stage fruit (though smooth rather than netted) consistent with a young cantaloupe, which matches the required crop article.",
+        "No people, workers, faces, or body parts are visible.",
+        "Product dimensions and aspect ratio fit within the allowed ranges (estimated width ~24%, height ~18%)."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-در-کشت-طالبی-مزایا-تصویر-شاخص.webp"
+}

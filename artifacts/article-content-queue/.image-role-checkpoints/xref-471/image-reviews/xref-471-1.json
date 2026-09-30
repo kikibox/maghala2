@@ -6,20 +6,74 @@
   "approved": true,
   "attempts": [
     {
-      "pass": true,
-      "score": 80,
-      "product_width_percent": 16,
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 10,
       "product_height_percent": 14,
-      "product_x_center_percent": 41,
+      "product_x_center_percent": 45,
       "reasons": [
-        "Product geometry (wide low cylinder) and off-center lower third placement on soil are consistent with a drip-tape roll.",
-        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
-        "No people or body parts are visible.",
-        "The background is a farm field with neutral young vegetation and visible irrigation line; per guidelines, neutral young vegetation passes when exact mature morphology is unavailable.",
-        "Product width and height percentages fall within acceptable practical limits."
+        "Hard reject: Visible human (male farmer/worker squatting in the frame).",
+        "Hard reject: Human body parts (hands, face, legs, arms) clearly visible.",
+        "Product Geometry Fail: The object on the ground is a short, stubby cylinder (nearly 1:1 aspect ratio). It fails the required drip-tape roll aspect ratio of 1.5-1.9 (width to height).",
+        "Product Width Fail: The object is only ~10% of the frame width, failing the minimum 13% threshold.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate without any people or human body parts. Replace the object on the ground with a wide, low white and blue cylindrical drip-tape roll with a 1.8:1 width-to-height ratio. Ensure the roll is at least 15% of the image width, off-center in the lower third on the soil. Keep the background farm and the 'AFP | 09134922013' watermark. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The crop shown is clearly corn (maize), identifiable by the distinct leaf structure and stem growth habit, whereas the required crop for this role is sesame (upright stems with narrow lance-shaped leaves and elongated seed capsules)."
+      ],
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 0,
+      "product_width_percent": 5,
+      "product_height_percent": 7,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Presence of a person (farmer) and human body parts (face, hands, legs) in the image (hard reject).",
+        "The product appears to be a small canister or cylinder, not a wide low drip-tape carton roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image with zero people. Place a wide, low, cylindrical white-and-blue drip-tape roll on the soil in a sesame field. The roll should be off-center in the lower third and measure approximately 20% of the frame width. Enlarge the product group from 5% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 20,
+      "product_height_percent": 24,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Background crop clearly resembles young corn/maize with wide leaves and tassels, which does not match the required sesame (lance-shaped leaves, elongated seed capsules) article crop.",
+        "The crop in the background grows in wide rows typical of corn, creating a mismatch with the sesame agronomic story required for image role 1."
+      ],
+      "correction_prompt": "Replace the background corn plants with a field of young sesame crop showing narrow lance-shaped leaves and elongated seed capsules to match the article; keep the product roll in the same position and scale.",
+      "attempt": 4
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 19,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Exact required AFP watermark present in bottom right",
+        "Zero people or human body parts visible",
+        "Drip-tape roll is white and blue, placed naturally off-center on soil",
+        "Roll dimensions are within the acceptable 13-27% width and 32% height limits",
+        "Crop is consistent with young sesame/neutral agronomic stage"
       ],
       "correction_prompt": "",
-      "attempt": 1
+      "attempt": 5
     }
   ],
   "approved_image": "آبیاری-خرسابی-در-کشت-کنجد-چالشها-تصویر-شاخص.webp"

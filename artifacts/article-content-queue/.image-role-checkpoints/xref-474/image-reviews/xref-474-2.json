@@ -3,38 +3,97 @@
   "kind": 2,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": true,
+  "approved": false,
   "attempts": [
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 20,
+      "product_height_percent": 18,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "The image is a multi-panel collage instead of a single farm context.",
+        "The product is a canister rather than a wide low cylindrical drip-tape carton roll.",
+        "There are visible human hands in the two right-hand panels, which triggers a hard reject.",
+        "The crop in the left panel is clearly identifiable as cannabis, not the crop from the article title."
+      ],
+      "correction_prompt": "Generate a single wide low cylindrical AFP drip-tape roll on soil in a farm setting, remove all human body parts, and ensure the crop matches the article title.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 58,
+      "product_width_percent": 32,
+      "product_height_percent": 28,
+      "product_x_center_percent": 46,
+      "reasons": [
+        "Product width exceeds the 27% maximum limit",
+        "Product is centered rather than placed in the lower third off-center",
+        "Gibberish text on the package face violates the clean authentic print requirement",
+        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Scale down the drip tape roll to 20% of the frame width and shift it to the bottom right third of the frame. Remove all non-English gibberish characters from the roll label, keeping only the AFP logo and branding on a clean white-and-blue background. Reduce the product group from 32% to 13-27% of frame width.",
+      "attempt": 2
+    },
     {
       "pass": false,
       "score": 10,
       "product_width_percent": 8,
-      "product_height_percent": 7,
-      "product_x_center_percent": 40,
-      "reasons": [
-        "Contains two prominent human subjects (farmers) which violates the strict 'zero people' rule.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
-      ],
-      "correction_prompt": "Regenerate the image without any human figures. Show a close-up, ground-level view of the white and blue drip-tape roll resting on dry soil. Surround it with clearly recognizable leek plants (broad, flat green leaves) to satisfy the crop requirement. The roll should occupy approximately 20% of the frame width and be positioned off-center in the lower third. Enlarge the product group from 8% to 13-27% of frame width.",
-      "attempt": 1
-    },
-    {
-      "pass": true,
-      "score": 88,
-      "product_width_percent": 24,
-      "product_height_percent": 23,
+      "product_height_percent": 10,
       "product_x_center_percent": 48,
       "reasons": [
-        "Contains exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll in a farm context",
-        "Zero people or human body parts present",
-        "Product is off-center on the lower third, placed naturally on soil",
-        "Aspect ratio (width to height) is within the 1.5 to 1.9 range",
-        "Required watermark 'AFP | 09134922013' is present in the bottom-right corner",
-        "Vegetation is botanically neutral/young seedlings, which is permissible per the guidelines when the product is the focus"
+        "Hard reject: Two people (farmers) are prominently featured in the foreground.",
+        "Hard reject: Human body parts (hands, arms, legs) are visible.",
+        "Hard reject: The product is not the required wide low cylindrical drip-tape carton roll; it is a small, generic, canister-like object held by the people.",
+        "Hard reject: The product is centered and staged, not placed naturally on the soil.",
+        "Hard reject: The product dimensions are far too small (width ~8% vs required 13-27%).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
       ],
-      "correction_prompt": "",
-      "attempt": 2
+      "correction_prompt": "Regenerate the image with zero people or human silhouettes. Show a wide, low, cylindrical drip-tape roll (white and blue with AFP branding) placed naturally on the soil in the lower-left third of the frame. The roll must be wide (15-20% of image width) and short. The background must clearly show a carrot crop field. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 20,
+      "product_height_percent": 30,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Impossible geometry: Carrots are standing vertically like trees in the foreground, defying biological and gravitational logic (crop morphology is incorrect).",
+        "Impossible geometry: The carrots appear to be the size of the drip tape roll, whereas in reality they would be much smaller than the 20cm diameter roll.",
+        "Text hallucination: The text on the side of the drip tape roll is gibberish/placeholder text, not authentic package print.",
+        "Hard reject: The crop morphology is 'unmistakably' wrong, violating the requirement for botanically accurate, recognizable crops."
+      ],
+      "correction_prompt": "Regenerate with realistic carrots lying on the soil surface among the green leafy tops (carrots do not grow like trees). Ensure the drip tape roll text is authentic or blank/neutral, and the roll is placed naturally on the soil without floating or standing vertically.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 24,
+      "product_height_percent": 28,
+      "product_x_center_percent": 72,
+      "reasons": [
+        "Extra commercial object: Fresh raw carrots are placed in the foreground, violating the rule against extra commercial products or non-infrastructure items (produce is not fixed irrigation hardware).",
+        "Product geometry failure: The roll has a 5:4 ratio (1.25x), falling short of the required 1.5-1.9 diameter-to-height ratio."
+      ],
+      "correction_prompt": "Remove the fresh carrots entirely. Regenerate the irrigation roll with a wider, low profile (width-to-height ratio of 1.6) placed on the soil. Keep the crop rows and farm context, but ensure the soil is clear of harvested produce.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 15,
+      "product_height_percent": 14,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Hard reject: The image contains a person (a woman crouching in the field).",
+        "Human body parts (face, hands, arms, legs) are clearly visible, which violates the 'zero people' rule.",
+        "Strict requirement: The product roll must be placed off-center on the lower third of the frame without a person interacting with it or staging it."
+      ],
+      "correction_prompt": "Remove the person entirely. Ensure the white and blue cylindrical drip tape roll is placed naturally on the soil off-center on the lower third of the frame. Keep the farm context and young crop rows but remove all human silhouettes and body parts.",
+      "attempt": 6
     }
   ],
-  "approved_image": "آبیاری-چرخشی-در-کشت-کاملینا-چالشها-کاربرد-عملی.webp"
+  "approved_image": null
 }

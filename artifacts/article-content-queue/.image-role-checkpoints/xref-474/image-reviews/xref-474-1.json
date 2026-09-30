@@ -3,89 +3,39 @@
   "kind": 1,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": false,
+  "approved": true,
   "attempts": [
     {
       "pass": false,
-      "score": 0,
-      "product_width_percent": 8,
-      "product_height_percent": 10,
-      "product_x_center_percent": 85,
+      "score": 25,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 22,
       "reasons": [
-        "Presence of two human subjects (farmers/workers) in the image",
-        "The drip-tape roll is missing the required 'AFP | 09134922013' watermark",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+        "Hard reject: Presence of human hands and body parts (arms/hands visible in the main panel and both side panels).",
+        "Hard reject: The image contains multiple panels, whereas the prompt describes a single-image composition for role 1.",
+        "Hard reject: The product geometry is a standard cylindrical spool of tape, not a 'wide low cylindrical drip-tape carton roll'.",
+        "Fail: The composition violates the requirement for zero people and zero human body parts."
       ],
-      "correction_prompt": "Regenerate the image completely without any people or human body parts. Show only the wide, low cylindrical white-and-blue drip-tape roll (20-23% width) on the soil in the lower right quadrant, overlaid with the mandatory watermark text 'AFP | 09134922013' in the bottom-right corner. Enlarge the product group from 8% to 13-27% of frame width.",
+      "correction_prompt": "Remove all human hands and body parts completely; convert the multi-panel layout into a single unified image featuring only one wide, low, white and blue AFP drip-tape carton roll placed on the soil in a corn field, without any tools or extra panels.",
       "attempt": 1
     },
     {
-      "pass": false,
-      "score": 20,
-      "product_width_percent": 20,
-      "product_height_percent": 28,
-      "product_x_center_percent": 63,
-      "reasons": [
-        "The image contains a person, which is a hard reject condition."
-      ],
-      "correction_prompt": "Remove the person from the image while keeping the AFP white-and-blue wide low cylindrical drip-tape carton roll in the exact same position on the soil.",
-      "attempt": 2
-    },
-    {
-      "pass": false,
-      "score": 45,
-      "product_width_percent": 17,
-      "product_height_percent": 17,
-      "product_x_center_percent": 37,
-      "reasons": [
-        "Article crop mismatch: The image displays green broad-leaf seedlings resembling corn (maize) or a general grain crop, whereas the required article crop is تره (leek). Leek seedlings exhibit a distinct rosette of strap-like leaves, which is not visually present here.",
-        "Botanical inaccuracy: The visible growth habit and leaf morphology are inconsistent with leek seedlings."
-      ],
-      "correction_prompt": "Regenerate the farm background to show specific leek seedlings (rosette growth habit with strap-like leaves) instead of the current broad-leaf crop. Maintain the 20mm drip tape roll in the foreground on the soil.",
-      "attempt": 3
-    },
-    {
-      "pass": false,
-      "score": 15,
-      "product_width_percent": 9,
+      "pass": true,
+      "score": 88,
+      "product_width_percent": 21,
       "product_height_percent": 22,
-      "product_x_center_percent": 37,
+      "product_x_center_percent": 45,
       "reasons": [
-        "Hard reject: A man is clearly visible crouching and touching the package. The guidelines explicitly forbid any persons, faces, hands, or body parts.",
-        "Product geometry: The carton roll is too narrow (approx 9% width) and does not match the preferred 20-23% width or the acceptable 13-27% range.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
+        "The image clearly displays a white and blue cylindrical drip-tape carton roll with the required 'AFP' branding.",
+        "The watermark 'AFP | 09134922013' is present exactly in the bottom-right corner as mandated.",
+        "The product is positioned naturally on the soil, off-center, and does not contain any people, human body parts, or extra commercial products like bottles or cans.",
+        "The crop morphology in the background is consistent with young maize/corn, which fits the farm context well.",
+        "The visible diameter of the roll is approximately 1.5 to 1.7 times its height, aligning with the specified product geometry."
       ],
-      "correction_prompt": "Regenerate the image with zero people visible. The crop should be leek. The AFP drip-tape carton roll must be significantly larger (width 20-23% of frame) and placed off-center on the soil, with no hands or human presence. Enlarge the product group from 9% to 13-27% of frame width.",
-      "attempt": 4
-    },
-    {
-      "pass": false,
-      "score": 45,
-      "product_width_percent": 22,
-      "product_height_percent": 26,
-      "product_x_center_percent": 44,
-      "reasons": [
-        "The drip-tape roll appears to be placed in the air or floating above the soil row rather than sitting naturally on the ground level."
-      ],
-      "correction_prompt": "Lower the drip-tape roll to sit flat directly on the soil surface within the row, removing the floating/impossible geometry effect.",
-      "attempt": 5
-    },
-    {
-      "pass": false,
-      "score": 15,
-      "product_width_percent": 8,
-      "product_height_percent": 14,
-      "product_x_center_percent": 42,
-      "reasons": [
-        "Hard reject: The image contains a person (a man crouching) and human body parts, which violates the strict 'zero people' constraint.",
-        "Product geometry failure: The drip tape carton roll is not the dominant element; it is extremely small (approx 8% width) compared to the required preferred width of 20-23%, failing the visibility and staging requirements.",
-        "Product height failure: The roll's visible height is approximately 14%, which is significantly lower than the required ~25-30% (roughly half the width).",
-        "Context failure: The crop shown in the field appears to be corn or similar tall-seeded crop (broad leaves), not a recognized field for leeks (تره) which typically have long, narrow strap-like leaves, and the roll is not integrated into the soil in the specific way requested for this crop context.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
-      ],
-      "correction_prompt": "Regenerate image of an empty leek field with distinct rows of leek plants; place exactly one large white-and-blue AFP drip-tape carton roll (cylindrical) on the soil in the lower-left or lower-right third, off-center; the roll should be wide (approx 20-23% of frame width); strictly NO people, NO hands, NO body parts; include 'AFP | 09134922013' watermark. Enlarge the product group from 8% to 13-27% of frame width.",
-      "attempt": 6
+      "correction_prompt": "",
+      "attempt": 2
     }
   ],
-  "approved_image": null
+  "approved_image": "آبیاری-چرخشی-در-کشت-کاملینا-چالشها-تصویر-شاخص.webp"
 }

@@ -1,0 +1,129 @@
+{
+  "id": "xref-493",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: Presence of a person (male farmer) and human body parts (hands, arms, legs, face).",
+        "The crop shown has red fruit and large broad leaves, which does not match the required article crop of melon (botanically neutral or different species).",
+        "The product is not in the required lower-third off-center position; it is centrally held by the person.",
+        "The product geometry is slightly off for a wide low cylindrical drip-tape roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person entirely. Replace the crop with a botanically accurate prepared bed or young melon seedlings. Place a wide, low cylindrical drip-tape carton roll on the soil in the lower third of the frame, offset to the left or right, making it the secondary subject. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 24.2,
+      "product_height_percent": 34.1,
+      "product_x_center_percent": 31.5,
+      "reasons": [
+        "Zero people or body parts detected in the frame.",
+        "Exactly one white-and-blue cylindrical drip-tape roll is visible, correctly placed on soil in the lower third.",
+        "Product width (24.2%) and x-center (31.5%) fall within acceptable secondary/offset ranges.",
+        "Height (34.1%) is slightly above the 32% preferred maximum but acceptable for a practical secondary estimate without dominating the scene.",
+        "Visible diameter is roughly 1.5x its height, matching the wide low cylindrical geometry requirement.",
+        "Crop rows display young broadleaf seedlings in a prepared tilled bed; agronomic context is clear and neutral enough to pass, with no clearly identifiable competing species.",
+        "Required bottom-right watermark 'AFP | 09134922013' is present and intact; package branding text is authentic to the roll.",
+        "No bottles, jars, buckets, second packages, hoses through the roll, impossible geometry, or invented text detected.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34.1% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce product height from 34.1% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 5,
+      "product_width_percent": 8,
+      "product_height_percent": 8,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Hard reject: image contains a person (farmer) with clearly visible head, face, arms, hands, and legs, violating the 'zero people and zero human body parts' requirement.",
+        "Product geometry error: the carton roll is not positioned off-center in the lower third and is instead centered/manipulated.",
+        "Product dimensions: the roll's visible width is approximately 8%, falling below the minimum acceptable threshold of 13%.",
+        "Product placement: the roll is being held by hands rather than naturally placed on soil.",
+        "Crop identification: the visible young vegetation has broad leaves (possibly brassicas or leafy greens) and does not match the specific botanical morphology of a melon (ملون) crop.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to remove the person entirely. Show a single AFP white-and-blue drip-tape roll placed on the soil in a melon field with correct botanically accurate melon leaves. Position the roll off-center in the lower third, increase its visible width to at least 15% of the frame, and maintain the watermark. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 22,
+      "product_height_percent": 24,
+      "product_x_center_percent": 49,
+      "reasons": [
+        "product_x_center_percent (49) is centered; must be off-center on the lower third",
+        "product_height_percent (24) is nearly equal to width; visible diameter should be 1.5–1.9 times height"
+      ],
+      "correction_prompt": "Reposition the AFP drip-tape roll to an off-center spot in the lower third of the frame and make it visibly wider than tall (diameter ≈1.6× height); keep the melon-field context, drip lines, zero people, and the bottom-right watermark.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 16,
+      "product_height_percent": 22,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Hard reject: The image contains a person (a male farmer) crouching in the field, violating the zero people and zero body parts requirement."
+      ],
+      "correction_prompt": "Regenerate the image without any people, workers, or body parts; the AFP drip-tape roll must be placed unattended on the soil in a melon field.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 20,
+      "product_height_percent": 25,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The visible product geometry is a narrow vertical spool, not the wide low cylindrical roll required (diameter/height ratio must be 1.5-1.9x).",
+        "The product is placed in the lower-left quadrant, failing the 'off-center on the lower third' requirement."
+      ],
+      "correction_prompt": "Regenerate the image to feature exactly one wide, low cylindrical drip-tape roll (diameter approx 1.7x its height) sitting naturally on the soil in the lower-right third of the frame. Keep the background as a melon farm with young seedlings. Ensure the 'AFP | 09134922013' watermark remains in the bottom right and no human body parts are visible.",
+      "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 55,
+      "product_width_percent": 18,
+      "product_height_percent": 28,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "The crop in the image has broad, simple, ovate leaves and an upright growth habit that clearly resembles a solanaceous plant (such as eggplant, tomato, or potato) rather than a melon (Cucurbita).",
+        "The article topic is 'melon', which requires a vine-like growth habit and lobed/cusped leaves to be recognizable. This image shows the wrong plant species, triggering a hard reject."
+      ],
+      "correction_prompt": "Regenerate the image with the background crop explicitly showing young melon seedlings with large, lobed, cucumber-like leaves and visible ground-level vines, ensuring the drip-tape roll and AFP watermark remain unchanged.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 23,
+      "product_height_percent": 26,
+      "product_x_center_percent": 44,
+      "reasons": [
+        "Product is a wide cylindrical roll with correct proportions and is clearly secondary to the crop scene.",
+        "Image role 2 context is strong: the vegetation (broad, rough melon-family leaves) and distant red melon fruits clearly establish the article crop (melon/ملون).",
+        "The required AFP watermark 'AFP | 09134922013' is present in the bottom-right.",
+        "No people, human silhouettes, or hard-reject elements (bottles, jars, pipes, second rolls) are visible."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آبیاری-قطرهای-با-نوار-تیپ-در-کشت-ملون-هزینه-بهینه-کاربرد-عملی.webp"
+}

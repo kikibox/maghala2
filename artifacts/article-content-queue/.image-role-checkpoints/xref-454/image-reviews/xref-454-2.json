@@ -85,6 +85,88 @@
       ],
       "correction_prompt": "Increase the lateral width of the drip-tape roll to achieve an aspect ratio of 1.6:1, and adjust its scale to 21–23% of the frame width while maintaining its off-center position in the lower third of the image.",
       "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 35,
+      "product_width_percent": 13,
+      "product_height_percent": 17,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: The image contains a visible person (farmer) crouching in the background, which is strictly prohibited.",
+        "The crop morphology does not appear to be lentils; they look more like a brassica or broadleaf vegetable, missing the fine texture and paired pinnate leaflets described in the requirements.",
+        "The product roll appears to be standing vertically on its side/axis, which is an atypical staging for a 'wide low cylindrical drip-tape carton roll' unless the geometry is specifically a cylinder on its side, but the visual height is disproportionately large relative to the width (violating the 1.5:1 aspect ratio)."
+      ],
+      "correction_prompt": "Remove all people, faces, and body parts. Replace the crop with recognizable young lentil plants featuring fine textures and thin branching stems. Position the white and blue AFP drip-tape roll horizontally on the soil so it appears as a wide low cylinder with a visible diameter at least 1.5 times its height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 19,
+      "product_height_percent": 28,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "The foreground crops contain broad, single-lobed leaves with jagged edges, which are botanically inconsistent with lentils (which require small paired pinnate oval leaflets); the image contains clearly identifiable different species.",
+        "The background features prominent yellow and purple flowers, resembling brassicas or other non-lentil crop flowers, which violates the requirement for a neutral or specific lentil context."
+      ],
+      "correction_prompt": "Regenerate with small green lentil plants featuring paired pinnate oval leaflets; replace the yellow and purple flowers with neutral soil or small green stems in the background; keep the AFP drip-tape roll and watermark unchanged.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 16.0,
+      "product_height_percent": 18.0,
+      "product_x_center_percent": 48.0,
+      "reasons": [
+        "Background crop is clearly identifiable as tomato seedlings, not lentils. Lentils are legumes with small paired pinnate leaflets, whereas the image shows the broad, simple, trifoliate foliage characteristic of tomato plants.",
+        "The required article crop 'lens' (lentil) is not recognizable or defined in the image."
+      ],
+      "correction_prompt": "Replace the tomato seedlings with lentil plants featuring fine-textured bushy stems and small paired pinnate leaflets, keeping the white and blue drip tape roll and watermark in the same position.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 25,
+      "product_height_percent": 22,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Crop is not recognizable as lentil; it shows broad leaves indicative of other species (e.g. bean, brassica or general veg), failing the requirement for fine-textured branching stems with small pinnate leaflets.",
+        "Product is horizontally centered (approx 48%) rather than being off-center on the lower third."
+      ],
+      "correction_prompt": "Regenerate the image with a clear off-center product placement in the lower right or lower left. Ensure the background crop consists of lentil plants: low-bushy legumes with thin branching stems and small pinnate leaves, avoiding large broad leaves.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 18,
+      "product_height_percent": 35,
+      "product_x_center_percent": 62,
+      "reasons": [
+        "Crop context conflict: The plants in the image are tall and elongated with broad leaves, resembling weeds or tall grasses, rather than the low, fine-textured, bushy legumes required for lentils (عدس).",
+        "Height violation: The product roll's height is approximately 35% of the frame height, exceeding the maximum threshold of 32%.",
+        "Placement: While off-center, the product is quite close to the right edge.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with low-growing, fine-textured bushy legume plants (lentils) featuring small paired pinnate leaflets and thin stems; ensure no tall grasses or weeds. Scale down the white-and-blue carton roll to a height of 30% or less to fit within the 32% limit. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 25,
+      "product_height_percent": 30,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Crop mismatch: The image shows flowering legumes (resembling clover or alfalfa) with prominent blooms, which fails the strict requirement for lentil (عدس) morphology (fine-textured bushy, pinnate oval leaflets, flat pods, absolutely no flowers or other species).",
+        "Product placement: The drip tape roll is positioned too low, extending almost to the very bottom edge of the frame, rather than being naturally placed on the soil.",
+        "Gibberish text: The text printed below the 'AFP' logo on the roll is unintelligible gibberish, violating the 'no invented writing' constraint."
+      ],
+      "correction_prompt": "Replace the crop with low fine-textured bushy lentil plants (thin stems, pinnate oval leaflets, no flowers, no corn/brassica). Remove all gibberish text from the roll, leaving only the 'AFP' logo and authentic package details. Reposition the roll slightly higher so it rests fully on the soil surface within the frame.",
+      "attempt": 6
     }
   ],
   "approved_image": null

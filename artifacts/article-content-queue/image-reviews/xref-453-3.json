@@ -1,0 +1,138 @@
+{
+  "id": "xref-453",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 15,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Presence of four people (farmers/worker) in the field, which is a hard reject criterion."
+      ],
+      "correction_prompt": "Remove all people and human silhouettes from the image. Retain the orchard background, the soil texture, and the AFP-branded drip-tape roll in its current position on the bottom left. Ensure the 'AFP | 09134922013' watermark in the bottom right remains visible.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 50,
+      "product_width_percent": 25,
+      "product_height_percent": 18,
+      "product_x_center_percent": 18,
+      "reasons": [
+        "Product is not wide/low cylindrical (aspect ratio 1.4 is below the 1.5-1.9 required range), it appears taller than specified",
+        "Product is cut off at the bottom edge and not fully visible on soil, violating 'naturally placed' requirement"
+      ],
+      "correction_prompt": "Reshape the drip-tape roll into a wider, low-profile cylinder with an aspect ratio of 1.6:1; position it fully visible and grounded on the soil surface.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 20,
+      "product_height_percent": 28,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Human presence: An identifiable person (farmer/worker) is visible in the foreground, sitting on a stool, which triggers a hard reject rule (zero people allowed)."
+      ],
+      "correction_prompt": "Remove the person sitting on the stool entirely. Ensure no human body parts or silhouettes are visible anywhere in the image. Keep the drip tape roll and farm background exactly as they are.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The image contains a prominent human figure (farmer/man) kneeling and interacting with the product.",
+        "The product roll is resting on a small wooden stool rather than being placed naturally on the soil.",
+        "The presence of the human violates the hard reject criteria for 'zero people and zero human body parts'.",
+        "Centered human staging contradicts the requirement for a 'hardware story' focus where humans are absent."
+      ],
+      "correction_prompt": "Remove the man entirely. Place the single white-and-blue AFP drip-tape roll directly on the soil in the lower third, off-center. Keep the farm background but ensure no people are visible. The roll should be a secondary element (approx 20% width), sitting flat on the ground next to a crop row.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 85,
+      "product_width_percent": 23,
+      "product_height_percent": 15,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "The required watermark 'AFP | 09134922013' is missing. The image contains a fabricated, incorrect watermark ('09134922019') which constitutes invented writing and violates the exact text requirement."
+      ],
+      "correction_prompt": "Regenerate the image to display the exact bottom-right watermark 'AFP | 09134922013', ensuring no other text or numbers are present.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 10,
+      "product_height_percent": 15,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: Presence of two people (farmers/workers) and human body parts in the image.",
+        "Product is not an AFP white-and-blue wide low cylindrical drip-tape carton roll.",
+        "Product shape appears to be a standard bucket/container rather than the specified low cylindrical roll geometry.",
+        "Product is centered in the frame, violating the 'off-center on the lower third' requirement.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all humans. Show a single white-and-blue wide low cylindrical drip-tape carton roll placed on soil in a farm field. The roll must be off-center to the right or left (lower third). No people, hands, or faces. Maintain the 'AFP | 09134922013' watermark. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 82,
+      "product_width_percent": 33,
+      "product_height_percent": 26,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "The image features exactly one AFP white-and-blue drip-tape carton roll.",
+        "The product is placed on soil in a farm context with distant crop rows.",
+        "No people or human body parts are visible.",
+        "The 'AFP | 09134922013' watermark is present in the bottom-right corner.",
+        "The product width (33%) exceeds the 27% practical limit, which prevents a higher score, but it remains secondary to the scene. The product is positioned on the lower third and is off-center.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 33% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 33% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 33,
+      "reasons": [
+        "Hard reject: Presence of a person (farmer) and human body parts (head, hands, legs) in the frame.",
+        "Hard reject: Rule explicitly forbids any person, farmer, worker, face, hand, arm, leg, or human silhouette, even if they are not the main focus.",
+        "The image includes a human subject which violates the 'zero people' requirement."
+      ],
+      "correction_prompt": "Remove the person/farmer from the scene. Keep the irrigation roll and the farm background. Ensure no human silhouettes or body parts are visible.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 21,
+      "product_height_percent": 26,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product width (21%) and height (26%) are within acceptable limits",
+        "Product is off-center in the lower third and placed naturally on soil",
+        "Required watermark 'AFP | 09134922013' is present",
+        "No people or human body parts visible",
+        "Background farm context is appropriate with no conflicting crop morphology",
+        "Roll aspect ratio and geometry are plausible"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-کاملینا-چالشها-جزئیات-فنی.webp"
+}

@@ -7,79 +7,88 @@
   "attempts": [
     {
       "pass": false,
-      "score": 45,
-      "product_width_percent": 23.5,
-      "product_height_percent": 25.0,
-      "product_x_center_percent": 41.5,
+      "score": 12,
+      "product_width_percent": 13,
+      "product_height_percent": 14,
+      "product_x_center_percent": 45,
       "reasons": [
-        "The product roll appears too short and squat (aspect ratio ~0.95), failing the requirement of 1.5 to 1.9 times visible height",
-        "The product appears more centrally located rather than off-center in the lower third",
-        "No visible drip tape extending from the roll to the wheat plants"
+        "Hard reject: Presence of a person (farmer) and human body parts (head, torso, hands, legs, boots) in the image, which is strictly prohibited.",
+        "Product staging: The drip-tape roll is being held by the farmer rather than placed naturally on the soil as required.",
+        "The product is located near the center of the frame rather than off-center on the lower third."
       ],
-      "correction_prompt": "Redraw the AFP drip-tape roll as a wide, low cylindrical carton (height should be ~60% of width) placed off-center in the lower third, with a visible strip of drip tape unspooling to the right connecting to the wheat roots",
+      "correction_prompt": "Regenerate the image without any people, human silhouettes, or hands. Ensure a single AFP white-and-blue wide cylindrical drip-tape carton roll rests naturally and independently on the soil, positioned off-center on the lower third of the frame. The background should depict a leafy vegetable farm with tiny seedlings and irrigation hardware visible but no human presence.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 80,
-      "product_width_percent": 33,
-      "product_height_percent": 26,
-      "product_x_center_percent": 34,
+      "score": 40,
+      "product_width_percent": 25.0,
+      "product_height_percent": 28.0,
+      "product_x_center_percent": 45.0,
       "reasons": [
-        "The image shows one AFP white-and-blue drip-tape roll in a wheat farm context.",
-        "The crop is clearly identifiable as wheat with visible grain heads.",
-        "The exact required watermark 'AFP | 09134922013' is present in the bottom-right corner.",
-        "There are no people or human body parts visible.",
-        "The product is off-center and placed on soil in the lower third of the frame.",
-        "The product width (approx 33%) exceeds the preferred 20-23% range, but the roll is kept to a moderate size, avoiding the 'giant roll' hard-reject threshold.",
-        "machine-enforced bounding-box check failed: Reduce the product group from 33% to 13-27% of frame width."
+        "Foreign object: A metal gardening hand-fork and another tool are visible lying on the soil next to the product.",
+        "Watermark error: The required phone number in the watermark is 09134922013, but the image displays 09134922013 with a digit mismatch (wait, let me check the prompt vs image again. Prompt says 09134922013. Image says 09134922013. Ah, the image says 09134922013. Let me re-read the prompt carefully. The prompt requires `AFP | 09134922013`. The image shows `AFP | 09134922013`. Wait, looking closer at the crop, it is `09134922013`. The last digit in the prompt is 3. The last digit in the image is 3. Okay, the watermark matches."
       ],
-      "correction_prompt": "Reduce the product group from 33% to 13-27% of frame width.",
+      "correction_prompt": "Remove the metal hand-fork and other gardening tools lying on the soil next to the roll.",
       "attempt": 2
     },
     {
       "pass": false,
-      "score": 30,
-      "product_width_percent": 22,
-      "product_height_percent": 40,
-      "product_x_center_percent": 37,
+      "score": 10,
+      "product_width_percent": 17,
+      "product_height_percent": 18,
+      "product_x_center_percent": 25,
       "reasons": [
-        "Hard reject: Product height (estimated 40%) exceeds the 32% limit",
-        "Hard reject: Product is positioned in the bottom quarter, failing the 'lower third' requirement",
-        "Product staging is too low and appears pasted onto the foreground soil rather than placed naturally on the ground",
-        "machine-enforced bounding-box check failed: Reduce product height from 40% to at most 32% of frame height."
+        "Hard reject: Person (farmer) is present in the image",
+        "Hard reject: Human body parts (hands, face, arms, legs) are visible"
       ],
-      "correction_prompt": "Regenerate with a smaller product bounding box where the height is under 32% of the frame; position the roll so it intersects the bottom 30% (lower third) of the frame, not the very bottom edge. Reduce product height from 40% to at most 32% of frame height.",
+      "correction_prompt": "Regenerate the image to remove the person entirely. Show the AFP drip-tape carton roll lying naturally on the soil with young سبزی seedlings in the background, ensuring no human presence.",
       "attempt": 3
     },
     {
       "pass": false,
-      "score": 68,
-      "product_width_percent": 17.2,
-      "product_height_percent": 23.5,
-      "product_x_center_percent": 34.0,
+      "score": 32,
+      "product_width_percent": 25,
+      "product_height_percent": 27,
+      "product_x_center_percent": 37,
       "reasons": [
-        "Watermark in bottom right is malformed; displays '09134922013' instead of the required '09134922013'",
-        "Product color appears metallic/silver rather than the specified white-and-blue"
+        "Crop is wrong for the article 'سبزی' (leafy vegetables): visible plants have a narrow grassy/brassica-like seedling habit rather than recognizable leafy-veg morphology. The role-1 'clear agronomic story' condition is not met.",
+        "Product staging is off-spec: the wide low cylindrical drip-tape roll is placed too high in frame (top edge in the lower-middle, not anchored in the lower third) with near-centered x-placement, so the required off-center low-third positioning is not convincingly satisfied."
       ],
-      "correction_prompt": "Regenerate with the bottom right watermark exactly reading 'AFP | 09134922013' and change the product roll to white and blue plastic packaging.",
+      "correction_prompt": "Regenerate with the same wide low cylindrical AFP white-and-blue drip-tape roll placed off-center in the lower third on soil (width ~20–23%, height ≤32%, diameter ≈1.5–1.9× height), in a leafy-vegetable bed showing botanically accurate leafy-veg foliage/stems at the appropriate stage, zero people, keep the bottom-right 'AFP | 09134922013' watermark.",
       "attempt": 4
     },
     {
-      "pass": true,
-      "score": 95,
-      "product_width_percent": 19,
-      "product_height_percent": 22,
-      "product_x_center_percent": 26,
+      "pass": false,
+      "score": 68,
+      "product_width_percent": 21,
+      "product_height_percent": 33,
+      "product_x_center_percent": 50,
       "reasons": [
-        "The product is a single white and blue cylindrical drip-tape roll placed on the soil in the lower third of the frame, off-center to the left.",
-        "The background clearly depicts mature wheat with visible grain heads, matching the specific crop context required for role 1.",
-        "The mandatory watermark 'AFP | 09134922013' is present in the bottom-right corner.",
-        "No people, body parts, or unlisted commercial containers (bottles, buckets, etc.) are visible.",
-        "The product's visible proportions (width vs. height) and frame placement are within the acceptable parameters."
+        "Product height slightly exceeds the 32% maximum threshold.",
+        "Product staging is centered rather than off-center on the lower third as required.",
+        "The roll appears to be standing upright rather than lying down, failing the 'wide low cylindrical' description of a drip-tape carton.",
+        "machine-enforced bounding-box check failed: Reduce product height from 33% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Regenerate with the drip tape roll lying flat on the soil on the lower-left side of the frame, ensure the roll's height is under 32% of the image width, and keep it clearly off-center. Reduce product height from 33% to at most 32% of frame height.",
+      "attempt": 5
+    },
+    {
+      "pass": true,
+      "score": 82,
+      "product_width_percent": 18,
+      "product_height_percent": 28,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Product is a white-and-blue cylindrical drip-tape carton roll matching the specified visual identity.",
+        "The crop visible (leafy vegetables) aligns with the سبزی article theme.",
+        "Zero people or human body parts are visible.",
+        "The roll is placed naturally on soil in the lower-left area.",
+        "Required 'AFP | 09134922013' watermark is present in the bottom-right.",
+        "Overall composition is practical and meets the minimum pass threshold for size and placement."
       ],
       "correction_prompt": "",
-      "attempt": 5
+      "attempt": 6
     }
   ],
   "approved_image": "آبیاری-محوری-در-کشت-گشنیز-کاربردها-تصویر-شاخص.webp"
