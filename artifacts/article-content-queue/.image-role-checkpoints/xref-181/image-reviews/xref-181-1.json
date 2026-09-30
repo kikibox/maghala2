@@ -7,28 +7,33 @@
   "attempts": [
     {
       "pass": false,
-      "score": 60,
-      "product_width_percent": 15,
-      "product_height_percent": 24,
-      "product_x_center_percent": 50,
+      "score": 0,
+      "product_width_percent": 12,
+      "product_height_percent": 10,
+      "product_x_center_percent": 48,
       "reasons": [
-        "Product is center-framed (x_center_percent ~50) and located in the middle vertical band, whereas the prompt required it to be off-center and placed on the lower third of the image.",
-        "The 'drip-tape carton' is standing vertically on its side (height > width), making it a tall, narrow shape. This fails the 'wide low cylindrical' geometry required (diameter 1.5-1.9x height) and resembles a 'tall narrow drum' which is a hard reject."
+        "Hard reject: The image contains a full human figure (a man bending over).",
+        "Hard reject: The man's hands are touching the product.",
+        "Hard reject: The roll is centered in the foreground rather than off-center on the lower third.",
+        "Hard reject: The product is placed on a manifold/connector, not directly on soil.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate image with the 'wide' cylindrical drip-tape roll lying horizontally on the soil in the bottom-left or bottom-right third of the frame (not centered). Ensure the roll's width is visibly larger than its height (cylindrical shape) and does not look like a vertical drum. Remove any centered framing.",
+      "correction_prompt": "Remove the person entirely. Place the roll directly on the soil in the lower third, off-center. Ensure the product is secondary in scale. Enlarge the product group from 12% to 13-27% of frame width.",
       "attempt": 1
     },
     {
       "pass": true,
-      "score": 80,
-      "product_width_percent": 15,
-      "product_height_percent": 20,
-      "product_x_center_percent": 30,
+      "score": 88,
+      "product_width_percent": 24,
+      "product_height_percent": 16,
+      "product_x_center_percent": 47,
       "reasons": [
-        "Product is off-center in the lower third, placed naturally on soil, and maintains correct aspect ratio (approx. 1.5x width-to-height).",
-        "Watermark 'AFP | 09134922013' is present at the bottom right as required.",
-        "No human silhouettes, people, or extra commercial products (bottles, drums) are present.",
-        "Background shows a prepared field with young seedlings, which meets the criteria for a neutral agronomic context."
+        "Product is a single white-and-blue cylindrical drip-tape carton with AFP branding.",
+        "No people or body parts present.",
+        "Product is off-center and placed naturally on soil.",
+        "Geometry and proportions fit acceptable constraints.",
+        "Watermark 'AFP | 09134922013' is correctly present in bottom-right.",
+        "No extra commercial packaging or containers visible."
       ],
       "correction_prompt": "",
       "attempt": 2

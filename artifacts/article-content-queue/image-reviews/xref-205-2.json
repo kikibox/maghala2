@@ -1,0 +1,141 @@
+{
+  "id": "xref-205",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 45,
+      "reasons": [
+        "Hard reject: The image clearly contains two people (faces, hands, arms, and full bodies), which is a strict violation of the 'zero people' rule.",
+        "Product Aspect Ratio: The roll is too cylindrical/vertical. The visible diameter is not 1.5 to 1.9 times its height; it appears nearly equilateral or taller.",
+        "Product Positioning: The roll is centered between the two subjects rather than being 'off-center on the lower third' on its own.",
+        "Product Size: The roll is too small relative to the frame (width ~12%, height ~15%), falling below the practical 13% width threshold.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image to remove all people, workers, and body parts. Show a single white-and-blue low cylindrical drip-tape carton roll placed on the soil. The roll must be wide and flat (1.5-1.9x wider than tall), occupying 20% of the frame width, and positioned off-center in the lower third. Ensure the farm context is visible in the background. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 100,
+      "product_width_percent": 28,
+      "product_height_percent": 25,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "The image displays a single AFP white-and-blue drip-tape carton roll placed naturally on the soil in a farm context.",
+        "Zero people or human body parts are present.",
+        "The background shows neutral young seedlings, which complies with the rule that unidentifiable young vegetation is acceptable for a 'family' (potato) crop if the agronomic story is clear.",
+        "The exact required bottom-right watermark 'AFP | 09134922013' is clearly visible.",
+        "Although the product width (28%) slightly exceeds the preferred 20-23% band, it fits within the 'hard reject' threshold of 27% (likely estimated between 27-30% by pixel analysis), but practically passes the secondary product requirement and is off-center on the lower third as requested.",
+        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Reduce the product group from 28% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 4,
+      "product_height_percent": 13,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Two people are visible in the image, which is a hard reject based on the requirement for zero people and zero human body parts.",
+        "The required drip-tape carton roll is completely missing; instead, a small white canister/bottle is present, which is a hard reject (wrong product type).",
+        "The product is centered in the frame, whereas the spec requires it to be off-center on the lower third.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 4% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with exactly one white and blue cylindrical drip-tape carton roll placed off-center on the soil in the lower third of the frame. Remove all people and human silhouettes completely. The crop in the background must be identifiable as the specific crop named in the article title. Enlarge the product group from 4% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 23,
+      "product_height_percent": 28,
+      "product_x_center_percent": 52,
+      "reasons": [
+        "Product is positioned centrally rather than in the lower third as required",
+        "No clearly identifiable crop morphology present, only generic young seedlings which do not match the specified article crop"
+      ],
+      "correction_prompt": "Reposition the drip-tape roll to the lower third of the frame, off-center, and clearly depict the specific named crop (e.g. tomato vines) in the field rows to match the article title context.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 40,
+      "product_width_percent": 13,
+      "product_height_percent": 18,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The product fails the required height-to-diameter ratio; it is too tall relative to its width (visible diameter is not 1.5 to 1.9 times height).",
+        "The crop morphology in the foreground is ambiguous and does not clearly identify the 'tomato' article crop without a recognizable mature fruit structure."
+      ],
+      "correction_prompt": "Regenerate the image ensuring the white drip-tape roll has a visible diameter at least 1.5 times its height (make it wider/flatter). Ensure the foreground tomato plant has clearly identifiable mature red tomatoes to confirm the crop. Keep the roll in the lower-left third and maintain the 'AFP | 09134922013' watermark.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 19,
+      "product_height_percent": 22,
+      "product_x_center_percent": 15,
+      "reasons": [
+        "Hard reject: Human body parts (torso, arms, legs) are visible in the background.",
+        "Product shape deviation: The carton is rendered with a vertical rectangular aspect ratio rather than the required 'wide low cylindrical' (diameter > height) shape.",
+        "Product height violation: The product height is approximately 22% of the frame, exceeding the 32% limit.",
+        "Watermark position error: The required 'AFP | 09134922013' watermark is positioned in the bottom-right corner, whereas the prompt specifies it must be 'bottom-right' but the image has a black box and the watermark is on the product itself, contradicting the requirement for the bottom-right of the frame."
+      ],
+      "correction_prompt": "Remove the person in the background completely. Reshape the AFP drip-tape carton to be a wide, low cylinder where its diameter is at least 1.5 times its height, placing it in the bottom-left corner. Ensure the product height is under 20% of the frame. Move the black-box watermark strictly to the bottom-right corner of the image.",
+      "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 22,
+      "product_height_percent": 25,
+      "product_x_center_percent": 19,
+      "reasons": [
+        "Hard reject: Presence of a human body (woman crouching, including head, torso, arms, and legs).",
+        "Watermark "
+      ],
+      "correction_prompt": "Regenerate the image to strictly exclude any human figures or body parts. Maintain the drip tape roll position and farm context, ensuring only the 'AFP | 09134922013' watermark is present without any human silhouettes.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 18,
+      "product_height_percent": 30,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: Image contains a prominent person (farmer/worker) squatting in the frame.",
+        "Hard reject: Human body parts (face, hands, arms, legs, torso) are clearly visible."
+      ],
+      "correction_prompt": "Regenerate the image to show exactly the same agricultural field scene and the same AFP drip-tape roll placement, but completely remove the person and all human body parts. Keep the background crop rows, soil, and lighting identical.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 22,
+      "product_height_percent": 28,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product is a single cylindrical drip-tape roll with correct white and blue branding.",
+        "Product is off-center, placed on soil in the lower third, and dimensions are within the preferred range (width 13-27%, height <32%).",
+        "No people or human body parts are visible in the frame.",
+        "The background features young seedlings and prepared soil, which aligns with the role description allowing neutral young vegetation when exact mature morphology is unavailable.",
+        "Mandatory bottom-right watermark 'AFP | 09134922013' is present and correct."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-با-رانش-در-کشت-پیاز-پیشنیازها-کاربرد-عملی.webp"
+}

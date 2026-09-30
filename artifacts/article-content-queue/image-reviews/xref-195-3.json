@@ -1,0 +1,45 @@
+{
+  "id": "xref-195",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 12,
+      "product_width_percent": 18,
+      "product_height_percent": 35,
+      "product_x_center_percent": 14,
+      "reasons": [
+        "Hard reject: Human hand and arm visible in the top-right panel.",
+        "Hard reject: Multiple products visible (one roll in bottom-left, one roll in top-right).",
+        "Hard reject: An irrigation pipe/hose is visible in the bottom-right panel.",
+        "Hard reject: The product bounding box height is estimated at 35%, exceeding the 32% maximum.",
+        "machine-enforced bounding-box check failed: Reduce product height from 35% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove all humans, limbs, and irrigation pipes. Create a single composite image showing exactly one AFP white-and-blue cylindrical drip-tape roll placed on soil in the bottom-left, ensuring the roll's height is less than 32% of the frame height. Maintain the crop context and required watermark. Reduce product height from 35% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 76,
+      "product_width_percent": 17,
+      "product_height_percent": 17,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "The required watermark 'AFP | 09134922013' is present at the bottom right.",
+        "The product is a white and blue cylindrical roll consistent with the 'tape20' description.",
+        "The product width is approximately 17% of the frame, which is within the acceptable range (13-27%).",
+        "The product height is approximately 17%, which is well below the 32% maximum limit.",
+        "The visible diameter is roughly equal to the height (approx 1:1), which is practical for a wide low roll.",
+        "The product is placed off-center in the lower-left quadrant on the soil.",
+        "Zero people or human body parts are visible.",
+        "The background (crop field) is generally consistent with an agricultural farming context."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-در-کشت-بامیه-چالشها-جزئیات-فنی.webp"
+}

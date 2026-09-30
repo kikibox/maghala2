@@ -1,0 +1,71 @@
+{
+  "id": "xref-202",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 8,
+      "product_height_percent": 10,
+      "product_x_center_percent": 55,
+      "reasons": [
+        "Hard reject: Human body parts (arms, hands, legs, and torso) are clearly visible in the frame.",
+        "Product form violation: The object is a small white and blue cylindrical container (canister), not the required wide, low cylindrical drip-tape carton roll.",
+        "Geometry violation: The product diameter-to-height ratio is roughly 1:1, failing the required 1.5:1 to 1.9:1 requirement for the roll shape.",
+        "Size violation: The product is positioned in the hand and does not meet the width requirement (8% vs 13% minimum) nor is it placed naturally on the soil.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the person completely. Replace the canister with a wide, low cylindrical blue and white drip-tape carton roll lying on the soil. The roll should be off-center in the lower third, measuring approximately 20% of the frame width with a height less than 32% and a diameter-to-height ratio of approximately 1.7:1. Maintain the pumpkin crop context and the 'AFP | 09134922013' watermark. Enlarge the product group from 8% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 17,
+      "product_height_percent": 18,
+      "product_x_center_percent": 36,
+      "reasons": [
+        "Hard reject: Human silhouettes (figures) are visible in the background on the left and center of the image, violating the zero-person requirement."
+      ],
+      "correction_prompt": "Regenerate the image with a completely empty background, removing all human silhouettes and figures from the fields.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 10,
+      "product_height_percent": 15,
+      "product_x_center_percent": 54,
+      "reasons": [
+        "Hard reject: The image contains two people (farmers/workers) with visible faces, hands, and bodies.",
+        "Product geometry is incorrect: The product is a small, tall cylindrical canister, not the required wide low cylindrical drip-tape roll.",
+        "Product placement is off-center and placed near the subjects, but the primary issue is the presence of the human subjects which violates the zero-people constraint.",
+        "Product shape is a standard round canister/drum, not a low drip-tape roll.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 10% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image with zero people. Show a wide, low cylindrical white-and-blue AFP drip-tape carton roll resting on the soil in the foreground. The roll should be off-center in the lower third (width ~20% of frame). The background should be a farm field with rows of crops, but absolutely no human figures, hands, or faces are permitted. Enlarge the product group from 10% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 90,
+      "product_width_percent": 23.5,
+      "product_height_percent": 31.0,
+      "product_x_center_percent": 37.0,
+      "reasons": [
+        "Exactly one white-and-blue cylindrical drip-tape carton roll is present and centered.",
+        "Product is placed off-center on the lower third, resting naturally on soil.",
+        "No people, human body parts, or silhouettes are visible.",
+        "Background shows rows of young plants, consistent with the article's agronomic context.",
+        "Required watermark 'AFP | 09134922013' is clearly visible in the bottom-right corner.",
+        "Product dimensions (width 23.5%, height 31.0%) fall within the acceptable range."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-کدو-هزینه-بهینه-کاربرد-عملی.webp"
+}

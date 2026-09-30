@@ -1,0 +1,125 @@
+{
+  "id": "xref-176",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 18,
+      "reasons": [
+        "Product orientation is upright (vertical cylinder) rather than lying on the ground as a 'wide low cylindrical roll' per the specific requirement.",
+        "The product bounding box height (22%) is larger than its width (18%), violating the 'diameter about 1.5 to 1.9 times its visible height' requirement for a lying roll."
+      ],
+      "correction_prompt": "Regenerate the image so the AFP drip-tape roll is lying flat on the soil in a wide, low cylindrical orientation. The roll should be wider than it is tall (approx 1.5:1 ratio) and positioned in the bottom-left third of the frame.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 24,
+      "product_height_percent": 34,
+      "product_x_center_percent": 25,
+      "reasons": [
+        "Height is 34% of the frame, exceeding the maximum 32% height constraint.",
+        "The crop rows show small, unidentifiable seedlings without the 'exact named crop' (article-specific) morphology required for recognizable roles 1 and 2.",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Reduce product height to under 32% of frame, and include identifiable crop morphology or clear agronomic evidence of the specific article title crop. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 20,
+      "product_width_percent": 12,
+      "product_height_percent": 15,
+      "product_x_center_percent": 50,
+      "reasons": [
+        "Hard reject: The image contains two distinct people, violating the 'zero people' rule.",
+        "Product geometry mismatch: The drip tape roll is upright rather than the required wide, low cylindrical 'lying down' shape.",
+        "Product placement: The roll is being held by a hand, which violates the 'zero human body parts' rule and the requirement for the product to be naturally placed on soil without staging.",
+        "Product width: The product is too small (approx 12%) relative to the frame compared to the preferred 20-23% size.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate image showing a wide, low cylindrical drip tape roll lying on the soil in a farm row. No people or hands visible. Product must be off-center. AFP watermark remains at bottom right. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 3
+    },
+    {
+      "pass": false,
+      "score": 25,
+      "product_width_percent": 25,
+      "product_height_percent": 27,
+      "product_x_center_percent": 47,
+      "reasons": [
+        "Hard reject: Human silhouette (distant farmer) visible in the background to the left of the tractor, violating the zero-person rule.",
+        "Product placement: The drip-tape roll is centered horizontally (47% x_center) rather than being off-center in the lower third of the frame.",
+        "Text rendering: The 'AFP' logo text is present but the rest of the label text is gibberish/illegible, failing the requirement for authentic package print."
+      ],
+      "correction_prompt": "Regenerate without any human figures or silhouettes in the background. Shift the drip-tape roll to the left side of the frame (x ~35%) while maintaining its size. Ensure the text on the roll label is either clearly legible or generic, and remove the center alignment of the product.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 0,
+      "product_height_percent": 0,
+      "product_x_center_percent": 0,
+      "reasons": [
+        "Hard reject: The image contains a full human body (man in overalls), which is explicitly forbidden.",
+        "Hard reject: The product is a small cylindrical canister or bucket, not the required 'wide low cylindrical drip-tape carton roll'.",
+        "Product dimensions do not match the specified wide drip-tape roll geometry.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 0% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Regenerate the image strictly without any people or human body parts. The product must be an AFP white-and-blue wide low cylindrical drip-tape carton roll placed on the soil, occupying approximately 13-27% of the frame width and no more than 32% height. It should be off-center on the lower third. The background should match the crop context with no person visible. Enlarge the product group from 0% to 13-27% of frame width.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 45,
+      "product_width_percent": 16,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product geometry violation: The required diameter-to-height ratio (1.5-1.9x) is not met; the visible height is too large relative to the width for the specified ratio.",
+        "Inconsistent crop context: The role requires a crop that is unmistakable from the title (implying specific morphology). While young seedlings are allowed, these look like generic grass/brassica rather than a distinct crop like corn or wheat, risking a mismatch with a specific 'named crop'."
+      ],
+      "correction_prompt": "Regenerate with a flatter, wider cylindrical drip-tape carton to satisfy the 1.5:1 to 1.9:1 width-to-height ratio. Ensure the crop is unmistakable, specifically corn seedlings or mature plants if the article refers to corn.",
+      "attempt": 6
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 48,
+      "reasons": [
+        "Presence of a visible person (crouching man) violates the zero-people constraint",
+        "Product is centrally staged with a person, conflicting with the off-center/soil-only placement requirement"
+      ],
+      "correction_prompt": "Regenerate the image to remove the crouching man entirely, leaving the 'AFP' drip-tape carton on the soil in a farm context with no human body parts or silhouettes.",
+      "attempt": 1
+    },
+    {
+      "pass": true,
+      "score": 95,
+      "product_width_percent": 18,
+      "product_height_percent": 15,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Zero people or body parts present.",
+        "Drip-tape roll has correct white-and-blue carton styling and correct wide/low cylindrical geometry.",
+        "Roll is off-center in the lower third, placed naturally on soil.",
+        "Background is a farm context with crop seedlings, matching farm article role.",
+        "Required bottom-right AFP watermark 'AFP | 09134922013' is clearly present.",
+        "No prohibited items (bottles, buckets, extra rolls, etc.) detected."
+      ],
+      "correction_prompt": "",
+      "attempt": 2
+    }
+  ],
+  "approved_image": "آبیاری-گرهای-در-کشت-پنبه-پیشنیازها-کاربرد-عملی.webp"
+}

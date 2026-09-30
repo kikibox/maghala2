@@ -7,86 +7,85 @@
   "attempts": [
     {
       "pass": false,
-      "score": 45,
-      "product_width_percent": 8,
-      "product_height_percent": 7,
-      "product_x_center_percent": 64,
+      "score": 10,
+      "product_width_percent": 14,
+      "product_height_percent": 16,
+      "product_x_center_percent": 45,
       "reasons": [
-        "Product dimensions are significantly too small (8% width is below the 13% practical minimum and 7% height is below typical visibility).",
-        "Product is not a wide, low cylindrical carton; it looks like a small canister/tube, failing the shape requirement.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
+        "Hard reject: A full human figure (woman) is present in the image.",
+        "Hard reject: The product is not placed naturally on the soil, but is held by hands and placed on a large flat black coiled ring of tubing instead.",
+        "Product geometry failure: The product appears as a tall, narrow cylindrical spool, violating the 'wide low cylindrical' requirement (visible diameter should be 1.5 to 1.9 times visible height).",
+        "Composition failure: The product is not off-center on the lower third as required; it is positioned centrally with the person."
       ],
-      "correction_prompt": "Regenerate the image featuring a wide, low cylindrical carton roll of drip tape (25% of image width, 12% height) resting on the soil. Ensure the roll is clearly wider than it is tall and larger in scale relative to the tobacco seedlings. Enlarge the product group from 8% to 13-27% of frame width.",
+      "correction_prompt": "Remove the woman completely. Place exactly one wide, low white-and-blue AFP drip-tape roll naturally on the soil on the lower third of the frame (bottom-right or bottom-left). Ensure the roll's diameter is about 1.5-1.9x its height. Remove the black flat tubing ring. The background must be a field of young crop seedlings in rows.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 85,
-      "product_width_percent": 32,
-      "product_height_percent": 42,
-      "product_x_center_percent": 31,
+      "score": 45,
+      "product_width_percent": 22,
+      "product_height_percent": 22,
+      "product_x_center_percent": 47,
       "reasons": [
-        "The required bottom-right watermark 'AFP | 09134922013' is present and legible.",
-        "The product is a cylindrical roll with white and blue coloring that matches the specified item profile.",
-        "There are zero people or human body parts in the image.",
-        "The background context is a farm field with irrigation-ready soil and neutral crop seedlings, matching the role requirements.",
-        "machine-enforced bounding-box check failed: Reduce the product group from 32% to 13-27% of frame width.; Reduce product height from 42% to at most 32% of frame height."
+        "Product aspect ratio is incorrect: it is near-square/cylindrical, not wide and flat (height is too large relative to width, failing the 1.5-1.9 width:height ratio).",
+        "Product is too centered; it should be off-center on the lower third.",
+        "Product bounding box extends into the very bottom edge, and the centered framing reads as product staging."
       ],
-      "correction_prompt": "Reduce the product group from 32% to 13-27% of frame width. Reduce product height from 42% to at most 32% of frame height.",
+      "correction_prompt": "Regenerate with a clearly wide, low, flat drip-tape carton roll (width at least 1.6x its height) placed off-center on the bottom-right third of the soil. Maintain the farm background and ensure the exact bottom-right watermark 'AFP | 09134922013' is present.",
       "attempt": 2
-    },
-    {
-      "pass": false,
-      "score": 5,
-      "product_width_percent": 8,
-      "product_height_percent": 10,
-      "product_x_center_percent": 49,
-      "reasons": [
-        "Hard reject: Image contains a visible human figure (farmer) violating the zero-person rule.",
-        "Product size is too small (8% width) to meet the required 13-27% estimate range.",
-        "Product is centered horizontally rather than placed on the lower third off-center.",
-        "Product appears to be a small cylindrical container or canister rather than the specified wide, low cylindrical drip-tape carton roll.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
-      ],
-      "correction_prompt": "Remove all people and human body parts completely. Regenerate the image to feature exactly one AFP white-and-blue wide, low cylindrical drip-tape carton roll placed naturally on soil in the lower third, off-center. The roll must occupy 20-23% of the frame width. Ensure the background shows the specified farm context without any persons. Enlarge the product group from 8% to 13-27% of frame width.",
-      "attempt": 3
-    },
-    {
-      "pass": false,
-      "score": 50,
-      "product_width_percent": 24,
-      "product_height_percent": 20,
-      "product_x_center_percent": 45,
-      "reasons": [
-        "Watermark does not exactly match the required text \"AFP | 09134922013\" as stated in the prompt."
-      ],
-      "correction_prompt": "Regenerate the image ensuring the bottom-right watermark exactly reads \"AFP | 09134922013\".",
-      "attempt": 4
     },
     {
       "pass": false,
       "score": 15,
       "product_width_percent": 18,
-      "product_height_percent": 18,
-      "product_x_center_percent": 55,
+      "product_height_percent": 28,
+      "product_x_center_percent": 61,
       "reasons": [
-        "Hard reject: Two people (farmers) are present in the image; the requirement strictly requires zero people and zero human body parts."
+        "Hard reject: The image contains a prominent person (farmer) crouching in the foreground, which violates the 'zero people' rule.",
+        "The article mentions 'city' context, but the background shows a large open farm and barn, which does not match a city or urban agriculture setting.",
+        "The crop morphology is generic (young green seedlings) and does not clearly identify a specific 'named crop' to verify the exact title context."
       ],
-      "correction_prompt": "Regenerate the image completely excluding all human figures and body parts. Retain the farm context, the crop, and the required drip-tape roll, ensuring the roll is off-center in the lower third and the required 'AFP | 09134922013' watermark is present.",
-      "attempt": 5
+      "correction_prompt": "Regenerate the image strictly excluding all people or human silhouettes. Change the background to a clearly urban or city farm environment (e.g., city skyline or dense urban buildings visible) while keeping the soil and generic drip-tape carton roll in the lower right quadrant on the soil.",
+      "attempt": 3
     },
     {
       "pass": false,
       "score": 25,
-      "product_width_percent": 19,
-      "product_height_percent": 19,
-      "product_x_center_percent": 38,
+      "product_width_percent": 16.5,
+      "product_height_percent": 18.0,
+      "product_x_center_percent": 62.0,
       "reasons": [
-        "Hard reject due to the presence of human body parts (legs, feet, and hand) in the right portion of the image.",
-        "Visible drip tape is being deployed/extended from the roll onto the soil, violating the requirement that the pipe not go through the roll and that it remains a static, secondary, cylindrical product.",
-        "The central 'grip' mechanism shown on the spool is a geometric anomaly not typical of standard drip-tape cartons."
+        "Hard reject: Image contains two distinct male figures (farms/workers), violating the zero-people and zero-human-body-parts policy.",
+        "The presence of human silhouettes and hands/legs in the foreground makes the image completely non-compliant with safety guidelines."
       ],
-      "correction_prompt": "Remove the human legs, foot, and hand; ensure the drip tape is neatly coiled onto the roll with no pipe passing through; add the 'AFP | 09134922013' watermark at the bottom-right.",
+      "correction_prompt": "Remove all human figures from the scene. Regenerate the image featuring only the farm field and the AFP drip-tape carton roll placed on the soil. No people, hands, or workers should be visible.",
+      "attempt": 4
+    },
+    {
+      "pass": false,
+      "score": 52,
+      "product_width_percent": 22,
+      "product_height_percent": 20,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Product bounding box width (22%) and height (20%) do not meet the strict geometric requirements. The visible height must be no more than 32% of the frame width, but here it is approximately 18-20%, which violates the height constraint. Additionally, the diameter-to-height ratio is not within the required 1.5 to 1.9 range.",
+        "The crop morphology is generic and does not clearly match the specific article title. While the drip tape is correctly positioned in a farm context, the crop lacks distinct botanical features to confirm it as the exact named crop required for the article."
+      ],
+      "correction_prompt": "Regenerate the image with a shorter, wider drip tape carton that meets the geometric ratio. Ensure the crop is clearly identifiable as the specific article crop (e.g., corn, melon, or grape) with distinct leaves. Keep the product in the lower-left off-center area on the soil.",
+      "attempt": 5
+    },
+    {
+      "pass": false,
+      "score": 15,
+      "product_width_percent": 20,
+      "product_height_percent": 22,
+      "product_x_center_percent": 28,
+      "reasons": [
+        "Hard reject: Image contains a visible person (farmer/worker) including face, arms, legs, and torso, which is explicitly prohibited.",
+        "Zero people rule violation: The prompt requires zero human silhouettes or body parts.",
+        "Product placement: While the drip tape roll is present in the bottom-left with correct color scheme (white and blue), its presence alongside a human figure makes the image invalid."
+      ],
+      "correction_prompt": "Regenerate the image removing the person entirely. Show only the AFP white-and-blue drip-tape roll in the lower-left third (approx 20% width) on the soil, with the farm background and crops visible but no human figures or body parts.",
       "attempt": 6
     }
   ],

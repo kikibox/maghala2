@@ -7,32 +7,32 @@
   "attempts": [
     {
       "pass": false,
-      "score": 10,
-      "product_width_percent": 15,
+      "score": 40,
+      "product_width_percent": 12.5,
       "product_height_percent": 15,
-      "product_x_center_percent": 75,
+      "product_x_center_percent": 22,
       "reasons": [
-        "Two separate drip-tape rolls are visible in the image (one on the left, one on the right), violating the 'exactly one' requirement.",
-        "The product geometry is incorrect; the visible rolls appear roughly square (width equals height) rather than the required wide low cylindrical shape (diameter 1.5 to 1.9 times height).",
-        "The crop in the top-right inset clearly shows large, broad leaves, which contradicts the specific requirement for alfalfa (fine trifoliate leaflets, no large broad leaves)."
+        "Presence of a person/farmer",
+        "Product is centered vertically instead of in the lower third",
+        "Visible diameter is greater than 2 times the height",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12.5% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate the image to show a single wide, low cylindrical drip-tape roll (diameter significantly wider than height) placed on soil. Remove the second roll. Ensure the crop visible is alfalfa with fine trifoliate leaves, or a neutral bed, without broad-leaf plants. Keep the AFP | 09134922013 watermark.",
+      "correction_prompt": "Regenerate the image with no people or workers present. Reposition the drip-tape roll off-center on the lower third so its diameter is 1.5 to 1.9 times its visible height. Ensure the crop rows represent alfalfa. Enlarge the product group from 12.5% to 13-27% of frame width.",
       "attempt": 1
     },
     {
       "pass": true,
-      "score": 88,
-      "product_width_percent": 15,
-      "product_height_percent": 21,
-      "product_x_center_percent": 31,
+      "score": 95,
+      "product_width_percent": 21,
+      "product_height_percent": 24,
+      "product_x_center_percent": 48,
       "reasons": [
-        "Product is a single white and blue cylindrical drip-tape carton roll with the required AFP branding.",
-        "The image features the exact required bottom-right watermark 'AFP | 09134922013'.",
-        "Product dimensions are within the acceptable secondary size range (width 15%, height 21%).",
-        "The roll is off-center on the lower third and placed naturally on the soil.",
-        "The scene contains zero people or human body parts.",
-        "The article crop (alfalfa) is recognizable as dense green young plants without the disqualifying large broad leaves, fitting the agronomic story.",
-        "Background farm context with barns and crops matches the required topic."
+        "Exactly one white cylindrical carton roll with AFP branding is present",
+        "Roll is wide and low (diameter approx 1.6x height) as required",
+        "Product is off-center in the lower third and naturally placed on soil",
+        "Zero people or body parts",
+        "Required watermark 'AFP | 09134922013' is clearly visible in the bottom-right",
+        "Agronomic context is clear: low-lying seedling rows on soil are consistent with young alfalfa; no conflicting species morphology is visible"
       ],
       "correction_prompt": "",
       "attempt": 2

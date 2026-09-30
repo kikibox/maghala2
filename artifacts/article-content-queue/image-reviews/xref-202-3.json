@@ -1,0 +1,53 @@
+{
+  "id": "xref-202",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 8.33,
+      "product_height_percent": 11.67,
+      "product_x_center_percent": 58.33,
+      "reasons": [
+        "Hard reject: The image contains a prominent person (arms, hands, and legs are visible) in the foreground, violating the zero-person rule.",
+        "Hard reject: The drip-tape roll is not off-center on the lower third; it is centered horizontally in the middle of the frame.",
+        "The crop visible is a pumpkin, which contradicts the specified article topic of 'lentil'.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8.33% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove all people and body parts from the scene. Position a white and blue AFP drip-tape roll off-center on the lower third of the image on the soil. Replace the pumpkin crops with lentil seedlings or neutral soil texture. Ensure the roll's width is approximately 20% of the frame and height is 15% or less. Maintain the 'AFP | 09134922013' watermark. Enlarge the product group from 8.33% to 13-27% of frame width.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 62,
+      "product_width_percent": 19,
+      "product_height_percent": 25,
+      "product_x_center_percent": 38,
+      "reasons": [
+        "Product height (25%) exceeds the 32% limit? No, it is well within, but the aspect ratio (width 19% vs height 25%) is inverted. The roll is significantly taller than it is wide (visible height > visible diameter), violating the 1.5-1.9 aspect ratio requirement where diameter must be larger than height.",
+        "Product shape and geometry look like a tall vertical roll or a bucket (height > width) rather than a 'wide low cylindrical' drip-tape carton roll."
+      ],
+      "correction_prompt": "Regenerate the image so the white and blue drip-tape roll is significantly wider than it is tall (low profile), ensuring the visible diameter is approximately 1.5 to 1.9 times the visible height. Keep the roll off-center in the lower third on soil.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 96,
+      "product_width_percent": 25,
+      "product_height_percent": 28,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Contains exactly one wide, low cylindrical drip-tape roll.",
+        "The roll is positioned off-center in the lower third of the frame on soil.",
+        "The product dimensions are within the acceptable range (width 25%, height 28%), and the roll appears naturally placed as secondary to the environment.",
+        "The bottom-right watermark is visible and authentic."
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-باغ-میوه-در-کشت-کدو-هزینه-بهینه-جزئیات-فنی.webp"
+}

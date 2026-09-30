@@ -1,0 +1,53 @@
+{
+  "id": "xref-161",
+  "kind": 2,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 19,
+      "product_x_center_percent": 34,
+      "reasons": [
+        "Human body parts (hands, arms, legs, boots, torso) are visible, which is a hard reject.",
+        "The product aspect ratio is invalid: the visible diameter (width ~15%) is less than twice the height (~19%); requirement is 1.5 to 1.9 times."
+      ],
+      "correction_prompt": "Regenerate the image with zero people and no human body parts. Adjust the drip tape roll geometry so its width is approximately 1.5 to 1.9 times its height, maintaining the low cylindrical shape.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 30,
+      "product_width_percent": 12,
+      "product_height_percent": 16,
+      "product_x_center_percent": 62,
+      "reasons": [
+        "Hard reject: Human body part (arm and hand) clearly visible in the frame.",
+        "Product orientation fails: The roll is positioned vertically, making its diameter (width) significantly smaller than its height, violating the 1.5-1.9x width-to-height requirement.",
+        "Product width is too small (approx. 12%) relative to the preferred 13-27% range.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+      ],
+      "correction_prompt": "Remove the arm and hand completely. Regenerate the AFP white and blue roll horizontally on the soil to achieve a wider diameter relative to its height, placing it off-center on the lower third without any human presence. Enlarge the product group from 12% to 13-27% of frame width.",
+      "attempt": 2
+    },
+    {
+      "pass": true,
+      "score": 85,
+      "product_width_percent": 18,
+      "product_height_percent": 28,
+      "product_x_center_percent": 31,
+      "reasons": [
+        "Product meets width and height requirements and is naturally placed off-center on soil",
+        "Visible saffron crocus flowers in the agronomic context",
+        "Watermark matches exactly",
+        "No people or human parts visible"
+      ],
+      "correction_prompt": "",
+      "attempt": 3
+    }
+  ],
+  "approved_image": "آبیاری-رانشی-در-کشت-زعفران-مقایسه-کاربرد-عملی.webp"
+}

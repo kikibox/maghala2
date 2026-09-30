@@ -7,75 +7,33 @@
   "attempts": [
     {
       "pass": false,
-      "score": 78,
-      "product_width_percent": 24,
-      "product_height_percent": 30,
-      "product_x_center_percent": 30,
+      "score": 15,
+      "product_width_percent": 9,
+      "product_height_percent": 12,
+      "product_x_center_percent": 42,
       "reasons": [
-        "The required watermark is displayed as 'AFP | 09134922013' which contains the incorrect character '9'. It must be exactly 'AFP | 09134922013'."
+        "Critical fail: The image contains a person (farmer/worker) crouching in the foreground, which is explicitly a hard reject condition for this role.",
+        "The product is far too small; the width is estimated at ~9% and height at ~12%, falling below the minimum practical acceptance threshold (product should be 13-27% width and act as a secondary subject).",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 9% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate the image changing the text '9' in the phone number of the bottom-right watermark to the digit '1' so the string reads exactly 'AFP | 09134922013'.",
+      "correction_prompt": "Remove the person entirely. Significantly increase the size of the AFP white-and-blue cylindrical drip-tape roll to be secondary but clearly visible (approx 20% of frame width). Place the roll naturally on the soil in the foreground, off-center, with no people or body parts visible. Enlarge the product group from 9% to 13-27% of frame width.",
       "attempt": 1
     },
     {
-      "pass": false,
-      "score": 45,
-      "product_width_percent": 21,
-      "product_height_percent": 25,
-      "product_x_center_percent": 31,
-      "reasons": [
-        "The main product roll is cylindrical rather than the required wide low cylindrical shape; the diameter is approximately equal to its height rather than 1.5-1.9 times.",
-        "The background contains a tall narrow drum (black roll) which violates the specific rejection criteria.",
-        "The product is too tall relative to its width compared to the preferred low profile."
-      ],
-      "correction_prompt": "Regenerate with a wide, low-profile cylindrical drip-tape roll (diameter ~1.5-2x height). Remove the black drum object. Ensure the roll is placed naturally on soil, off-center lower third. Maintain the AFP watermark and tractor in background.",
-      "attempt": 2
-    },
-    {
-      "pass": false,
-      "score": 45,
-      "product_width_percent": 28,
-      "product_height_percent": 22,
-      "product_x_center_percent": 49,
-      "reasons": [
-        "Product is centered in the frame (50% x-axis), violating the 'off-center on the lower third' requirement",
-        "Product width is approximately 28% of the frame, exceeding the 27% hard-reject limit",
-        "A human driver is visible in the tractor in the background, violating the 'zero people/human body parts' requirement",
-        "machine-enforced bounding-box check failed: Reduce the product group from 28% to 13-27% of frame width."
-      ],
-      "correction_prompt": "Move the drip tape roll to the far left or far right of the bottom third to be off-center. Reduce the roll's size so its width is roughly 20% of the frame. Remove the person from the tractor in the background, ensuring the tractor is empty or the background is cleared of silhouettes. Reduce the product group from 28% to 13-27% of frame width.",
-      "attempt": 3
-    },
-    {
-      "pass": false,
-      "score": 0,
-      "product_width_percent": 24,
-      "product_height_percent": 30,
-      "product_x_center_percent": 50,
-      "reasons": [
-        "Centered product staging",
-        "Product height and width are at the upper limit of acceptable, causing the product to dominate the foreground instead of remaining secondary"
-      ],
-      "correction_prompt": "Regenerate the image placing the roll in the lower-left or lower-right third of the frame to remove it from the center. Ensure the roll is visually smaller relative to the soil and field rows so it remains secondary, maintaining the low wide cylindrical geometry.",
-      "attempt": 4
-    },
-    {
       "pass": true,
-      "score": 92,
-      "product_width_percent": 22,
-      "product_height_percent": 18,
-      "product_x_center_percent": 32,
+      "score": 95,
+      "product_width_percent": 23,
+      "product_height_percent": 28,
+      "product_x_center_percent": 48,
       "reasons": [
-        "Exactly one AFP white-and-blue wide low cylindrical drip-tape carton roll is visible.",
-        "Product is naturally placed on soil and is off-center in the lower third.",
-        "Product proportions meet requirements: width is 22% and height is 18%, maintaining the required diameter-to-height ratio.",
-        "Zero people or human body parts visible in the frame.",
-        "Required bottom-right watermark 'AFP | 09134922013' is present and authentic.",
-        "Unattended tractors in the background are acceptable irrigation infrastructure without violating the no-people rule.",
-        "Crop plants appear neutral and do not contradict the drip-tape context."
+        "Product is a single white and blue wide low cylindrical drip-tape carton roll",
+        "Product dimensions are within acceptable limits (width ~23%, height ~28%)",
+        "Product is placed on soil in a farm context with barn and tractor in background",
+        "No people or human body parts visible",
+        "Required watermark 'AFP | 09134922013' present in bottom-right"
       ],
       "correction_prompt": "",
-      "attempt": 5
+      "attempt": 2
     }
   ],
   "approved_image": "آبیاری-زیرسطحی-در-کشت-پیاز-مقایسه-جزئیات-فنی.webp"

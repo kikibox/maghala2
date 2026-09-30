@@ -1,0 +1,68 @@
+{
+  "id": "xref-193",
+  "kind": 3,
+  "family": "tape20",
+  "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
+  "approved": true,
+  "attempts": [
+    {
+      "pass": false,
+      "score": 65,
+      "product_width_percent": 27,
+      "product_height_percent": 34,
+      "product_x_center_percent": 32,
+      "reasons": [
+        "Product height exceeds the 32% limit",
+        "Product width is at the maximum 27% limit",
+        "A second commercial product (small metallic cylinder and hose/pipe) is present in the foreground",
+        "machine-enforced bounding-box check failed: Reduce product height from 34% to at most 32% of frame height."
+      ],
+      "correction_prompt": "Remove the metallic cylinder and hose/pipe from the foreground. Shrink the white and blue carton roll height to under 32% of the frame while keeping the off-center position on the soil. Reduce product height from 34% to at most 32% of frame height.",
+      "attempt": 1
+    },
+    {
+      "pass": false,
+      "score": 10,
+      "product_width_percent": 15,
+      "product_height_percent": 20,
+      "product_x_center_percent": 30,
+      "reasons": [
+        "Hard reject: presence of a person (farmer).",
+        "Hard reject: visible human body parts (face, hands, arms, legs, boots)."
+      ],
+      "correction_prompt": "Regenerate the image without any people or human body parts. Ensure the scene contains only the AFP white-and-blue drip-tape roll placed on the soil, an unattended tractor in the background, and a farm shed, with no individuals present.",
+      "attempt": 2
+    },
+    {
+      "pass": false,
+      "score": 58,
+      "product_width_percent": 25,
+      "product_height_percent": 29,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "The product is a large, vertically-oriented roll resembling a standard paper towel roll or thick hose spool, rather than the required wide, low, cylindrical drip-tape carton.",
+        "The visible diameter is not 1.5 to 1.9 times the visible height; the roll is roughly square or taller, violating the low-profile aspect ratio requirement."
+      ],
+      "correction_prompt": "Re-generate the product to be a wide, low cylindrical drip-tape carton (flat roll) with a width-to-height ratio of roughly 1.7:1, resting on the soil.",
+      "attempt": 3
+    },
+    {
+      "pass": true,
+      "score": 92,
+      "product_width_percent": 22.5,
+      "product_height_percent": 20,
+      "product_x_center_percent": 35,
+      "reasons": [
+        "Product is a white and blue wide low cylindrical roll consistent with drip-tape packaging.",
+        "Zero people or human body parts visible.",
+        "Background shows farm context with soil, tractor, and barn matching general topic.",
+        "Watermark 'AFP | 09134922013' is present in the bottom-right corner.",
+        "Product is off-center in the lower third of the frame.",
+        "Product dimensions (width ~22.5%, height ~20%) are within acceptable ranges."
+      ],
+      "correction_prompt": "",
+      "attempt": 4
+    }
+  ],
+  "approved_image": "آبیاری-بارانی-با-رانش-در-کشت-بامیه-مقایسه-جزئیات-فنی.webp"
+}

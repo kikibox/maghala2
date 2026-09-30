@@ -3,96 +3,90 @@
   "kind": 2,
   "family": "tape20",
   "policy": "strict-no-human-no-bottle-no-container-v11-full-rebuild",
-  "approved": true,
+  "approved": false,
   "attempts": [
     {
       "pass": false,
-      "score": 55,
-      "product_width_percent": 12,
-      "product_height_percent": 10,
-      "product_x_center_percent": 77,
+      "score": 15,
+      "product_width_percent": 13,
+      "product_height_percent": 15,
+      "product_x_center_percent": 26,
       "reasons": [
-        "The requested product is a white-and-blue wide low cylindrical drip-tape carton roll. The two rolls currently visible are too small relative to the frame and are cylindrical white buckets or containers rather than flat wide drip-tape cartons.",
-        "The crop in the top-right close-up is clearly identifiable as a different species with broad lobed leaves (resembling maple), which violates the requirement for alfalfa (dense fine trifoliate leaflets).",
-        "The image is presented as a collage with multiple distinct scenes; the primary product roll in the foreground is on a dark coiled pipe/hose and is centered in a lower box, failing the 'naturally placed' and 'single image context' preference.",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 12% to 13-27% of frame width."
+        "Hard reject: Presence of a person (farmer) crouching in the field.",
+        "Hard reject: The crop shown has large, broad, single leaves (resembling soybean or vegetable seedlings) rather than the dense, fine trifoliate leaflets required for alfalfa (یونجه).",
+        "Product width is slightly below the preferred 20% target, though acceptable."
       ],
-      "correction_prompt": "Regenerate as a single seamless scene in a field of young alfalfa (trifoliate leaves). Place exactly one white and blue AFP wide flat drip-tape carton roll on the soil, located on the lower right third (off-center), sized to 20-23% of frame width. No people, no maple leaves, no collage boxes, no extra containers. Include 'AFP | 09134922013' watermark in bottom right. Enlarge the product group from 12% to 13-27% of frame width.",
+      "correction_prompt": "Regenerate the image with zero people or human silhouettes. Change the crop to clearly identifiable young alfalfa plants with distinct trifoliate leaflets. Ensure the drip tape roll is slightly larger, positioned in the lower-left third on the soil.",
       "attempt": 1
     },
     {
       "pass": false,
-      "score": 55,
-      "product_width_percent": 21,
-      "product_height_percent": 31,
-      "product_x_center_percent": 60,
+      "score": 10,
+      "product_width_percent": 18,
+      "product_height_percent": 22,
+      "product_x_center_percent": 22,
       "reasons": [
-        "Plant morphology mismatch: The article requires ‘الینجه’ (Alfalfa), which is botanically defined by trifoliate (three-lobed) leaflets. The vegetation in the image features broad, single, ovate leaves characteristic of vegetables like lettuce or spinach, not the compound leaf structure of alfalfa.",
-        "Watermark mismatch: The required watermark is 'AFP | 09134922013' (ending in 013), but the image displays 'AFP | 09134922018' (ending in 018)."
+        "Hard reject: Two people (a man and a woman) are clearly visible in the background crouching near the crops. The prompt explicitly requires zero people, faces, or human body parts."
       ],
-      "correction_prompt": "Regenerate with crops featuring dense trifoliate (three-part) leaves to represent alfalfa. Change the bottom-right watermark to 'AFP | 09134922013'.",
+      "correction_prompt": "Regenerate the image removing all human figures, faces, and silhouettes from the background to ensure the scene contains only the farm context, crops, and the drip-tape roll.",
       "attempt": 2
     },
     {
       "pass": false,
-      "score": 10,
-      "product_width_percent": 5,
-      "product_height_percent": 12,
-      "product_x_center_percent": 52,
+      "score": 12,
+      "product_width_percent": 8,
+      "product_height_percent": 11,
+      "product_x_center_percent": 35,
       "reasons": [
-        "Presence of a person (hard reject)",
-        "Product is not a wide cylindrical drip-tape roll (hard reject)",
-        "Product is held by a person (hard reject)",
-        "Visible second product (metal container) (hard reject)",
-        "Product is not off-center on the lower third",
-        "machine-enforced bounding-box check failed: Enlarge the product group from 5% to 13-27% of frame width."
+        "The image contains a human figure (a woman) in the foreground, which results in an immediate hard reject.",
+        "The visible drip-tape roll is cylindrical and upright (not wide/low as required), with dimensions approximating 8% width and 11% height.",
+        "The roll is not off-center on the lower third as specified.",
+        "Although the watermark is present, the human rejection criterion disqualifies the image.",
+        "machine-enforced bounding-box check failed: Enlarge the product group from 8% to 13-27% of frame width."
       ],
-      "correction_prompt": "Regenerate image showing a large AFP drip-tape roll on the soil, no people, no extra containers, wide cylindrical shape, off-center lower third. Enlarge the product group from 5% to 13-27% of frame width.",
+      "correction_prompt": "Regenerate the image by completely removing the human figure. Replace it with a wide, low cylindrical drip-tape roll positioned off-center in the lower third on the soil, ensuring no human silhouettes or body parts are present anywhere in the frame. Enlarge the product group from 8% to 13-27% of frame width.",
       "attempt": 3
     },
     {
       "pass": false,
-      "score": 45,
-      "product_width_percent": 16,
-      "product_height_percent": 22,
-      "product_x_center_percent": 33,
+      "score": 25,
+      "product_width_percent": 22,
+      "product_height_percent": 13,
+      "product_x_center_percent": 38,
       "reasons": [
-        "Botanical Context Mismatch: The background vegetation clearly depicts a legume (likely clover or bean) with distinct pinnate/compound leaves. The crop is explicitly required to be Alfalfa (یونجه) which has specific trifoliate leaflets; the current crop fails the 'article-specific agronomic story' check for alfalfa.",
-        "Product Width Percent: The product bounding box width is approximately 16%, falling just below the preferred 20-23% range (though within the absolute 13-27% limit), making the product appear slightly small for 'image role 2'.",
-        "Product Height Percent: The product bounding box height is approximately 22%, which is within the <32% limit but contributes to the perceived 'smallness' of the roll."
+        "Product aspect ratio is too flat; the visible diameter is not about 1.5 to 1.9 times its height (the roll looks compressed/low, height is too short relative to width), which fails the required wide low cylindrical geometry.",
+        "The product appears floating/standing on a mound of soil rather than naturally placed on the soil surface at the lower third; it is not convincingly seated in the bed.",
+        "Zero human body parts confirmed (good), but the product geometry and placement are not consistent with the required wide low cylindrical carton roll."
       ],
-      "correction_prompt": "Regenerate the background crop to accurately depict alfalfa (trifoliate leaves, fine texture) instead of the current pinnate-leafed legume. Increase the product scale so the width is approximately 20% of the frame width. Keep the roll on the soil, lower-left quadrant, no humans.",
+      "correction_prompt": "Regenerate the image showing a wide, low cylindrical AFP white-and-blue drip-tape carton roll placed naturally on the soil in the lower third, off-center. Ensure the roll is wide and low (diameter about 1.5-1.9x its height), not flat or compressed. The background should clearly show an alfalfa farm context with dense, fine trifoliate leaflets and no large broad leaves. Keep the bottom-right watermark 'AFP | 09134922013' visible. No people or body parts.",
       "attempt": 4
     },
     {
       "pass": false,
-      "score": 10,
-      "product_width_percent": 20,
-      "product_height_percent": 24,
-      "product_x_center_percent": 28,
+      "score": 25,
+      "product_width_percent": 25,
+      "product_height_percent": 32,
+      "product_x_center_percent": 52,
       "reasons": [
-        "Hard reject: image contains a clearly visible person (farmer/worker) squatting and handling plants/tools. Any human body part (arms, hands, legs, torso) triggers immediate rejection."
+        "Crop identification mismatch: The vegetation shown has large, broad, serrated leaves and purple flowers (resembling mint or a similar herbaceous plant), which contradicts the requirement for dense fine trifoliate leaflets of alfalfa.",
+        "Centered product staging: The product bounding box is centered at approximately 52% of the image width, failing the requirement to be off-center (lower third).",
+        "Height tolerance: The roll height of 32% is at the absolute maximum rejection threshold."
       ],
-      "correction_prompt": "Regenerate the image with ZERO people or human body parts. Keep the single AFP white-and-blue wide low cylindrical drip-tape carton roll in the lower-left third, placed naturally on soil, with alfalfa context (dense fine trifoliate seedlings), no second product, and retain the bottom-right AFP | 09134922013 watermark.",
+      "correction_prompt": "Regenerate the image with an alfalfa field featuring small, dense trifoliate leaves (clover-like). Place the white and blue AFP drip-tape roll clearly off-center in the lower third (to the left or right of the image). Ensure the roll is slightly smaller relative to the frame, with a height under 30% and a width under 25%.",
       "attempt": 5
     },
     {
-      "pass": true,
-      "score": 85,
+      "pass": false,
+      "score": 45,
       "product_width_percent": 18,
-      "product_height_percent": 28,
-      "product_x_center_percent": 27,
+      "product_height_percent": 22,
+      "product_x_center_percent": 38,
       "reasons": [
-        "Product is a single white and blue drip-tape carton roll placed naturally on soil in the lower third.",
-        "Product width (18%) and height (28%) are within the acceptable practical ranges.",
-        "Background shows young green seedlings in prepared rows, fitting the 'neutral young vegetation' clause for an alfalfa article where mature morphology is not yet present.",
-        "Watermark 'AFP | 09134922013' is present and correctly positioned.",
-        "No people or human body parts are visible.",
-        "Product geometry is plausible and off-center."
+        "Crop context mismatch: The visible vegetation in the foreground shows broad, opposite leaves typical of dicots like corn or broadleaf weeds, which does not match the specific 'dense fine trifoliate leaflets' required for the alfalfa topic. There is no visible root-zone or specific agronomic evidence confirming alfalfa cultivation."
       ],
-      "correction_prompt": "",
+      "correction_prompt": "Regenerate the image to show a field of mature alfalfa (clover-like trifoliate leaves) or a distinct botanically neutral prepared bed. Ensure the white-and-blue wide low cylindrical drip-tape carton roll remains on the lower third, off-center, and placed naturally on soil.",
       "attempt": 6
     }
   ],
-  "approved_image": "آبیاری-گلخانهای-در-کشت-یونجه-مزایا-کاربرد-عملی.webp"
+  "approved_image": null
 }
