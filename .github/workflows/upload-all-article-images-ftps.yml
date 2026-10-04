@@ -1,0 +1,82 @@
+name: Upload merged 1016-post images archive via FTPS
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/upload-all-article-images-ftps.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: upload-merged-article-images-ftps
+  cancel-in-progress: false
+
+env:
+  FTP_HOST: ftp.navar-abyari.ir
+  FTP_PORT: '21'
+  FTP_USER: zzz@navar-abyari.ir
+  FTP_REMOTE_DIR: /
+  FTP_TLS_VERIFY: 'false'
+  FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+  ARCHIVE_NAME: maghala2-1016-post-images.zip
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build merged images archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile, ZIP_STORED
+          import os
+          source = Path('artifacts/article-content-queue/images')
+          images = sorted(p for p in source.iterdir() if p.is_file())
+          if len(images) != 3048:
+              raise SystemExit(f'Expected 3048 images, found {len(images)}')
+          output = Path('/tmp') / os.environ['ARCHIVE_NAME']
+          with ZipFile(output, 'w', compression=ZIP_STORED, allowZip64=True) as archive:
+              for image in images:
+                  archive.write(image, f'wp-content/uploads/2026/09/navar-article-generated/{image.name}')
+          print(f'Created {output} with {len(images)} images ({output.stat().st_size} bytes)')
+          PY
+      - name: Upload and verify archive via explicit FTPS
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$FTP_PASSWORD"
+          python - <<'PY'
+          from pathlib import Path
+          import os
+          from automation.upload_city_batches_ftps import connect
+          path = Path('/tmp') / os.environ['ARCHIVE_NAME']
+          temporary = f'.{path.name}.uploading'
+          ftp = connect()
+          try:
+              with path.open('rb') as stream:
+                  ftp.storbinary(f'STOR {temporary}', stream, blocksize=1024 * 1024)
+              remote_size = ftp.size(temporary)
+              if remote_size != path.stat().st_size:
+                  try: ftp.delete(temporary)
+                  finally: raise RuntimeError(f'Size verification failed: local={path.stat().st_size}, remote={remote_size}')
+              try: ftp.delete(path.name)
+              except Exception: pass
+              ftp.rename(temporary, path.name)
+              final_size = ftp.size(path.name)
+              if final_size != path.stat().st_size:
+                  raise RuntimeError(f'Final size verification failed: local={path.stat().st_size}, remote={final_size}')
+              print(f'Uploaded and verified: {path.name} ({final_size} bytes)')
+          finally:
+              try: ftp.quit()
+              except Exception: ftp.close()
+          PY
