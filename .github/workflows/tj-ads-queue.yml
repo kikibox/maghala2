@@ -1,0 +1,108 @@
+name: tj-ads-queue
+
+# Tajikistan ads (CPT `tajikistan`, Tajik Cyrillic). Lives in folder tj-ads/ of this branch.
+# Start: Actions -> Run workflow (needs the file on the default branch) OR edit tj-ads/automation/tj-ads-trigger.txt on this branch.
+on:
+  workflow_dispatch:
+    inputs:
+      batch_size: { description: 'Items per run', default: '3', required: false }
+      only_place: { description: 'Place slug (e.g. rudaki) or empty', default: '', required: false }
+      tier:       { description: 'Tier A/B/C or empty', default: '', required: false }
+      mock:       { description: 'Offline dry-run', type: boolean, default: false }
+      upload:     { description: 'Upload ZIPs to site FTP home', type: boolean, default: false }
+  push:
+    branches: [feat/tajikistan-ads]
+    paths: ['tj-ads/automation/tj-ads-trigger.txt']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tj-ads-queue
+  cancel-in-progress: false
+
+env:
+  AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+  AGNES_API_KEY2: ${{ secrets.AGNES_API_KEY2 }}
+  AGNES_API_KEY3: ${{ secrets.AGNES_API_KEY3 }}
+  AGNES_API_KEY4: ${{ secrets.AGNES_API_KEY4 }}
+  AGNES_API_KEY5: ${{ secrets.AGNES_API_KEY5 }}
+  AGNES_API_KEY6: ${{ secrets.AGNES_API_KEY6 }}
+  AGNES_API_KEY7: ${{ secrets.AGNES_API_KEY7 }}
+  AGNES_API_KEY8: ${{ secrets.AGNES_API_KEY8 }}
+  AGNES_API_KEY9: ${{ secrets.AGNES_API_KEY9 }}
+  AGNES_API_KEY10: ${{ secrets.AGNES_API_KEY10 }}
+  AGNES_API_KEY11: ${{ secrets.AGNES_API_KEY11 }}
+  AGNES_API_KEY12: ${{ secrets.AGNES_API_KEY12 }}
+  AGNES_API_KEY13: ${{ secrets.AGNES_API_KEY13 }}
+  AGNES_API_BASE: ${{ vars.AGNES_API_BASE || 'https://apihub.agnes-ai.com/v1' }}
+  AGNES_MODEL: ${{ vars.AGNES_MODEL || 'agnes-3.0-flash' }}
+  IMAGE_API_KEY: ${{ secrets.IMAGE_API_KEY || secrets.AGNES_API_KEY }}
+  IMAGE_ENDPOINT: ${{ vars.IMAGE_ENDPOINT || 'https://apihub.agnes-ai.com/v1/images/generations' }}
+  IMAGE_MODEL: ${{ vars.IMAGE_MODEL || 'agnes-image-2.5-flash' }}
+  FTP_HOST: ftp.navar-abyari.ir
+  FTP_PORT: '21'
+  FTP_USER: zzz@navar-abyari.ir
+  FTP_REMOTE_DIR: /
+  FTP_TLS_VERIFY: 'false'
+  FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    defaults:
+      run:
+        working-directory: tj-ads
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: '${{ github.ref_name }}' }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: pip install pillow
+      - name: Read parameters
+        id: p
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "batch=${{ inputs.batch_size }}" >> $GITHUB_OUTPUT
+            echo "place=${{ inputs.only_place }}" >> $GITHUB_OUTPUT
+            echo "tier=${{ inputs.tier }}" >> $GITHUB_OUTPUT
+            echo "mock=${{ inputs.mock }}" >> $GITHUB_OUTPUT
+            echo "upload=${{ inputs.upload }}" >> $GITHUB_OUTPUT
+          else
+            f=automation/tj-ads-trigger.txt
+            g() { grep -E "^$1=" $f | head -1 | cut -d= -f2- | tr -d ' \r'; }
+            echo "batch=$(g batch_size)" >> $GITHUB_OUTPUT
+            echo "place=$(g only_place)" >> $GITHUB_OUTPUT
+            echo "tier=$(g tier)" >> $GITHUB_OUTPUT
+            echo "mock=$(g mock)" >> $GITHUB_OUTPUT
+            echo "upload=$(g upload)" >> $GITHUB_OUTPUT
+          fi
+      - run: python automation/build_titles.py
+      - name: Process batch
+        env:
+          BATCH_SIZE: ${{ steps.p.outputs.batch }}
+        run: |
+          ARGS=""
+          [ -n "${{ steps.p.outputs.place }}" ] && ARGS="$ARGS --only-place ${{ steps.p.outputs.place }}"
+          [ -n "${{ steps.p.outputs.tier }}" ] && ARGS="$ARGS --tier ${{ steps.p.outputs.tier }}"
+          [ "${{ steps.p.outputs.mock }}" = "true" ] && ARGS="$ARGS --mock"
+          python automation/ads_queue.py $ARGS
+      - name: SQL smoke test (SQLite, not MySQL)
+        run: python automation/test_sql_sqlite.py
+      - run: python automation/package_batches.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tj-ads-packages
+          path: tj-ads/artifacts/tj-ads/packages/*.zip
+          if-no-files-found: ignore
+      - name: Upload ZIPs via FTPS
+        if: ${{ steps.p.outputs.upload == 'true' && steps.p.outputs.mock != 'true' }}
+        run: python automation/upload_ftps.py
+      - name: Commit queue state
+        if: ${{ steps.p.outputs.mock != 'true' }}
+        run: |
+          git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f artifacts/tj-ads/queue.json artifacts/tj-ads/status.json artifacts/tj-ads/items artifacts/tj-ads/sql artifacts/tj-ads/rollback artifacts/tj-ads/images artifacts/tj-ads/ftps-upload-state.json data/titles.json 2>/dev/null || true
+          git commit -m 'tj-ads: batch update [skip ci]' || echo "nothing to commit"
+          git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }}
