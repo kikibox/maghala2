@@ -1,0 +1,23 @@
+name: tj-ads-model-probe
+on:
+  push:
+    branches: [feat/tajikistan-ads]
+    paths: ['tj-ads/automation/probe-trigger.txt']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: '${{ github.ref_name }}' }
+      - run: python tj-ads/automation/probe_models.py
+      - run: |
+          git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f tj-ads/artifacts/tj-ads/probe.json
+          git commit -m 'tj-ads: model probe [skip ci]' || echo none
+          git pull --rebase --autostash origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }}
