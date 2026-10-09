@@ -32,6 +32,7 @@ TG_ONLY = re.compile(r'[ҒғӢӣҚқӮӯҲҳҶҷ]')
 MIN_FA = A.MIN_WORDS
 MIN_TR = int(__import__('os').getenv('MIN_TRANSLATED_WORDS', '900'))
 TARGET = A.TARGET_WORDS
+LANG_MODEL = {'tg-TJ': __import__('os').getenv('TG_MODEL', 'agnes-2.5-flash'), 'ru-RU': __import__('os').getenv('RU_MODEL', 'agnes-3.0-flash')}   # probe: 2.5-flash writes clearly better Tajik, 3.0-flash cleaner Russian
 MAXTRY_SRC = 5
 MAXTRY_TR = 3
 DBG = A.OUT / 'debug'
@@ -79,7 +80,7 @@ def build_prompt_fa(item, place, products, links, tt):
 قوانین سخت
 ۱) فقط HTML با h2/h3/p/ul/ol/li/table/strong/details/summary. بدون H1 و بدون تکرار عنوان در متن. هدف حدود {TARGET} کلمه (حداقل قطعی {MIN_FA}). هر بخش h2 باید ۲ تا ۴ پاراگراف مفصل و عملی داشته باشد. جمله‌ها را تکراری شروع نکن.
 ۲) فقط محصولات ردیفی؛ از باغ، تاکستان و گلخانه حرف نزن. نگو این محصول «محصول اصلی» محل است، مگر در واقعیت‌های تأییدشده آمده باشد.
-۳) هرگز جعل نکن: قیمت، تخفیف، عملکرد، آمار، تاریخ، جایزه، گواهینامه، نمایندگی/انبار/مرکز خدمات در تاجیکستان، ارسال رایگان یا محلی، تأیید یا حمایت دولت. هیچ عددی همراه واحد پول ننویس و از رئیس‌جمهور نام نبر.
+۳) هرگز جعل نکن؛ هیچ بازه یا مقدار عددی (فاصله قطره‌چکان، فشار، دبی، درصد، ساعت، روز، مقدار آب و ...) ننویس و فقط ابعاد موجود در عنوان محصولات (مثل ۲۰ سانتی‌متر، ۱۰۰۰ متر) مجاز است: قیمت، تخفیف، عملکرد، آمار، تاریخ، جایزه، گواهینامه، نمایندگی/انبار/مرکز خدمات در تاجیکستان، ارسال رایگان یا محلی، تأیید یا حمایت دولت. هیچ عددی همراه واحد پول ننویس و از رئیس‌جمهور نام نبر.
 ۴) نکته‌ی تجاری: قیمت و شرایط خرید با تماس تلفنی یا فرم توافق می‌شود؛ محصول گارانتی دارد ولی خدمات پس از فروش و شرایط ارسال به تاجیکستان جداگانه توافق می‌شود. نشانگر [[[CONTACT_BOX]]] را دقیقاً یک بار در یک خط جدا بگذار (اسکریپت تلفن را جایگزین می‌کند).
 ۵) در بخش همکاری یک پاراگراف کوتاه (۲ تا ۳ جمله) هم‌روح این جمله ولی کاملاً بازنویسی‌شده بنویس: «{seed}». این پاراگراف باید لینک [[L1|متن طبیعی]] را داشته باشد. هیچ حرفی را به رئیس‌جمهور یا دولت نسبت نده.
 ۶) ساختار: مقدمه (محل + محصول + محصول زراعی) ← [[[IMAGE_1]]] ← h2 چرا/کی این محصول به این محصول زراعی می‌خورد ← h2 چگونه انتخاب کنیم (یک جدول کوچک معیارهای کلی، بدون شماره‌ی کاتالوگ نامطمئن) ← [[[IMAGE_2]]] ← h2 نصب و نگهداری (فهرست شماره‌دار) ← h2 صرفه‌جویی آب و روش کار در مزرعه (بدون داده‌ی محلی ساختگی) ← h2 همکاری (قانون ۵) ← [[[CONTACT_BOX]]] ← [[[IMAGE_3]]] ← پرسش‌های متداول: دقیقاً ۳ پرسش، هرکدام به شکل <details class="navar-faq"><summary><h3>پرسش</h3></summary><div><p>پاسخ</p></div></details> ← در پایان <h2>مطالب مرتبط</h2><ul> با لینک‌های مرتبط.
@@ -144,6 +145,9 @@ def validate_fa(obj, item, allowed):
         if ph in txt: bad.append('forbidden: ' + ph)
     if item['crop'] and I18N['crops'][item['crop']]['fa'] not in txt: bad.append('crop name missing')
     if pf not in txt: bad.append('place name missing')
+    if item['place'] not in I18N['place_facts']:      # no verified numbers for this place -> no invented measurements
+        t2 = txt.translate(str.maketrans('۰۱۲۳۴۵۶۷۸۹٫٬', '0123456789.,'))
+        if re.search(r'\d+\s*(?:[-–تا]|الی)\s*\d+', t2) or re.search(r'\d+\s*(?:بار|لیتر|درصد|%|٪|درجه|ساعت|دقیقه|روز|هفته|ماه|کیلو|تن|هکتار|متر مکعب|اتمسفر)', t2): bad.append('invented numbers/ranges (only numbers from product titles are allowed)')
     for k in ('excerpt', 'meta_title', 'meta_description', 'focus_keyword'):
         if not obj.get(k): bad.append('missing ' + k)
     if len(obj.get('image_alts', [])) != 3: bad.append('need 3 image_alts')
@@ -196,9 +200,15 @@ def make_source(item, place, products, mock=False):
 
 
 # ------------------------------------------------------------------ translation
-def set_labels():
-    if TQ:
-        TQ.language_label = lambda lang: LANGS[lang]['label'] + '. ' + I18N['glossary'][lang]
+def set_labels(item=None, place=None, lang=None):
+    if not TQ: return
+    extra = {}
+    if item and place:
+        fa = I18N['places'][item['place']]['fa']; zf = I18N['zone_label'][item['zone']]['fa']
+        extra['tg-TJ'] = f" Names that must be rendered EXACTLY: {fa} = {place['name_tg']}; \"{zf}\" = \"{place['zone_label_tg']}\"."
+        extra['ru-RU'] = f" Names that must be rendered EXACTLY: {fa} = {I18N['places'][item['place']]['ru']}; \"{zf}\" = \"{I18N['zone_label'][item['zone']]['ru']}\"."
+    TQ.language_label = lambda lg: LANGS[lg]['label'] + '. ' + I18N['glossary'][lg] + extra.get(lg, '')
+    if lang: TQ.MODEL = LANG_MODEL[lang]
 
 
 def trim(s, n):
@@ -254,12 +264,13 @@ def qc_translation(html_t, lang, src_html, minw):
     for u in A.internal_links(src_html):
         want = RU_PILLAR if (lang == 'ru-RU' and A.urlnorm(u) == A.urlnorm(TG_PILLAR)) else u
         if A.urlnorm(want) not in {A.urlnorm(x) for x in A.internal_links(html_t)}: bad.append('link lost: ' + u[-30:])
+    if re.search(r'[\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af]', txt): bad.append('CJK characters in translation')
     if A.PRICE_RE.search(txt): bad.append('price-like text')
     return bad
 
 
-def translate_post(obj, item, lang, tt, mock=False):
-    set_labels(); minw = 100 if mock else MIN_TR; last = []
+def translate_post(obj, item, lang, tt, mock=False, place=None):
+    set_labels(item, place, lang); minw = 100 if mock else MIN_TR; last = []
     for k in range(1, MAXTRY_TR + 1):
         html_t = mock_translate_html(obj['html'], lang) if mock else TQ.translate_html(obj['html'], lang)
         if lang == 'ru-RU': html_t = html_t.replace(TG_PILLAR, RU_PILLAR)
@@ -357,7 +368,7 @@ def sql_pair(item, posts, names):
 def produce(item, place, products, mock=False):
     print(f"== {item['id']}: {item['title']}", flush=True)
     src, tt = make_source(item, place, products, mock)
-    posts = [translate_post(src, item, lang, tt, mock) for lang in LANGS]
+    posts = [translate_post(src, item, lang, tt, mock, place) for lang in LANGS]
     names, hashes = [], []
     for k in range(1, A.IMAGES_PER_POST + 1):
         n, h = A.generate_image(item, k, mock); names.append(n); hashes.append(h)
