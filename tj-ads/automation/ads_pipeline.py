@@ -244,6 +244,45 @@ def mock_translate_html(src, lang):
     return re.sub(r'>([^<>]*[\u0600-\u06ff][^<>]*)<', lambda m: '>' + (w * max(1, len(m.group(1)) // 40)) + '<', src)
 
 
+def bad_segment(t, lang):
+    rest = re.sub(r'\b(?:AFP|PE|LIF|layflat)\b', ' ', t)
+    if re.search(r'[A-Za-z\u0600-\u06ff\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af]', rest): return True
+    if lang == 'ru-RU' and TG_ONLY.search(t): return True
+    if lang == 'tg-TJ' and A.RUSSIAN_ONLY.search(t): return True
+    return False
+
+
+def translate_html_robust(src, lang):
+    """maghala2 segment translator + per-segment glitch repair (flash models sometimes emit Latin/Arabic/CJK junk inside a word):
+    batch -> single JSON -> single plain text -> same on the alternate model; fail only if every route is bad."""
+    parser = TQ.PreserveHTML(); parser.feed(src); parser.close()
+    tr, batch, chars = {}, [], 0
+    for it in parser.items:
+        n = len(it['text'])
+        if batch and (len(batch) >= 8 or chars + n > 1600):
+            tr.update(TQ.translate_segment_batch(batch, lang)); batch, chars = [], 0
+        batch.append(it); chars += n
+    if batch: tr.update(TQ.translate_segment_batch(batch, lang))
+    primary = TQ.MODEL; alt = next(m for m in ('agnes-3.0-flash', 'agnes-2.5-flash') if m != primary); fixed = 0
+    for it in parser.items:
+        if not bad_segment(tr[it['id']], lang): continue
+        ok = False
+        for model, mode in ((primary, 'json'), (primary, 'plain'), (alt, 'json'), (alt, 'plain')):
+            TQ.MODEL = model
+            try:
+                cand = TQ.translate_segment_batch([it], lang)[it['id']] if mode == 'json' else TQ.translate_single_text(it['text'], lang)
+            except Exception as e:
+                print('  segment repair error:', str(e)[:120], flush=True); continue
+            if not bad_segment(cand, lang): tr[it['id']] = cand; ok = True; fixed += 1; break
+        TQ.MODEL = primary
+        if not ok: print(f"  segment {it['id']} could not be repaired", flush=True)
+    print(f'  repaired {fixed} glitched segment(s)', flush=True)
+    out = []
+    for part in parser.parts:
+        out.append(part if isinstance(part, str) else part['pre'] + html.escape(tr[part['id']], quote=False) + part['post'])
+    return ''.join(out)
+
+
 def qc_translation(html_t, lang, src_html, minw):
     bad = []; txt = re.sub(r'\[\[\[[A-Z_0-9]+\]\]\]', ' ', plain(html_t))
     if TQ:
@@ -272,7 +311,7 @@ def qc_translation(html_t, lang, src_html, minw):
 def translate_post(obj, item, lang, tt, mock=False, place=None):
     set_labels(item, place, lang); minw = 100 if mock else MIN_TR; last = []
     for k in range(1, MAXTRY_TR + 1):
-        html_t = mock_translate_html(obj['html'], lang) if mock else TQ.translate_html(obj['html'], lang)
+        html_t = mock_translate_html(obj['html'], lang) if mock else translate_html_robust(obj['html'], lang)
         if lang == 'ru-RU': html_t = html_t.replace(TG_PILLAR, RU_PILLAR)
         last = qc_translation(html_t, lang, obj['html'] if lang == 'tg-TJ' else obj['html'], minw)
         print(f"  {lang} attempt {k}: {A.words(html_t)} words, problems={last}", flush=True)
