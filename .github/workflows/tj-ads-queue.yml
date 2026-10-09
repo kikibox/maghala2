@@ -1,6 +1,6 @@
 name: tj-ads-queue
 
-# Tajikistan ads (CPT `tajikistan`, Tajik Cyrillic). Lives in folder tj-ads/ of this branch.
+# Tajikistan ads: Persian source -> Tajik + Russian posts (ordinary posts, published, own categories). Lives in folder tj-ads/ of this branch.
 # Start: Actions -> Run workflow (needs the file on the default branch) OR edit tj-ads/automation/tj-ads-trigger.txt on this branch.
 on:
   workflow_dispatch:
@@ -8,6 +8,8 @@ on:
       batch_size: { description: 'Items per run', default: '3', required: false }
       only_place: { description: 'Place slug (e.g. rudaki) or empty', default: '', required: false }
       tier:       { description: 'Tier A/B/C or empty', default: '', required: false }
+      only_id:    { description: 'Single item id (e.g. rudaki-02) or empty', default: '', required: false }
+      redo:       { description: 'Reset this item id to pending first', default: '', required: false }
       mock:       { description: 'Offline dry-run', type: boolean, default: false }
       upload:     { description: 'Upload ZIPs to site FTP home', type: boolean, default: false }
   push:
@@ -67,6 +69,8 @@ jobs:
             echo "batch=${{ inputs.batch_size }}" >> $GITHUB_OUTPUT
             echo "place=${{ inputs.only_place }}" >> $GITHUB_OUTPUT
             echo "tier=${{ inputs.tier }}" >> $GITHUB_OUTPUT
+            echo "only_id=${{ inputs.only_id }}" >> $GITHUB_OUTPUT
+            echo "redo=${{ inputs.redo }}" >> $GITHUB_OUTPUT
             echo "mock=${{ inputs.mock }}" >> $GITHUB_OUTPUT
             echo "upload=${{ inputs.upload }}" >> $GITHUB_OUTPUT
           else
@@ -75,6 +79,8 @@ jobs:
             echo "batch=$(g batch_size)" >> $GITHUB_OUTPUT
             echo "place=$(g only_place)" >> $GITHUB_OUTPUT
             echo "tier=$(g tier)" >> $GITHUB_OUTPUT
+            echo "only_id=$(g only_id)" >> $GITHUB_OUTPUT
+            echo "redo=$(g redo)" >> $GITHUB_OUTPUT
             echo "mock=$(g mock)" >> $GITHUB_OUTPUT
             echo "upload=$(g upload)" >> $GITHUB_OUTPUT
           fi
@@ -86,9 +92,11 @@ jobs:
           ARGS=""
           [ -n "${{ steps.p.outputs.place }}" ] && ARGS="$ARGS --only-place ${{ steps.p.outputs.place }}"
           [ -n "${{ steps.p.outputs.tier }}" ] && ARGS="$ARGS --tier ${{ steps.p.outputs.tier }}"
+          [ -n "${{ steps.p.outputs.only_id }}" ] && ARGS="$ARGS --only-id ${{ steps.p.outputs.only_id }}"
+          [ -n "${{ steps.p.outputs.redo }}" ] && ARGS="$ARGS --redo ${{ steps.p.outputs.redo }}"
           [ "${{ steps.p.outputs.mock }}" = "true" ] && ARGS="$ARGS --mock"
           mkdir -p artifacts/tj-ads
-          python -u automation/ads_queue.py $ARGS 2>&1 | tee artifacts/tj-ads/process.log
+          python -u automation/ads_pipeline.py $ARGS 2>&1 | tee artifacts/tj-ads/process.txt
       - name: SQL smoke test (SQLite, not MySQL)
         continue-on-error: true
         run: python automation/test_sql_sqlite.py 2>&1 | tee artifacts/tj-ads/smoke.txt

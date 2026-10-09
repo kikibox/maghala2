@@ -342,9 +342,14 @@ def mock_content(item, pool_links):
 PRODUCT_EN = {'tape': 'drip irrigation tape', 'pipe': 'black polyethylene (PE) irrigation pipe', 'layflat': 'thread-reinforced layflat hose'}
 
 
+CROP_VISUAL = {'pakhta': 'cotton (green cotton plants with open white cotton bolls, NOT maize)', 'kartoshka': 'potato (low green potato plants in hilled rows)', 'piyoz': 'onion (green onion leaves in rows)',
+               'pomidor': 'tomato (tomato plants with red and green tomatoes)', 'sabzi': 'carrot (feathery carrot tops in rows)', 'bodiring': 'cucumber (cucumber vines with cucumbers)', 'karam': 'cabbage (round cabbage heads)',
+               'tarbuz': 'watermelon (watermelon vines with striped green watermelons)', 'kharbuza': 'melon (melon vines with yellow melons)', 'juvorimakka': 'maize (tall maize plants with cobs)'}
+
+
 def image_item(item):
     """Item in the shape maghala2's image_prompt_policy expects (English brief; 'layflat' keyword selects the layflat reference)."""
-    crop = CROP_EN.get(item['crop'], 'row crops')
+    crop = CROP_VISUAL.get(item['crop']) or CROP_EN.get(item['crop'], 'row crops')
     title = f"{PRODUCT_EN[item['product']]} for {crop} field, {item['place_en']} {('city' if item['kind'] == 'city' else 'district')}, Tajikistan"
     return {'id': item['id'], 'slug': item['slug'], 'title': title, 'focus': title, 'excerpt': ''}
 

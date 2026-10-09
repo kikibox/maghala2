@@ -1,0 +1,11 @@
+SET NAMES utf8mb4;
+START TRANSACTION;
+SET @pid := (SELECT `ID` FROM `ha_posts` WHERE `post_name`='tajikistan-istehsol-va-hamkori' AND `post_type`='page' ORDER BY `ID` LIMIT 1);
+DELETE FROM `ha_postmeta` WHERE `post_id`=@pid AND @pid IS NOT NULL;
+DELETE FROM `ha_posts` WHERE `ID`=@pid AND `post_type`='page' AND @pid IS NOT NULL;
+COMMIT;
+START TRANSACTION;
+SET @pid := (SELECT `ID` FROM `ha_posts` WHERE `post_name`='tajikistan-proizvodstvo-i-sotrudnichestvo' AND `post_type`='page' ORDER BY `ID` LIMIT 1);
+DELETE FROM `ha_postmeta` WHERE `post_id`=@pid AND @pid IS NOT NULL;
+DELETE FROM `ha_posts` WHERE `ID`=@pid AND `post_type`='page' AND @pid IS NOT NULL;
+COMMIT;
