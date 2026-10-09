@@ -87,11 +87,16 @@ jobs:
           [ -n "${{ steps.p.outputs.place }}" ] && ARGS="$ARGS --only-place ${{ steps.p.outputs.place }}"
           [ -n "${{ steps.p.outputs.tier }}" ] && ARGS="$ARGS --tier ${{ steps.p.outputs.tier }}"
           [ "${{ steps.p.outputs.mock }}" = "true" ] && ARGS="$ARGS --mock"
-          python automation/ads_queue.py $ARGS
+          mkdir -p artifacts/tj-ads
+          python -u automation/ads_queue.py $ARGS 2>&1 | tee artifacts/tj-ads/process.log
       - name: SQL smoke test (SQLite, not MySQL)
-        run: python automation/test_sql_sqlite.py
-      - run: python automation/package_batches.py
+        continue-on-error: true
+        run: python automation/test_sql_sqlite.py 2>&1 | tee artifacts/tj-ads/smoke.txt
+      - name: Package ZIPs
+        continue-on-error: true
+        run: python automation/package_batches.py
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: tj-ads-packages
           path: tj-ads/artifacts/tj-ads/packages/*.zip
@@ -100,7 +105,7 @@ jobs:
         if: ${{ steps.p.outputs.upload == 'true' && steps.p.outputs.mock != 'true' }}
         run: python automation/upload_ftps.py
       - name: Commit queue state
-        if: ${{ steps.p.outputs.mock != 'true' }}
+        if: ${{ always() && steps.p.outputs.mock != 'true' }}
         run: |
           git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A artifacts/tj-ads data   # packages/ and combined SQL are git-ignored
