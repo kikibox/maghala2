@@ -253,14 +253,14 @@ def qc_translation(html_t, lang, src_html, minw):
     for t in ('[[[IMAGE_1]]]', '[[[IMAGE_2]]]', '[[[IMAGE_3]]]', '[[[CONTACT_BOX]]]'):
         if html_t.count(t) != 1: bad.append(f'{t} count')
     if A.ARABIC_RE.search(txt): bad.append('untranslated Persian/Arabic letters remain: ' + ''.join(sorted(set(A.ARABIC_RE.findall(txt))))[:20])
-    latin = [w for w in A.LATIN_WORD_RE.findall(txt) if w not in ('AFP', 'PE', 'LIF', 'layflat')]
-    if latin: bad.append('Latin words: ' + ','.join(latin[:5]))
+    rest = re.sub(r'\b(?:AFP|PE|LIF|layflat)\b', ' ', txt)
+    latin = re.findall(r'[A-Za-z]+', rest)
+    if latin: bad.append('Latin letters inside translated text (mixed-script garbage): ' + ','.join(latin[:6]))
     n = A.words(html_t)
     if n < minw: bad.append(f'words {n} < {minw}')
     if lang == 'tg-TJ' and A.RUSSIAN_ONLY.search(txt): bad.append('Russian-only letters/words in Tajik text')
     if lang == 'ru-RU':
         if TG_ONLY.search(txt): bad.append('Tajik-only letters in Russian text: ' + ''.join(sorted(set(TG_ONLY.findall(txt)))))
-        if re.search(r'[a-zA-Z]{3,}', txt.replace('AFP', '').replace('layflat', '')): bad.append('Latin text in Russian')
     for u in A.internal_links(src_html):
         want = RU_PILLAR if (lang == 'ru-RU' and A.urlnorm(u) == A.urlnorm(TG_PILLAR)) else u
         if A.urlnorm(want) not in {A.urlnorm(x) for x in A.internal_links(html_t)}: bad.append('link lost: ' + u[-30:])
