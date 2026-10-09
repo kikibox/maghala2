@@ -88,13 +88,18 @@ jobs:
           [ -n "${{ steps.p.outputs.tier }}" ] && ARGS="$ARGS --tier ${{ steps.p.outputs.tier }}"
           [ "${{ steps.p.outputs.mock }}" = "true" ] && ARGS="$ARGS --mock"
           mkdir -p artifacts/tj-ads
-          python -u automation/ads_queue.py $ARGS 2>&1 | tee artifacts/tj-ads/process.txt
+          python -u automation/ads_queue.py $ARGS 2>&1 | tee artifacts/tj-ads/process.log
       - name: SQL smoke test (SQLite, not MySQL)
         continue-on-error: true
         run: python automation/test_sql_sqlite.py 2>&1 | tee artifacts/tj-ads/smoke.txt
       - name: Package ZIPs
         continue-on-error: true
         run: python automation/package_batches.py
+      - name: Copy small ZIPs to artifacts/tj-ads/sample (so they can be downloaded from the repo)
+        if: always()
+        run: |
+          mkdir -p artifacts/tj-ads/sample
+          for z in artifacts/tj-ads/packages/*.zip; do [ -f "$z" ] && [ "$(stat -c%s "$z")" -lt 8000000 ] && cp "$z" artifacts/tj-ads/sample/ || true; done
       - uses: actions/upload-artifact@v4
         if: always()
         with:

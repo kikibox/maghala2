@@ -296,6 +296,13 @@ def make_content(item, place, products, gov, pool, mock=False):
     rng = random.Random(item['id'])
     pool_links = pick_pool(item, pool, rng)
     allowed = [x['url'] for x in pool_links]
+    man = ROOT / 'data/manual' / f"{item['id']}.html"
+    if man.exists() and not mock:           # hand-written (reviewed) text replaces the model
+        obj = json.loads((ROOT / 'data/manual' / f"{item['id']}.meta.json").read_text(encoding='utf-8'))
+        obj['html'] = resolve_links(man.read_text(encoding='utf-8'), pool_links)
+        probs = validate(obj, item, allowed, products)
+        if probs: raise RuntimeError('Manual text QA failed: ' + '; '.join(probs))
+        return obj
     base_prompt = build_prompt(item, place, products, gov, pool_links)
     prompt, last, obj, history = base_prompt, [], None, []
     for attempt in range(5):
@@ -481,7 +488,8 @@ def sql_for(item, obj, image_names):
 def process(q, only_place=None, tier=None, limit=None, mock=False):
     place_cfg = {p['slug']: p for p in cfg('places.json')['places']}
     products, gov, pool = cfg('products.json'), cfg('government_context.json'), cfg('link_pool.json')
-    cand = [x for x in q['items'] if x['status'] == 'pending' and x['attempts'] < MAX_ATTEMPTS and (not only_place or x['place'] == only_place) and (not tier or x['tier'] == tier)]
+    cand = [x for x in q['items'] if (x['status'] == 'pending' or (x['status'] == 'failed' and (ROOT / 'data/manual' / f"{x['id']}.html").exists())) and x['attempts'] < MAX_ATTEMPTS and (not only_place or x['place'] == only_place) and (not tier or x['tier'] == tier)]
+    cand.sort(key=lambda x: 0 if (ROOT / 'data/manual' / f"{x['id']}.html").exists() else 1)
     batch = cand[: (limit or BATCH)]
     if not batch:
         write_status(q, 'complete'); return
