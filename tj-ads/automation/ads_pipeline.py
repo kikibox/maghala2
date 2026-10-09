@@ -88,6 +88,21 @@ def build_prompt_fa(item, place, products, links, tt):
 ۸) فقط JSON معتبر با کلیدهای html، excerpt (حداکثر ۱۶۰ نویسه)، meta_title (حداکثر ۶۰ نویسه)، meta_description (حداکثر ۱۵۵ نویسه)، focus_keyword (۲ تا ۴ کلمه) و image_alts (آرایه‌ی ۳ متن کوتاه برای توضیح تصویر).'''
 
 
+def limit_links(body, mx):
+    """Keep the pillar + the first (mx-1) distinct links; unwrap the rest (maghala2 keeps 4-7 links)."""
+    order = []
+    for m in re.finditer(r'<a\b[^>]*href=["\']([^"\']+)', body, re.I):
+        u = A.urlnorm(m.group(1))
+        if 'navar-abyari.ir' in u and u not in order: order.append(u)
+    pil = A.urlnorm(TG_PILLAR)
+    keep = ([pil] if pil in order else []) + [u for u in order if u != pil]
+    keep = set(keep[:mx])
+    def f(m):
+        h = re.search(r'href=["\']([^"\']+)', m.group(1), re.I)
+        return m.group(0) if (not h or A.urlnorm(h.group(1)) in keep or 'navar-abyari.ir' not in h.group(1)) else m.group(2)
+    return re.sub(r'(<a\b[^>]*>)(.*?)</a>', lambda m: f(m) if False else (m.group(0) if (lambda h: (not h) or A.urlnorm(h.group(1)) in keep or 'navar-abyari.ir' not in h.group(1))(re.search(r'href=["\']([^"\']+)', m.group(1), re.I)) else m.group(2)), body, flags=re.S | re.I)
+
+
 def ensure_markers(body):
     """Same idea as maghala2 ensure_image_markers: repair, don't reject."""
     for tag in ('[[[IMAGE_1]]]', '[[[IMAGE_2]]]', '[[[IMAGE_3]]]', '[[[CONTACT_BOX]]]'):
@@ -167,7 +182,7 @@ def make_source(item, place, products, mock=False):
         if isinstance(new, dict) and new.get('html'): obj = new
         if obj is None: continue
         body = A.resolve_links(obj['html'], links)
-        body = ensure_markers(re.sub(r'<h1\b[^>]*>.*?</h1>', '', body, flags=re.S))
+        body = ensure_markers(limit_links(re.sub(r'<h1\b[^>]*>.*?</h1>', '', body, flags=re.S), A.MAX_LINKS))
         obj['html'] = body
         bad = validate_fa(obj, item, allowed)
         hist.append({'attempt': attempt, 'words': pwords(body), 'problems': bad})
