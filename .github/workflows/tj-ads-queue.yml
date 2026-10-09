@@ -88,7 +88,7 @@ jobs:
           [ -n "${{ steps.p.outputs.tier }}" ] && ARGS="$ARGS --tier ${{ steps.p.outputs.tier }}"
           [ "${{ steps.p.outputs.mock }}" = "true" ] && ARGS="$ARGS --mock"
           mkdir -p artifacts/tj-ads
-          python -u automation/ads_queue.py $ARGS 2>&1 | tee artifacts/tj-ads/process.log
+          python -u automation/ads_queue.py $ARGS 2>&1 | tee artifacts/tj-ads/process.txt
       - name: SQL smoke test (SQLite, not MySQL)
         continue-on-error: true
         run: python automation/test_sql_sqlite.py 2>&1 | tee artifacts/tj-ads/smoke.txt

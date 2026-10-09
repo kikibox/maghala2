@@ -19,6 +19,7 @@ CFG = ROOT / 'config'
 OUT = ROOT / 'artifacts/tj-ads'
 ITEMS, IMAGES, SQL, ROLLBACK = OUT / 'items', OUT / 'images', OUT / 'sql', OUT / 'rollback'
 QUEUE, STATUS = OUT / 'queue.json', OUT / 'status.json'
+DBG = OUT / 'debug'
 
 SITE = 'https://navar-abyari.ir'
 for _p in (ROOT.parent / 'automation', ROOT / 'automation'):          # maghala2/automation when run from the branch
@@ -49,6 +50,7 @@ IMAGE_ENDPOINT = os.getenv('IMAGE_ENDPOINT') or f'{AGNES_BASE}/images/generation
 BATCH = max(1, int(os.getenv('BATCH_SIZE', '3')))
 MIN_WORDS = int(os.getenv('MIN_WORDS', '1050'))
 MIN_LINKS, MAX_LINKS = int(os.getenv('MIN_INTERNAL_LINKS', '4')), int(os.getenv('MAX_INTERNAL_LINKS', '7'))
+TARGET_WORDS = int(MIN_WORDS * 1.3)
 MAX_ATTEMPTS = max(1, int(os.getenv('MAX_ATTEMPTS', '4')))
 IMAGES_PER_POST = 3
 
@@ -155,7 +157,7 @@ def build_prompt(item, place, products, gov, pool_links):
         crop_line = CROP_CONTEXT[pc['evidence']].format(fact=fact or '—', zone=place['zone_label_tg'])
     facts = '\n'.join('- ' + f['text_tg'] for f in place['place_facts']) or '- (рақам ва омори хоси макон нест; дар матн наёваред)'
     seed = random.Random(item['id']).choice(gov['cooperation_paragraph_seeds_tg'])
-    links = '\n'.join(f"- {x['title']} | {x['url']}" for x in pool_links)
+    links = '\n'.join(f"L{i} = {x['title']}" for i, x in enumerate(pool_links, 1))
     return f'''Write a NEW, original, SEO-optimised advertising/information article in TAJIK (Cyrillic script, tg-TJ). No Russian, no Persian/Arabic letters, no Latin words except the brand "AFP".
 POST TITLE (use exactly, do NOT repeat it as H1): {item['title']}
 PLACE: {item['place_tg']} ({'city' if item['kind']=='city' else 'district'}), region {place['region_tg']}; agro-zone: {place['zone_label_tg']}.
@@ -165,13 +167,13 @@ VERIFIED LOCAL FACTS (only these may be stated as facts about the place):
 {facts}
 
 STRICT RULES
-1. HTML only: h2/h3/p/ul/ol/li/table/strong/a/details/summary. No H1. At least {MIN_WORDS} words. Natural, practical, farmer-oriented Tajik. Do not copy template phrases; vary sentence openings.
+1. HTML only: h2/h3/p/ul/ol/li/table/strong/a/details/summary. No H1. LENGTH: write about {TARGET_WORDS} Tajik words (hard minimum {MIN_WORDS}); every h2 section needs 2-4 substantial paragraphs. Natural, practical, farmer-oriented Tajik. Do not copy template phrases; vary sentence openings.
 2. Row crops only (no orchards, vineyards, greenhouses). Do not claim the crop is "the main crop" of the place unless it is in VERIFIED LOCAL FACTS.
 3. NEVER invent: prices, discounts, yields, statistics, dates, awards, certificates, a representative/agency/warehouse/service centre in Tajikistan, free or local delivery, or any government/president endorsement. No numbers with currency.
 4. Commercial wording: prices and purchase terms are agreed by phone/form; the products carry a warranty but after-sales and delivery terms to Tajikistan are agreed separately. Put the marker [[[CONTACT_BOX]]] once (the script inserts phone and safe wording).
-5. Government context: write ONE short original paragraph (2-3 sentences) in the spirit of: "{seed}" - rephrase it, never copy it, never attribute words to the president, never imply endorsement. It must contain a link to {pool_links[0]['url']} (the pillar page) with natural anchor text.
-6. Structure: intro (mention place + product + crop) → [[[IMAGE_1]]] → h2 why/when this product fits the crop → h2 how to choose (include one small table of general selection criteria, no catalogue numbers you are unsure of) → [[[IMAGE_2]]] → h2 installation and care (ol) → h2 water saving and field practice (no invented local data) → h2 cooperation paragraph (rule 5) → [[[CONTACT_BOX]]] → [[[IMAGE_3]]] → FAQ: exactly 3 questions, each as <details class="navar-faq"><summary><h3>question</h3></summary><div><p>answer</p></div></details> → final <h2>Маводи алоқаманд</h2><ul> with related links.
-7. INTERNAL LINKS: use between {MIN_LINKS} and {MAX_LINKS} links in total, ONLY from this list (exact URLs), pillar link mandatory:
+5. Government context: write ONE short original paragraph (2-3 sentences) in the spirit of: "{seed}" - rephrase it, never copy it, never attribute words to the president, never imply endorsement. It must contain the link [[L1|natural anchor text]] (the pillar page).
+6. Structure: intro (mention place + product + crop) → [[[IMAGE_1]]] → h2 why/when this product fits the crop → h2 how to choose (include one small table of general selection criteria, no catalogue numbers you are unsure of) → [[[IMAGE_2]]] → h2 installation and care (ol) → h2 water saving and field practice (no invented local data) → h2 cooperation paragraph (rule 5) → [[[CONTACT_BOX]]] → [[[IMAGE_3]]] → FAQ: exactly 3 questions, each as <details class="navar-faq"><summary><h3>question</h3></summary><div><p>answer</p></div></details> → final <h2>Маводи алоқаманд</h2><ul> with related links (placeholders). ALL markers [[[IMAGE_1]]], [[[IMAGE_2]]], [[[IMAGE_3]]], [[[CONTACT_BOX]]] are mandatory, each exactly once, on their own line.
+7. INTERNAL LINKS: NEVER write URLs or <a> tags. To link, write the placeholder [[L<number>|anchor text in Tajik]] using ONLY the numbers from this list. Use between {MIN_LINKS} and {MAX_LINKS} DIFFERENT placeholders in total; [[L1|...]] (pillar) is mandatory:
 {links}
 8. Return ONLY valid JSON: {{"html": "...", "excerpt": "<=160 chars Tajik", "meta_title": "<=60 chars Tajik", "meta_description": "<=155 chars Tajik", "focus_keyword": "2-4 Tajik words", "image_alts": ["alt1","alt2","alt3"]}}'''
 
@@ -231,10 +233,30 @@ def sanitize_links(text, allowed):
     def keep(m):
         tag = m.group(0)
         h = re.search(r'href=["\']([^"\']+)', tag, re.I)
-        if not h or urlnorm(h.group(1)) in allowed_n or 'navar-abyari.ir' not in h.group(1):
+        if not h or urlnorm(h.group(1)) in allowed_n:
             return tag
         return re.sub(r'</?a\b[^>]*>', '', tag)
     return re.sub(r'<a\b[^>]*>.*?</a>', keep, text, flags=re.I | re.S)
+
+
+PH_RE = re.compile(r'\[\[\s*L(\d+)\s*(?:\|\s*(.*?))?\s*\]\]', re.S)
+RAW_URL_RE = re.compile(r'https?://[^\s<>"\')]+')
+
+
+def resolve_links(text, pool_links):
+    """Turn [[L3|anchor]] placeholders into <a href>; drop stray URLs/foreign links (model never writes hrefs)."""
+    def ph(m):
+        i = int(m.group(1))
+        if not 1 <= i <= len(pool_links): return m.group(2) or ''
+        x = pool_links[i - 1]
+        return f'<a href="{x["url"]}">{html.escape(m.group(2) or x["title"], quote=False)}</a>'
+    text = PH_RE.sub(ph, text)
+    allowed = [x['url'] for x in pool_links]
+    text = sanitize_links(text, allowed)
+    text = re.sub(r'\[([^\]]+)\]\((https?://[^)]+)\)', lambda m: f'<a href="{m.group(2)}">{m.group(1)}</a>' if urlnorm(m.group(2)) in {urlnorm(u) for u in allowed} else m.group(1), text)
+    # raw URLs in visible text (not inside href="...")
+    text = re.sub(r'(?<![\w"\'=/])' + RAW_URL_RE.pattern, '', text)
+    return text
 
 
 def validate(obj, item, allowed, products):
@@ -274,15 +296,24 @@ def make_content(item, place, products, gov, pool, mock=False):
     rng = random.Random(item['id'])
     pool_links = pick_pool(item, pool, rng)
     allowed = [x['url'] for x in pool_links]
-    prompt = build_prompt(item, place, products, gov, pool_links)
-    last = []
-    for attempt in range(4):
-        obj = mock_content(item, pool_links) if mock else agnes(prompt)
-        obj['html'] = sanitize_links(obj.get('html', ''), allowed)
+    base_prompt = build_prompt(item, place, products, gov, pool_links)
+    prompt, last, obj, history = base_prompt, [], None, []
+    for attempt in range(5):
+        new = mock_content(item, pool_links) if mock else agnes(prompt)
+        if new.get('html'): obj = new
+        obj['html'] = resolve_links(obj.get('html', ''), pool_links)
         last = validate(obj, item, allowed, products)
+        history.append({'attempt': attempt + 1, 'problems': last, 'words': words(obj.get('html', ''))})
         if not last:
             return obj
-        prompt += '\nQC rejected the previous version: ' + '; '.join(last) + '. Fix exactly these problems and return the full JSON again.'
+        extra = ''
+        m = ARABIC_RE.findall(re.sub(r'<[^>]+>', ' ', obj.get('html', '')))
+        if m: extra += ' Offending Arabic/Persian characters: ' + ''.join(sorted(set(m))) + ' - replace them with Tajik Cyrillic.'
+        prompt = (base_prompt + '\n\nPREVIOUS DRAFT (HTML, links already resolved; keep good parts):\n' + obj.get('html', '')[:30000] +
+                  '\n\nQC rejected this draft: ' + '; '.join(last) + '.' + extra +
+                  f'\nReturn the COMPLETE improved JSON again. If words are too few, EXPAND every section with concrete practical detail until about {TARGET_WORDS} words. Use [[L<n>|anchor]] placeholders for links and keep all [[[...]]] markers exactly once.')
+    DBG.mkdir(parents=True, exist_ok=True)
+    (DBG / f"{item['id']}.json").write_text(json.dumps({'history': history, 'last_html': obj.get('html', '') if obj else ''}, ensure_ascii=False, indent=1), encoding='utf-8')
     raise RuntimeError('Text QA failed: ' + '; '.join(last))
 
 
