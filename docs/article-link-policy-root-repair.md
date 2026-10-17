@@ -63,3 +63,33 @@ articles or Google's eventual indexing decisions.
   articles remain separate tasks. This Persian gate does not certify them.
 - Recheck public HTML after cache invalidation and only then request appropriate
   Search Console validation. No blanket validation or indexing guarantee.
+## Deployed historical compatibility repair
+
+After committing and testing the producer change, six exact legacy article
+redirects were deployed in the site's existing native `.htaccess`, outside the
+WordPress-managed block. No plugin was added, no canonical slug was changed,
+and no database content or publication date was rewritten. The original
+configuration was backed up privately; it is not included in this repository.
+
+Identity was checked against the article queue metadata and the exact
+`wp_post_name()` result, not a shared prefix. Live verification for each of
+509608, 509604, 509560, 509600, 509104 and 510816 confirmed:
+
+- GET: exactly one 301, then the intended HTTP 200 page.
+- HEAD: 301.
+- Target directly: HTTP 200 with zero redirects.
+- Target canonical: exact intended URL; HTML language: fa-IR.
+
+Homepage and a Tajik product category remained direct HTTP 200. An unrelated
+nonexistent control remained HTTP 404. The new rules are exact-path,
+domain-bound, GET/HEAD-only and empty-query-only; existing server rules were
+preserved byte-for-byte. Offline checks included 18 near-match negatives.
+
+The GitHub regression run for commit
+`41f904807d73f3b3606a02b5d84bc517f1ffbe1b` completed successfully:
+https://github.com/kikibox/maghala2/actions/runs/39055760231
+
+Six entries from the previously confirmed 106-URL live-404 review cohort are
+now repaired. The other 100 entries have not been certified as fixed or
+retested as a complete cohort in this step. Google reports can lag behind
+live behavior. No blanket Search Console validation was requested.
