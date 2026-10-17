@@ -12,6 +12,7 @@ import urllib.request
 from pathlib import Path
 
 import image_caption_policy
+from translation_link_policy import localize_links
 
 ROOT = Path(__file__).resolve().parents[1]
 IMAGES = ROOT / "artifacts" / "article-content-queue" / "images"
@@ -143,6 +144,8 @@ def find_post(slug: str):
 
 
 def publish_article(item: dict, obj: dict, images: list[dict]):
+    # Validate before any remote mutation, including media upload.
+    obj = {**obj, "html": localize_links(obj["html"], "fa-IR", source_title=item.get("title", ""), title=obj.get("title", ""))}
     verify_publish_target(int(item["category_id"]))
     media_rows = [upload_media(image, item, i) for i, image in enumerate(images, 1)]
     body = render_html(item, obj, media_rows)

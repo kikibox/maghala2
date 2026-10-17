@@ -403,7 +403,8 @@ class ArticleQueueTests(unittest.TestCase):
              "height": 1024, "sha256": "x"}
             for i in range(1, 4)
         ]
-        sql, rollback, body = queue.sql_for(item, obj, images)
+        with patch("translation_link_policy.localize_links", side_effect=lambda body, *args, **kwargs: body):
+            sql, rollback, body = queue.sql_for(item, obj, images)
         self.assertIn("'publish'", sql)
         self.assertIn("_navar_queue_item_id", sql)
         self.assertIn("_navar_queue_image_id", sql)

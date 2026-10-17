@@ -162,6 +162,9 @@ def _tokens(value):
 def select_links(item, links, *, limit=12, probe_limit=60, fetcher=None):
     """Require topic overlap as well as a live, self-canonical Persian page."""
     topic = _tokens(str(item.get("title", "")) + " " + str(item.get("focus", "")))
+    # A shared generic word such as "practical" must not substitute for crop identity.
+    from translation_link_policy import crop_for_title
+    crop = crop_for_title(item.get("title", ""))
     candidates = []
     for row in links:
         if row.get("post_type") not in CONTENT_TYPES:
@@ -169,6 +172,8 @@ def select_links(item, links, *, limit=12, probe_limit=60, fetcher=None):
         if row.get("status", "publish") != "publish":
             continue
         key = url_key(row.get("url"))
+        if crop and crop not in _tokens(row.get("title", "")):
+            continue
         overlap = len(topic & _tokens(row.get("title", "")))
         if key and overlap:
             candidates.append((-overlap, key, row))

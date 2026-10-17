@@ -43,12 +43,22 @@ class WordPressPublisherTests(unittest.TestCase):
         self.assertEqual(body.count("<figure"), 3)
         self.assertIn("image-1.jpg", body)
 
+    @patch.object(wp, "request_json")
+    @patch.object(wp, "upload_media")
+    @patch.object(wp, "localize_links", side_effect=ValueError("unsafe internal links"))
+    def test_rejected_links_prevent_all_remote_mutations(self, localize_links, upload_media, request_json):
+        with self.assertRaises(ValueError):
+            wp.publish_article(self.item, self.obj, self.images)
+        upload_media.assert_not_called()
+        request_json.assert_not_called()
+
+    @patch.object(wp, "localize_links", side_effect=lambda body, *args, **kwargs: body)
     @patch.object(wp, "verify_publish_target")
     @patch.object(wp, "upload_media")
     @patch.object(wp, "find_post")
     @patch.object(wp, "request_json")
     def test_publish_updates_existing_slug_idempotently(
-        self, request_json, find_post, upload_media, verify_publish_target
+        self, request_json, find_post, upload_media, verify_publish_target, localize_links
     ):
         upload_media.side_effect = self.media
         find_post.return_value = {"id": 99, "slug": self.item["slug"]}

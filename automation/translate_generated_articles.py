@@ -13,6 +13,7 @@ from pathlib import Path
 
 import image_caption_policy
 import translate_queue as translator
+from translation_link_policy import localize_links
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "artifacts" / "article-content-queue"
@@ -142,6 +143,11 @@ def translate_small_text(text: str, lang: str) -> str:
     return translator.translate_segment_batch([{"id": 0, "text": text}], lang)[0]
 
 
+def prepare_translation_html(item: dict, translated: dict, lang: str) -> str:
+    body = cleanup_translation_html(translated["html"], lang)
+    return localize_links(body, lang, source_title=item.get("title", translated.get("source_title", "")), title=translated.get("title", ""))
+
+
 def build_sql(item: dict, translated: dict, lang: str) -> tuple[str, str]:
     item_id = str(item["id"])
     key = f"article-translation:{item_id}:{lang}"
@@ -152,7 +158,7 @@ def build_sql(item: dict, translated: dict, lang: str) -> tuple[str, str]:
     digest = hashlib.sha1(key.encode("utf-8")).hexdigest()[:8]
     final_fallback_slug = bounded_slug(slug, f"{collision_suffix}-{digest}")
     category_slug = LANGUAGE_CATEGORY_SLUG[lang]
-    body = cleanup_translation_html(translated["html"], lang)
+    body = prepare_translation_html(item, translated, lang)
     # Alt text + caption in the translation's own language ("<title> - <role>"),
     # not the Persian alt and internal focus keyword copied from the source.
     body = image_caption_policy.normalize_figures(body, translated.get("title", ""), lang)
@@ -212,7 +218,7 @@ def ensure_translation_artifacts(sources=None):
             if not meta_path.exists():
                 continue
             translated = json.loads(meta_path.read_text(encoding="utf-8"))
-            cleaned_html = cleanup_translation_html(translated.get("html", ""), lang)
+            cleaned_html = prepare_translation_html(item, translated, lang)
             if cleaned_html != translated.get("html", ""):
                 translated["html"] = cleaned_html
                 meta_path.write_text(

@@ -3,6 +3,7 @@ import html, json, os, re, time, unicodedata, urllib.request, urllib.error, iter
 from pathlib import Path
 from html.parser import HTMLParser
 from agnes_json_client import parse_object
+from translation_link_policy import localize_links
 
 ROOT=Path(__file__).resolve().parents[1]
 BASE=os.getenv('AGNES_API_BASE','https://apihub.agnes-ai.com/v1').rstrip('/')
@@ -238,6 +239,7 @@ def translate_validated(source,lang):
         if len(re.findall(r'[А-Яа-яЁё]',text))<100: raise ValueError('Russian script validation failed')
         if len(re.findall(r'[ҚқҒғҲҳҶҷӢӣӮӯ]',text))>10: raise ValueError('Russian validation failed: Tajik-specific letters found')
         if len(PERSIAN.findall(text))>20: raise ValueError('Russian validation failed: untranslated Persian text remains')
+    result['html'] = localize_links(result['html'], lang, source_title=source['title'], title=result['title'])
     return result
 
 def main():

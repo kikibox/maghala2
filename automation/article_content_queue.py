@@ -725,6 +725,11 @@ def make_content(item, links):
         body = ensure_image_markers(body)
         used = internal_links(body)
         errors = []
+        from translation_link_policy import validate_crop, LinkPolicyError
+        try:
+            validate_crop(item.get("title", ""), obj.get("title", ""), body, "fa-IR")
+        except LinkPolicyError as exc:
+            errors.append(str(exc))
         word_count = words(body)
         if word_count < MIN_WORDS:
             errors.append(f"word count {word_count} below {MIN_WORDS}")
@@ -1105,6 +1110,8 @@ def wp_post_name(value: str) -> str:
 
 def sql_for(item, obj, images):
     title = obj["title"]; body = obj["html"]; urls = []
+    from translation_link_policy import localize_links
+    body = localize_links(body, "fa-IR", source_title=item.get("title", ""), title=title)
     for i, image in enumerate(images, 1):
         name = image["name"]
         url = f"{PUBLIC_UPLOAD_BASE}/{name}"

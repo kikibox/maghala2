@@ -93,6 +93,7 @@ def write_artifacts(item: dict, translated: dict) -> bool:
     SQL.mkdir(parents=True, exist_ok=True)
     ROLLBACK.mkdir(parents=True, exist_ok=True)
     changed = False
+    translated["html"] = base.prepare_translation_html(item, translated, LANG)
     targets = [(folder / f"{LANG}.html", translated["html"])]
     create_sql, rollback_sql = build_sql(item, translated)
     targets += [(SQL / f"{item_id}-{LANG}.sql", create_sql), (ROLLBACK / f"{item_id}-{LANG}.sql", rollback_sql)]
@@ -111,7 +112,7 @@ def ensure_artifacts(sources) -> int:
         if not path.exists():
             continue
         translated = json.loads(path.read_text(encoding="utf-8"))
-        cleaned = base.cleanup_translation_html(translated.get("html", ""), LANG)
+        cleaned = base.prepare_translation_html(item, translated, LANG)
         if cleaned != translated.get("html", ""):
             translated["html"] = cleaned
             path.write_text(json.dumps(translated, ensure_ascii=False, indent=2), encoding="utf-8")
