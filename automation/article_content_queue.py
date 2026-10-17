@@ -24,6 +24,7 @@ import image_prompt_policy
 import russian_status_section
 import image_quality_gate
 import image_caption_policy
+import article_link_policy
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "artifacts" / "article-content-queue"
@@ -203,7 +204,9 @@ def sitemap_index():
     if cache.exists():
         try:
             c = _json.loads(cache.read_text(encoding="utf-8"))
-            if c.get("count", 0) > 0:
+            age = time.time() - float(c.get("fetched_at", 0))
+            if (c.get("count", 0) > 0 and 0 <= age < 6 * 3600
+                    and c.get("policy_version") == article_link_policy.POLICY_VERSION):
                 links = c["links"]
                 changed = False
                 for link in links:
@@ -214,7 +217,9 @@ def sitemap_index():
                 if changed:
                     cache.write_text(
                         _json.dumps(
-                            {"count": len(links), "links": links},
+                            {"count": len(links), "links": links,
+                             "fetched_at": c["fetched_at"],
+                             "policy_version": article_link_policy.POLICY_VERSION},
                             ensure_ascii=False,
                             indent=1,
                         ),
@@ -255,7 +260,10 @@ def sitemap_index():
             title = _up.unquote(path).replace("-", " ").strip() or "مقاله"
         links.append({"title": title, "url": url, "post_type": "post"})
     OUT.mkdir(parents=True, exist_ok=True)
-    cache.write_text(_json.dumps({"count":len(links),"links":links}, ensure_ascii=False, indent=1), encoding="utf-8")
+    cache.write_text(_json.dumps({
+        "count": len(links), "links": links, "fetched_at": time.time(),
+        "policy_version": article_link_policy.POLICY_VERSION,
+    }, ensure_ascii=False, indent=1), encoding="utf-8")
     return links
 
 
@@ -272,7 +280,7 @@ def rest_index():
     per_page = 100
     while True:
         try:
-            url = f"{SITE}/wp-json/wp/v2/posts?per_page={per_page}&page={page}&_fields=id,slug,title,type,status"
+            url = f"{SITE}/wp-json/wp/v2/posts?status=publish&per_page={per_page}&page={page}&_fields=id,slug,title,type,status,link"
             req = _ur.Request(url, headers={"User-Agent": "navar-article-queue"})
             with _ur.urlopen(req, timeout=45) as r:
                 rows = _json.loads(r.read().decode("utf-8", "replace"))
@@ -282,8 +290,8 @@ def rest_index():
             break
         for row in rows:
             slug = (row.get("slug") or "").strip("/")
-            status = row.get("status") or "publish"
-            if status not in {"publish", "draft", "pending", "future", "private"}:
+            status = row.get("status")
+            if status != "publish" or row.get("type") != "post":
                 continue
             title = row.get("title")
             if isinstance(title, dict):
@@ -292,9 +300,11 @@ def rest_index():
                 title = title or slug
             pt = row.get("type") or "post"
             names.add(normalize(title)); names.add(normalize(slug))
-            links.append({"title": title,
-                         "url": f"{SITE}/{slug}/" if pt == "post" else f"{SITE}/{pt}/{slug}/",
-                         "post_type": pt})
+            # The WordPress `link` field is authoritative. Slugs may be
+            # truncated/uniquified or subject to permalink filters.
+            if article_link_policy.url_key(row.get("link")):
+                links.append({"id": row["id"], "title": title, "url": row["link"],
+                              "post_type": pt, "status": status})
         # Pagination: stop if fewer rows than per_page
         if len(rows) < per_page:
             break
@@ -686,13 +696,7 @@ def ensure_image_markers(body):
 
 
 def make_content(item, links):
-    CONTENT_TYPES = {"post", "page", "product", "faq"}
-    approved = [x for x in links if (x.get("post_type") in CONTENT_TYPES or
-              (x.get("post_type") not in {"acf-field","acf-field-group","nav_menu_item","oembed_cache","rank_math_schema","wp_global_styles","elementor_library","custom_css","gp_elements","wpcf7_contact_form","customize_changeset","gp_font"}))]
-    if len(approved) > 12:
-        import random
-        random.Random(item["id"]).shuffle(approved)
-        approved = approved[:12]
+    approved = article_link_policy.select_links(item, links)
     if len(approved) < MIN_LINKS:
         raise RuntimeError(f"Text QA cannot run: only {len(approved)} approved internal links available")
     link_lines = "\n".join(f"- {x['title']} | {x['url']}" for x in approved)

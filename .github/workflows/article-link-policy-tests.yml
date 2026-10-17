@@ -1,0 +1,35 @@
+name: Article link policy regression tests
+on:
+  push:
+    paths:
+      - 'automation/article_content_queue.py'
+      - 'automation/article_link_policy.py'
+      - 'tests/test_article_content_queue.py'
+      - 'tests/test_article_link_policy.py'
+      - '.github/workflows/article-link-policy-tests.yml'
+  pull_request:
+    paths:
+      - 'automation/article_content_queue.py'
+      - 'automation/article_link_policy.py'
+      - 'tests/test_article_content_queue.py'
+      - 'tests/test_article_link_policy.py'
+      - '.github/workflows/article-link-policy-tests.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install Pillow
+      - name: Run mocked tests without production credentials
+        env:
+          AGNES_API_KEY: offline-test-placeholder
+        run: |
+          python -m unittest discover -s tests -p 'test_article*.py'
+          python -m unittest discover -s tests -p 'test_wordpress_publish_article.py'
+          python -m py_compile automation/article_content_queue.py automation/article_link_policy.py
