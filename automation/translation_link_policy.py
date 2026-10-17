@@ -45,6 +45,23 @@ class Page(policy._Page):
         if self.in_title: self.title_parts.append(text)
 
 
+class AnchorMarkup(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.active = False
+        self.malformed = False
+        self.count = 0
+    def handle_starttag(self, tag, attrs):
+        if tag == 'a':
+            self.malformed |= self.active or sum(k.lower() == 'href' for k, _ in attrs) > 1
+            self.active = True
+            self.count += 1
+    def handle_endtag(self, tag):
+        if tag == 'a':
+            self.malformed |= not self.active
+            self.active = False
+
+
 def normalize_text(value):
     return html.unescape(re.sub(r'<[^>]+>', ' ', str(value))).lower().replace('ي', 'ی').replace('ك', 'ک').replace('\u200c', ' ')
 
@@ -133,6 +150,9 @@ def localize_links(body, language, *, source_title='', title='', fetcher=None):
     """
     if language not in LANGUAGES: raise LinkPolicyError('Unsupported article language')
     validate_crop(source_title, title, body, language)
+    markup = AnchorMarkup(); markup.feed(body); markup.close()
+    if markup.malformed or markup.active or markup.count != len(list(ANCHOR.finditer(body))):
+        raise LinkPolicyError('Malformed or nested article anchors require editorial review')
     seen = set(); edits = []; pages = {}
     def load(url, lang=None):
         key = policy.url_key(url)
@@ -141,8 +161,11 @@ def localize_links(body, language, *, source_title='', title='', fetcher=None):
         if lang and page.language != lang.lower(): raise LinkPolicyError('Destination language does not match article')
         return page
     for match in ANCHOR.finditer(body):
-        anchor = match.group(); href = HREF.search(anchor)
-        if not href: continue
+        anchor = match.group(); opening = anchor[:anchor.find('>')+1]; href = HREF.search(opening)
+        if not href:
+            if re.search(r'(?<![\w:-])href\s*=', opening, re.I):
+                raise LinkPolicyError('Article href attributes must be quoted')
+            continue
         raw = html.unescape(href.group(2)); parsed = urllib.parse.urlsplit(raw)
         if raw.startswith('#') or parsed.scheme in {'mailto','tel'}: continue
         if parsed.hostname and parsed.hostname.lower() not in {'navar-abyari.ir','www.navar-abyari.ir'}: continue

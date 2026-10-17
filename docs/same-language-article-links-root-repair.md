@@ -25,7 +25,7 @@ The implementation is in the original producers/publishers, not a front-end outp
 
 ## Validation and limitations
 
-- **70 offline regression tests passed locally**, covering prior queue/publisher behavior and the new policy. The new dedicated workflow repeats these tests without production credentials.
+- **73 offline regression tests passed locally**, covering prior queue/publisher behavior and the new policy. The new dedicated workflow repeats these tests without production credentials.
 - **54 of the examined 100 posts remain deferred**: topic identity, source-content contradictions or insufficient corroborated target candidates need editorial review. Deferred pages were not rewritten or unpublished automatically.
 - Root checks can intentionally block a new publication/package rebuild until its underlying content/links are corrected; errors are not replaced with arbitrary links just to reach a quota.
 - Historical SQL/ZIP packages already stored or downloaded were not regenerated or certified by this work; do not reimport them as though they passed the new gate.

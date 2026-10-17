@@ -59,6 +59,15 @@ class TranslationLinkTests(unittest.TestCase):
     def test_generic_anchor_rejected(self):
         with self.assertRaises(lp.LinkPolicyError):
             lp.localize_links(body(EN).replace('Quinoa irrigation guide','Related article'), 'en-US', fetcher=lambda u:page(u,'en-US'))
+    def test_unquoted_href_cannot_bypass_gate(self):
+        with self.assertRaises(lp.LinkPolicyError):
+            lp.localize_links(body(EN)+'<a href=/bad/>bad</a>', 'en-US', fetcher=lambda u:page(u,'en-US'))
+    def test_unclosed_href_cannot_bypass_gate(self):
+        with self.assertRaises(lp.LinkPolicyError):
+            lp.localize_links(body(EN)+'<a href="/bad/">bad', 'en-US', fetcher=lambda u:page(u,'en-US'))
+    def test_duplicate_href_attributes_rejected(self):
+        with self.assertRaises(lp.LinkPolicyError):
+            lp.localize_links('<a href="'+EN+'" href="/bad/">Quinoa irrigation</a>', 'en-US', fetcher=lambda u:page(u,'en-US'))
     def test_duplicate_destinations_rejected(self):
         with self.assertRaises(lp.LinkPolicyError):lp.localize_links(body(EN)*2,'en-US',fetcher=lambda u:page(u,'en-US'))
     def test_hex_anchor_rejected(self):
